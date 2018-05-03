@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace proximitybeacon_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Proximity Beacon API
    *
@@ -82,11 +85,11 @@ export namespace proximitybeacon_v1beta1 {
      * encoding should be of the binary byte-stream and not any textual (such as
      * hex) representation thereof. Required.
      */
-    id: string;
+    id?: string;
     /**
      * Specifies the identifier type. Required.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A subset of attachment information served via the
@@ -97,7 +100,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * An opaque data container for client-provided data.
      */
-    data: string;
+    data?: string;
     /**
      * The distance away from the beacon at which this attachment should be
      * delivered to a mobile app.  Setting this to a value greater than zero
@@ -110,14 +113,14 @@ export namespace proximitybeacon_v1beta1 {
      * Optional. When not set or zero, the attachment should be delivered at the
      * beacon&#39;s outer limit of detection.
      */
-    maxDistanceMeters: number;
+    maxDistanceMeters?: number;
     /**
      * Specifies what kind of attachment this is. Tells a client how to
      * interpret the `data` field. Format is
      * &lt;var&gt;namespace/type&lt;/var&gt;, for example
      * &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
      */
-    namespacedType: string;
+    namespacedType?: string;
   }
   /**
    * Details of a beacon device.
@@ -131,7 +134,7 @@ export namespace proximitybeacon_v1beta1 {
      * Eddystone-UID that identifies the beacon and links it to its attachments.
      * The stable Eddystone-UID is only used for administering the beacon.
      */
-    advertisedId: Schema$AdvertisedId;
+    advertisedId?: Schema$AdvertisedId;
     /**
      * Resource name of this beacon. A beacon name has the format
      * &quot;beacons/N!beaconId&quot; where the beaconId is the base16 ID
@@ -140,12 +143,12 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon.  This field must be left empty when registering. After reading
      * a beacon, clients can use the name for future operations.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * Free text used to identify and describe the beacon. Maximum length 140
      * characters. Optional.
      */
-    description: string;
+    description?: string;
     /**
      * Write-only registration parameters for beacons using Eddystone-EID
      * (remotely resolved ephemeral ID) format. This information will not be
@@ -153,35 +156,35 @@ export namespace proximitybeacon_v1beta1 {
      * `advertised_id` field must contain an ID of type Eddystone-UID. Any other
      * ID type will result in an error.
      */
-    ephemeralIdRegistration: Schema$EphemeralIdRegistration;
+    ephemeralIdRegistration?: Schema$EphemeralIdRegistration;
     /**
      * Expected location stability. This is set when the beacon is registered or
      * updated, not automatically detected in any way. Optional.
      */
-    expectedStability: string;
+    expectedStability?: string;
     /**
      * The indoor level information for this beacon, if known. As returned by
      * the Google Maps API. Optional.
      */
-    indoorLevel: Schema$IndoorLevel;
+    indoorLevel?: Schema$IndoorLevel;
     /**
      * The location of the beacon, expressed as a latitude and longitude pair.
      * This location is given when the beacon is registered or updated. It does
      * not necessarily indicate the actual current location of the beacon.
      * Optional.
      */
-    latLng: Schema$LatLng;
+    latLng?: Schema$LatLng;
     /**
      * The [Google Places API](/places/place-id) Place ID of the place where the
      * beacon is deployed. This is given when the beacon is registered or
      * updated, not automatically detected in any way. Optional.
      */
-    placeId: string;
+    placeId?: string;
     /**
      * Properties of the beacon device, for example battery type or firmware
      * version. Optional.
      */
-    properties: any;
+    properties?: any;
     /**
      * Some beacons may require a user to provide an authorization key before
      * changing any of its configuration (e.g. broadcast frames, transmit
@@ -193,11 +196,11 @@ export namespace proximitybeacon_v1beta1 {
      * authorized to configure the beacon. Note that this key grants nothing on
      * the service, only on the beacon itself.
      */
-    provisioningKey: string;
+    provisioningKey?: string;
     /**
      * Current status of the beacon. Required.
      */
-    status: string;
+    status?: string;
   }
   /**
    * Project-specific data associated with a beacon.
@@ -208,18 +211,18 @@ export namespace proximitybeacon_v1beta1 {
      * &lt;code&gt;beacons/&lt;var&gt;beacon_id&lt;/var&gt;/attachments/&lt;var&gt;attachment_id&lt;/var&gt;&lt;/code&gt;.
      * Leave this empty on creation.
      */
-    attachmentName: string;
+    attachmentName?: string;
     /**
      * The UTC time when this attachment was created, in milliseconds since the
      * UNIX epoch.
      */
-    creationTimeMs: string;
+    creationTimeMs?: string;
     /**
      * An opaque data container for client-provided data. Must be
      * [base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
      * requests, and will be so encoded (with padding) in responses. Required.
      */
-    data: string;
+    data?: string;
     /**
      * The distance away from the beacon at which this attachment should be
      * delivered to a mobile app.  Setting this to a value greater than zero
@@ -233,7 +236,7 @@ export namespace proximitybeacon_v1beta1 {
      * beacon&#39;s outer limit of detection.  Negative values are invalid and
      * return an error.
      */
-    maxDistanceMeters: number;
+    maxDistanceMeters?: number;
     /**
      * Specifies what kind of attachment this is. Tells a client how to
      * interpret the `data` field. Format is
@@ -241,7 +244,7 @@ export namespace proximitybeacon_v1beta1 {
      * between clients. Type describes the type of `data`, for use by the client
      * when parsing the `data` field. Required.
      */
-    namespacedType: string;
+    namespacedType?: string;
   }
   /**
    * A subset of beacon information served via the `beaconinfo.getforobserved`
@@ -251,16 +254,16 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The ID advertised by the beacon.
      */
-    advertisedId: Schema$AdvertisedId;
+    advertisedId?: Schema$AdvertisedId;
     /**
      * Attachments matching the type(s) requested. May be empty if no attachment
      * types were requested.
      */
-    attachments: Schema$AttachmentInfo[];
+    attachments?: Schema$AttachmentInfo[];
     /**
      * The name under which the beacon is registered.
      */
-    beaconName: string;
+    beaconName?: string;
   }
   /**
    * Represents a whole calendar date, e.g. date of birth. The time of day and
@@ -276,16 +279,16 @@ export namespace proximitybeacon_v1beta1 {
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
      * if specifying a year/month where the day is not significant.
      */
-    day: number;
+    day?: number;
     /**
      * Month of year. Must be from 1 to 12.
      */
-    month: number;
+    month?: number;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
      * year.
      */
-    year: number;
+    year?: number;
   }
   /**
    * Response for a request to delete attachments.
@@ -294,7 +297,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The number of attachments that were deleted.
      */
-    numDeleted: number;
+    numDeleted?: number;
   }
   /**
    * Diagnostics for a single beacon.
@@ -303,19 +306,19 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * An unordered list of Alerts that the beacon has.
      */
-    alerts: string[];
+    alerts?: string[];
     /**
      * Resource name of the beacon. For Eddystone-EID beacons, this may be the
      * beacon&#39;s current EID, or the beacon&#39;s &quot;stable&quot;
      * Eddystone-UID.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The date when the battery is expected to be low. If the value is missing
      * then there is no estimate for when the battery will be low. This value is
      * only an estimate, not an exact date.
      */
-    estimatedLowBatteryDate: Schema$Date;
+    estimatedLowBatteryDate?: Schema$Date;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -352,13 +355,13 @@ export namespace proximitybeacon_v1beta1 {
      * key exchange. When this field is populated, `service_ecdh_public_key`
      * must also be populated, and `beacon_identity_key` must not be.
      */
-    beaconEcdhPublicKey: string;
+    beaconEcdhPublicKey?: string;
     /**
      * The private key of the beacon. If this field is populated,
      * `beacon_ecdh_public_key` and `service_ecdh_public_key` must not be
      * populated.
      */
-    beaconIdentityKey: string;
+    beaconIdentityKey?: string;
     /**
      * The initial clock value of the beacon. The beacon&#39;s clock must have
      * begun counting at this value immediately prior to transmitting this value
@@ -366,7 +369,7 @@ export namespace proximitybeacon_v1beta1 {
      * the service risks registration or resolution failures. If a value is not
      * provided, the default is zero.
      */
-    initialClockValue: string;
+    initialClockValue?: string;
     /**
      * An initial ephemeral ID calculated using the clock value submitted as
      * `initial_clock_value`, and the secret key generated by the Diffie-Hellman
@@ -374,7 +377,7 @@ export namespace proximitybeacon_v1beta1 {
      * `service_ecdh_public_key`. This initial EID value will be used by the
      * service to confirm that the key exchange process was successful.
      */
-    initialEid: string;
+    initialEid?: string;
     /**
      * Indicates the nominal period between each rotation of the beacon&#39;s
      * ephemeral ID. &quot;Nominal&quot; because the beacon should randomize the
@@ -384,13 +387,13 @@ export namespace proximitybeacon_v1beta1 {
      * beacon&#39;s clock: when the scaler value is K, the beacon will begin
      * broadcasting a new ephemeral ID on average every 2^K seconds.
      */
-    rotationPeriodExponent: number;
+    rotationPeriodExponent?: number;
     /**
      * The service&#39;s public key used for the Elliptic curve Diffie-Hellman
      * key exchange. When this field is populated, `beacon_ecdh_public_key` must
      * also be populated, and `beacon_identity_key` must not be.
      */
-    serviceEcdhPublicKey: string;
+    serviceEcdhPublicKey?: string;
   }
   /**
    * Information a client needs to provision and register beacons that broadcast
@@ -404,17 +407,17 @@ export namespace proximitybeacon_v1beta1 {
      * Indicates the maximum rotation period supported by the service. See
      * EddystoneEidRegistration.rotation_period_exponent
      */
-    maxRotationPeriodExponent: number;
+    maxRotationPeriodExponent?: number;
     /**
      * Indicates the minimum rotation period supported by the service. See
      * EddystoneEidRegistration.rotation_period_exponent
      */
-    minRotationPeriodExponent: number;
+    minRotationPeriodExponent?: number;
     /**
      * The beacon service&#39;s public key for use by a beacon to derive its
      * Identity Key using Elliptic Curve Diffie-Hellman key exchange.
      */
-    serviceEcdhPublicKey: string;
+    serviceEcdhPublicKey?: string;
   }
   /**
    * Request for beacon and attachment information about beacons that a mobile
@@ -428,11 +431,11 @@ export namespace proximitybeacon_v1beta1 {
      * &lt;var&gt;namespace/type&lt;/var&gt;. Accepts `*` to specify all types
      * in all namespaces owned by the client. Optional.
      */
-    namespacedTypes: string[];
+    namespacedTypes?: string[];
     /**
      * The beacons that the client has encountered. At least one must be given.
      */
-    observations: Schema$Observation[];
+    observations?: Schema$Observation[];
   }
   /**
    * Information about the requested beacons, optionally including attachment
@@ -443,7 +446,7 @@ export namespace proximitybeacon_v1beta1 {
      * Public information about beacons. May be empty if the request matched no
      * beacons.
      */
-    beacons: Schema$BeaconInfo[];
+    beacons?: Schema$BeaconInfo[];
   }
   /**
    * Indoor level, a human-readable string as returned by Google Maps APIs,
@@ -453,7 +456,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The name of this level.
      */
-    name: string;
+    name?: string;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -466,11 +469,11 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude: number;
+    latitude?: number;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude: number;
+    longitude?: number;
   }
   /**
    * Response to `ListBeaconAttachments` that contains the requested
@@ -480,7 +483,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The attachments that corresponded to the request params.
      */
-    attachments: Schema$BeaconAttachment[];
+    attachments?: Schema$BeaconAttachment[];
   }
   /**
    * Response that contains list beacon results and pagination help.
@@ -489,17 +492,17 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The beacons that matched the search criteria.
      */
-    beacons: Schema$Beacon[];
+    beacons?: Schema$Beacon[];
     /**
      * An opaque pagination token that the client may provide in their next
      * request to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Estimate of the total number of beacons matched by the query. Higher
      * values may be less accurate.
      */
-    totalCount: string;
+    totalCount?: string;
   }
   /**
    * Response that contains the requested diagnostics.
@@ -508,12 +511,12 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The diagnostics matching the given request.
      */
-    diagnostics: Schema$Diagnostics[];
+    diagnostics?: Schema$Diagnostics[];
     /**
      * Token that can be used for pagination. Returned only if the request
      * matches more beacons than can be returned in this response.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response to ListNamespacesRequest that contains all the project&#39;s
@@ -523,7 +526,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * The attachments that corresponded to the request params.
      */
-    namespaces: Schema$Namespace[];
+    namespaces?: Schema$Namespace[];
   }
   /**
    * An attachment namespace defines read and write access for all the
@@ -536,12 +539,12 @@ export namespace proximitybeacon_v1beta1 {
      * Resource name of this namespace. Namespaces names have the format:
      * &lt;code&gt;namespaces/&lt;var&gt;namespace&lt;/var&gt;&lt;/code&gt;.
      */
-    namespaceName: string;
+    namespaceName?: string;
     /**
      * Specifies what clients may receive attachments under this namespace via
      * `beaconinfo.getforobserved`.
      */
-    servingVisibility: string;
+    servingVisibility?: string;
   }
   /**
    * Represents one beacon observed once.
@@ -553,18 +556,19 @@ export namespace proximitybeacon_v1beta1 {
      * authorized to resolve the given beacon. Otherwise no data will be
      * returned for that beacon. Required.
      */
-    advertisedId: Schema$AdvertisedId;
+    advertisedId?: Schema$AdvertisedId;
     /**
      * The array of telemetry bytes received from the beacon. The server is
      * responsible for parsing it. This field may frequently be empty, as with a
      * beacon that transmits telemetry only occasionally.
      */
-    telemetry: string;
+    telemetry?: string;
     /**
      * Time when the beacon was observed.
      */
-    timestampMs: string;
+    timestampMs?: string;
   }
+
 
   export class Resource$Beaconinfo {
     root: Proximitybeacon;
@@ -594,31 +598,49 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getforobserved(params?: any, options?: MethodOptions):
+    getforobserved(
+        params?: Params$Resource$Beaconinfo$Getforobserved,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
     getforobserved(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beaconinfo$Getforobserved,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
         void;
     getforobserved(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beaconinfo$Getforobserved,
+        callback:
+            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
+        void;
+    getforobserved(
+        callback:
+            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
+        void;
+    getforobserved(
+        paramsOrCallback?: Params$Resource$Beaconinfo$Getforobserved|
+        BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
         callback?:
             BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
         void|AxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Beaconinfo$Getforobserved;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beaconinfo$Getforobserved;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -643,6 +665,19 @@ export namespace proximitybeacon_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Beaconinfo$Getforobserved {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetInfoForObservedBeaconsRequest;
+  }
+
 
   export class Resource$Beacons {
     root: Proximitybeacon;
@@ -679,25 +714,37 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    activate(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     activate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Beacons$Activate,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     activate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Beacons$Activate,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    activate(
+        params: Params$Resource$Beacons$Activate,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    activate(callback: BodyResponseCallback<Schema$Empty>): void;
+    activate(
+        paramsOrCallback?: Params$Resource$Beacons$Activate|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Activate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -741,26 +788,38 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deactivate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     deactivate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Beacons$Deactivate,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     deactivate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Beacons$Deactivate,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    deactivate(
+        params: Params$Resource$Beacons$Deactivate,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    deactivate(callback: BodyResponseCallback<Schema$Empty>): void;
+    deactivate(
+        paramsOrCallback?: Params$Resource$Beacons$Deactivate|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Beacons$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Deactivate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -803,26 +862,38 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decommission(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     decommission(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Beacons$Decommission,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     decommission(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Beacons$Decommission,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    decommission(
+        params: Params$Resource$Beacons$Decommission,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    decommission(callback: BodyResponseCallback<Schema$Empty>): void;
+    decommission(
+        paramsOrCallback?: Params$Resource$Beacons$Decommission|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Beacons$Decommission;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Decommission;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -865,25 +936,36 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Beacons$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Beacons$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Beacons$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Beacons$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -929,23 +1011,33 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Beacon>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+    get(params?: Params$Resource$Beacons$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+    get(params: Params$Resource$Beacons$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
+    get(params: Params$Resource$Beacons$Get,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
+    get(callback: BodyResponseCallback<Schema$Beacon>): void;
+    get(paramsOrCallback?: Params$Resource$Beacons$Get|
+        BodyResponseCallback<Schema$Beacon>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
         void|AxiosPromise<Schema$Beacon> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -989,28 +1081,37 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Beacons$List, options?: MethodOptions):
         AxiosPromise<Schema$ListBeaconsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$ListBeaconsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+        params: Params$Resource$Beacons$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
+        callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$List,
+        callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Beacons$List|
+        BodyResponseCallback<Schema$ListBeaconsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBeaconsResponse>,
         callback?: BodyResponseCallback<Schema$ListBeaconsResponse>):
         void|AxiosPromise<Schema$ListBeaconsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1051,26 +1152,37 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    register(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Beacon>;
     register(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>): void;
+        params?: Params$Resource$Beacons$Register,
+        options?: MethodOptions): AxiosPromise<Schema$Beacon>;
     register(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+        params: Params$Resource$Beacons$Register,
+        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
+    register(
+        params: Params$Resource$Beacons$Register,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
+    register(callback: BodyResponseCallback<Schema$Beacon>): void;
+    register(
+        paramsOrCallback?: Params$Resource$Beacons$Register|
+        BodyResponseCallback<Schema$Beacon>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
         void|AxiosPromise<Schema$Beacon> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Register;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Register;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1117,25 +1229,36 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+    update(params?: Params$Resource$Beacons$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Beacon>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>): void;
+        params: Params$Resource$Beacons$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+        params: Params$Resource$Beacons$Update,
+        callback: BodyResponseCallback<Schema$Beacon>): void;
+    update(callback: BodyResponseCallback<Schema$Beacon>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Beacons$Update|
+        BodyResponseCallback<Schema$Beacon>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
         void|AxiosPromise<Schema$Beacon> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1158,6 +1281,234 @@ export namespace proximitybeacon_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Beacons$Activate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon that should be activated. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to activate. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Deactivate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon that should be deactivated. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to deactivate. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Decommission {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon that should be decommissioned. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * of the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to decommission. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon that should be deleted. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to delete. If not provided, the project that
+     * is making the request is used. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of this beacon. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to request. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of records to return for this request, up to a
+     * server-defined upper limit.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token obtained from a previous request to list beacons.
+     */
+    pageToken?: string;
+    /**
+     * The project id to list beacons under. If not present then the project
+     * credential that made the request is used as the project. Optional.
+     */
+    projectId?: string;
+    /**
+     * Filter query string that supports the following field filters:  *
+     * **description:`"<string>"`**   For example: **description:"Room 3"**
+     * Returns beacons whose description matches tokens in the string "Room 3"
+     * (not necessarily that exact string).   The string must be double-quoted.
+     * * **status:`<enum>`**   For example: **status:active**   Returns beacons
+     * whose status matches the given value. Values must be   one of the
+     * Beacon.Status enum values (case insensitive). Accepts   multiple filters
+     * which will be combined with OR logic. * **stability:`<enum>`**   For
+     * example: **stability:mobile**   Returns beacons whose expected stability
+     * matches the given value.   Values must be one of the Beacon.Stability
+     * enum values (case   insensitive). Accepts multiple filters which will be
+     * combined with   OR logic. * **place\_id:`"<string>"`**   For example:
+     * **place\_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="**   Returns beacons explicitly
+     * registered at the given place, expressed as   a Place ID obtained from
+     * [Google Places API](/places/place-id). Does not   match places inside the
+     * given place. Does not consider the beacon's   actual location (which may
+     * be different from its registered place).   Accepts multiple filters that
+     * will be combined with OR logic. The place   ID must be double-quoted. *
+     * **registration\_time`[<|>|<=|>=]<integer>`**   For example:
+     * **registration\_time>=1433116800**   Returns beacons whose registration
+     * time matches the given filter.   Supports the operators: <, >, <=, and
+     * >=. Timestamp must be expressed as   an integer number of seconds since
+     * midnight January 1, 1970 UTC. Accepts   at most two filters that will be
+     * combined with AND logic, to support   "between" semantics. If more than
+     * two are supplied, the latter ones are   ignored. * **lat:`<double>
+     * lng:<double> radius:<integer>`**   For example: **lat:51.1232343
+     * lng:-1.093852 radius:1000**   Returns beacons whose registered location
+     * is within the given circle.   When any of these fields are given, all are
+     * required. Latitude and   longitude must be decimal degrees between -90.0
+     * and 90.0 and between   -180.0 and 180.0 respectively. Radius must be an
+     * integer number of   meters between 10 and 1,000,000 (1000 km). *
+     * **property:`"<string>=<string>"`**   For example:
+     * **property:"battery-type=CR2032"**   Returns beacons which have a
+     * property of the given name and value.   Supports multiple filters which
+     * will be combined with OR logic.   The entire name=value string must be
+     * double-quoted as one string. * **attachment\_type:`"<string>"`**   For
+     * example: **attachment_type:"my-namespace/my-type"**   Returns beacons
+     * having at least one attachment of the given namespaced   type. Supports
+     * "any within this namespace" via the partial wildcard   syntax:
+     * "my-namespace/x". Supports multiple filters which will be   combined with
+     * OR logic. The string must be double-quoted. *
+     * **indoor\_level:`"<string>"`**   For example: **indoor\_level:"1"**
+     * Returns beacons which are located on the given indoor level. Accepts
+     * multiple filters that will be combined with OR logic.  Multiple filters
+     * on the same field are combined with OR logic (except registration_time
+     * which is combined with AND logic). Multiple filters on different fields
+     * are combined with AND logic. Filters should be separated by spaces.  As
+     * with any HTTP query string parameter, the whole filter expression must be
+     * URL-encoded.  Example REST request: `GET
+     * /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
+     */
+    q?: string;
+  }
+  export interface Params$Resource$Beacons$Register {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project id of the project the beacon will be registered to. If the
+     * project id is not specified then the project making the request is used.
+     * Optional.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Beacon;
+  }
+  export interface Params$Resource$Beacons$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of this beacon. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone, `1` for iBeacon, or `5` for AltBeacon.  This field must be
+     * left empty when registering. After reading a beacon, clients can use the
+     * name for future operations.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the beacon to update. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Beacon;
+  }
+
   export class Resource$Beacons$Attachments {
     root: Proximitybeacon;
     constructor(root: Proximitybeacon) {
@@ -1192,29 +1543,42 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchDelete(params?: any, options?: MethodOptions):
+    batchDelete(
+        params?: Params$Resource$Beacons$Attachments$Batchdelete,
+        options?: MethodOptions):
         AxiosPromise<Schema$DeleteAttachmentsResponse>;
     batchDelete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$Attachments$Batchdelete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
     batchDelete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$Attachments$Batchdelete,
+        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+    batchDelete(
+        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+    batchDelete(
+        paramsOrCallback?: Params$Resource$Beacons$Attachments$Batchdelete|
+        BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
         callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>):
         void|AxiosPromise<Schema$DeleteAttachmentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Beacons$Attachments$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Attachments$Batchdelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1263,26 +1627,39 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BeaconAttachment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
-        callback?: BodyResponseCallback<Schema$BeaconAttachment>): void;
+        params?: Params$Resource$Beacons$Attachments$Create,
+        options?: MethodOptions): AxiosPromise<Schema$BeaconAttachment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
+        params: Params$Resource$Beacons$Attachments$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
+        callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
+    create(
+        params: Params$Resource$Beacons$Attachments$Create,
+        callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
+    create(callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Beacons$Attachments$Create|
+        BodyResponseCallback<Schema$BeaconAttachment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BeaconAttachment>,
         callback?: BodyResponseCallback<Schema$BeaconAttachment>):
         void|AxiosPromise<Schema$BeaconAttachment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Beacons$Attachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Attachments$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1326,25 +1703,38 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Beacons$Attachments$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Beacons$Attachments$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Beacons$Attachments$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Beacons$Attachments$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Beacons$Attachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Attachments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1390,29 +1780,44 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Beacons$Attachments$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBeaconAttachmentsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$Attachments$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
+        callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$Attachments$List,
+        callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Beacons$Attachments$List|
+        BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
         callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
         void|AxiosPromise<Schema$ListBeaconAttachmentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Beacons$Attachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Attachments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1437,6 +1842,114 @@ export namespace proximitybeacon_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Beacons$Attachments$Batchdelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The beacon whose attachments should be deleted. A beacon name has the
+     * format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast
+     * by the beacon and N is a code for the beacon's type. Possible values are
+     * `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * Specifies the namespace and type of attachments to delete in
+     * `namespace/type` format. Accepts `x/x` to specify "all types in all
+     * namespaces". Optional.
+     */
+    namespacedType?: string;
+    /**
+     * The project id to delete beacon attachments under. This field can be used
+     * when "*" is specified to mean all attachment namespaces. Projects may
+     * have multiple attachments with multiple namespaces. If "*" is specified
+     * and the projectId string is empty, then the project making the request is
+     * used. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Attachments$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon on which the attachment should be created. A beacon name has the
+     * format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast
+     * by the beacon and N is a code for the beacon's type. Possible values are
+     * `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * The project id of the project the attachment will belong to. If the
+     * project id is not specified then the project making the request is used.
+     * Optional.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BeaconAttachment;
+  }
+  export interface Params$Resource$Beacons$Attachments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The attachment name (`attachmentName`) of the attachment to remove. For
+     * example:
+     * `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738`. For
+     * Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be the
+     * beacon's current EID, or its "stable" Eddystone-UID. Required.
+     */
+    attachmentName?: string;
+    /**
+     * The project id of the attachment to delete. If not provided, the project
+     * that is making the request is used. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Beacons$Attachments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Beacon whose attachments should be fetched. A beacon name has the format
+     * "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the
+     * beacon and N is a code for the beacon's type. Possible values are `3` for
+     * Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for
+     * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
+     * or the beacon's "stable" UID. Required.
+     */
+    beaconName?: string;
+    /**
+     * Specifies the namespace and type of attachment to include in response in
+     * <var>namespace/type</var> format. Accepts `x/x` to specify "all types in
+     * all namespaces".
+     */
+    namespacedType?: string;
+    /**
+     * The project id to list beacon attachments under. This field can be used
+     * when "*" is specified to mean all attachment namespaces. Projects may
+     * have multiple attachments with multiple namespaces. If "*" is specified
+     * and the projectId string is empty, then the project making the request is
+     * used. Optional.
+     */
+    projectId?: string;
+  }
+
 
   export class Resource$Beacons$Diagnostics {
     root: Proximitybeacon;
@@ -1472,28 +1985,40 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDiagnosticsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Beacons$Diagnostics$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDiagnosticsResponse>;
+    list(
+        params: Params$Resource$Beacons$Diagnostics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDiagnosticsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Beacons$Diagnostics$List,
+        callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Beacons$Diagnostics$List|
+        BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDiagnosticsResponse>,
         callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>):
         void|AxiosPromise<Schema$ListDiagnosticsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Beacons$Diagnostics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Beacons$Diagnostics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1516,6 +2041,40 @@ export namespace proximitybeacon_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Beacons$Diagnostics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Requests only beacons that have the given alert. For example, to find
+     * beacons that have low batteries use `alert_filter=LOW_BATTERY`.
+     */
+    alertFilter?: string;
+    /**
+     * Beacon that the diagnostics are for.
+     */
+    beaconName?: string;
+    /**
+     * Specifies the maximum number of results to return. Defaults to 10.
+     * Maximum 1000. Optional.
+     */
+    pageSize?: number;
+    /**
+     * Requests results that occur after the `page_token`, obtained from the
+     * response to a previous request. Optional.
+     */
+    pageToken?: string;
+    /**
+     * Requests only diagnostic records for the given project id. If not set,
+     * then the project making the request will be used for looking up
+     * diagnostic records. Optional.
+     */
+    projectId?: string;
+  }
+
 
 
   export class Resource$Namespaces {
@@ -1548,28 +2107,38 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Namespaces$List, options?: MethodOptions):
         AxiosPromise<Schema$ListNamespacesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Namespaces$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListNamespacesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Namespaces$List,
+        callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Namespaces$List|
+        BodyResponseCallback<Schema$ListNamespacesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNamespacesResponse>,
         callback?: BodyResponseCallback<Schema$ListNamespacesResponse>):
         void|AxiosPromise<Schema$ListNamespacesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Namespaces$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1608,26 +2177,38 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Namespaces$Update, options?: MethodOptions):
         AxiosPromise<Schema$Namespace>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Namespace>,
-        callback?: BodyResponseCallback<Schema$Namespace>): void;
+        params: Params$Resource$Namespaces$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Namespace>,
+        callback: BodyResponseCallback<Schema$Namespace>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Namespace>,
+        params: Params$Resource$Namespaces$Update,
+        callback: BodyResponseCallback<Schema$Namespace>): void;
+    update(callback: BodyResponseCallback<Schema$Namespace>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Namespaces$Update|
+        BodyResponseCallback<Schema$Namespace>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Namespace>,
         callback?: BodyResponseCallback<Schema$Namespace>):
         void|AxiosPromise<Schema$Namespace> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Namespaces$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1650,6 +2231,41 @@ export namespace proximitybeacon_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Namespaces$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project id to list namespaces under. Optional.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Namespaces$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of this namespace. Namespaces names have the format:
+     * <code>namespaces/<var>namespace</var></code>.
+     */
+    namespaceName?: string;
+    /**
+     * The project id of the namespace to update. If the project id is not
+     * specified then the project making the request is used. The project id
+     * must match the project that owns the beacon. Optional.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Namespace;
+  }
+
 
   export class Resource$V1beta1 {
     root: Proximitybeacon;
@@ -1680,29 +2296,44 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getEidparams(params?: any, options?: MethodOptions):
+    getEidparams(
+        params?: Params$Resource$V1beta1$Geteidparams, options?: MethodOptions):
         AxiosPromise<Schema$EphemeralIdRegistrationParams>;
     getEidparams(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$V1beta1$Geteidparams,
+        options: MethodOptions|
         BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
-        callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
+        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
         void;
     getEidparams(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$V1beta1$Geteidparams,
+        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
+        void;
+    getEidparams(
+        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
+        void;
+    getEidparams(
+        paramsOrCallback?: Params$Resource$V1beta1$Geteidparams|
+        BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
         callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
         void|AxiosPromise<Schema$EphemeralIdRegistrationParams> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1beta1$Geteidparams;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1beta1$Geteidparams;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
@@ -1726,5 +2357,12 @@ export namespace proximitybeacon_v1beta1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$V1beta1$Geteidparams {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

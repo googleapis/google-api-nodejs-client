@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace datastore_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Datastore API
    *
@@ -74,7 +77,7 @@ export namespace datastore_v1 {
      * A list of keys with incomplete key paths for which to allocate IDs. No
      * key may be reserved/read-only.
      */
-    keys: Schema$Key[];
+    keys?: Schema$Key[];
   }
   /**
    * The response for Datastore.AllocateIds.
@@ -84,7 +87,7 @@ export namespace datastore_v1 {
      * The keys specified in the request (in the same order), each with its key
      * path completed with a newly allocated ID.
      */
-    keys: Schema$Key[];
+    keys?: Schema$Key[];
   }
   /**
    * An array value.
@@ -94,7 +97,7 @@ export namespace datastore_v1 {
      * Values in the array. The order of this array may not be preserved if it
      * contains a mix of indexed and unindexed values.
      */
-    values: Schema$Value[];
+    values?: Schema$Value[];
   }
   /**
    * The request for Datastore.BeginTransaction.
@@ -103,7 +106,7 @@ export namespace datastore_v1 {
     /**
      * Options for a new transaction.
      */
-    transactionOptions: Schema$TransactionOptions;
+    transactionOptions?: Schema$TransactionOptions;
   }
   /**
    * The response for Datastore.BeginTransaction.
@@ -112,7 +115,7 @@ export namespace datastore_v1 {
     /**
      * The transaction identifier (always present).
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The request for Datastore.Commit.
@@ -121,7 +124,7 @@ export namespace datastore_v1 {
     /**
      * The type of commit to perform. Defaults to `TRANSACTIONAL`.
      */
-    mode: string;
+    mode?: string;
     /**
      * The mutations to perform.  When mode is `TRANSACTIONAL`, mutations
      * affecting a single entity are applied in order. The following sequences
@@ -131,13 +134,13 @@ export namespace datastore_v1 {
      * When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
      * entity.
      */
-    mutations: Schema$Mutation[];
+    mutations?: Schema$Mutation[];
     /**
      * The identifier of the transaction associated with the commit. A
      * transaction identifier is returned by a call to
      * Datastore.BeginTransaction.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The response for Datastore.Commit.
@@ -147,12 +150,12 @@ export namespace datastore_v1 {
      * The number of index entries updated during the commit, or zero if none
      * were updated.
      */
-    indexUpdates: number;
+    indexUpdates?: number;
     /**
      * The result of performing the mutations. The i-th mutation result
      * corresponds to the i-th mutation in the request.
      */
-    mutationResults: Schema$MutationResult[];
+    mutationResults?: Schema$MutationResult[];
   }
   /**
    * A filter that merges multiple other filters using the given operator.
@@ -161,11 +164,11 @@ export namespace datastore_v1 {
     /**
      * The list of filters to combine. Must contain at least one filter.
      */
-    filters: Schema$Filter[];
+    filters?: Schema$Filter[];
     /**
      * The operator for combining multiple filters.
      */
-    op: string;
+    op?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -187,14 +190,14 @@ export namespace datastore_v1 {
      * key). An entity&#39;s kind is its key path&#39;s last element&#39;s kind,
      * or null if it has no key.
      */
-    key: Schema$Key;
+    key?: Schema$Key;
     /**
      * The entity&#39;s properties. The map&#39;s keys are property names. A
      * property name matching regex `__.*__` is reserved. A reserved property
      * name is forbidden in certain documented contexts. The name must not
      * contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -204,11 +207,11 @@ export namespace datastore_v1 {
      * A cursor that points to the position after the result entity. Set only
      * when the `EntityResult` is part of a `QueryResultBatch` message.
      */
-    cursor: string;
+    cursor?: string;
     /**
      * The resulting entity.
      */
-    entity: Schema$Entity;
+    entity?: Schema$Entity;
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.  This field is set for `FULL`
@@ -216,7 +219,7 @@ export namespace datastore_v1 {
      * version of the snapshot that was used to look up the entity, and it is
      * always set except for eventually consistent reads.
      */
-    version: string;
+    version?: string;
   }
   /**
    * A holder for any type of filter.
@@ -225,11 +228,11 @@ export namespace datastore_v1 {
     /**
      * A composite filter.
      */
-    compositeFilter: Schema$CompositeFilter;
+    compositeFilter?: Schema$CompositeFilter;
     /**
      * A filter on a property.
      */
-    propertyFilter: Schema$PropertyFilter;
+    propertyFilter?: Schema$PropertyFilter;
   }
   /**
    * Metadata common to all Datastore Admin operations.
@@ -238,25 +241,25 @@ export namespace datastore_v1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The time that work began on the operation.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The current state of the Operation.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as
@@ -274,7 +277,7 @@ export namespace datastore_v1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds: string[];
+    kinds?: string[];
     /**
      * An empty list represents all namespaces. This is the preferred usage for
      * projects that don&#39;t use namespaces.  An empty string element
@@ -282,7 +285,7 @@ export namespace datastore_v1 {
      * data in non-default namespaces, but doesn&#39;t want to include them.
      * Each namespace in this list must be unique.
      */
-    namespaceIds: string[];
+    namespaceIds?: string[];
   }
   /**
    * Metadata for ExportEntities operations.
@@ -291,11 +294,11 @@ export namespace datastore_v1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
     /**
      * Description of which entities are being exported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * Location for the export metadata and data files. This will be the same
      * value as the
@@ -303,15 +306,15 @@ export namespace datastore_v1 {
      * field. The final output location is provided in
      * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1beta1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1beta1Progress;
   }
   /**
    * The response for
@@ -324,7 +327,7 @@ export namespace datastore_v1 {
      * google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only
      * present if the operation completed successfully.
      */
-    outputUrl: string;
+    outputUrl?: string;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -333,25 +336,25 @@ export namespace datastore_v1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
     /**
      * Description of which entities are being imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * The location of the import metadata file. This will be the same value as
      * the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url
      * field.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1beta1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1beta1Progress;
   }
   /**
    * Measures the progress of a particular metric.
@@ -361,12 +364,12 @@ export namespace datastore_v1 {
      * The amount of work that has been completed. Note that this may be greater
      * than work_estimated.
      */
-    workCompleted: string;
+    workCompleted?: string;
     /**
      * An estimate of how much work needs to be performed. May be zero if the
      * work estimate is unavailable.
      */
-    workEstimated: string;
+    workEstimated?: string;
   }
   /**
    * Metadata common to all Datastore Admin operations.
@@ -375,25 +378,25 @@ export namespace datastore_v1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The time that work began on the operation.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The current state of the Operation.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as
@@ -411,7 +414,7 @@ export namespace datastore_v1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds: string[];
+    kinds?: string[];
     /**
      * An empty list represents all namespaces. This is the preferred usage for
      * projects that don&#39;t use namespaces.  An empty string element
@@ -419,7 +422,7 @@ export namespace datastore_v1 {
      * data in non-default namespaces, but doesn&#39;t want to include them.
      * Each namespace in this list must be unique.
      */
-    namespaceIds: string[];
+    namespaceIds?: string[];
   }
   /**
    * Metadata for ExportEntities operations.
@@ -428,11 +431,11 @@ export namespace datastore_v1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
     /**
      * Description of which entities are being exported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * Location for the export metadata and data files. This will be the same
      * value as the
@@ -440,15 +443,15 @@ export namespace datastore_v1 {
      * The final output location is provided in
      * google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
    * The request for google.datastore.admin.v1.DatastoreAdmin.ExportEntities.
@@ -457,11 +460,11 @@ export namespace datastore_v1 {
     /**
      * Description of what data from the project is included in the export.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * Client-assigned labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -478,7 +481,7 @@ export namespace datastore_v1 {
      * nesting the data files deeper, the same Cloud Storage bucket can be used
      * in multiple ExportEntities operations without conflict.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
   }
   /**
    * The response for google.datastore.admin.v1.DatastoreAdmin.ExportEntities.
@@ -490,7 +493,7 @@ export namespace datastore_v1 {
      * google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present
      * if the operation completed successfully.
      */
-    outputUrl: string;
+    outputUrl?: string;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -499,24 +502,24 @@ export namespace datastore_v1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
     /**
      * Description of which entities are being imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * The location of the import metadata file. This will be the same value as
      * the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
    * The request for google.datastore.admin.v1.DatastoreAdmin.ImportEntities.
@@ -528,7 +531,7 @@ export namespace datastore_v1 {
      * the export, otherwise a FAILED_PRECONDITION error will be returned. If no
      * filter is specified then all entities from the export are imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * The full resource URL of the external storage location. Currently, only
      * Google Cloud Storage is supported. So input_url should be of the form:
@@ -542,11 +545,11 @@ export namespace datastore_v1 {
      * For more information, see
      * google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * Client-assigned labels.
      */
-    labels: any;
+    labels?: any;
   }
   /**
    * Measures the progress of a particular metric.
@@ -556,12 +559,12 @@ export namespace datastore_v1 {
      * The amount of work that has been completed. Note that this may be greater
      * than work_estimated.
      */
-    workCompleted: string;
+    workCompleted?: string;
     /**
      * An estimate of how much work needs to be performed. May be zero if the
      * work estimate is unavailable.
      */
-    workEstimated: string;
+    workEstimated?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -570,11 +573,11 @@ export namespace datastore_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$GoogleLongrunningOperation[];
+    operations?: Schema$GoogleLongrunningOperation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -586,24 +589,24 @@ export namespace datastore_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -613,7 +616,7 @@ export namespace datastore_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A [GQL
@@ -626,26 +629,26 @@ export namespace datastore_v1 {
      * &#39;string literal&#39;` is not allowed, while `SELECT * FROM Kind WHERE
      * a = @value` is.
      */
-    allowLiterals: boolean;
+    allowLiterals?: boolean;
     /**
      * For each non-reserved named binding site in the query string, there must
      * be a named parameter with that name, but not necessarily the inverse. Key
      * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
      * be `&quot;&quot;`.
      */
-    namedBindings: any;
+    namedBindings?: any;
     /**
      * Numbered binding site @1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.  For each
      * binding site numbered i in `query_string`, there must be an i-th numbered
      * parameter. The inverse must also be true.
      */
-    positionalBindings: Schema$GqlQueryParameter[];
+    positionalBindings?: Schema$GqlQueryParameter[];
     /**
      * A string of the format described
      * [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
      */
-    queryString: string;
+    queryString?: string;
   }
   /**
    * A binding parameter for a GQL query.
@@ -654,11 +657,11 @@ export namespace datastore_v1 {
     /**
      * A query cursor. Query cursors are returned in query result batches.
      */
-    cursor: string;
+    cursor?: string;
     /**
      * A value parameter.
      */
-    value: Schema$Value;
+    value?: Schema$Value;
   }
   /**
    * A unique identifier for an entity. If a key&#39;s partition ID or any of
@@ -671,7 +674,7 @@ export namespace datastore_v1 {
      * Entities are partitioned into subsets, currently identified by a project
      * ID and namespace ID. Queries are scoped to a single partition.
      */
-    partitionId: Schema$PartitionId;
+    partitionId?: Schema$PartitionId;
     /**
      * The entity path. An entity path consists of one or more elements composed
      * of a kind and a string or numerical identifier, which identify entities.
@@ -687,7 +690,7 @@ export namespace datastore_v1 {
      * identifier.  A path can never be empty, and a path can have at most 100
      * elements.
      */
-    path: Schema$PathElement[];
+    path?: Schema$PathElement[];
   }
   /**
    * A representation of a kind.
@@ -696,7 +699,7 @@ export namespace datastore_v1 {
     /**
      * The name of the kind.
      */
-    name: string;
+    name?: string;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -709,11 +712,11 @@ export namespace datastore_v1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude: number;
+    latitude?: number;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude: number;
+    longitude?: number;
   }
   /**
    * The request for Datastore.Lookup.
@@ -722,11 +725,11 @@ export namespace datastore_v1 {
     /**
      * Keys of entities to look up.
      */
-    keys: Schema$Key[];
+    keys?: Schema$Key[];
     /**
      * The options for this lookup request.
      */
-    readOptions: Schema$ReadOptions;
+    readOptions?: Schema$ReadOptions;
   }
   /**
    * The response for Datastore.Lookup.
@@ -737,19 +740,19 @@ export namespace datastore_v1 {
      * order of results in this field is undefined and has no relation to the
      * order of the keys in the input.
      */
-    deferred: Schema$Key[];
+    deferred?: Schema$Key[];
     /**
      * Entities found as `ResultType.FULL` entities. The order of results in
      * this field is undefined and has no relation to the order of the keys in
      * the input.
      */
-    found: Schema$EntityResult[];
+    found?: Schema$EntityResult[];
     /**
      * Entities not found as `ResultType.KEY_ONLY` entities. The order of
      * results in this field is undefined and has no relation to the order of
      * the keys in the input.
      */
-    missing: Schema$EntityResult[];
+    missing?: Schema$EntityResult[];
   }
   /**
    * A mutation to apply to an entity.
@@ -759,27 +762,27 @@ export namespace datastore_v1 {
      * The version of the entity that this mutation is being applied to. If this
      * does not match the current version on the server, the mutation conflicts.
      */
-    baseVersion: string;
+    baseVersion?: string;
     /**
      * The key of the entity to delete. The entity may or may not already exist.
      * Must have a complete key path and must not be reserved/read-only.
      */
-    delete: Schema$Key;
+    delete?: Schema$Key;
     /**
      * The entity to insert. The entity must not already exist. The entity
      * key&#39;s final path element may be incomplete.
      */
-    insert: Schema$Entity;
+    insert?: Schema$Entity;
     /**
      * The entity to update. The entity must already exist. Must have a complete
      * key path.
      */
-    update: Schema$Entity;
+    update?: Schema$Entity;
     /**
      * The entity to upsert. The entity may or may not already exist. The entity
      * key&#39;s final path element may be incomplete.
      */
-    upsert: Schema$Entity;
+    upsert?: Schema$Entity;
   }
   /**
    * The result of applying a mutation.
@@ -789,12 +792,12 @@ export namespace datastore_v1 {
      * Whether a conflict was detected for this mutation. Always false when a
      * conflict detection strategy field is not set in the mutation.
      */
-    conflictDetected: boolean;
+    conflictDetected?: boolean;
     /**
      * The automatically allocated key. Set only when the mutation allocated a
      * key.
      */
-    key: Schema$Key;
+    key?: Schema$Key;
     /**
      * The version of the entity on the server after processing the mutation. If
      * the mutation doesn&#39;t change anything on the server, then the version
@@ -802,7 +805,7 @@ export namespace datastore_v1 {
      * version that is strictly greater than the version of any previous entity
      * and less than the version of any possible future entity.
      */
-    version: string;
+    version?: string;
   }
   /**
    * A partition ID identifies a grouping of entities. The grouping is always by
@@ -820,11 +823,11 @@ export namespace datastore_v1 {
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      */
-    namespaceId: string;
+    namespaceId?: string;
     /**
      * The ID of the project to which the entities belong.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * A (kind, ID/name) pair used to construct a key path.  If either name or ID
@@ -836,19 +839,19 @@ export namespace datastore_v1 {
      * The auto-allocated ID of the entity. Never equal to zero. Values less
      * than zero are discouraged and may not be supported in the future.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of the entity. A kind matching regex `__.*__` is
      * reserved/read-only. A kind must not contain more than 1500 bytes when
      * UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the entity. A name matching regex `__.*__` is
      * reserved/read-only. A name must not be more than 1500 bytes when UTF-8
      * encoded. Cannot be `&quot;&quot;`.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A representation of a property in a projection.
@@ -857,7 +860,7 @@ export namespace datastore_v1 {
     /**
      * The property to project.
      */
-    property: Schema$PropertyReference;
+    property?: Schema$PropertyReference;
   }
   /**
    * A filter on a specific property.
@@ -866,15 +869,15 @@ export namespace datastore_v1 {
     /**
      * The operator to filter by.
      */
-    op: string;
+    op?: string;
     /**
      * The property to filter by.
      */
-    property: Schema$PropertyReference;
+    property?: Schema$PropertyReference;
     /**
      * The value to compare the property to.
      */
-    value: Schema$Value;
+    value?: Schema$Value;
   }
   /**
    * The desired order for a specific property.
@@ -883,11 +886,11 @@ export namespace datastore_v1 {
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      */
-    direction: string;
+    direction?: string;
     /**
      * The property to order by.
      */
-    property: Schema$PropertyReference;
+    property?: Schema$PropertyReference;
   }
   /**
    * A reference to a property relative to the kind expressions.
@@ -897,7 +900,7 @@ export namespace datastore_v1 {
      * The name of the property. If name includes &quot;.&quot;s, it may be
      * interpreted as a property name path.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A query for entities.
@@ -908,47 +911,47 @@ export namespace datastore_v1 {
      * result for each distinct combination of values for the given properties
      * (if empty, all results are returned).
      */
-    distinctOn: Schema$PropertyReference[];
+    distinctOn?: Schema$PropertyReference[];
     /**
      * An ending point for the query results. Query cursors are returned in
      * query result batches and [can only be used to limit the same
      * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
-    endCursor: string;
+    endCursor?: string;
     /**
      * The filter to apply.
      */
-    filter: Schema$Filter;
+    filter?: Schema$Filter;
     /**
      * The kinds to query (if empty, returns entities of all kinds). Currently
      * at most 1 kind may be specified.
      */
-    kind: Schema$KindExpression[];
+    kind?: Schema$KindExpression[];
     /**
      * The maximum number of results to return. Applies after all other
      * constraints. Optional. Unspecified is interpreted as no limit. Must be
      * &gt;= 0 if specified.
      */
-    limit: number;
+    limit?: number;
     /**
      * The number of results to skip. Applies before limit, but after all other
      * constraints. Optional. Must be &gt;= 0 if specified.
      */
-    offset: number;
+    offset?: number;
     /**
      * The order to apply to the query results (if empty, order is unspecified).
      */
-    order: Schema$PropertyOrder[];
+    order?: Schema$PropertyOrder[];
     /**
      * The projection to return. Defaults to returning all properties.
      */
-    projection: Schema$Projection[];
+    projection?: Schema$Projection[];
     /**
      * A starting point for the query results. Query cursors are returned in
      * query result batches and [can only be used to continue the same
      * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
-    startCursor: string;
+    startCursor?: string;
   }
   /**
    * A batch of results produced by a query.
@@ -957,28 +960,28 @@ export namespace datastore_v1 {
     /**
      * A cursor that points to the position after the last result in the batch.
      */
-    endCursor: string;
+    endCursor?: string;
     /**
      * The results for this batch.
      */
-    entityResults: Schema$EntityResult[];
+    entityResults?: Schema$EntityResult[];
     /**
      * The result type for every entity in `entity_results`.
      */
-    entityResultType: string;
+    entityResultType?: string;
     /**
      * The state of the query after the current batch.
      */
-    moreResults: string;
+    moreResults?: string;
     /**
      * A cursor that points to the position after the last skipped result. Will
      * be set when `skipped_results` != 0.
      */
-    skippedCursor: string;
+    skippedCursor?: string;
     /**
      * The number of results skipped, typically because of an offset.
      */
-    skippedResults: number;
+    skippedResults?: number;
     /**
      * The version number of the snapshot this batch was returned from. This
      * applies to the range of results from the query&#39;s `start_cursor` (or
@@ -989,7 +992,7 @@ export namespace datastore_v1 {
      * valid for all preceding batches. The value will be zero for eventually
      * consistent queries.
      */
-    snapshotVersion: string;
+    snapshotVersion?: string;
   }
   /**
    * Options specific to read-only transactions.
@@ -1003,12 +1006,12 @@ export namespace datastore_v1 {
      * The non-transactional read consistency to use. Cannot be set to `STRONG`
      * for global queries.
      */
-    readConsistency: string;
+    readConsistency?: string;
     /**
      * The identifier of the transaction in which to read. A transaction
      * identifier is returned by a call to Datastore.BeginTransaction.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * Options specific to read / write transactions.
@@ -1017,7 +1020,7 @@ export namespace datastore_v1 {
     /**
      * The transaction identifier of the transaction being retried.
      */
-    previousTransaction: string;
+    previousTransaction?: string;
   }
   /**
    * The request for Datastore.ReserveIds.
@@ -1026,12 +1029,12 @@ export namespace datastore_v1 {
     /**
      * If not empty, the ID of the database against which to make the request.
      */
-    databaseId: string;
+    databaseId?: string;
     /**
      * A list of keys with complete key paths whose numeric IDs should not be
      * auto-allocated.
      */
-    keys: Schema$Key[];
+    keys?: Schema$Key[];
   }
   /**
    * The response for Datastore.ReserveIds.
@@ -1045,7 +1048,7 @@ export namespace datastore_v1 {
      * The transaction identifier, returned by a call to
      * Datastore.BeginTransaction.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The response for Datastore.Rollback. (an empty message).
@@ -1058,21 +1061,21 @@ export namespace datastore_v1 {
     /**
      * The GQL query to run.
      */
-    gqlQuery: Schema$GqlQuery;
+    gqlQuery?: Schema$GqlQuery;
     /**
      * Entities are partitioned into subsets, identified by a partition ID.
      * Queries are scoped to a single partition. This partition ID is normalized
      * with the standard default context partition ID.
      */
-    partitionId: Schema$PartitionId;
+    partitionId?: Schema$PartitionId;
     /**
      * The query to run.
      */
-    query: Schema$Query;
+    query?: Schema$Query;
     /**
      * The options for this query.
      */
-    readOptions: Schema$ReadOptions;
+    readOptions?: Schema$ReadOptions;
   }
   /**
    * The response for Datastore.RunQuery.
@@ -1081,11 +1084,11 @@ export namespace datastore_v1 {
     /**
      * A batch of query results (always present).
      */
-    batch: Schema$QueryResultBatch;
+    batch?: Schema$QueryResultBatch;
     /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
-    query: Schema$Query;
+    query?: Schema$Query;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1127,18 +1130,18 @@ export namespace datastore_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Options for beginning a new transaction.  Transactions can be created
@@ -1149,11 +1152,11 @@ export namespace datastore_v1 {
     /**
      * The transaction should only allow reads.
      */
-    readOnly: Schema$ReadOnly;
+    readOnly?: Schema$ReadOnly;
     /**
      * The transaction should allow both reads and writes.
      */
-    readWrite: Schema$ReadWrite;
+    readWrite?: Schema$ReadWrite;
   }
   /**
    * A message that can hold any of the supported value types and associated
@@ -1165,63 +1168,64 @@ export namespace datastore_v1 {
      * that sets field `array_value` must not set fields `meaning` or
      * `exclude_from_indexes`.
      */
-    arrayValue: Schema$ArrayValue;
+    arrayValue?: Schema$ArrayValue;
     /**
      * A blob value. May have at most 1,000,000 bytes. When
      * `exclude_from_indexes` is false, may have at most 1500 bytes. In JSON
      * requests, must be base64-encoded.
      */
-    blobValue: string;
+    blobValue?: string;
     /**
      * A boolean value.
      */
-    booleanValue: boolean;
+    booleanValue?: boolean;
     /**
      * A double value.
      */
-    doubleValue: number;
+    doubleValue?: number;
     /**
      * An entity value.  - May have no key. - May have a key with an incomplete
      * key path. - May have a reserved/read-only key.
      */
-    entityValue: Schema$Entity;
+    entityValue?: Schema$Entity;
     /**
      * If the value should be excluded from all indexes including those defined
      * explicitly.
      */
-    excludeFromIndexes: boolean;
+    excludeFromIndexes?: boolean;
     /**
      * A geo point value representing a point on the surface of Earth.
      */
-    geoPointValue: Schema$LatLng;
+    geoPointValue?: Schema$LatLng;
     /**
      * An integer value.
      */
-    integerValue: string;
+    integerValue?: string;
     /**
      * A key value.
      */
-    keyValue: Schema$Key;
+    keyValue?: Schema$Key;
     /**
      * The `meaning` field should only be populated for backwards compatibility.
      */
-    meaning: number;
+    meaning?: number;
     /**
      * A null value.
      */
-    nullValue: string;
+    nullValue?: string;
     /**
      * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is
      * indexed) , may have at most 1500 bytes. Otherwise, may be set to at least
      * 1,000,000 bytes.
      */
-    stringValue: string;
+    stringValue?: string;
     /**
      * A timestamp value. When stored in the Datastore, precise only to
      * microseconds; any additional precision is rounded down.
      */
-    timestampValue: string;
+    timestampValue?: string;
   }
+
 
   export class Resource$Projects {
     root: Datastore;
@@ -1251,28 +1255,40 @@ export namespace datastore_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AllocateIdsResponse>;
     allocateIds(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Allocateids,
+        options?: MethodOptions): AxiosPromise<Schema$AllocateIdsResponse>;
+    allocateIds(
+        params: Params$Resource$Projects$Allocateids,
+        options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
+        callback: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
+    allocateIds(
+        params: Params$Resource$Projects$Allocateids,
+        callback: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
+    allocateIds(callback: BodyResponseCallback<Schema$AllocateIdsResponse>):
+        void;
+    allocateIds(
+        paramsOrCallback?: Params$Resource$Projects$Allocateids|
         BodyResponseCallback<Schema$AllocateIdsResponse>,
-        callback?: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
-    allocateIds(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocateIdsResponse>,
         callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
         void|AxiosPromise<Schema$AllocateIdsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Allocateids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Allocateids;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1308,28 +1324,41 @@ export namespace datastore_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Begintransaction,
+        options?: MethodOptions): AxiosPromise<Schema$BeginTransactionResponse>;
+    beginTransaction(
+        params: Params$Resource$Projects$Begintransaction,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
-        callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Begintransaction,
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+    beginTransaction(
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+    beginTransaction(
+        paramsOrCallback?: Params$Resource$Projects$Begintransaction|
+        BodyResponseCallback<Schema$BeginTransactionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
         callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
         void|AxiosPromise<Schema$BeginTransactionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Begintransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Begintransaction;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1366,26 +1395,37 @@ export namespace datastore_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params?: any, options?: MethodOptions):
+    commit(params?: Params$Resource$Projects$Commit, options?: MethodOptions):
         AxiosPromise<Schema$CommitResponse>;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-        callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+        params: Params$Resource$Projects$Commit,
+        options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        params: Params$Resource$Projects$Commit,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(
+        paramsOrCallback?: Params$Resource$Projects$Commit|
+        BodyResponseCallback<Schema$CommitResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
         void|AxiosPromise<Schema$CommitResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Commit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1428,29 +1468,41 @@ export namespace datastore_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: any, options?: MethodOptions):
+    export(params?: Params$Resource$Projects$Export, options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Export,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void;
     export(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Export,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    export(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    export(
+        paramsOrCallback?: Params$Resource$Projects$Export|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void|AxiosPromise<Schema$GoogleLongrunningOperation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Export;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1492,19 +1544,28 @@ export namespace datastore_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-import(params?: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {if(typeof options === 'function') {
-    callback = options;
+import(params?: Params$Resource$Projects$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+
+                                                                                                                                                                                                                                                                                                                                             if(typeof paramsOrCallback === 'function') {
+    callback = paramsOrCallback;
+    params = {} as Params$Resource$Projects$Import;
     options = {};
-    } if(typeof params === 'function') {
-    callback = params;
-    params = {};
-    } options = options || {}; const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                             }
+
+                                                                                                                                                                                                                                                                                                                                             if(typeof optionsOrCallback === 'function') {
+    callback = optionsOrCallback;
+    options = {};
+                                                                                                                                                                                                                                                                                                                                             }
+
+                                                                                                                                                                                                                                                                                                                                             const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context: this.getRoot()}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
-    } else {
+                                                                                                                                                                                                                                                                                                                                             } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-    }}
+                                                                                                                                                                                                                                                                                                                                             }}
 
 
     /**
@@ -1515,30 +1576,41 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
  *
  * @param {object} params Parameters for request
  * @param {string} params.projectId The ID of the project against which to make the request.
- * @param {().LookupRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+      * @param {().LookupRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    lookup(params?: any, options?: MethodOptions): AxiosPromise<Schema$LookupResponse>;
+    lookup(params?: Params$Resource$Projects$Lookup, options?: MethodOptions): AxiosPromise<Schema$LookupResponse>;
     lookup(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
-        callback?: BodyResponseCallback<Schema$LookupResponse>): void;
+        params: Params$Resource$Projects$Lookup,
+        options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+        callback: BodyResponseCallback<Schema$LookupResponse>): void;
     lookup(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+        params: Params$Resource$Projects$Lookup,
+        callback: BodyResponseCallback<Schema$LookupResponse>): void;
+    lookup(callback: BodyResponseCallback<Schema$LookupResponse>): void;
+    lookup(
+        paramsOrCallback?: Params$Resource$Projects$Lookup|
+        BodyResponseCallback<Schema$LookupResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LookupResponse>,
         callback?: BodyResponseCallback<Schema$LookupResponse>):
         void|AxiosPromise<Schema$LookupResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Lookup;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1575,26 +1647,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reserveIds(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ReserveIdsResponse>;
     reserveIds(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
-        callback?: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+        params?: Params$Resource$Projects$Reserveids,
+        options?: MethodOptions): AxiosPromise<Schema$ReserveIdsResponse>;
     reserveIds(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+        params: Params$Resource$Projects$Reserveids,
+        options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+        callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+    reserveIds(
+        params: Params$Resource$Projects$Reserveids,
+        callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+    reserveIds(callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+    reserveIds(
+        paramsOrCallback?: Params$Resource$Projects$Reserveids|
+        BodyResponseCallback<Schema$ReserveIdsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReserveIdsResponse>,
         callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
         void|AxiosPromise<Schema$ReserveIdsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Reserveids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Reserveids;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1630,26 +1715,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RollbackResponse>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
-        callback?: BodyResponseCallback<Schema$RollbackResponse>): void;
+        params?: Params$Resource$Projects$Rollback,
+        options?: MethodOptions): AxiosPromise<Schema$RollbackResponse>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+        params: Params$Resource$Projects$Rollback,
+        options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+        callback: BodyResponseCallback<Schema$RollbackResponse>): void;
+    rollback(
+        params: Params$Resource$Projects$Rollback,
+        callback: BodyResponseCallback<Schema$RollbackResponse>): void;
+    rollback(callback: BodyResponseCallback<Schema$RollbackResponse>): void;
+    rollback(
+        paramsOrCallback?: Params$Resource$Projects$Rollback|
+        BodyResponseCallback<Schema$RollbackResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RollbackResponse>,
         callback?: BodyResponseCallback<Schema$RollbackResponse>):
         void|AxiosPromise<Schema$RollbackResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Rollback;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1685,26 +1783,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RunQueryResponse>;
     runQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
-        callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
+        params?: Params$Resource$Projects$Runquery,
+        options?: MethodOptions): AxiosPromise<Schema$RunQueryResponse>;
     runQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+        params: Params$Resource$Projects$Runquery,
+        options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(
+        params: Params$Resource$Projects$Runquery,
+        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(
+        paramsOrCallback?: Params$Resource$Projects$Runquery|
+        BodyResponseCallback<Schema$RunQueryResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RunQueryResponse>,
         callback?: BodyResponseCallback<Schema$RunQueryResponse>):
         void|AxiosPromise<Schema$RunQueryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Runquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Runquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1726,6 +1837,143 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
       }
     }
   }
+
+  export interface Params$Resource$Projects$Allocateids {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AllocateIdsRequest;
+  }
+  export interface Params$Resource$Projects$Begintransaction {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BeginTransactionRequest;
+  }
+  export interface Params$Resource$Projects$Commit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommitRequest;
+  }
+  export interface Params$Resource$Projects$Export {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleDatastoreAdminV1ExportEntitiesRequest;
+  }
+  export interface Params$Resource$Projects$Import {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleDatastoreAdminV1ImportEntitiesRequest;
+  }
+  export interface Params$Resource$Projects$Lookup {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LookupRequest;
+  }
+  export interface Params$Resource$Projects$Reserveids {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReserveIdsRequest;
+  }
+  export interface Params$Resource$Projects$Rollback {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Runquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the project against which to make the request.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunQueryRequest;
+  }
+
   export class Resource$Projects$Operations {
     root: Datastore;
     constructor(root: Datastore) {
@@ -1758,25 +2006,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1814,25 +2075,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1868,27 +2142,40 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Projects$Operations$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunningOperation>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Operations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Operations$Get,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void|AxiosPromise<Schema$GoogleLongrunningOperation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1934,30 +2221,45 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Operations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleLongrunningListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleLongrunningListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleLongrunningListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Operations$List|
+        BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunningListOperationsResponse>):
         void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1980,5 +2282,62 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

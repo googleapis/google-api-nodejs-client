@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace replicapool_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Replica Pool API
    *
@@ -76,16 +79,16 @@ export namespace replicapool_v1beta1 {
     /**
      * Name of this access configuration.
      */
-    name: string;
+    name?: string;
     /**
      * An external IP address associated with this instance.
      */
-    natIp: string;
+    natIp?: string;
     /**
      * Type of this access configuration file. Currently only ONE_TO_ONE_NAT is
      * supported.
      */
-    type: string;
+    type?: string;
   }
   /**
    * An action that gets executed during initialization of the replicas.
@@ -96,11 +99,11 @@ export namespace replicapool_v1beta1 {
      * action is considered a failure and no further actions are run. This also
      * marks the virtual machine or replica as a failure.
      */
-    commands: string[];
+    commands?: string[];
     /**
      * A list of environment variables to use for the commands in this action.
      */
-    envVariables: Schema$EnvVariable[];
+    envVariables?: Schema$EnvVariable[];
     /**
      * If an action&#39;s commands on a particular replica do not finish in the
      * specified timeoutMilliSeconds, the replica is considered to be in a
@@ -108,7 +111,7 @@ export namespace replicapool_v1beta1 {
      * spawned or created as the result of running the action&#39;s commands.
      * The default is the max allowed value, 1 hour (i.e. 3600000 milliseconds).
      */
-    timeoutMilliSeconds: number;
+    timeoutMilliSeconds?: number;
   }
   /**
    * Specifies how to attach a disk to a Replica.
@@ -117,12 +120,12 @@ export namespace replicapool_v1beta1 {
     /**
      * The device name of this disk.
      */
-    deviceName: string;
+    deviceName?: string;
     /**
      * A zero-based index to assign to this disk, where 0 is reserved for the
      * boot disk. If not specified, this is assigned by the server.
      */
-    index: number;
+    index?: number;
   }
   /**
    * An environment variable to set for an action.
@@ -131,15 +134,15 @@ export namespace replicapool_v1beta1 {
     /**
      * Deprecated, do not use.
      */
-    hidden: boolean;
+    hidden?: boolean;
     /**
      * The name of the environment variable.
      */
-    name: string;
+    name?: string;
     /**
      * The value of the variable.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A pre-existing persistent disk that will be attached to every Replica in
@@ -149,56 +152,56 @@ export namespace replicapool_v1beta1 {
     /**
      * How the disk will be attached to the Replica.
      */
-    attachment: Schema$DiskAttachment;
+    attachment?: Schema$DiskAttachment;
     /**
      * The name of the Persistent Disk resource. The Persistent Disk resource
      * must be in the same zone as the Pool.
      */
-    source: string;
+    source?: string;
   }
   export interface Schema$HealthCheck {
     /**
      * How often (in seconds) to make HTTP requests for this healthcheck. The
      * default value is 5 seconds.
      */
-    checkIntervalSec: number;
+    checkIntervalSec?: number;
     /**
      * The description for this health check.
      */
-    description: string;
+    description?: string;
     /**
      * The number of consecutive health check requests that need to succeed
      * before the replica is considered healthy again. The default value is 2.
      */
-    healthyThreshold: number;
+    healthyThreshold?: number;
     /**
      * The value of the host header in the HTTP health check request. If left
      * empty (default value), the localhost IP 127.0.0.1 will be used.
      */
-    host: string;
+    host?: string;
     /**
      * The name of this health check.
      */
-    name: string;
+    name?: string;
     /**
      * The localhost request path to send this health check, in the format
      * /path/to/use. For example, /healthcheck.
      */
-    path: string;
+    path?: string;
     /**
      * The TCP port for the health check requests.
      */
-    port: number;
+    port?: number;
     /**
      * How long (in seconds) to wait before a timeout failure for this
      * healthcheck. The default value is 5 seconds.
      */
-    timeoutSec: number;
+    timeoutSec?: number;
     /**
      * The number of consecutive health check requests that need to fail in
      * order to consider the replica unhealthy. The default value is 2.
      */
-    unhealthyThreshold: number;
+    unhealthyThreshold?: number;
   }
   /**
    * A label to apply to this replica pool.
@@ -207,11 +210,11 @@ export namespace replicapool_v1beta1 {
     /**
      * The key for this label.
      */
-    key: string;
+    key?: string;
     /**
      * The value of this label.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A Compute Engine metadata entry. Identical to the metadata on the
@@ -222,11 +225,11 @@ export namespace replicapool_v1beta1 {
      * The fingerprint of the metadata. Required for updating the metadata
      * entries for this instance.
      */
-    fingerPrint: string;
+    fingerPrint?: string;
     /**
      * A list of metadata items.
      */
-    items: Schema$MetadataItem[];
+    items?: Schema$MetadataItem[];
   }
   /**
    * A Compute Engine metadata item, defined as a key:value pair. Identical to
@@ -236,11 +239,11 @@ export namespace replicapool_v1beta1 {
     /**
      * A metadata key.
      */
-    key: string;
+    key?: string;
     /**
      * A metadata value.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A Compute Engine NetworkInterface resource. Identical to the
@@ -251,16 +254,16 @@ export namespace replicapool_v1beta1 {
      * An array of configurations for this interface. This specifies how this
      * interface is configured to interact with other network services.
      */
-    accessConfigs: Schema$AccessConfig[];
+    accessConfigs?: Schema$AccessConfig[];
     /**
      * Name the Network resource to which this interface applies.
      */
-    network: string;
+    network?: string;
     /**
      * An optional IPV4 internal network address to assign to the instance for
      * this network interface.
      */
-    networkIp: string;
+    networkIp?: string;
   }
   /**
    * A Persistent Disk resource that will be created and attached to each
@@ -271,21 +274,21 @@ export namespace replicapool_v1beta1 {
     /**
      * How the disk will be attached to the Replica.
      */
-    attachment: Schema$DiskAttachment;
+    attachment?: Schema$DiskAttachment;
     /**
      * If true, then this disk will be deleted when the instance is deleted. The
      * default value is true.
      */
-    autoDelete: boolean;
+    autoDelete?: boolean;
     /**
      * If true, indicates that this is the root persistent disk.
      */
-    boot: boolean;
+    boot?: boolean;
     /**
      * Create the new disk using these parameters. The name of the disk will be
      * &lt;instance_name&gt;-&lt;four_random_charactersgt;.
      */
-    initializeParams: Schema$NewDiskInitializeParams;
+    initializeParams?: Schema$NewDiskInitializeParams;
   }
   /**
    * Initialization parameters for creating a new disk.
@@ -294,13 +297,13 @@ export namespace replicapool_v1beta1 {
     /**
      * The size of the created disk in gigabytes.
      */
-    diskSizeGb: string;
+    diskSizeGb?: string;
     /**
      * Name of the disk type resource describing which disk type to use to
      * create the disk. For example &#39;pd-ssd&#39; or &#39;pd-standard&#39;.
      * Default is &#39;pd-standard&#39;
      */
-    diskType: string;
+    diskType?: string;
     /**
      * The name or fully-qualified URL of a source image to use to create this
      * disk. If you provide a name of the source image, Replica Pool will look
@@ -310,14 +313,14 @@ export namespace replicapool_v1beta1 {
      * http://www.googleapis.com/compute/v1/projects/debian-cloud/
      * global/images/debian-wheezy-7-vYYYYMMDD
      */
-    sourceImage: string;
+    sourceImage?: string;
   }
   export interface Schema$Pool {
     /**
      * Whether replicas in this pool should be restarted if they experience a
      * failure. The default value is true.
      */
-    autoRestart: boolean;
+    autoRestart?: boolean;
     /**
      * The base instance name to use for the replicas in this pool. This must
      * match the regex [a-z]([-a-z0-9]*[a-z0-9])?. If specified, the instances
@@ -327,51 +330,51 @@ export namespace replicapool_v1beta1 {
      * is not specified by the user, a random base instance name is generated by
      * the service.
      */
-    baseInstanceName: string;
+    baseInstanceName?: string;
     /**
      * [Output Only] The current number of replicas in the pool.
      */
-    currentNumReplicas: number;
+    currentNumReplicas?: number;
     /**
      * An optional description of the replica pool.
      */
-    description: string;
+    description?: string;
     /**
      * Deprecated. Please use template[].healthChecks instead.
      */
-    healthChecks: Schema$HealthCheck[];
+    healthChecks?: Schema$HealthCheck[];
     /**
      * The initial number of replicas this pool should have. You must provide a
      * value greater than or equal to 0.
      */
-    initialNumReplicas: number;
+    initialNumReplicas?: number;
     /**
      * A list of labels to attach to this replica pool and all created virtual
      * machines in this replica pool.
      */
-    labels: Schema$Label[];
+    labels?: Schema$Label[];
     /**
      * The name of the replica pool. Must follow the regex
      * [a-z]([-a-z0-9]*[a-z0-9])? and be 1-28 characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Deprecated! Use initial_num_replicas instead.
      */
-    numReplicas: number;
+    numReplicas?: number;
     /**
      * The list of resource views that should be updated with all the replicas
      * that are managed by this pool.
      */
-    resourceViews: string[];
+    resourceViews?: string[];
     /**
      * [Output Only] A self-link to the replica pool.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Deprecated, please use target_pools instead.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * A list of target pools to update with the replicas that are managed by
      * this pool. If specified, the replicas in this replica pool will be added
@@ -380,17 +383,17 @@ export namespace replicapool_v1beta1 {
      * values must be the target pool resource names, and not fully qualified
      * URLs.
      */
-    targetPools: string[];
+    targetPools?: string[];
     /**
      * The template to use when creating replicas in this pool. This template is
      * used during initial instance creation of the pool, when growing the pool
      * in size, or when a replica restarts.
      */
-    template: Schema$Template;
+    template?: Schema$Template;
     /**
      * Deprecated! Do not set.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$PoolsDeleteRequest {
     /**
@@ -398,11 +401,11 @@ export namespace replicapool_v1beta1 {
      * These instances won&#39;t be deleted, but the associated replica objects
      * will be removed.
      */
-    abandonInstances: string[];
+    abandonInstances?: string[];
   }
   export interface Schema$PoolsListResponse {
-    nextPageToken: string;
-    resources: Schema$Pool[];
+    nextPageToken?: string;
+    resources?: Schema$Pool[];
   }
   /**
    * An individual Replica within a Pool. Replicas are automatically created by
@@ -413,15 +416,15 @@ export namespace replicapool_v1beta1 {
     /**
      * [Output Only] The name of the Replica object.
      */
-    name: string;
+    name?: string;
     /**
      * [Output Only] The self-link of the Replica.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output Only] Last known status of the Replica.
      */
-    status: Schema$ReplicaStatus;
+    status?: Schema$ReplicaStatus;
   }
   export interface Schema$ReplicasDeleteRequest {
     /**
@@ -430,11 +433,11 @@ export namespace replicapool_v1beta1 {
      * virtual machine instance will remain. By default, this is set to false
      * and the instance will be deleted along with the replica.
      */
-    abandonInstance: boolean;
+    abandonInstance?: boolean;
   }
   export interface Schema$ReplicasListResponse {
-    nextPageToken: string;
-    resources: Schema$Replica[];
+    nextPageToken?: string;
+    resources?: Schema$Replica[];
   }
   /**
    * The current status of a Replica.
@@ -444,24 +447,24 @@ export namespace replicapool_v1beta1 {
      * [Output Only] Human-readable details about the current state of the
      * replica
      */
-    details: string;
+    details?: string;
     /**
      * [Output Only] The state of the Replica.
      */
-    state: string;
+    state?: string;
     /**
      * [Output Only] The template used to build the replica.
      */
-    templateVersion: string;
+    templateVersion?: string;
     /**
      * [Output Only] Link to the virtual machine that this Replica represents.
      */
-    vmLink: string;
+    vmLink?: string;
     /**
      * [Output Only] The time that this Replica got to the RUNNING state, in RFC
      * 3339 format. If the start time is unknown, UNKNOWN is returned.
      */
-    vmStartTime: string;
+    vmStartTime?: string;
   }
   /**
    * A Compute Engine service account, identical to the Compute Engine resource.
@@ -471,12 +474,12 @@ export namespace replicapool_v1beta1 {
      * The service account email address, for example:
      * 123845678986@project.gserviceaccount.com
      */
-    email: string;
+    email?: string;
     /**
      * The list of OAuth2 scopes to obtain for the service account, for example:
      * https://www.googleapis.com/auth/devstorage.full_control
      */
-    scopes: string[];
+    scopes?: string[];
   }
   /**
    * A Compute Engine Instance tag, identical to the tags on the corresponding
@@ -486,11 +489,11 @@ export namespace replicapool_v1beta1 {
     /**
      * The fingerprint of the tag. Required for updating the list of tags.
      */
-    fingerPrint: string;
+    fingerPrint?: string;
     /**
      * Items contained in this tag.
      */
-    items: string[];
+    items?: string[];
   }
   /**
    * The template used for creating replicas in the pool.
@@ -502,24 +505,24 @@ export namespace replicapool_v1beta1 {
      * shell, so any state established by one command is inherited by later
      * commands.
      */
-    action: Schema$Action;
+    action?: Schema$Action;
     /**
      * A list of HTTP Health Checks to configure for this replica pool and all
      * virtual machines in this replica pool.
      */
-    healthChecks: Schema$HealthCheck[];
+    healthChecks?: Schema$HealthCheck[];
     /**
      * A free-form string describing the version of this template. You can
      * provide any versioning string you would like. For example, version1 or
      * template-v1.
      */
-    version: string;
+    version?: string;
     /**
      * The virtual machine parameters to use for creating replicas. You can
      * define settings such as the machine type and the image of replicas in
      * this pool. This is required if replica type is SMART_VM.
      */
-    vmParams: Schema$VmParams;
+    vmParams?: Schema$VmParams;
   }
   /**
    * Parameters for creating a Compute Engine Instance resource. Most fields are
@@ -529,54 +532,55 @@ export namespace replicapool_v1beta1 {
     /**
      * Deprecated. Please use baseInstanceName instead.
      */
-    baseInstanceName: string;
+    baseInstanceName?: string;
     /**
      * Enables IP Forwarding, which allows this instance to receive packets
      * destined for a different IP address, and send packets with a different
      * source IP. See IP Forwarding for more information.
      */
-    canIpForward: boolean;
+    canIpForward?: boolean;
     /**
      * An optional textual description of the instance.
      */
-    description: string;
+    description?: string;
     /**
      * A list of existing Persistent Disk resources to attach to each replica in
      * the pool. Each disk will be attached in read-only mode to every replica.
      */
-    disksToAttach: Schema$ExistingDisk[];
+    disksToAttach?: Schema$ExistingDisk[];
     /**
      * A list of Disk resources to create and attach to each Replica in the
      * Pool. Currently, you can only define one disk and it must be a root
      * persistent disk. Note that Replica Pool will create a root persistent
      * disk for each replica.
      */
-    disksToCreate: Schema$NewDisk[];
+    disksToCreate?: Schema$NewDisk[];
     /**
      * The machine type for this instance. The resource name (e.g.
      * n1-standard-1).
      */
-    machineType: string;
+    machineType?: string;
     /**
      * The metadata key/value pairs assigned to this instance.
      */
-    metadata: Schema$Metadata;
+    metadata?: Schema$Metadata;
     /**
      * A list of network interfaces for the instance. Currently only one
      * interface is supported by Google Compute Engine, ONE_TO_ONE_NAT.
      */
-    networkInterfaces: Schema$NetworkInterface[];
-    onHostMaintenance: string;
+    networkInterfaces?: Schema$NetworkInterface[];
+    onHostMaintenance?: string;
     /**
      * A list of Service Accounts to enable for this instance.
      */
-    serviceAccounts: Schema$ServiceAccount[];
+    serviceAccounts?: Schema$ServiceAccount[];
     /**
      * A list of tags to apply to the Google Compute Engine instance to identify
      * resources.
      */
-    tags: Schema$Tag;
+    tags?: Schema$Tag;
   }
+
 
   export class Resource$Pools {
     root: Replicapool;
@@ -605,22 +609,35 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Pools$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Pools$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Pools$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Pools$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pools$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -659,21 +676,33 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+    get(params?: Params$Resource$Pools$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Pool>;
+    get(params: Params$Resource$Pools$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+        callback: BodyResponseCallback<Schema$Pool>): void;
+    get(params: Params$Resource$Pools$Get,
+        callback: BodyResponseCallback<Schema$Pool>): void;
+    get(callback: BodyResponseCallback<Schema$Pool>): void;
+    get(paramsOrCallback?: Params$Resource$Pools$Get|
+        BodyResponseCallback<Schema$Pool>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
         void|AxiosPromise<Schema$Pool> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pools$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -712,23 +741,36 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+    insert(params?: Params$Resource$Pools$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Pool>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>): void;
+        params: Params$Resource$Pools$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+        callback: BodyResponseCallback<Schema$Pool>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+        params: Params$Resource$Pools$Insert,
+        callback: BodyResponseCallback<Schema$Pool>): void;
+    insert(callback: BodyResponseCallback<Schema$Pool>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Pools$Insert|
+        BodyResponseCallback<Schema$Pool>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
         void|AxiosPromise<Schema$Pool> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pools$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -768,26 +810,37 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Pools$List, options?: MethodOptions):
         AxiosPromise<Schema$PoolsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
-        callback?: BodyResponseCallback<Schema$PoolsListResponse>): void;
+        params: Params$Resource$Pools$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
+        callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
+        params: Params$Resource$Pools$List,
+        callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Pools$List|
+        BodyResponseCallback<Schema$PoolsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PoolsListResponse>,
         callback?: BodyResponseCallback<Schema$PoolsListResponse>):
         void|AxiosPromise<Schema$PoolsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -829,23 +882,36 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+    resize(params?: Params$Resource$Pools$Resize, options?: MethodOptions):
+        AxiosPromise<Schema$Pool>;
     resize(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>): void;
+        params: Params$Resource$Pools$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+        callback: BodyResponseCallback<Schema$Pool>): void;
     resize(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+        params: Params$Resource$Pools$Resize,
+        callback: BodyResponseCallback<Schema$Pool>): void;
+    resize(callback: BodyResponseCallback<Schema$Pool>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Pools$Resize|
+        BodyResponseCallback<Schema$Pool>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
         void|AxiosPromise<Schema$Pool> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pools$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$Resize;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -885,22 +951,37 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatetemplate(params?: any, options?: MethodOptions): AxiosPromise<void>;
     updatetemplate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Pools$Updatetemplate,
+        options?: MethodOptions): AxiosPromise<void>;
     updatetemplate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Pools$Updatetemplate,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    updatetemplate(
+        params: Params$Resource$Pools$Updatetemplate,
+        callback: BodyResponseCallback<void>): void;
+    updatetemplate(callback: BodyResponseCallback<void>): void;
+    updatetemplate(
+        paramsOrCallback?: Params$Resource$Pools$Updatetemplate|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Pools$Updatetemplate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pools$Updatetemplate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -924,6 +1005,142 @@ export namespace replicapool_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Pools$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the replica pool for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this replica pool.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PoolsDeleteRequest;
+  }
+  export interface Params$Resource$Pools$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the replica pool for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this replica pool.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Pools$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this replica pool.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Pool;
+  }
+  export interface Params$Resource$Pools$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 100,
+     * inclusive. (Default: 50)
+     */
+    maxResults?: number;
+    /**
+     * Set this to the nextPageToken value returned by a previous list request
+     * to obtain the next page of results from the previous list request.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Pools$Resize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The desired number of replicas to resize to. If this number is larger
+     * than the existing number of replicas, new replicas will be added. If the
+     * number is smaller, then existing replicas will be deleted.
+     */
+    numReplicas?: number;
+    /**
+     * The name of the replica pool for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this replica pool.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Pools$Updatetemplate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the replica pool for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this replica pool.
+     */
+    projectName?: string;
+    /**
+     * The zone for this replica pool.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Template;
+  }
+
 
   export class Resource$Replicas {
     root: Replicapool;
@@ -953,25 +1170,36 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+    delete(params?: Params$Resource$Replicas$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Replica>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>): void;
+        params: Params$Resource$Replicas$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+        callback: BodyResponseCallback<Schema$Replica>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+        params: Params$Resource$Replicas$Delete,
+        callback: BodyResponseCallback<Schema$Replica>): void;
+    delete(callback: BodyResponseCallback<Schema$Replica>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Replicas$Delete|
+        BodyResponseCallback<Schema$Replica>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
         void|AxiosPromise<Schema$Replica> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replicas$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1011,23 +1239,33 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+    get(params?: Params$Resource$Replicas$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Replica>;
+    get(params: Params$Resource$Replicas$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+        callback: BodyResponseCallback<Schema$Replica>): void;
+    get(params: Params$Resource$Replicas$Get,
+        callback: BodyResponseCallback<Schema$Replica>): void;
+    get(callback: BodyResponseCallback<Schema$Replica>): void;
+    get(paramsOrCallback?: Params$Resource$Replicas$Get|
+        BodyResponseCallback<Schema$Replica>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
         void|AxiosPromise<Schema$Replica> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replicas$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1068,28 +1306,38 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Replicas$List, options?: MethodOptions):
         AxiosPromise<Schema$ReplicasListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Replicas$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ReplicasListResponse>,
-        callback?: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+        callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Replicas$List,
+        callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Replicas$List|
+        BodyResponseCallback<Schema$ReplicasListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReplicasListResponse>,
         callback?: BodyResponseCallback<Schema$ReplicasListResponse>):
         void|AxiosPromise<Schema$ReplicasListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replicas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replicas$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1129,26 +1377,36 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart(params?: any, options?: MethodOptions):
+    restart(params?: Params$Resource$Replicas$Restart, options?: MethodOptions):
         AxiosPromise<Schema$Replica>;
     restart(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>): void;
+        params: Params$Resource$Replicas$Restart,
+        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+        callback: BodyResponseCallback<Schema$Replica>): void;
     restart(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+        params: Params$Resource$Replicas$Restart,
+        callback: BodyResponseCallback<Schema$Replica>): void;
+    restart(callback: BodyResponseCallback<Schema$Replica>): void;
+    restart(
+        paramsOrCallback?: Params$Resource$Replicas$Restart|
+        BodyResponseCallback<Schema$Replica>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
         void|AxiosPromise<Schema$Replica> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Restart;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replicas$Restart;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1171,5 +1429,108 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Replica>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Replicas$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The replica pool name for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this request.
+     */
+    projectName?: string;
+    /**
+     * The name of the replica for this request.
+     */
+    replicaName?: string;
+    /**
+     * The zone where the replica lives.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReplicasDeleteRequest;
+  }
+  export interface Params$Resource$Replicas$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The replica pool name for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this request.
+     */
+    projectName?: string;
+    /**
+     * The name of the replica for this request.
+     */
+    replicaName?: string;
+    /**
+     * The zone where the replica lives.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Replicas$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 100,
+     * inclusive. (Default: 50)
+     */
+    maxResults?: number;
+    /**
+     * Set this to the nextPageToken value returned by a previous list request
+     * to obtain the next page of results from the previous list request.
+     */
+    pageToken?: string;
+    /**
+     * The replica pool name for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this request.
+     */
+    projectName?: string;
+    /**
+     * The zone where the replica pool lives.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Replicas$Restart {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The replica pool name for this request.
+     */
+    poolName?: string;
+    /**
+     * The project ID for this request.
+     */
+    projectName?: string;
+    /**
+     * The name of the replica for this request.
+     */
+    replicaName?: string;
+    /**
+     * The zone where the replica lives.
+     */
+    zone?: string;
   }
 }

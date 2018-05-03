@@ -19,9 +19,10 @@
  */
 
 import { GoogleApis } from '../..';
+import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
 import { createAPIRequest } from '../../lib/apirequest';
 import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/api';
-import {AxiosPromise} from 'axios';
+import { AxiosPromise } from 'axios';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the interim we
 // want to turn on no-implicit-any.
@@ -39,6 +40,11 @@ export namespace {{api.name}}_{{api.version|replace('\.', '_')}} {
 {% set Version = api.version|replace('\.', '_')|capitalize %}
 {% endif %}
 {% set Namespace = [Name, Version]|join('') %}
+
+export interface Options extends GlobalOptions {
+  version: '{{api.version|replace('\.', '_')}}';
+}
+
 /**
  * {{ api.title }}
  *
@@ -106,16 +112,59 @@ export interface Schema${{ schema.id }} {
      */
   {% endif %}
   {% if p.$ref %}
-    {{ pname|cleanPropertyName }}: Schema${{ p.$ref }};
+    {{ pname|cleanPropertyName|safe }}?: Schema${{ p.$ref }};
   {% elif p.items and p.items.$ref %}
-    {{ pname|cleanPropertyName }}: Schema${{ p.items.$ref }}[];
+    {{ pname|cleanPropertyName|safe }}?: Schema${{ p.items.$ref }}[];
   {% else %}
-    {{ pname|cleanPropertyName }}: {{ p|getType|safe }};
+    {{ pname|cleanPropertyName|safe }}?: {{ p|getType|safe }};
   {% endif %}
 {% endfor %}
 {% endif %}
 }
 {% endfor %}
+{% endif %}
+
+{% if api.methods %}
+  {% for mname, m in api.methods|dictsort %}
+    export interface Params$${{ mname|capitalize }} {
+
+      /**
+       * Auth client or API Key for the request
+       */
+      auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+      {% if m.parameters %}
+        {% for pname, p in m.parameters|dictsort %}
+        /**
+         * {{ p.description|oneLine|cleanComments|safe }}
+         */
+        {{ pname|getSafeParamName }}?: {{ p.type }};
+        {% endfor %}
+        {% if m.request %}
+          /**
+           * Request body metadata
+           */
+           resource?: Schema${{ m.request.$ref }};
+        {% endif %}
+        {% if m.supportsMediaUpload %}
+          /**
+           * Media metadata
+           */
+          media: {
+            /**
+             * Media mime-type
+             */
+            mediaType?: string;
+
+            /**
+             * Media body contents
+             */
+            body: any;
+          }
+        {% endif %}
+      {% endif %}
+    }
+  {% endfor %}
 {% endif %}
 
 {{ resource.render(api, api, 'Resource$') }}

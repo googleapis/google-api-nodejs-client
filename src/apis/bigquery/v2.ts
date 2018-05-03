@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace bigquery_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * BigQuery API
    *
@@ -82,20 +85,20 @@ export namespace bigquery_v2 {
      * the column family level. However, the setting at this level takes
      * precedence if &#39;encoding&#39; is set at both levels.
      */
-    encoding: string;
+    encoding?: string;
     /**
      * [Optional] If the qualifier is not a valid BigQuery field identifier i.e.
      * does not match [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided
      * as the column field name and is used as field name in queries.
      */
-    fieldName: string;
+    fieldName?: string;
     /**
      * [Optional] If this is set, only the latest version of value in this
      * column are exposed. &#39;onlyReadLatest&#39; can also be set at the
      * column family level. However, the setting at this level takes precedence
      * if &#39;onlyReadLatest&#39; is set at both levels.
      */
-    onlyReadLatest: boolean;
+    onlyReadLatest?: boolean;
     /**
      * [Required] Qualifier of the column. Columns in the parent column family
      * that has this exact qualifier are exposed as . field. If the qualifier is
@@ -105,8 +108,8 @@ export namespace bigquery_v2 {
      * qualifier is not a valid BigQuery field identifier i.e. does not match
      * [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as field_name.
      */
-    qualifierEncoded: string;
-    qualifierString: string;
+    qualifierEncoded?: string;
+    qualifierString?: string;
     /**
      * [Optional] The type to convert the value in cells of this column. The
      * values are expected to be encoded using HBase Bytes.toBytes function when
@@ -116,7 +119,7 @@ export namespace bigquery_v2 {
      * However, the setting at this level takes precedence if &#39;type&#39; is
      * set at both levels.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$BigtableColumnFamily {
     /**
@@ -125,7 +128,7 @@ export namespace bigquery_v2 {
      * qualifier matches a qualifier in this list can be accessed as .. Other
      * columns can be accessed as a list through .Column field.
      */
-    columns: Schema$BigtableColumn[];
+    columns?: Schema$BigtableColumn[];
     /**
      * [Optional] The encoding of the values when the type is not STRING.
      * Acceptable encoding values are: TEXT - indicates values are alphanumeric
@@ -134,18 +137,18 @@ export namespace bigquery_v2 {
      * column by listing that column in &#39;columns&#39; and specifying an
      * encoding for it.
      */
-    encoding: string;
+    encoding?: string;
     /**
      * Identifier of the column family.
      */
-    familyId: string;
+    familyId?: string;
     /**
      * [Optional] If this is set only the latest version of value are exposed
      * for all columns in this column family. This can be overridden for a
      * specific column by listing that column in &#39;columns&#39; and
      * specifying a different setting for that column.
      */
-    onlyReadLatest: boolean;
+    onlyReadLatest?: boolean;
     /**
      * [Optional] The type to convert the value in cells of this column family.
      * The values are expected to be encoded using HBase Bytes.toBytes function
@@ -154,7 +157,7 @@ export namespace bigquery_v2 {
      * type is BYTES. This can be overridden for a specific column by listing
      * that column in &#39;columns&#39; and specifying a type for it.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$BigtableOptions {
     /**
@@ -166,21 +169,21 @@ export namespace bigquery_v2 {
      * the table schema and their values are read as BYTES. During a query only
      * the column families referenced in that query are read from Bigtable.
      */
-    columnFamilies: Schema$BigtableColumnFamily[];
+    columnFamilies?: Schema$BigtableColumnFamily[];
     /**
      * [Optional] If field is true, then the column families that are not
      * specified in columnFamilies list are not exposed in the table schema.
      * Otherwise, they are read with BYTES type values. The default value is
      * false.
      */
-    ignoreUnspecifiedColumnFamilies: boolean;
+    ignoreUnspecifiedColumnFamilies?: boolean;
     /**
      * [Optional] If field is true, then the rowkey column families will be read
      * and converted to string. Otherwise they are read with BYTES type values
      * and users need to manually cast them with CAST if necessary. The default
      * value is false.
      */
-    readRowkeyAsString: boolean;
+    readRowkeyAsString?: boolean;
   }
   export interface Schema$Clustering {
     /**
@@ -189,7 +192,7 @@ export namespace bigquery_v2 {
      * the fields will determine how clusters will be generated, so it is
      * important.
      */
-    fields: string[];
+    fields?: string[];
   }
   export interface Schema$CsvOptions {
     /**
@@ -199,19 +202,19 @@ export namespace bigquery_v2 {
      * are treated as bad records, and if there are too many bad records, an
      * invalid error is returned in the job result. The default value is false.
      */
-    allowJaggedRows: boolean;
+    allowJaggedRows?: boolean;
     /**
      * [Optional] Indicates if BigQuery should allow quoted data sections that
      * contain newline characters in a CSV file. The default value is false.
      */
-    allowQuotedNewlines: boolean;
+    allowQuotedNewlines?: boolean;
     /**
      * [Optional] The character encoding of the data. The supported values are
      * UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the
      * data after the raw, binary data has been split using the values of the
      * quote and fieldDelimiter properties.
      */
-    encoding: string;
+    encoding?: string;
     /**
      * [Optional] The separator for fields in a CSV file. BigQuery converts the
      * string to ISO-8859-1 encoding, and then uses the first byte of the
@@ -219,7 +222,7 @@ export namespace bigquery_v2 {
      * supports the escape sequence &quot;\t&quot; to specify a tab separator.
      * The default value is a comma (&#39;,&#39;).
      */
-    fieldDelimiter: string;
+    fieldDelimiter?: string;
     /**
      * [Optional] The value that is used to quote data sections in a CSV file.
      * BigQuery converts the string to ISO-8859-1 encoding, and then uses the
@@ -229,13 +232,13 @@ export namespace bigquery_v2 {
      * string. If your data contains quoted newline characters, you must also
      * set the allowQuotedNewlines property to true.
      */
-    quote: string;
+    quote?: string;
     /**
      * [Optional] The number of rows at the top of a CSV file that BigQuery will
      * skip when reading the data. The default value is 0. This property is
      * useful if you have header rows in the file that should be skipped.
      */
-    skipLeadingRows: string;
+    skipLeadingRows?: string;
   }
   export interface Schema$Dataset {
     /**
@@ -248,16 +251,16 @@ export namespace bigquery_v2 {
      * access.specialGroup: projectOwners; access.role: OWNER;
      * access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
-    access: any[];
+    access?: any[];
     /**
      * [Output-only] The time when this dataset was created, in milliseconds
      * since the epoch.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * [Required] A reference that identifies the dataset.
      */
-    datasetReference: Schema$DatasetReference;
+    datasetReference?: Schema$DatasetReference;
     /**
      * [Optional] The default lifetime of all tables in the dataset, in
      * milliseconds. The minimum value is 3600000 milliseconds (one hour). Once
@@ -270,51 +273,52 @@ export namespace bigquery_v2 {
      * explicit expirationTime when creating a table, that value takes
      * precedence over the default expiration time indicated by this property.
      */
-    defaultTableExpirationMs: string;
+    defaultTableExpirationMs?: string;
     /**
      * [Optional] A user-friendly description of the dataset.
      */
-    description: string;
+    description?: string;
     /**
      * [Output-only] A hash of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * [Optional] A descriptive name for the dataset.
      */
-    friendlyName: string;
+    friendlyName?: string;
     /**
      * [Output-only] The fully-qualified unique name of the dataset in the
      * format projectId:datasetId. The dataset name without the project name is
      * given in the datasetId field. When creating a new dataset, leave this
      * field blank, and instead specify the datasetId field.
      */
-    id: string;
+    id?: string;
     /**
      * [Output-only] The resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The labels associated with this dataset. You can use these to organize
      * and group your datasets. You can set this property when inserting or
      * updating a dataset. See Labeling Datasets for more information.
      */
-    labels: any;
+    labels?: any;
     /**
      * [Output-only] The date when this dataset or any of its tables was last
      * modified, in milliseconds since the epoch.
      */
-    lastModifiedTime: string;
+    lastModifiedTime?: string;
     /**
      * The geographic location where the dataset should reside. The default
-     * value is US.
+     * value is US. See details at
+     * https://cloud.google.com/bigquery/docs/dataset-locations.
      */
-    location: string;
+    location?: string;
     /**
      * [Output-only] A URL that can be used to access the resource again. You
      * can use this URL in Get or Update requests to the resource.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   export interface Schema$DatasetList {
     /**
@@ -323,22 +327,22 @@ export namespace bigquery_v2 {
      * resource, use the Datasets: get method. This property is omitted when
      * there are no datasets in the project.
      */
-    datasets: any[];
+    datasets?: any[];
     /**
      * A hash value of the results page. You can use this property to determine
      * if the page has changed since the last request.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list type. This property always returns the value
      * &quot;bigquery#datasetList&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token that can be used to request the next results page. This property
      * is omitted on the final results page.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$DatasetReference {
     /**
@@ -346,11 +350,11 @@ export namespace bigquery_v2 {
      * must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      * The maximum length is 1,024 characters.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * [Optional] The ID of the project containing this dataset.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Schema$DestinationTableProperties {
     /**
@@ -359,14 +363,14 @@ export namespace bigquery_v2 {
      * exists and a value different than the current description is provided,
      * the job will fail.
      */
-    description: string;
+    description?: string;
     /**
      * [Optional] The friendly name for the destination table. This will only be
      * used if the destination table is newly created. If the table already
      * exists and a value different than the current friendly name is provided,
      * the job will fail.
      */
-    friendlyName: string;
+    friendlyName?: string;
   }
   export interface Schema$EncryptionConfiguration {
     /**
@@ -374,181 +378,181 @@ export namespace bigquery_v2 {
      * protect destination BigQuery table. The BigQuery Service Account
      * associated with your project requires access to this encryption key.
      */
-    kmsKeyName: string;
+    kmsKeyName?: string;
   }
   export interface Schema$ErrorProto {
     /**
      * Debugging information. This property is internal to Google and should not
      * be used.
      */
-    debugInfo: string;
+    debugInfo?: string;
     /**
      * Specifies where the error occurred, if present.
      */
-    location: string;
+    location?: string;
     /**
      * A human-readable description of the error.
      */
-    message: string;
+    message?: string;
     /**
      * A short error code that summarizes the error.
      */
-    reason: string;
+    reason?: string;
   }
   export interface Schema$ExplainQueryStage {
     /**
      * Number of parallel input segments completed.
      */
-    completedParallelInputs: string;
+    completedParallelInputs?: string;
     /**
      * Milliseconds the average shard spent on CPU-bound tasks.
      */
-    computeMsAvg: string;
+    computeMsAvg?: string;
     /**
      * Milliseconds the slowest shard spent on CPU-bound tasks.
      */
-    computeMsMax: string;
+    computeMsMax?: string;
     /**
      * Relative amount of time the average shard spent on CPU-bound tasks.
      */
-    computeRatioAvg: number;
+    computeRatioAvg?: number;
     /**
      * Relative amount of time the slowest shard spent on CPU-bound tasks.
      */
-    computeRatioMax: number;
+    computeRatioMax?: number;
     /**
-     * Stage end time in milliseconds.
+     * Stage end time represented as milliseconds since epoch.
      */
-    endMs: string;
+    endMs?: string;
     /**
      * Unique ID for stage within plan.
      */
-    id: string;
+    id?: string;
     /**
      * IDs for stages that are inputs to this stage.
      */
-    inputStages: string[];
+    inputStages?: string[];
     /**
      * Human-readable name for stage.
      */
-    name: string;
+    name?: string;
     /**
      * Number of parallel input segments to be processed.
      */
-    parallelInputs: string;
+    parallelInputs?: string;
     /**
      * Milliseconds the average shard spent reading input.
      */
-    readMsAvg: string;
+    readMsAvg?: string;
     /**
      * Milliseconds the slowest shard spent reading input.
      */
-    readMsMax: string;
+    readMsMax?: string;
     /**
      * Relative amount of time the average shard spent reading input.
      */
-    readRatioAvg: number;
+    readRatioAvg?: number;
     /**
      * Relative amount of time the slowest shard spent reading input.
      */
-    readRatioMax: number;
+    readRatioMax?: number;
     /**
      * Number of records read into the stage.
      */
-    recordsRead: string;
+    recordsRead?: string;
     /**
      * Number of records written by the stage.
      */
-    recordsWritten: string;
+    recordsWritten?: string;
     /**
      * Total number of bytes written to shuffle.
      */
-    shuffleOutputBytes: string;
+    shuffleOutputBytes?: string;
     /**
      * Total number of bytes written to shuffle and spilled to disk.
      */
-    shuffleOutputBytesSpilled: string;
+    shuffleOutputBytesSpilled?: string;
     /**
-     * Stage start time in milliseconds.
+     * Stage start time represented as milliseconds since epoch.
      */
-    startMs: string;
+    startMs?: string;
     /**
      * Current status for the stage.
      */
-    status: string;
+    status?: string;
     /**
      * List of operations within the stage in dependency order (approximately
      * chronological).
      */
-    steps: Schema$ExplainQueryStep[];
+    steps?: Schema$ExplainQueryStep[];
     /**
      * Milliseconds the average shard spent waiting to be scheduled.
      */
-    waitMsAvg: string;
+    waitMsAvg?: string;
     /**
      * Milliseconds the slowest shard spent waiting to be scheduled.
      */
-    waitMsMax: string;
+    waitMsMax?: string;
     /**
      * Relative amount of time the average shard spent waiting to be scheduled.
      */
-    waitRatioAvg: number;
+    waitRatioAvg?: number;
     /**
      * Relative amount of time the slowest shard spent waiting to be scheduled.
      */
-    waitRatioMax: number;
+    waitRatioMax?: number;
     /**
      * Milliseconds the average shard spent on writing output.
      */
-    writeMsAvg: string;
+    writeMsAvg?: string;
     /**
      * Milliseconds the slowest shard spent on writing output.
      */
-    writeMsMax: string;
+    writeMsMax?: string;
     /**
      * Relative amount of time the average shard spent on writing output.
      */
-    writeRatioAvg: number;
+    writeRatioAvg?: number;
     /**
      * Relative amount of time the slowest shard spent on writing output.
      */
-    writeRatioMax: number;
+    writeRatioMax?: number;
   }
   export interface Schema$ExplainQueryStep {
     /**
      * Machine-readable operation type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Human-readable stage descriptions.
      */
-    substeps: string[];
+    substeps?: string[];
   }
   export interface Schema$ExternalDataConfiguration {
     /**
      * Try to detect schema and format options automatically. Any option
      * specified explicitly will be honored.
      */
-    autodetect: boolean;
+    autodetect?: boolean;
     /**
      * [Optional] Additional options if sourceFormat is set to BIGTABLE.
      */
-    bigtableOptions: Schema$BigtableOptions;
+    bigtableOptions?: Schema$BigtableOptions;
     /**
      * [Optional] The compression type of the data source. Possible values
      * include GZIP and NONE. The default value is NONE. This setting is ignored
      * for Google Cloud Bigtable, Google Cloud Datastore backups and Avro
      * formats.
      */
-    compression: string;
+    compression?: string;
     /**
      * Additional properties to set if sourceFormat is set to CSV.
      */
-    csvOptions: Schema$CsvOptions;
+    csvOptions?: Schema$CsvOptions;
     /**
      * [Optional] Additional options if sourceFormat is set to GOOGLE_SHEETS.
      */
-    googleSheetsOptions: Schema$GoogleSheetsOptions;
+    googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.
@@ -560,7 +564,7 @@ export namespace bigquery_v2 {
      * setting is ignored. Google Cloud Datastore backups: This setting is
      * ignored. Avro: This setting is ignored.
      */
-    ignoreUnknownValues: boolean;
+    ignoreUnknownValues?: boolean;
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when reading data. If the number of bad records exceeds this value, an
@@ -568,13 +572,13 @@ export namespace bigquery_v2 {
      * which requires that all records are valid. This setting is ignored for
      * Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
      */
-    maxBadRecords: number;
+    maxBadRecords?: number;
     /**
      * [Optional] The schema for the data. Schema is required for CSV and JSON
      * formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore
      * backups, and Avro formats.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * [Required] The data format. For CSV files, specify &quot;CSV&quot;. For
      * Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited
@@ -583,7 +587,7 @@ export namespace bigquery_v2 {
      * &quot;DATASTORE_BACKUP&quot;. [Beta] For Google Cloud Bigtable, specify
      * &quot;BIGTABLE&quot;.
      */
-    sourceFormat: string;
+    sourceFormat?: string;
     /**
      * [Required] The fully-qualified URIs that point to your data in Google
      * Cloud. For Google Cloud Storage URIs: Each URI can contain one
@@ -595,30 +599,30 @@ export namespace bigquery_v2 {
      * one URI can be specified. Also, the &#39;*&#39; wildcard character is not
      * allowed.
      */
-    sourceUris: string[];
+    sourceUris?: string[];
   }
   export interface Schema$GetQueryResultsResponse {
     /**
      * Whether the query result was fetched from the query cache.
      */
-    cacheHit: boolean;
+    cacheHit?: boolean;
     /**
      * [Output-only] The first errors or warnings encountered during the running
      * of the job. The final message includes the number of errors that caused
      * the process to stop. Errors here do not necessarily mean that the job has
      * completed or was unsuccessful.
      */
-    errors: Schema$ErrorProto[];
+    errors?: Schema$ErrorProto[];
     /**
      * A hash of this response.
      */
-    etag: string;
+    etag?: string;
     /**
      * Whether the query has completed or not. If rows or totalRows are present,
      * this will always be true. If this is false, totalRows will not be
      * available.
      */
-    jobComplete: boolean;
+    jobComplete?: boolean;
     /**
      * Reference to the BigQuery Job that was created to run the query. This
      * field will be present even if the original request timed out, in which
@@ -626,59 +630,59 @@ export namespace bigquery_v2 {
      * completed. Since this API only returns the first page of results,
      * subsequent pages can be fetched via the same mechanism (GetQueryResults).
      */
-    jobReference: Schema$JobReference;
+    jobReference?: Schema$JobReference;
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output-only] The number of rows affected by a DML statement. Present
      * only for DML statements INSERT, UPDATE or DELETE.
      */
-    numDmlAffectedRows: string;
+    numDmlAffectedRows?: string;
     /**
      * A token used for paging results.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * An object with as many results as can be contained within the maximum
      * permitted reply size. To get any additional rows, you can call
      * GetQueryResults and specify the jobReference returned above. Present only
      * when the query completes successfully.
      */
-    rows: Schema$TableRow[];
+    rows?: Schema$TableRow[];
     /**
      * The schema of the results. Present only when the query completes
      * successfully.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * The total number of bytes processed for this query.
      */
-    totalBytesProcessed: string;
+    totalBytesProcessed?: string;
     /**
      * The total number of rows in the complete query result set, which can be
      * more than the number of rows in this single page of results. Present only
      * when the query completes successfully.
      */
-    totalRows: string;
+    totalRows?: string;
   }
   export interface Schema$GetServiceAccountResponse {
     /**
      * The service account email address.
      */
-    email: string;
+    email?: string;
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$GoogleSheetsOptions {
     /**
      * [Experimental] [Optional] Range of a sheet to query from. Only used when
      * non-empty. Typical format: !:
      */
-    range: string;
+    range?: string;
     /**
      * [Optional] The number of rows at the top of a sheet that BigQuery will
      * skip when reading the data. The default value is 0. This property is
@@ -692,79 +696,79 @@ export namespace bigquery_v2 {
      * N. If headers are not detected, row N is just skipped. Otherwise row N is
      * used to extract column names for the detected schema.
      */
-    skipLeadingRows: string;
+    skipLeadingRows?: string;
   }
   export interface Schema$Job {
     /**
      * [Required] Describes the job configuration.
      */
-    configuration: Schema$JobConfiguration;
+    configuration?: Schema$JobConfiguration;
     /**
      * [Output-only] A hash of this resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * [Output-only] Opaque ID field of the job
      */
-    id: string;
+    id?: string;
     /**
      * [Optional] Reference describing the unique-per-user name of the job.
      */
-    jobReference: Schema$JobReference;
+    jobReference?: Schema$JobReference;
     /**
      * [Output-only] The type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output-only] A URL that can be used to access this resource again.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output-only] Information about the job, including starting time and
      * ending time of the job.
      */
-    statistics: Schema$JobStatistics;
+    statistics?: Schema$JobStatistics;
     /**
      * [Output-only] The status of this job. Examine this value when polling an
      * asynchronous job to see if the job is complete.
      */
-    status: Schema$JobStatus;
+    status?: Schema$JobStatus;
     /**
      * [Output-only] Email address of the user who ran the job.
      */
-    user_email: string;
+    user_email?: string;
   }
   export interface Schema$JobCancelResponse {
     /**
      * The final state of the job.
      */
-    job: Schema$Job;
+    job?: Schema$Job;
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$JobConfiguration {
     /**
      * [Pick one] Copies a table.
      */
-    copy: Schema$JobConfigurationTableCopy;
+    copy?: Schema$JobConfigurationTableCopy;
     /**
      * [Optional] If set, don&#39;t actually run this job. A valid query will
      * return a mostly empty response with some processing statistics, while an
      * invalid query will return the same error it would if it wasn&#39;t a dry
      * run. Behavior of non-query jobs is undefined.
      */
-    dryRun: boolean;
+    dryRun?: boolean;
     /**
      * [Pick one] Configures an extract job.
      */
-    extract: Schema$JobConfigurationExtract;
+    extract?: Schema$JobConfigurationExtract;
     /**
      * [Optional] Job timeout in milliseconds. If this time limit is exceeded,
      * BigQuery may attempt to terminate the job.
      */
-    jobTimeoutMs: string;
+    jobTimeoutMs?: string;
     /**
      * The labels associated with this job. You can use these to organize and
      * group your jobs. Label keys and values can be no longer than 63
@@ -773,15 +777,15 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels: any;
+    labels?: any;
     /**
      * [Pick one] Configures a load job.
      */
-    load: Schema$JobConfigurationLoad;
+    load?: Schema$JobConfigurationLoad;
     /**
      * [Pick one] Configures a query job.
      */
-    query: Schema$JobConfigurationQuery;
+    query?: Schema$JobConfigurationQuery;
   }
   export interface Schema$JobConfigurationExtract {
     /**
@@ -789,38 +793,38 @@ export namespace bigquery_v2 {
      * values include GZIP, DEFLATE, SNAPPY, and NONE. The default value is
      * NONE. DEFLATE and SNAPPY are only supported for Avro.
      */
-    compression: string;
+    compression?: string;
     /**
      * [Optional] The exported file format. Possible values include CSV,
      * NEWLINE_DELIMITED_JSON and AVRO. The default value is CSV. Tables with
      * nested or repeated fields cannot be exported as CSV.
      */
-    destinationFormat: string;
+    destinationFormat?: string;
     /**
      * [Pick one] DEPRECATED: Use destinationUris instead, passing only one URI
      * as necessary. The fully-qualified Google Cloud Storage URI where the
      * extracted table should be written.
      */
-    destinationUri: string;
+    destinationUri?: string;
     /**
      * [Pick one] A list of fully-qualified Google Cloud Storage URIs where the
      * extracted table should be written.
      */
-    destinationUris: string[];
+    destinationUris?: string[];
     /**
      * [Optional] Delimiter to use between fields in the exported data. Default
      * is &#39;,&#39;
      */
-    fieldDelimiter: string;
+    fieldDelimiter?: string;
     /**
      * [Optional] Whether to print out a header row in the results. Default is
      * true.
      */
-    printHeader: boolean;
+    printHeader?: boolean;
     /**
      * [Required] A reference to the table being exported.
      */
-    sourceTable: Schema$TableReference;
+    sourceTable?: Schema$TableReference;
   }
   export interface Schema$JobConfigurationLoad {
     /**
@@ -830,23 +834,23 @@ export namespace bigquery_v2 {
      * bad records, an invalid error is returned in the job result. The default
      * value is false. Only applicable to CSV, ignored for other formats.
      */
-    allowJaggedRows: boolean;
+    allowJaggedRows?: boolean;
     /**
      * Indicates if BigQuery should allow quoted data sections that contain
      * newline characters in a CSV file. The default value is false.
      */
-    allowQuotedNewlines: boolean;
+    allowQuotedNewlines?: boolean;
     /**
      * [Optional] Indicates if we should automatically infer the options and
      * schema for CSV and JSON sources.
      */
-    autodetect: boolean;
+    autodetect?: boolean;
     /**
      * [Experimental] Clustering specification for the destination table. Must
      * be specified with time-based partitioning, data in the table will be
      * first partitioned and subsequently clustered.
      */
-    clustering: Schema$Clustering;
+    clustering?: Schema$Clustering;
     /**
      * [Optional] Specifies whether the job is allowed to create new tables. The
      * following values are supported: CREATE_IF_NEEDED: If the table does not
@@ -855,27 +859,27 @@ export namespace bigquery_v2 {
      * result. The default value is CREATE_IF_NEEDED. Creation, truncation and
      * append actions occur as one atomic update upon job completion.
      */
-    createDisposition: string;
+    createDisposition?: string;
     /**
      * Custom encryption configuration (e.g., Cloud KMS keys).
      */
-    destinationEncryptionConfiguration: Schema$EncryptionConfiguration;
+    destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Required] The destination table to load the data into.
      */
-    destinationTable: Schema$TableReference;
+    destinationTable?: Schema$TableReference;
     /**
      * [Experimental] [Optional] Properties with which to create the destination
      * table if it is new.
      */
-    destinationTableProperties: Schema$DestinationTableProperties;
+    destinationTableProperties?: Schema$DestinationTableProperties;
     /**
      * [Optional] The character encoding of the data. The supported values are
      * UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the
      * data after the raw, binary data has been split using the values of the
      * quote and fieldDelimiter properties.
      */
-    encoding: string;
+    encoding?: string;
     /**
      * [Optional] The separator for fields in a CSV file. The separator can be
      * any ISO-8859-1 single-byte character. To use a character in the range
@@ -885,7 +889,7 @@ export namespace bigquery_v2 {
      * supports the escape sequence &quot;\t&quot; to specify a tab separator.
      * The default value is a comma (&#39;,&#39;).
      */
-    fieldDelimiter: string;
+    fieldDelimiter?: string;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.
@@ -895,14 +899,14 @@ export namespace bigquery_v2 {
      * what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named
      * values that don&#39;t match any column names
      */
-    ignoreUnknownValues: boolean;
+    ignoreUnknownValues?: boolean;
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when running the job. If the number of bad records exceeds this value, an
      * invalid error is returned in the job result. The default value is 0,
      * which requires that all records are valid.
      */
-    maxBadRecords: number;
+    maxBadRecords?: number;
     /**
      * [Optional] Specifies a string that represents a null value in a CSV file.
      * For example, if you specify &quot;x/&quot;, BigQuery interprets
@@ -912,7 +916,7 @@ export namespace bigquery_v2 {
      * for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the
      * empty string as an empty value.
      */
-    nullMarker: string;
+    nullMarker?: string;
     /**
      * If sourceFormat is set to &quot;DATASTORE_BACKUP&quot;, indicates which
      * entity properties to load into BigQuery from a Cloud Datastore backup.
@@ -921,7 +925,7 @@ export namespace bigquery_v2 {
      * property isn&#39;t found in the Cloud Datastore backup, an invalid error
      * is returned in the job result.
      */
-    projectionFields: string[];
+    projectionFields?: string[];
     /**
      * [Optional] The value that is used to quote data sections in a CSV file.
      * BigQuery converts the string to ISO-8859-1 encoding, and then uses the
@@ -931,23 +935,23 @@ export namespace bigquery_v2 {
      * string. If your data contains quoted newline characters, you must also
      * set the allowQuotedNewlines property to true.
      */
-    quote: string;
+    quote?: string;
     /**
      * [Optional] The schema for the destination table. The schema can be
      * omitted if the destination table already exists, or if you&#39;re loading
      * data from Google Cloud Datastore.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * [Deprecated] The inline schema. For CSV schemas, specify as
      * &quot;Field1:Type1[,Field2:Type2]*&quot;. For example, &quot;foo:STRING,
      * bar:INTEGER, baz:FLOAT&quot;.
      */
-    schemaInline: string;
+    schemaInline?: string;
     /**
      * [Deprecated] The format of the schemaInline property.
      */
-    schemaInlineFormat: string;
+    schemaInlineFormat?: string;
     /**
      * Allows the schema of the destination table to be updated as a side effect
      * of the load job if a schema is autodetected or supplied in the job
@@ -960,13 +964,13 @@ export namespace bigquery_v2 {
      * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original
      * schema to nullable.
      */
-    schemaUpdateOptions: string[];
+    schemaUpdateOptions?: string[];
     /**
      * [Optional] The number of rows at the top of a CSV file that BigQuery will
      * skip when loading the data. The default value is 0. This property is
      * useful if you have header rows in the file that should be skipped.
      */
-    skipLeadingRows: number;
+    skipLeadingRows?: number;
     /**
      * [Optional] The format of the data files. For CSV files, specify
      * &quot;CSV&quot;. For datastore backups, specify
@@ -975,7 +979,7 @@ export namespace bigquery_v2 {
      * For parquet, specify &quot;PARQUET&quot;. For orc, specify
      * &quot;ORC&quot;. The default value is CSV.
      */
-    sourceFormat: string;
+    sourceFormat?: string;
     /**
      * [Required] The fully-qualified URIs that point to your data in Google
      * Cloud. For Google Cloud Storage URIs: Each URI can contain one
@@ -987,11 +991,11 @@ export namespace bigquery_v2 {
      * one URI can be specified. Also, the &#39;*&#39; wildcard character is not
      * allowed.
      */
-    sourceUris: string[];
+    sourceUris?: string[];
     /**
      * Time-based partitioning specification for the destination table.
      */
-    timePartitioning: Schema$TimePartitioning;
+    timePartitioning?: Schema$TimePartitioning;
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1003,7 +1007,7 @@ export namespace bigquery_v2 {
      * is able to complete the job successfully. Creation, truncation and append
      * actions occur as one atomic update upon job completion.
      */
-    writeDisposition: string;
+    writeDisposition?: string;
   }
   export interface Schema$JobConfigurationQuery {
     /**
@@ -1014,13 +1018,13 @@ export namespace bigquery_v2 {
      * set destinationTable when result size exceeds the allowed maximum
      * response size.
      */
-    allowLargeResults: boolean;
+    allowLargeResults?: boolean;
     /**
      * [Experimental] Clustering specification for the destination table. Must
      * be specified with time-based partitioning, data in the table will be
      * first partitioned and subsequently clustered.
      */
-    clustering: Schema$Clustering;
+    clustering?: Schema$Clustering;
     /**
      * [Optional] Specifies whether the job is allowed to create new tables. The
      * following values are supported: CREATE_IF_NEEDED: If the table does not
@@ -1029,66 +1033,66 @@ export namespace bigquery_v2 {
      * result. The default value is CREATE_IF_NEEDED. Creation, truncation and
      * append actions occur as one atomic update upon job completion.
      */
-    createDisposition: string;
+    createDisposition?: string;
     /**
      * [Optional] Specifies the default dataset to use for unqualified table
      * names in the query.
      */
-    defaultDataset: Schema$DatasetReference;
+    defaultDataset?: Schema$DatasetReference;
     /**
      * Custom encryption configuration (e.g., Cloud KMS keys).
      */
-    destinationEncryptionConfiguration: Schema$EncryptionConfiguration;
+    destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Optional] Describes the table where the query results should be stored.
      * If not present, a new table will be created to store the results. This
      * property must be set for large results that exceed the maximum response
      * size.
      */
-    destinationTable: Schema$TableReference;
+    destinationTable?: Schema$TableReference;
     /**
      * [Optional] If true and query uses legacy SQL dialect, flattens all nested
      * and repeated fields in the query results. allowLargeResults must be true
      * if this is set to false. For standard SQL queries, this flag is ignored
      * and results are never flattened.
      */
-    flattenResults: boolean;
+    flattenResults?: boolean;
     /**
      * [Optional] Limits the billing tier for this job. Queries that have
      * resource usage beyond this tier will fail (without incurring a charge).
      * If unspecified, this will be set to your project default.
      */
-    maximumBillingTier: number;
+    maximumBillingTier?: number;
     /**
      * [Optional] Limits the bytes billed for this job. Queries that will have
      * bytes billed beyond this limit will fail (without incurring a charge). If
      * unspecified, this will be set to your project default.
      */
-    maximumBytesBilled: string;
+    maximumBytesBilled?: string;
     /**
      * Standard SQL only. Set to POSITIONAL to use positional (?) query
      * parameters or to NAMED to use named (@myparam) query parameters in this
      * query.
      */
-    parameterMode: string;
+    parameterMode?: string;
     /**
      * [Deprecated] This property is deprecated.
      */
-    preserveNulls: boolean;
+    preserveNulls?: boolean;
     /**
      * [Optional] Specifies a priority for the query. Possible values include
      * INTERACTIVE and BATCH. The default value is INTERACTIVE.
      */
-    priority: string;
+    priority?: string;
     /**
      * [Required] SQL query text to execute. The useLegacySql field can be used
      * to indicate whether the query uses legacy SQL or standard SQL.
      */
-    query: string;
+    query?: string;
     /**
      * Query parameters for standard SQL queries.
      */
-    queryParameters: Schema$QueryParameter[];
+    queryParameters?: Schema$QueryParameter[];
     /**
      * Allows the schema of the destination table to be updated as a side effect
      * of the query job. Schema update options are supported in two cases: when
@@ -1100,18 +1104,18 @@ export namespace bigquery_v2 {
      * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original
      * schema to nullable.
      */
-    schemaUpdateOptions: string[];
+    schemaUpdateOptions?: string[];
     /**
      * [Optional] If querying an external data source outside of BigQuery,
      * describes the data format, location and other properties of the data
      * source. By defining these properties, the data source can then be queried
      * as if it were a standard BigQuery table.
      */
-    tableDefinitions: any;
+    tableDefinitions?: any;
     /**
      * Time-based partitioning specification for the destination table.
      */
-    timePartitioning: Schema$TimePartitioning;
+    timePartitioning?: Schema$TimePartitioning;
     /**
      * Specifies whether to use BigQuery&#39;s legacy SQL dialect for this
      * query. The default value is true. If set to false, the query will use
@@ -1120,7 +1124,7 @@ export namespace bigquery_v2 {
      * to false, the value of flattenResults is ignored; query will be run as if
      * flattenResults is false.
      */
-    useLegacySql: boolean;
+    useLegacySql?: boolean;
     /**
      * [Optional] Whether to look for the result in the query cache. The query
      * cache is a best-effort cache that will be flushed whenever tables in the
@@ -1128,11 +1132,11 @@ export namespace bigquery_v2 {
      * query does not have a destination table specified. The default value is
      * true.
      */
-    useQueryCache: boolean;
+    useQueryCache?: boolean;
     /**
      * Describes user-defined function resources used in the query.
      */
-    userDefinedFunctionResources: Schema$UserDefinedFunctionResource[];
+    userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1145,7 +1149,7 @@ export namespace bigquery_v2 {
      * Creation, truncation and append actions occur as one atomic update upon
      * job completion.
      */
-    writeDisposition: string;
+    writeDisposition?: string;
   }
   export interface Schema$JobConfigurationTableCopy {
     /**
@@ -1156,23 +1160,23 @@ export namespace bigquery_v2 {
      * result. The default value is CREATE_IF_NEEDED. Creation, truncation and
      * append actions occur as one atomic update upon job completion.
      */
-    createDisposition: string;
+    createDisposition?: string;
     /**
      * Custom encryption configuration (e.g., Cloud KMS keys).
      */
-    destinationEncryptionConfiguration: Schema$EncryptionConfiguration;
+    destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Required] The destination table
      */
-    destinationTable: Schema$TableReference;
+    destinationTable?: Schema$TableReference;
     /**
      * [Pick one] Source table to copy.
      */
-    sourceTable: Schema$TableReference;
+    sourceTable?: Schema$TableReference;
     /**
      * [Pick one] Source tables to copy.
      */
-    sourceTables: Schema$TableReference[];
+    sourceTables?: Schema$TableReference[];
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1184,25 +1188,25 @@ export namespace bigquery_v2 {
      * is able to complete the job successfully. Creation, truncation and append
      * actions occur as one atomic update upon job completion.
      */
-    writeDisposition: string;
+    writeDisposition?: string;
   }
   export interface Schema$JobList {
     /**
      * A hash of this page of results.
      */
-    etag: string;
+    etag?: string;
     /**
      * List of jobs that were requested.
      */
-    jobs: any[];
+    jobs?: any[];
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token to request the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$JobReference {
     /**
@@ -1210,66 +1214,66 @@ export namespace bigquery_v2 {
      * A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length
      * is 1,024 characters.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
      * and EU.
      */
-    location: string;
+    location?: string;
     /**
      * [Required] The ID of the project containing this job.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Schema$JobStatistics {
     /**
      * [Experimental] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
      * EXTRACT jobs.
      */
-    completionRatio: number;
+    completionRatio?: number;
     /**
      * [Output-only] Creation time of this job, in milliseconds since the epoch.
      * This field will be present on all jobs.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * [Output-only] End time of this job, in milliseconds since the epoch. This
      * field will be present whenever a job is in the DONE state.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * [Output-only] Statistics for an extract job.
      */
-    extract: Schema$JobStatistics4;
+    extract?: Schema$JobStatistics4;
     /**
      * [Output-only] Statistics for a load job.
      */
-    load: Schema$JobStatistics3;
+    load?: Schema$JobStatistics3;
     /**
      * [Output-only] Statistics for a query job.
      */
-    query: Schema$JobStatistics2;
+    query?: Schema$JobStatistics2;
     /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
      * state to either RUNNING or DONE.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * [Output-only] [Deprecated] Use the bytes processed in the query
      * statistics instead.
      */
-    totalBytesProcessed: string;
+    totalBytesProcessed?: string;
   }
   export interface Schema$JobStatistics2 {
     /**
      * [Output-only] Billing tier for the job.
      */
-    billingTier: number;
+    billingTier?: number;
     /**
      * [Output-only] Whether the query result was fetched from the query cache.
      */
-    cacheHit: boolean;
+    cacheHit?: boolean;
     /**
      * [Output-only, Experimental] The DDL operation performed, possibly
      * dependent on the pre-existence of the DDL target. Possible values (new
@@ -1281,35 +1285,35 @@ export namespace bigquery_v2 {
      * query is CREATE OR REPLACE TABLE, and the table already exists.
      * &quot;DROP&quot;: The query deleted the DDL target.
      */
-    ddlOperationPerformed: string;
+    ddlOperationPerformed?: string;
     /**
      * [Output-only, Experimental] The DDL target table. Present only for
      * CREATE/DROP TABLE/VIEW queries.
      */
-    ddlTargetTable: Schema$TableReference;
+    ddlTargetTable?: Schema$TableReference;
     /**
      * [Output-only] The original estimate of bytes processed for the job.
      */
-    estimatedBytesProcessed: string;
+    estimatedBytesProcessed?: string;
     /**
      * [Output-only] The number of rows affected by a DML statement. Present
      * only for DML statements INSERT, UPDATE or DELETE.
      */
-    numDmlAffectedRows: string;
+    numDmlAffectedRows?: string;
     /**
      * [Output-only] Describes execution plan for the query.
      */
-    queryPlan: Schema$ExplainQueryStage[];
+    queryPlan?: Schema$ExplainQueryStage[];
     /**
      * [Output-only] Referenced tables for the job. Queries that reference more
      * than 50 tables will not have a complete list.
      */
-    referencedTables: Schema$TableReference[];
+    referencedTables?: Schema$TableReference[];
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * [Output-only, Experimental] The type of query statement, if valid.
      * Possible values (new values might be added in the future):
@@ -1325,33 +1329,33 @@ export namespace bigquery_v2 {
      * &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ...
      * &quot;DROP_VIEW&quot;: DROP VIEW query.
      */
-    statementType: string;
+    statementType?: string;
     /**
      * [Output-only] [Experimental] Describes a timeline of job execution.
      */
-    timeline: Schema$QueryTimelineSample[];
+    timeline?: Schema$QueryTimelineSample[];
     /**
      * [Output-only] Total bytes billed for the job.
      */
-    totalBytesBilled: string;
+    totalBytesBilled?: string;
     /**
      * [Output-only] Total bytes processed for the job.
      */
-    totalBytesProcessed: string;
+    totalBytesProcessed?: string;
     /**
      * [Output-only] Total number of partitions processed from all partitioned
      * tables referenced in the job.
      */
-    totalPartitionsProcessed: string;
+    totalPartitionsProcessed?: string;
     /**
      * [Output-only] Slot-milliseconds for the job.
      */
-    totalSlotMs: string;
+    totalSlotMs?: string;
     /**
      * [Output-only, Experimental] Standard SQL only: list of undeclared query
      * parameters detected during a dry run validation.
      */
-    undeclaredQueryParameters: Schema$QueryParameter[];
+    undeclaredQueryParameters?: Schema$QueryParameter[];
   }
   export interface Schema$JobStatistics3 {
     /**
@@ -1360,25 +1364,25 @@ export namespace bigquery_v2 {
      * allowed in the load job configuration, then this number can be less than
      * the total number of bad records present in the input data.
      */
-    badRecords: string;
+    badRecords?: string;
     /**
      * [Output-only] Number of bytes of source data in a load job.
      */
-    inputFileBytes: string;
+    inputFileBytes?: string;
     /**
      * [Output-only] Number of source files in a load job.
      */
-    inputFiles: string;
+    inputFiles?: string;
     /**
      * [Output-only] Size of the loaded data in bytes. Note that while a load
      * job is in the running state, this value may change.
      */
-    outputBytes: string;
+    outputBytes?: string;
     /**
      * [Output-only] Number of rows imported in a load job. Note that while an
      * import job is in the running state, this value may change.
      */
-    outputRows: string;
+    outputRows?: string;
   }
   export interface Schema$JobStatistics4 {
     /**
@@ -1386,25 +1390,25 @@ export namespace bigquery_v2 {
      * specified in the extract configuration. These values will be in the same
      * order as the URIs specified in the &#39;destinationUris&#39; field.
      */
-    destinationUriFileCounts: string[];
+    destinationUriFileCounts?: string[];
   }
   export interface Schema$JobStatus {
     /**
      * [Output-only] Final error result of the job. If present, indicates that
      * the job has completed and was unsuccessful.
      */
-    errorResult: Schema$ErrorProto;
+    errorResult?: Schema$ErrorProto;
     /**
      * [Output-only] The first errors encountered during the running of the job.
      * The final message includes the number of errors that caused the process
      * to stop. Errors here do not necessarily mean that the job has completed
      * or was unsuccessful.
      */
-    errors: Schema$ErrorProto[];
+    errors?: Schema$ErrorProto[];
     /**
      * [Output-only] Running state of the job.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Represents a single JSON object.
@@ -1415,75 +1419,75 @@ export namespace bigquery_v2 {
     /**
      * A hash of the page of results
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of list.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token to request the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Projects to which you have at least READ access.
      */
-    projects: any[];
+    projects?: any[];
     /**
      * The total number of projects in the list.
      */
-    totalItems: number;
+    totalItems?: number;
   }
   export interface Schema$ProjectReference {
     /**
      * [Required] ID of the project. Can be either the numeric ID or the
      * assigned ID of the project.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Schema$QueryParameter {
     /**
      * [Optional] If unset, this is a positional parameter. Otherwise, should be
      * unique within a query.
      */
-    name: string;
+    name?: string;
     /**
      * [Required] The type of this parameter.
      */
-    parameterType: Schema$QueryParameterType;
+    parameterType?: Schema$QueryParameterType;
     /**
      * [Required] The value of this parameter.
      */
-    parameterValue: Schema$QueryParameterValue;
+    parameterValue?: Schema$QueryParameterValue;
   }
   export interface Schema$QueryParameterType {
     /**
      * [Optional] The type of the array&#39;s elements, if this is an array.
      */
-    arrayType: Schema$QueryParameterType;
+    arrayType?: Schema$QueryParameterType;
     /**
      * [Optional] The types of the fields of this struct, in order, if this is a
      * struct.
      */
-    structTypes: any[];
+    structTypes?: any[];
     /**
      * [Required] The top level type of this field.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$QueryParameterValue {
     /**
      * [Optional] The array values, if this is an array type.
      */
-    arrayValues: Schema$QueryParameterValue[];
+    arrayValues?: Schema$QueryParameterValue[];
     /**
      * [Optional] The struct field values, in order of the struct type&#39;s
      * declaration.
      */
-    structValues: any;
+    structValues?: any;
     /**
      * [Optional] The value of this value, if a simple scalar type.
      */
-    value: string;
+    value?: string;
   }
   export interface Schema$QueryRequest {
     /**
@@ -1492,23 +1496,23 @@ export namespace bigquery_v2 {
      * the query string must be qualified in the format
      * &#39;datasetId.tableId&#39;.
      */
-    defaultDataset: Schema$DatasetReference;
+    defaultDataset?: Schema$DatasetReference;
     /**
      * [Optional] If set to true, BigQuery doesn&#39;t run the job. Instead, if
      * the query is valid, BigQuery returns statistics about the job such as how
      * many bytes would be processed. If the query is invalid, an error returns.
      * The default value is false.
      */
-    dryRun: boolean;
+    dryRun?: boolean;
     /**
      * The resource type of the request.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Experimental] The geographic location where the job should run. Required
      * except for US and EU.
      */
-    location: string;
+    location?: string;
     /**
      * [Optional] The maximum number of rows of data to return per page of
      * results. Setting this flag to a small value such as 1000 and then paging
@@ -1516,27 +1520,27 @@ export namespace bigquery_v2 {
      * large. In addition to this limit, responses are also limited to 10 MB. By
      * default, there is no maximum row count, and only the byte limit applies.
      */
-    maxResults: number;
+    maxResults?: number;
     /**
      * Standard SQL only. Set to POSITIONAL to use positional (?) query
      * parameters or to NAMED to use named (@myparam) query parameters in this
      * query.
      */
-    parameterMode: string;
+    parameterMode?: string;
     /**
      * [Deprecated] This property is deprecated.
      */
-    preserveNulls: boolean;
+    preserveNulls?: boolean;
     /**
      * [Required] A query string, following the BigQuery query syntax, of the
      * query to execute. Example: &quot;SELECT count(f1) FROM
      * [myProjectId:myDatasetId.myTableId]&quot;.
      */
-    query: string;
+    query?: string;
     /**
      * Query parameters for Standard SQL queries.
      */
-    queryParameters: Schema$QueryParameter[];
+    queryParameters?: Schema$QueryParameter[];
     /**
      * [Optional] How long to wait for the query to complete, in milliseconds,
      * before the request times out and returns. Note that this is only a
@@ -1546,7 +1550,7 @@ export namespace bigquery_v2 {
      * to wait for the query to complete and read the results. The default value
      * is 10000 milliseconds (10 seconds).
      */
-    timeoutMs: number;
+    timeoutMs?: number;
     /**
      * Specifies whether to use BigQuery&#39;s legacy SQL dialect for this
      * query. The default value is true. If set to false, the query will use
@@ -1555,32 +1559,32 @@ export namespace bigquery_v2 {
      * to false, the value of flattenResults is ignored; query will be run as if
      * flattenResults is false.
      */
-    useLegacySql: boolean;
+    useLegacySql?: boolean;
     /**
      * [Optional] Whether to look for the result in the query cache. The query
      * cache is a best-effort cache that will be flushed whenever tables in the
      * query are modified. The default value is true.
      */
-    useQueryCache: boolean;
+    useQueryCache?: boolean;
   }
   export interface Schema$QueryResponse {
     /**
      * Whether the query result was fetched from the query cache.
      */
-    cacheHit: boolean;
+    cacheHit?: boolean;
     /**
      * [Output-only] The first errors or warnings encountered during the running
      * of the job. The final message includes the number of errors that caused
      * the process to stop. Errors here do not necessarily mean that the job has
      * completed or was unsuccessful.
      */
-    errors: Schema$ErrorProto[];
+    errors?: Schema$ErrorProto[];
     /**
      * Whether the query has completed or not. If rows or totalRows are present,
      * this will always be true. If this is false, totalRows will not be
      * available.
      */
-    jobComplete: boolean;
+    jobComplete?: boolean;
     /**
      * Reference to the Job that was created to run the query. This field will
      * be present even if the original request timed out, in which case
@@ -1588,42 +1592,42 @@ export namespace bigquery_v2 {
      * completed. Since this API only returns the first page of results,
      * subsequent pages can be fetched via the same mechanism (GetQueryResults).
      */
-    jobReference: Schema$JobReference;
+    jobReference?: Schema$JobReference;
     /**
      * The resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output-only] The number of rows affected by a DML statement. Present
      * only for DML statements INSERT, UPDATE or DELETE.
      */
-    numDmlAffectedRows: string;
+    numDmlAffectedRows?: string;
     /**
      * A token used for paging results.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * An object with as many results as can be contained within the maximum
      * permitted reply size. To get any additional rows, you can call
      * GetQueryResults and specify the jobReference returned above.
      */
-    rows: Schema$TableRow[];
+    rows?: Schema$TableRow[];
     /**
      * The schema of the results. Present only when the query completes
      * successfully.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * The total number of bytes processed for this query. If this query was a
      * dry run, this is the number of bytes that would be processed if the query
      * were run.
      */
-    totalBytesProcessed: string;
+    totalBytesProcessed?: string;
     /**
      * The total number of rows in the complete query result set, which can be
      * more than the number of rows in this single page of results.
      */
-    totalRows: string;
+    totalRows?: string;
   }
   export interface Schema$QueryTimelineSample {
     /**
@@ -1631,41 +1635,41 @@ export namespace bigquery_v2 {
      * correspond directly to slot usage. This is the largest value observed
      * since the last sample.
      */
-    activeUnits: string;
+    activeUnits?: string;
     /**
      * Total parallel units of work completed by this query.
      */
-    completedUnits: string;
+    completedUnits?: string;
     /**
      * Milliseconds elapsed since the start of query execution.
      */
-    elapsedMs: string;
+    elapsedMs?: string;
     /**
      * Total parallel units of work remaining for the active stages.
      */
-    pendingUnits: string;
+    pendingUnits?: string;
     /**
      * Cumulative slot-ms consumed by the query.
      */
-    totalSlotMs: string;
+    totalSlotMs?: string;
   }
   export interface Schema$Streamingbuffer {
     /**
      * [Output-only] A lower-bound estimate of the number of bytes currently in
      * the streaming buffer.
      */
-    estimatedBytes: string;
+    estimatedBytes?: string;
     /**
      * [Output-only] A lower-bound estimate of the number of rows currently in
      * the streaming buffer.
      */
-    estimatedRows: string;
+    estimatedRows?: string;
     /**
      * [Output-only] Contains the timestamp of the oldest entry in the streaming
      * buffer, in milliseconds since the epoch, if the streaming buffer is
      * available.
      */
-    oldestEntryTime: string;
+    oldestEntryTime?: string;
   }
   export interface Schema$Table {
     /**
@@ -1673,24 +1677,24 @@ export namespace bigquery_v2 {
      * with time-based partitioning, data in the table will be first partitioned
      * and subsequently clustered.
      */
-    clustering: Schema$Clustering;
+    clustering?: Schema$Clustering;
     /**
      * [Output-only] The time when this table was created, in milliseconds since
      * the epoch.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * [Optional] A user-friendly description of this table.
      */
-    description: string;
+    description?: string;
     /**
      * Custom encryption configuration (e.g., Cloud KMS keys).
      */
-    encryptionConfiguration: Schema$EncryptionConfiguration;
+    encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Output-only] A hash of this resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * [Optional] The time when this table expires, in milliseconds since the
      * epoch. If not present, the table will persist indefinitely. Expired
@@ -1698,25 +1702,25 @@ export namespace bigquery_v2 {
      * defaultTableExpirationMs property of the encapsulating dataset can be
      * used to set a default expirationTime on newly created tables.
      */
-    expirationTime: string;
+    expirationTime?: string;
     /**
      * [Optional] Describes the data format, location, and other properties of a
      * table stored outside of BigQuery. By defining these properties, the data
      * source can then be queried as if it were a standard BigQuery table.
      */
-    externalDataConfiguration: Schema$ExternalDataConfiguration;
+    externalDataConfiguration?: Schema$ExternalDataConfiguration;
     /**
      * [Optional] A descriptive name for this table.
      */
-    friendlyName: string;
+    friendlyName?: string;
     /**
      * [Output-only] An opaque ID uniquely identifying the table.
      */
-    id: string;
+    id?: string;
     /**
      * [Output-only] The type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The labels associated with this table. You can use these to organize and
      * group your tables. Label keys and values can be no longer than 63
@@ -1725,54 +1729,54 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels: any;
+    labels?: any;
     /**
      * [Output-only] The time when this table was last modified, in milliseconds
      * since the epoch.
      */
-    lastModifiedTime: string;
+    lastModifiedTime?: string;
     /**
      * [Output-only] The geographic location where the table resides. This value
      * is inherited from the dataset.
      */
-    location: string;
+    location?: string;
     /**
      * [Output-only] The size of this table in bytes, excluding any data in the
      * streaming buffer.
      */
-    numBytes: string;
+    numBytes?: string;
     /**
      * [Output-only] The number of bytes in the table that are considered
      * &quot;long-term storage&quot;.
      */
-    numLongTermBytes: string;
+    numLongTermBytes?: string;
     /**
      * [Output-only] The number of rows of data in this table, excluding any
      * data in the streaming buffer.
      */
-    numRows: string;
+    numRows?: string;
     /**
      * [Optional] Describes the schema of this table.
      */
-    schema: Schema$TableSchema;
+    schema?: Schema$TableSchema;
     /**
      * [Output-only] A URL that can be used to access this resource again.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output-only] Contains information regarding this table&#39;s streaming
      * buffer, if one is present. This field will be absent if the table is not
      * being streamed to or if there is no data in the streaming buffer.
      */
-    streamingBuffer: Schema$Streamingbuffer;
+    streamingBuffer?: Schema$Streamingbuffer;
     /**
      * [Required] Reference describing the ID of this table.
      */
-    tableReference: Schema$TableReference;
+    tableReference?: Schema$TableReference;
     /**
      * Time-based partitioning specification for this table.
      */
-    timePartitioning: Schema$TimePartitioning;
+    timePartitioning?: Schema$TimePartitioning;
     /**
      * [Output-only] Describes the table type. The following values are
      * supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined
@@ -1780,34 +1784,34 @@ export namespace bigquery_v2 {
      * external storage system, such as Google Cloud Storage. The default value
      * is TABLE.
      */
-    type: string;
+    type?: string;
     /**
      * [Optional] The view definition.
      */
-    view: Schema$ViewDefinition;
+    view?: Schema$ViewDefinition;
   }
-  export interface Schema$TableCell { v: any; }
+  export interface Schema$TableCell { v?: any; }
   export interface Schema$TableDataInsertAllRequest {
     /**
      * [Optional] Accept rows that contain values that do not match the schema.
      * The unknown values are ignored. Default is false, which treats unknown
      * values as errors.
      */
-    ignoreUnknownValues: boolean;
+    ignoreUnknownValues?: boolean;
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
     /**
      * The rows to insert.
      */
-    rows: any[];
+    rows?: any[];
     /**
      * [Optional] Insert all valid rows of a request, even if invalid rows
      * exist. The default value is false, which causes the entire request to
      * fail if any invalid rows exist.
      */
-    skipInvalidRows: boolean;
+    skipInvalidRows?: boolean;
     /**
      * [Experimental] If specified, treats the destination table as a base
      * template, and inserts the rows into an instance table named
@@ -1816,63 +1820,63 @@ export namespace bigquery_v2 {
      * https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables
      * for considerations when working with templates tables.
      */
-    templateSuffix: string;
+    templateSuffix?: string;
   }
   export interface Schema$TableDataInsertAllResponse {
     /**
      * An array of errors for rows that were not inserted.
      */
-    insertErrors: any[];
+    insertErrors?: any[];
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$TableDataList {
     /**
      * A hash of this page of results.
      */
-    etag: string;
+    etag?: string;
     /**
      * The resource type of the response.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token used for paging results. Providing this token instead of the
      * startIndex parameter can help you retrieve stable results when an
      * underlying table is changing.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * Rows of results.
      */
-    rows: Schema$TableRow[];
+    rows?: Schema$TableRow[];
     /**
      * The total number of rows in the complete table.
      */
-    totalRows: string;
+    totalRows?: string;
   }
   export interface Schema$TableFieldSchema {
     /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
-    description: string;
+    description?: string;
     /**
      * [Optional] Describes the nested schema fields if the type property is set
      * to RECORD.
      */
-    fields: Schema$TableFieldSchema[];
+    fields?: Schema$TableFieldSchema[];
     /**
      * [Optional] The field mode. Possible values include NULLABLE, REQUIRED and
      * REPEATED. The default value is NULLABLE.
      */
-    mode: string;
+    mode?: string;
     /**
      * [Required] The field name. The name must contain only letters (a-z, A-Z),
      * numbers (0-9), or underscores (_), and must start with a letter or
      * underscore. The maximum length is 128 characters.
      */
-    name: string;
+    name?: string;
     /**
      * [Required] The field data type. Possible values include STRING, BYTES,
      * INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT),
@@ -1880,83 +1884,83 @@ export namespace bigquery_v2 {
      * (where RECORD indicates that the field contains a nested schema) or
      * STRUCT (same as RECORD).
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$TableList {
     /**
      * A hash of this page of results.
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of list.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token to request the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Tables in the requested dataset.
      */
-    tables: any[];
+    tables?: any[];
     /**
      * The total number of tables in the dataset.
      */
-    totalItems: number;
+    totalItems?: number;
   }
   export interface Schema$TableReference {
     /**
      * [Required] The ID of the dataset containing this table.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * [Required] The ID of the project containing this table.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * [Required] The ID of the table. The ID must contain only letters (a-z,
      * A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024
      * characters.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Schema$TableRow {
     /**
      * Represents a single row in the result set, consisting of one or more
      * fields.
      */
-    f: Schema$TableCell[];
+    f?: Schema$TableCell[];
   }
   export interface Schema$TableSchema {
     /**
      * Describes the fields in a table.
      */
-    fields: Schema$TableFieldSchema[];
+    fields?: Schema$TableFieldSchema[];
   }
   export interface Schema$TimePartitioning {
     /**
      * [Optional] Number of milliseconds for which to keep the storage for a
      * partition.
      */
-    expirationMs: string;
+    expirationMs?: string;
     /**
      * [Experimental] [Optional] If not set, the table is partitioned by pseudo
      * column &#39;_PARTITIONTIME&#39;; if set, the table is partitioned by this
      * field. The field must be a top-level TIMESTAMP or DATE field. Its mode
      * must be NULLABLE or REQUIRED.
      */
-    field: string;
+    field?: string;
     /**
      * [Experimental] [Optional] If set to true, queries over this table require
      * a partition filter that can be used for partition elimination to be
      * specified.
      */
-    requirePartitionFilter: boolean;
+    requirePartitionFilter?: boolean;
     /**
      * [Required] The only type supported is DAY, which will generate one
      * partition per day.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -1964,30 +1968,31 @@ export namespace bigquery_v2 {
      * function (UDF). Providing a inline code resource is equivalent to
      * providing a URI for a file containing the same code.
      */
-    inlineCode: string;
+    inlineCode?: string;
     /**
      * [Pick one] A code resource to load from a Google Cloud Storage URI
      * (gs://bucket/path).
      */
-    resourceUri: string;
+    resourceUri?: string;
   }
   export interface Schema$ViewDefinition {
     /**
      * [Required] A query that BigQuery executes when the view is referenced.
      */
-    query: string;
+    query?: string;
     /**
      * Specifies whether to use BigQuery&#39;s legacy SQL for this view. The
      * default value is true. If set to false, the view will use BigQuery&#39;s
      * standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries
      * and views that reference this view must use the same flag value.
      */
-    useLegacySql: boolean;
+    useLegacySql?: boolean;
     /**
      * Describes user-defined function resources used in the query.
      */
-    userDefinedFunctionResources: Schema$UserDefinedFunctionResource[];
+    userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
   }
+
 
   export class Resource$Datasets {
     root: Bigquery;
@@ -2071,22 +2076,35 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Datasets$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Datasets$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Datasets$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Datasets$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2179,23 +2197,33 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+    get(params?: Params$Resource$Datasets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    get(params: Params$Resource$Datasets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(params: Params$Resource$Datasets$Get,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(paramsOrCallback?: Params$Resource$Datasets$Get|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2289,25 +2317,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    insert(params?: Params$Resource$Datasets$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Dataset>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params: Params$Resource$Datasets$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Insert,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    insert(callback: BodyResponseCallback<Schema$Dataset>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Datasets$Insert|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2413,26 +2452,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Datasets$List, options?: MethodOptions):
         AxiosPromise<Schema$DatasetList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
-        callback?: BodyResponseCallback<Schema$DatasetList>): void;
+        params: Params$Resource$Datasets$List,
+        options: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
+        callback: BodyResponseCallback<Schema$DatasetList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
+        params: Params$Resource$Datasets$List,
+        callback: BodyResponseCallback<Schema$DatasetList>): void;
+    list(callback: BodyResponseCallback<Schema$DatasetList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Datasets$List|
+        BodyResponseCallback<Schema$DatasetList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DatasetList>,
         callback?: BodyResponseCallback<Schema$DatasetList>):
         void|AxiosPromise<Schema$DatasetList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2534,25 +2584,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    patch(params?: Params$Resource$Datasets$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Dataset>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params: Params$Resource$Datasets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Patch,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Datasets$Patch|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2654,25 +2715,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    update(params?: Params$Resource$Datasets$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Dataset>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params: Params$Resource$Datasets$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Update,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    update(callback: BodyResponseCallback<Schema$Dataset>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Datasets$Update|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2695,6 +2767,128 @@ export namespace bigquery_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Datasets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of dataset being deleted
+     */
+    datasetId?: string;
+    /**
+     * If True, delete all the tables in the dataset. If False and the dataset
+     * contains tables, the request will fail. Default is False
+     */
+    deleteContents?: boolean;
+    /**
+     * Project ID of the dataset being deleted
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Datasets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the requested dataset
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the requested dataset
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Datasets$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID of the new dataset
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+  export interface Params$Resource$Datasets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to list all datasets, including hidden ones
+     */
+    all?: boolean;
+    /**
+     * An expression for filtering the results of the request by label. The
+     * syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed
+     * together by connecting with a space. Example:
+     * "labels.department:receiving labels.active". See Filtering datasets using
+     * labels for details.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of
+     * results
+     */
+    pageToken?: string;
+    /**
+     * Project ID of the datasets to be listed
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Datasets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the dataset being updated
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the dataset being updated
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+  export interface Params$Resource$Datasets$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the dataset being updated
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the dataset being updated
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+
 
   export class Resource$Jobs {
     root: Bigquery;
@@ -2781,26 +2975,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
+    cancel(params?: Params$Resource$Jobs$Cancel, options?: MethodOptions):
         AxiosPromise<Schema$JobCancelResponse>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
-        callback?: BodyResponseCallback<Schema$JobCancelResponse>): void;
+        params: Params$Resource$Jobs$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
+        callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
+        params: Params$Resource$Jobs$Cancel,
+        callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
+    cancel(callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Jobs$Cancel|
+        BodyResponseCallback<Schema$JobCancelResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$JobCancelResponse>,
         callback?: BodyResponseCallback<Schema$JobCancelResponse>):
         void|AxiosPromise<Schema$JobCancelResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2896,21 +3101,33 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3020,28 +3237,41 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getQueryResults(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetQueryResultsResponse>;
     getQueryResults(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Jobs$Getqueryresults,
+        options?: MethodOptions): AxiosPromise<Schema$GetQueryResultsResponse>;
+    getQueryResults(
+        params: Params$Resource$Jobs$Getqueryresults,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetQueryResultsResponse>,
-        callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
     getQueryResults(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Jobs$Getqueryresults,
+        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+    getQueryResults(
+        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+    getQueryResults(
+        paramsOrCallback?: Params$Resource$Jobs$Getqueryresults|
+        BodyResponseCallback<Schema$GetQueryResultsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetQueryResultsResponse>,
         callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>):
         void|AxiosPromise<Schema$GetQueryResultsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Jobs$Getqueryresults;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Getqueryresults;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3145,23 +3375,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+    insert(params?: Params$Resource$Jobs$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Job>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params: Params$Resource$Jobs$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Jobs$Insert,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    insert(callback: BodyResponseCallback<Schema$Job>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Jobs$Insert|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3275,25 +3518,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$JobList>;
+    list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
+        AxiosPromise<Schema$JobList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobList>,
-        callback?: BodyResponseCallback<Schema$JobList>): void;
+        params: Params$Resource$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$JobList>,
+        callback: BodyResponseCallback<Schema$JobList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobList>,
+        params: Params$Resource$Jobs$List,
+        callback: BodyResponseCallback<Schema$JobList>): void;
+    list(callback: BodyResponseCallback<Schema$JobList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Jobs$List|
+        BodyResponseCallback<Schema$JobList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$JobList>,
         callback?: BodyResponseCallback<Schema$JobList>):
         void|AxiosPromise<Schema$JobList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3387,26 +3641,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: any, options?: MethodOptions):
+    query(params?: Params$Resource$Jobs$Query, options?: MethodOptions):
         AxiosPromise<Schema$QueryResponse>;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
-        callback?: BodyResponseCallback<Schema$QueryResponse>): void;
+        params: Params$Resource$Jobs$Query,
+        options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
+        callback: BodyResponseCallback<Schema$QueryResponse>): void;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
+        params: Params$Resource$Jobs$Query,
+        callback: BodyResponseCallback<Schema$QueryResponse>): void;
+    query(callback: BodyResponseCallback<Schema$QueryResponse>): void;
+    query(
+        paramsOrCallback?: Params$Resource$Jobs$Query|
+        BodyResponseCallback<Schema$QueryResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$QueryResponse>,
         callback?: BodyResponseCallback<Schema$QueryResponse>):
         void|AxiosPromise<Schema$QueryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Query;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3428,6 +3693,173 @@ export namespace bigquery_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Jobs$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] Job ID of the job to cancel
+     */
+    jobId?: string;
+    /**
+     * [Experimental] The geographic location of the job. Required except for US
+     * and EU.
+     */
+    location?: string;
+    /**
+     * [Required] Project ID of the job to cancel
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] Job ID of the requested job
+     */
+    jobId?: string;
+    /**
+     * [Experimental] The geographic location of the job. Required except for US
+     * and EU.
+     */
+    location?: string;
+    /**
+     * [Required] Project ID of the requested job
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Jobs$Getqueryresults {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] Job ID of the query job
+     */
+    jobId?: string;
+    /**
+     * [Experimental] The geographic location where the job should run. Required
+     * except for US and EU.
+     */
+    location?: string;
+    /**
+     * Maximum number of results to read
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of
+     * results
+     */
+    pageToken?: string;
+    /**
+     * [Required] Project ID of the query job
+     */
+    projectId?: string;
+    /**
+     * Zero-based index of the starting row
+     */
+    startIndex?: string;
+    /**
+     * How long to wait for the query to complete, in milliseconds, before
+     * returning. Default is 10 seconds. If the timeout passes before the job
+     * completes, the 'jobComplete' field in the response will be false
+     */
+    timeoutMs?: number;
+  }
+  export interface Params$Resource$Jobs$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID of the project that will be billed for the job
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+  export interface Params$Resource$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to display jobs owned by all users in the project. Default false
+     */
+    allUsers?: boolean;
+    /**
+     * Max value for job creation time, in milliseconds since the POSIX epoch.
+     * If set, only jobs created before or at this timestamp are returned
+     */
+    maxCreationTime?: string;
+    /**
+     * Maximum number of results to return
+     */
+    maxResults?: number;
+    /**
+     * Min value for job creation time, in milliseconds since the POSIX epoch.
+     * If set, only jobs created after or at this timestamp are returned
+     */
+    minCreationTime?: string;
+    /**
+     * Page token, returned by a previous call, to request the next page of
+     * results
+     */
+    pageToken?: string;
+    /**
+     * Project ID of the jobs to list
+     */
+    projectId?: string;
+    /**
+     * Restrict information returned to a set of selected fields
+     */
+    projection?: string;
+    /**
+     * Filter for job state
+     */
+    stateFilter?: string;
+  }
+  export interface Params$Resource$Jobs$Query {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID of the project billed for the query
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$QueryRequest;
+  }
+
 
   export class Resource$Projects {
     root: Bigquery;
@@ -3507,29 +3939,42 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getServiceAccount(params?: any, options?: MethodOptions):
+    getServiceAccount(
+        params?: Params$Resource$Projects$Getserviceaccount,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetServiceAccountResponse>;
     getServiceAccount(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Getserviceaccount,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetServiceAccountResponse>,
-        callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
     getServiceAccount(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Getserviceaccount,
+        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+    getServiceAccount(
+        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+    getServiceAccount(
+        paramsOrCallback?: Params$Resource$Projects$Getserviceaccount|
+        BodyResponseCallback<Schema$GetServiceAccountResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetServiceAccountResponse>,
         callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>):
         void|AxiosPromise<Schema$GetServiceAccountResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Getserviceaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getserviceaccount;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3630,26 +4075,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
         AxiosPromise<Schema$ProjectList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
-        callback?: BodyResponseCallback<Schema$ProjectList>): void;
+        params: Params$Resource$Projects$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
+        callback: BodyResponseCallback<Schema$ProjectList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
+        params: Params$Resource$Projects$List,
+        callback: BodyResponseCallback<Schema$ProjectList>): void;
+    list(callback: BodyResponseCallback<Schema$ProjectList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$List|
+        BodyResponseCallback<Schema$ProjectList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProjectList>,
         callback?: BodyResponseCallback<Schema$ProjectList>):
         void|AxiosPromise<Schema$ProjectList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3671,6 +4127,35 @@ export namespace bigquery_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Getserviceaccount {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for which the service account is requested.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of results to return
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of
+     * results
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Tabledata {
     root: Bigquery;
@@ -3763,29 +4248,44 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll(params?: any, options?: MethodOptions):
+    insertAll(
+        params?: Params$Resource$Tabledata$Insertall, options?: MethodOptions):
         AxiosPromise<Schema$TableDataInsertAllResponse>;
     insertAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Tabledata$Insertall,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TableDataInsertAllResponse>,
-        callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
+        callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
         void;
     insertAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Tabledata$Insertall,
+        callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
+        void;
+    insertAll(callback:
+                  BodyResponseCallback<Schema$TableDataInsertAllResponse>):
+        void;
+    insertAll(
+        paramsOrCallback?: Params$Resource$Tabledata$Insertall|
+        BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TableDataInsertAllResponse>,
         callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
         void|AxiosPromise<Schema$TableDataInsertAllResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Tabledata$Insertall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tabledata$Insertall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3902,26 +4402,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Tabledata$List, options?: MethodOptions):
         AxiosPromise<Schema$TableDataList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
-        callback?: BodyResponseCallback<Schema$TableDataList>): void;
+        params: Params$Resource$Tabledata$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
+        callback: BodyResponseCallback<Schema$TableDataList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
+        params: Params$Resource$Tabledata$List,
+        callback: BodyResponseCallback<Schema$TableDataList>): void;
+    list(callback: BodyResponseCallback<Schema$TableDataList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Tabledata$List|
+        BodyResponseCallback<Schema$TableDataList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TableDataList>,
         callback?: BodyResponseCallback<Schema$TableDataList>):
         void|AxiosPromise<Schema$TableDataList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tabledata$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tabledata$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3945,6 +4456,67 @@ export namespace bigquery_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Tabledata$Insertall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the destination table.
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the destination table.
+     */
+    projectId?: string;
+    /**
+     * Table ID of the destination table.
+     */
+    tableId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TableDataInsertAllRequest;
+  }
+  export interface Params$Resource$Tabledata$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the table to read
+     */
+    datasetId?: string;
+    /**
+     * Maximum number of results to return
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, identifying the result set
+     */
+    pageToken?: string;
+    /**
+     * Project ID of the table to read
+     */
+    projectId?: string;
+    /**
+     * List of fields to return (comma-separated). If unspecified, all fields
+     * are returned
+     */
+    selectedFields?: string;
+    /**
+     * Zero-based index of the starting row to read
+     */
+    startIndex?: string;
+    /**
+     * Table ID of the table to read
+     */
+    tableId?: string;
+  }
+
 
   export class Resource$Tables {
     root: Bigquery;
@@ -4029,22 +4601,35 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Tables$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Tables$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Tables$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Tables$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4145,23 +4730,33 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+    get(params?: Params$Resource$Tables$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Table>;
+    get(params: Params$Resource$Tables$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Table>,
+        callback: BodyResponseCallback<Schema$Table>): void;
+    get(params: Params$Resource$Tables$Get,
+        callback: BodyResponseCallback<Schema$Table>): void;
+    get(callback: BodyResponseCallback<Schema$Table>): void;
+    get(paramsOrCallback?: Params$Resource$Tables$Get|
+        BodyResponseCallback<Schema$Table>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
         void|AxiosPromise<Schema$Table> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4260,25 +4855,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+    insert(params?: Params$Resource$Tables$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Table>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>): void;
+        params: Params$Resource$Tables$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Table>,
+        callback: BodyResponseCallback<Schema$Table>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+        params: Params$Resource$Tables$Insert,
+        callback: BodyResponseCallback<Schema$Table>): void;
+    insert(callback: BodyResponseCallback<Schema$Table>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Tables$Insert|
+        BodyResponseCallback<Schema$Table>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
         void|AxiosPromise<Schema$Table> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4388,25 +4994,37 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$TableList>;
+    list(params?: Params$Resource$Tables$List, options?: MethodOptions):
+        AxiosPromise<Schema$TableList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TableList>,
-        callback?: BodyResponseCallback<Schema$TableList>): void;
+        params: Params$Resource$Tables$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TableList>,
+        callback: BodyResponseCallback<Schema$TableList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TableList>,
+        params: Params$Resource$Tables$List,
+        callback: BodyResponseCallback<Schema$TableList>): void;
+    list(callback: BodyResponseCallback<Schema$TableList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Tables$List|
+        BodyResponseCallback<Schema$TableList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TableList>,
         callback?: BodyResponseCallback<Schema$TableList>):
         void|AxiosPromise<Schema$TableList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4514,25 +5132,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+    patch(params?: Params$Resource$Tables$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Table>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>): void;
+        params: Params$Resource$Tables$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Table>,
+        callback: BodyResponseCallback<Schema$Table>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+        params: Params$Resource$Tables$Patch,
+        callback: BodyResponseCallback<Schema$Table>): void;
+    patch(callback: BodyResponseCallback<Schema$Table>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Tables$Patch|
+        BodyResponseCallback<Schema$Table>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
         void|AxiosPromise<Schema$Table> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4639,25 +5268,36 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+    update(params?: Params$Resource$Tables$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Table>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>): void;
+        params: Params$Resource$Tables$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Table>,
+        callback: BodyResponseCallback<Schema$Table>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+        params: Params$Resource$Tables$Update,
+        callback: BodyResponseCallback<Schema$Table>): void;
+    update(callback: BodyResponseCallback<Schema$Table>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Tables$Update|
+        BodyResponseCallback<Schema$Table>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
         void|AxiosPromise<Schema$Table> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tables$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tables$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4680,5 +5320,138 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Tables$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the table to delete
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the table to delete
+     */
+    projectId?: string;
+    /**
+     * Table ID of the table to delete
+     */
+    tableId?: string;
+  }
+  export interface Params$Resource$Tables$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the requested table
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the requested table
+     */
+    projectId?: string;
+    /**
+     * List of fields to return (comma-separated). If unspecified, all fields
+     * are returned
+     */
+    selectedFields?: string;
+    /**
+     * Table ID of the requested table
+     */
+    tableId?: string;
+  }
+  export interface Params$Resource$Tables$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the new table
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the new table
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Table;
+  }
+  export interface Params$Resource$Tables$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the tables to list
+     */
+    datasetId?: string;
+    /**
+     * Maximum number of results to return
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of
+     * results
+     */
+    pageToken?: string;
+    /**
+     * Project ID of the tables to list
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Tables$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the table to update
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the table to update
+     */
+    projectId?: string;
+    /**
+     * Table ID of the table to update
+     */
+    tableId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Table;
+  }
+  export interface Params$Resource$Tables$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset ID of the table to update
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the table to update
+     */
+    projectId?: string;
+    /**
+     * Table ID of the table to update
+     */
+    tableId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Table;
   }
 }

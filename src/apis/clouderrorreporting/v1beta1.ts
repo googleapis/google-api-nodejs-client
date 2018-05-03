@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace clouderrorreporting_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Stackdriver Error Reporting API
    *
@@ -80,19 +83,19 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * The HTTP request which was processed when the error was triggered.
      */
-    httpRequest: Schema$HttpRequestContext;
+    httpRequest?: Schema$HttpRequestContext;
     /**
      * The location in the source code where the decision was made to report the
      * error, usually the place where it was logged. For a logged exception this
      * would be the source line where the exception is logged, usually close to
      * the place where it was caught.
      */
-    reportLocation: Schema$SourceLocation;
+    reportLocation?: Schema$SourceLocation;
     /**
      * Source code that was used to build the executable which has caused the
      * given error message.
      */
-    sourceReferences: Schema$SourceReference[];
+    sourceReferences?: Schema$SourceReference[];
     /**
      * The user who caused or was affected by the crash. This can be a user ID,
      * an email address, or an arbitrary token that uniquely identifies the
@@ -101,7 +104,7 @@ export namespace clouderrorreporting_v1beta1 {
      * data, such as remote IP address, to distinguish affected users. See
      * `affected_users_count` in `ErrorGroupStats`.
      */
-    user: string;
+    user?: string;
   }
   /**
    * An error event which is returned by the Error Reporting system.
@@ -110,21 +113,21 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * Data about the context in which the error occurred.
      */
-    context: Schema$ErrorContext;
+    context?: Schema$ErrorContext;
     /**
      * Time when the event occurred as provided in the error report. If the
      * report did not contain a timestamp, the time the error was received by
      * the Error Reporting system is used.
      */
-    eventTime: string;
+    eventTime?: string;
     /**
      * The stack trace that was reported or logged by the service.
      */
-    message: string;
+    message?: string;
     /**
      * The `ServiceContext` for which this error was reported.
      */
-    serviceContext: Schema$ServiceContext;
+    serviceContext?: Schema$ServiceContext;
   }
   /**
    * Description of a group of similar error events.
@@ -134,16 +137,16 @@ export namespace clouderrorreporting_v1beta1 {
      * Group IDs are unique for a given project. If the same kind of error
      * occurs in different service contexts, it will receive the same group ID.
      */
-    groupId: string;
+    groupId?: string;
     /**
      * The group resource name. Example:
      * &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      */
-    name: string;
+    name?: string;
     /**
      * Associated tracking issues.
      */
-    trackingIssues: Schema$TrackingIssue[];
+    trackingIssues?: Schema$TrackingIssue[];
   }
   /**
    * Data extracted for a specific group based on certain filter criteria, such
@@ -155,7 +158,7 @@ export namespace clouderrorreporting_v1beta1 {
      * criteria. This list can be truncated if multiple services are affected.
      * Refer to `num_affected_services` for the total count.
      */
-    affectedServices: Schema$ServiceContext[];
+    affectedServices?: Schema$ServiceContext[];
     /**
      * Approximate number of affected users in the given group that match the
      * filter criteria. Users are distinguished by data in the `ErrorContext` of
@@ -167,33 +170,33 @@ export namespace clouderrorreporting_v1beta1 {
      * more users are implicitly affected, such as due to a crash of the whole
      * service, this is not reflected here.
      */
-    affectedUsersCount: string;
+    affectedUsersCount?: string;
     /**
      * Approximate total number of events in the given group that match the
      * filter criteria.
      */
-    count: string;
+    count?: string;
     /**
      * Approximate first occurrence that was ever seen for this group and which
      * matches the given filter criteria, ignoring the time_range that was
      * specified in the request.
      */
-    firstSeenTime: string;
+    firstSeenTime?: string;
     /**
      * Group data that is independent of the filter criteria.
      */
-    group: Schema$ErrorGroup;
+    group?: Schema$ErrorGroup;
     /**
      * Approximate last occurrence that was ever seen for this group and which
      * matches the given filter criteria, ignoring the time_range that was
      * specified in the request.
      */
-    lastSeenTime: string;
+    lastSeenTime?: string;
     /**
      * The total number of services with a non-zero error count for the given
      * filter criteria.
      */
-    numAffectedServices: number;
+    numAffectedServices?: number;
     /**
      * An arbitrary event that is chosen as representative for the whole group.
      * The representative event is intended to be used as a quick preview for
@@ -201,13 +204,13 @@ export namespace clouderrorreporting_v1beta1 {
      * each other such that showing an arbitrary representative provides insight
      * into the characteristics of the group as a whole.
      */
-    representative: Schema$ErrorEvent;
+    representative?: Schema$ErrorEvent;
     /**
      * Approximate number of occurrences over time. Timed counts returned by
      * ListGroups are guaranteed to be:  - Inside the requested time interval -
      * Non-overlapping, and - Ordered by ascending time.
      */
-    timedCounts: Schema$TimedCount[];
+    timedCounts?: Schema$TimedCount[];
   }
   /**
    * HTTP request data that is related to a reported error. This data should be
@@ -218,29 +221,29 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * The type of HTTP request, such as `GET`, `POST`, etc.
      */
-    method: string;
+    method?: string;
     /**
      * The referrer information that is provided with the request.
      */
-    referrer: string;
+    referrer?: string;
     /**
      * The IP address from which the request originated. This can be IPv4, IPv6,
      * or a token which is derived from the IP address, depending on the data
      * that has been provided in the error report.
      */
-    remoteIp: string;
+    remoteIp?: string;
     /**
      * The HTTP response status code for the request.
      */
-    responseStatusCode: number;
+    responseStatusCode?: number;
     /**
      * The URL of the request.
      */
-    url: string;
+    url?: string;
     /**
      * The user agent information that is provided with the request.
      */
-    userAgent: string;
+    userAgent?: string;
   }
   /**
    * Contains a set of requested error events.
@@ -249,18 +252,18 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * The error events which match the given request.
      */
-    errorEvents: Schema$ErrorEvent[];
+    errorEvents?: Schema$ErrorEvent[];
     /**
      * If non-empty, more results are available. Pass this token, along with the
      * same query parameters as the first request, to view the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The timestamp specifies the start time to which the request was
      * restricted.
      */
-    timeRangeBegin: string;
+    timeRangeBegin?: string;
   }
   /**
    * Contains a set of requested error group stats.
@@ -269,20 +272,20 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * The error group stats which match the given request.
      */
-    errorGroupStats: Schema$ErrorGroupStats[];
+    errorGroupStats?: Schema$ErrorGroupStats[];
     /**
      * If non-empty, more results are available. Pass this token, along with the
      * same query parameters as the first request, to view the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The timestamp specifies the start time to which the request was
      * restricted. The start time is set based on the requested time range. It
      * may be adjusted to a later time if a project has exceeded the storage
      * quota and older data has been deleted.
      */
-    timeRangeBegin: string;
+    timeRangeBegin?: string;
   }
   /**
    * An error event which is reported to the Error Reporting system.
@@ -291,12 +294,12 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * [Optional] A description of the context in which the error occurred.
      */
-    context: Schema$ErrorContext;
+    context?: Schema$ErrorContext;
     /**
      * [Optional] Time when the event occurred. If not provided, the time when
      * the event was received by the Error Reporting system will be used.
      */
-    eventTime: string;
+    eventTime?: string;
     /**
      * [Required] The error message. If no `context.reportLocation` is provided,
      * the message must contain a header (typically consisting of the exception
@@ -319,11 +322,11 @@ export namespace clouderrorreporting_v1beta1 {
      * * **Go**: Must be the return value of
      * [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      */
-    message: string;
+    message?: string;
     /**
      * [Required] The service context in which this error has occurred.
      */
-    serviceContext: Schema$ServiceContext;
+    serviceContext?: Schema$ServiceContext;
   }
   /**
    * Response for reporting an individual error event. Data may be added to this
@@ -341,7 +344,7 @@ export namespace clouderrorreporting_v1beta1 {
      * automatically for incoming errors and must not be set when reporting
      * errors.
      */
-    resourceType: string;
+    resourceType?: string;
     /**
      * An identifier of the service, such as the name of the executable, job, or
      * Google App Engine service name. This field is expected to have a low
@@ -350,14 +353,14 @@ export namespace clouderrorreporting_v1beta1 {
      * the service name for error reports extracted from Google App Engine logs
      * or `default` if the App Engine default service is used.
      */
-    service: string;
+    service?: string;
     /**
      * Represents the source code version that the developer provided, which
      * could represent a version label or a Git SHA-1 hash, for example. For App
      * Engine standard environment, the version is set to the version of the
      * app.
      */
-    version: string;
+    version?: string;
   }
   /**
    * Indicates a location in the source code of the service for which errors are
@@ -370,17 +373,17 @@ export namespace clouderrorreporting_v1beta1 {
      * The source code filename, which can include a truncated relative path, or
      * a full path from a production machine.
      */
-    filePath: string;
+    filePath?: string;
     /**
      * Human-readable name of a function or method. The value can include
      * optional context like the class or package name. For example,
      * `my.package.MyClass.method` in case of Java.
      */
-    functionName: string;
+    functionName?: string;
     /**
      * 1-based. 0 indicates that the line number is unknown.
      */
-    lineNumber: number;
+    lineNumber?: number;
   }
   /**
    * A reference to a particular snapshot of the source tree used to build and
@@ -391,12 +394,12 @@ export namespace clouderrorreporting_v1beta1 {
      * Optional. A URI string identifying the repository. Example:
      * &quot;https://github.com/GoogleCloudPlatform/kubernetes.git&quot;
      */
-    repository: string;
+    repository?: string;
     /**
      * The canonical and persistent identifier of the deployed revision. Example
      * (git): &quot;0035781c50ec7aa23385dc841529ce8a4b70db1b&quot;
      */
-    revisionId: string;
+    revisionId?: string;
   }
   /**
    * The number of errors in a given time period. All numbers are approximate
@@ -406,15 +409,15 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * Approximate number of occurrences in the given time period.
      */
-    count: string;
+    count?: string;
     /**
      * End of the time period to which `count` refers (excluded).
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Start of the time period to which `count` refers (included).
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Information related to tracking the progress on resolving the error.
@@ -424,8 +427,9 @@ export namespace clouderrorreporting_v1beta1 {
      * A URL pointing to a related entry in an issue tracking system. Example:
      * https://github.com/user/project/issues/4
      */
-    url: string;
+    url?: string;
   }
+
 
   export class Resource$Projects {
     root: Clouderrorreporting;
@@ -457,28 +461,41 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteEvents(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DeleteEventsResponse>;
     deleteEvents(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Deleteevents,
+        options?: MethodOptions): AxiosPromise<Schema$DeleteEventsResponse>;
+    deleteEvents(
+        params: Params$Resource$Projects$Deleteevents,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DeleteEventsResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
+        callback: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
     deleteEvents(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Deleteevents,
+        callback: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
+    deleteEvents(callback: BodyResponseCallback<Schema$DeleteEventsResponse>):
+        void;
+    deleteEvents(
+        paramsOrCallback?: Params$Resource$Projects$Deleteevents|
+        BodyResponseCallback<Schema$DeleteEventsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteEventsResponse>,
         callback?: BodyResponseCallback<Schema$DeleteEventsResponse>):
         void|AxiosPromise<Schema$DeleteEventsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Deleteevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deleteevents;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -501,6 +518,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Deleteevents {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] The resource name of the Google Cloud Platform project.
+     * Written as `projects/` plus the [Google Cloud Platform project
+     * ID](https://support.google.com/cloud/answer/6158840). Example:
+     * `projects/my-project-123`.
+     */
+    projectName?: string;
+  }
+
   export class Resource$Projects$Events {
     root: Clouderrorreporting;
     constructor(root: Clouderrorreporting) {
@@ -532,26 +565,39 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListEventsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
-        callback?: BodyResponseCallback<Schema$ListEventsResponse>): void;
+        params?: Params$Resource$Projects$Events$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListEventsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
+        params: Params$Resource$Projects$Events$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
+        callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Events$List,
+        callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Events$List|
+        BodyResponseCallback<Schema$ListEventsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListEventsResponse>,
         callback?: BodyResponseCallback<Schema$ListEventsResponse>):
         void|AxiosPromise<Schema$ListEventsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Events$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Events$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -593,28 +639,41 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    report(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ReportErrorEventResponse>;
     report(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Events$Report,
+        options?: MethodOptions): AxiosPromise<Schema$ReportErrorEventResponse>;
+    report(
+        params: Params$Resource$Projects$Events$Report,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ReportErrorEventResponse>,
-        callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
+        callback: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
     report(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Events$Report,
+        callback: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
+    report(callback: BodyResponseCallback<Schema$ReportErrorEventResponse>):
+        void;
+    report(
+        paramsOrCallback?: Params$Resource$Projects$Events$Report|
+        BodyResponseCallback<Schema$ReportErrorEventResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReportErrorEventResponse>,
         callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>):
         void|AxiosPromise<Schema$ReportErrorEventResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Events$Report;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Events$Report;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -637,6 +696,71 @@ export namespace clouderrorreporting_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Events$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] The group for which events shall be returned.
+     */
+    groupId?: string;
+    /**
+     * [Optional] The maximum number of results to return per response.
+     */
+    pageSize?: number;
+    /**
+     * [Optional] A `next_page_token` provided by a previous response.
+     */
+    pageToken?: string;
+    /**
+     * [Required] The resource name of the Google Cloud Platform project.
+     * Written as `projects/` plus the [Google Cloud Platform project
+     * ID](https://support.google.com/cloud/answer/6158840). Example:
+     * `projects/my-project-123`.
+     */
+    projectName?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     */
+    'serviceFilter.resourceType'?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     */
+    'serviceFilter.service'?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     */
+    'serviceFilter.version'?: string;
+    /**
+     * Restricts the query to the specified time range.
+     */
+    'timeRange.period'?: string;
+  }
+  export interface Params$Resource$Projects$Events$Report {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] The resource name of the Google Cloud Platform project.
+     * Written as `projects/` plus the [Google Cloud Platform project
+     * ID](https://support.google.com/cloud/answer/6158840). Example:
+     * `projects/my-project-123`.
+     */
+    projectName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReportedErrorEvent;
+  }
+
 
   export class Resource$Projects$Groups {
     root: Clouderrorreporting;
@@ -662,23 +786,35 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-        callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+    get(params?: Params$Resource$Projects$Groups$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
+    get(params: Params$Resource$Projects$Groups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    get(params: Params$Resource$Projects$Groups$Get,
+        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    get(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Groups$Get|
+        BodyResponseCallback<Schema$ErrorGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ErrorGroup>,
         callback?: BodyResponseCallback<Schema$ErrorGroup>):
         void|AxiosPromise<Schema$ErrorGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -716,26 +852,39 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ErrorGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-        callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
+        params?: Params$Resource$Projects$Groups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+        params: Params$Resource$Projects$Groups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    update(
+        params: Params$Resource$Projects$Groups$Update,
+        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    update(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Groups$Update|
+        BodyResponseCallback<Schema$ErrorGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ErrorGroup>,
         callback?: BodyResponseCallback<Schema$ErrorGroup>):
         void|AxiosPromise<Schema$ErrorGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -757,6 +906,41 @@ export namespace clouderrorreporting_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Groups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Required] The group resource name. Written as
+     * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
+     * Call <a
+     * href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
+     * <code>groupStats.list</code></a> to return a list of groups belonging to
+     * this project.  Example:
+     * <code>projects/my-project-123/groups/my-group</code>
+     */
+    groupName?: string;
+  }
+  export interface Params$Resource$Projects$Groups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The group resource name. Example:
+     * <code>projects/my-project-123/groups/my-groupid</code>
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ErrorGroup;
+  }
+
 
   export class Resource$Projects$Groupstats {
     root: Clouderrorreporting;
@@ -793,28 +977,40 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListGroupStatsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Groupstats$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListGroupStatsResponse>;
+    list(
+        params: Params$Resource$Projects$Groupstats$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListGroupStatsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Groupstats$List,
+        callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Groupstats$List|
+        BodyResponseCallback<Schema$ListGroupStatsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListGroupStatsResponse>,
         callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>):
         void|AxiosPromise<Schema$ListGroupStatsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groupstats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groupstats$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
@@ -836,5 +1032,74 @@ export namespace clouderrorreporting_v1beta1 {
         return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Groupstats$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * [Optional] The alignment of the timed counts to be returned. Default is
+     * `ALIGNMENT_EQUAL_AT_END`.
+     */
+    alignment?: string;
+    /**
+     * [Optional] Time where the timed counts shall be aligned if rounded
+     * alignment is chosen. Default is 00:00 UTC.
+     */
+    alignmentTime?: string;
+    /**
+     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     */
+    groupId?: string;
+    /**
+     * [Optional] The sort order in which the results are returned. Default is
+     * `COUNT_DESC`.
+     */
+    order?: string;
+    /**
+     * [Optional] The maximum number of results to return per response. Default
+     * is 20.
+     */
+    pageSize?: number;
+    /**
+     * [Optional] A `next_page_token` provided by a previous response. To view
+     * additional results, pass this token along with the identical query
+     * parameters as the first request.
+     */
+    pageToken?: string;
+    /**
+     * [Required] The resource name of the Google Cloud Platform project.
+     * Written as <code>projects/</code> plus the <a
+     * href="https://support.google.com/cloud/answer/6158840">Google Cloud
+     * Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
+     */
+    projectName?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     */
+    'serviceFilter.resourceType'?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     */
+    'serviceFilter.service'?: string;
+    /**
+     * [Optional] The exact value to match against
+     * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     */
+    'serviceFilter.version'?: string;
+    /**
+     * [Optional] The preferred duration for a single returned `TimedCount`. If
+     * not set, no timed counts are returned.
+     */
+    timedCountDuration?: string;
+    /**
+     * Restricts the query to the specified time range.
+     */
+    'timeRange.period'?: string;
   }
 }

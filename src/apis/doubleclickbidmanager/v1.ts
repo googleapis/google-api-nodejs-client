@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace doubleclickbidmanager_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * DoubleClick Bid Manager API
    *
@@ -79,20 +82,20 @@ export namespace doubleclickbidmanager_v1 {
      * File specification (column names, types, order) in which the line items
      * will be returned. Default to EWF.
      */
-    fileSpec: string;
+    fileSpec?: string;
     /**
      * Ids of the specified filter type used to filter line items to fetch. If
      * omitted, all the line items will be returned.
      */
-    filterIds: string[];
+    filterIds?: string[];
     /**
      * Filter type used to filter line items to fetch.
      */
-    filterType: string;
+    filterType?: string;
     /**
      * Format in which the line items will be returned. Default to CSV.
      */
-    format: string;
+    format?: string;
   }
   /**
    * Download line items response.
@@ -102,7 +105,7 @@ export namespace doubleclickbidmanager_v1 {
      * Retrieved line items in CSV format. For more information about file
      * formats, see  Entity Write File Format.
      */
-    lineItems: string;
+    lineItems?: string;
   }
   /**
    * Request to fetch stored insertion orders, line items, TrueView ad groups
@@ -112,23 +115,23 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * File types that will be returned.
      */
-    fileTypes: string[];
+    fileTypes?: string[];
     /**
      * The IDs of the specified filter type. This is used to filter entities to
      * fetch. At least one ID must be specified. Only one ID is allowed for the
      * ADVERTISER_ID filter type. For INSERTION_ORDER_ID or LINE_ITEM_ID filter
      * types, all IDs must be from the same Advertiser.
      */
-    filterIds: string[];
+    filterIds?: string[];
     /**
      * Filter type used to filter line items to fetch.
      */
-    filterType: string;
+    filterType?: string;
     /**
      * SDF Version (column names, types, order) in which the entities will be
      * returned. Default to 3.
      */
-    version: string;
+    version?: string;
   }
   /**
    * Download response.
@@ -137,23 +140,23 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Retrieved ad groups in SDF format.
      */
-    adGroups: string;
+    adGroups?: string;
     /**
      * Retrieved ads in SDF format.
      */
-    ads: string;
+    ads?: string;
     /**
      * Retrieved campaigns in SDF format.
      */
-    campaigns: string;
+    campaigns?: string;
     /**
      * Retrieved insertion orders in SDF format.
      */
-    insertionOrders: string;
+    insertionOrders?: string;
     /**
      * Retrieved line items in SDF format.
      */
-    lineItems: string;
+    lineItems?: string;
   }
   /**
    * Filter used to match traffic data in your report.
@@ -162,11 +165,11 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Filter type.
      */
-    type: string;
+    type?: string;
     /**
      * Filter value.
      */
-    value: string;
+    value?: string;
   }
   /**
    * List queries response.
@@ -176,11 +179,11 @@ export namespace doubleclickbidmanager_v1 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;doubleclickbidmanager#listQueriesResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Retrieved queries.
      */
-    queries: Schema$Query[];
+    queries?: Schema$Query[];
   }
   /**
    * List reports response.
@@ -190,11 +193,11 @@ export namespace doubleclickbidmanager_v1 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;doubleclickbidmanager#listReportsResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Retrieved reports.
      */
-    reports: Schema$Report[];
+    reports?: Schema$Report[];
   }
   /**
    * Parameters of a query or report.
@@ -203,23 +206,23 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Filters used to match traffic data in your report.
      */
-    filters: Schema$FilterPair[];
+    filters?: Schema$FilterPair[];
     /**
      * Data is grouped by the filters listed in this field.
      */
-    groupBys: string[];
+    groupBys?: string[];
     /**
      * Whether to include data from Invite Media.
      */
-    includeInviteData: boolean;
+    includeInviteData?: boolean;
     /**
      * Metrics to include as columns in your report.
      */
-    metrics: string[];
+    metrics?: string[];
     /**
      * Report type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents a query.
@@ -229,40 +232,40 @@ export namespace doubleclickbidmanager_v1 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;doubleclickbidmanager#query&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Query metadata.
      */
-    metadata: Schema$QueryMetadata;
+    metadata?: Schema$QueryMetadata;
     /**
      * Query parameters.
      */
-    params: Schema$Parameters;
+    params?: Schema$Parameters;
     /**
      * Query ID.
      */
-    queryId: string;
+    queryId?: string;
     /**
      * The ending time for the data that is shown in the report. Note,
      * reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and
      * ignored otherwise.
      */
-    reportDataEndTimeMs: string;
+    reportDataEndTimeMs?: string;
     /**
      * The starting time for the data that is shown in the report. Note,
      * reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES
      * and ignored otherwise.
      */
-    reportDataStartTimeMs: string;
+    reportDataStartTimeMs?: string;
     /**
      * Information on how often and when to run a query.
      */
-    schedule: Schema$QuerySchedule;
+    schedule?: Schema$QuerySchedule;
     /**
      * Canonical timezone code for report data time. Defaults to
      * America/New_York.
      */
-    timezoneCode: string;
+    timezoneCode?: string;
   }
   /**
    * Query metadata.
@@ -271,24 +274,24 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Range of report data.
      */
-    dataRange: string;
+    dataRange?: string;
     /**
      * Format of the generated report.
      */
-    format: string;
+    format?: string;
     /**
      * The path to the location in Google Cloud Storage where the latest report
      * is stored.
      */
-    googleCloudStoragePathForLatestReport: string;
+    googleCloudStoragePathForLatestReport?: string;
     /**
      * The path in Google Drive for the latest report.
      */
-    googleDrivePathForLatestReport: string;
+    googleDrivePathForLatestReport?: string;
     /**
      * The time when the latest report started to run.
      */
-    latestReportRunTimeMs: string;
+    latestReportRunTimeMs?: string;
     /**
      * Locale of the generated reports. Valid values are cs CZECH de GERMAN en
      * ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH
@@ -296,29 +299,29 @@ export namespace doubleclickbidmanager_v1 {
      * CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list
      * above will generate reports in English.
      */
-    locale: string;
+    locale?: string;
     /**
      * Number of reports that have been generated for the query.
      */
-    reportCount: number;
+    reportCount?: number;
     /**
      * Whether the latest report is currently running.
      */
-    running: boolean;
+    running?: boolean;
     /**
      * Whether to send an email notification when a report is ready. Default to
      * false.
      */
-    sendNotification: boolean;
+    sendNotification?: boolean;
     /**
      * List of email addresses which are sent email notifications when the
      * report is finished. Separate from sendNotification.
      */
-    shareEmailAddress: string[];
+    shareEmailAddress?: string[];
     /**
      * Query title. It is used to name the reports generated from this query.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Information on how frequently and when to run a query.
@@ -327,22 +330,22 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Datetime to periodically run the query until.
      */
-    endTimeMs: string;
+    endTimeMs?: string;
     /**
      * How often the query is run.
      */
-    frequency: string;
+    frequency?: string;
     /**
      * Time of day at which a new report will be generated, represented as
      * minutes past midnight. Range is 0 to 1439. Only applies to scheduled
      * reports.
      */
-    nextRunMinuteOfDay: number;
+    nextRunMinuteOfDay?: number;
     /**
      * Canonical timezone code for report generation time. Defaults to
      * America/New_York.
      */
-    nextRunTimezoneCode: string;
+    nextRunTimezoneCode?: string;
   }
   /**
    * Represents a report.
@@ -351,15 +354,15 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Key used to identify a report.
      */
-    key: Schema$ReportKey;
+    key?: Schema$ReportKey;
     /**
      * Report metadata.
      */
-    metadata: Schema$ReportMetadata;
+    metadata?: Schema$ReportMetadata;
     /**
      * Report parameters.
      */
-    params: Schema$Parameters;
+    params?: Schema$Parameters;
   }
   /**
    * An explanation of a report failure.
@@ -368,7 +371,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Error code that shows why the report was not created.
      */
-    errorCode: string;
+    errorCode?: string;
   }
   /**
    * Key used to identify a report.
@@ -377,11 +380,11 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID.
      */
-    queryId: string;
+    queryId?: string;
     /**
      * Report ID.
      */
-    reportId: string;
+    reportId?: string;
   }
   /**
    * Report metadata.
@@ -391,19 +394,19 @@ export namespace doubleclickbidmanager_v1 {
      * The path to the location in Google Cloud Storage where the report is
      * stored.
      */
-    googleCloudStoragePath: string;
+    googleCloudStoragePath?: string;
     /**
      * The ending time for the data that is shown in the report.
      */
-    reportDataEndTimeMs: string;
+    reportDataEndTimeMs?: string;
     /**
      * The starting time for the data that is shown in the report.
      */
-    reportDataStartTimeMs: string;
+    reportDataStartTimeMs?: string;
     /**
      * Report status.
      */
-    status: Schema$ReportStatus;
+    status?: Schema$ReportStatus;
   }
   /**
    * Report status.
@@ -412,19 +415,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * If the report failed, this records the cause.
      */
-    failure: Schema$ReportFailure;
+    failure?: Schema$ReportFailure;
     /**
      * The time when this report either completed successfully or failed.
      */
-    finishTimeMs: string;
+    finishTimeMs?: string;
     /**
      * The file type of the report.
      */
-    format: string;
+    format?: string;
     /**
      * The state of the report.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Represents the upload status of a row in the request.
@@ -433,27 +436,27 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Whether the stored entity is changed as a result of upload.
      */
-    changed: boolean;
+    changed?: boolean;
     /**
      * Entity Id.
      */
-    entityId: string;
+    entityId?: string;
     /**
      * Entity name.
      */
-    entityName: string;
+    entityName?: string;
     /**
      * Reasons why the entity can&#39;t be uploaded.
      */
-    errors: string[];
+    errors?: string[];
     /**
      * Whether the entity is persisted.
      */
-    persisted: boolean;
+    persisted?: boolean;
     /**
      * Row number.
      */
-    rowNumber: number;
+    rowNumber?: number;
   }
   /**
    * Request to run a stored query to generate a report.
@@ -462,24 +465,24 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Report data range used to generate the report.
      */
-    dataRange: string;
+    dataRange?: string;
     /**
      * The ending time for the data that is shown in the report. Note,
      * reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored
      * otherwise.
      */
-    reportDataEndTimeMs: string;
+    reportDataEndTimeMs?: string;
     /**
      * The starting time for the data that is shown in the report. Note,
      * reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and
      * ignored otherwise.
      */
-    reportDataStartTimeMs: string;
+    reportDataStartTimeMs?: string;
     /**
      * Canonical timezone code for report data time. Defaults to
      * America/New_York.
      */
-    timezoneCode: string;
+    timezoneCode?: string;
   }
   /**
    * Request to upload line items.
@@ -489,16 +492,16 @@ export namespace doubleclickbidmanager_v1 {
      * Set to true to get upload status without actually persisting the line
      * items.
      */
-    dryRun: boolean;
+    dryRun?: boolean;
     /**
      * Format the line items are in. Default to CSV.
      */
-    format: string;
+    format?: string;
     /**
      * Line items in CSV to upload. Refer to  Entity Write File Format for more
      * information on file format.
      */
-    lineItems: string;
+    lineItems?: string;
   }
   /**
    * Upload line items response.
@@ -507,7 +510,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Status of upload.
      */
-    uploadStatus: Schema$UploadStatus;
+    uploadStatus?: Schema$UploadStatus;
   }
   /**
    * Represents the status of upload.
@@ -516,12 +519,13 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Reasons why upload can&#39;t be completed.
      */
-    errors: string[];
+    errors?: string[];
     /**
      * Per-row upload status.
      */
-    rowStatus: Schema$RowStatus[];
+    rowStatus?: Schema$RowStatus[];
   }
+
 
   export class Resource$Lineitems {
     root: Doubleclickbidmanager;
@@ -548,29 +552,42 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadlineitems(params?: any, options?: MethodOptions):
+    downloadlineitems(
+        params?: Params$Resource$Lineitems$Downloadlineitems,
+        options?: MethodOptions):
         AxiosPromise<Schema$DownloadLineItemsResponse>;
     downloadlineitems(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Lineitems$Downloadlineitems,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
     downloadlineitems(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Lineitems$Downloadlineitems,
+        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+    downloadlineitems(
+        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+    downloadlineitems(
+        paramsOrCallback?: Params$Resource$Lineitems$Downloadlineitems|
+        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadLineItemsResponse>,
         callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
         void|AxiosPromise<Schema$DownloadLineItemsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Lineitems$Downloadlineitems;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Lineitems$Downloadlineitems;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -608,28 +625,41 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadlineitems(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UploadLineItemsResponse>;
     uploadlineitems(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Lineitems$Uploadlineitems,
+        options?: MethodOptions): AxiosPromise<Schema$UploadLineItemsResponse>;
+    uploadlineitems(
+        params: Params$Resource$Lineitems$Uploadlineitems,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
     uploadlineitems(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Lineitems$Uploadlineitems,
+        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+    uploadlineitems(
+        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+    uploadlineitems(
+        paramsOrCallback?: Params$Resource$Lineitems$Uploadlineitems|
+        BodyResponseCallback<Schema$UploadLineItemsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadLineItemsResponse>,
         callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
         void|AxiosPromise<Schema$UploadLineItemsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Lineitems$Uploadlineitems;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Lineitems$Uploadlineitems;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -652,6 +682,20 @@ export namespace doubleclickbidmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Lineitems$Downloadlineitems {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Lineitems$Uploadlineitems {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Queries {
     root: Doubleclickbidmanager;
@@ -677,26 +721,38 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createquery(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Query>;
     createquery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>): void;
+        params?: Params$Resource$Queries$Createquery,
+        options?: MethodOptions): AxiosPromise<Schema$Query>;
     createquery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+        params: Params$Resource$Queries$Createquery,
+        options: MethodOptions|BodyResponseCallback<Schema$Query>,
+        callback: BodyResponseCallback<Schema$Query>): void;
+    createquery(
+        params: Params$Resource$Queries$Createquery,
+        callback: BodyResponseCallback<Schema$Query>): void;
+    createquery(callback: BodyResponseCallback<Schema$Query>): void;
+    createquery(
+        paramsOrCallback?: Params$Resource$Queries$Createquery|
+        BodyResponseCallback<Schema$Query>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
         callback?: BodyResponseCallback<Schema$Query>):
         void|AxiosPromise<Schema$Query> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Queries$Createquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Queries$Createquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -731,22 +787,37 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deletequery(params?: any, options?: MethodOptions): AxiosPromise<void>;
     deletequery(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Queries$Deletequery,
+        options?: MethodOptions): AxiosPromise<void>;
     deletequery(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Queries$Deletequery,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    deletequery(
+        params: Params$Resource$Queries$Deletequery,
+        callback: BodyResponseCallback<void>): void;
+    deletequery(callback: BodyResponseCallback<void>): void;
+    deletequery(
+        paramsOrCallback?: Params$Resource$Queries$Deletequery|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Queries$Deletequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Queries$Deletequery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -781,25 +852,37 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getquery(params?: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
     getquery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>): void;
+        params?: Params$Resource$Queries$Getquery,
+        options?: MethodOptions): AxiosPromise<Schema$Query>;
     getquery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+        params: Params$Resource$Queries$Getquery,
+        options: MethodOptions|BodyResponseCallback<Schema$Query>,
+        callback: BodyResponseCallback<Schema$Query>): void;
+    getquery(
+        params: Params$Resource$Queries$Getquery,
+        callback: BodyResponseCallback<Schema$Query>): void;
+    getquery(callback: BodyResponseCallback<Schema$Query>): void;
+    getquery(
+        paramsOrCallback?: Params$Resource$Queries$Getquery|
+        BodyResponseCallback<Schema$Query>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
         callback?: BodyResponseCallback<Schema$Query>):
         void|AxiosPromise<Schema$Query> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Queries$Getquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -833,28 +916,40 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listqueries(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListQueriesResponse>;
     listqueries(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Queries$Listqueries,
+        options?: MethodOptions): AxiosPromise<Schema$ListQueriesResponse>;
+    listqueries(
+        params: Params$Resource$Queries$Listqueries,
+        options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
+        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
+    listqueries(
+        params: Params$Resource$Queries$Listqueries,
+        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
+    listqueries(callback: BodyResponseCallback<Schema$ListQueriesResponse>):
+        void;
+    listqueries(
+        paramsOrCallback?: Params$Resource$Queries$Listqueries|
         BodyResponseCallback<Schema$ListQueriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQueriesResponse>): void;
-    listqueries(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListQueriesResponse>,
         callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
         void|AxiosPromise<Schema$ListQueriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Queries$Listqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Queries$Listqueries;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -890,22 +985,36 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runquery(params?: any, options?: MethodOptions): AxiosPromise<void>;
     runquery(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Queries$Runquery,
+        options?: MethodOptions): AxiosPromise<void>;
     runquery(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Queries$Runquery,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    runquery(
+        params: Params$Resource$Queries$Runquery,
+        callback: BodyResponseCallback<void>): void;
+    runquery(callback: BodyResponseCallback<void>): void;
+    runquery(
+        paramsOrCallback?: Params$Resource$Queries$Runquery|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Queries$Runquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -927,6 +1036,57 @@ export namespace doubleclickbidmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Queries$Createquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Queries$Deletequery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Query ID to delete.
+     */
+    queryId?: string;
+  }
+  export interface Params$Resource$Queries$Getquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Query ID to retrieve.
+     */
+    queryId?: string;
+  }
+  export interface Params$Resource$Queries$Listqueries {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Queries$Runquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Query ID to run.
+     */
+    queryId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunQueryRequest;
+  }
+
 
   export class Resource$Reports {
     root: Doubleclickbidmanager;
@@ -952,28 +1112,40 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listreports(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListReportsResponse>;
     listreports(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Reports$Listreports,
+        options?: MethodOptions): AxiosPromise<Schema$ListReportsResponse>;
+    listreports(
+        params: Params$Resource$Reports$Listreports,
+        options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+    listreports(
+        params: Params$Resource$Reports$Listreports,
+        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+    listreports(callback: BodyResponseCallback<Schema$ListReportsResponse>):
+        void;
+    listreports(
+        paramsOrCallback?: Params$Resource$Reports$Listreports|
         BodyResponseCallback<Schema$ListReportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportsResponse>): void;
-    listreports(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportsResponse>,
         callback?: BodyResponseCallback<Schema$ListReportsResponse>):
         void|AxiosPromise<Schema$ListReportsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reports$Listreports;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Listreports;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -996,6 +1168,19 @@ export namespace doubleclickbidmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Reports$Listreports {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Query ID with which the reports are associated.
+     */
+    queryId?: string;
+  }
+
 
   export class Resource$Sdf {
     root: Doubleclickbidmanager;
@@ -1021,26 +1206,37 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params?: any, options?: MethodOptions):
+    download(params?: Params$Resource$Sdf$Download, options?: MethodOptions):
         AxiosPromise<Schema$DownloadResponse>;
     download(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadResponse>): void;
+        params: Params$Resource$Sdf$Download,
+        options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
+        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
     download(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
+        params: Params$Resource$Sdf$Download,
+        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+    download(callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+    download(
+        paramsOrCallback?: Params$Resource$Sdf$Download|
+        BodyResponseCallback<Schema$DownloadResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DownloadResponse>,
         callback?: BodyResponseCallback<Schema$DownloadResponse>):
         void|AxiosPromise<Schema$DownloadResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sdf$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sdf$Download;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1061,5 +1257,12 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$DownloadResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Sdf$Download {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

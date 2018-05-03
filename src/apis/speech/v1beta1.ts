@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace speech_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Cloud Speech API
    *
@@ -74,12 +77,12 @@ export namespace speech_v1beta1 {
     /**
      * *Required* The audio data to be recognized.
      */
-    audio: Schema$RecognitionAudio;
+    audio?: Schema$RecognitionAudio;
     /**
      * *Required* Provides information to the recognizer that specifies how to
      * process the request.
      */
-    config: Schema$RecognitionConfig;
+    config?: Schema$RecognitionConfig;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -91,24 +94,24 @@ export namespace speech_v1beta1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -118,7 +121,7 @@ export namespace speech_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Contains audio data in the encoding specified in the `RecognitionConfig`.
@@ -132,7 +135,7 @@ export namespace speech_v1beta1 {
      * as with all bytes fields, protobuffers use a pure binary representation,
      * whereas JSON representations use base64.
      */
-    content: string;
+    content?: string;
     /**
      * URI that points to a file that contains audio data bytes as specified in
      * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
@@ -141,7 +144,7 @@ export namespace speech_v1beta1 {
      * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
      * URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
-    uri: string;
+    uri?: string;
   }
   /**
    * Provides information to the recognizer that specifies how to process the
@@ -152,7 +155,7 @@ export namespace speech_v1beta1 {
      * *Required* Encoding of audio data sent in all `RecognitionAudio`
      * messages.
      */
-    encoding: string;
+    encoding?: string;
     /**
      * *Optional* The language of the supplied audio as a BCP-47 language tag.
      * Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
@@ -160,7 +163,7 @@ export namespace speech_v1beta1 {
      * Support](https://cloud.google.com/speech/docs/languages) for a list of
      * the currently supported language codes.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * *Optional* Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative`
@@ -169,14 +172,14 @@ export namespace speech_v1beta1 {
      * or `1` will return a maximum of one. If omitted, will return a maximum of
      * one.
      */
-    maxAlternatives: number;
+    maxAlternatives?: number;
     /**
      * *Optional* If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered
      * word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted,
      * profanities won&#39;t be filtered out.
      */
-    profanityFilter: boolean;
+    profanityFilter?: boolean;
     /**
      * *Required* Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000. 16000 is
@@ -184,11 +187,11 @@ export namespace speech_v1beta1 {
      * 16000 Hz. If that&#39;s not possible, use the native sample rate of the
      * audio source (instead of re-sampling).
      */
-    sampleRate: number;
+    sampleRate?: number;
     /**
      * *Optional* A means to provide context to assist the speech recognition.
      */
-    speechContext: Schema$SpeechContext;
+    speechContext?: Schema$SpeechContext;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words
@@ -204,7 +207,7 @@ export namespace speech_v1beta1 {
      * vocabulary of the recognizer. See [usage
      * limits](https://cloud.google.com/speech/limits#content).
      */
-    phrases: string[];
+    phrases?: string[];
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -219,11 +222,11 @@ export namespace speech_v1beta1 {
      * set, in any of the results. The default of 0.0 is a sentinel value
      * indicating `confidence` was not set.
      */
-    confidence: number;
+    confidence?: number;
     /**
      * *Output-only* Transcript text representing the words that the user spoke.
      */
-    transcript: string;
+    transcript?: string;
   }
   /**
    * A speech recognition result corresponding to a portion of the audio.
@@ -233,7 +236,7 @@ export namespace speech_v1beta1 {
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      */
-    alternatives: Schema$SpeechRecognitionAlternative[];
+    alternatives?: Schema$SpeechRecognitionAlternative[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -275,18 +278,18 @@ export namespace speech_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * The top-level message sent by the client for the `SyncRecognize` method.
@@ -295,12 +298,12 @@ export namespace speech_v1beta1 {
     /**
      * *Required* The audio data to be recognized.
      */
-    audio: Schema$RecognitionAudio;
+    audio?: Schema$RecognitionAudio;
     /**
      * *Required* Provides information to the recognizer that specifies how to
      * process the request.
      */
-    config: Schema$RecognitionConfig;
+    config?: Schema$RecognitionConfig;
   }
   /**
    * The only message returned to the client by `SyncRecognize`. method. It
@@ -312,8 +315,9 @@ export namespace speech_v1beta1 {
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
      */
-    results: Schema$SpeechRecognitionResult[];
+    results?: Schema$SpeechRecognitionResult[];
   }
+
 
   export class Resource$Operations {
     root: Speech;
@@ -341,23 +345,34 @@ export namespace speech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -379,6 +394,19 @@ export namespace speech_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
 
   export class Resource$Speech {
     root: Speech;
@@ -408,26 +436,39 @@ export namespace speech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    asyncrecognize(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     asyncrecognize(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Speech$Asyncrecognize,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     asyncrecognize(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Speech$Asyncrecognize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncrecognize(
+        params: Params$Resource$Speech$Asyncrecognize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncrecognize(callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncrecognize(
+        paramsOrCallback?: Params$Resource$Speech$Asyncrecognize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Speech$Asyncrecognize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Speech$Asyncrecognize;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -463,28 +504,41 @@ export namespace speech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    syncrecognize(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SyncRecognizeResponse>;
     syncrecognize(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Speech$Syncrecognize,
+        options?: MethodOptions): AxiosPromise<Schema$SyncRecognizeResponse>;
+    syncrecognize(
+        params: Params$Resource$Speech$Syncrecognize,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SyncRecognizeResponse>,
-        callback?: BodyResponseCallback<Schema$SyncRecognizeResponse>): void;
+        callback: BodyResponseCallback<Schema$SyncRecognizeResponse>): void;
     syncrecognize(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Speech$Syncrecognize,
+        callback: BodyResponseCallback<Schema$SyncRecognizeResponse>): void;
+    syncrecognize(callback: BodyResponseCallback<Schema$SyncRecognizeResponse>):
+        void;
+    syncrecognize(
+        paramsOrCallback?: Params$Resource$Speech$Syncrecognize|
+        BodyResponseCallback<Schema$SyncRecognizeResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SyncRecognizeResponse>,
         callback?: BodyResponseCallback<Schema$SyncRecognizeResponse>):
         void|AxiosPromise<Schema$SyncRecognizeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Speech$Syncrecognize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Speech$Syncrecognize;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -505,5 +559,28 @@ export namespace speech_v1beta1 {
         return createAPIRequest<Schema$SyncRecognizeResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Speech$Asyncrecognize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AsyncRecognizeRequest;
+  }
+  export interface Params$Resource$Speech$Syncrecognize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SyncRecognizeRequest;
   }
 }

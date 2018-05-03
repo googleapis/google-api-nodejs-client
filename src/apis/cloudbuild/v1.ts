@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudbuild_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Container Builder API
    *
@@ -79,15 +82,15 @@ export namespace cloudbuild_v1 {
      * Files in the workspace matching any path pattern will be uploaded to
      * Cloud Storage with this location as a prefix.
      */
-    location: string;
+    location?: string;
     /**
      * Path globs used to match files in the build&#39;s workspace.
      */
-    paths: string[];
+    paths?: string[];
     /**
      * Stores timing information for pushing all artifact objects. @OutputOnly
      */
-    timing: Schema$TimeSpan;
+    timing?: Schema$TimeSpan;
   }
   /**
    * An artifact that was uploaded during a build. This is a single record in
@@ -97,13 +100,13 @@ export namespace cloudbuild_v1 {
     /**
      * The file hash of the artifact.
      */
-    fileHash: Schema$FileHashes[];
+    fileHash?: Schema$FileHashes[];
     /**
      * The path of an artifact in a Google Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      */
-    location: string;
+    location?: string;
   }
   /**
    * Artifacts produced by a build that should be uploaded upon successful
@@ -117,7 +120,7 @@ export namespace cloudbuild_v1 {
      * Build resource&#39;s results field.  If any of the images fail to be
      * pushed, the build is marked FAILURE.
      */
-    images: string[];
+    images?: string[];
     /**
      * A list of objects to be uploaded to Cloud Storage upon successful
      * completion of all build steps.  Files in the workspace matching specified
@@ -127,7 +130,7 @@ export namespace cloudbuild_v1 {
      * resource&#39;s results field.  If any objects fail to be pushed, the
      * build is marked FAILURE.
      */
-    objects: Schema$ArtifactObjects;
+    objects?: Schema$ArtifactObjects;
   }
   /**
    * A build resource in the Container Builder API.  At a high level, a `Build`
@@ -147,26 +150,26 @@ export namespace cloudbuild_v1 {
      * Artifacts produced by the build that should be uploaded upon successful
      * completion of all build steps.
      */
-    artifacts: Schema$Artifacts;
+    artifacts?: Schema$Artifacts;
     /**
      * The ID of the `BuildTrigger` that triggered this build, if it was
      * triggered automatically. @OutputOnly
      */
-    buildTriggerId: string;
+    buildTriggerId?: string;
     /**
      * Time at which the request to create the build was received. @OutputOnly
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Time at which execution of the build was finished.  The difference
      * between finish_time and start_time is the duration of the build&#39;s
      * execution. @OutputOnly
      */
-    finishTime: string;
+    finishTime?: string;
     /**
      * Unique identifier of the build. @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * A list of images to be pushed upon the successful completion of all build
      * steps.  The images are pushed using the builder service account&#39;s
@@ -174,7 +177,7 @@ export namespace cloudbuild_v1 {
      * `Build` resource&#39;s results field.  If any of the images fail to be
      * pushed, the build status is marked `FAILURE`.
      */
-    images: string[];
+    images?: string[];
     /**
      * Google Cloud Storage bucket where logs should be written (see [Bucket
      * Name
@@ -182,72 +185,72 @@ export namespace cloudbuild_v1 {
      * Logs file names will be of the format
      * `${logs_bucket}/log-${build_id}.txt`.
      */
-    logsBucket: string;
+    logsBucket?: string;
     /**
      * URL to logs for this build in Google Cloud Console. @OutputOnly
      */
-    logUrl: string;
+    logUrl?: string;
     /**
      * Special options for this build.
      */
-    options: Schema$BuildOptions;
+    options?: Schema$BuildOptions;
     /**
      * ID of the project. @OutputOnly.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Results of the build. @OutputOnly
      */
-    results: Schema$Results;
+    results?: Schema$Results;
     /**
      * Secrets to decrypt using Cloud Key Management Service.
      */
-    secrets: Schema$Secret[];
+    secrets?: Schema$Secret[];
     /**
      * The location of the source files to build.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
     /**
      * A permanent fixed identifier for source. @OutputOnly
      */
-    sourceProvenance: Schema$SourceProvenance;
+    sourceProvenance?: Schema$SourceProvenance;
     /**
      * Time at which execution of the build was started. @OutputOnly
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Status of the build. @OutputOnly
      */
-    status: string;
+    status?: string;
     /**
      * Customer-readable message about the current status. @OutputOnly
      */
-    statusDetail: string;
+    statusDetail?: string;
     /**
      * Required. The operations to be performed on the workspace.
      */
-    steps: Schema$BuildStep[];
+    steps?: Schema$BuildStep[];
     /**
      * Substitutions data for `Build` resource.
      */
-    substitutions: any;
+    substitutions?: any;
     /**
      * Tags for annotation of a `Build`. These are not docker tags.
      */
-    tags: string[];
+    tags?: string[];
     /**
      * Amount of time that this build should be allowed to run, to second
      * granularity. If this amount of time elapses, work on the build will cease
      * and the build status will be `TIMEOUT`.  Default time is ten minutes.
      */
-    timeout: string;
+    timeout?: string;
     /**
      * Stores timing information for phases of the build. Valid keys are:  *
      * BUILD: time to execute all build steps * PUSH: time to push all specified
      * images. * FETCHSOURCE: time to fetch source.  If the build does not
      * specify source or images, these keys will not be included. @OutputOnly
      */
-    timing: any;
+    timing?: any;
   }
   /**
    * Metadata for build operations.
@@ -256,7 +259,7 @@ export namespace cloudbuild_v1 {
     /**
      * The build that the operation is tracking.
      */
-    build: Schema$Build;
+    build?: Schema$Build;
   }
   /**
    * Optional arguments to enable specific features of builds.
@@ -271,28 +274,28 @@ export namespace cloudbuild_v1 {
      * 1000GB; builds that request more than the maximum are rejected with an
      * error.
      */
-    diskSizeGb: string;
+    diskSizeGb?: string;
     /**
      * Option to define build log streaming behavior to Google Cloud Storage.
      */
-    logStreamingOption: string;
+    logStreamingOption?: string;
     /**
      * Compute Engine machine type on which to run the build.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * Requested verifiability options.
      */
-    requestedVerifyOption: string;
+    requestedVerifyOption?: string;
     /**
      * Requested hash for SourceProvenance.
      */
-    sourceProvenanceHash: string[];
+    sourceProvenanceHash?: string[];
     /**
      * Option to specify behavior when there is an error in the substitution
      * checks.
      */
-    substitutionOption: string;
+    substitutionOption?: string;
   }
   /**
    * A step in the build pipeline.
@@ -305,7 +308,7 @@ export namespace cloudbuild_v1 {
      * image does not define an entrypoint, the first element in args is used as
      * the entrypoint, and the remainder will be used as arguments.
      */
-    args: string[];
+    args?: string[];
     /**
      * Working directory to use when running this step&#39;s container.  If this
      * value is a relative path, it is relative to the build&#39;s working
@@ -316,24 +319,24 @@ export namespace cloudbuild_v1 {
      * step with a `dir`, which specifies an absolute path, the `RepoSource`
      * `dir` is ignored for the step&#39;s execution.
      */
-    dir: string;
+    dir?: string;
     /**
      * Entrypoint to be used instead of the build step image&#39;s default
      * entrypoint. If unset, the image&#39;s default entrypoint is used.
      */
-    entrypoint: string;
+    entrypoint?: string;
     /**
      * A list of environment variable definitions to be used when running a
      * step.  The elements are of the form &quot;KEY=VALUE&quot; for the
      * environment variable &quot;KEY&quot; being given the value
      * &quot;VALUE&quot;.
      */
-    env: string[];
+    env?: string[];
     /**
      * Unique identifier for this build step, used in `wait_for` to reference
      * this build step as a dependency.
      */
-    id: string;
+    id?: string;
     /**
      * Required. The name of the container image that will run this particular
      * build step.  If the image is available in the host&#39;s Docker
@@ -349,29 +352,29 @@ export namespace cloudbuild_v1 {
      * Docker daemon&#39;s cache and is available to use as the name for a later
      * build step.
      */
-    name: string;
+    name?: string;
     /**
      * A list of environment variables which are encrypted using a Cloud Key
      * Management Service crypto key. These values must be specified in the
      * build&#39;s `Secret`.
      */
-    secretEnv: string[];
+    secretEnv?: string[];
     /**
      * Status of the build step. At this time, build step status is only updated
      * on build completion; step status is not updated in real-time as the build
      * progresses. @OutputOnly
      */
-    status: string;
+    status?: string;
     /**
      * Time limit for executing this build step. If not defined, the step has no
      * time limit and will be allowed to continue to run until either it
      * completes or the build itself times out.
      */
-    timeout: string;
+    timeout?: string;
     /**
      * Stores timing information for executing this build step. @OutputOnly
      */
-    timing: Schema$TimeSpan;
+    timing?: Schema$TimeSpan;
     /**
      * List of volumes to mount into the build step.  Each volume will be
      * created as an empty volume prior to execution of the build step. Upon
@@ -379,7 +382,7 @@ export namespace cloudbuild_v1 {
      * Using a named volume in only one step is not valid as it is indicative of
      * a mis-configured build request.
      */
-    volumes: Schema$Volume[];
+    volumes?: Schema$Volume[];
     /**
      * The ID(s) of the step(s) that this build step depends on. This build step
      * will not start until all the build steps in `wait_for` have completed
@@ -387,7 +390,7 @@ export namespace cloudbuild_v1 {
      * previous build steps in the `Build.Steps` list have completed
      * successfully.
      */
-    waitFor: string[];
+    waitFor?: string[];
   }
   /**
    * Configuration for an automated build in response to source repository
@@ -397,39 +400,39 @@ export namespace cloudbuild_v1 {
     /**
      * Contents of the build template.
      */
-    build: Schema$Build;
+    build?: Schema$Build;
     /**
      * Time when the trigger was created.  @OutputOnly
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Human-readable description of this trigger.
      */
-    description: string;
+    description?: string;
     /**
      * If true, the trigger will never result in a build.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Path, from the source root, to a file whose contents is used for the
      * template.
      */
-    filename: string;
+    filename?: string;
     /**
      * Unique identifier of the trigger.  @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * Substitutions data for Build resource.
      */
-    substitutions: any;
+    substitutions?: any;
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
      * expressions. Any branch or tag change that matches that regular
      * expression will trigger a build.
      */
-    triggerTemplate: Schema$RepoSource;
+    triggerTemplate?: Schema$RepoSource;
   }
   /**
    * An image built by the pipeline.
@@ -438,16 +441,16 @@ export namespace cloudbuild_v1 {
     /**
      * Docker Registry 2.0 digest.
      */
-    digest: string;
+    digest?: string;
     /**
      * Name used to push the container image to Google Container Registry, as
      * presented to `docker push`.
      */
-    name: string;
+    name?: string;
     /**
      * Stores timing information for pushing the specified image. @OutputOnly
      */
-    pushTiming: Schema$TimeSpan;
+    pushTiming?: Schema$TimeSpan;
   }
   /**
    * Request to cancel an ongoing build.
@@ -473,7 +476,7 @@ export namespace cloudbuild_v1 {
     /**
      * Collection of file hashes.
      */
-    fileHash: Schema$Hash[];
+    fileHash?: Schema$Hash[];
   }
   /**
    * Container message for hash values.
@@ -482,11 +485,11 @@ export namespace cloudbuild_v1 {
     /**
      * The type of hash that was performed.
      */
-    type: string;
+    type?: string;
     /**
      * The hash value.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Response including listed builds.
@@ -495,11 +498,11 @@ export namespace cloudbuild_v1 {
     /**
      * Builds will be sorted by `create_time`, descending.
      */
-    builds: Schema$Build[];
+    builds?: Schema$Build[];
     /**
      * Token to receive the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response containing existing `BuildTriggers`.
@@ -508,7 +511,7 @@ export namespace cloudbuild_v1 {
     /**
      * `BuildTriggers` for the project, sorted by `create_time` descending.
      */
-    triggers: Schema$BuildTrigger[];
+    triggers?: Schema$BuildTrigger[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -517,11 +520,11 @@ export namespace cloudbuild_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -533,24 +536,24 @@ export namespace cloudbuild_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -560,7 +563,7 @@ export namespace cloudbuild_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Location of the source in a Google Cloud Source Repository.
@@ -569,31 +572,31 @@ export namespace cloudbuild_v1 {
     /**
      * Name of the branch to build.
      */
-    branchName: string;
+    branchName?: string;
     /**
      * Explicit commit SHA to build.
      */
-    commitSha: string;
+    commitSha?: string;
     /**
      * Directory, relative to the source root, in which to run the build.  This
      * must be a relative path. If a step&#39;s `dir` is specified and is an
      * absolute path, this value is ignored for that step&#39;s execution.
      */
-    dir: string;
+    dir?: string;
     /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the
      * project ID requesting the build is assumed.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Name of the Cloud Source Repository. If omitted, the name
      * &quot;default&quot; is assumed.
      */
-    repoName: string;
+    repoName?: string;
     /**
      * Name of the tag to build.
      */
-    tagName: string;
+    tagName?: string;
   }
   /**
    * Artifacts created by the build pipeline.
@@ -603,20 +606,20 @@ export namespace cloudbuild_v1 {
      * Path to the artifact manifest. Only populated when artifacts are
      * uploaded.
      */
-    artifactManifest: string;
+    artifactManifest?: string;
     /**
      * List of build step digests, in the order corresponding to build step
      * indices.
      */
-    buildStepImages: string[];
+    buildStepImages?: string[];
     /**
      * Container images that were built as a part of the build.
      */
-    images: Schema$BuiltImage[];
+    images?: Schema$BuiltImage[];
     /**
      * Number of artifacts uploaded. Only populated when artifacts are uploaded.
      */
-    numArtifacts: string;
+    numArtifacts?: string;
   }
   /**
    * Specifies a build to retry.
@@ -630,7 +633,7 @@ export namespace cloudbuild_v1 {
     /**
      * Cloud KMS key name to use to decrypt these envs.
      */
-    kmsKeyName: string;
+    kmsKeyName?: string;
     /**
      * Map of environment variable name to its encrypted value.  Secret
      * environment variables must be unique across all of a build&#39;s secrets,
@@ -638,7 +641,7 @@ export namespace cloudbuild_v1 {
      * in size. There can be at most ten secret values across all of a
      * build&#39;s secrets.
      */
-    secretEnv: any;
+    secretEnv?: any;
   }
   /**
    * Location of the source in a supported storage service.
@@ -648,11 +651,11 @@ export namespace cloudbuild_v1 {
      * If provided, get the source from this location in a Cloud Source
      * Repository.
      */
-    repoSource: Schema$RepoSource;
+    repoSource?: Schema$RepoSource;
     /**
      * If provided, get the source from this location in Google Cloud Storage.
      */
-    storageSource: Schema$StorageSource;
+    storageSource?: Schema$StorageSource;
   }
   /**
    * Provenance of the source. Ways to find the original source, or verify that
@@ -669,17 +672,17 @@ export namespace cloudbuild_v1 {
      * (`.tar.gz`), the `FileHash` will be for the single path to that file.
      * @OutputOnly
      */
-    fileHashes: any;
+    fileHashes?: any;
     /**
      * A copy of the build&#39;s `source.repo_source`, if exists, with any
      * revisions resolved.
      */
-    resolvedRepoSource: Schema$RepoSource;
+    resolvedRepoSource?: Schema$RepoSource;
     /**
      * A copy of the build&#39;s `source.storage_source`, if exists, with any
      * generations resolved.
      */
-    resolvedStorageSource: Schema$StorageSource;
+    resolvedStorageSource?: Schema$StorageSource;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -721,18 +724,18 @@ export namespace cloudbuild_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Location of the source in an archive file in Google Cloud Storage.
@@ -742,17 +745,17 @@ export namespace cloudbuild_v1 {
      * Google Cloud Storage bucket containing the source (see [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      */
-    generation: string;
+    generation?: string;
     /**
      * Google Cloud Storage object containing the source.  This object must be a
      * gzipped archive file (`.tar.gz`) containing source to build.
      */
-    object: string;
+    object?: string;
   }
   /**
    * Start and end times for a build execution phase.
@@ -761,11 +764,11 @@ export namespace cloudbuild_v1 {
     /**
      * End of time span.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Start of time span.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build
@@ -777,14 +780,15 @@ export namespace cloudbuild_v1 {
      * and must be valid names for Docker volumes. Each named volume must be
      * used by at least two build steps.
      */
-    name: string;
+    name?: string;
     /**
      * Path at which to mount the volume.  Paths must be absolute and cannot
      * conflict with other volume paths on the same build step or with certain
      * reserved volume paths.
      */
-    path: string;
+    path?: string;
   }
+
 
   export class Resource$Operations {
     root: Cloudbuild;
@@ -819,25 +823,37 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -874,23 +890,34 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -935,28 +962,38 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -978,6 +1015,57 @@ export namespace cloudbuild_v1 {
     }
   }
 
+  export interface Params$Resource$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Projects {
     root: Cloudbuild;
     builds: Resource$Projects$Builds;
@@ -993,6 +1081,8 @@ export namespace cloudbuild_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Builds {
     root: Cloudbuild;
     constructor(root: Cloudbuild) {
@@ -1019,25 +1109,38 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Build>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback?: BodyResponseCallback<Schema$Build>): void;
+        params?: Params$Resource$Projects$Builds$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Build>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Build>,
+        params: Params$Resource$Projects$Builds$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Build>,
+        callback: BodyResponseCallback<Schema$Build>): void;
+    cancel(
+        params: Params$Resource$Projects$Builds$Cancel,
+        callback: BodyResponseCallback<Schema$Build>): void;
+    cancel(callback: BodyResponseCallback<Schema$Build>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Builds$Cancel|
+        BodyResponseCallback<Schema$Build>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Build>,
         callback?: BodyResponseCallback<Schema$Build>):
         void|AxiosPromise<Schema$Build> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Builds$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1076,26 +1179,39 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Builds$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Builds$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Builds$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Builds$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Builds$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1133,23 +1249,34 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Build>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback?: BodyResponseCallback<Schema$Build>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Build>,
+    get(params?: Params$Resource$Projects$Builds$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Build>;
+    get(params: Params$Resource$Projects$Builds$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Build>,
+        callback: BodyResponseCallback<Schema$Build>): void;
+    get(params: Params$Resource$Projects$Builds$Get,
+        callback: BodyResponseCallback<Schema$Build>): void;
+    get(callback: BodyResponseCallback<Schema$Build>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Builds$Get|
+        BodyResponseCallback<Schema$Build>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Build>,
         callback?: BodyResponseCallback<Schema$Build>):
         void|AxiosPromise<Schema$Build> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Builds$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1189,26 +1316,39 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListBuildsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+        params?: Params$Resource$Projects$Builds$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListBuildsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
+        params: Params$Resource$Projects$Builds$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
+        callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Builds$List,
+        callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Builds$List|
+        BodyResponseCallback<Schema$ListBuildsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListBuildsResponse>,
         callback?: BodyResponseCallback<Schema$ListBuildsResponse>):
         void|AxiosPromise<Schema$ListBuildsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Builds$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1261,26 +1401,39 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    retry(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     retry(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Builds$Retry,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     retry(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Builds$Retry,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    retry(
+        params: Params$Resource$Projects$Builds$Retry,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    retry(callback: BodyResponseCallback<Schema$Operation>): void;
+    retry(
+        paramsOrCallback?: Params$Resource$Projects$Builds$Retry|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Retry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Builds$Retry;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1302,6 +1455,99 @@ export namespace cloudbuild_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Builds$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the build.
+     */
+    id?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelBuildRequest;
+  }
+  export interface Params$Resource$Projects$Builds$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Build;
+  }
+  export interface Params$Resource$Projects$Builds$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the build.
+     */
+    id?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Builds$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The raw filter text to constrain the results.
+     */
+    filter?: string;
+    /**
+     * Number of results to return in the list.
+     */
+    pageSize?: number;
+    /**
+     * Token to provide to skip to a particular spot in the list.
+     */
+    pageToken?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Builds$Retry {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Build ID of the original build.
+     */
+    id?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RetryBuildRequest;
+  }
+
 
   export class Resource$Projects$Triggers {
     root: Cloudbuild;
@@ -1328,26 +1574,39 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BuildTrigger>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
+        params?: Params$Resource$Projects$Triggers$Create,
+        options?: MethodOptions): AxiosPromise<Schema$BuildTrigger>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+        params: Params$Resource$Projects$Triggers$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    create(
+        params: Params$Resource$Projects$Triggers$Create,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    create(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Triggers$Create|
+        BodyResponseCallback<Schema$BuildTrigger>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BuildTrigger>,
         callback?: BodyResponseCallback<Schema$BuildTrigger>):
         void|AxiosPromise<Schema$BuildTrigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1384,25 +1643,38 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Triggers$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Triggers$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Triggers$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Triggers$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1439,24 +1711,35 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Triggers$Get,
         options?: MethodOptions): AxiosPromise<Schema$BuildTrigger>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+    get(params: Params$Resource$Projects$Triggers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    get(params: Params$Resource$Projects$Triggers$Get,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    get(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Triggers$Get|
+        BodyResponseCallback<Schema$BuildTrigger>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BuildTrigger>,
         callback?: BodyResponseCallback<Schema$BuildTrigger>):
         void|AxiosPromise<Schema$BuildTrigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1491,29 +1774,42 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Triggers$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBuildTriggersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Triggers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-        callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
+        callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>): void;
+    list(
+        params: Params$Resource$Projects$Triggers$List,
+        callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Projects$Triggers$List|
+        BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBuildTriggersResponse>,
         callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
         void|AxiosPromise<Schema$ListBuildTriggersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1552,26 +1848,39 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BuildTrigger>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
+        params?: Params$Resource$Projects$Triggers$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$BuildTrigger>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+        params: Params$Resource$Projects$Triggers$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    patch(
+        params: Params$Resource$Projects$Triggers$Patch,
+        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    patch(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Triggers$Patch|
+        BodyResponseCallback<Schema$BuildTrigger>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BuildTrigger>,
         callback?: BodyResponseCallback<Schema$BuildTrigger>):
         void|AxiosPromise<Schema$BuildTrigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1608,23 +1917,35 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    run(params?: Params$Resource$Projects$Triggers$Run,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    run(params: Params$Resource$Projects$Triggers$Run,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(params: Params$Resource$Projects$Triggers$Run,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(paramsOrCallback?: Params$Resource$Projects$Triggers$Run|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Triggers$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1646,5 +1967,100 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Triggers$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project for which to configure automatic builds.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BuildTrigger;
+  }
+  export interface Params$Resource$Projects$Triggers$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project that owns the trigger.
+     */
+    projectId?: string;
+    /**
+     * ID of the `BuildTrigger` to delete.
+     */
+    triggerId?: string;
+  }
+  export interface Params$Resource$Projects$Triggers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project that owns the trigger.
+     */
+    projectId?: string;
+    /**
+     * ID of the `BuildTrigger` to get.
+     */
+    triggerId?: string;
+  }
+  export interface Params$Resource$Projects$Triggers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project for which to list BuildTriggers.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Triggers$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project that owns the trigger.
+     */
+    projectId?: string;
+    /**
+     * ID of the `BuildTrigger` to update.
+     */
+    triggerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BuildTrigger;
+  }
+  export interface Params$Resource$Projects$Triggers$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+    /**
+     * ID of the trigger.
+     */
+    triggerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RepoSource;
   }
 }

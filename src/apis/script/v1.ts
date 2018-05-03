@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,10 +31,19 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace script_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Apps Script API
    *
-   * An API for managing and executing Google Apps Script projects.
+   * An API for managing and executing Google Apps Script projects. &lt;aside
+   * class=&quot;note&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: In order to use this API
+   * in your apps, you must &lt;a
+   * href=&quot;/apps-script/api/how-tos/enable#using_the_apps_script_api_in_your_app&quot;&gt;
+   * enable it for use&lt;/a&gt;. To allow other apps to manage your scripts,
+   * you must &lt;a
+   * href=&quot;/apps-script/api/how-tos/enable#granting_third-party_applications_access_to_your_script_projects&quot;&gt;
+   * grant them access&lt;/a&gt;.&lt;/aside&gt;
    *
    * @example
    * const google = require('googleapis');
@@ -78,11 +88,11 @@ export namespace script_v1 {
      * it must be named &quot;appsscript&quot;, must have type of JSON, and
      * include the manifest configurations for the project.
      */
-    files: Schema$File[];
+    files?: Schema$File[];
     /**
      * The script project&#39;s Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   /**
    * Request to create a script project.
@@ -93,11 +103,11 @@ export namespace script_v1 {
      * to. This is usually the ID of a Google Doc, Google Sheet, Google Form, or
      * Google Slides file. If not set, a standalone script project is created.
      */
-    parentId: string;
+    parentId?: string;
     /**
      * The title for the project.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Representation of a single script deployment.
@@ -106,27 +116,27 @@ export namespace script_v1 {
     /**
      * The deployment configuration.
      */
-    deploymentConfig: Schema$DeploymentConfig;
+    deploymentConfig?: Schema$DeploymentConfig;
     /**
      * The deployment ID for this deployment.
      */
-    deploymentId: string;
+    deploymentId?: string;
     /**
      * The deployment&#39;s entry points.
      */
-    entryPoints: Schema$EntryPoint[];
+    entryPoints?: Schema$EntryPoint[];
     /**
      * Script&#39;s defined set of functions.
      */
-    functionSet: Schema$GoogleAppsScriptTypeFunctionSet;
+    functionSet?: Schema$GoogleAppsScriptTypeFunctionSet;
     /**
      * Set of scopes required by the deployment.
      */
-    scopeSet: Schema$GoogleAppsScriptTypeScopeSet;
+    scopeSet?: Schema$GoogleAppsScriptTypeScopeSet;
     /**
      * Last modified date time stamp.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Metadata the defines how a deployment is configured.
@@ -135,19 +145,19 @@ export namespace script_v1 {
     /**
      * The description for this deployment.
      */
-    description: string;
+    description?: string;
     /**
      * The manifest file name for this deployment.
      */
-    manifestFileName: string;
+    manifestFileName?: string;
     /**
      * The script project&#39;s Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * The version number on which this deployment is based.
      */
-    versionNumber: number;
+    versionNumber?: number;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -164,19 +174,19 @@ export namespace script_v1 {
     /**
      * Add-on properties.
      */
-    addOn: Schema$GoogleAppsScriptTypeAddOnEntryPoint;
+    addOn?: Schema$GoogleAppsScriptTypeAddOnEntryPoint;
     /**
      * The type of the entry point.
      */
-    entryPointType: string;
+    entryPointType?: string;
     /**
      * An entry point specification for Apps Script API execution calls.
      */
-    executionApi: Schema$GoogleAppsScriptTypeExecutionApiEntryPoint;
+    executionApi?: Schema$GoogleAppsScriptTypeExecutionApiEntryPoint;
     /**
      * An entry point specification for web apps.
      */
-    webApp: Schema$GoogleAppsScriptTypeWebAppEntryPoint;
+    webApp?: Schema$GoogleAppsScriptTypeWebAppEntryPoint;
   }
   /**
    * An object that provides information about the nature of an error resulting
@@ -191,17 +201,17 @@ export namespace script_v1 {
      * The error message thrown by Apps Script, usually localized into the
      * user&#39;s language.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * The error type, for example `TypeError` or `ReferenceError`. If the error
      * type is unavailable, this field is not included.
      */
-    errorType: string;
+    errorType?: string;
     /**
      * An array of objects that provide a stack trace through the script to show
      * where the execution failed, with the deepest call first.
      */
-    scriptStackTraceElements: Schema$ScriptStackTraceElement[];
+    scriptStackTraceElements?: Schema$ScriptStackTraceElement[];
   }
   /**
    * A request to run the function in a script. The script is identified by the
@@ -214,12 +224,12 @@ export namespace script_v1 {
      * most recently saved version rather than the version deployed for use with
      * the Apps Script API. Optional; default is `false`.
      */
-    devMode: boolean;
+    devMode?: boolean;
     /**
      * The name of the function to execute in the given script. The name does
      * not include parentheses or parameters.
      */
-    function: string;
+    function?: string;
     /**
      * The parameters to be passed to the function being executed. The object
      * type for each parameter should match the expected type in Apps Script.
@@ -227,7 +237,7 @@ export namespace script_v1 {
      * `Document` or a `Calendar`); they can only be primitive types such as
      * `string`, `number`, `array`, `object`, or `boolean`. Optional.
      */
-    parameters: any[];
+    parameters?: any[];
     /**
      * For Android add-ons only. An ID that represents the user&#39;s current
      * session in the Android app for Google Docs or Sheets, included as extra
@@ -242,7 +252,7 @@ export namespace script_v1 {
      * `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`.
      * Optional.
      */
-    sessionState: string;
+    sessionState?: string;
   }
   /**
    * An object that provides the return value of a function executed using the
@@ -257,7 +267,7 @@ export namespace script_v1 {
      * `Calendar`); they can only return primitive types such as a `string`,
      * `number`, `array`, `object`, or `boolean`.
      */
-    result: any;
+    result?: any;
   }
   /**
    * An individual file within a script project. A file is a third-party source
@@ -270,34 +280,34 @@ export namespace script_v1 {
      * Creation date timestamp. This read-only field is only visible to users
      * who have WRITER permission for the script project.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The defined set of functions in the script file, if any.
      */
-    functionSet: Schema$GoogleAppsScriptTypeFunctionSet;
+    functionSet?: Schema$GoogleAppsScriptTypeFunctionSet;
     /**
      * The user who modified the file most recently. This read-only field is
      * only visible to users who have WRITER permission for the script project.
      */
-    lastModifyUser: Schema$GoogleAppsScriptTypeUser;
+    lastModifyUser?: Schema$GoogleAppsScriptTypeUser;
     /**
      * The name of the file. The file extension is not part of the file name,
      * which can be identified from the type field.
      */
-    name: string;
+    name?: string;
     /**
      * The file content.
      */
-    source: string;
+    source?: string;
     /**
      * The type of the file.
      */
-    type: string;
+    type?: string;
     /**
      * Last modified date timestamp. This read-only field is only visible to
      * users who have WRITER permission for the script project.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * An add-on entry point.
@@ -306,27 +316,27 @@ export namespace script_v1 {
     /**
      * The add-on&#39;s required list of supported container types.
      */
-    addOnType: string;
+    addOnType?: string;
     /**
      * The add-on&#39;s optional description.
      */
-    description: string;
+    description?: string;
     /**
      * The add-on&#39;s optional help URL.
      */
-    helpUrl: string;
+    helpUrl?: string;
     /**
      * The add-on&#39;s required post install tip URL.
      */
-    postInstallTipUrl: string;
+    postInstallTipUrl?: string;
     /**
      * The add-on&#39;s optional report issue URL.
      */
-    reportIssueUrl: string;
+    reportIssueUrl?: string;
     /**
      * The add-on&#39;s required title.
      */
-    title: string;
+    title?: string;
   }
   /**
    * API executable entry point configuration.
@@ -335,7 +345,7 @@ export namespace script_v1 {
     /**
      * Who has permission to run the API executable.
      */
-    access: string;
+    access?: string;
   }
   /**
    * An API executable entry point.
@@ -344,7 +354,7 @@ export namespace script_v1 {
     /**
      * The entry point&#39;s configuration.
      */
-    entryPointConfig: Schema$GoogleAppsScriptTypeExecutionApiConfig;
+    entryPointConfig?: Schema$GoogleAppsScriptTypeExecutionApiConfig;
   }
   /**
    * Represents a function in a script project.
@@ -353,7 +363,7 @@ export namespace script_v1 {
     /**
      * The function name in the script project.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A set of functions. No duplicates are permitted.
@@ -362,7 +372,7 @@ export namespace script_v1 {
     /**
      * A list of functions composing the set.
      */
-    values: Schema$GoogleAppsScriptTypeFunction[];
+    values?: Schema$GoogleAppsScriptTypeFunction[];
   }
   /**
    * Representation of a single script process execution that was started from
@@ -374,35 +384,35 @@ export namespace script_v1 {
     /**
      * Duration the execution spent executing.
      */
-    duration: string;
+    duration?: string;
     /**
      * User-facing name for the user executing the script.
      */
-    executingUser: string;
+    executingUser?: string;
     /**
      * Name of the function the started the execution.
      */
-    functionName: string;
+    functionName?: string;
     /**
      * The executions status.
      */
-    processStatus: string;
+    processStatus?: string;
     /**
      * The executions type.
      */
-    processType: string;
+    processType?: string;
     /**
      * Name of the script being executed.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * Time the execution started.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The executing users access level to the script.
      */
-    userAccessLevel: string;
+    userAccessLevel?: string;
   }
   /**
    * Represents an authorization scope.
@@ -411,11 +421,11 @@ export namespace script_v1 {
     /**
      * Who authorized the scope.
      */
-    authorizer: string;
+    authorizer?: string;
     /**
      * The scope&#39;s identifying string.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A set of scopes. No duplicates are permitted.
@@ -424,7 +434,7 @@ export namespace script_v1 {
     /**
      * List of scope values in the set.
      */
-    values: Schema$GoogleAppsScriptTypeScope[];
+    values?: Schema$GoogleAppsScriptTypeScope[];
   }
   /**
    * A simple user profile resource.
@@ -433,19 +443,19 @@ export namespace script_v1 {
     /**
      * The user&#39;s domain.
      */
-    domain: string;
+    domain?: string;
     /**
      * The user&#39;s identifying email address.
      */
-    email: string;
+    email?: string;
     /**
      * The user&#39;s display name.
      */
-    name: string;
+    name?: string;
     /**
      * The user&#39;s photo.
      */
-    photoUrl: string;
+    photoUrl?: string;
   }
   /**
    * Web app entry point configuration.
@@ -454,11 +464,11 @@ export namespace script_v1 {
     /**
      * Who has permission to run the web app.
      */
-    access: string;
+    access?: string;
     /**
      * Who to execute the web app as.
      */
-    executeAs: string;
+    executeAs?: string;
   }
   /**
    * A web application entry point.
@@ -467,11 +477,11 @@ export namespace script_v1 {
     /**
      * The entry point&#39;s configuration.
      */
-    entryPointConfig: Schema$GoogleAppsScriptTypeWebAppConfig;
+    entryPointConfig?: Schema$GoogleAppsScriptTypeWebAppConfig;
     /**
      * The URL for the web application.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Response with the list of deployments for the specified Apps Script
@@ -481,12 +491,12 @@ export namespace script_v1 {
     /**
      * The list of deployments.
      */
-    deployments: Schema$Deployment[];
+    deployments?: Schema$Deployment[];
     /**
      * The token that can be used in the next call to get the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response with the list of Process resources.
@@ -496,11 +506,11 @@ export namespace script_v1 {
      * Token for the next page of results. If empty, there are no more pages
      * remaining.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of processes matching request parameters.
      */
-    processes: Schema$GoogleAppsScriptTypeProcess[];
+    processes?: Schema$GoogleAppsScriptTypeProcess[];
   }
   /**
    * Response with the list of Process resources.
@@ -510,11 +520,11 @@ export namespace script_v1 {
      * Token for the next page of results. If empty, there are no more pages
      * remaining.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of processes matching request parameters.
      */
-    processes: Schema$GoogleAppsScriptTypeProcess[];
+    processes?: Schema$GoogleAppsScriptTypeProcess[];
   }
   /**
    * Response with the list of the versions for the specified script project.
@@ -524,11 +534,11 @@ export namespace script_v1 {
      * The token use to fetch the next page of records. if not exist in the
      * response, that means no more versions to list.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of versions.
      */
-    versions: Schema$Version[];
+    versions?: Schema$Version[];
   }
   /**
    * Resource containing usage stats for a given script, based on the supplied
@@ -538,15 +548,15 @@ export namespace script_v1 {
     /**
      * Number of active users.
      */
-    activeUsers: Schema$MetricsValue[];
+    activeUsers?: Schema$MetricsValue[];
     /**
      * Number of failed executions.
      */
-    failedExecutions: Schema$MetricsValue[];
+    failedExecutions?: Schema$MetricsValue[];
     /**
      * Number of total executions.
      */
-    totalExecutions: Schema$MetricsValue[];
+    totalExecutions?: Schema$MetricsValue[];
   }
   /**
    * Metrics value that holds number of executions counted.
@@ -555,15 +565,15 @@ export namespace script_v1 {
     /**
      * Required field indicating the end time of the interval.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Required field indicating the start time of the interval.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Indicates the number of executions counted.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A representation of a execution of an Apps Script function that is started
@@ -593,7 +603,7 @@ export namespace script_v1 {
      * completed execution has a populated `response` field containing the
      * ExecutionResponse from function that was executed.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * If a `run` call succeeds but the script function (or Apps Script itself)
      * throws an exception, this field contains a Status object. The `Status`
@@ -601,12 +611,12 @@ export namespace script_v1 {
      * ExecutionError object that provides information about the nature of the
      * error.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * If the script function returns successfully, this field contains an
      * ExecutionResponse object with the function&#39;s return value.
      */
-    response: any;
+    response?: any;
   }
   /**
    * The script project resource.
@@ -615,33 +625,33 @@ export namespace script_v1 {
     /**
      * When the script was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * User who originally created the script.
      */
-    creator: Schema$GoogleAppsScriptTypeUser;
+    creator?: Schema$GoogleAppsScriptTypeUser;
     /**
      * User who last modified the script.
      */
-    lastModifyUser: Schema$GoogleAppsScriptTypeUser;
+    lastModifyUser?: Schema$GoogleAppsScriptTypeUser;
     /**
      * The parent&#39;s Drive ID that the script will be attached to. This is
      * usually the ID of a Google Document or Google Sheet. This filed is
      * optional, and if not set, a stand-alone script will be created.
      */
-    parentId: string;
+    parentId?: string;
     /**
      * The script project&#39;s Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * The title for the project.
      */
-    title: string;
+    title?: string;
     /**
      * When the script was last updated.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * A stack trace through the script that shows where the execution failed.
@@ -650,11 +660,11 @@ export namespace script_v1 {
     /**
      * The name of the function that failed.
      */
-    function: string;
+    function?: string;
     /**
      * The line number where the script failed.
      */
-    lineNumber: number;
+    lineNumber?: number;
   }
   /**
    * If a `run` call succeeds but the script function (or Apps Script itself)
@@ -668,19 +678,19 @@ export namespace script_v1 {
      * indicating an `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1,
      * indicating a `CANCELLED` execution.&lt;/li&gt; &lt;/ul&gt;
      */
-    code: number;
+    code?: number;
     /**
      * An array that contains a single ExecutionError object that provides
      * information about the nature of the error.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which is in English. Any user-facing
      * error message is localized and sent in the
      * [google.rpc.Status.details](google.rpc.Status.details) field, or
      * localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request with deployment information to update an existing deployment.
@@ -689,7 +699,7 @@ export namespace script_v1 {
     /**
      * The deployment configuration.
      */
-    deploymentConfig: Schema$DeploymentConfig;
+    deploymentConfig?: Schema$DeploymentConfig;
   }
   /**
    * A resource representing a script project version. A version is a
@@ -701,21 +711,22 @@ export namespace script_v1 {
     /**
      * When the version was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The description for this version.
      */
-    description: string;
+    description?: string;
     /**
      * The script project&#39;s Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * The incremental ID that is created by Apps Script when a version is
      * created. This is system assigned number and is immutable once created.
      */
-    versionNumber: number;
+    versionNumber?: number;
   }
+
 
   export class Resource$Processes {
     root: Script;
@@ -742,7 +753,7 @@ export namespace script_v1 {
      * @param {string=} params.userProcessFilter.deploymentId Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
      * @param {string=} params.userProcessFilter.endTime Optional field used to limit returned processes to those that completed on or before the given timestamp.
      * @param {string=} params.userProcessFilter.functionName Optional field used to limit returned processes to those originating from a script function with the given function name.
-     * @param {string=} params.userProcessFilter.projectName Optional field used to limit returned processes to those originating from projects with a specific project name.
+     * @param {string=} params.userProcessFilter.projectName Optional field used to limit returned processes to those originating from projects with project names containing a specific string.
      * @param {string=} params.userProcessFilter.scriptId Optional field used to limit returned processes to those originating from projects with a specific script ID.
      * @param {string=} params.userProcessFilter.startTime Optional field used to limit returned processes to those that were started on or after the given timestamp.
      * @param {string=} params.userProcessFilter.statuses Optional field used to limit returned processes to those having one of the specified process statuses.
@@ -752,29 +763,39 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Processes$List, options?: MethodOptions):
         AxiosPromise<Schema$ListUserProcessesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Processes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListUserProcessesResponse>,
-        callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>):
+        callback: BodyResponseCallback<Schema$ListUserProcessesResponse>): void;
+    list(
+        params: Params$Resource$Processes$List,
+        callback: BodyResponseCallback<Schema$ListUserProcessesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListUserProcessesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Processes$List|
+        BodyResponseCallback<Schema$ListUserProcessesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUserProcessesResponse>,
         callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>):
         void|AxiosPromise<Schema$ListUserProcessesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Processes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Processes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -819,29 +840,45 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listScriptProcesses(params?: any, options?: MethodOptions):
+    listScriptProcesses(
+        params?: Params$Resource$Processes$Listscriptprocesses,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListScriptProcessesResponse>;
     listScriptProcesses(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Processes$Listscriptprocesses,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListScriptProcessesResponse>,
-        callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
+        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
         void;
     listScriptProcesses(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Processes$Listscriptprocesses,
+        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
+        void;
+    listScriptProcesses(
+        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
+        void;
+    listScriptProcesses(
+        paramsOrCallback?: Params$Resource$Processes$Listscriptprocesses|
+        BodyResponseCallback<Schema$ListScriptProcessesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScriptProcessesResponse>,
         callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
         void|AxiosPromise<Schema$ListScriptProcessesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Processes$Listscriptprocesses;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Processes$Listscriptprocesses;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -864,6 +901,126 @@ export namespace script_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Processes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of returned processes per page of results. Defaults
+     * to 50.
+     */
+    pageSize?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of `nextPageToken` from a previous response.
+     */
+    pageToken?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * projects with a specific deployment ID.
+     */
+    'userProcessFilter.deploymentId'?: string;
+    /**
+     * Optional field used to limit returned processes to those that completed
+     * on or before the given timestamp.
+     */
+    'userProcessFilter.endTime'?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * a script function with the given function name.
+     */
+    'userProcessFilter.functionName'?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * projects with project names containing a specific string.
+     */
+    'userProcessFilter.projectName'?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * projects with a specific script ID.
+     */
+    'userProcessFilter.scriptId'?: string;
+    /**
+     * Optional field used to limit returned processes to those that were
+     * started on or after the given timestamp.
+     */
+    'userProcessFilter.startTime'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified process statuses.
+     */
+    'userProcessFilter.statuses'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified process types.
+     */
+    'userProcessFilter.types'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified user access levels.
+     */
+    'userProcessFilter.userAccessLevels'?: string;
+  }
+  export interface Params$Resource$Processes$Listscriptprocesses {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of returned processes per page of results. Defaults
+     * to 50.
+     */
+    pageSize?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of `nextPageToken` from a previous response.
+     */
+    pageToken?: string;
+    /**
+     * The script ID of the project whose processes are listed.
+     */
+    scriptId?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * projects with a specific deployment ID.
+     */
+    'scriptProcessFilter.deploymentId'?: string;
+    /**
+     * Optional field used to limit returned processes to those that completed
+     * on or before the given timestamp.
+     */
+    'scriptProcessFilter.endTime'?: string;
+    /**
+     * Optional field used to limit returned processes to those originating from
+     * a script function with the given function name.
+     */
+    'scriptProcessFilter.functionName'?: string;
+    /**
+     * Optional field used to limit returned processes to those that were
+     * started on or after the given timestamp.
+     */
+    'scriptProcessFilter.startTime'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified process statuses.
+     */
+    'scriptProcessFilter.statuses'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified process types.
+     */
+    'scriptProcessFilter.types'?: string;
+    /**
+     * Optional field used to limit returned processes to those having one of
+     * the specified user access levels.
+     */
+    'scriptProcessFilter.userAccessLevels'?: string;
+  }
+
 
   export class Resource$Projects {
     root: Script;
@@ -894,25 +1051,36 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
+    create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Project>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
+        params: Params$Resource$Projects$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+        params: Params$Resource$Projects$Create,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    create(callback: BodyResponseCallback<Schema$Project>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Create|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -946,23 +1114,33 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+    get(params?: Params$Resource$Projects$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Project>;
+    get(params: Params$Resource$Projects$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(params: Params$Resource$Projects$Get,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(callback: BodyResponseCallback<Schema$Project>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Get|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -999,26 +1177,38 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getContent(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Content>;
     getContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback?: BodyResponseCallback<Schema$Content>): void;
+        params?: Params$Resource$Projects$Getcontent,
+        options?: MethodOptions): AxiosPromise<Schema$Content>;
     getContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Content>,
+        params: Params$Resource$Projects$Getcontent,
+        options: MethodOptions|BodyResponseCallback<Schema$Content>,
+        callback: BodyResponseCallback<Schema$Content>): void;
+    getContent(
+        params: Params$Resource$Projects$Getcontent,
+        callback: BodyResponseCallback<Schema$Content>): void;
+    getContent(callback: BodyResponseCallback<Schema$Content>): void;
+    getContent(
+        paramsOrCallback?: Params$Resource$Projects$Getcontent|
+        BodyResponseCallback<Schema$Content>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
         callback?: BodyResponseCallback<Schema$Content>):
         void|AxiosPromise<Schema$Content> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getcontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getcontent;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1056,26 +1246,38 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetrics(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Metrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Metrics>,
-        callback?: BodyResponseCallback<Schema$Metrics>): void;
+        params?: Params$Resource$Projects$Getmetrics,
+        options?: MethodOptions): AxiosPromise<Schema$Metrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Metrics>,
+        params: Params$Resource$Projects$Getmetrics,
+        options: MethodOptions|BodyResponseCallback<Schema$Metrics>,
+        callback: BodyResponseCallback<Schema$Metrics>): void;
+    getMetrics(
+        params: Params$Resource$Projects$Getmetrics,
+        callback: BodyResponseCallback<Schema$Metrics>): void;
+    getMetrics(callback: BodyResponseCallback<Schema$Metrics>): void;
+    getMetrics(
+        paramsOrCallback?: Params$Resource$Projects$Getmetrics|
+        BodyResponseCallback<Schema$Metrics>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metrics>,
         callback?: BodyResponseCallback<Schema$Metrics>):
         void|AxiosPromise<Schema$Metrics> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getmetrics;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1115,26 +1317,38 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateContent(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Content>;
     updateContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback?: BodyResponseCallback<Schema$Content>): void;
+        params?: Params$Resource$Projects$Updatecontent,
+        options?: MethodOptions): AxiosPromise<Schema$Content>;
     updateContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Content>,
+        params: Params$Resource$Projects$Updatecontent,
+        options: MethodOptions|BodyResponseCallback<Schema$Content>,
+        callback: BodyResponseCallback<Schema$Content>): void;
+    updateContent(
+        params: Params$Resource$Projects$Updatecontent,
+        callback: BodyResponseCallback<Schema$Content>): void;
+    updateContent(callback: BodyResponseCallback<Schema$Content>): void;
+    updateContent(
+        paramsOrCallback?: Params$Resource$Projects$Updatecontent|
+        BodyResponseCallback<Schema$Content>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
         callback?: BodyResponseCallback<Schema$Content>):
         void|AxiosPromise<Schema$Content> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Updatecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updatecontent;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1156,6 +1370,80 @@ export namespace script_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateProjectRequest;
+  }
+  export interface Params$Resource$Projects$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+  }
+  export interface Params$Resource$Projects$Getcontent {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * The version number of the project to retrieve. If not provided, the
+     * project's HEAD version is returned.
+     */
+    versionNumber?: number;
+  }
+  export interface Params$Resource$Projects$Getmetrics {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional field indicating a specific deployment to retrieve metrics from.
+     */
+    'metricsFilter.deploymentId'?: string;
+    /**
+     * Required field indicating what granularity of metrics are returned.
+     */
+    metricsGranularity?: string;
+    /**
+     * Required field indicating the script to get metrics for.
+     */
+    scriptId?: string;
+  }
+  export interface Params$Resource$Projects$Updatecontent {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Content;
+  }
+
   export class Resource$Projects$Deployments {
     root: Script;
     constructor(root: Script) {
@@ -1181,26 +1469,39 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Deployment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>): void;
+        params?: Params$Resource$Projects$Deployments$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        params: Params$Resource$Projects$Deployments$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    create(
+        params: Params$Resource$Projects$Deployments$Create,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    create(callback: BodyResponseCallback<Schema$Deployment>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Deployments$Create|
+        BodyResponseCallback<Schema$Deployment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
         void|AxiosPromise<Schema$Deployment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Deployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deployments$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1236,25 +1537,38 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Deployments$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Deployments$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Deployments$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Deployments$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Deployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deployments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1291,23 +1605,35 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Deployment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+    get(params?: Params$Resource$Projects$Deployments$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+    get(params: Params$Resource$Projects$Deployments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(params: Params$Resource$Projects$Deployments$Get,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Deployments$Get|
+        BodyResponseCallback<Schema$Deployment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
         void|AxiosPromise<Schema$Deployment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deployments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1345,28 +1671,40 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDeploymentsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Deployments$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDeploymentsResponse>;
+    list(
+        params: Params$Resource$Projects$Deployments$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDeploymentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Deployments$List,
+        callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Deployments$List|
+        BodyResponseCallback<Schema$ListDeploymentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeploymentsResponse>,
         callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>):
         void|AxiosPromise<Schema$ListDeploymentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deployments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1403,26 +1741,39 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Deployment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>): void;
+        params?: Params$Resource$Projects$Deployments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        params: Params$Resource$Projects$Deployments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    update(
+        params: Params$Resource$Projects$Deployments$Update,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    update(callback: BodyResponseCallback<Schema$Deployment>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Deployments$Update|
+        BodyResponseCallback<Schema$Deployment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
         void|AxiosPromise<Schema$Deployment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Deployments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deployments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1445,6 +1796,92 @@ export namespace script_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Deployments$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DeploymentConfig;
+  }
+  export interface Params$Resource$Projects$Deployments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The deployment ID to be undeployed.
+     */
+    deploymentId?: string;
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+  }
+  export interface Params$Resource$Projects$Deployments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The deployment ID.
+     */
+    deploymentId?: string;
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+  }
+  export interface Params$Resource$Projects$Deployments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of deployments on each returned page. Defaults to 50.
+     */
+    pageSize?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of `nextPageToken` from a previous response.
+     */
+    pageToken?: string;
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+  }
+  export interface Params$Resource$Projects$Deployments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The deployment ID for this deployment.
+     */
+    deploymentId?: string;
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateDeploymentRequest;
+  }
+
 
   export class Resource$Projects$Versions {
     root: Script;
@@ -1472,25 +1909,38 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Version>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>): void;
+        params?: Params$Resource$Projects$Versions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Version>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
+        params: Params$Resource$Projects$Versions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Version>,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    create(
+        params: Params$Resource$Projects$Versions$Create,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    create(callback: BodyResponseCallback<Schema$Version>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Versions$Create|
+        BodyResponseCallback<Schema$Version>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
         void|AxiosPromise<Schema$Version> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Versions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1526,23 +1976,34 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Version>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
+    get(params?: Params$Resource$Projects$Versions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Version>;
+    get(params: Params$Resource$Projects$Versions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Version>,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    get(params: Params$Resource$Projects$Versions$Get,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    get(callback: BodyResponseCallback<Schema$Version>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Versions$Get|
+        BodyResponseCallback<Schema$Version>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
         void|AxiosPromise<Schema$Version> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Versions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1580,28 +2041,40 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Versions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListVersionsResponse>;
+    list(
+        params: Params$Resource$Projects$Versions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Versions$List,
+        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Versions$List|
+        BodyResponseCallback<Schema$ListVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
         void|AxiosPromise<Schema$ListVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Versions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1623,6 +2096,58 @@ export namespace script_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Versions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Version;
+  }
+  export interface Params$Resource$Projects$Versions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+    /**
+     * The version number.
+     */
+    versionNumber?: number;
+  }
+  export interface Params$Resource$Projects$Versions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of versions on each returned page. Defaults to 50.
+     */
+    pageSize?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of `nextPageToken` from a previous response.
+     */
+    pageToken?: string;
+    /**
+     * The script project's Drive ID.
+     */
+    scriptId?: string;
+  }
+
 
 
   export class Resource$Scripts {
@@ -1657,23 +2182,34 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    run(params?: Params$Resource$Scripts$Run,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    run(params: Params$Resource$Scripts$Run,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(params: Params$Resource$Scripts$Run,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(paramsOrCallback?: Params$Resource$Scripts$Run|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scripts$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scripts$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1694,5 +2230,23 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Scripts$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The script ID of the script to be executed. To find the script ID, open
+     * the project in the script editor and select **File > Project
+     * properties**.
+     */
+    scriptId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ExecutionRequest;
   }
 }

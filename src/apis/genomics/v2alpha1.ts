@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace genomics_v2alpha1 {
+  export interface Options extends GlobalOptions { version: 'v2alpha1'; }
+
   /**
    * Genomics API
    *
@@ -70,6 +73,25 @@ export namespace genomics_v2alpha1 {
   }
 
   /**
+   * Carries information about an accelerator that can be attached to a VM.
+   */
+  export interface Schema$Accelerator {
+    /**
+     * How many accelerators of this type to attach.
+     */
+    count?: string;
+    /**
+     * The accelerator type string (eg nvidia-tesla-k80).  Only NVIDIA GPU
+     * accelerators are currently supported.  If an NVIDIA GPU is attached, the
+     * required runtime libraries will be made available to all containers under
+     * `/usr/local/nvidia`.  The driver version to install must be specified
+     * using the NVIDIA driver version parameter on the virtual machine
+     * specification.  Note that attaching a GPU increases the worker VM startup
+     * time by a few minutes.
+     */
+    type?: string;
+  }
+  /**
    * Action specifies a single action that runs a docker container.
    */
   export interface Schema$Action {
@@ -79,11 +101,11 @@ export namespace genomics_v2alpha1 {
      * arguments.  Otherwise, they are used as a command and arguments to run
      * inside the container.
      */
-    commands: string[];
+    commands?: string[];
     /**
      * If specified, overrides the ENTRYPOINT specified in the container.
      */
-    entrypoint: string;
+    entrypoint?: string;
     /**
      * The environment to pass into the container.  This environment is merged
      * with any values specified in the Pipeline message.  These values
@@ -98,11 +120,11 @@ export namespace genomics_v2alpha1 {
      * used by workflow engine authors to determine whether an individual action
      * has succeeded or failed.
      */
-    environment: any;
+    environment?: any;
     /**
      * The set of flags to apply to this action.
      */
-    flags: string[];
+    flags?: string[];
     /**
      * The URI to pull the container image from.  Note that all images
      * referenced by actions in the pipeline are pulled before the first action
@@ -110,14 +132,14 @@ export namespace genomics_v2alpha1 {
      * once, ensuring that the same image is used for all actions in a single
      * pipeline.
      */
-    imageUri: string;
+    imageUri?: string;
     /**
      * Labels to associate with the action.  This field is provided to assist
      * workflow engine authors in identifying actions (for example, to indicate
      * what sort of action they perform: eg. localization, debugging, etc). They
      * are returned in the operation metadata but are otherwise ignored.
      */
-    labels: any;
+    labels?: any;
     /**
      * A list of mounts to make available to the action.  In addition to the
      * values specified here, every action has a special virtual disk mounted
@@ -134,19 +156,19 @@ export namespace genomics_v2alpha1 {
      * complete contents of   each individual action&#39;s standard error
      * output&lt;/li&gt; &lt;/ul&gt;
      */
-    mounts: Schema$Mount[];
+    mounts?: Schema$Mount[];
     /**
      * An optional name for the container.  The container hostname will be set
      * to this name, making it useful for inter-container communication.  The
      * name must contain only upper and lowercase alphanumeric characters and
      * hypens and cannot start with a hypen.
      */
-    name: string;
+    name?: string;
     /**
      * The PID namespace to run the action inside.  If unspecified, a separate
      * isolated namespace is used.
      */
-    pidNamespace: string;
+    pidNamespace?: string;
     /**
      * A map of container to host port mappings for this container.  Note that
      * if the container already specifies exposed ports, the
@@ -155,7 +177,7 @@ export namespace genomics_v2alpha1 {
      * assigned.  To determine the resulting port number, consult the
      * ContainerStartedEvent in the operation metadata.
      */
-    portMappings: any;
+    portMappings?: any;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -168,15 +190,15 @@ export namespace genomics_v2alpha1 {
     /**
      * The deadline has expired and the worker needs more time.
      */
-    deadlineExpired: Schema$Empty;
+    deadlineExpired?: Schema$Empty;
     /**
      * A workflow specific event occurred.
      */
-    event: any;
+    event?: any;
     /**
      * The operation has finished with the given result.
      */
-    result: Schema$Status;
+    result?: Schema$Status;
   }
   /**
    * The response to the CheckIn method.
@@ -188,11 +210,11 @@ export namespace genomics_v2alpha1 {
      * must attempt to transmit the extension request no later than the
      * deadline.
      */
-    deadline: string;
+    deadline?: string;
     /**
      * The metadata that describes the operation assigned to the worker.
      */
-    metadata: any;
+    metadata?: any;
   }
   /**
    * Describes a Compute Engine resource that is being managed by a running
@@ -202,19 +224,19 @@ export namespace genomics_v2alpha1 {
     /**
      * The names of the disks that were created for this pipeline.
      */
-    diskNames: string[];
+    diskNames?: string[];
     /**
      * The instance on which the operation is running.
      */
-    instanceName: string;
+    instanceName?: string;
     /**
      * The machine type of the instance.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * The availability zone in which the instance resides.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * This event is generated when a container starts.
@@ -223,20 +245,20 @@ export namespace genomics_v2alpha1 {
     /**
      * The numeric ID of the action that started this container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The public IP address that can be used to connect to the container.  This
      * field is only populated when at least one port mapping is present.  If
      * the instance was created with a private address this field will be empty
      * even if port mappings exist.
      */
-    ipAddress: string;
+    ipAddress?: string;
     /**
      * The container to host port mappings installed for this container.  This
      * set will contain any ports exposed using the PUBLISH_EXPOSED_PORTS flag
      * as well as any specified in the Action definition.
      */
-    portMappings: any;
+    portMappings?: any;
   }
   /**
    * This event is generated when a container exits.
@@ -245,11 +267,21 @@ export namespace genomics_v2alpha1 {
     /**
      * The numeric ID of the action that started this container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The exit status of the container.
      */
-    exitStatus: number;
+    exitStatus?: number;
+    /**
+     * The tail end of any content written to standard error by the container.
+     * To prevent this from being recorded if the action is known to emit large
+     * amounts of debugging noise or sensitive information, set the
+     * DISABLE_STANDARD_ERROR_CAPTURE flag.  Note that only a small amount of
+     * the end of the stream is captured here. The entire stream is stored in
+     * the /google/logs directory mounted into each action, and may be copied
+     * off the machine as described elsewhere.
+     */
+    stderr?: string;
   }
   /**
    * This event is generated whenever a resource limitation or transient error
@@ -261,14 +293,14 @@ export namespace genomics_v2alpha1 {
      * without notice since it is often generated by another service (such as
      * Compute Engine).
      */
-    cause: string;
+    cause?: string;
     /**
      * If the delay was caused by a resource shortage, this field lists the
      * Compute Engine metrics that are preventing this operation from running
      * (for example, CPUS or INSTANCES).  If the particular metric is not known,
      * a single UNKNOWN metric will be present.
      */
-    metrics: string[];
+    metrics?: string[];
   }
   /**
    * Carries information about a disk that can be attached to a VM.
@@ -279,23 +311,23 @@ export namespace genomics_v2alpha1 {
      * The name must contain only upper and lowercase alphanumeric characters
      * and hypens and cannot start with a hypen.
      */
-    name: string;
+    name?: string;
     /**
      * The size, in gigabytes, of the disk to attach.  Note that this value is
      * not configurable for some disk types such as local-ssd.  If the size is
      * not specified, a size of at least 500gb is used to ensure reasonable I/O
      * performance.
      */
-    sizeGb: number;
+    sizeGb?: number;
     /**
      * An optional image to put on the disk before attaching it to the VM.
      */
-    sourceImage: string;
+    sourceImage?: string;
     /**
      * The Compute Engine disk type.  If unspecified, &#39;standard-pd&#39; is
      * used.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -315,15 +347,15 @@ export namespace genomics_v2alpha1 {
      * change at any time without notice.  Any application logic must use the
      * information in the details field.
      */
-    description: string;
+    description?: string;
     /**
      * Machine readable details about the event.
      */
-    details: any;
+    details?: any;
     /**
      * The time that the event occurred.
      */
-    timestamp: string;
+    timestamp?: string;
   }
   /**
    * This event is generated when the execution of a pipeline has failed.  Note
@@ -333,11 +365,11 @@ export namespace genomics_v2alpha1 {
     /**
      * The human readable description of the cause of the failure.
      */
-    cause: string;
+    cause?: string;
     /**
      * The Google standard error code that best describes this failure.
      */
-    code: string;
+    code?: string;
   }
   /**
    * The read group set import response.
@@ -346,7 +378,7 @@ export namespace genomics_v2alpha1 {
     /**
      * IDs of the read group sets that were created.
      */
-    readGroupSetIds: string[];
+    readGroupSetIds?: string[];
   }
   /**
    * The variant data import response.
@@ -355,7 +387,7 @@ export namespace genomics_v2alpha1 {
     /**
      * IDs of the call sets created during the import.
      */
-    callSetIds: string[];
+    callSetIds?: string[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -364,11 +396,11 @@ export namespace genomics_v2alpha1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Metadata carries information about the pipeline execution that is returned
@@ -378,20 +410,28 @@ export namespace genomics_v2alpha1 {
     /**
      * The time that the operation was created by the API.
      */
-    createTime: string;
+    createTime?: string;
+    /**
+     * The time at which execution was completed and resources were cleaned up.
+     */
+    endTime?: string;
     /**
      * The list of events that have happened so far during the execution of this
      * operation.
      */
-    events: Schema$Event[];
+    events?: Schema$Event[];
     /**
      * The user defined labels associated with this operation.
      */
-    labels: any;
+    labels?: any;
     /**
      * The pipeline this operation represents.
      */
-    pipeline: Schema$Pipeline;
+    pipeline?: Schema$Pipeline;
+    /**
+     * The first time at which resources were allocated to execute the pipeline.
+     */
+    startTime?: string;
   }
   /**
    * Mount carries information about a particular disk mount inside a container.
@@ -400,15 +440,15 @@ export namespace genomics_v2alpha1 {
     /**
      * The name of the disk to mount, as specified in the resources section.
      */
-    disk: string;
+    disk?: string;
     /**
      * The path to mount the disk at inside the container.
      */
-    path: string;
+    path?: string;
     /**
      * If true, the disk is mounted read only inside the container.
      */
-    readOnly: boolean;
+    readOnly?: boolean;
   }
   /**
    * VM networking options.
@@ -418,7 +458,7 @@ export namespace genomics_v2alpha1 {
      * The network name to attach the VM&#39;s network interface to.  If
      * unspecified, the global default network is used.
      */
-    name: string;
+    name?: string;
     /**
      * If set to true, do not attach a public IP address to the VM.  Note that
      * without an public IP address, additional configuration is required to
@@ -426,7 +466,7 @@ export namespace genomics_v2alpha1 {
      * https://cloud.google.com/vpc/docs/configure-private-google-access for
      * more information.
      */
-    usePrivateAddress: boolean;
+    usePrivateAddress?: boolean;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -438,28 +478,28 @@ export namespace genomics_v2alpha1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
      * `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
      */
-    name: string;
+    name?: string;
     /**
      * If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned.
      * If importing Variants, an ImportVariantsResponse is returned. For
      * pipelines and exports, an Empty response is returned.
      */
-    response: any;
+    response?: any;
   }
   /**
    * An event that occurred during an Operation.
@@ -468,17 +508,17 @@ export namespace genomics_v2alpha1 {
     /**
      * Required description of event.
      */
-    description: string;
+    description?: string;
     /**
      * Optional time of when event finished. An event can have a start time and
      * no finish time. If an event has a finish time, there must be a start
      * time.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional time of when event started.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Metadata describing an Operation.
@@ -488,45 +528,45 @@ export namespace genomics_v2alpha1 {
      * This field is deprecated. Use `labels` instead. Optionally provided by
      * the caller when submitting the request that creates the operation.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * The time at which the job was submitted to the Genomics service.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The time at which the job stopped running.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional event messages that were generated during the job&#39;s
      * execution. This also contains any warnings that were generated during
      * import or export.
      */
-    events: Schema$OperationEvent[];
+    events?: Schema$OperationEvent[];
     /**
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels: any;
+    labels?: any;
     /**
      * The Google Cloud Project in which the job is scoped.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The original request that started the operation. Note that this will be
      * in current version of the API. If the operation was started with v1beta2
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request: any;
+    request?: any;
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata: any;
+    runtimeMetadata?: any;
     /**
      * The time at which the job began to run.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * The Pipeline object describes a series of actions to execute, expressed as
@@ -536,17 +576,17 @@ export namespace genomics_v2alpha1 {
     /**
      * The list of actions to execute, in the order they are specified.
      */
-    actions: Schema$Action[];
+    actions?: Schema$Action[];
     /**
      * The environment to pass into every action.  Each action may also specify
      * additional environment variables but cannot delete an entry from this map
      * (though they may overwrite it with a different value).
      */
-    environment: any;
+    environment?: any;
     /**
      * The resources required for execution.
      */
-    resources: Schema$Resources;
+    resources?: Schema$Resources;
   }
   /**
    * This event is generated when the worker starts pulling an image.
@@ -555,7 +595,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The URI of the image that was pulled.
      */
-    imageUri: string;
+    imageUri?: string;
   }
   /**
    * This event is generated when the worker stops pulling an image.
@@ -564,7 +604,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The URI of the image that was pulled.
      */
-    imageUri: string;
+    imageUri?: string;
   }
   /**
    * The system resources for the pipeline run.  At least one zone or region
@@ -574,21 +614,21 @@ export namespace genomics_v2alpha1 {
     /**
      * The customer project ID to allocate resources in.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The list of regions allowed for VM allocation.  If set, the zones field
      * must not be set.
      */
-    regions: string[];
+    regions?: string[];
     /**
      * The virtual machine specification.
      */
-    virtualMachine: Schema$VirtualMachine;
+    virtualMachine?: Schema$VirtualMachine;
     /**
      * The list of zones allowed for VM allocation.  If set, the regions field
      * must not be set.
      */
-    zones: string[];
+    zones?: string[];
   }
   /**
    * The arguments to the RunPipeline method.  The requesting user must have the
@@ -603,11 +643,11 @@ export namespace genomics_v2alpha1 {
      * resources created while executing the operation, see the appropriate
      * resource message (i.e., VirtualMachine).
      */
-    labels: any;
+    labels?: any;
     /**
      * The description of the pipeline to run.
      */
-    pipeline: Schema$Pipeline;
+    pipeline?: Schema$Pipeline;
   }
   /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
@@ -617,7 +657,7 @@ export namespace genomics_v2alpha1 {
     /**
      * Execution information specific to Google Compute Engine.
      */
-    computeEngine: Schema$ComputeEngine;
+    computeEngine?: Schema$ComputeEngine;
   }
   /**
    * Carries information about a Google Cloud Service Account.
@@ -627,12 +667,12 @@ export namespace genomics_v2alpha1 {
      * Email address of the service account.  If not specified, the default
      * compute engine service account for the project will be used.
      */
-    email: string;
+    email?: string;
     /**
      * List of scopes to be enabled for this service account on the VM, in
      * addition to the Google Genomics API scope.
      */
-    scopes: string[];
+    scopes?: string[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -674,18 +714,18 @@ export namespace genomics_v2alpha1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * This event is generated when the execution of a container results in a
@@ -697,23 +737,27 @@ export namespace genomics_v2alpha1 {
     /**
      * The numeric ID of the action that started the container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The exit status of the container.
      */
-    exitStatus: number;
+    exitStatus?: number;
   }
   /**
    * Carries information about a Compute Engine VM resource.
    */
   export interface Schema$VirtualMachine {
     /**
+     * The list of accelerators to attach to the VM.
+     */
+    accelerators?: Schema$Accelerator[];
+    /**
      * The size of the boot disk, in gigabytes. The boot disk must be large
      * enough to accommodate all of the docker images from each action in the
      * pipeline at the same time. If not specified, a small but reasonable
      * default value is used.
      */
-    bootDiskSizeGb: number;
+    bootDiskSizeGb?: number;
     /**
      * The host operating system image to use.  At present, only Container
      * Optimized OS images may be used.  The default value is
@@ -725,7 +769,7 @@ export namespace genomics_v2alpha1 {
      * COS, use the value
      * &quot;projects/cos-cloud/global/images/family/cos-beta&quot;.
      */
-    bootImage: string;
+    bootImage?: string;
     /**
      * The CPU platform to request.  An instance based on a newer platform may
      * be allocated but never one with less capabilities.  The value of this
@@ -735,11 +779,11 @@ export namespace genomics_v2alpha1 {
      * more information about the effect of this parameter, please visit
      * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      */
-    cpuPlatform: string;
+    cpuPlatform?: string;
     /**
      * The list of disks to create and attach to the VM.
      */
-    disks: Schema$Disk[];
+    disks?: Schema$Disk[];
     /**
      * Optional set of labels to apply to the VM and any attached disk
      * resources. These labels must adhere to the name and value restrictions on
@@ -747,26 +791,34 @@ export namespace genomics_v2alpha1 {
      * creation time to the VM and are applied on a best-effort basis to
      * attached disk resources shortly after VM creation.
      */
-    labels: any;
+    labels?: any;
     /**
      * The machine type of the virtual machine to create.  Must be the short
      * name of a standard machine type (such as &quot;n1-standard-1&quot;) or a
      * custom machine type (such as &quot;custom-1-4096&quot;).
      */
-    machineType: string;
+    machineType?: string;
     /**
      * The VM network configuration.
      */
-    network: Schema$Network;
+    network?: Schema$Network;
+    /**
+     * The NVIDIA driver version to use when attaching an NVIDIA GPU
+     * accelerator. The version specified here must be compatible with the GPU
+     * libraries contained in the container being executed, and must be one of
+     * the drivers hosted in the &#39;nvidia-drivers-us-public&#39; bucket on
+     * Google Cloud Storage.
+     */
+    nvidiaDriverVersion?: string;
     /**
      * If true, allocate a preemptible VM.
      */
-    preemptible: boolean;
+    preemptible?: boolean;
     /**
      * The service account to install on the VM.  This account does not need any
      * permissions other than those required by the pipeline.
      */
-    serviceAccount: Schema$ServiceAccount;
+    serviceAccount?: Schema$ServiceAccount;
   }
   /**
    * This event is generated once a worker VM has been assigned to run the
@@ -776,11 +828,11 @@ export namespace genomics_v2alpha1 {
     /**
      * The worker&#39;s instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * The zone the worker is running in.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * This event is generated when the worker VM that was assigned to the
@@ -790,12 +842,13 @@ export namespace genomics_v2alpha1 {
     /**
      * The worker&#39;s instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * The zone the worker was running in.
      */
-    zone: string;
+    zone?: string;
   }
+
 
   export class Resource$Pipelines {
     root: Genomics;
@@ -827,23 +880,34 @@ export namespace genomics_v2alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    run(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    run(params?: Params$Resource$Pipelines$Run,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    run(params: Params$Resource$Pipelines$Run,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(params: Params$Resource$Pipelines$Run,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(paramsOrCallback?: Params$Resource$Pipelines$Run|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pipelines$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -866,6 +930,19 @@ export namespace genomics_v2alpha1 {
     }
   }
 
+  export interface Params$Resource$Pipelines$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunPipelineRequest;
+  }
+
+
   export class Resource$Projects {
     root: Genomics;
     operations: Resource$Projects$Operations;
@@ -879,6 +956,8 @@ export namespace genomics_v2alpha1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Operations {
     root: Genomics;
     constructor(root: Genomics) {
@@ -908,25 +987,38 @@ export namespace genomics_v2alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -963,23 +1055,35 @@ export namespace genomics_v2alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1017,28 +1121,40 @@ export namespace genomics_v2alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1060,6 +1176,75 @@ export namespace genomics_v2alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A string for filtering Operations. In v2alpha1, the following filter
+     * fields are supported&#58;  * createTime&#58; The time this job was
+     * created * events&#58; The set of event (names) that have occurred while
+     * running   the pipeline.  The &#58; operator can be used to determine if a
+     * particular event has occurred. * error&#58; If the pipeline is running,
+     * this value is NULL.  Once the   pipeline finishes, the value is the
+     * standard Google error code. * labels.key or labels."key with space" where
+     * key is a label key.  In v1 and v1alpha2, the following filter fields are
+     * supported&#58;  * projectId&#58; Required. Corresponds to
+     * OperationMetadata.projectId. * createTime&#58; The time this job was
+     * created, in seconds from the
+     * [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
+     * operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or
+     * `CANCELED`. Only   one status may be specified. * labels.key where key is
+     * a label key.  Examples&#58;  * `projectId = my-project AND createTime >=
+     * 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND
+     * createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project
+     * AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If unspecified, defaults to 256.
+     * The maximum value is 2048.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
 
   export class Resource$Workers {
@@ -1088,26 +1273,37 @@ export namespace genomics_v2alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    checkIn(params?: any, options?: MethodOptions):
+    checkIn(params?: Params$Resource$Workers$Checkin, options?: MethodOptions):
         AxiosPromise<Schema$CheckInResponse>;
     checkIn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
-        callback?: BodyResponseCallback<Schema$CheckInResponse>): void;
+        params: Params$Resource$Workers$Checkin,
+        options: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
+        callback: BodyResponseCallback<Schema$CheckInResponse>): void;
     checkIn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
+        params: Params$Resource$Workers$Checkin,
+        callback: BodyResponseCallback<Schema$CheckInResponse>): void;
+    checkIn(callback: BodyResponseCallback<Schema$CheckInResponse>): void;
+    checkIn(
+        paramsOrCallback?: Params$Resource$Workers$Checkin|
+        BodyResponseCallback<Schema$CheckInResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CheckInResponse>,
         callback?: BodyResponseCallback<Schema$CheckInResponse>):
         void|AxiosPromise<Schema$CheckInResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Workers$Checkin;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Workers$Checkin;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1128,5 +1324,21 @@ export namespace genomics_v2alpha1 {
         return createAPIRequest<Schema$CheckInResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Workers$Checkin {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The worker id, assigned when it was created.
+     */
+    id?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CheckInRequest;
   }
 }

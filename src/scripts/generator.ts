@@ -23,7 +23,7 @@ import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 
-import {FragmentResponse, Schema, SchemaItem, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../lib/schema';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../lib/schema';
 
 import {buildurl} from './generator_utils';
 
@@ -109,7 +109,12 @@ export class Generator {
   }
 
   private cleanPropertyName(prop: string) {
-    return prop.replace('@', '').replace('-', '');
+    const match = prop.match(/[-@.]/g);
+    return match ? `'${prop}'` : prop;
+  }
+
+  private hasResourceParam(method: SchemaMethod) {
+    return method.parameters && method.parameters['resource'];
   }
 
   private options: GeneratorOptions;
@@ -131,6 +136,7 @@ export class Generator {
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
+    this.env.addFilter('hasResourceParam', this.hasResourceParam);
     this.env.addFilter('cleanPaths', (str) => {
       return str ? str.replace(/\/\*\//gi, '/x/')
                        .replace(/\/\*`/gi, '/x')

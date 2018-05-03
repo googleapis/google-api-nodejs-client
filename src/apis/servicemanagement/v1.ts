@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace servicemanagement_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Service Management API
    *
@@ -78,7 +81,7 @@ export namespace servicemanagement_v1 {
      * Useful description for why this advice was applied and what actions
      * should be taken to mitigate any implied risks.
      */
-    description: string;
+    description?: string;
   }
   /**
    * Api is a light-weight descriptor for an API Interface.  Interfaces are also
@@ -94,29 +97,29 @@ export namespace servicemanagement_v1 {
     /**
      * The methods of this interface, in unspecified order.
      */
-    methods: Schema$Method[];
+    methods?: Schema$Method[];
     /**
      * Included interfaces. See Mixin.
      */
-    mixins: Schema$Mixin[];
+    mixins?: Schema$Mixin[];
     /**
      * The fully qualified name of this interface, including package name
      * followed by the interface&#39;s simple name.
      */
-    name: string;
+    name?: string;
     /**
      * Any metadata attached to the interface.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * Source context for the protocol buffer service represented by this
      * message.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax of the service.
      */
-    syntax: string;
+    syntax?: string;
     /**
      * A version string for this interface. If specified, must have the form
      * `major-version.minor-version`, as in `1.10`. If the minor version is
@@ -134,7 +137,7 @@ export namespace servicemanagement_v1 {
      * omitted. Zero major versions must only be used for experimental, non-GA
      * interfaces.
      */
-    version: string;
+    version?: string;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -163,13 +166,13 @@ export namespace servicemanagement_v1 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -185,11 +188,11 @@ export namespace servicemanagement_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * `Authentication` defines the authentication configuration for an API.
@@ -204,13 +207,13 @@ export namespace servicemanagement_v1 {
     /**
      * Defines a set of authentication providers that a service supports.
      */
-    providers: Schema$AuthProvider[];
+    providers?: Schema$AuthProvider[];
     /**
      * A list of authentication rules that apply to individual API methods.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$AuthenticationRule[];
+    rules?: Schema$AuthenticationRule[];
   }
   /**
    * Authentication rules for the service.  By default, if a method has any
@@ -223,24 +226,24 @@ export namespace servicemanagement_v1 {
     /**
      * If true, the service accepts API keys without any other credential.
      */
-    allowWithoutCredential: boolean;
+    allowWithoutCredential?: boolean;
     /**
      * Configuration for custom authentication.
      */
-    customAuth: Schema$CustomAuthRequirements;
+    customAuth?: Schema$CustomAuthRequirements;
     /**
      * The requirements for OAuth credentials.
      */
-    oauth: Schema$OAuthRequirements;
+    oauth?: Schema$OAuthRequirements;
     /**
      * Requirements for additional authentication providers.
      */
-    requirements: Schema$AuthRequirement[];
+    requirements?: Schema$AuthRequirement[];
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Configuration of authorization.  This section determines the authorization
@@ -253,7 +256,7 @@ export namespace servicemanagement_v1 {
      * The name of the authorization provider, such as
      * firebaserules.googleapis.com.
      */
-    provider: string;
+    provider?: string;
   }
   /**
    * Configuration for an anthentication provider, including support for [JSON
@@ -273,17 +276,17 @@ export namespace servicemanagement_v1 {
      * Example:      audiences: bookstore_android.apps.googleusercontent.com,
      * bookstore_web.apps.googleusercontent.com
      */
-    audiences: string;
+    audiences?: string;
     /**
      * Redirect URL if JWT token is required but no present or is expired.
      * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
      */
-    authorizationUrl: string;
+    authorizationUrl?: string;
     /**
      * The unique identifier of the auth provider. It will be referred to by
      * `AuthRequirement.provider_id`.  Example: &quot;bookstore_auth&quot;.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies the principal that issued the JWT. See
      * https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
@@ -291,7 +294,7 @@ export namespace servicemanagement_v1 {
      * https://securetoken.google.com Example:
      * 1234567-compute@developer.gserviceaccount.com
      */
-    issuer: string;
+    issuer?: string;
     /**
      * URL of the provider&#39;s public key set to validate signature of the
      * JWT. See [OpenID
@@ -302,7 +305,7 @@ export namespace servicemanagement_v1 {
      * a Google service account).  Example:
      * https://www.googleapis.com/oauth2/v1/certs
      */
-    jwksUri: string;
+    jwksUri?: string;
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web
@@ -323,12 +326,12 @@ export namespace servicemanagement_v1 {
      * Example:      audiences: bookstore_android.apps.googleusercontent.com,
      * bookstore_web.apps.googleusercontent.com
      */
-    audiences: string;
+    audiences?: string;
     /**
      * id from authentication provider.  Example:      provider_id:
      * bookstore_auth
      */
-    providerId: string;
+    providerId?: string;
   }
   /**
    * `Backend` defines the backend configuration for a service.
@@ -339,7 +342,7 @@ export namespace servicemanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$BackendRule[];
+    rules?: Schema$BackendRule[];
   }
   /**
    * A backend rule provides configuration for an individual API element.
@@ -348,23 +351,23 @@ export namespace servicemanagement_v1 {
     /**
      * The address of the API backend.
      */
-    address: string;
+    address?: string;
     /**
      * The number of seconds to wait for a response from a request.  The default
      * deadline for gRPC is infinite (no deadline) and HTTP requests is 5
      * seconds.
      */
-    deadline: number;
+    deadline?: number;
     /**
      * Minimum deadline in seconds needed for this method. Calls having deadline
      * value lower than this will be rejected.
      */
-    minDeadline: number;
+    minDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Billing related configuration of the service.  The following example shows
@@ -385,7 +388,7 @@ export namespace servicemanagement_v1 {
      * different monitored resource type. A metric can be used in at most one
      * consumer destination.
      */
-    consumerDestinations: Schema$BillingDestination[];
+    consumerDestinations?: Schema$BillingDestination[];
   }
   /**
    * Configuration of a specific billing destination (Currently only support
@@ -396,12 +399,12 @@ export namespace servicemanagement_v1 {
      * Names of the metrics to report to this billing destination. Each name
      * must be defined in Service.metrics section.
      */
-    metrics: string[];
+    metrics?: string[];
     /**
      * The monitored resource type. The type must be defined in
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -422,12 +425,12 @@ export namespace servicemanagement_v1 {
      * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * Change report associated with a particular service configuration.  It
@@ -442,7 +445,7 @@ export namespace servicemanagement_v1 {
      * Example:
      * visibility.rules[selector=&#39;LibraryService.CreateBook&#39;].restriction
      */
-    configChanges: Schema$ConfigChange[];
+    configChanges?: Schema$ConfigChange[];
   }
   /**
    * Output generated from semantically comparing two versions of a service
@@ -455,11 +458,11 @@ export namespace servicemanagement_v1 {
      * Collection of advice provided for this change, useful for determining the
      * possible impact of this change.
      */
-    advices: Schema$Advice[];
+    advices?: Schema$Advice[];
     /**
      * The type for this change, either ADDED, REMOVED, or MODIFIED.
      */
-    changeType: string;
+    changeType?: string;
     /**
      * Object hierarchy path to the change, with levels separated by a
      * &#39;.&#39; character. For repeated fields, an applicable unique
@@ -471,17 +474,17 @@ export namespace servicemanagement_v1 {
      * quota.metric_rules[selector==&quot;google&quot;].metric_costs[key==&quot;reads&quot;].value
      * - logging.producer_destinations[0]
      */
-    element: string;
+    element?: string;
     /**
      * Value of the changed object in the new Service configuration, in JSON
      * format. This field will not be populated if ChangeType == REMOVED.
      */
-    newValue: string;
+    newValue?: string;
     /**
      * Value of the changed object in the old Service configuration, in JSON
      * format. This field will not be populated if ChangeType == ADDED.
      */
-    oldValue: string;
+    oldValue?: string;
   }
   /**
    * Generic specification of a source configuration file
@@ -490,15 +493,15 @@ export namespace servicemanagement_v1 {
     /**
      * The bytes that constitute the file.
      */
-    fileContents: string;
+    fileContents?: string;
     /**
      * The file name of the configuration file (full or relative path).
      */
-    filePath: string;
+    filePath?: string;
     /**
      * The type of configuration file this represents.
      */
-    fileType: string;
+    fileType?: string;
   }
   /**
    * Represents a service configuration with its name and id.
@@ -508,7 +511,7 @@ export namespace servicemanagement_v1 {
      * Resource name of a service config. It must have the following format:
      * &quot;services/{service name}/configs/{config id}&quot;.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Represents a source file which is used to generate the service
@@ -519,13 +522,13 @@ export namespace servicemanagement_v1 {
      * Set of source configuration files that are used to generate a service
      * configuration (`google.api.Service`).
      */
-    files: Schema$ConfigFile[];
+    files?: Schema$ConfigFile[];
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
      * generate one instead.
      */
-    id: string;
+    id?: string;
   }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:
@@ -551,7 +554,7 @@ export namespace servicemanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$ContextRule[];
+    rules?: Schema$ContextRule[];
   }
   /**
    * A context rule provides information about the context for an individual API
@@ -562,25 +565,25 @@ export namespace servicemanagement_v1 {
      * A list of full type names or extension IDs of extensions allowed in grpc
      * side channel from client to backend.
      */
-    allowedRequestExtensions: string[];
+    allowedRequestExtensions?: string[];
     /**
      * A list of full type names or extension IDs of extensions allowed in grpc
      * side channel from backend to client.
      */
-    allowedResponseExtensions: string[];
+    allowedResponseExtensions?: string[];
     /**
      * A list of full type names of provided contexts.
      */
-    provided: string[];
+    provided?: string[];
     /**
      * A list of full type names of requested contexts.
      */
-    requested: string[];
+    requested?: string[];
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Selects and configures the service controller used by the service.  The
@@ -592,7 +595,7 @@ export namespace servicemanagement_v1 {
      * The service control environment to use. If empty, no control plane
      * feature (like quota and billing) will be enabled.
      */
-    environment: string;
+    environment?: string;
   }
   /**
    * Configuration for a custom authentication provider.
@@ -603,7 +606,7 @@ export namespace servicemanagement_v1 {
      * authentication provider, typically formatted as a SmartService string
      * (go/smartservice).
      */
-    provider: string;
+    provider?: string;
   }
   /**
    * Customize service error responses.  For example, list any service specific
@@ -617,12 +620,12 @@ export namespace servicemanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$CustomErrorRule[];
+    rules?: Schema$CustomErrorRule[];
     /**
      * The list of custom error detail types, e.g.
      * &#39;google.foo.v1.CustomError&#39;.
      */
-    types: string[];
+    types?: string[];
   }
   /**
    * A custom error rule.
@@ -632,12 +635,12 @@ export namespace servicemanagement_v1 {
      * Mark this message as possible payload in error response.  Otherwise,
      * objects of this type will be filtered when they appear in error payload.
      */
-    isErrorType: boolean;
+    isErrorType?: boolean;
     /**
      * Selects messages to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * A custom pattern is used for defining custom HTTP verb.
@@ -646,11 +649,11 @@ export namespace servicemanagement_v1 {
     /**
      * The name of this custom HTTP verb.
      */
-    kind: string;
+    kind?: string;
     /**
      * The path matched by this custom verb.
      */
-    path: string;
+    path?: string;
   }
   /**
    * Strategy used to delete a service. This strategy is a placeholder only used
@@ -664,15 +667,15 @@ export namespace servicemanagement_v1 {
     /**
      * The kind of diagnostic information provided.
      */
-    kind: string;
+    kind?: string;
     /**
      * File name and line number of the error or warning.
      */
-    location: string;
+    location?: string;
     /**
      * Message describing the error or warning.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for DisableService method.
@@ -684,7 +687,7 @@ export namespace servicemanagement_v1 {
      * following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is
      * made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
      */
-    consumerId: string;
+    consumerId?: string;
   }
   /**
    * `Documentation` provides the information for describing a service. Example:
@@ -728,7 +731,7 @@ export namespace servicemanagement_v1 {
     /**
      * The URL to the root of documentation.
      */
-    documentationRootUrl: string;
+    documentationRootUrl?: string;
     /**
      * Declares a single overview page. For example:
      * &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   overview:
@@ -739,22 +742,22 @@ export namespace servicemanagement_v1 {
      * &lt;/code&gt;&lt;/pre&gt; Note: you cannot specify both `overview` field
      * and `pages` field.
      */
-    overview: string;
+    overview?: string;
     /**
      * The top level pages for the documentation set.
      */
-    pages: Schema$Page[];
+    pages?: Schema$Page[];
     /**
      * A list of documentation rules that apply to individual API elements.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$DocumentationRule[];
+    rules?: Schema$DocumentationRule[];
     /**
      * A short summary of what the service does. Can only be provided by plain
      * text.
      */
-    summary: string;
+    summary?: string;
   }
   /**
    * A documentation rule provides information about individual API elements.
@@ -764,11 +767,11 @@ export namespace servicemanagement_v1 {
      * Deprecation description of the selected element(s). It can be provided if
      * an element is marked as `deprecated`.
      */
-    deprecationDescription: string;
+    deprecationDescription?: string;
     /**
      * Description of the selected API(s).
      */
-    description: string;
+    description?: string;
     /**
      * The selector is a comma-separated list of patterns. Each pattern is a
      * qualified name of the element which may end in &quot;*&quot;, indicating
@@ -777,7 +780,7 @@ export namespace servicemanagement_v1 {
      * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To specify a default for all
      * applicable elements, the whole pattern &quot;*&quot; is used.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Request message for EnableService method.
@@ -789,7 +792,7 @@ export namespace servicemanagement_v1 {
      * following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is
      * made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
      */
-    consumerId: string;
+    consumerId?: string;
   }
   /**
    * `Endpoint` describes a network endpoint that serves a set of APIs. A
@@ -809,7 +812,7 @@ export namespace servicemanagement_v1 {
      * please specify multiple google.api.Endpoint for each of the intended
      * aliases.  Additional names that this endpoint will be hosted on.
      */
-    aliases: string[];
+    aliases?: string[];
     /**
      * Allowing
      * [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka
@@ -818,15 +821,15 @@ export namespace servicemanagement_v1 {
      * used by the browser to determine whether the subsequent cross-origin
      * request is allowed to proceed.
      */
-    allowCors: boolean;
+    allowCors?: boolean;
     /**
      * The list of features enabled on this endpoint.
      */
-    features: string[];
+    features?: string[];
     /**
      * The canonical name of this endpoint.
      */
-    name: string;
+    name?: string;
     /**
      * The specification of an Internet routable address of API frontend that
      * will handle requests to this [API
@@ -834,7 +837,7 @@ export namespace servicemanagement_v1 {
      * either a valid IPv4 address or a fully-qualified domain name. For
      * example, &quot;8.8.8.8&quot; or &quot;myservice.appspot.com&quot;.
      */
-    target: string;
+    target?: string;
   }
   /**
    * Enum type definition.
@@ -843,23 +846,23 @@ export namespace servicemanagement_v1 {
     /**
      * Enum value definitions.
      */
-    enumvalue: Schema$EnumValue[];
+    enumvalue?: Schema$EnumValue[];
     /**
      * Enum type name.
      */
-    name: string;
+    name?: string;
     /**
      * Protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * The source context.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Enum value definition.
@@ -868,15 +871,15 @@ export namespace servicemanagement_v1 {
     /**
      * Enum value name.
      */
-    name: string;
+    name?: string;
     /**
      * Enum value number.
      */
-    number: number;
+    number?: number;
     /**
      * Protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
   }
   /**
    * Experimental service configuration. These configuration options can only be
@@ -886,7 +889,7 @@ export namespace servicemanagement_v1 {
     /**
      * Authorization configuration.
      */
-    authorization: Schema$AuthorizationConfig;
+    authorization?: Schema$AuthorizationConfig;
   }
   /**
    * A single field of a message type.
@@ -895,46 +898,46 @@ export namespace servicemanagement_v1 {
     /**
      * The field cardinality.
      */
-    cardinality: string;
+    cardinality?: string;
     /**
      * The string value of the default value of this field. Proto2 syntax only.
      */
-    defaultValue: string;
+    defaultValue?: string;
     /**
      * The field JSON name.
      */
-    jsonName: string;
+    jsonName?: string;
     /**
      * The field type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The field name.
      */
-    name: string;
+    name?: string;
     /**
      * The field number.
      */
-    number: number;
+    number?: number;
     /**
      * The index of the field type in `Type.oneofs`, for message or enumeration
      * types. The first type has index 1; zero means the type is not in the
      * list.
      */
-    oneofIndex: number;
+    oneofIndex?: number;
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * Whether to use alternative packed wire representation.
      */
-    packed: boolean;
+    packed?: boolean;
     /**
      * The field type URL, without the scheme, for message or enumeration types.
      * Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
      */
-    typeUrl: string;
+    typeUrl?: string;
   }
   /**
    * Request message for GenerateConfigReport method.
@@ -946,14 +949,14 @@ export namespace servicemanagement_v1 {
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    newConfig: any;
+    newConfig?: any;
     /**
      * Service configuration against which the comparison will be done. For this
      * version of API, the supported types are
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    oldConfig: any;
+    oldConfig?: any;
   }
   /**
    * Response message for GenerateConfigReport method.
@@ -963,20 +966,20 @@ export namespace servicemanagement_v1 {
      * list of ChangeReport, each corresponding to comparison between two
      * service configurations.
      */
-    changeReports: Schema$ChangeReport[];
+    changeReports?: Schema$ChangeReport[];
     /**
      * Errors / Linter warnings associated with the service definition this
      * report belongs to.
      */
-    diagnostics: Schema$Diagnostic[];
+    diagnostics?: Schema$Diagnostic[];
     /**
      * ID of the service configuration this report belongs to.
      */
-    id: string;
+    id?: string;
     /**
      * Name of the service this report belongs to.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -994,13 +997,13 @@ export namespace servicemanagement_v1 {
      * &quot;%2F&quot; will be left encoded.  The default behavior is to not
      * decode RFC 6570 reserved characters in multi segment matches.
      */
-    fullyDecodeReservedExpansion: boolean;
+    fullyDecodeReservedExpansion?: boolean;
     /**
      * A list of HTTP configuration rules that apply to individual API methods.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$HttpRule[];
+    rules?: Schema$HttpRule[];
   }
   /**
    * `HttpRule` defines the mapping of an RPC method to one or more HTTP REST
@@ -1127,58 +1130,58 @@ export namespace servicemanagement_v1 {
      * contain an `additional_bindings` field themselves (that is, the nesting
      * may only be one level deep).
      */
-    additionalBindings: Schema$HttpRule[];
+    additionalBindings?: Schema$HttpRule[];
     /**
      * The name of the request field whose value is mapped to the HTTP body, or
      * `*` for mapping all fields not captured by the path pattern to the HTTP
      * body. NOTE: the referred field must not be a repeated field and must be
      * present at the top-level of request message type.
      */
-    body: string;
+    body?: string;
     /**
      * The custom pattern is used for specifying an HTTP method that is not
      * included in the `pattern` field, such as HEAD, or &quot;*&quot; to leave
      * the HTTP method unspecified for this rule. The wild-card rule is useful
      * for services that provide content to Web (HTML) clients.
      */
-    custom: Schema$CustomHttpPattern;
+    custom?: Schema$CustomHttpPattern;
     /**
      * Used for deleting a resource.
      */
-    delete: string;
+    delete?: string;
     /**
      * Used for listing and getting information about resources.
      */
-    get: string;
+    get?: string;
     /**
      * Use this only for Scotty Requests. Do not use this for bytestream
      * methods. For media support, add instead
      * [][google.bytestream.RestByteStream] as an API to your configuration.
      */
-    mediaDownload: Schema$MediaDownload;
+    mediaDownload?: Schema$MediaDownload;
     /**
      * Use this only for Scotty Requests. Do not use this for media support
      * using Bytestream, add instead [][google.bytestream.RestByteStream] as an
      * API to your configuration for Bytestream methods.
      */
-    mediaUpload: Schema$MediaUpload;
+    mediaUpload?: Schema$MediaUpload;
     /**
      * Used for updating a resource.
      */
-    patch: string;
+    patch?: string;
     /**
      * Used for creating a resource.
      */
-    post: string;
+    post?: string;
     /**
      * Used for updating a resource.
      */
-    put: string;
+    put?: string;
     /**
      * Selects methods to which this rule applies.  Refer to selector for syntax
      * details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * A description of a label.
@@ -1187,15 +1190,15 @@ export namespace servicemanagement_v1 {
     /**
      * A human-readable description for the label.
      */
-    description: string;
+    description?: string;
     /**
      * The label key.
      */
-    key: string;
+    key?: string;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1204,11 +1207,11 @@ export namespace servicemanagement_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Response message for ListServiceConfigs method.
@@ -1217,11 +1220,11 @@ export namespace servicemanagement_v1 {
     /**
      * The token of the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of service configuration resources.
      */
-    serviceConfigs: Schema$Service[];
+    serviceConfigs?: Schema$Service[];
   }
   /**
    * Response message for ListServiceRollouts method.
@@ -1230,11 +1233,11 @@ export namespace servicemanagement_v1 {
     /**
      * The token of the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of rollout resources.
      */
-    rollouts: Schema$Rollout[];
+    rollouts?: Schema$Rollout[];
   }
   /**
    * Response message for `ListServices` method.
@@ -1243,11 +1246,11 @@ export namespace servicemanagement_v1 {
     /**
      * Token that can be passed to `ListServices` to resume a paginated query.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The returned services will only have the name field set.
      */
-    services: Schema$ManagedService[];
+    services?: Schema$ManagedService[];
   }
   /**
    * A description of a log type. Example in YAML format:      - name:
@@ -1260,25 +1263,25 @@ export namespace servicemanagement_v1 {
      * A human-readable description of this log. This information appears in the
      * documentation and can contain details.
      */
-    description: string;
+    description?: string;
     /**
      * The human-readable name for this log. This information appears on the
      * user interface and should be concise.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that are available to describe a specific log entry.
      * Runtime requests that contain labels not specified here are considered
      * invalid.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * The name of the log. It must be less than 512 characters long and can
      * include the following characters: upper- and lower-case alphanumeric
      * characters [A-Za-z0-9], and punctuation characters including slash,
      * underscore, hyphen, period [/_-.].
      */
-    name: string;
+    name?: string;
   }
   /**
    * Logging configuration of the service.  The following example shows how to
@@ -1302,14 +1305,14 @@ export namespace servicemanagement_v1 {
      * monitored resource type. A log can be used in at most one consumer
      * destination.
      */
-    consumerDestinations: Schema$LoggingDestination[];
+    consumerDestinations?: Schema$LoggingDestination[];
     /**
      * Logging configurations for sending logs to the producer project. There
      * can be multiple producer destinations, each one must have a different
      * monitored resource type. A log can be used in at most one producer
      * destination.
      */
-    producerDestinations: Schema$LoggingDestination[];
+    producerDestinations?: Schema$LoggingDestination[];
   }
   /**
    * Configuration of a specific logging destination (the producer project or
@@ -1322,12 +1325,12 @@ export namespace servicemanagement_v1 {
      * scoped name, it will be automatically prefixed with the service name
      * followed by &quot;/&quot;.
      */
-    logs: string[];
+    logs?: string[];
     /**
      * The monitored resource type. The type must be defined in the
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * The full representation of a Service that is managed by Google Service
@@ -1337,12 +1340,12 @@ export namespace servicemanagement_v1 {
     /**
      * ID of the project that produces and owns this service.
      */
-    producerProjectId: string;
+    producerProjectId?: string;
     /**
      * The name of the service. See the [overview](/service-management/overview)
      * for naming requirements.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   /**
    * Defines the Media configuration for a service in case of a download. Use
@@ -1355,30 +1358,30 @@ export namespace servicemanagement_v1 {
      * A boolean that determines whether a notification for the completion of a
      * download should be sent to the backend.
      */
-    completeNotification: boolean;
+    completeNotification?: boolean;
     /**
      * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
      * name of the download service if one is used for download.
      */
-    downloadService: string;
+    downloadService?: string;
     /**
      * Name of the Scotty dropzone to use for the current API.
      */
-    dropzone: string;
+    dropzone?: string;
     /**
      * Whether download is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Optional maximum acceptable size for direct download. The size is
      * specified in bytes.
      */
-    maxDirectDownloadSize: string;
+    maxDirectDownloadSize?: string;
     /**
      * A boolean that determines if direct download from ESF should be used for
      * download of this media.
      */
-    useDirectDownload: boolean;
+    useDirectDownload?: boolean;
   }
   /**
    * Defines the Media configuration for a service in case of an upload. Use
@@ -1392,38 +1395,38 @@ export namespace servicemanagement_v1 {
      * upload should be sent to the backend. These notifications will not be
      * seen by the client and will not consume quota.
      */
-    completeNotification: boolean;
+    completeNotification?: boolean;
     /**
      * Name of the Scotty dropzone to use for the current API.
      */
-    dropzone: string;
+    dropzone?: string;
     /**
      * Whether upload is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Optional maximum acceptable size for an upload. The size is specified in
      * bytes.
      */
-    maxSize: string;
+    maxSize?: string;
     /**
      * An array of mimetype patterns. Esf will only accept uploads that match
      * one of the given patterns.
      */
-    mimeTypes: string[];
+    mimeTypes?: string[];
     /**
      * Whether to receive a notification for progress changes of media upload.
      */
-    progressNotification: boolean;
+    progressNotification?: boolean;
     /**
      * Whether to receive a notification on the start of media upload.
      */
-    startNotification: boolean;
+    startNotification?: boolean;
     /**
      * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
      * name of the upload service if one is used for upload.
      */
-    uploadService: string;
+    uploadService?: string;
   }
   /**
    * Method represents a method of an API interface.
@@ -1432,31 +1435,31 @@ export namespace servicemanagement_v1 {
     /**
      * The simple name of this method.
      */
-    name: string;
+    name?: string;
     /**
      * Any metadata attached to the method.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * If true, the request is streamed.
      */
-    requestStreaming: boolean;
+    requestStreaming?: boolean;
     /**
      * A URL of the input message type.
      */
-    requestTypeUrl: string;
+    requestTypeUrl?: string;
     /**
      * If true, the response is streamed.
      */
-    responseStreaming: boolean;
+    responseStreaming?: boolean;
     /**
      * The URL of the output message type.
      */
-    responseTypeUrl: string;
+    responseTypeUrl?: string;
     /**
      * The source syntax of this method.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created,
@@ -1467,14 +1470,14 @@ export namespace servicemanagement_v1 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * A concise name for the metric, which can be displayed in user interfaces.
      * Use sentence case without an ending period, for example &quot;Request
      * count&quot;. This field is optional but it is recommended to be set for
      * any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that can be used to describe a specific instance of
      * this metric type. For example, the
@@ -1482,17 +1485,17 @@ export namespace servicemanagement_v1 {
      * a label for the HTTP response code, `response_code`, so you can look at
      * latencies for successful responses or just for responses that failed.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
      */
-    metricKind: string;
+    metricKind?: string;
     /**
      * The resource name of the metric descriptor.
      */
-    name: string;
+    name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
      * URL-encoded.  All user-defined custom metric types have the DNS name
@@ -1501,7 +1504,7 @@ export namespace servicemanagement_v1 {
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type: string;
+    type?: string;
     /**
      * The unit in which the metric value is reported. It is only applicable if
      * the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported
@@ -1530,12 +1533,12 @@ export namespace servicemanagement_v1 {
      * value 1, such as in `1/s`. * `%` represents dimensionless value 1/100,
      * and annotates values giving    a percentage.
      */
-    unit: string;
+    unit?: string;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some
      * combinations of `metric_kind` and `value_type` might not be supported.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that
@@ -1548,12 +1551,12 @@ export namespace servicemanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts: any;
+    metricCosts?: any;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Declares an API Interface to be included in this interface. The including
@@ -1596,12 +1599,12 @@ export namespace servicemanagement_v1 {
     /**
      * The fully qualified name of the interface which is included.
      */
-    name: string;
+    name?: string;
     /**
      * If non-empty specifies a path under which inherited HTTP paths are
      * rooted.
      */
-    root: string;
+    root?: string;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a
@@ -1618,21 +1621,21 @@ export namespace servicemanagement_v1 {
      * Optional. A detailed description of the monitored resource type that
      * might be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * Optional. A concise name for the monitored resource type that might be
      * displayed in user interfaces. It should be a Title Cased Noun Phrase,
      * without any article or other determiners. For example, `&quot;Google
      * Cloud SQL Database&quot;`.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Required. A set of labels used to describe instances of this monitored
      * resource type. For example, an individual Google Cloud SQL database is
      * identified by values for the labels `&quot;database_id&quot;` and
      * `&quot;zone&quot;`.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
@@ -1641,13 +1644,13 @@ export namespace servicemanagement_v1 {
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The monitored resource type. For example, the type
      * `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL.
      * The maximum length of this value is 256 characters.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Monitoring configuration of the service.  The example below shows how to
@@ -1678,14 +1681,14 @@ export namespace servicemanagement_v1 {
      * different monitored resource type. A metric can be used in at most one
      * consumer destination.
      */
-    consumerDestinations: Schema$MonitoringDestination[];
+    consumerDestinations?: Schema$MonitoringDestination[];
     /**
      * Monitoring configurations for sending metrics to the producer project.
      * There can be multiple producer destinations, each one must have a
      * different monitored resource type. A metric can be used in at most one
      * producer destination.
      */
-    producerDestinations: Schema$MonitoringDestination[];
+    producerDestinations?: Schema$MonitoringDestination[];
   }
   /**
    * Configuration of a specific monitoring destination (the producer project or
@@ -1696,12 +1699,12 @@ export namespace servicemanagement_v1 {
      * Names of the metrics to report to this monitoring destination. Each name
      * must be defined in Service.metrics section.
      */
-    metrics: string[];
+    metrics?: string[];
     /**
      * The monitored resource type. The type must be defined in
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * OAuth scopes are a way to define data and permissions on data. For example,
@@ -1726,7 +1729,7 @@ export namespace servicemanagement_v1 {
      * canonical_scopes: https://www.googleapis.com/auth/calendar,
      * https://www.googleapis.com/auth/calendar.read
      */
-    canonicalScopes: string;
+    canonicalScopes?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1738,24 +1741,24 @@ export namespace servicemanagement_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -1765,7 +1768,7 @@ export namespace servicemanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * The metadata associated with a long running operation resource.
@@ -1774,20 +1777,20 @@ export namespace servicemanagement_v1 {
     /**
      * Percentage of completion of this operation, ranging from 0 to 100.
      */
-    progressPercentage: number;
+    progressPercentage?: number;
     /**
      * The full name of the resources that this operation is directly associated
      * with.
      */
-    resourceNames: string[];
+    resourceNames?: string[];
     /**
      * The start time of the operation.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Detailed status information for each step. The order is undetermined.
      */
-    steps: Schema$Step[];
+    steps?: Schema$Step[];
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1800,7 +1803,7 @@ export namespace servicemanagement_v1 {
      * `&quot;map_entry&quot;`. For custom options, it should be the
      * fully-qualified name. For example, `&quot;google.api.http&quot;`.
      */
-    name: string;
+    name?: string;
     /**
      * The option&#39;s value packed in an Any message. If the value is a
      * primitive, the corresponding wrapper type defined in
@@ -1808,7 +1811,7 @@ export namespace servicemanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value: any;
+    value?: any;
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1820,7 +1823,7 @@ export namespace servicemanagement_v1 {
      * include {path} ==&amp;#41;&lt;/code&gt; to include content from a
      * Markdown file.
      */
-    content: string;
+    content?: string;
     /**
      * The name of the page. It will be used as an identity of the page to
      * generate URI of the page, text of the link to this page in navigation,
@@ -1832,12 +1835,12 @@ export namespace servicemanagement_v1 {
      * ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; You can reference `Java` page using
      * Markdown reference link syntax: `Java`.
      */
-    name: string;
+    name?: string;
     /**
      * Subpages of this page. The order of subpages specified here will be
      * honored in the generated docset.
      */
-    subpages: Schema$Page[];
+    subpages?: Schema$Page[];
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -1863,12 +1866,12 @@ export namespace servicemanagement_v1 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -1880,11 +1883,11 @@ export namespace servicemanagement_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service
@@ -1914,12 +1917,12 @@ export namespace servicemanagement_v1 {
     /**
      * List of `QuotaLimit` definitions for the service.
      */
-    limits: Schema$QuotaLimit[];
+    limits?: Schema$QuotaLimit[];
     /**
      * List of `MetricRule` definitions, each one mapping a selected method to
      * one or more metrics.
      */
-    metricRules: Schema$MetricRule[];
+    metricRules?: Schema$MetricRule[];
   }
   /**
    * `QuotaLimit` defines a specific limit that applies over a specified
@@ -1936,20 +1939,20 @@ export namespace servicemanagement_v1 {
      * will indicate an unlimited quota. No other negative values are allowed.
      * Used by group-based quotas only.
      */
-    defaultLimit: string;
+    defaultLimit?: string;
     /**
      * Optional. User-visible, extended description for this quota limit. Should
      * be used only when more context is needed to understand this limit than
      * provided by the limit&#39;s display name (see: `display_name`).
      */
-    description: string;
+    description?: string;
     /**
      * User-visible display name for this limit. Optional. If not set, the UI
      * will provide a default display name based on the quota configuration.
      * This field can be used to override the default display name generated
      * from the configuration.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Duration of this limit in textual notation. Example: &quot;100s&quot;,
      * &quot;24h&quot;, &quot;1d&quot;. For duration longer than a day, only
@@ -1958,7 +1961,7 @@ export namespace servicemanagement_v1 {
      * &quot;0&quot; indicates indefinite duration.  Used by group-based quotas
      * only.
      */
-    duration: string;
+    duration?: string;
     /**
      * Free tier value displayed in the Developers Console for this limit. The
      * free tier is the number of tokens that will be subtracted from the billed
@@ -1967,7 +1970,7 @@ export namespace servicemanagement_v1 {
      * other limit. If this field is not set, it defaults to 0, indicating that
      * there is no free tier for this service.  Used by group-based quotas only.
      */
-    freeTier: string;
+    freeTier?: string;
     /**
      * Maximum number of tokens that can be consumed during the specified
      * duration. Client application developers can override the default limit up
@@ -1976,20 +1979,20 @@ export namespace servicemanagement_v1 {
      * To allow clients to apply overrides with no upper bound, set this to -1,
      * indicating unlimited maximum quota.  Used by group-based quotas only.
      */
-    maxLimit: string;
+    maxLimit?: string;
     /**
      * The name of the metric this quota limit applies to. The quota limits with
      * the same metric will be checked together during runtime. The metric must
      * be defined within the service config.
      */
-    metric: string;
+    metric?: string;
     /**
      * Name of the quota limit.  The name must be provided, and it must be
      * unique within the service. The name can only include alphanumeric
      * characters as well as &#39;-&#39;.  The maximum length of the limit name
      * is 64 characters.
      */
-    name: string;
+    name?: string;
     /**
      * Specify the unit of the quota limit. It uses the same syntax as
      * Metric.unit. The supported unit kinds are determined by the quota backend
@@ -1998,13 +2001,13 @@ export namespace servicemanagement_v1 {
      * insignificant. The &quot;1&quot; at the beginning is required to follow
      * the metric unit syntax.
      */
-    unit: string;
+    unit?: string;
     /**
      * Tiered limit values. You must specify this as a key:value pair, with an
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values: any;
+    values?: any;
   }
   /**
    * A rollout resource that defines how service configuration versions are
@@ -2015,16 +2018,16 @@ export namespace servicemanagement_v1 {
     /**
      * The user who created the Rollout. Readonly.
      */
-    createdBy: string;
+    createdBy?: string;
     /**
      * Creation time of the rollout. Readonly.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The strategy associated with a rollout to delete a `ManagedService`.
      * Readonly.
      */
-    deleteServiceStrategy: Schema$DeleteServiceStrategy;
+    deleteServiceStrategy?: Schema$DeleteServiceStrategy;
     /**
      * Optional unique identifier of this Rollout. Only lower case letters,
      * digits  and &#39;-&#39; are allowed.  If not specified by client, the
@@ -2034,22 +2037,22 @@ export namespace servicemanagement_v1 {
      * increasing positive number that is reset every day for each service. An
      * example of the generated rollout_id is &#39;2016-02-16r1&#39;
      */
-    rolloutId: string;
+    rolloutId?: string;
     /**
      * The name of the service associated with this Rollout.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * The status of this rollout. Readonly. In case of a failed rollout, the
      * system will automatically rollback to the current Rollout version.
      * Readonly.
      */
-    status: string;
+    status?: string;
     /**
      * Google Service Control selects service configurations based on traffic
      * percentage.
      */
-    trafficPercentStrategy: Schema$TrafficPercentStrategy;
+    trafficPercentStrategy?: Schema$TrafficPercentStrategy;
   }
   /**
    * `Service` is the root object of Google service configuration schema. It
@@ -2073,111 +2076,111 @@ export namespace servicemanagement_v1 {
      * normalization process. It is an error to specify an API interface here
      * which cannot be resolved against the associated IDL files.
      */
-    apis: Schema$Api[];
+    apis?: Schema$Api[];
     /**
      * Auth configuration.
      */
-    authentication: Schema$Authentication;
+    authentication?: Schema$Authentication;
     /**
      * API backend configuration.
      */
-    backend: Schema$Backend;
+    backend?: Schema$Backend;
     /**
      * Billing configuration.
      */
-    billing: Schema$Billing;
+    billing?: Schema$Billing;
     /**
      * The semantic version of the service configuration. The config version
      * affects the interpretation of the service configuration. For example,
      * certain features are enabled by default for certain config versions. The
      * latest config version is `3`.
      */
-    configVersion: number;
+    configVersion?: number;
     /**
      * Context configuration.
      */
-    context: Schema$Context;
+    context?: Schema$Context;
     /**
      * Configuration for the service control plane.
      */
-    control: Schema$Control;
+    control?: Schema$Control;
     /**
      * Custom error configuration.
      */
-    customError: Schema$CustomError;
+    customError?: Schema$CustomError;
     /**
      * Additional API documentation.
      */
-    documentation: Schema$Documentation;
+    documentation?: Schema$Documentation;
     /**
      * Configuration for network endpoints.  If this is empty, then an endpoint
      * with the same name as the service is automatically generated to service
      * all defined APIs.
      */
-    endpoints: Schema$Endpoint[];
+    endpoints?: Schema$Endpoint[];
     /**
      * A list of all enum types included in this API service.  Enums referenced
      * directly or indirectly by the `apis` are automatically included.  Enums
      * which are not referenced but shall be included should be listed here by
      * name. Example:      enums:     - name: google.someapi.v1.SomeEnum
      */
-    enums: Schema$Enum[];
+    enums?: Schema$Enum[];
     /**
      * Experimental configuration.
      */
-    experimental: Schema$Experimental;
+    experimental?: Schema$Experimental;
     /**
      * HTTP configuration.
      */
-    http: Schema$Http;
+    http?: Schema$Http;
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
      * generate one instead.
      */
-    id: string;
+    id?: string;
     /**
      * Logging configuration.
      */
-    logging: Schema$Logging;
+    logging?: Schema$Logging;
     /**
      * Defines the logs used by this service.
      */
-    logs: Schema$LogDescriptor[];
+    logs?: Schema$LogDescriptor[];
     /**
      * Defines the metrics used by this service.
      */
-    metrics: Schema$MetricDescriptor[];
+    metrics?: Schema$MetricDescriptor[];
     /**
      * Defines the monitored resources used by this service. This is required by
      * the Service.monitoring and Service.logging configurations.
      */
-    monitoredResources: Schema$MonitoredResourceDescriptor[];
+    monitoredResources?: Schema$MonitoredResourceDescriptor[];
     /**
      * Monitoring configuration.
      */
-    monitoring: Schema$Monitoring;
+    monitoring?: Schema$Monitoring;
     /**
      * The DNS address at which this service is available, e.g.
      * `calendar.googleapis.com`.
      */
-    name: string;
+    name?: string;
     /**
      * The Google project that owns this service.
      */
-    producerProjectId: string;
+    producerProjectId?: string;
     /**
      * Quota configuration.
      */
-    quota: Schema$Quota;
+    quota?: Schema$Quota;
     /**
      * Output only. The source information for this configuration if available.
      */
-    sourceInfo: Schema$SourceInfo;
+    sourceInfo?: Schema$SourceInfo;
     /**
      * System parameter configuration.
      */
-    systemParameters: Schema$SystemParameters;
+    systemParameters?: Schema$SystemParameters;
     /**
      * A list of all proto message types included in this API service. It serves
      * similar purpose as [google.api.Service.types], except that these types
@@ -2185,11 +2188,11 @@ export namespace servicemanagement_v1 {
      * the generated discovery doc. This field should only be used to define
      * system APIs in ESF.
      */
-    systemTypes: Schema$Type[];
+    systemTypes?: Schema$Type[];
     /**
      * The product title for this service.
      */
-    title: string;
+    title?: string;
     /**
      * A list of all proto message types included in this API service. Types
      * referenced directly or indirectly by the `apis` are automatically
@@ -2197,11 +2200,11 @@ export namespace servicemanagement_v1 {
      * as types used by the `google.protobuf.Any` type, should be listed here by
      * name. Example:      types:     - name: google.protobuf.Int32
      */
-    types: Schema$Type[];
+    types?: Schema$Type[];
     /**
      * Configuration controlling usage of this service.
      */
-    usage: Schema$Usage;
+    usage?: Schema$Usage;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -2213,14 +2216,14 @@ export namespace servicemanagement_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * `SourceContext` represents information about the source of a protobuf
@@ -2232,7 +2235,7 @@ export namespace servicemanagement_v1 {
      * protobuf element.  For example:
      * `&quot;google/protobuf/source_context.proto&quot;`.
      */
-    fileName: string;
+    fileName?: string;
   }
   /**
    * Source information used to create a Service Config
@@ -2241,7 +2244,7 @@ export namespace servicemanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles: any[];
+    sourceFiles?: any[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2283,18 +2286,18 @@ export namespace servicemanagement_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Represents the status of one operation step.
@@ -2303,11 +2306,11 @@ export namespace servicemanagement_v1 {
     /**
      * The short description of the step.
      */
-    description: string;
+    description?: string;
     /**
      * The status code.
      */
-    status: string;
+    status?: string;
   }
   /**
    * Request message for SubmitConfigSource method.
@@ -2316,13 +2319,13 @@ export namespace servicemanagement_v1 {
     /**
      * The source configuration for the service.
      */
-    configSource: Schema$ConfigSource;
+    configSource?: Schema$ConfigSource;
     /**
      * Optional. If set, this will result in the generation of a
      * `google.api.Service` configuration based on the `ConfigSource` provided,
      * but the generated config and the sources will NOT be persisted.
      */
-    validateOnly: boolean;
+    validateOnly?: boolean;
   }
   /**
    * Response message for SubmitConfigSource method.
@@ -2331,7 +2334,7 @@ export namespace servicemanagement_v1 {
     /**
      * The generated service configuration.
      */
-    serviceConfig: Schema$Service;
+    serviceConfig?: Schema$Service;
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as
@@ -2343,17 +2346,17 @@ export namespace servicemanagement_v1 {
      * Define the HTTP header name to use for the parameter. It is case
      * insensitive.
      */
-    httpHeader: string;
+    httpHeader?: string;
     /**
      * Define the name of the parameter, such as &quot;api_key&quot; . It is
      * case sensitive.
      */
-    name: string;
+    name?: string;
     /**
      * Define the URL query parameter name to use for the parameter. It is case
      * sensitive.
      */
-    urlQueryParameter: string;
+    urlQueryParameter?: string;
   }
   /**
    * Define a system parameter rule mapping system parameter definitions to
@@ -2366,12 +2369,12 @@ export namespace servicemanagement_v1 {
      * used the behavior is implementation-dependent. If none of the specified
      * names are present the behavior is parameter-dependent.
      */
-    parameters: Schema$SystemParameter[];
+    parameters?: Schema$SystemParameter[];
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to
      * indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * ### System parameter configuration  A system parameter is a special kind of
@@ -2395,7 +2398,7 @@ export namespace servicemanagement_v1 {
      * http_header: Api-Key2  **NOTE:** All service configuration rules follow
      * &quot;last one wins&quot; order.
      */
-    rules: Schema$SystemParameterRule[];
+    rules?: Schema$SystemParameterRule[];
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -2407,7 +2410,7 @@ export namespace servicemanagement_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -2417,7 +2420,7 @@ export namespace servicemanagement_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Strategy that specifies how clients of Google Service Controller want to
@@ -2440,7 +2443,7 @@ export namespace servicemanagement_v1 {
      * Key is the service configuration ID, Value is the traffic percentage
      * which must be greater than 0.0 and the sum must equal to 100.0.
      */
-    percentages: any;
+    percentages?: any;
   }
   /**
    * A protocol buffer message type.
@@ -2449,27 +2452,27 @@ export namespace servicemanagement_v1 {
     /**
      * The list of fields.
      */
-    fields: Schema$Field[];
+    fields?: Schema$Field[];
     /**
      * The fully qualified message name.
      */
-    name: string;
+    name?: string;
     /**
      * The list of types appearing in `oneof` definitions in this type.
      */
-    oneofs: string[];
+    oneofs?: string[];
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * The source context.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Response message for UndeleteService method.
@@ -2478,7 +2481,7 @@ export namespace servicemanagement_v1 {
     /**
      * Revived service resource.
      */
-    service: Schema$ManagedService;
+    service?: Schema$ManagedService;
   }
   /**
    * Configuration controlling usage of a service.
@@ -2492,19 +2495,19 @@ export namespace servicemanagement_v1 {
      * name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name
      * format documented in https://cloud.google.com/pubsub/docs/overview.
      */
-    producerNotificationChannel: string;
+    producerNotificationChannel?: string;
     /**
      * Requirements that must be satisfied before a consumer project can use the
      * service. Each requirement is of the form
      * &lt;service.name&gt;/&lt;requirement-id&gt;; for example
      * &#39;serviceusage.googleapis.com/billing-enabled&#39;.
      */
-    requirements: string[];
+    requirements?: string[];
     /**
      * A list of usage rules that apply to individual API methods.  **NOTE:**
      * All service configuration rules follow &quot;last one wins&quot; order.
      */
-    rules: Schema$UsageRule[];
+    rules?: Schema$UsageRule[];
   }
   /**
    * Usage configuration rules for the service.  NOTE: Under development.   Use
@@ -2525,20 +2528,21 @@ export namespace servicemanagement_v1 {
      * If true, the selected method allows unregistered calls, e.g. calls that
      * don&#39;t identify any user or application.
      */
-    allowUnregisteredCalls: boolean;
+    allowUnregisteredCalls?: boolean;
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to
      * indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector: string;
+    selector?: string;
     /**
      * If true, the selected method should skip service control and the control
      * plane features, such as quota and billing, will not be available. This
      * flag is used by Google Cloud Endpoints to bypass checks for internal
      * methods, such as service health check methods.
      */
-    skipServiceControl: boolean;
+    skipServiceControl?: boolean;
   }
+
 
   export class Resource$Operations {
     root: Servicemanagement;
@@ -2566,23 +2570,34 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2621,28 +2636,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2664,6 +2689,56 @@ export namespace servicemanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A string for filtering Operations.   The following filter fields are
+     * supported&#58;    * serviceName&#58; Required. Only `=` operator is
+     * allowed.   * startTime&#58; The time this job was started, in ISO 8601
+     * format.     Allowed operators are `>=`,  `>`, `<=`, and `<`.   *
+     * status&#58; Can be `done`, `in_progress`, or `failed`. Allowed operators
+     * are `=`, and `!=`.    Filter expression supports conjunction (AND) and
+     * disjunction (OR)   logical operators. However, the serviceName
+     * restriction must be at the   top-level and can only be combined with
+     * other restrictions via the AND   logical operator.    Examples&#58;    *
+     * `serviceName={some-service}.googleapis.com`   *
+     * `serviceName={some-service}.googleapis.com AND startTime>="2017-02-01"`
+     * * `serviceName={some-service}.googleapis.com AND status=done`   *
+     * `serviceName={some-service}.googleapis.com AND (status=done OR
+     * startTime>="2017-02-01")`
+     */
+    filter?: string;
+    /**
+     * Not used.
+     */
+    name?: string;
+    /**
+     * The maximum number of operations to return. If unspecified, defaults
+     * to 50. The maximum value is 100.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Services {
     root: Servicemanagement;
@@ -2696,26 +2771,37 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Services$Create, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Services$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Services$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2754,26 +2840,37 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(params?: Params$Resource$Services$Delete, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Services$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Services$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2813,26 +2910,37 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disable(params?: any, options?: MethodOptions):
+    disable(params?: Params$Resource$Services$Disable, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     disable(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Services$Disable,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     disable(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Disable,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    disable(callback: BodyResponseCallback<Schema$Operation>): void;
+    disable(
+        paramsOrCallback?: Params$Resource$Services$Disable|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Disable;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2871,26 +2979,37 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enable(params?: any, options?: MethodOptions):
+    enable(params?: Params$Resource$Services$Enable, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     enable(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Services$Enable,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     enable(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Enable,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    enable(callback: BodyResponseCallback<Schema$Operation>): void;
+    enable(
+        paramsOrCallback?: Params$Resource$Services$Enable|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Enable;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2935,29 +3054,45 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateConfigReport(params?: any, options?: MethodOptions):
+    generateConfigReport(
+        params?: Params$Resource$Services$Generateconfigreport,
+        options?: MethodOptions):
         AxiosPromise<Schema$GenerateConfigReportResponse>;
     generateConfigReport(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Generateconfigreport,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GenerateConfigReportResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
+        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
         void;
     generateConfigReport(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Generateconfigreport,
+        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
+        void;
+    generateConfigReport(
+        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
+        void;
+    generateConfigReport(
+        paramsOrCallback?: Params$Resource$Services$Generateconfigreport|
+        BodyResponseCallback<Schema$GenerateConfigReportResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateConfigReportResponse>,
         callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
         void|AxiosPromise<Schema$GenerateConfigReportResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Generateconfigreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Generateconfigreport;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -2996,24 +3131,34 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Services$Get,
         options?: MethodOptions): AxiosPromise<Schema$ManagedService>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
-        callback?: BodyResponseCallback<Schema$ManagedService>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
+    get(params: Params$Resource$Services$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
+        callback: BodyResponseCallback<Schema$ManagedService>): void;
+    get(params: Params$Resource$Services$Get,
+        callback: BodyResponseCallback<Schema$ManagedService>): void;
+    get(callback: BodyResponseCallback<Schema$ManagedService>): void;
+    get(paramsOrCallback?: Params$Resource$Services$Get|
+        BodyResponseCallback<Schema$ManagedService>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ManagedService>,
         callback?: BodyResponseCallback<Schema$ManagedService>):
         void|AxiosPromise<Schema$ManagedService> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3051,26 +3196,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Service>;
     getConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>): void;
+        params?: Params$Resource$Services$Getconfig,
+        options?: MethodOptions): AxiosPromise<Schema$Service>;
     getConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+        params: Params$Resource$Services$Getconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Service>,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    getConfig(
+        params: Params$Resource$Services$Getconfig,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    getConfig(callback: BodyResponseCallback<Schema$Service>): void;
+    getConfig(
+        paramsOrCallback?: Params$Resource$Services$Getconfig|
+        BodyResponseCallback<Schema$Service>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
         void|AxiosPromise<Schema$Service> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Getconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3108,26 +3265,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Services$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Services$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Services$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Services$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3171,28 +3340,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Services$List, options?: MethodOptions):
         AxiosPromise<Schema$ListServicesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$List,
+        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Services$List|
+        BodyResponseCallback<Schema$ListServicesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
         callback?: BodyResponseCallback<Schema$ListServicesResponse>):
         void|AxiosPromise<Schema$ListServicesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3229,26 +3408,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Services$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Services$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Services$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Services$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3289,29 +3480,45 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Services$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Services$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3351,26 +3558,39 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+        params: Params$Resource$Services$Undelete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Services$Undelete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3393,6 +3613,195 @@ export namespace servicemanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Services$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ManagedService;
+  }
+  export interface Params$Resource$Services$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+  }
+  export interface Params$Resource$Services$Disable {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the service to disable. Specifying an unknown service name will
+     * cause the request to fail.
+     */
+    serviceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DisableServiceRequest;
+  }
+  export interface Params$Resource$Services$Enable {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the service to enable. Specifying an unknown service name will
+     * cause the request to fail.
+     */
+    serviceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EnableServiceRequest;
+  }
+  export interface Params$Resource$Services$Generateconfigreport {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GenerateConfigReportRequest;
+  }
+  export interface Params$Resource$Services$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service.  See the `ServiceManager` overview for naming
+     * requirements.  For example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+  }
+  export interface Params$Resource$Services$Getconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The id of the service configuration resource.
+     */
+    configId?: string;
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+    /**
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Services$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Services$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Include services consumed by the specified consumer.  The Google Service
+     * Management implementation accepts the following forms: -
+     * project:<project_id>
+     */
+    consumerId?: string;
+    /**
+     * Requested size of the next page of data.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying which result to start with; returned by a previous list
+     * call.
+     */
+    pageToken?: string;
+    /**
+     * Include services produced by the specified project.
+     */
+    producerProjectId?: string;
+  }
+  export interface Params$Resource$Services$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Services$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Services$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service. See the [overview](/service-management/overview)
+     * for naming requirements. For example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+  }
+
   export class Resource$Services$Configs {
     root: Servicemanagement;
     constructor(root: Servicemanagement) {
@@ -3423,25 +3832,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>): void;
+        params?: Params$Resource$Services$Configs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Service>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+        params: Params$Resource$Services$Configs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Service>,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    create(
+        params: Params$Resource$Services$Configs$Create,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    create(callback: BodyResponseCallback<Schema$Service>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Services$Configs$Create|
+        BodyResponseCallback<Schema$Service>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
         void|AxiosPromise<Schema$Service> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Configs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3479,23 +3901,34 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+    get(params?: Params$Resource$Services$Configs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Service>;
+    get(params: Params$Resource$Services$Configs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Service>,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    get(params: Params$Resource$Services$Configs$Get,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    get(callback: BodyResponseCallback<Schema$Service>): void;
+    get(paramsOrCallback?: Params$Resource$Services$Configs$Get|
+        BodyResponseCallback<Schema$Service>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
         void|AxiosPromise<Schema$Service> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Configs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3534,29 +3967,44 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Services$Configs$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListServiceConfigsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Configs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServiceConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
+        callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Configs$List,
+        callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Services$Configs$List|
+        BodyResponseCallback<Schema$ListServiceConfigsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
         void|AxiosPromise<Schema$ListServiceConfigsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Configs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Configs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3601,26 +4049,39 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     submit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Configs$Submit,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     submit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Configs$Submit,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    submit(
+        params: Params$Resource$Services$Configs$Submit,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    submit(callback: BodyResponseCallback<Schema$Operation>): void;
+    submit(
+        paramsOrCallback?: Params$Resource$Services$Configs$Submit|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Configs$Submit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3643,6 +4104,85 @@ export namespace servicemanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Services$Configs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Service;
+  }
+  export interface Params$Resource$Services$Configs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The id of the service configuration resource.
+     */
+    configId?: string;
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+    /**
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Services$Configs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The max number of items to include in the response list.
+     */
+    pageSize?: number;
+    /**
+     * The token of the page to retrieve.
+     */
+    pageToken?: string;
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+  }
+  export interface Params$Resource$Services$Configs$Submit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SubmitConfigSourceRequest;
+  }
+
 
   export class Resource$Services$Consumers {
     root: Servicemanagement;
@@ -3670,26 +4210,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Services$Consumers$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Services$Consumers$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Services$Consumers$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Services$Consumers$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Consumers$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumers$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3727,26 +4279,38 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Services$Consumers$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Services$Consumers$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Services$Consumers$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Services$Consumers$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Consumers$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumers$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3787,29 +4351,46 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Services$Consumers$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Consumers$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Consumers$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Services$Consumers$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Consumers$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumers$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3833,6 +4414,56 @@ export namespace servicemanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Services$Consumers$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Services$Consumers$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Services$Consumers$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Services$Rollouts {
     root: Servicemanagement;
@@ -3868,26 +4499,39 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Rollouts$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Rollouts$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Services$Rollouts$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Services$Rollouts$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Rollouts$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3924,23 +4568,34 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Rollout>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
-        callback?: BodyResponseCallback<Schema$Rollout>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
+    get(params?: Params$Resource$Services$Rollouts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Rollout>;
+    get(params: Params$Resource$Services$Rollouts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Rollout>,
+        callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(params: Params$Resource$Services$Rollouts$Get,
+        callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(paramsOrCallback?: Params$Resource$Services$Rollouts$Get|
+        BodyResponseCallback<Schema$Rollout>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
         callback?: BodyResponseCallback<Schema$Rollout>):
         void|AxiosPromise<Schema$Rollout> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Rollouts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -3980,29 +4635,44 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Services$Rollouts$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListServiceRolloutsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Rollouts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
+        callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Rollouts$List,
+        callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Services$Rollouts$List|
+        BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
         void|AxiosPromise<Schema$ListServiceRolloutsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Rollouts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
@@ -4025,5 +4695,70 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$ListServiceRolloutsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Services$Rollouts$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Rollout;
+  }
+  export interface Params$Resource$Services$Rollouts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The id of the rollout resource.
+     */
+    rolloutId?: string;
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
+  }
+  export interface Params$Resource$Services$Rollouts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Use `filter` to return subset of rollouts. The following filters are
+     * supported:   -- To limit the results to only those in
+     * [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS', use
+     * filter='status=SUCCESS'   -- To limit the results to those in
+     * [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED' or
+     * 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     */
+    filter?: string;
+    /**
+     * The max number of items to include in the response list.
+     */
+    pageSize?: number;
+    /**
+     * The token of the page to retrieve.
+     */
+    pageToken?: string;
+    /**
+     * The name of the service.  See the
+     * [overview](/service-management/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
+     */
+    serviceName?: string;
   }
 }

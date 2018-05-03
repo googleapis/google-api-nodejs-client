@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace toolresults_v1beta3 {
+  export interface Options extends GlobalOptions { version: 'v1beta3'; }
+
   /**
    * Cloud Tool Results API
    *
@@ -72,19 +75,19 @@ export namespace toolresults_v1beta3 {
     /**
      * The name of the app. Optional
      */
-    name: string;
+    name?: string;
     /**
      * The package name of the app. Required.
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The internal version code of the app. Optional.
      */
-    versionCode: string;
+    versionCode?: string;
     /**
      * The version name of the app. Optional.
      */
-    versionName: string;
+    versionName?: string;
   }
   /**
    * A test of an Android application that can control an Android component
@@ -95,11 +98,11 @@ export namespace toolresults_v1beta3 {
     /**
      * The java package for the test to be executed. Required
      */
-    testPackageId: string;
+    testPackageId?: string;
     /**
      * The InstrumentationTestRunner class. Required
      */
-    testRunnerClass: string;
+    testRunnerClass?: string;
     /**
      * Each target must be fully qualified with the package name or class name,
      * in one of these formats: - &quot;package package_name&quot; - &quot;class
@@ -107,12 +110,12 @@ export namespace toolresults_v1beta3 {
      * package_name.class_name#method_name&quot;  If empty, all targets in the
      * module will be run.
      */
-    testTargets: string[];
+    testTargets?: string[];
     /**
      * The flag indicates whether Android Test Orchestrator will be used to run
      * test or not.
      */
-    useOrchestrator: boolean;
+    useOrchestrator?: boolean;
   }
   /**
    * A test of an android application that explores the application on a virtual
@@ -122,24 +125,24 @@ export namespace toolresults_v1beta3 {
     /**
      * The initial activity that should be used to start the app. Optional
      */
-    appInitialActivity: string;
+    appInitialActivity?: string;
     /**
      * The java package for the bootstrap. Optional
      */
-    bootstrapPackageId: string;
+    bootstrapPackageId?: string;
     /**
      * The runner class for the bootstrap. Optional
      */
-    bootstrapRunnerClass: string;
+    bootstrapRunnerClass?: string;
     /**
      * The max depth of the traversal stack Robo can explore. Optional
      */
-    maxDepth: number;
+    maxDepth?: number;
     /**
      * The max number of steps/actions Robo can execute. Default is no limit
      * (0). Optional
      */
-    maxSteps: number;
+    maxSteps?: number;
   }
   /**
    * An Android mobile test specification.
@@ -148,19 +151,19 @@ export namespace toolresults_v1beta3 {
     /**
      * Information about the application under test.
      */
-    androidAppInfo: Schema$AndroidAppInfo;
+    androidAppInfo?: Schema$AndroidAppInfo;
     /**
      * An Android instrumentation test.
      */
-    androidInstrumentationTest: Schema$AndroidInstrumentationTest;
+    androidInstrumentationTest?: Schema$AndroidInstrumentationTest;
     /**
      * An Android robo test.
      */
-    androidRoboTest: Schema$AndroidRoboTest;
+    androidRoboTest?: Schema$AndroidRoboTest;
     /**
      * Max time a test is allowed to run before it is automatically cancelled.
      */
-    testTimeout: Schema$Duration;
+    testTimeout?: Schema$Duration;
   }
   /**
    * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -215,11 +218,11 @@ export namespace toolresults_v1beta3 {
      * type.googleapis.com.  Schemes other than `http`, `https` (or the empty
      * scheme) might be used with implementation specific semantics.
      */
-    typeUrl: string;
+    typeUrl?: string;
     /**
      * Must be a valid serialized protocol buffer of the above specified type.
      */
-    value: string;
+    value?: string;
   }
   export interface Schema$AppStartTime {
     /**
@@ -228,22 +231,22 @@ export namespace toolresults_v1beta3 {
      * call to Activity.reportFullyDrawn(). See
      * https://developer.android.com/topic/performance/launch-time.html#time-full
      */
-    fullyDrawnTime: Schema$Duration;
+    fullyDrawnTime?: Schema$Duration;
     /**
      * The time from app start to the first displayed activity being drawn, as
      * reported in Logcat. See
      * https://developer.android.com/topic/performance/launch-time.html#time-initial
      */
-    initialDisplayTime: Schema$Duration;
+    initialDisplayTime?: Schema$Duration;
   }
   /**
    * Encapsulates the metadata for basic sample series represented by a line
    * chart
    */
   export interface Schema$BasicPerfSampleSeries {
-    perfMetricType: string;
-    perfUnit: string;
-    sampleSeriesLabel: string;
+    perfMetricType?: string;
+    perfUnit?: string;
+    sampleSeriesLabel?: string;
   }
   /**
    * The request must provide up to a maximum of 5000 samples to be created; a
@@ -253,25 +256,25 @@ export namespace toolresults_v1beta3 {
     /**
      * The set of PerfSamples to create should not include existing timestamps
      */
-    perfSamples: Schema$PerfSample[];
+    perfSamples?: Schema$PerfSample[];
   }
   export interface Schema$BatchCreatePerfSamplesResponse {
-    perfSamples: Schema$PerfSample[];
+    perfSamples?: Schema$PerfSample[];
   }
   export interface Schema$CPUInfo {
     /**
      * description of the device processor ie &#39;1.8 GHz hexa core 64-bit
      * ARMv8-A&#39;
      */
-    cpuProcessor: string;
+    cpuProcessor?: string;
     /**
      * the CPU clock speed in GHz
      */
-    cpuSpeedInGhz: number;
+    cpuSpeedInGhz?: number;
     /**
      * the number of CPU cores
      */
-    numberOfCores: number;
+    numberOfCores?: number;
   }
   /**
    * A Duration represents a signed, fixed-length span of time represented as a
@@ -311,13 +314,13 @@ export namespace toolresults_v1beta3 {
      * same sign as the `seconds` field. Must be from -999,999,999 to
      * +999,999,999 inclusive.
      */
-    nanos: number;
+    nanos?: number;
     /**
      * Signed seconds of the span of time. Must be from -315,576,000,000 to
      * +315,576,000,000 inclusive. Note: these bounds are computed from: 60
      * sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds: string;
+    seconds?: string;
   }
   /**
    * An Execution represents a collection of Steps. For instance, it could
@@ -333,30 +336,30 @@ export namespace toolresults_v1beta3 {
      * response: set if the execution state is COMPLETE. - In create/update
      * request: never set
      */
-    completionTime: Schema$Timestamp;
+    completionTime?: Schema$Timestamp;
     /**
      * The time when the Execution was created.  This value will be set
      * automatically when CreateExecution is called.  - In response: always set
      * - In create/update request: never set
      */
-    creationTime: Schema$Timestamp;
+    creationTime?: Schema$Timestamp;
     /**
      * A unique identifier within a History for this Execution.  Returns
      * INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In
      * response always set - In create/update request: never set
      */
-    executionId: string;
+    executionId?: string;
     /**
      * Classify the result, for example into SUCCESS or FAILURE  - In response:
      * present if set by create/update request - In create/update request:
      * optional
      */
-    outcome: Schema$Outcome;
+    outcome?: Schema$Outcome;
     /**
      * Lightweight information about execution request.  - In response: present
      * if set by create - In create: optional - In update: optional
      */
-    specification: Schema$Specification;
+    specification?: Schema$Specification;
     /**
      * The initial state is IN_PROGRESS.  The only legal state transitions is
      * from IN_PROGRESS to COMPLETE.  A PRECONDITION_FAILED will be returned if
@@ -367,37 +370,37 @@ export namespace toolresults_v1beta3 {
      * outcome of the step is not set, the outcome will be set to INCONCLUSIVE.
      * - In response always set - In create/update request: optional
      */
-    state: string;
+    state?: string;
     /**
      * TestExecution Matrix ID that the TestExecutionService uses.  - In
      * response: present if set by create - In create: optional - In update:
      * never set
      */
-    testExecutionMatrixId: string;
+    testExecutionMatrixId?: string;
   }
   export interface Schema$FailureDetail {
     /**
      * If the failure was severe because the system (app) under test crashed.
      */
-    crashed: boolean;
+    crashed?: boolean;
     /**
      * If an app is not installed and thus no test can be run with the app. This
      * might be caused by trying to run a test on an unsupported platform.
      */
-    notInstalled: boolean;
+    notInstalled?: boolean;
     /**
      * If a native process (including any other than the app) crashed.
      */
-    otherNativeCrash: boolean;
+    otherNativeCrash?: boolean;
     /**
      * If the test overran some time limit, and that is why it failed.
      */
-    timedOut: boolean;
+    timedOut?: boolean;
     /**
      * If the robo was unable to crawl the app; perhaps because the app did not
      * start.
      */
-    unableToCrawl: boolean;
+    unableToCrawl?: boolean;
   }
   /**
    * A reference to a file.
@@ -411,7 +414,7 @@ export namespace toolresults_v1beta3 {
      * error will be returned if the URI format is not supported.  - In
      * response: always set - In create/update request: always set
      */
-    fileUri: string;
+    fileUri?: string;
   }
   /**
    * Graphics statistics for the App. The information is collected from &#39;adb
@@ -424,61 +427,61 @@ export namespace toolresults_v1beta3 {
      * Histogram of frame render times. There should be 154 buckets ranging from
      * [5ms, 6ms) to [4950ms, infinity)
      */
-    buckets: Schema$GraphicsStatsBucket[];
+    buckets?: Schema$GraphicsStatsBucket[];
     /**
      * Total &quot;high input latency&quot; events.
      */
-    highInputLatencyCount: string;
+    highInputLatencyCount?: string;
     /**
      * Total frames with slow render time. Should be &lt;= total_frames.
      */
-    jankyFrames: string;
+    jankyFrames?: string;
     /**
      * Total &quot;missed vsync&quot; events.
      */
-    missedVsyncCount: string;
+    missedVsyncCount?: string;
     /**
      * 50th percentile frame render time in milliseconds.
      */
-    p50Millis: string;
+    p50Millis?: string;
     /**
      * 90th percentile frame render time in milliseconds.
      */
-    p90Millis: string;
+    p90Millis?: string;
     /**
      * 95th percentile frame render time in milliseconds.
      */
-    p95Millis: string;
+    p95Millis?: string;
     /**
      * 99th percentile frame render time in milliseconds.
      */
-    p99Millis: string;
+    p99Millis?: string;
     /**
      * Total &quot;slow bitmap upload&quot; events.
      */
-    slowBitmapUploadCount: string;
+    slowBitmapUploadCount?: string;
     /**
      * Total &quot;slow draw&quot; events.
      */
-    slowDrawCount: string;
+    slowDrawCount?: string;
     /**
      * Total &quot;slow UI thread&quot; events.
      */
-    slowUiThreadCount: string;
+    slowUiThreadCount?: string;
     /**
      * Total frames rendered by package.
      */
-    totalFrames: string;
+    totalFrames?: string;
   }
   export interface Schema$GraphicsStatsBucket {
     /**
      * Number of frames in the bucket.
      */
-    frameCount: string;
+    frameCount?: string;
     /**
      * Lower bound of render time in milliseconds.
      */
-    renderMillis: string;
+    renderMillis?: string;
   }
   /**
    * A History represents a sorted list of Executions ordered by the
@@ -494,18 +497,18 @@ export namespace toolresults_v1beta3 {
      * 100 characters.  - In response: present if set during create. - In create
      * request: optional
      */
-    displayName: string;
+    displayName?: string;
     /**
      * A unique identifier within a project for this History.  Returns
      * INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In
      * response always set - In create request: never set
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A name to uniquely identify a history within a project. Maximum of 200
      * characters.  - In response always set - In create request: always set
      */
-    name: string;
+    name?: string;
   }
   /**
    * An image, with a link to the main image and a thumbnail.
@@ -514,20 +517,20 @@ export namespace toolresults_v1beta3 {
     /**
      * An error explaining why the thumbnail could not be rendered.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * A reference to the full-size, original image.  This is the same as the
      * tool_outputs entry for the image under its Step.  Always set.
      */
-    sourceImage: Schema$ToolOutputReference;
+    sourceImage?: Schema$ToolOutputReference;
     /**
      * The step to which the image is attached.  Always set.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * The thumbnail.
      */
-    thumbnail: Schema$Thumbnail;
+    thumbnail?: Schema$Thumbnail;
   }
   export interface Schema$InconclusiveDetail {
     /**
@@ -535,25 +538,25 @@ export namespace toolresults_v1beta3 {
      * determined. For example, the user pressed ctrl-c which sent a kill signal
      * to the test runner while the test was running.
      */
-    abortedByUser: boolean;
+    abortedByUser?: boolean;
     /**
      * If the test runner could not determine success or failure because the
      * test depends on a component other than the system under test which
      * failed.  For example, a mobile test requires provisioning a device where
      * the test executes, and that provisioning can fail.
      */
-    infrastructureFailure: boolean;
+    infrastructureFailure?: boolean;
   }
   export interface Schema$ListExecutionsResponse {
     /**
      * Executions.  Always set.
      */
-    executions: Schema$Execution[];
+    executions?: Schema$Execution[];
     /**
      * A continuation token to resume the query at the next item.  Will only be
      * set if there are more Executions to fetch.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for HistoryService.List
@@ -562,7 +565,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Histories.
      */
-    histories: Schema$History[];
+    histories?: Schema$History[];
     /**
      * A continuation token to resume the query at the next item.  Will only be
      * set if there are more histories to fetch.  Tokens are valid for up to one
@@ -571,13 +574,13 @@ export namespace toolresults_v1beta3 {
      * later, the token from this second response will only be valid for 50
      * minutes.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$ListPerfSampleSeriesResponse {
     /**
      * The resulting PerfSampleSeries sorted by id
      */
-    perfSampleSeries: Schema$PerfSampleSeries[];
+    perfSampleSeries?: Schema$PerfSampleSeries[];
   }
   export interface Schema$ListPerfSamplesResponse {
     /**
@@ -585,14 +588,14 @@ export namespace toolresults_v1beta3 {
      * request (or the default page size, 500, if unspecified). It indicates the
      * last sample timestamp to be used as page_token in subsequent request
      */
-    nextPageToken: string;
-    perfSamples: Schema$PerfSample[];
+    nextPageToken?: string;
+    perfSamples?: Schema$PerfSample[];
   }
   export interface Schema$ListScreenshotClustersResponse {
     /**
      * The set of clusters associated with an execution Always set
      */
-    clusters: Schema$ScreenshotCluster[];
+    clusters?: Schema$ScreenshotCluster[];
   }
   /**
    * Response message for StepService.List.
@@ -603,11 +606,11 @@ export namespace toolresults_v1beta3 {
      * indicates that there are more steps to read, by calling list again with
      * this value in the page_token field.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Steps.
      */
-    steps: Schema$Step[];
+    steps?: Schema$Step[];
   }
   /**
    * A response containing the thumbnails in a step.
@@ -618,7 +621,7 @@ export namespace toolresults_v1beta3 {
      * indicates that there are more thumbnails to read, by calling list again
      * with this value in the page_token field.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of image data.  Images are returned in a deterministic order; they
      * are ordered by these factors, in order of importance: * First, by their
@@ -627,17 +630,17 @@ export namespace toolresults_v1beta3 {
      * creation time are greater than images with one. * Third, by the order in
      * which they were added to the step (by calls to CreateStep or UpdateStep).
      */
-    thumbnails: Schema$Image[];
+    thumbnails?: Schema$Image[];
   }
   export interface Schema$MemoryInfo {
     /**
      * Maximum memory that can be allocated to the process in KiB
      */
-    memoryCapInKibibyte: string;
+    memoryCapInKibibyte?: string;
     /**
      * Total memory available on the device in KiB
      */
-    memoryTotalInKibibyte: string;
+    memoryTotalInKibibyte?: string;
   }
   /**
    * Interprets a result so that humans and machines can act on it.
@@ -647,26 +650,26 @@ export namespace toolresults_v1beta3 {
      * More information about a FAILURE outcome.  Returns INVALID_ARGUMENT if
      * this field is set but the summary is not FAILURE.  Optional
      */
-    failureDetail: Schema$FailureDetail;
+    failureDetail?: Schema$FailureDetail;
     /**
      * More information about an INCONCLUSIVE outcome.  Returns INVALID_ARGUMENT
      * if this field is set but the summary is not INCONCLUSIVE.  Optional
      */
-    inconclusiveDetail: Schema$InconclusiveDetail;
+    inconclusiveDetail?: Schema$InconclusiveDetail;
     /**
      * More information about a SKIPPED outcome.  Returns INVALID_ARGUMENT if
      * this field is set but the summary is not SKIPPED.  Optional
      */
-    skippedDetail: Schema$SkippedDetail;
+    skippedDetail?: Schema$SkippedDetail;
     /**
      * More information about a SUCCESS outcome.  Returns INVALID_ARGUMENT if
      * this field is set but the summary is not SUCCESS.  Optional
      */
-    successDetail: Schema$SuccessDetail;
+    successDetail?: Schema$SuccessDetail;
     /**
      * The simplest way to interpret a result.  Required
      */
-    summary: string;
+    summary?: string;
   }
   /**
    * Encapsulates performance environment info
@@ -675,46 +678,46 @@ export namespace toolresults_v1beta3 {
     /**
      * CPU related environment info
      */
-    cpuInfo: Schema$CPUInfo;
+    cpuInfo?: Schema$CPUInfo;
     /**
      * Memory related environment info
      */
-    memoryInfo: Schema$MemoryInfo;
+    memoryInfo?: Schema$MemoryInfo;
   }
   /**
    * A summary of perf metrics collected and performance environment info
    */
   export interface Schema$PerfMetricsSummary {
-    appStartTime: Schema$AppStartTime;
+    appStartTime?: Schema$AppStartTime;
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * Graphics statistics for the entire run. Statistics are reset at the
      * beginning of the run and collected at the end of the run.
      */
-    graphicsStats: Schema$GraphicsStats;
+    graphicsStats?: Schema$GraphicsStats;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * Describes the environment in which the performance metrics were collected
      */
-    perfEnvironment: Schema$PerfEnvironment;
+    perfEnvironment?: Schema$PerfEnvironment;
     /**
      * Set of resource collected
      */
-    perfMetrics: string[];
+    perfMetrics?: string[];
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
   /**
    * Resource representing a single performance measure or data point
@@ -723,11 +726,11 @@ export namespace toolresults_v1beta3 {
     /**
      * Timestamp of collection
      */
-    sampleTime: Schema$Timestamp;
+    sampleTime?: Schema$Timestamp;
     /**
      * Value observed
      */
-    value: number;
+    value?: number;
   }
   /**
    * Resource representing a collection of performance samples (or data points)
@@ -736,27 +739,27 @@ export namespace toolresults_v1beta3 {
     /**
      * Basic series represented by a line chart
      */
-    basicPerfSampleSeries: Schema$BasicPerfSampleSeries;
+    basicPerfSampleSeries?: Schema$BasicPerfSampleSeries;
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A sample series id
      */
-    sampleSeriesId: string;
+    sampleSeriesId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
   /**
    * Per-project settings for the Tool Results service.
@@ -767,13 +770,13 @@ export namespace toolresults_v1beta3 {
      * By default, this is unset.  In update request: optional In response:
      * optional
      */
-    defaultBucket: string;
+    defaultBucket?: string;
     /**
      * The name of the project&#39;s settings.  Always of the form:
      * projects/{project-id}/settings  In update request: never set In response:
      * always set
      */
-    name: string;
+    name?: string;
   }
   /**
    * Request message for StepService.PublishXunitXmlFiles.
@@ -783,61 +786,61 @@ export namespace toolresults_v1beta3 {
      * URI of the Xunit XML files to publish.  The maximum size of the file this
      * reference is pointing to is 50MB.  Required.
      */
-    xunitXmlFiles: Schema$FileReference[];
+    xunitXmlFiles?: Schema$FileReference[];
   }
   export interface Schema$Screen {
     /**
      * File reference of the png file. Required.
      */
-    fileReference: string;
+    fileReference?: string;
     /**
      * Locale of the device that the screenshot was taken on. Required.
      */
-    locale: string;
+    locale?: string;
     /**
      * Model of the device that the screenshot was taken on. Required.
      */
-    model: string;
+    model?: string;
     /**
      * OS version of the device that the screenshot was taken on. Required.
      */
-    version: string;
+    version?: string;
   }
   export interface Schema$ScreenshotCluster {
     /**
      * A string that describes the activity of every screen in the cluster.
      */
-    activity: string;
+    activity?: string;
     /**
      * A unique identifier for the cluster.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * A singular screen that represents the cluster as a whole. This screen
      * will act as the &quot;cover&quot; of the entire cluster. When users look
      * at the clusters, only the key screen from each cluster will be shown.
      * Which screen is the key screen is determined by the ClusteringAlgorithm
      */
-    keyScreen: Schema$Screen;
+    keyScreen?: Schema$Screen;
     /**
      * Full list of screens.
      */
-    screens: Schema$Screen[];
+    screens?: Schema$Screen[];
   }
   export interface Schema$SkippedDetail {
     /**
      * If the App doesn&#39;t support the specific API level.
      */
-    incompatibleAppVersion: boolean;
+    incompatibleAppVersion?: boolean;
     /**
      * If the App doesn&#39;t run on the specific architecture, for example,
      * x86.
      */
-    incompatibleArchitecture: boolean;
+    incompatibleArchitecture?: boolean;
     /**
      * If the requested OS version doesn&#39;t run on the specific device model.
      */
-    incompatibleDevice: boolean;
+    incompatibleDevice?: boolean;
   }
   /**
    * The details about how to run the execution.
@@ -846,7 +849,7 @@ export namespace toolresults_v1beta3 {
     /**
      * An Android mobile test execution specification.
      */
-    androidTest: Schema$AndroidTest;
+    androidTest?: Schema$AndroidTest;
   }
   /**
    * A stacktrace.
@@ -855,15 +858,15 @@ export namespace toolresults_v1beta3 {
     /**
      * Exception cluster ID
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * The stack trace message.  Required
      */
-    exception: string;
+    exception?: string;
     /**
      * Exception report ID
      */
-    reportId: string;
+    reportId?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -905,18 +908,18 @@ export namespace toolresults_v1beta3 {
     /**
      * The status code, which should be an enum value of [google.rpc.Code][].
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details: Schema$Any[];
+    details?: Schema$Any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * [google.rpc.Status.details][] field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A Step represents a single operation performed as part of Execution. A step
@@ -939,18 +942,18 @@ export namespace toolresults_v1beta3 {
      * set automatically when state transitions to COMPLETE.  - In response: set
      * if the execution state is COMPLETE. - In create/update request: never set
      */
-    completionTime: Schema$Timestamp;
+    completionTime?: Schema$Timestamp;
     /**
      * The time when the step was created.  - In response: always set - In
      * create/update request: never set
      */
-    creationTime: Schema$Timestamp;
+    creationTime?: Schema$Timestamp;
     /**
      * A description of this tool For example: mvn clean package -D
      * skipTests=true  - In response: present if set by create/update request -
      * In create/update request: optional
      */
-    description: string;
+    description?: string;
     /**
      * How much the device resource is used to perform the test.  This is the
      * device usage used for billing purpose, which is different from the
@@ -960,7 +963,7 @@ export namespace toolresults_v1beta3 {
      * response: present if previously set. - In create request: optional - In
      * update request: optional
      */
-    deviceUsageDuration: Schema$Duration;
+    deviceUsageDuration?: Schema$Duration;
     /**
      * If the execution containing this step has any dimension_definition set,
      * then this field allows the child to specify the values of the dimensions.
@@ -984,13 +987,13 @@ export namespace toolresults_v1beta3 {
      * of the keys.  - In response: present if set by create - In create
      * request: optional - In update request: never set
      */
-    dimensionValue: Schema$StepDimensionValueEntry[];
+    dimensionValue?: Schema$StepDimensionValueEntry[];
     /**
      * Whether any of the outputs of this step are images whose thumbnails can
      * be fetched with ListThumbnails.  - In response: always set - In
      * create/update request: never set
      */
-    hasImages: boolean;
+    hasImages?: boolean;
     /**
      * Arbitrary user-supplied key/value pairs that are associated with the
      * step.  Users are responsible for managing the key namespace such that
@@ -1001,7 +1004,7 @@ export namespace toolresults_v1beta3 {
      * key/value pair will be added to the map, and any new value for an
      * existing key will update that key&#39;s value
      */
-    labels: Schema$StepLabelsEntry[];
+    labels?: Schema$StepLabelsEntry[];
     /**
      * A short human-readable name to display in the UI. Maximum of 100
      * characters. For example: Clean build  A PRECONDITION_FAILED will be
@@ -1012,13 +1015,13 @@ export namespace toolresults_v1beta3 {
      * platforms, the two steps should have the same name.  - In response:
      * always set - In create request: always set - In update request: never set
      */
-    name: string;
+    name?: string;
     /**
      * Classification of the result, for example into SUCCESS or FAILURE  - In
      * response: present if set by create/update request - In create/update
      * request: optional
      */
-    outcome: Schema$Outcome;
+    outcome?: Schema$Outcome;
     /**
      * How long it took for this step to run.  If unset, this is set to the
      * difference between creation_time and completion_time when the step is set
@@ -1031,7 +1034,7 @@ export namespace toolresults_v1beta3 {
      * present if previously set; always present on COMPLETE step - In create
      * request: optional - In update request: optional
      */
-    runDuration: Schema$Duration;
+    runDuration?: Schema$Duration;
     /**
      * The initial state is IN_PROGRESS. The only legal state transitions are *
      * IN_PROGRESS -&gt; COMPLETE  A PRECONDITION_FAILED will be returned if an
@@ -1041,35 +1044,35 @@ export namespace toolresults_v1beta3 {
      * multiple times.  - In response: always set - In create/update request:
      * optional
      */
-    state: string;
+    state?: string;
     /**
      * A unique identifier within a Execution for this Step.  Returns
      * INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In
      * response: always set - In create/update request: never set
      */
-    stepId: string;
+    stepId?: string;
     /**
      * An execution of a test runner.
      */
-    testExecutionStep: Schema$TestExecutionStep;
+    testExecutionStep?: Schema$TestExecutionStep;
     /**
      * An execution of a tool (used for steps we don&#39;t explicitly support).
      */
-    toolExecutionStep: Schema$ToolExecutionStep;
+    toolExecutionStep?: Schema$ToolExecutionStep;
   }
   export interface Schema$StepDimensionValueEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   export interface Schema$StepLabelsEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   export interface Schema$SuccessDetail {
     /**
      * If a native process other than the app crashed.
      */
-    otherNativeCrash: boolean;
+    otherNativeCrash?: boolean;
   }
   /**
    * A reference to a test case.  Test case references are canonically ordered
@@ -1080,15 +1083,15 @@ export namespace toolresults_v1beta3 {
     /**
      * The name of the class.
      */
-    className: string;
+    className?: string;
     /**
      * The name of the test case.  Required.
      */
-    name: string;
+    name?: string;
     /**
      * The name of the test suite to which this test case belongs.
      */
-    testSuiteName: string;
+    testSuiteName?: string;
   }
   /**
    * A step that represents running tests.  It accepts ant-junit xml files which
@@ -1104,7 +1107,7 @@ export namespace toolresults_v1beta3 {
      * trace content can be recorded here to assist debugging.  - In response:
      * present if set by create or update - In create/update request: optional
      */
-    testIssues: Schema$TestIssue[];
+    testIssues?: Schema$TestIssue[];
     /**
      * List of test suite overview contents. This could be parsed from xUnit XML
      * log by server, or uploaded directly by user. This references should only
@@ -1113,18 +1116,18 @@ export namespace toolresults_v1beta3 {
      * always set - In create request: optional - In update request: never (use
      * publishXunitXmlFiles custom method instead)
      */
-    testSuiteOverviews: Schema$TestSuiteOverview[];
+    testSuiteOverviews?: Schema$TestSuiteOverview[];
     /**
      * The timing break down of the test execution.  - In response: present if
      * set by create or update - In create/update request: optional
      */
-    testTiming: Schema$TestTiming;
+    testTiming?: Schema$TestTiming;
     /**
      * Represents the execution of the test runner.  The exit code of this tool
      * will be used to determine if the test passed.  - In response: always set
      * - In create/update request: optional
      */
-    toolExecution: Schema$ToolExecution;
+    toolExecution?: Schema$ToolExecution;
   }
   /**
    * An issue detected occurring during a test execution.
@@ -1133,24 +1136,24 @@ export namespace toolresults_v1beta3 {
     /**
      * A brief human-readable message describing the issue. Required.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * Severity of issue. Required.
      */
-    severity: string;
+    severity?: string;
     /**
      * Deprecated in favor of stack trace fields inside specific warnings.
      */
-    stackTrace: Schema$StackTrace;
+    stackTrace?: Schema$StackTrace;
     /**
      * Type of issue. Required.
      */
-    type: string;
+    type?: string;
     /**
      * Warning message with additional details of the issue. Should always be a
      * message from com.google.devtools.toolresults.v1.warnings
      */
-    warning: Schema$Any;
+    warning?: Schema$Any;
   }
   /**
    * A summary of a test suite result either parsed from XML or uploaded
@@ -1164,35 +1167,35 @@ export namespace toolresults_v1beta3 {
      * the xml_source.  - In create/response: always set - In update request:
      * never
      */
-    errorCount: number;
+    errorCount?: number;
     /**
      * Number of failed test cases, typically set by the service by parsing the
      * xml_source. May also be set by the user.  - In create/response: always
      * set - In update request: never
      */
-    failureCount: number;
+    failureCount?: number;
     /**
      * The name of the test suite.  - In create/response: always set - In update
      * request: never
      */
-    name: string;
+    name?: string;
     /**
      * Number of test cases not run, typically set by the service by parsing the
      * xml_source.  - In create/response: always set - In update request: never
      */
-    skippedCount: number;
+    skippedCount?: number;
     /**
      * Number of test cases, typically set by the service by parsing the
      * xml_source.  - In create/response: always set - In update request: never
      */
-    totalCount: number;
+    totalCount?: number;
     /**
      * If this test suite was parsed from XML, this is the URI where the
      * original XML file is stored.  Note: Multiple test suites can share the
      * same xml_source  Returns INVALID_ARGUMENT if the uri format is not
      * supported.  - In create/response: optional - In update request: never
      */
-    xmlSource: Schema$FileReference;
+    xmlSource?: Schema$FileReference;
   }
   /**
    * Testing timing break down to know phases.
@@ -1202,7 +1205,7 @@ export namespace toolresults_v1beta3 {
      * How long it took to run the test process.  - In response: present if
      * previously set. - In create/update request: optional
      */
-    testProcessDuration: Schema$Duration;
+    testProcessDuration?: Schema$Duration;
   }
   /**
    * A single thumbnail, with its size and format.
@@ -1212,21 +1215,21 @@ export namespace toolresults_v1beta3 {
      * The thumbnail&#39;s content type, i.e. &quot;image/png&quot;.  Always
      * set.
      */
-    contentType: string;
+    contentType?: string;
     /**
      * The thumbnail file itself.  That is, the bytes here are precisely the
      * bytes that make up the thumbnail file; they can be served as an image
      * as-is (with the appropriate content type.)  Always set.
      */
-    data: string;
+    data?: string;
     /**
      * The height of the thumbnail, in pixels.  Always set.
      */
-    heightPx: number;
+    heightPx?: number;
     /**
      * The width of the thumbnail, in pixels.  Always set.
      */
-    widthPx: number;
+    widthPx?: number;
   }
   /**
    * A Timestamp represents a point in time independent of any time zone or
@@ -1285,12 +1288,12 @@ export namespace toolresults_v1beta3 {
      * second values with fractions must still have non-negative nanos values
      * that count forward in time. Must be from 0 to 999,999,999 inclusive.
      */
-    nanos: number;
+    nanos?: number;
     /**
      * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z.
      * Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
      */
-    seconds: string;
+    seconds?: string;
   }
   /**
    * An execution of an arbitrary tool. It could be a test runner or a tool
@@ -1302,7 +1305,7 @@ export namespace toolresults_v1beta3 {
      * argv in a C program).  - In response: present if set by create request -
      * In create request: optional - In update request: never set
      */
-    commandLineArguments: string[];
+    commandLineArguments?: string[];
     /**
      * Tool execution exit code. This field will be set once the tool has
      * exited.  - In response: present if set by create/update request - In
@@ -1310,7 +1313,7 @@ export namespace toolresults_v1beta3 {
      * FAILED_PRECONDITION error will be returned if an exit_code is already
      * set.
      */
-    exitCode: Schema$ToolExitCode;
+    exitCode?: Schema$ToolExitCode;
     /**
      * References to any plain text logs output the tool execution.  This field
      * can be set before the tool has exited in order to be able to have access
@@ -1320,7 +1323,7 @@ export namespace toolresults_v1beta3 {
      * request: optional, any value provided will be appended to the existing
      * list
      */
-    toolLogs: Schema$FileReference[];
+    toolLogs?: Schema$FileReference[];
     /**
      * References to opaque files of any format output by the tool execution.
      * The maximum allowed number of tool outputs per step is 1000.  - In
@@ -1328,7 +1331,7 @@ export namespace toolresults_v1beta3 {
      * optional - In update request: optional, any value provided will be
      * appended to the existing list
      */
-    toolOutputs: Schema$ToolOutputReference[];
+    toolOutputs?: Schema$ToolOutputReference[];
   }
   /**
    * Generic tool step to be used for binaries we do not explicitly support. For
@@ -1339,7 +1342,7 @@ export namespace toolresults_v1beta3 {
      * A Tool execution.  - In response: present if set by create/update request
      * - In create/update request: optional
      */
-    toolExecution: Schema$ToolExecution;
+    toolExecution?: Schema$ToolExecution;
   }
   /**
    * Exit code from a tool execution.
@@ -1350,7 +1353,7 @@ export namespace toolresults_v1beta3 {
      * successful.  - In response: always set - In create/update request: always
      * set
      */
-    number: number;
+    number?: number;
   }
   /**
    * A reference to a ToolExecution output file.
@@ -1360,18 +1363,19 @@ export namespace toolresults_v1beta3 {
      * The creation time of the file.  - In response: present if set by
      * create/update request - In create/update request: optional
      */
-    creationTime: Schema$Timestamp;
+    creationTime?: Schema$Timestamp;
     /**
      * A FileReference to an output file.  - In response: always set - In
      * create/update request: always set
      */
-    output: Schema$FileReference;
+    output?: Schema$FileReference;
     /**
      * The test case to which this output file belongs.  - In response: present
      * if set by create/update request - In create/update request: optional
      */
-    testCase: Schema$TestCaseReference;
+    testCase?: Schema$TestCaseReference;
   }
+
 
   export class Resource$Projects {
     root: Toolresults;
@@ -1401,26 +1405,39 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSettings(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProjectSettings>;
     getSettings(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-        callback?: BodyResponseCallback<Schema$ProjectSettings>): void;
+        params?: Params$Resource$Projects$Getsettings,
+        options?: MethodOptions): AxiosPromise<Schema$ProjectSettings>;
     getSettings(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+        params: Params$Resource$Projects$Getsettings,
+        options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+    getSettings(
+        params: Params$Resource$Projects$Getsettings,
+        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+    getSettings(callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+    getSettings(
+        paramsOrCallback?: Params$Resource$Projects$Getsettings|
+        BodyResponseCallback<Schema$ProjectSettings>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProjectSettings>,
         callback?: BodyResponseCallback<Schema$ProjectSettings>):
         void|AxiosPromise<Schema$ProjectSettings> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getsettings;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1475,26 +1492,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    initializeSettings(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProjectSettings>;
     initializeSettings(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-        callback?: BodyResponseCallback<Schema$ProjectSettings>): void;
+        params?: Params$Resource$Projects$Initializesettings,
+        options?: MethodOptions): AxiosPromise<Schema$ProjectSettings>;
     initializeSettings(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+        params: Params$Resource$Projects$Initializesettings,
+        options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+    initializeSettings(
+        params: Params$Resource$Projects$Initializesettings,
+        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+    initializeSettings(callback: BodyResponseCallback<Schema$ProjectSettings>):
+        void;
+    initializeSettings(
+        paramsOrCallback?: Params$Resource$Projects$Initializesettings|
+        BodyResponseCallback<Schema$ProjectSettings>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProjectSettings>,
         callback?: BodyResponseCallback<Schema$ProjectSettings>):
         void|AxiosPromise<Schema$ProjectSettings> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Initializesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Initializesettings;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1518,6 +1549,30 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Getsettings {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Initializesettings {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Histories {
     root: Toolresults;
     executions: Resource$Projects$Histories$Executions;
@@ -1550,25 +1605,38 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$History>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback?: BodyResponseCallback<Schema$History>): void;
+        params?: Params$Resource$Projects$Histories$Create,
+        options?: MethodOptions): AxiosPromise<Schema$History>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$History>,
+        params: Params$Resource$Projects$Histories$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$History>,
+        callback: BodyResponseCallback<Schema$History>): void;
+    create(
+        params: Params$Resource$Projects$Histories$Create,
+        callback: BodyResponseCallback<Schema$History>): void;
+    create(callback: BodyResponseCallback<Schema$History>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Histories$Create|
+        BodyResponseCallback<Schema$History>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$History>,
         callback?: BodyResponseCallback<Schema$History>):
         void|AxiosPromise<Schema$History> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1608,23 +1676,34 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$History>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback?: BodyResponseCallback<Schema$History>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$History>,
+    get(params?: Params$Resource$Projects$Histories$Get,
+        options?: MethodOptions): AxiosPromise<Schema$History>;
+    get(params: Params$Resource$Projects$Histories$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$History>,
+        callback: BodyResponseCallback<Schema$History>): void;
+    get(params: Params$Resource$Projects$Histories$Get,
+        callback: BodyResponseCallback<Schema$History>): void;
+    get(callback: BodyResponseCallback<Schema$History>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Histories$Get|
+        BodyResponseCallback<Schema$History>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$History>,
         callback?: BodyResponseCallback<Schema$History>):
         void|AxiosPromise<Schema$History> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1669,28 +1748,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListHistoriesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Histories$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListHistoriesResponse>;
+    list(
+        params: Params$Resource$Projects$Histories$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListHistoriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Histories$List,
+        callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Histories$List|
+        BodyResponseCallback<Schema$ListHistoriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListHistoriesResponse>,
         callback?: BodyResponseCallback<Schema$ListHistoriesResponse>):
         void|AxiosPromise<Schema$ListHistoriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1713,6 +1804,68 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For
+     * example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$History;
+  }
+  export interface Params$Resource$Projects$Histories$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If set, only return histories with the given name.  Optional.
+     */
+    filterByName?: string;
+    /**
+     * The maximum number of Histories to fetch.  Default value: 20. The server
+     * will use this default if the field is not set or has a value of 0. Any
+     * value greater than 100 will be treated as 100.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Histories$Executions {
     root: Toolresults;
     clusters: Resource$Projects$Histories$Executions$Clusters;
@@ -1748,26 +1901,39 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Execution>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>): void;
+        params?: Params$Resource$Projects$Histories$Executions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Execution>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+        params: Params$Resource$Projects$Histories$Executions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    create(
+        params: Params$Resource$Projects$Histories$Executions$Create,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    create(callback: BodyResponseCallback<Schema$Execution>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Create|
+        BodyResponseCallback<Schema$Execution>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Execution>,
         callback?: BodyResponseCallback<Schema$Execution>):
         void|AxiosPromise<Schema$Execution> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1809,23 +1975,35 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Execution>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+    get(params?: Params$Resource$Projects$Histories$Executions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Execution>;
+    get(params: Params$Resource$Projects$Histories$Executions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    get(params: Params$Resource$Projects$Histories$Executions$Get,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    get(callback: BodyResponseCallback<Schema$Execution>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Get|
+        BodyResponseCallback<Schema$Execution>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Execution>,
         callback?: BodyResponseCallback<Schema$Execution>):
         void|AxiosPromise<Schema$Execution> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1870,28 +2048,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListExecutionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Histories$Executions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExecutionsResponse>;
+    list(
+        params: Params$Resource$Projects$Histories$Executions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExecutionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Histories$Executions$List,
+        callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$List|
+        BodyResponseCallback<Schema$ListExecutionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExecutionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExecutionsResponse>):
         void|AxiosPromise<Schema$ListExecutionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1937,26 +2127,39 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Execution>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>): void;
+        params?: Params$Resource$Projects$Histories$Executions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Execution>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+        params: Params$Resource$Projects$Histories$Executions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    patch(
+        params: Params$Resource$Projects$Histories$Executions$Patch,
+        callback: BodyResponseCallback<Schema$Execution>): void;
+    patch(callback: BodyResponseCallback<Schema$Execution>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Patch|
+        BodyResponseCallback<Schema$Execution>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Execution>,
         callback?: BodyResponseCallback<Schema$Execution>):
         void|AxiosPromise<Schema$Execution> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1980,6 +2183,104 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For
+     * example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Execution;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of Executions to fetch.  Default value: 25. The server
+     * will use this default if the field is not set or has a value of 0.
+     * Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.
+     */
+    executionId?: string;
+    /**
+     * Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id. Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For
+     * example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Execution;
+  }
+
   export class Resource$Projects$Histories$Executions$Clusters {
     root: Toolresults;
     constructor(root: Toolresults) {
@@ -2007,24 +2308,37 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Histories$Executions$Clusters$Get,
         options?: MethodOptions): AxiosPromise<Schema$ScreenshotCluster>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
-        callback?: BodyResponseCallback<Schema$ScreenshotCluster>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
+    get(params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
+        callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+    get(params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+        callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+    get(callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Clusters$Get|
+        BodyResponseCallback<Schema$ScreenshotCluster>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ScreenshotCluster>,
         callback?: BodyResponseCallback<Schema$ScreenshotCluster>):
         void|AxiosPromise<Schema$ScreenshotCluster> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Clusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Clusters$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2069,29 +2383,46 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Histories$Executions$Clusters$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListScreenshotClustersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
+        callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+        callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Clusters$List|
+        BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
         void|AxiosPromise<Schema$ListScreenshotClustersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Clusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Clusters$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2117,6 +2448,50 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Cluster id  Required.
+     */
+    clusterId?: string;
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
 
   export class Resource$Projects$Histories$Executions$Steps {
     root: Toolresults;
@@ -2164,23 +2539,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>): void;
+        params?: Params$Resource$Projects$Histories$Executions$Steps$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Step>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+        params: Params$Resource$Projects$Histories$Executions$Steps$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Step>,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    create(
+        params: Params$Resource$Projects$Histories$Executions$Steps$Create,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    create(callback: BodyResponseCallback<Schema$Step>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Create|
+        BodyResponseCallback<Schema$Step>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
         callback?: BodyResponseCallback<Schema$Step>):
         void|AxiosPromise<Schema$Step> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2223,21 +2615,35 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+    get(params?: Params$Resource$Projects$Histories$Executions$Steps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Step>;
+    get(params: Params$Resource$Projects$Histories$Executions$Steps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Step>,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    get(params: Params$Resource$Projects$Histories$Executions$Steps$Get,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    get(callback: BodyResponseCallback<Schema$Step>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Get|
+        BodyResponseCallback<Schema$Step>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
         callback?: BodyResponseCallback<Schema$Step>):
         void|AxiosPromise<Schema$Step> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2280,26 +2686,45 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPerfMetricsSummary(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PerfMetricsSummary>;
     getPerfMetricsSummary(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback?: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+        options?: MethodOptions): AxiosPromise<Schema$PerfMetricsSummary>;
     getPerfMetricsSummary(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+        options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    getPerfMetricsSummary(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    getPerfMetricsSummary(
+        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    getPerfMetricsSummary(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary|
+        BodyResponseCallback<Schema$PerfMetricsSummary>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PerfMetricsSummary>,
         callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
         void|AxiosPromise<Schema$PerfMetricsSummary> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2347,26 +2772,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListStepsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStepsResponse>): void;
+        params?: Params$Resource$Projects$Histories$Executions$Steps$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListStepsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
+        params: Params$Resource$Projects$Histories$Executions$Steps$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
+        callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Histories$Executions$Steps$List,
+        callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$List|
+        BodyResponseCallback<Schema$ListStepsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListStepsResponse>,
         callback?: BodyResponseCallback<Schema$ListStepsResponse>):
         void|AxiosPromise<Schema$ListStepsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2414,23 +2853,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>): void;
+        params?: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Step>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+        params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Step>,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    patch(
+        params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    patch(callback: BodyResponseCallback<Schema$Step>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Patch|
+        BodyResponseCallback<Schema$Step>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
         callback?: BodyResponseCallback<Schema$Step>):
         void|AxiosPromise<Schema$Step> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2477,24 +2933,43 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publishXunitXmlFiles(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Step>;
     publishXunitXmlFiles(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>): void;
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+        options?: MethodOptions): AxiosPromise<Schema$Step>;
     publishXunitXmlFiles(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+        options: MethodOptions|BodyResponseCallback<Schema$Step>,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    publishXunitXmlFiles(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+        callback: BodyResponseCallback<Schema$Step>): void;
+    publishXunitXmlFiles(callback: BodyResponseCallback<Schema$Step>): void;
+    publishXunitXmlFiles(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles|
+        BodyResponseCallback<Schema$Step>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
         callback?: BodyResponseCallback<Schema$Step>):
         void|AxiosPromise<Schema$Step> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2518,6 +2993,169 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For
+     * example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Step;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A Step id.  Required.
+     */
+    stepId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of Steps to fetch.  Default value: 25. The server will
+     * use this default if the field is not set or has a value of 0.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For
+     * example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * A Step id.  Required.
+     */
+    stepId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Step;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     */
+    stepId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PublishXunitXmlFilesRequest;
+  }
+
   export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
     root: Toolresults;
     constructor(root: Toolresults) {
@@ -2549,26 +3187,44 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PerfMetricsSummary>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback?: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+        options?: MethodOptions): AxiosPromise<Schema$PerfMetricsSummary>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    create(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    create(callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create|
+        BodyResponseCallback<Schema$PerfMetricsSummary>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PerfMetricsSummary>,
         callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
         void|AxiosPromise<Schema$PerfMetricsSummary> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2592,6 +3248,35 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PerfMetricsSummary;
+  }
+
 
   export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
     root: Toolresults;
@@ -2629,26 +3314,44 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PerfSampleSeries>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback?: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+        options?: MethodOptions): AxiosPromise<Schema$PerfSampleSeries>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    create(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    create(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create|
+        BodyResponseCallback<Schema$PerfSampleSeries>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PerfSampleSeries>,
         callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
         void|AxiosPromise<Schema$PerfSampleSeries> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2691,24 +3394,40 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
         options?: MethodOptions): AxiosPromise<Schema$PerfSampleSeries>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback?: BodyResponseCallback<Schema$PerfSampleSeries>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+    get(params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    get(params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    get(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get|
+        BodyResponseCallback<Schema$PerfSampleSeries>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PerfSampleSeries>,
         callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
         void|AxiosPromise<Schema$PerfSampleSeries> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2758,29 +3477,49 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListPerfSampleSeriesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
+        callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+        callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List|
+        BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
         callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
         void|AxiosPromise<Schema$ListPerfSampleSeriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2806,6 +3545,90 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PerfSampleSeries;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * Specify one or more PerfMetricType values such as CPU to filter the
+     * result
+     */
+    filter?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+
   export class
       Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
     root: Toolresults;
@@ -2844,29 +3667,50 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchCreate(params?: any, options?: MethodOptions):
+    batchCreate(
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
     batchCreate(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-        callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
+        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
         void;
     batchCreate(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
+        void;
+    batchCreate(
+        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
+        void;
+    batchCreate(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate|
+        BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
         callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
         void|AxiosPromise<Schema$BatchCreatePerfSamplesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2924,28 +3768,45 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListPerfSamplesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListPerfSamplesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-        callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+        callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List|
+        BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListPerfSamplesResponse>,
         callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>):
         void|AxiosPromise<Schema$ListPerfSamplesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2973,6 +3834,75 @@ export namespace toolresults_v1beta3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchCreatePerfSamplesRequest;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The default page size is 500 samples, and the maximum size is 5000. If
+     * the page_size is greater than 5000, the effective page size will be 5000
+     */
+    pageSize?: number;
+    /**
+     * Optional, the next_page_token returned in the previous response
+     */
+    pageToken?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+
 
 
   export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
@@ -3008,29 +3938,49 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListStepThumbnailsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
+        callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+        callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List|
+        BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
         callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
         void|AxiosPromise<Schema$ListStepThumbnailsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3054,5 +4004,39 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$ListStepThumbnailsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of thumbnails to fetch.  Default value: 50. The server
+     * will use this default if the field is not set or has a value of 0.
+     * Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A Step id.  Required.
+     */
+    stepId?: string;
   }
 }

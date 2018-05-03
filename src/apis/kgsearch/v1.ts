@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace kgsearch_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Knowledge Graph Search API
    *
@@ -74,16 +77,17 @@ export namespace kgsearch_v1 {
      * The local context applicable for the response. See more details at
      * http://www.w3.org/TR/json-ld/#context-definitions.
      */
-    context: any;
+    '@context'?: any;
     /**
      * The schema type of top-level JSON-LD object, e.g. ItemList.
      */
-    type: any;
+    '@type'?: any;
     /**
      * The item list of search results.
      */
-    itemListElement: any[];
+    itemListElement?: any[];
   }
+
 
   export class Resource$Entities {
     root: Kgsearch;
@@ -117,26 +121,37 @@ export namespace kgsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Entities$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
-        callback?: BodyResponseCallback<Schema$SearchResponse>): void;
+        params: Params$Resource$Entities$Search,
+        options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
+        callback: BodyResponseCallback<Schema$SearchResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
+        params: Params$Resource$Entities$Search,
+        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Entities$Search|
+        BodyResponseCallback<Schema$SearchResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SearchResponse>,
         callback?: BodyResponseCallback<Schema$SearchResponse>):
         void|AxiosPromise<Schema$SearchResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Entities$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://kgsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -157,5 +172,46 @@ export namespace kgsearch_v1 {
         return createAPIRequest<Schema$SearchResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Entities$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The list of entity id to be used for search instead of query string. To
+     * specify multiple ids in the HTTP request, repeat the parameter in the URL
+     * as in ...?ids=A&ids=B
+     */
+    ids?: string;
+    /**
+     * Enables indenting of json results.
+     */
+    indent?: boolean;
+    /**
+     * The list of language codes (defined in ISO 693) to run the query with,
+     * e.g. 'en'.
+     */
+    languages?: string;
+    /**
+     * Limits the number of entities to be returned.
+     */
+    limit?: number;
+    /**
+     * Enables prefix match against names and aliases of entities
+     */
+    prefix?: boolean;
+    /**
+     * The literal query string for search.
+     */
+    query?: string;
+    /**
+     * Restricts returned entities with these types, e.g. Person (as defined in
+     * http://schema.org/Person). If multiple types are specified, returned
+     * entities will contain one or more of these types.
+     */
+    types?: string;
   }
 }

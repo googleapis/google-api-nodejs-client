@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace iam_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Identity and Access Management (IAM) API
    *
@@ -83,7 +86,7 @@ export namespace iam_v1 {
      * Public name of the service. For example, the service name for Cloud IAM
      * is &#39;iam.googleapis.com&#39;.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -112,13 +115,13 @@ export namespace iam_v1 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Audit log information specific to Cloud IAM. This message is serialized as
@@ -128,7 +131,7 @@ export namespace iam_v1 {
     /**
      * Policy delta between the original policy and the newly set policy.
      */
-    policyDelta: Schema$PolicyDelta;
+    policyDelta?: Schema$PolicyDelta;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -144,11 +147,11 @@ export namespace iam_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -161,21 +164,20 @@ export namespace iam_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * One delta entry for Binding. Each individual change (only one member in
@@ -185,17 +187,17 @@ export namespace iam_v1 {
     /**
      * The action that was performed on a Binding. Required
      */
-    action: string;
+    action?: string;
     /**
      * A single identity requesting access for a Cloud Platform resource.
      * Follows the same format of Binding.members. Required
      */
-    member: string;
+    member?: string;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * The request to create a new role.
@@ -204,11 +206,11 @@ export namespace iam_v1 {
     /**
      * The Role resource to create.
      */
-    role: Schema$Role;
+    role?: Schema$Role;
     /**
      * The role id to use for this role.
      */
-    roleId: string;
+    roleId?: string;
   }
   /**
    * The service account key create request.
@@ -218,13 +220,13 @@ export namespace iam_v1 {
      * Which type of key and algorithm to use for the key. The default is
      * currently a 2K RSA key.  However this may change in the future.
      */
-    keyAlgorithm: string;
+    keyAlgorithm?: string;
     /**
      * The output format of the private key. The default value is
      * `TYPE_GOOGLE_CREDENTIALS_FILE`, which is the Google Credentials File
      * format.
      */
-    privateKeyType: string;
+    privateKeyType?: string;
   }
   /**
    * The service account create request.
@@ -236,12 +238,12 @@ export namespace iam_v1 {
      * be 6-30 characters long, and match the regular expression
      * `[a-z]([-a-z0-9]*[a-z0-9])` to comply with RFC1035.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ServiceAccount resource to create. Currently, only the following
      * values are user assignable: `display_name` .
      */
-    serviceAccount: Schema$ServiceAccount;
+    serviceAccount?: Schema$ServiceAccount;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -259,11 +261,11 @@ export namespace iam_v1 {
      * To retrieve the next page of results, set `ListRolesRequest.page_token`
      * to this value.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The Roles defined on this resource.
      */
-    roles: Schema$Role[];
+    roles?: Schema$Role[];
   }
   /**
    * The service account keys list response.
@@ -272,7 +274,7 @@ export namespace iam_v1 {
     /**
      * The public keys for the service account.
      */
-    keys: Schema$ServiceAccountKey[];
+    keys?: Schema$ServiceAccountKey[];
   }
   /**
    * The service account list response.
@@ -281,12 +283,12 @@ export namespace iam_v1 {
     /**
      * The list of matching service accounts.
      */
-    accounts: Schema$ServiceAccount[];
+    accounts?: Schema$ServiceAccount[];
     /**
      * To retrieve the next page of results, set
      * ListServiceAccountsRequest.page_token to this value.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A permission which can be included by a role.
@@ -295,58 +297,62 @@ export namespace iam_v1 {
     /**
      * The service API associated with the permission is not enabled.
      */
-    apiDisabled: boolean;
+    apiDisabled?: boolean;
     /**
      * The current custom role support level.
      */
-    customRolesSupportLevel: string;
+    customRolesSupportLevel?: string;
     /**
      * A brief description of what this Permission is used for.
      */
-    description: string;
+    description?: string;
     /**
      * The name of this Permission.
      */
-    name: string;
+    name?: string;
     /**
      * This permission can ONLY be used in predefined roles.
      */
-    onlyInPredefinedRoles: boolean;
+    onlyInPredefinedRoles?: boolean;
     /**
      * The current launch stage of the permission.
      */
-    stage: string;
+    stage?: string;
     /**
      * The title of this Permission.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -358,11 +364,11 @@ export namespace iam_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * The difference delta between two policies.
@@ -371,7 +377,7 @@ export namespace iam_v1 {
     /**
      * The delta for Bindings between two policies.
      */
-    bindingDeltas: Schema$BindingDelta[];
+    bindingDeltas?: Schema$BindingDelta[];
   }
   /**
    * A request to get the list of auditable services for a resource.
@@ -383,7 +389,7 @@ export namespace iam_v1 {
      * For example, a Cloud Platform project with id `my-project` will be named
      * `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName: string;
+    fullResourceName?: string;
   }
   /**
    * A response containing a list of auditable services for a resource.
@@ -392,7 +398,7 @@ export namespace iam_v1 {
     /**
      * The auditable services for a resource.
      */
-    services: Schema$AuditableService[];
+    services?: Schema$AuditableService[];
   }
   /**
    * The grantable role query request.
@@ -404,17 +410,17 @@ export namespace iam_v1 {
      * example, a Cloud Platform project with id `my-project` will be named
      * `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName: string;
+    fullResourceName?: string;
     /**
      * Optional limit on the number of roles to include in the response.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * Optional pagination token returned in an earlier
      * QueryGrantableRolesResponse.
      */
-    pageToken: string;
-    view: string;
+    pageToken?: string;
+    view?: string;
   }
   /**
    * The grantable role query response.
@@ -424,11 +430,11 @@ export namespace iam_v1 {
      * To retrieve the next page of results, set
      * `QueryGrantableRolesRequest.page_token` to this value.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of matching roles.
      */
-    roles: Schema$Role[];
+    roles?: Schema$Role[];
   }
   /**
    * A request to get permissions which can be tested on a resource.
@@ -440,16 +446,16 @@ export namespace iam_v1 {
      * For example, a Cloud Platform project with id `my-project` will be named
      * `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName: string;
+    fullResourceName?: string;
     /**
      * Optional limit on the number of permissions to include in the response.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * Optional pagination token returned in an earlier
      * QueryTestablePermissionsRequest.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The response containing permissions which can be tested on a resource.
@@ -459,11 +465,11 @@ export namespace iam_v1 {
      * To retrieve the next page of results, set
      * `QueryTestableRolesRequest.page_token` to this value.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The Permissions testable on the requested resource.
      */
-    permissions: Schema$Permission[];
+    permissions?: Schema$Permission[];
   }
   /**
    * A role in the Identity and Access Management API.
@@ -473,20 +479,20 @@ export namespace iam_v1 {
      * The current deleted state of the role. This field is read only. It will
      * be ignored in calls to CreateRole and UpdateRole.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * Optional.  A human-readable description for the role.
      */
-    description: string;
+    description?: string;
     /**
      * Used to perform a consistent read-modify-write.
      */
-    etag: string;
+    etag?: string;
     /**
      * The names of the permissions this role grants when bound in an IAM
      * policy.
      */
-    includedPermissions: string[];
+    includedPermissions?: string[];
     /**
      * The name of the role.  When Role is used in CreateRole, the role name
      * must not be set.  When Role is used in output and other input such as
@@ -494,16 +500,16 @@ export namespace iam_v1 {
      * roles/logging.viewer for curated roles and
      * organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.
      */
-    name: string;
+    name?: string;
     /**
      * The current launch stage of the role.
      */
-    stage: string;
+    stage?: string;
     /**
      * Optional.  A human-readable title for the role.  Typically this is
      * limited to 100 UTF-8 bytes.
      */
-    title: string;
+    title?: string;
   }
   /**
    * A service account in the Identity and Access Management API.  To create a
@@ -523,15 +529,15 @@ export namespace iam_v1 {
      * Optional. A user-specified description of the service account.  Must be
      * fewer than 100 UTF-8 bytes.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * @OutputOnly The email address of the service account.
      */
-    email: string;
+    email?: string;
     /**
      * Used to perform a consistent read-modify-write.
      */
-    etag: string;
+    etag?: string;
     /**
      * The resource name of the service account in the following format:
      * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as
@@ -540,21 +546,21 @@ export namespace iam_v1 {
      * the service account.  In responses the resource name will always be in
      * the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
-    name: string;
+    name?: string;
     /**
      * @OutputOnly The OAuth2 client id for the service account. This is used in
      * conjunction with the OAuth2 clientconfig API to make three legged OAuth2
      * (3LO) flows to access the data of Google users.
      */
-    oauth2ClientId: string;
+    oauth2ClientId?: string;
     /**
      * @OutputOnly The id of the project that owns the service account.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * @OutputOnly The unique and stable id of the service account.
      */
-    uniqueId: string;
+    uniqueId?: string;
   }
   /**
    * Represents a service account key.  A service account has two sets of
@@ -571,12 +577,12 @@ export namespace iam_v1 {
     /**
      * Specifies the algorithm (and possibly key size) for the key.
      */
-    keyAlgorithm: string;
+    keyAlgorithm?: string;
     /**
      * The resource name of the service account key in the following format
      * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
      */
-    name: string;
+    name?: string;
     /**
      * The private key data. Only provided in `CreateServiceAccountKey`
      * responses. Make sure to keep the private key data secure because it
@@ -586,26 +592,26 @@ export namespace iam_v1 {
      * href=&quot;/sdk/gcloud/reference/auth/activate-service-account&quot;&gt;gcloud
      * auth activate-service-account&lt;/a&gt;.
      */
-    privateKeyData: string;
+    privateKeyData?: string;
     /**
      * The output format for the private key. Only provided in
      * `CreateServiceAccountKey` responses, not in `GetServiceAccountKey` or
      * `ListServiceAccountKey` responses.  Google never exposes system-managed
      * private keys, and never retains user-managed private keys.
      */
-    privateKeyType: string;
+    privateKeyType?: string;
     /**
      * The public key data. Only provided in `GetServiceAccountKey` responses.
      */
-    publicKeyData: string;
+    publicKeyData?: string;
     /**
      * The key can be used after this timestamp.
      */
-    validAfterTime: string;
+    validAfterTime?: string;
     /**
      * The key can be used before this timestamp.
      */
-    validBeforeTime: string;
+    validBeforeTime?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -617,14 +623,14 @@ export namespace iam_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * The service account sign blob request.
@@ -633,7 +639,7 @@ export namespace iam_v1 {
     /**
      * The bytes to sign.
      */
-    bytesToSign: string;
+    bytesToSign?: string;
   }
   /**
    * The service account sign blob response.
@@ -642,11 +648,11 @@ export namespace iam_v1 {
     /**
      * The id of the key used to sign the blob.
      */
-    keyId: string;
+    keyId?: string;
     /**
      * The signed blob.
      */
-    signature: string;
+    signature?: string;
   }
   /**
    * The service account sign JWT request.
@@ -655,7 +661,7 @@ export namespace iam_v1 {
     /**
      * The JWT payload to sign, a JSON JWT Claim set.
      */
-    payload: string;
+    payload?: string;
   }
   /**
    * The service account sign JWT response.
@@ -664,11 +670,11 @@ export namespace iam_v1 {
     /**
      * The id of the key used to sign the JWT.
      */
-    keyId: string;
+    keyId?: string;
     /**
      * The signed JWT.
      */
-    signedJwt: string;
+    signedJwt?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -680,7 +686,7 @@ export namespace iam_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -690,7 +696,7 @@ export namespace iam_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * The request to undelete an existing role.
@@ -699,8 +705,9 @@ export namespace iam_v1 {
     /**
      * Used to perform a consistent read-modify-write.
      */
-    etag: string;
+    etag?: string;
   }
+
 
   export class Resource$Iampolicies {
     root: Iam;
@@ -727,29 +734,45 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    queryAuditableServices(params?: any, options?: MethodOptions):
+    queryAuditableServices(
+        params?: Params$Resource$Iampolicies$Queryauditableservices,
+        options?: MethodOptions):
         AxiosPromise<Schema$QueryAuditableServicesResponse>;
     queryAuditableServices(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Iampolicies$Queryauditableservices,
+        options: MethodOptions|
         BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-        callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
+        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
         void;
     queryAuditableServices(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Iampolicies$Queryauditableservices,
+        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
+        void;
+    queryAuditableServices(
+        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
+        void;
+    queryAuditableServices(
+        paramsOrCallback?: Params$Resource$Iampolicies$Queryauditableservices|
+        BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
         callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
         void|AxiosPromise<Schema$QueryAuditableServicesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Iampolicies$Queryauditableservices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Iampolicies$Queryauditableservices;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -774,6 +797,19 @@ export namespace iam_v1 {
     }
   }
 
+  export interface Params$Resource$Iampolicies$Queryauditableservices {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$QueryAuditableServicesRequest;
+  }
+
+
   export class Resource$Organizations {
     root: Iam;
     roles: Resource$Organizations$Roles;
@@ -787,6 +823,8 @@ export namespace iam_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Organizations$Roles {
     root: Iam;
     constructor(root: Iam) {
@@ -812,23 +850,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Organizations$Roles$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Organizations$Roles$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    create(
+        params: Params$Resource$Organizations$Roles$Create,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    create(callback: BodyResponseCallback<Schema$Role>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Organizations$Roles$Create|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Roles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -869,23 +922,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Organizations$Roles$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Organizations$Roles$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    delete(
+        params: Params$Resource$Organizations$Roles$Delete,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    delete(callback: BodyResponseCallback<Schema$Role>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Roles$Delete|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Roles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -919,21 +987,34 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+    get(params?: Params$Resource$Organizations$Roles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
+    get(params: Params$Resource$Organizations$Roles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(params: Params$Resource$Organizations$Roles$Get,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(callback: BodyResponseCallback<Schema$Role>): void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Roles$Get|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -971,26 +1052,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListRolesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+        params?: Params$Resource$Organizations$Roles$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListRolesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        params: Params$Resource$Organizations$Roles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(
+        params: Params$Resource$Organizations$Roles$List,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Roles$List|
+        BodyResponseCallback<Schema$ListRolesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
         void|AxiosPromise<Schema$ListRolesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1027,23 +1121,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Organizations$Roles$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Organizations$Roles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    patch(
+        params: Params$Resource$Organizations$Roles$Patch,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    patch(callback: BodyResponseCallback<Schema$Role>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Organizations$Roles$Patch|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1078,23 +1187,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Organizations$Roles$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Organizations$Roles$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(
+        params: Params$Resource$Organizations$Roles$Undelete,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Organizations$Roles$Undelete|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Roles$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Roles$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1116,6 +1240,121 @@ export namespace iam_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Organizations$Roles$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the parent resource in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateRoleRequest;
+  }
+  export interface Params$Resource$Organizations$Roles$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Used to perform a consistent read-modify-write.
+     */
+    etag?: string;
+    /**
+     * The resource name of the role in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Roles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Roles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of roles to include in the response.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token returned in an earlier ListRolesResponse.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the parent resource in one of the following formats:
+     * `` (empty string) -- this refers to curated roles.
+     * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     */
+    parent?: string;
+    /**
+     * Include Roles that have been deleted.
+     */
+    showDeleted?: boolean;
+    /**
+     * Optional view for the returned Role objects.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Organizations$Roles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+    /**
+     * A mask describing which fields in the Role have changed.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Role;
+  }
+  export interface Params$Resource$Organizations$Roles$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UndeleteRoleRequest;
+  }
+
 
 
   export class Resource$Permissions {
@@ -1143,31 +1382,49 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    queryTestablePermissions(params?: any, options?: MethodOptions):
+    queryTestablePermissions(
+        params?: Params$Resource$Permissions$Querytestablepermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$QueryTestablePermissionsResponse>;
     queryTestablePermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Permissions$Querytestablepermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
         void;
     queryTestablePermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Permissions$Querytestablepermissions,
+        callback:
+            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
+        void;
+    queryTestablePermissions(
+        callback:
+            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
+        void;
+    queryTestablePermissions(
+        paramsOrCallback?: Params$Resource$Permissions$Querytestablepermissions|
+        BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
         callback?:
             BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
         void|AxiosPromise<Schema$QueryTestablePermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Permissions$Querytestablepermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Querytestablepermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1192,6 +1449,19 @@ export namespace iam_v1 {
     }
   }
 
+  export interface Params$Resource$Permissions$Querytestablepermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$QueryTestablePermissionsRequest;
+  }
+
+
   export class Resource$Projects {
     root: Iam;
     roles: Resource$Projects$Roles;
@@ -1207,6 +1477,8 @@ export namespace iam_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Roles {
     root: Iam;
     constructor(root: Iam) {
@@ -1232,23 +1504,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Projects$Roles$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Projects$Roles$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    create(
+        params: Params$Resource$Projects$Roles$Create,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    create(callback: BodyResponseCallback<Schema$Role>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Roles$Create|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1289,23 +1576,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Projects$Roles$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Projects$Roles$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    delete(
+        params: Params$Resource$Projects$Roles$Delete,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    delete(callback: BodyResponseCallback<Schema$Role>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Roles$Delete|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1339,21 +1641,34 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+    get(params?: Params$Resource$Projects$Roles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
+    get(params: Params$Resource$Projects$Roles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(params: Params$Resource$Projects$Roles$Get,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(callback: BodyResponseCallback<Schema$Role>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Roles$Get|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1391,26 +1706,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Roles$List, options?: MethodOptions):
         AxiosPromise<Schema$ListRolesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+        params: Params$Resource$Projects$Roles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        params: Params$Resource$Projects$Roles$List,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Roles$List|
+        BodyResponseCallback<Schema$ListRolesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
         void|AxiosPromise<Schema$ListRolesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1447,23 +1774,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Projects$Roles$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Projects$Roles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    patch(
+        params: Params$Resource$Projects$Roles$Patch,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    patch(callback: BodyResponseCallback<Schema$Role>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Roles$Patch|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1498,23 +1840,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params?: Params$Resource$Projects$Roles$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Projects$Roles$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(
+        params: Params$Resource$Projects$Roles$Undelete,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(callback: BodyResponseCallback<Schema$Role>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Projects$Roles$Undelete|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Roles$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1536,6 +1893,121 @@ export namespace iam_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Roles$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the parent resource in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateRoleRequest;
+  }
+  export interface Params$Resource$Projects$Roles$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Used to perform a consistent read-modify-write.
+     */
+    etag?: string;
+    /**
+     * The resource name of the role in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Roles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Roles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of roles to include in the response.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token returned in an earlier ListRolesResponse.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the parent resource in one of the following formats:
+     * `` (empty string) -- this refers to curated roles.
+     * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     */
+    parent?: string;
+    /**
+     * Include Roles that have been deleted.
+     */
+    showDeleted?: boolean;
+    /**
+     * Optional view for the returned Role objects.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Roles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+    /**
+     * A mask describing which fields in the Role have changed.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Role;
+  }
+  export interface Params$Resource$Projects$Roles$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UndeleteRoleRequest;
+  }
+
 
   export class Resource$Projects$Serviceaccounts {
     root: Iam;
@@ -1564,26 +2036,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ServiceAccount>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        params: Params$Resource$Projects$Serviceaccounts$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    create(
+        params: Params$Resource$Projects$Serviceaccounts$Create,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    create(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Create|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
         void|AxiosPromise<Schema$ServiceAccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1618,25 +2103,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Serviceaccounts$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Serviceaccounts$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1670,24 +2168,35 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Serviceaccounts$Get,
         options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+    get(params: Params$Resource$Projects$Serviceaccounts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(params: Params$Resource$Projects$Serviceaccounts$Get,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Get|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
         void|AxiosPromise<Schema$ServiceAccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1721,26 +2230,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Serviceaccounts$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1777,29 +2299,44 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Serviceaccounts$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListServiceAccountsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
+        callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$List,
+        callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$List|
+        BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
         void|AxiosPromise<Schema$ListServiceAccountsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1836,26 +2373,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Serviceaccounts$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1891,26 +2441,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signBlob(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SignBlobResponse>;
     signBlob(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
-        callback?: BodyResponseCallback<Schema$SignBlobResponse>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Signblob,
+        options?: MethodOptions): AxiosPromise<Schema$SignBlobResponse>;
     signBlob(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
+        params: Params$Resource$Projects$Serviceaccounts$Signblob,
+        options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
+        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+    signBlob(
+        params: Params$Resource$Projects$Serviceaccounts$Signblob,
+        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+    signBlob(callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+    signBlob(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signblob|
+        BodyResponseCallback<Schema$SignBlobResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SignBlobResponse>,
         callback?: BodyResponseCallback<Schema$SignBlobResponse>):
         void|AxiosPromise<Schema$SignBlobResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Signblob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Signblob;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1949,26 +2512,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signJwt(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SignJwtResponse>;
     signJwt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
-        callback?: BodyResponseCallback<Schema$SignJwtResponse>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
+        options?: MethodOptions): AxiosPromise<Schema$SignJwtResponse>;
     signJwt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
+        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+        options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
+        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+    signJwt(
+        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+    signJwt(callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+    signJwt(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signjwt|
+        BodyResponseCallback<Schema$SignJwtResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SignJwtResponse>,
         callback?: BodyResponseCallback<Schema$SignJwtResponse>):
         void|AxiosPromise<Schema$SignJwtResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Signjwt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Signjwt;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2005,29 +2581,47 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Serviceaccounts$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Serviceaccounts$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2065,26 +2659,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ServiceAccount>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        params: Params$Resource$Projects$Serviceaccounts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    update(
+        params: Params$Resource$Projects$Serviceaccounts$Update,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    update(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Update|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
         void|AxiosPromise<Schema$ServiceAccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2105,6 +2712,179 @@ export namespace iam_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Serviceaccounts$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the project associated with the service
+     * accounts, such as `projects/my-project-123`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateServiceAccountRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the project associated with the service
+     * accounts, such as `projects/my-project-123`.
+     */
+    name?: string;
+    /**
+     * Optional limit on the number of service accounts to include in the
+     * response. Further accounts can subsequently be obtained by including the
+     * ListServiceAccountsResponse.next_page_token in a subsequent request.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token returned in an earlier
+     * ListServiceAccountsResponse.next_page_token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SignBlobRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SignJwtRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as
+     * a wildcard for the `PROJECT_ID` will infer the project from the `account`
+     * and the `ACCOUNT` value can be the `email` address or the `unique_id` of
+     * the service account.  In responses the resource name will always be in
+     * the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ServiceAccount;
+  }
+
   export class Resource$Projects$Serviceaccounts$Keys {
     root: Iam;
     constructor(root: Iam) {
@@ -2130,26 +2910,39 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ServiceAccountKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+        params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    create(
+        params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    create(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Create|
+        BodyResponseCallback<Schema$ServiceAccountKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccountKey>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
         void|AxiosPromise<Schema$ServiceAccountKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Keys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2183,25 +2976,38 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Keys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2236,24 +3042,35 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
         options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKey>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+    get(params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    get(params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    get(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Get|
+        BodyResponseCallback<Schema$ServiceAccountKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccountKey>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
         void|AxiosPromise<Schema$ServiceAccountKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Keys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2288,29 +3105,44 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListServiceAccountKeysResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
+        callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+        callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$List|
+        BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
         void|AxiosPromise<Schema$ListServiceAccountKeysResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Keys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2332,6 +3164,82 @@ export namespace iam_v1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateServiceAccountKeyRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account key in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-`
+     * as a wildcard for the `PROJECT_ID` will infer the project from the
+     * account. The `ACCOUNT` value can be the `email` address or the
+     * `unique_id` of the service account.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account key in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-`
+     * as a wildcard for the `PROJECT_ID` will infer the project from the
+     * account. The `ACCOUNT` value can be the `email` address or the
+     * `unique_id` of the service account.
+     */
+    name?: string;
+    /**
+     * The output format of the public key requested. X509_PEM is the default
+     * output format.
+     */
+    publicKeyType?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Filters the types of keys the user wants to include in the list response.
+     * Duplicate key types are not allowed. If no key type is provided, all keys
+     * are returned.
+     */
+    keyTypes?: string;
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a
+     * wildcard for the `PROJECT_ID`, will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
   }
 
 
@@ -2360,21 +3268,33 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+    get(params?: Params$Resource$Roles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
+    get(params: Params$Resource$Roles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(params: Params$Resource$Roles$Get,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(callback: BodyResponseCallback<Schema$Role>): void;
+    get(paramsOrCallback?: Params$Resource$Roles$Get|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2412,26 +3332,37 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Roles$List, options?: MethodOptions):
         AxiosPromise<Schema$ListRolesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+        params: Params$Resource$Roles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+        params: Params$Resource$Roles$List,
+        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Roles$List|
+        BodyResponseCallback<Schema$ListRolesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
         void|AxiosPromise<Schema$ListRolesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2467,29 +3398,45 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    queryGrantableRoles(params?: any, options?: MethodOptions):
+    queryGrantableRoles(
+        params?: Params$Resource$Roles$Querygrantableroles,
+        options?: MethodOptions):
         AxiosPromise<Schema$QueryGrantableRolesResponse>;
     queryGrantableRoles(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Roles$Querygrantableroles,
+        options: MethodOptions|
         BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-        callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
+        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
         void;
     queryGrantableRoles(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Roles$Querygrantableroles,
+        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
+        void;
+    queryGrantableRoles(
+        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
+        void;
+    queryGrantableRoles(
+        paramsOrCallback?: Params$Resource$Roles$Querygrantableroles|
+        BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
         callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
         void|AxiosPromise<Schema$QueryGrantableRolesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Roles$Querygrantableroles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Querygrantableroles;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2511,5 +3458,59 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$QueryGrantableRolesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Roles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the role in one of the following formats:
+     * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Roles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of roles to include in the response.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token returned in an earlier ListRolesResponse.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the parent resource in one of the following formats:
+     * `` (empty string) -- this refers to curated roles.
+     * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     */
+    parent?: string;
+    /**
+     * Include Roles that have been deleted.
+     */
+    showDeleted?: boolean;
+    /**
+     * Optional view for the returned Role objects.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Roles$Querygrantableroles {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$QueryGrantableRolesRequest;
   }
 }

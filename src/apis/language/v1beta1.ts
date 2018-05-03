@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace language_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Cloud Natural Language API
    *
@@ -74,11 +77,11 @@ export namespace language_v1beta1 {
     /**
      * Input document.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType: string;
+    encodingType?: string;
   }
   /**
    * The entity analysis response message.
@@ -87,13 +90,13 @@ export namespace language_v1beta1 {
     /**
      * The recognized entities in the input document.
      */
-    entities: Schema$Entity[];
+    entities?: Schema$Entity[];
     /**
      * The language of the text, which will be the same as the language
      * specified in the request or, if not specified, the automatically-detected
      * language. See Document.language field for more details.
      */
-    language: string;
+    language?: string;
   }
   /**
    * The sentiment analysis request message.
@@ -102,12 +105,12 @@ export namespace language_v1beta1 {
     /**
      * Input document.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * The encoding type used by the API to calculate sentence offsets for the
      * sentence sentiment.
      */
-    encodingType: string;
+    encodingType?: string;
   }
   /**
    * The sentiment analysis response message.
@@ -116,17 +119,17 @@ export namespace language_v1beta1 {
     /**
      * The overall sentiment of the input document.
      */
-    documentSentiment: Schema$Sentiment;
+    documentSentiment?: Schema$Sentiment;
     /**
      * The language of the text, which will be the same as the language
      * specified in the request or, if not specified, the automatically-detected
      * language. See Document.language field for more details.
      */
-    language: string;
+    language?: string;
     /**
      * The sentiment for all the sentences in the document.
      */
-    sentences: Schema$Sentence[];
+    sentences?: Schema$Sentence[];
   }
   /**
    * The syntax analysis request message.
@@ -135,11 +138,11 @@ export namespace language_v1beta1 {
     /**
      * Input document.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType: string;
+    encodingType?: string;
   }
   /**
    * The syntax analysis response message.
@@ -150,15 +153,15 @@ export namespace language_v1beta1 {
      * specified in the request or, if not specified, the automatically-detected
      * language. See Document.language field for more details.
      */
-    language: string;
+    language?: string;
     /**
      * Sentences in the input document.
      */
-    sentences: Schema$Sentence[];
+    sentences?: Schema$Sentence[];
     /**
      * Tokens, along with their syntactic information, in the input document.
      */
-    tokens: Schema$Token[];
+    tokens?: Schema$Token[];
   }
   /**
    * The request message for the text annotation API, which can perform multiple
@@ -168,15 +171,15 @@ export namespace language_v1beta1 {
     /**
      * Input document.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType: string;
+    encodingType?: string;
     /**
      * The enabled features.
      */
-    features: Schema$Features;
+    features?: Schema$Features;
   }
   /**
    * The text annotations response message.
@@ -186,30 +189,30 @@ export namespace language_v1beta1 {
      * The overall sentiment for the document. Populated if the user enables
      * AnnotateTextRequest.Features.extract_document_sentiment.
      */
-    documentSentiment: Schema$Sentiment;
+    documentSentiment?: Schema$Sentiment;
     /**
      * Entities, along with their semantic information, in the input document.
      * Populated if the user enables
      * AnnotateTextRequest.Features.extract_entities.
      */
-    entities: Schema$Entity[];
+    entities?: Schema$Entity[];
     /**
      * The language of the text, which will be the same as the language
      * specified in the request or, if not specified, the automatically-detected
      * language. See Document.language field for more details.
      */
-    language: string;
+    language?: string;
     /**
      * Sentences in the input document. Populated if the user enables
      * AnnotateTextRequest.Features.extract_syntax.
      */
-    sentences: Schema$Sentence[];
+    sentences?: Schema$Sentence[];
     /**
      * Tokens, along with their syntactic information, in the input document.
      * Populated if the user enables
      * AnnotateTextRequest.Features.extract_syntax.
      */
-    tokens: Schema$Token[];
+    tokens?: Schema$Token[];
   }
   /**
    * Represents dependency parse tree information for a token.
@@ -222,11 +225,11 @@ export namespace language_v1beta1 {
      * If this token is a root token, then the `head_token_index` is its own
      * index.
      */
-    headTokenIndex: number;
+    headTokenIndex?: number;
     /**
      * The parse label for the token.
      */
-    label: string;
+    label?: string;
   }
   /**
    * ################################################################ #
@@ -236,14 +239,14 @@ export namespace language_v1beta1 {
     /**
      * The content of the input in string format.
      */
-    content: string;
+    content?: string;
     /**
      * The Google Cloud Storage URI where the file content is located. This URI
      * must be of the form: gs://bucket_name/object_name. For more details, see
      * https://cloud.google.com/storage/docs/reference-uris. NOTE: Cloud Storage
      * object versioning is not supported.
      */
-    gcsContentUri: string;
+    gcsContentUri?: string;
     /**
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
@@ -253,12 +256,12 @@ export namespace language_v1beta1 {
      * supported by the called API method, an `INVALID_ARGUMENT` error is
      * returned.
      */
-    language: string;
+    language?: string;
     /**
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an
      * `INVALID_ARGUMENT` error.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents a phrase in the text that is a known entity, such as a person,
@@ -270,28 +273,28 @@ export namespace language_v1beta1 {
      * The mentions of this entity in the input document. The API currently
      * supports proper noun mentions.
      */
-    mentions: Schema$EntityMention[];
+    mentions?: Schema$EntityMention[];
     /**
      * Metadata associated with the entity.  Currently, Wikipedia URLs and
      * Knowledge Graph MIDs are provided, if available. The associated keys are
      * &quot;wikipedia_url&quot; and &quot;mid&quot;, respectively.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The representative name for the entity.
      */
-    name: string;
+    name?: string;
     /**
      * The salience score associated with the entity in the [0, 1.0] range.  The
      * salience score for an entity provides information about the importance or
      * centrality of that entity to the entire document text. Scores closer to 0
      * are less salient, while scores closer to 1.0 are highly salient.
      */
-    salience: number;
+    salience?: number;
     /**
      * The entity type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents a mention for an entity in the text. Currently, proper noun
@@ -301,11 +304,11 @@ export namespace language_v1beta1 {
     /**
      * The mention text.
      */
-    text: Schema$TextSpan;
+    text?: Schema$TextSpan;
     /**
      * The type of the entity mention.
      */
-    type: string;
+    type?: string;
   }
   /**
    * All available features for sentiment, syntax, and semantic analysis.
@@ -315,15 +318,15 @@ export namespace language_v1beta1 {
     /**
      * Extract document-level sentiment.
      */
-    extractDocumentSentiment: boolean;
+    extractDocumentSentiment?: boolean;
     /**
      * Extract entities.
      */
-    extractEntities: boolean;
+    extractEntities?: boolean;
     /**
      * Extract syntax information.
      */
-    extractSyntax: boolean;
+    extractSyntax?: boolean;
   }
   /**
    * Represents part of speech information for a token.
@@ -332,51 +335,51 @@ export namespace language_v1beta1 {
     /**
      * The grammatical aspect.
      */
-    aspect: string;
+    aspect?: string;
     /**
      * The grammatical case.
      */
-    case: string;
+    case?: string;
     /**
      * The grammatical form.
      */
-    form: string;
+    form?: string;
     /**
      * The grammatical gender.
      */
-    gender: string;
+    gender?: string;
     /**
      * The grammatical mood.
      */
-    mood: string;
+    mood?: string;
     /**
      * The grammatical number.
      */
-    number: string;
+    number?: string;
     /**
      * The grammatical person.
      */
-    person: string;
+    person?: string;
     /**
      * The grammatical properness.
      */
-    proper: string;
+    proper?: string;
     /**
      * The grammatical reciprocity.
      */
-    reciprocity: string;
+    reciprocity?: string;
     /**
      * The part of speech tag.
      */
-    tag: string;
+    tag?: string;
     /**
      * The grammatical tense.
      */
-    tense: string;
+    tense?: string;
     /**
      * The grammatical voice.
      */
-    voice: string;
+    voice?: string;
   }
   /**
    * Represents a sentence in the input document.
@@ -387,11 +390,11 @@ export namespace language_v1beta1 {
      * AnnotateTextRequest.Features.extract_document_sentiment is set to true,
      * this field will contain the sentiment for the sentence.
      */
-    sentiment: Schema$Sentiment;
+    sentiment?: Schema$Sentiment;
     /**
      * The sentence text.
      */
-    text: Schema$TextSpan;
+    text?: Schema$TextSpan;
   }
   /**
    * Represents the feeling associated with the entire text or entities in the
@@ -403,18 +406,18 @@ export namespace language_v1beta1 {
      * absolute magnitude of sentiment regardless of score (positive or
      * negative).
      */
-    magnitude: number;
+    magnitude?: number;
     /**
      * DEPRECATED FIELD - This field is being deprecated in favor of score.
      * Please refer to our documentation at
      * https://cloud.google.com/natural-language/docs for more information.
      */
-    polarity: number;
+    polarity?: number;
     /**
      * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
      * sentiment).
      */
-    score: number;
+    score?: number;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -456,18 +459,18 @@ export namespace language_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Represents an output piece of text.
@@ -477,11 +480,11 @@ export namespace language_v1beta1 {
      * The API calculates the beginning offset of the content in the original
      * document according to the EncodingType specified in the API request.
      */
-    beginOffset: number;
+    beginOffset?: number;
     /**
      * The content of the output text.
      */
-    content: string;
+    content?: string;
   }
   /**
    * Represents the smallest syntactic building block of the text.
@@ -490,21 +493,22 @@ export namespace language_v1beta1 {
     /**
      * Dependency tree parse for this token.
      */
-    dependencyEdge: Schema$DependencyEdge;
+    dependencyEdge?: Schema$DependencyEdge;
     /**
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the
      * token.
      */
-    lemma: string;
+    lemma?: string;
     /**
      * Parts of speech tag for this token.
      */
-    partOfSpeech: Schema$PartOfSpeech;
+    partOfSpeech?: Schema$PartOfSpeech;
     /**
      * The token text.
      */
-    text: Schema$TextSpan;
+    text?: Schema$TextSpan;
   }
+
 
   export class Resource$Documents {
     root: Language;
@@ -532,28 +536,41 @@ export namespace language_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeEntities(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnalyzeEntitiesResponse>;
     analyzeEntities(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Documents$Analyzeentities,
+        options?: MethodOptions): AxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    analyzeEntities(
+        params: Params$Resource$Documents$Analyzeentities,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
     analyzeEntities(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Documents$Analyzeentities,
+        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+    analyzeEntities(
+        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+    analyzeEntities(
+        paramsOrCallback?: Params$Resource$Documents$Analyzeentities|
+        BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>):
         void|AxiosPromise<Schema$AnalyzeEntitiesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Documents$Analyzeentities;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Analyzeentities;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -588,28 +605,41 @@ export namespace language_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeSentiment(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnalyzeSentimentResponse>;
     analyzeSentiment(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Documents$Analyzesentiment,
+        options?: MethodOptions): AxiosPromise<Schema$AnalyzeSentimentResponse>;
+    analyzeSentiment(
+        params: Params$Resource$Documents$Analyzesentiment,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
     analyzeSentiment(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Documents$Analyzesentiment,
+        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+    analyzeSentiment(
+        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+    analyzeSentiment(
+        paramsOrCallback?: Params$Resource$Documents$Analyzesentiment|
+        BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>):
         void|AxiosPromise<Schema$AnalyzeSentimentResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Documents$Analyzesentiment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Analyzesentiment;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -646,28 +676,41 @@ export namespace language_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeSyntax(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnalyzeSyntaxResponse>;
     analyzeSyntax(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Documents$Analyzesyntax,
+        options?: MethodOptions): AxiosPromise<Schema$AnalyzeSyntaxResponse>;
+    analyzeSyntax(
+        params: Params$Resource$Documents$Analyzesyntax,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
+        callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
     analyzeSyntax(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Documents$Analyzesyntax,
+        callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
+    analyzeSyntax(callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
+        void;
+    analyzeSyntax(
+        paramsOrCallback?: Params$Resource$Documents$Analyzesyntax|
+        BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
         void|AxiosPromise<Schema$AnalyzeSyntaxResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Documents$Analyzesyntax;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Analyzesyntax;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -703,28 +746,41 @@ export namespace language_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotateText(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnnotateTextResponse>;
     annotateText(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Documents$Annotatetext,
+        options?: MethodOptions): AxiosPromise<Schema$AnnotateTextResponse>;
+    annotateText(
+        params: Params$Resource$Documents$Annotatetext,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AnnotateTextResponse>,
-        callback?: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
+        callback: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
     annotateText(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Documents$Annotatetext,
+        callback: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
+    annotateText(callback: BodyResponseCallback<Schema$AnnotateTextResponse>):
+        void;
+    annotateText(
+        paramsOrCallback?: Params$Resource$Documents$Annotatetext|
+        BodyResponseCallback<Schema$AnnotateTextResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotateTextResponse>,
         callback?: BodyResponseCallback<Schema$AnnotateTextResponse>):
         void|AxiosPromise<Schema$AnnotateTextResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Documents$Annotatetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Annotatetext;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -745,5 +801,50 @@ export namespace language_v1beta1 {
         return createAPIRequest<Schema$AnnotateTextResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Documents$Analyzeentities {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnalyzeEntitiesRequest;
+  }
+  export interface Params$Resource$Documents$Analyzesentiment {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnalyzeSentimentRequest;
+  }
+  export interface Params$Resource$Documents$Analyzesyntax {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnalyzeSyntaxRequest;
+  }
+  export interface Params$Resource$Documents$Annotatetext {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnnotateTextRequest;
   }
 }

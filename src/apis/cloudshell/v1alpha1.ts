@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudshell_v1alpha1 {
+  export interface Options extends GlobalOptions { version: 'v1alpha1'; }
+
   /**
    * Cloud Shell API
    *
@@ -73,7 +76,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Key that should be added to the environment.
      */
-    key: Schema$PublicKey;
+    key?: Schema$PublicKey;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -94,12 +97,12 @@ export namespace cloudshell_v1alpha1 {
      * Required. Full path to the Docker image used to run this environment,
      * e.g. &quot;gcr.io/dev-con/cloud-devshell:latest&quot;.
      */
-    dockerImage: string;
+    dockerImage?: string;
     /**
      * Output only. The environment&#39;s identifier, which is always
      * &quot;default&quot;.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Full name of this resource, in the format
      * `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is
@@ -107,7 +110,7 @@ export namespace cloudshell_v1alpha1 {
      * `{environment_id}` is the identifier of this environment. For example,
      * `users/someone@example.com/environments/default`.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. Public keys associated with the environment. Clients can
      * connect to this environment via SSH only if they possess a private key
@@ -115,26 +118,26 @@ export namespace cloudshell_v1alpha1 {
      * or removed from the environment using the CreatePublicKey and
      * DeletePublicKey methods.
      */
-    publicKeys: Schema$PublicKey[];
+    publicKeys?: Schema$PublicKey[];
     /**
      * Output only. Host to which clients can connect to initiate SSH sessions
      * with the environment.
      */
-    sshHost: string;
+    sshHost?: string;
     /**
      * Output only. Port to which clients can connect to initiate SSH sessions
      * with the environment.
      */
-    sshPort: number;
+    sshPort?: number;
     /**
      * Output only. Username that clients should use when initiating SSH
      * sessions with the environment.
      */
-    sshUsername: string;
+    sshUsername?: string;
     /**
      * Output only. Current execution state of this environment.
      */
-    state: string;
+    state?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -146,24 +149,24 @@ export namespace cloudshell_v1alpha1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -173,7 +176,7 @@ export namespace cloudshell_v1alpha1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A public SSH key, corresponding to a private SSH key held by the client.
@@ -182,11 +185,11 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Required. Format of this key&#39;s content.
      */
-    format: string;
+    format?: string;
     /**
      * Required. Content of this key.
      */
-    key: string;
+    key?: string;
     /**
      * Output only. Full name of this resource, in the format
      * `users/{owner_email}/environments/{environment_id}/publicKeys/{key_id}`.
@@ -196,7 +199,7 @@ export namespace cloudshell_v1alpha1 {
      * example,
      * `users/someone@example.com/environments/default/publicKeys/myKey`.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Message included in the metadata field of operations returned from
@@ -206,7 +209,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Current state of the environment being started.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Request message for StartEnvironment.
@@ -220,7 +223,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Environment that was started.
      */
-    environment: Schema$Environment;
+    environment?: Schema$Environment;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -262,19 +265,20 @@ export namespace cloudshell_v1alpha1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
+
 
   export class Resource$Users {
     root: Cloudshell;
@@ -289,6 +293,8 @@ export namespace cloudshell_v1alpha1 {
       return this.root;
     }
   }
+
+
   export class Resource$Users$Environments {
     root: Cloudshell;
     publicKeys: Resource$Users$Environments$Publickeys;
@@ -316,24 +322,35 @@ export namespace cloudshell_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Users$Environments$Get,
         options?: MethodOptions): AxiosPromise<Schema$Environment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+    get(params: Params$Resource$Users$Environments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(params: Params$Resource$Users$Environments$Get,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(callback: BodyResponseCallback<Schema$Environment>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Environments$Get|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Environments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -370,26 +387,39 @@ export namespace cloudshell_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Environment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
+        params?: Params$Resource$Users$Environments$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Environment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        params: Params$Resource$Users$Environments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(
+        params: Params$Resource$Users$Environments$Patch,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Environments$Patch|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Environments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -430,26 +460,39 @@ export namespace cloudshell_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     start(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Users$Environments$Start,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     start(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Users$Environments$Start,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+        params: Params$Resource$Users$Environments$Start,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+        paramsOrCallback?: Params$Resource$Users$Environments$Start|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Environments$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Start;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -471,6 +514,59 @@ export namespace cloudshell_v1alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Environments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the requested resource, for example
+     * `users/me/environments/default` or
+     * `users/someone@example.com/environments/default`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Environments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to be updated, for example
+     * `users/me/environments/default` or
+     * `users/someone@example.com/environments/default`.
+     */
+    name?: string;
+    /**
+     * Mask specifying which fields in the environment should be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Environment;
+  }
+  export interface Params$Resource$Users$Environments$Start {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource that should be started, for example
+     * `users/me/environments/default` or
+     * `users/someone@example.com/environments/default`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$StartEnvironmentRequest;
+  }
+
   export class Resource$Users$Environments$Publickeys {
     root: Cloudshell;
     constructor(root: Cloudshell) {
@@ -499,26 +595,39 @@ export namespace cloudshell_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PublicKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
-        callback?: BodyResponseCallback<Schema$PublicKey>): void;
+        params?: Params$Resource$Users$Environments$Publickeys$Create,
+        options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+        params: Params$Resource$Users$Environments$Publickeys$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+        callback: BodyResponseCallback<Schema$PublicKey>): void;
+    create(
+        params: Params$Resource$Users$Environments$Publickeys$Create,
+        callback: BodyResponseCallback<Schema$PublicKey>): void;
+    create(callback: BodyResponseCallback<Schema$PublicKey>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Users$Environments$Publickeys$Create|
+        BodyResponseCallback<Schema$PublicKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PublicKey>,
         callback?: BodyResponseCallback<Schema$PublicKey>):
         void|AxiosPromise<Schema$PublicKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Environments$Publickeys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Publickeys$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -555,25 +664,38 @@ export namespace cloudshell_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Users$Environments$Publickeys$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Users$Environments$Publickeys$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Users$Environments$Publickeys$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Environments$Publickeys$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Environments$Publickeys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Publickeys$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -594,5 +716,33 @@ export namespace cloudshell_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Users$Environments$Publickeys$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Parent resource name, e.g. `users/me/environments/default`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreatePublicKeyRequest;
+  }
+  export interface Params$Resource$Users$Environments$Publickeys$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to be deleted, e.g.
+     * `users/me/environments/default/publicKeys/my-key`.
+     */
+    name?: string;
   }
 }

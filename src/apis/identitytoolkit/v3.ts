@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace identitytoolkit_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Google Identity Toolkit API
    *
@@ -72,40 +75,40 @@ export namespace identitytoolkit_v3 {
     /**
      * all providers the user has once used to do federated login
      */
-    allProviders: string[];
+    allProviders?: string[];
     /**
      * The URI used by the IDP to authenticate the user.
      */
-    authUri: string;
+    authUri?: string;
     /**
      * True if captcha is required.
      */
-    captchaRequired: boolean;
+    captchaRequired?: boolean;
     /**
      * True if the authUri is for user&#39;s existing provider.
      */
-    forExistingProvider: boolean;
+    forExistingProvider?: boolean;
     /**
      * The fixed string identitytoolkit#CreateAuthUriResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The provider ID of the auth URI.
      */
-    providerId: string;
+    providerId?: string;
     /**
      * Whether the user is registered if the identifier is an email.
      */
-    registered: boolean;
+    registered?: boolean;
     /**
      * Session ID which should be passed in the following verifyAssertion
      * request.
      */
-    sessionId: string;
+    sessionId?: string;
     /**
      * All sign-in methods this user has used.
      */
-    signinMethods: string[];
+    signinMethods?: string[];
   }
   /**
    * Respone of deleting account.
@@ -114,7 +117,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#DeleteAccountResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Response of downloading accounts in batch.
@@ -123,16 +126,16 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#DownloadAccountResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The next page token. To be used in a subsequent request to return the
      * next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The user accounts data.
      */
-    users: Schema$UserInfo[];
+    users?: Schema$UserInfo[];
   }
   /**
    * Response of email signIn.
@@ -141,31 +144,31 @@ export namespace identitytoolkit_v3 {
     /**
      * The user&#39;s email.
      */
-    email: string;
+    email?: string;
     /**
      * Expiration time of STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The STS id token to login the newly signed in user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * Whether the user is new.
      */
-    isNewUser: boolean;
+    isNewUser?: boolean;
     /**
      * The fixed string &quot;identitytoolkit#EmailLinkSigninResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The RP local ID of the user.
      */
-    localId: string;
+    localId?: string;
     /**
      * The refresh token for the signed in user.
      */
-    refreshToken: string;
+    refreshToken?: string;
   }
   /**
    * Template for an email template.
@@ -174,27 +177,27 @@ export namespace identitytoolkit_v3 {
     /**
      * Email body.
      */
-    body: string;
+    body?: string;
     /**
      * Email body format.
      */
-    format: string;
+    format?: string;
     /**
      * From address of the email.
      */
-    from: string;
+    from?: string;
     /**
      * From display name.
      */
-    fromDisplayName: string;
+    fromDisplayName?: string;
     /**
      * Reply-to address.
      */
-    replyTo: string;
+    replyTo?: string;
     /**
      * Subject of the email.
      */
-    subject: string;
+    subject?: string;
   }
   /**
    * Response of getting account information.
@@ -203,11 +206,11 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#GetAccountInfoResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The info of the users.
      */
-    users: Schema$UserInfo[];
+    users?: Schema$UserInfo[];
   }
   /**
    * Response of getting a code for user confirmation (reset password, change
@@ -217,16 +220,16 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address that the email is sent to.
      */
-    email: string;
+    email?: string;
     /**
      * The fixed string
      * &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The code to be send to the user.
      */
-    oobCode: string;
+    oobCode?: string;
   }
   /**
    * Response of getting recaptcha param.
@@ -235,16 +238,16 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#GetRecaptchaParamResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Site key registered at recaptcha.
      */
-    recaptchaSiteKey: string;
+    recaptchaSiteKey?: string;
     /**
      * The stoken field for the recaptcha widget, used to request captcha
      * challenge.
      */
-    recaptchaStoken: string;
+    recaptchaStoken?: string;
   }
   /**
    * Request to get the IDP authentication URL.
@@ -254,71 +257,71 @@ export namespace identitytoolkit_v3 {
      * The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android,
      * BUNDLE_ID for iOS.
      */
-    appId: string;
+    appId?: string;
     /**
      * Explicitly specify the auth flow type. Currently only support
      * &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
      */
-    authFlowType: string;
+    authFlowType?: string;
     /**
      * The relying party OAuth client ID.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * The opaque value used by the client to maintain context info between the
      * authentication request and the IDP callback.
      */
-    context: string;
+    context?: string;
     /**
      * The URI to which the IDP redirects the user after the federated login
      * flow.
      */
-    continueUri: string;
+    continueUri?: string;
     /**
      * The query parameter that client can customize by themselves in auth url.
      * The following parameters are reserved for server so that they cannot be
      * customized by clients: client_id, response_type, scope, redirect_uri,
      * state, oauth_token.
      */
-    customParameter: any;
+    customParameter?: any;
     /**
      * The hosted domain to restrict sign-in to accounts at that domain for
      * Google Apps hosted accounts.
      */
-    hostedDomain: string;
+    hostedDomain?: string;
     /**
      * The email or federated ID of the user.
      */
-    identifier: string;
+    identifier?: string;
     /**
      * The developer&#39;s consumer key for OpenId OAuth Extension
      */
-    oauthConsumerKey: string;
+    oauthConsumerKey?: string;
     /**
      * Additional oauth scopes, beyond the basid user profile, that the user
      * would be prompted to grant
      */
-    oauthScope: string;
+    oauthScope?: string;
     /**
      * Optional realm for OpenID protocol. The sub string
      * &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is
      * used if this is not set.
      */
-    openidRealm: string;
+    openidRealm?: string;
     /**
      * The native app package for OTA installation.
      */
-    otaApp: string;
+    otaApp?: string;
     /**
      * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g.
      * google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs
      * it&#39;s the OP identifier.
      */
-    providerId: string;
+    providerId?: string;
     /**
      * The session_id passed by client.
      */
-    sessionId: string;
+    sessionId?: string;
   }
   /**
    * Request to delete account.
@@ -328,15 +331,15 @@ export namespace identitytoolkit_v3 {
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The GITKit token or STS id token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
   }
   /**
    * Request to download user account in batch.
@@ -346,21 +349,21 @@ export namespace identitytoolkit_v3 {
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The max number of results to return in the response.
      */
-    maxResults: number;
+    maxResults?: number;
     /**
      * The token for the next page. This should be taken from the previous
      * response.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Specify which project (field value is actually project id) to operate.
      * Only used when provided credential.
      */
-    targetProjectId: string;
+    targetProjectId?: string;
   }
   /**
    * Request to sign in with email.
@@ -369,15 +372,15 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address of the user.
      */
-    email: string;
+    email?: string;
     /**
      * Token for linking flow.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The confirmation code.
      */
-    oobCode: string;
+    oobCode?: string;
   }
   /**
    * Request to get the account information.
@@ -387,23 +390,23 @@ export namespace identitytoolkit_v3 {
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The list of emails of the users to inquiry.
      */
-    email: string[];
+    email?: string[];
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The list of local ID&#39;s of the users to inquiry.
      */
-    localId: string[];
+    localId?: string[];
     /**
      * Privileged caller can query users by specified phone number.
      */
-    phoneNumber: string[];
+    phoneNumber?: string[];
   }
   /**
    * Response of getting the project configuration.
@@ -412,48 +415,48 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to allow password user sign in or sign up.
      */
-    allowPasswordUser: boolean;
+    allowPasswordUser?: boolean;
     /**
      * Browser API key, needed when making http request to Apiary.
      */
-    apiKey: string;
+    apiKey?: string;
     /**
      * Authorized domains.
      */
-    authorizedDomains: string[];
+    authorizedDomains?: string[];
     /**
      * Change email template.
      */
-    changeEmailTemplate: Schema$EmailTemplate;
-    dynamicLinksDomain: string;
+    changeEmailTemplate?: Schema$EmailTemplate;
+    dynamicLinksDomain?: string;
     /**
      * Whether anonymous user is enabled.
      */
-    enableAnonymousUser: boolean;
+    enableAnonymousUser?: boolean;
     /**
      * OAuth2 provider configuration.
      */
-    idpConfig: Schema$IdpConfig[];
+    idpConfig?: Schema$IdpConfig[];
     /**
      * Legacy reset password email template.
      */
-    legacyResetPasswordTemplate: Schema$EmailTemplate;
+    legacyResetPasswordTemplate?: Schema$EmailTemplate;
     /**
      * Project ID of the relying party.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Reset password email template.
      */
-    resetPasswordTemplate: Schema$EmailTemplate;
+    resetPasswordTemplate?: Schema$EmailTemplate;
     /**
      * Whether to use email sending provided by Firebear.
      */
-    useEmailSending: boolean;
+    useEmailSending?: boolean;
     /**
      * Verify email template.
      */
-    verifyEmailTemplate: Schema$EmailTemplate;
+    verifyEmailTemplate?: Schema$EmailTemplate;
   }
   /**
    * Respone of getting public keys.
@@ -466,19 +469,19 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address of the user.
      */
-    email: string;
+    email?: string;
     /**
      * The new password inputted by the user.
      */
-    newPassword: string;
+    newPassword?: string;
     /**
      * The old password inputted by the user.
      */
-    oldPassword: string;
+    oldPassword?: string;
     /**
      * The confirmation code.
      */
-    oobCode: string;
+    oobCode?: string;
   }
   /**
    * Request for Identitytoolkit-SendVerificationCode
@@ -487,19 +490,19 @@ export namespace identitytoolkit_v3 {
     /**
      * Receipt of successful app token validation with APNS.
      */
-    iosReceipt: string;
+    iosReceipt?: string;
     /**
      * Secret delivered to iOS app via APNS.
      */
-    iosSecret: string;
+    iosSecret?: string;
     /**
      * The phone number to send the verification code to in E.164 format.
      */
-    phoneNumber: string;
+    phoneNumber?: string;
     /**
      * Recaptcha solution.
      */
-    recaptchaToken: string;
+    recaptchaToken?: string;
   }
   /**
    * Response for Identitytoolkit-SendVerificationCode
@@ -508,7 +511,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Encrypted session information
      */
-    sessionInfo: string;
+    sessionInfo?: string;
   }
   /**
    * Request to set the account information.
@@ -517,96 +520,96 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge: string;
+    captchaChallenge?: string;
     /**
      * Response to the captcha.
      */
-    captchaResponse: string;
+    captchaResponse?: string;
     /**
      * The timestamp when the account is created.
      */
-    createdAt: string;
+    createdAt?: string;
     /**
      * The custom attributes to be set in the user&#39;s id token.
      */
-    customAttributes: string;
+    customAttributes?: string;
     /**
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The attributes users request to delete.
      */
-    deleteAttribute: string[];
+    deleteAttribute?: string[];
     /**
      * The IDPs the user request to delete.
      */
-    deleteProvider: string[];
+    deleteProvider?: string[];
     /**
      * Whether to disable the user.
      */
-    disableUser: boolean;
+    disableUser?: boolean;
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * Mark the email as verified or not.
      */
-    emailVerified: boolean;
+    emailVerified?: boolean;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Last login timestamp.
      */
-    lastLoginAt: string;
+    lastLoginAt?: string;
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
     /**
      * The out-of-band code of the change email request.
      */
-    oobCode: string;
+    oobCode?: string;
     /**
      * The new password of the user.
      */
-    password: string;
+    password?: string;
     /**
      * Privileged caller can update user with specified phone number.
      */
-    phoneNumber: string;
+    phoneNumber?: string;
     /**
      * The photo url of the user.
      */
-    photoUrl: string;
+    photoUrl?: string;
     /**
      * The associated IDPs of the user.
      */
-    provider: string[];
+    provider?: string[];
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken: boolean;
+    returnSecureToken?: boolean;
     /**
      * Mark the user to upgrade to federated login.
      */
-    upgradeToFederatedLogin: boolean;
+    upgradeToFederatedLogin?: boolean;
     /**
      * Timestamp in seconds for valid login token.
      */
-    validSince: string;
+    validSince?: string;
   }
   /**
    * Request to set the project configuration.
@@ -615,48 +618,48 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to allow password user sign in or sign up.
      */
-    allowPasswordUser: boolean;
+    allowPasswordUser?: boolean;
     /**
      * Browser API key, needed when making http request to Apiary.
      */
-    apiKey: string;
+    apiKey?: string;
     /**
      * Authorized domains for widget redirect.
      */
-    authorizedDomains: string[];
+    authorizedDomains?: string[];
     /**
      * Change email template.
      */
-    changeEmailTemplate: Schema$EmailTemplate;
+    changeEmailTemplate?: Schema$EmailTemplate;
     /**
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * Whether to enable anonymous user.
      */
-    enableAnonymousUser: boolean;
+    enableAnonymousUser?: boolean;
     /**
      * Oauth2 provider configuration.
      */
-    idpConfig: Schema$IdpConfig[];
+    idpConfig?: Schema$IdpConfig[];
     /**
      * Legacy reset password email template.
      */
-    legacyResetPasswordTemplate: Schema$EmailTemplate;
+    legacyResetPasswordTemplate?: Schema$EmailTemplate;
     /**
      * Reset password email template.
      */
-    resetPasswordTemplate: Schema$EmailTemplate;
+    resetPasswordTemplate?: Schema$EmailTemplate;
     /**
      * Whether to use email sending provided by Firebear.
      */
-    useEmailSending: boolean;
+    useEmailSending?: boolean;
     /**
      * Verify email template.
      */
-    verifyEmailTemplate: Schema$EmailTemplate;
+    verifyEmailTemplate?: Schema$EmailTemplate;
   }
   /**
    * Response of setting the project configuration.
@@ -665,7 +668,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Project ID of the relying party.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * Request to sign out user.
@@ -674,11 +677,11 @@ export namespace identitytoolkit_v3 {
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
   }
   /**
    * Response of signing out user.
@@ -687,7 +690,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
   }
   /**
    * Request to signup new user, create anonymous user or anonymous user reauth.
@@ -696,51 +699,51 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge: string;
+    captchaChallenge?: string;
     /**
      * Response to the captcha.
      */
-    captchaResponse: string;
+    captchaResponse?: string;
     /**
      * Whether to disable the user. Only can be used by service account.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * Mark the email as verified or not. Only can be used by service account.
      */
-    emailVerified: boolean;
+    emailVerified?: boolean;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Privileged caller can create user with specified user id.
      */
-    localId: string;
+    localId?: string;
     /**
      * The new password of the user.
      */
-    password: string;
+    password?: string;
     /**
      * Privileged caller can create user with specified phone number.
      */
-    phoneNumber: string;
+    phoneNumber?: string;
     /**
      * The photo url of the user.
      */
-    photoUrl: string;
+    photoUrl?: string;
   }
   /**
    * Request to upload user account in batch.
@@ -749,53 +752,53 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether allow overwrite existing account when user local_id exists.
      */
-    allowOverwrite: boolean;
-    blockSize: number;
+    allowOverwrite?: boolean;
+    blockSize?: number;
     /**
      * The following 4 fields are for standard scrypt algorithm.
      */
-    cpuMemCost: number;
+    cpuMemCost?: number;
     /**
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
-    dkLen: number;
+    delegatedProjectNumber?: string;
+    dkLen?: number;
     /**
      * The password hash algorithm.
      */
-    hashAlgorithm: string;
+    hashAlgorithm?: string;
     /**
      * Memory cost for hash calculation. Used by scrypt similar algorithms.
      */
-    memoryCost: number;
-    parallelization: number;
+    memoryCost?: number;
+    parallelization?: number;
     /**
      * Rounds for hash calculation. Used by scrypt and similar algorithms.
      */
-    rounds: number;
+    rounds?: number;
     /**
      * The salt separator.
      */
-    saltSeparator: string;
+    saltSeparator?: string;
     /**
      * If true, backend will do sanity check(including duplicate email and
      * federated id) when uploading account.
      */
-    sanityCheck: boolean;
+    sanityCheck?: boolean;
     /**
      * The key for to hash the password.
      */
-    signerKey: string;
+    signerKey?: string;
     /**
      * Specify which project (field value is actually project id) to operate.
      * Only used when provided credential.
      */
-    targetProjectId: string;
+    targetProjectId?: string;
     /**
      * The account info to be stored.
      */
-    users: Schema$UserInfo[];
+    users?: Schema$UserInfo[];
   }
   /**
    * Request to verify the IDP assertion.
@@ -806,51 +809,51 @@ export namespace identitytoolkit_v3 {
      * doesn&#39;t exist. When it&#39;s false, allows existing user to sign in
      * normally and throws exception if the user doesn&#39;t exist.
      */
-    autoCreate: boolean;
+    autoCreate?: boolean;
     /**
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * The GITKit token for the non-trusted IDP pending to be confirmed by the
      * user.
      */
-    pendingIdToken: string;
+    pendingIdToken?: string;
     /**
      * The post body if the request is a HTTP POST.
      */
-    postBody: string;
+    postBody?: string;
     /**
      * The URI to which the IDP redirects the user back. It may contain
      * federated login result params added by the IDP.
      */
-    requestUri: string;
+    requestUri?: string;
     /**
      * Whether return 200 and IDP credential rather than throw exception when
      * federated id is already linked.
      */
-    returnIdpCredential: boolean;
+    returnIdpCredential?: boolean;
     /**
      * Whether to return refresh tokens.
      */
-    returnRefreshToken: boolean;
+    returnRefreshToken?: boolean;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken: boolean;
+    returnSecureToken?: boolean;
     /**
      * Session ID, which should match the one in previous createAuthUri request.
      */
-    sessionId: string;
+    sessionId?: string;
   }
   /**
    * Request to verify a custom token
@@ -860,19 +863,19 @@ export namespace identitytoolkit_v3 {
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken: boolean;
+    returnSecureToken?: boolean;
     /**
      * The custom token to verify
      */
-    token: string;
+    token?: string;
   }
   /**
    * Request to verify the password.
@@ -881,72 +884,72 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge: string;
+    captchaChallenge?: string;
     /**
      * Response to the captcha.
      */
-    captchaResponse: string;
+    captchaResponse?: string;
     /**
      * GCP project number of the requesting delegated app. Currently only
      * intended for Firebase V1 migration.
      */
-    delegatedProjectNumber: string;
+    delegatedProjectNumber?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * Instance id token of the app.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * The password inputed by the user.
      */
-    password: string;
+    password?: string;
     /**
      * The GITKit token for the non-trusted IDP, which is to be confirmed by the
      * user.
      */
-    pendingIdToken: string;
+    pendingIdToken?: string;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken: boolean;
+    returnSecureToken?: boolean;
   }
   /**
    * Request for Identitytoolkit-VerifyPhoneNumber
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest {
-    code: string;
-    idToken: string;
-    operation: string;
-    phoneNumber: string;
+    code?: string;
+    idToken?: string;
+    operation?: string;
+    phoneNumber?: string;
     /**
      * The session info previously returned by
      * IdentityToolkit-SendVerificationCode.
      */
-    sessionInfo: string;
-    temporaryProof: string;
-    verificationProof: string;
+    sessionInfo?: string;
+    temporaryProof?: string;
+    verificationProof?: string;
   }
   /**
    * Response for Identitytoolkit-VerifyPhoneNumber
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse {
-    expiresIn: string;
-    idToken: string;
-    isNewUser: boolean;
-    localId: string;
-    phoneNumber: string;
-    refreshToken: string;
-    temporaryProof: string;
-    temporaryProofExpiresIn: string;
-    verificationProof: string;
-    verificationProofExpiresIn: string;
+    expiresIn?: string;
+    idToken?: string;
+    isNewUser?: boolean;
+    localId?: string;
+    phoneNumber?: string;
+    refreshToken?: string;
+    temporaryProof?: string;
+    temporaryProofExpiresIn?: string;
+    verificationProof?: string;
+    verificationProofExpiresIn?: string;
   }
   /**
    * Template for a single idp configuration.
@@ -955,28 +958,28 @@ export namespace identitytoolkit_v3 {
     /**
      * OAuth2 client ID.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * Whether this IDP is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Percent of users who will be prompted/redirected federated login for this
      * IDP.
      */
-    experimentPercent: number;
+    experimentPercent?: number;
     /**
      * OAuth2 provider.
      */
-    provider: string;
+    provider?: string;
     /**
      * OAuth2 client secret.
      */
-    secret: string;
+    secret?: string;
     /**
      * Whitelisted client IDs for audience check.
      */
-    whitelistedAudiences: string[];
+    whitelistedAudiences?: string[];
   }
   /**
    * Request of getting a code for user confirmation (reset password, change
@@ -987,64 +990,64 @@ export namespace identitytoolkit_v3 {
      * whether or not to install the android app on the device where the link is
      * opened
      */
-    androidInstallApp: boolean;
+    androidInstallApp?: boolean;
     /**
      * minimum version of the app. if the version on the device is lower than
      * this version then the user is taken to the play store to upgrade the app
      */
-    androidMinimumVersion: string;
+    androidMinimumVersion?: string;
     /**
      * android package name of the android app to handle the action code
      */
-    androidPackageName: string;
+    androidPackageName?: string;
     /**
      * whether or not the app can handle the oob code without first going to web
      */
-    canHandleCodeInApp: boolean;
+    canHandleCodeInApp?: boolean;
     /**
      * The recaptcha response from the user.
      */
-    captchaResp: string;
+    captchaResp?: string;
     /**
      * The recaptcha challenge presented to the user.
      */
-    challenge: string;
+    challenge?: string;
     /**
      * The url to continue to the Gitkit app
      */
-    continueUrl: string;
+    continueUrl?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * The user&#39;s Gitkit login token for email change.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * iOS app store id to download the app if it&#39;s not already installed
      */
-    iOSAppStoreId: string;
+    iOSAppStoreId?: string;
     /**
      * the iOS bundle id of iOS app to handle the action code
      */
-    iOSBundleId: string;
+    iOSBundleId?: string;
     /**
      * The fixed string &quot;identitytoolkit#relyingparty&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The new email if the code is for email change.
      */
-    newEmail: string;
+    newEmail?: string;
     /**
      * The request type.
      */
-    requestType: string;
+    requestType?: string;
     /**
      * The IP address of the user.
      */
-    userIp: string;
+    userIp?: string;
   }
   /**
    * Response of resetting the password.
@@ -1054,19 +1057,19 @@ export namespace identitytoolkit_v3 {
      * The user&#39;s email. If the out-of-band code is for email recovery, the
      * user&#39;s original email.
      */
-    email: string;
+    email?: string;
     /**
      * The fixed string &quot;identitytoolkit#ResetPasswordResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * If the out-of-band code is for email recovery, the user&#39;s new email.
      */
-    newEmail: string;
+    newEmail?: string;
     /**
      * The request type.
      */
-    requestType: string;
+    requestType?: string;
   }
   /**
    * Respone of setting the account information.
@@ -1075,52 +1078,52 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * If email has been verified.
      */
-    emailVerified: boolean;
+    emailVerified?: boolean;
     /**
      * If idToken is STS id token, then this field will be expiration time of
      * STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The Gitkit id token to login the newly sign up user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The fixed string &quot;identitytoolkit#SetAccountInfoResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
     /**
      * The new email the user attempts to change to.
      */
-    newEmail: string;
+    newEmail?: string;
     /**
      * The user&#39;s hashed password.
      */
-    passwordHash: string;
+    passwordHash?: string;
     /**
      * The photo url of the user.
      */
-    photoUrl: string;
+    photoUrl?: string;
     /**
      * The user&#39;s profiles at the associated IdPs.
      */
-    providerUserInfo: any[];
+    providerUserInfo?: any[];
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken: string;
+    refreshToken?: string;
   }
   /**
    * Response of signing up new user, creating anonymous user or anonymous user
@@ -1130,32 +1133,32 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * If idToken is STS id token, then this field will be expiration time of
      * STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The Gitkit id token to login the newly sign up user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The fixed string &quot;identitytoolkit#SignupNewUserResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The RP local ID of the user.
      */
-    localId: string;
+    localId?: string;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken: string;
+    refreshToken?: string;
   }
   /**
    * Respone of uploading accounts in batch.
@@ -1164,11 +1167,11 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error: any[];
+    error?: any[];
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Template for an individual account info.
@@ -1177,79 +1180,79 @@ export namespace identitytoolkit_v3 {
     /**
      * User creation timestamp.
      */
-    createdAt: string;
+    createdAt?: string;
     /**
      * The custom attributes to be set in the user&#39;s id token.
      */
-    customAttributes: string;
+    customAttributes?: string;
     /**
      * Whether the user is authenticated by the developer.
      */
-    customAuth: boolean;
+    customAuth?: boolean;
     /**
      * Whether the user is disabled.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email of the user.
      */
-    email: string;
+    email?: string;
     /**
      * Whether the email has been verified.
      */
-    emailVerified: boolean;
+    emailVerified?: boolean;
     /**
      * last login timestamp.
      */
-    lastLoginAt: string;
+    lastLoginAt?: string;
     /**
      * The local ID of the user.
      */
-    localId: string;
+    localId?: string;
     /**
      * The user&#39;s hashed password.
      */
-    passwordHash: string;
+    passwordHash?: string;
     /**
      * The timestamp when the password was last updated.
      */
-    passwordUpdatedAt: number;
+    passwordUpdatedAt?: number;
     /**
      * User&#39;s phone number.
      */
-    phoneNumber: string;
+    phoneNumber?: string;
     /**
      * The URL of the user profile photo.
      */
-    photoUrl: string;
+    photoUrl?: string;
     /**
      * The IDP of the user.
      */
-    providerUserInfo: any[];
+    providerUserInfo?: any[];
     /**
      * The user&#39;s plain text password.
      */
-    rawPassword: string;
+    rawPassword?: string;
     /**
      * The user&#39;s password salt.
      */
-    salt: string;
+    salt?: string;
     /**
      * User&#39;s screen name at Twitter or login name at Github.
      */
-    screenName: string;
+    screenName?: string;
     /**
      * Timestamp in seconds for valid login token.
      */
-    validSince: string;
+    validSince?: string;
     /**
      * Version of the user&#39;s password.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Response of verifying the IDP assertion.
@@ -1258,144 +1261,144 @@ export namespace identitytoolkit_v3 {
     /**
      * The action code.
      */
-    action: string;
+    action?: string;
     /**
      * URL for OTA app installation.
      */
-    appInstallationUrl: string;
+    appInstallationUrl?: string;
     /**
      * The custom scheme used by mobile app.
      */
-    appScheme: string;
+    appScheme?: string;
     /**
      * The opaque value used by the client to maintain context info between the
      * authentication request and the IDP callback.
      */
-    context: string;
+    context?: string;
     /**
      * The birth date of the IdP account.
      */
-    dateOfBirth: string;
+    dateOfBirth?: string;
     /**
      * The display name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email returned by the IdP. NOTE: The federated login user may not own
      * the email.
      */
-    email: string;
+    email?: string;
     /**
      * It&#39;s true if the email is recycled.
      */
-    emailRecycled: boolean;
+    emailRecycled?: boolean;
     /**
      * The value is true if the IDP is also the email provider. It means the
      * user owns the email.
      */
-    emailVerified: boolean;
+    emailVerified?: boolean;
     /**
      * Client error code.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * If idToken is STS id token, then this field will be expiration time of
      * STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The unique ID identifies the IdP account.
      */
-    federatedId: string;
+    federatedId?: string;
     /**
      * The first name of the user.
      */
-    firstName: string;
+    firstName?: string;
     /**
      * The full name of the user.
      */
-    fullName: string;
+    fullName?: string;
     /**
      * The ID token.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * It&#39;s the identifier param in the createAuthUri request if the
      * identifier is an email. It can be used to check whether the user input
      * email is different from the asserted email.
      */
-    inputEmail: string;
+    inputEmail?: string;
     /**
      * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
      */
-    isNewUser: boolean;
+    isNewUser?: boolean;
     /**
      * The fixed string &quot;identitytoolkit#VerifyAssertionResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The language preference of the user.
      */
-    language: string;
+    language?: string;
     /**
      * The last name of the user.
      */
-    lastName: string;
+    lastName?: string;
     /**
      * The RP local ID if it&#39;s already been mapped to the IdP account
      * identified by the federated ID.
      */
-    localId: string;
+    localId?: string;
     /**
      * Whether the assertion is from a non-trusted IDP and need account linking
      * confirmation.
      */
-    needConfirmation: boolean;
+    needConfirmation?: boolean;
     /**
      * Whether need client to supply email to complete the federated login flow.
      */
-    needEmail: boolean;
+    needEmail?: boolean;
     /**
      * The nick name of the user.
      */
-    nickName: string;
+    nickName?: string;
     /**
      * The OAuth2 access token.
      */
-    oauthAccessToken: string;
+    oauthAccessToken?: string;
     /**
      * The OAuth2 authorization code.
      */
-    oauthAuthorizationCode: string;
+    oauthAuthorizationCode?: string;
     /**
      * The lifetime in seconds of the OAuth2 access token.
      */
-    oauthExpireIn: number;
+    oauthExpireIn?: number;
     /**
      * The OIDC id token.
      */
-    oauthIdToken: string;
+    oauthIdToken?: string;
     /**
      * The user approved request token for the OpenID OAuth extension.
      */
-    oauthRequestToken: string;
+    oauthRequestToken?: string;
     /**
      * The scope for the OpenID OAuth extension.
      */
-    oauthScope: string;
+    oauthScope?: string;
     /**
      * The OAuth1 access token secret.
      */
-    oauthTokenSecret: string;
+    oauthTokenSecret?: string;
     /**
      * The original email stored in the mapping storage. It&#39;s returned when
      * the federated ID is associated to a different email.
      */
-    originalEmail: string;
+    originalEmail?: string;
     /**
      * The URI of the public accessible profiel picture.
      */
-    photoUrl: string;
+    photoUrl?: string;
     /**
      * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g.
      * google.com, aol.com, live.net and yahoo.com. If the
@@ -1404,28 +1407,28 @@ export namespace identitytoolkit_v3 {
      * &quot;identifier&quot; param is federated ID in the createAuthUri
      * request. The domain part of the federated ID is returned.
      */
-    providerId: string;
+    providerId?: string;
     /**
      * Raw IDP-returned user info.
      */
-    rawUserInfo: string;
+    rawUserInfo?: string;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken: string;
+    refreshToken?: string;
     /**
      * The screen_name of a Twitter user or the login name at Github.
      */
-    screenName: string;
+    screenName?: string;
     /**
      * The timezone of the user.
      */
-    timeZone: string;
+    timeZone?: string;
     /**
      * When action is &#39;map&#39;, contains the idps which can be used for
      * confirmation.
      */
-    verifiedProvider: string[];
+    verifiedProvider?: string[];
   }
   /**
    * Response from verifying a custom token
@@ -1435,23 +1438,23 @@ export namespace identitytoolkit_v3 {
      * If idToken is STS id token, then this field will be expiration time of
      * STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The GITKit token for authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
      */
-    isNewUser: boolean;
+    isNewUser?: boolean;
     /**
      * The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken: string;
+    refreshToken?: string;
   }
   /**
    * Request of verifying the password.
@@ -1460,55 +1463,56 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email returned by the IdP. NOTE: The federated login user may not own
      * the email.
      */
-    email: string;
+    email?: string;
     /**
      * If idToken is STS id token, then this field will be expiration time of
      * STS id token in seconds.
      */
-    expiresIn: string;
+    expiresIn?: string;
     /**
      * The GITKit token for authenticated user.
      */
-    idToken: string;
+    idToken?: string;
     /**
      * The fixed string &quot;identitytoolkit#VerifyPasswordResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The RP local ID if it&#39;s already been mapped to the IdP account
      * identified by the federated ID.
      */
-    localId: string;
+    localId?: string;
     /**
      * The OAuth2 access token.
      */
-    oauthAccessToken: string;
+    oauthAccessToken?: string;
     /**
      * The OAuth2 authorization code.
      */
-    oauthAuthorizationCode: string;
+    oauthAuthorizationCode?: string;
     /**
      * The lifetime in seconds of the OAuth2 access token.
      */
-    oauthExpireIn: number;
+    oauthExpireIn?: number;
     /**
      * The URI of the user&#39;s photo at IdP
      */
-    photoUrl: string;
+    photoUrl?: string;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken: string;
+    refreshToken?: string;
     /**
      * Whether the email is registered.
      */
-    registered: boolean;
+    registered?: boolean;
   }
+
 
   export class Resource$Relyingparty {
     root: Identitytoolkit;
@@ -1534,28 +1538,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAuthUri(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreateAuthUriResponse>;
     createAuthUri(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Createauthuri,
+        options?: MethodOptions): AxiosPromise<Schema$CreateAuthUriResponse>;
+    createAuthUri(
+        params: Params$Resource$Relyingparty$Createauthuri,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreateAuthUriResponse>,
-        callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
+        callback: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
     createAuthUri(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Createauthuri,
+        callback: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
+    createAuthUri(callback: BodyResponseCallback<Schema$CreateAuthUriResponse>):
+        void;
+    createAuthUri(
+        paramsOrCallback?: Params$Resource$Relyingparty$Createauthuri|
+        BodyResponseCallback<Schema$CreateAuthUriResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateAuthUriResponse>,
         callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>):
         void|AxiosPromise<Schema$CreateAuthUriResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Createauthuri;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Createauthuri;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1590,28 +1607,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccount(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DeleteAccountResponse>;
     deleteAccount(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Deleteaccount,
+        options?: MethodOptions): AxiosPromise<Schema$DeleteAccountResponse>;
+    deleteAccount(
+        params: Params$Resource$Relyingparty$Deleteaccount,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DeleteAccountResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
+        callback: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
     deleteAccount(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Deleteaccount,
+        callback: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
+    deleteAccount(callback: BodyResponseCallback<Schema$DeleteAccountResponse>):
+        void;
+    deleteAccount(
+        paramsOrCallback?: Params$Resource$Relyingparty$Deleteaccount|
+        BodyResponseCallback<Schema$DeleteAccountResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteAccountResponse>,
         callback?: BodyResponseCallback<Schema$DeleteAccountResponse>):
         void|AxiosPromise<Schema$DeleteAccountResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Deleteaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Deleteaccount;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1646,28 +1676,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadAccount(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DownloadAccountResponse>;
     downloadAccount(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Downloadaccount,
+        options?: MethodOptions): AxiosPromise<Schema$DownloadAccountResponse>;
+    downloadAccount(
+        params: Params$Resource$Relyingparty$Downloadaccount,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DownloadAccountResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
     downloadAccount(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Downloadaccount,
+        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+    downloadAccount(
+        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+    downloadAccount(
+        paramsOrCallback?: Params$Resource$Relyingparty$Downloadaccount|
+        BodyResponseCallback<Schema$DownloadAccountResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadAccountResponse>,
         callback?: BodyResponseCallback<Schema$DownloadAccountResponse>):
         void|AxiosPromise<Schema$DownloadAccountResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Downloadaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Downloadaccount;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1703,28 +1746,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    emailLinkSignin(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EmailLinkSigninResponse>;
     emailLinkSignin(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Emaillinksignin,
+        options?: MethodOptions): AxiosPromise<Schema$EmailLinkSigninResponse>;
+    emailLinkSignin(
+        params: Params$Resource$Relyingparty$Emaillinksignin,
+        options: MethodOptions|
         BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-        callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
     emailLinkSignin(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Emaillinksignin,
+        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+    emailLinkSignin(
+        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+    emailLinkSignin(
+        paramsOrCallback?: Params$Resource$Relyingparty$Emaillinksignin|
+        BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EmailLinkSigninResponse>,
         callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>):
         void|AxiosPromise<Schema$EmailLinkSigninResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Emaillinksignin;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Emaillinksignin;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1760,28 +1816,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAccountInfo(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetAccountInfoResponse>;
     getAccountInfo(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Getaccountinfo,
+        options?: MethodOptions): AxiosPromise<Schema$GetAccountInfoResponse>;
+    getAccountInfo(
+        params: Params$Resource$Relyingparty$Getaccountinfo,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetAccountInfoResponse>,
-        callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
     getAccountInfo(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Getaccountinfo,
+        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+    getAccountInfo(
+        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+    getAccountInfo(
+        paramsOrCallback?: Params$Resource$Relyingparty$Getaccountinfo|
+        BodyResponseCallback<Schema$GetAccountInfoResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetAccountInfoResponse>,
         callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>):
         void|AxiosPromise<Schema$GetAccountInfoResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Getaccountinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Getaccountinfo;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1816,29 +1885,45 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOobConfirmationCode(params?: any, options?: MethodOptions):
+    getOobConfirmationCode(
+        params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetOobConfirmationCodeResponse>;
     getOobConfirmationCode(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-        callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
+        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
         void;
     getOobConfirmationCode(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
+        void;
+    getOobConfirmationCode(
+        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
+        void;
+    getOobConfirmationCode(
+        paramsOrCallback?: Params$Resource$Relyingparty$Getoobconfirmationcode|
+        BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
         callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
         void|AxiosPromise<Schema$GetOobConfirmationCodeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Getoobconfirmationcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Getoobconfirmationcode;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1877,31 +1962,49 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getProjectConfig(params?: any, options?: MethodOptions): AxiosPromise<
-        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
     getProjectConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params?: Params$Resource$Relyingparty$Getprojectconfig,
+        options?: MethodOptions):
+        AxiosPromise<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
+    getProjectConfig(
+        params: Params$Resource$Relyingparty$Getprojectconfig,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
     getProjectConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Getprojectconfig,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+    getProjectConfig(
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+    getProjectConfig(
+        paramsOrCallback?: Params$Resource$Relyingparty$Getprojectconfig|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>):
         void|AxiosPromise<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Getprojectconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Getprojectconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1940,30 +2043,47 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPublicKeys(params?: any, options?: MethodOptions):
+    getPublicKeys(
+        params?: Params$Resource$Relyingparty$Getpublickeys,
+        options?: MethodOptions):
         AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
     getPublicKeys(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Getpublickeys,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
     getPublicKeys(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Getpublickeys,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
+    getPublicKeys(callback: BodyResponseCallback<
+                  Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>):
+        void;
+    getPublicKeys(
+        paramsOrCallback?: Params$Resource$Relyingparty$Getpublickeys|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void|
         AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Getpublickeys;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Getpublickeys;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2001,29 +2121,42 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRecaptchaParam(params?: any, options?: MethodOptions):
+    getRecaptchaParam(
+        params?: Params$Resource$Relyingparty$Getrecaptchaparam,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetRecaptchaParamResponse>;
     getRecaptchaParam(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Getrecaptchaparam,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-        callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
     getRecaptchaParam(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Getrecaptchaparam,
+        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+    getRecaptchaParam(
+        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+    getRecaptchaParam(
+        paramsOrCallback?: Params$Resource$Relyingparty$Getrecaptchaparam|
+        BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
         callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
         void|AxiosPromise<Schema$GetRecaptchaParamResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Getrecaptchaparam;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Getrecaptchaparam;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2060,28 +2193,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetPassword(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ResetPasswordResponse>;
     resetPassword(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Resetpassword,
+        options?: MethodOptions): AxiosPromise<Schema$ResetPasswordResponse>;
+    resetPassword(
+        params: Params$Resource$Relyingparty$Resetpassword,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ResetPasswordResponse>,
-        callback?: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
+        callback: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
     resetPassword(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Resetpassword,
+        callback: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
+    resetPassword(callback: BodyResponseCallback<Schema$ResetPasswordResponse>):
+        void;
+    resetPassword(
+        paramsOrCallback?: Params$Resource$Relyingparty$Resetpassword|
+        BodyResponseCallback<Schema$ResetPasswordResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResetPasswordResponse>,
         callback?: BodyResponseCallback<Schema$ResetPasswordResponse>):
         void|AxiosPromise<Schema$ResetPasswordResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Resetpassword;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Resetpassword;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2116,32 +2262,52 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendVerificationCode(params?: any, options?: MethodOptions): AxiosPromise<
-        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
     sendVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params?: Params$Resource$Relyingparty$Sendverificationcode,
+        options?: MethodOptions):
+        AxiosPromise<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
+    sendVerificationCode(
+        params: Params$Resource$Relyingparty$Sendverificationcode,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
         void;
     sendVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Sendverificationcode,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
+        void;
+    sendVerificationCode(
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
+        void;
+    sendVerificationCode(
+        paramsOrCallback?: Params$Resource$Relyingparty$Sendverificationcode|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
         void|AxiosPromise<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Sendverificationcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Sendverificationcode;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2181,28 +2347,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAccountInfo(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SetAccountInfoResponse>;
     setAccountInfo(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Setaccountinfo,
+        options?: MethodOptions): AxiosPromise<Schema$SetAccountInfoResponse>;
+    setAccountInfo(
+        params: Params$Resource$Relyingparty$Setaccountinfo,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SetAccountInfoResponse>,
-        callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
     setAccountInfo(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Setaccountinfo,
+        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+    setAccountInfo(
+        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+    setAccountInfo(
+        paramsOrCallback?: Params$Resource$Relyingparty$Setaccountinfo|
+        BodyResponseCallback<Schema$SetAccountInfoResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SetAccountInfoResponse>,
         callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>):
         void|AxiosPromise<Schema$SetAccountInfoResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Setaccountinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Setaccountinfo;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2237,31 +2416,49 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setProjectConfig(params?: any, options?: MethodOptions): AxiosPromise<
-        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
     setProjectConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params?: Params$Resource$Relyingparty$Setprojectconfig,
+        options?: MethodOptions):
+        AxiosPromise<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
+    setProjectConfig(
+        params: Params$Resource$Relyingparty$Setprojectconfig,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
     setProjectConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Setprojectconfig,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+    setProjectConfig(
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+    setProjectConfig(
+        paramsOrCallback?: Params$Resource$Relyingparty$Setprojectconfig|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>):
         void|AxiosPromise<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Setprojectconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Setprojectconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2301,30 +2498,46 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signOutUser(params?: any, options?: MethodOptions):
+    signOutUser(
+        params?: Params$Resource$Relyingparty$Signoutuser,
+        options?: MethodOptions):
         AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
     signOutUser(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Signoutuser,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
     signOutUser(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Signoutuser,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
+    signOutUser(callback: BodyResponseCallback<
+                Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
+    signOutUser(
+        paramsOrCallback?: Params$Resource$Relyingparty$Signoutuser|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void|
         AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Relyingparty$Signoutuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Signoutuser;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2361,28 +2574,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signupNewUser(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SignupNewUserResponse>;
     signupNewUser(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Signupnewuser,
+        options?: MethodOptions): AxiosPromise<Schema$SignupNewUserResponse>;
+    signupNewUser(
+        params: Params$Resource$Relyingparty$Signupnewuser,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SignupNewUserResponse>,
-        callback?: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
+        callback: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
     signupNewUser(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Signupnewuser,
+        callback: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
+    signupNewUser(callback: BodyResponseCallback<Schema$SignupNewUserResponse>):
+        void;
+    signupNewUser(
+        paramsOrCallback?: Params$Resource$Relyingparty$Signupnewuser|
+        BodyResponseCallback<Schema$SignupNewUserResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignupNewUserResponse>,
         callback?: BodyResponseCallback<Schema$SignupNewUserResponse>):
         void|AxiosPromise<Schema$SignupNewUserResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Signupnewuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Signupnewuser;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2417,28 +2643,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadAccount(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UploadAccountResponse>;
     uploadAccount(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Uploadaccount,
+        options?: MethodOptions): AxiosPromise<Schema$UploadAccountResponse>;
+    uploadAccount(
+        params: Params$Resource$Relyingparty$Uploadaccount,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UploadAccountResponse>,
-        callback?: BodyResponseCallback<Schema$UploadAccountResponse>): void;
+        callback: BodyResponseCallback<Schema$UploadAccountResponse>): void;
     uploadAccount(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Uploadaccount,
+        callback: BodyResponseCallback<Schema$UploadAccountResponse>): void;
+    uploadAccount(callback: BodyResponseCallback<Schema$UploadAccountResponse>):
+        void;
+    uploadAccount(
+        paramsOrCallback?: Params$Resource$Relyingparty$Uploadaccount|
+        BodyResponseCallback<Schema$UploadAccountResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadAccountResponse>,
         callback?: BodyResponseCallback<Schema$UploadAccountResponse>):
         void|AxiosPromise<Schema$UploadAccountResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Uploadaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Uploadaccount;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2473,28 +2712,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyAssertion(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$VerifyAssertionResponse>;
     verifyAssertion(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Verifyassertion,
+        options?: MethodOptions): AxiosPromise<Schema$VerifyAssertionResponse>;
+    verifyAssertion(
+        params: Params$Resource$Relyingparty$Verifyassertion,
+        options: MethodOptions|
         BodyResponseCallback<Schema$VerifyAssertionResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
     verifyAssertion(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Verifyassertion,
+        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+    verifyAssertion(
+        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+    verifyAssertion(
+        paramsOrCallback?: Params$Resource$Relyingparty$Verifyassertion|
+        BodyResponseCallback<Schema$VerifyAssertionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyAssertionResponse>,
         callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>):
         void|AxiosPromise<Schema$VerifyAssertionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Verifyassertion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Verifyassertion;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2530,29 +2782,42 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyCustomToken(params?: any, options?: MethodOptions):
+    verifyCustomToken(
+        params?: Params$Resource$Relyingparty$Verifycustomtoken,
+        options?: MethodOptions):
         AxiosPromise<Schema$VerifyCustomTokenResponse>;
     verifyCustomToken(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Verifycustomtoken,
+        options: MethodOptions|
         BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
     verifyCustomToken(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Verifycustomtoken,
+        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+    verifyCustomToken(
+        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+    verifyCustomToken(
+        paramsOrCallback?: Params$Resource$Relyingparty$Verifycustomtoken|
+        BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
         callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
         void|AxiosPromise<Schema$VerifyCustomTokenResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Verifycustomtoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Verifycustomtoken;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2589,28 +2854,41 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyPassword(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$VerifyPasswordResponse>;
     verifyPassword(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Relyingparty$Verifypassword,
+        options?: MethodOptions): AxiosPromise<Schema$VerifyPasswordResponse>;
+    verifyPassword(
+        params: Params$Resource$Relyingparty$Verifypassword,
+        options: MethodOptions|
         BodyResponseCallback<Schema$VerifyPasswordResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
     verifyPassword(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Relyingparty$Verifypassword,
+        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+    verifyPassword(
+        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+    verifyPassword(
+        paramsOrCallback?: Params$Resource$Relyingparty$Verifypassword|
+        BodyResponseCallback<Schema$VerifyPasswordResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyPasswordResponse>,
         callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>):
         void|AxiosPromise<Schema$VerifyPasswordResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Verifypassword;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Verifypassword;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2646,31 +2924,49 @@ export namespace identitytoolkit_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyPhoneNumber(params?: any, options?: MethodOptions): AxiosPromise<
-        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
     verifyPhoneNumber(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params?: Params$Resource$Relyingparty$Verifyphonenumber,
+        options?: MethodOptions):
+        AxiosPromise<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
+    verifyPhoneNumber(
+        params: Params$Resource$Relyingparty$Verifyphonenumber,
+        options: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
     verifyPhoneNumber(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Relyingparty$Verifyphonenumber,
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+    verifyPhoneNumber(
+        callback: BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+    verifyPhoneNumber(
+        paramsOrCallback?: Params$Resource$Relyingparty$Verifyphonenumber|
+        BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>):
         void|AxiosPromise<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Relyingparty$Verifyphonenumber;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Relyingparty$Verifyphonenumber;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2696,5 +2992,135 @@ export namespace identitytoolkit_v3 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Relyingparty$Createauthuri {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Deleteaccount {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Downloadaccount {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Emaillinksignin {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Getaccountinfo {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Getoobconfirmationcode {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Getprojectconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Delegated GCP project number of the request.
+     */
+    delegatedProjectNumber?: string;
+    /**
+     * GCP project number of the request.
+     */
+    projectNumber?: string;
+  }
+  export interface Params$Resource$Relyingparty$Getpublickeys {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Getrecaptchaparam {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Resetpassword {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Sendverificationcode {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Setaccountinfo {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Setprojectconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Signoutuser {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Signupnewuser {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Uploadaccount {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Verifyassertion {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Verifycustomtoken {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Verifypassword {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Relyingparty$Verifyphonenumber {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace people_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * People API
    *
@@ -75,56 +78,56 @@ export namespace people_v1 {
     /**
      * The city of the address.
      */
-    city: string;
+    city?: string;
     /**
      * The country of the address.
      */
-    country: string;
+    country?: string;
     /**
      * The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm)
      * country code of the address.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * The extended address of the address; for example, the apartment number.
      */
-    extendedAddress: string;
+    extendedAddress?: string;
     /**
      * The read-only type of the address translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * The unstructured value of the address. If this is not set by the user it
      * will be automatically constructed from structured values.
      */
-    formattedValue: string;
+    formattedValue?: string;
     /**
      * Metadata about the address.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The P.O. box of the address.
      */
-    poBox: string;
+    poBox?: string;
     /**
      * The postal code of the address.
      */
-    postalCode: string;
+    postalCode?: string;
     /**
      * The region of the address; for example, the state or province.
      */
-    region: string;
+    region?: string;
     /**
      * The street address.
      */
-    streetAddress: string;
+    streetAddress?: string;
     /**
      * The type of the address. The type can be custom or predefined. Possible
      * values include, but are not limited to, the following:  * `home` * `work`
      * * `other`
      */
-    type: string;
+    type?: string;
   }
   /**
    * A person&#39;s age range.
@@ -133,11 +136,11 @@ export namespace people_v1 {
     /**
      * The age range.
      */
-    ageRange: string;
+    ageRange?: string;
     /**
      * Metadata about the age range.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
   }
   /**
    * The response to a batch get contact groups request.
@@ -146,7 +149,7 @@ export namespace people_v1 {
     /**
      * The list of responses for each requested contact group resource.
      */
-    responses: Schema$ContactGroupResponse[];
+    responses?: Schema$ContactGroupResponse[];
   }
   /**
    * A person&#39;s short biography.
@@ -155,15 +158,15 @@ export namespace people_v1 {
     /**
      * The content type of the biography.
      */
-    contentType: string;
+    contentType?: string;
     /**
      * Metadata about the biography.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The short biography.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s birthday. At least one of the `date` and `text` fields are
@@ -174,15 +177,15 @@ export namespace people_v1 {
     /**
      * The date of the birthday.
      */
-    date: Schema$Date;
+    date?: Schema$Date;
     /**
      * Metadata about the birthday.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * A free-form string representing the user&#39;s birthday.
      */
-    text: string;
+    text?: string;
   }
   /**
    * A person&#39;s bragging rights.
@@ -191,11 +194,11 @@ export namespace people_v1 {
     /**
      * Metadata about the bragging rights.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The bragging rights; for example, `climbed mount everest`.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A contact group.
@@ -205,44 +208,44 @@ export namespace people_v1 {
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
      * resource. Used for web cache validation.
      */
-    etag: string;
+    etag?: string;
     /**
      * The read-only name translated and formatted in the viewer&#39;s account
      * locale or the `Accept-Language` HTTP header locale for system groups
      * names. Group names set by the owner are the same as name.
      */
-    formattedName: string;
+    formattedName?: string;
     /**
      * The read-only contact group type.
      */
-    groupType: string;
+    groupType?: string;
     /**
      * The total number of contacts in the group irrespective of max members in
      * specified in the request.
      */
-    memberCount: number;
+    memberCount?: number;
     /**
      * The list of contact person resource names that are members of the contact
      * group. The field is not populated for LIST requests and can only be
      * updated through the
      * [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
      */
-    memberResourceNames: string[];
+    memberResourceNames?: string[];
     /**
      * Metadata about the contact group.
      */
-    metadata: Schema$ContactGroupMetadata;
+    metadata?: Schema$ContactGroupMetadata;
     /**
      * The contact group name set by the group owner or a system provided name
      * for system groups.
      */
-    name: string;
+    name?: string;
     /**
      * The resource name for the contact group, assigned by the server. An ASCII
      * string, in the form of
      * `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;.
      */
-    resourceName: string;
+    resourceName?: string;
   }
   /**
    * A Google contact group membership.
@@ -254,7 +257,7 @@ export namespace people_v1 {
      * limited to, the following:  *  `myContacts` *  `starred` *  A numerical
      * ID for user-created groups.
      */
-    contactGroupId: string;
+    contactGroupId?: string;
   }
   /**
    * The read-only metadata about a contact group.
@@ -265,11 +268,11 @@ export namespace people_v1 {
      * [`ListContactGroups`](/people/api/rest/v1/contactgroups/list) requests
      * that include a sync token.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * The time the group was last updated.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * The response for a specific contact group.
@@ -278,15 +281,15 @@ export namespace people_v1 {
     /**
      * The contact group.
      */
-    contactGroup: Schema$ContactGroup;
+    contactGroup?: Schema$ContactGroup;
     /**
      * The original requested resource name.
      */
-    requestedResourceName: string;
+    requestedResourceName?: string;
     /**
      * The status of the response.
      */
-    status: Schema$Status;
+    status?: Schema$Status;
   }
   /**
    * A person&#39;s read-only cover photo. A large image shown on the
@@ -298,15 +301,15 @@ export namespace people_v1 {
      * True if the cover photo is the default cover photo; false if the cover
      * photo is a user-provided cover photo.
      */
-    default: boolean;
+    default?: boolean;
     /**
      * Metadata about the cover photo.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The URL of the cover photo.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A request to create a new contact group.
@@ -315,7 +318,7 @@ export namespace people_v1 {
     /**
      * The contact group to create.
      */
-    contactGroup: Schema$ContactGroup;
+    contactGroup?: Schema$ContactGroup;
   }
   /**
    * Represents a whole calendar date, for example a date of birth. The time of
@@ -331,17 +334,17 @@ export namespace people_v1 {
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
      * if specifying a year/month where the day is not significant.
      */
-    day: number;
+    day?: number;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
      * month.
      */
-    month: number;
+    month?: number;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
      * year.
      */
-    year: number;
+    year?: number;
   }
   /**
    * A Google Apps Domain membership.
@@ -350,7 +353,7 @@ export namespace people_v1 {
     /**
      * True if the person is in the viewer&#39;s Google Apps domain.
      */
-    inViewerDomain: boolean;
+    inViewerDomain?: boolean;
   }
   /**
    * A person&#39;s email address.
@@ -359,26 +362,26 @@ export namespace people_v1 {
     /**
      * The display name of the email.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The read-only type of the email address translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the email address.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The type of the email address. The type can be custom or predefined.
      * Possible values include, but are not limited to, the following:  * `home`
      * * `work` * `other`
      */
-    type: string;
+    type?: string;
     /**
      * The email address.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -395,22 +398,22 @@ export namespace people_v1 {
     /**
      * The date of the event.
      */
-    date: Schema$Date;
+    date?: Schema$Date;
     /**
      * The read-only type of the event translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the event.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The type of the event. The type can be custom or predefined. Possible
      * values include, but are not limited to, the following:  * `anniversary` *
      * `other`
      */
-    type: string;
+    type?: string;
   }
   /**
    * Metadata about a field.
@@ -420,17 +423,17 @@ export namespace people_v1 {
      * True if the field is the primary field; false if the field is a secondary
      * field.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * The source of the field.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
     /**
      * True if the field is verified; false if the field is unverified. A
      * verified field is typically a name, email address, phone number, or
      * website that has been confirmed to be owned by the person.
      */
-    verified: boolean;
+    verified?: boolean;
   }
   /**
    * A person&#39;s gender.
@@ -440,23 +443,23 @@ export namespace people_v1 {
      * The read-only value of the gender translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedValue: string;
+    formattedValue?: string;
     /**
      * Metadata about the gender.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The gender for the person. The gender can be custom or predefined.
      * Possible values include, but are not limited to, the following:  * `male`
      * * `female` * `other` * `unknown`
      */
-    value: string;
+    value?: string;
   }
   export interface Schema$GetPeopleResponse {
     /**
      * The response for each requested resource name.
      */
-    responses: Schema$PersonResponse[];
+    responses?: Schema$PersonResponse[];
   }
   /**
    * A person&#39;s instant messaging client.
@@ -466,33 +469,33 @@ export namespace people_v1 {
      * The read-only protocol of the IM client formatted in the viewer&#39;s
      * account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedProtocol: string;
+    formattedProtocol?: string;
     /**
      * The read-only type of the IM client translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the IM client.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The protocol of the IM client. The protocol can be custom or predefined.
      * Possible values include, but are not limited to, the following:  * `aim`
      * * `msn` * `yahoo` * `skype` * `qq` * `googleTalk` * `icq` * `jabber` *
      * `netMeeting`
      */
-    protocol: string;
+    protocol?: string;
     /**
      * The type of the IM client. The type can be custom or predefined. Possible
      * values include, but are not limited to, the following:  * `home` * `work`
      * * `other`
      */
-    type: string;
+    type?: string;
     /**
      * The user name used in the IM client.
      */
-    username: string;
+    username?: string;
   }
   /**
    * One of the person&#39;s interests.
@@ -501,34 +504,34 @@ export namespace people_v1 {
     /**
      * Metadata about the interest.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The interest; for example, `stargazing`.
      */
-    value: string;
+    value?: string;
   }
   export interface Schema$ListConnectionsResponse {
     /**
      * The list of people that the requestor is connected to.
      */
-    connections: Schema$Person[];
+    connections?: Schema$Person[];
     /**
      * The token that can be used to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The token that can be used to retrieve changes since the last request.
      */
-    nextSyncToken: string;
+    nextSyncToken?: string;
     /**
      * The total number of items in the list without pagination.
      */
-    totalItems: number;
+    totalItems?: number;
     /**
      * **DEPRECATED** (Please use totalItems) The total number of people in the
      * list without pagination.
      */
-    totalPeople: number;
+    totalPeople?: number;
   }
   /**
    * The response to a list contact groups request.
@@ -538,19 +541,19 @@ export namespace people_v1 {
      * The list of contact groups. Members of the contact groups are not
      * populated.
      */
-    contactGroups: Schema$ContactGroup[];
+    contactGroups?: Schema$ContactGroup[];
     /**
      * The token that can be used to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The token that can be used to retrieve changes since the last request.
      */
-    nextSyncToken: string;
+    nextSyncToken?: string;
     /**
      * The total number of items in the list without pagination.
      */
-    totalItems: number;
+    totalItems?: number;
   }
   /**
    * A person&#39;s locale preference.
@@ -559,12 +562,12 @@ export namespace people_v1 {
     /**
      * Metadata about the locale.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language
      * tag representing the locale.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s read-only membership in a group.
@@ -573,15 +576,15 @@ export namespace people_v1 {
     /**
      * The contact group membership.
      */
-    contactGroupMembership: Schema$ContactGroupMembership;
+    contactGroupMembership?: Schema$ContactGroupMembership;
     /**
      * The domain membership.
      */
-    domainMembership: Schema$DomainMembership;
+    domainMembership?: Schema$DomainMembership;
     /**
      * Metadata about the membership.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
   }
   /**
    * A request to modify an existing contact group&#39;s members. Contacts can
@@ -593,12 +596,12 @@ export namespace people_v1 {
      * The resource names of the contact people to add in the form of in the
      * form `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceNamesToAdd: string[];
+    resourceNamesToAdd?: string[];
     /**
      * The resource names of the contact people to remove in the form of in the
      * form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceNamesToRemove: string[];
+    resourceNamesToRemove?: string[];
   }
   /**
    * The response to a modify contact group members request.
@@ -607,7 +610,7 @@ export namespace people_v1 {
     /**
      * The contact people resource names that were not found.
      */
-    notFoundResourceNames: string[];
+    notFoundResourceNames?: string[];
   }
   /**
    * A person&#39;s name. If the name is a mononym, the family name is empty.
@@ -617,61 +620,61 @@ export namespace people_v1 {
      * The read-only display name formatted according to the locale specified by
      * the viewer&#39;s account or the `Accept-Language` HTTP header.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The read-only display name with the last name first formatted according
      * to the locale specified by the viewer&#39;s account or the
      * `Accept-Language` HTTP header.
      */
-    displayNameLastFirst: string;
+    displayNameLastFirst?: string;
     /**
      * The family name.
      */
-    familyName: string;
+    familyName?: string;
     /**
      * The given name.
      */
-    givenName: string;
+    givenName?: string;
     /**
      * The honorific prefixes, such as `Mrs.` or `Dr.`
      */
-    honorificPrefix: string;
+    honorificPrefix?: string;
     /**
      * The honorific suffixes, such as `Jr.`
      */
-    honorificSuffix: string;
+    honorificSuffix?: string;
     /**
      * Metadata about the name.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The middle name(s).
      */
-    middleName: string;
+    middleName?: string;
     /**
      * The family name spelled as it sounds.
      */
-    phoneticFamilyName: string;
+    phoneticFamilyName?: string;
     /**
      * The full name spelled as it sounds.
      */
-    phoneticFullName: string;
+    phoneticFullName?: string;
     /**
      * The given name spelled as it sounds.
      */
-    phoneticGivenName: string;
+    phoneticGivenName?: string;
     /**
      * The honorific prefixes spelled as they sound.
      */
-    phoneticHonorificPrefix: string;
+    phoneticHonorificPrefix?: string;
     /**
      * The honorific suffixes spelled as they sound.
      */
-    phoneticHonorificSuffix: string;
+    phoneticHonorificSuffix?: string;
     /**
      * The middle name(s) spelled as they sound.
      */
-    phoneticMiddleName: string;
+    phoneticMiddleName?: string;
   }
   /**
    * A person&#39;s nickname.
@@ -680,15 +683,15 @@ export namespace people_v1 {
     /**
      * Metadata about the nickname.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The type of the nickname.
      */
-    type: string;
+    type?: string;
     /**
      * The nickname.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s occupation.
@@ -697,11 +700,11 @@ export namespace people_v1 {
     /**
      * Metadata about the occupation.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The occupation; for example, `carpenter`.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s past or current organization. Overlapping date ranges are
@@ -712,64 +715,64 @@ export namespace people_v1 {
      * True if the organization is the person&#39;s current organization; false
      * if the organization is a past organization.
      */
-    current: boolean;
+    current?: boolean;
     /**
      * The person&#39;s department at the organization.
      */
-    department: string;
+    department?: string;
     /**
      * The domain name associated with the organization; for example,
      * `google.com`.
      */
-    domain: string;
+    domain?: string;
     /**
      * The end date when the person left the organization.
      */
-    endDate: Schema$Date;
+    endDate?: Schema$Date;
     /**
      * The read-only type of the organization translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * The person&#39;s job description at the organization.
      */
-    jobDescription: string;
+    jobDescription?: string;
     /**
      * The location of the organization office the person works at.
      */
-    location: string;
+    location?: string;
     /**
      * Metadata about the organization.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The name of the organization.
      */
-    name: string;
+    name?: string;
     /**
      * The phonetic name of the organization.
      */
-    phoneticName: string;
+    phoneticName?: string;
     /**
      * The start date when the person joined the organization.
      */
-    startDate: Schema$Date;
+    startDate?: Schema$Date;
     /**
      * The symbol associated with the organization; for example, a stock ticker
      * symbol, abbreviation, or acronym.
      */
-    symbol: string;
+    symbol?: string;
     /**
      * The person&#39;s job title at the organization.
      */
-    title: string;
+    title?: string;
     /**
      * The type of the organization. The type can be custom or predefined.
      * Possible values include, but are not limited to, the following:  * `work`
      * * `school`
      */
-    type: string;
+    type?: string;
   }
   /**
    * Information about a person merged from various data sources such as the
@@ -782,131 +785,131 @@ export namespace people_v1 {
     /**
      * The person&#39;s street addresses.
      */
-    addresses: Schema$Address[];
+    addresses?: Schema$Address[];
     /**
      * **DEPRECATED** (Please use `person.ageRanges` instead)**  The
      * person&#39;s read-only age range.
      */
-    ageRange: string;
+    ageRange?: string;
     /**
      * The person&#39;s read-only age ranges.
      */
-    ageRanges: Schema$AgeRangeType[];
+    ageRanges?: Schema$AgeRangeType[];
     /**
      * The person&#39;s biographies.
      */
-    biographies: Schema$Biography[];
+    biographies?: Schema$Biography[];
     /**
      * The person&#39;s birthdays.
      */
-    birthdays: Schema$Birthday[];
+    birthdays?: Schema$Birthday[];
     /**
      * The person&#39;s bragging rights.
      */
-    braggingRights: Schema$BraggingRights[];
+    braggingRights?: Schema$BraggingRights[];
     /**
      * The person&#39;s read-only cover photos.
      */
-    coverPhotos: Schema$CoverPhoto[];
+    coverPhotos?: Schema$CoverPhoto[];
     /**
      * The person&#39;s email addresses.
      */
-    emailAddresses: Schema$EmailAddress[];
+    emailAddresses?: Schema$EmailAddress[];
     /**
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
      * resource. Used for web cache validation.
      */
-    etag: string;
+    etag?: string;
     /**
      * The person&#39;s events.
      */
-    events: Schema$Event[];
+    events?: Schema$Event[];
     /**
      * The person&#39;s genders.
      */
-    genders: Schema$Gender[];
+    genders?: Schema$Gender[];
     /**
      * The person&#39;s instant messaging clients.
      */
-    imClients: Schema$ImClient[];
+    imClients?: Schema$ImClient[];
     /**
      * The person&#39;s interests.
      */
-    interests: Schema$Interest[];
+    interests?: Schema$Interest[];
     /**
      * The person&#39;s locale preferences.
      */
-    locales: Schema$Locale[];
+    locales?: Schema$Locale[];
     /**
      * The person&#39;s read-only group memberships.
      */
-    memberships: Schema$Membership[];
+    memberships?: Schema$Membership[];
     /**
      * Read-only metadata about the person.
      */
-    metadata: Schema$PersonMetadata;
+    metadata?: Schema$PersonMetadata;
     /**
      * The person&#39;s names.
      */
-    names: Schema$Name[];
+    names?: Schema$Name[];
     /**
      * The person&#39;s nicknames.
      */
-    nicknames: Schema$Nickname[];
+    nicknames?: Schema$Nickname[];
     /**
      * The person&#39;s occupations.
      */
-    occupations: Schema$Occupation[];
+    occupations?: Schema$Occupation[];
     /**
      * The person&#39;s past or current organizations.
      */
-    organizations: Schema$Organization[];
+    organizations?: Schema$Organization[];
     /**
      * The person&#39;s phone numbers.
      */
-    phoneNumbers: Schema$PhoneNumber[];
+    phoneNumbers?: Schema$PhoneNumber[];
     /**
      * The person&#39;s read-only photos.
      */
-    photos: Schema$Photo[];
+    photos?: Schema$Photo[];
     /**
      * The person&#39;s relations.
      */
-    relations: Schema$Relation[];
+    relations?: Schema$Relation[];
     /**
      * The person&#39;s read-only relationship interests.
      */
-    relationshipInterests: Schema$RelationshipInterest[];
+    relationshipInterests?: Schema$RelationshipInterest[];
     /**
      * The person&#39;s read-only relationship statuses.
      */
-    relationshipStatuses: Schema$RelationshipStatus[];
+    relationshipStatuses?: Schema$RelationshipStatus[];
     /**
      * The person&#39;s residences.
      */
-    residences: Schema$Residence[];
+    residences?: Schema$Residence[];
     /**
      * The resource name for the person, assigned by the server. An ASCII string
      * with a max length of 27 characters, in the form of
      * `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * The person&#39;s skills.
      */
-    skills: Schema$Skill[];
+    skills?: Schema$Skill[];
     /**
      * The person&#39;s read-only taglines.
      */
-    taglines: Schema$Tagline[];
+    taglines?: Schema$Tagline[];
     /**
      * The person&#39;s associated URLs.
      */
-    urls: Schema$Url[];
+    urls?: Schema$Url[];
     /**
      * The person&#39;s user defined data.
      */
-    userDefined: Schema$UserDefined[];
+    userDefined?: Schema$UserDefined[];
   }
   /**
    * The read-only metadata about a person.
@@ -917,17 +920,17 @@ export namespace people_v1 {
      * [`connections.list`](/people/api/rest/v1/people.connections/list)
      * requests that include a sync token.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * Resource names of people linked to this resource.
      */
-    linkedPeopleResourceNames: string[];
+    linkedPeopleResourceNames?: string[];
     /**
      * **DEPRECATED** (Please use
      * `person.metadata.sources.profileMetadata.objectType` instead)  The type
      * of the person object.
      */
-    objectType: string;
+    objectType?: string;
     /**
      * Any former resource names this person has had. Populated only for
      * [`connections.list`](/people/api/rest/v1/people.connections/list)
@@ -935,11 +938,11 @@ export namespace people_v1 {
      * adding or removing fields that link a contact and profile such as a
      * verified email, verified phone number, or profile URL.
      */
-    previousResourceNames: string[];
+    previousResourceNames?: string[];
     /**
      * The sources of data for the person.
      */
-    sources: Schema$Source[];
+    sources?: Schema$Source[];
   }
   /**
    * The response for a single person
@@ -949,22 +952,22 @@ export namespace people_v1 {
      * **DEPRECATED** (Please use status instead)  [HTTP 1.1 status code]
      * (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
      */
-    httpStatusCode: number;
+    httpStatusCode?: number;
     /**
      * The person.
      */
-    person: Schema$Person;
+    person?: Schema$Person;
     /**
      * The original requested resource name. May be different than the resource
      * name on the returned person.  The resource name can change when adding or
      * removing fields that link a contact and profile such as a verified email,
      * verified phone number, or a profile URL.
      */
-    requestedResourceName: string;
+    requestedResourceName?: string;
     /**
      * The status of the response.
      */
-    status: Schema$Status;
+    status?: Schema$Status;
   }
   /**
    * A person&#39;s phone number.
@@ -975,27 +978,27 @@ export namespace people_v1 {
      * E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf)
      * form of the phone number.
      */
-    canonicalForm: string;
+    canonicalForm?: string;
     /**
      * The read-only type of the phone number translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the phone number.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The type of the phone number. The type can be custom or predefined.
      * Possible values include, but are not limited to, the following:  * `home`
      * * `work` * `mobile` * `homeFax` * `workFax` * `otherFax` * `pager` *
      * `workMobile` * `workPager` * `main` * `googleVoice` * `other`
      */
-    type: string;
+    type?: string;
     /**
      * The phone number.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s read-only photo. A picture shown next to the person&#39;s
@@ -1006,18 +1009,18 @@ export namespace people_v1 {
      * True if the photo is a default photo; false if the photo is a
      * user-provided photo.
      */
-    default: boolean;
+    default?: boolean;
     /**
      * Metadata about the photo.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The URL of the photo. You can change the desired size by appending a
      * query parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url.
      * Example:
      * `https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`
      */
-    url: string;
+    url?: string;
   }
   /**
    * The read-only metadata about a profile.
@@ -1026,11 +1029,11 @@ export namespace people_v1 {
     /**
      * The profile object type.
      */
-    objectType: string;
+    objectType?: string;
     /**
      * The user types.
      */
-    userTypes: string[];
+    userTypes?: string[];
   }
   /**
    * A person&#39;s relation to another person.
@@ -1041,15 +1044,15 @@ export namespace people_v1 {
      * account locale or the locale specified in the Accept-Language HTTP
      * header.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the relation.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The name of the other person this relation refers to.
      */
-    person: string;
+    person?: string;
     /**
      * The person&#39;s relation to the other person. The type can be custom or
      * predefined. Possible values include, but are not limited to, the
@@ -1057,7 +1060,7 @@ export namespace people_v1 {
      * * `brother` * `sister` * `friend` * `relative` * `domesticPartner` *
      * `manager` * `assistant` * `referredBy` * `partner`
      */
-    type: string;
+    type?: string;
   }
   /**
    * A person&#39;s read-only relationship interest .
@@ -1068,18 +1071,18 @@ export namespace people_v1 {
      * viewer&#39;s account locale or the locale specified in the
      * Accept-Language HTTP header.
      */
-    formattedValue: string;
+    formattedValue?: string;
     /**
      * Metadata about the relationship interest.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The kind of relationship the person is looking for. The value can be
      * custom or predefined. Possible values include, but are not limited to,
      * the following values:  * `friend` * `date` * `relationship` *
      * `networking`
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s read-only relationship status.
@@ -1090,18 +1093,18 @@ export namespace people_v1 {
      * in the viewer&#39;s account locale or the `Accept-Language` HTTP header
      * locale.
      */
-    formattedValue: string;
+    formattedValue?: string;
     /**
      * Metadata about the relationship status.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The relationship status. The value can be custom or predefined. Possible
      * values include, but are not limited to, the following:  * `single` *
      * `inARelationship` * `engaged` * `married` * `itsComplicated` *
      * `openRelationship` * `widowed` * `inDomesticPartnership` * `inCivilUnion`
      */
-    value: string;
+    value?: string;
   }
   /**
    * A person&#39;s past or current residence.
@@ -1111,15 +1114,15 @@ export namespace people_v1 {
      * True if the residence is the person&#39;s current residence; false if the
      * residence is a past residence.
      */
-    current: boolean;
+    current?: boolean;
     /**
      * Metadata about the residence.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The address of the residence.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A skill that the person has.
@@ -1128,11 +1131,11 @@ export namespace people_v1 {
     /**
      * Metadata about the skill.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The skill; for example, `underwater basket weaving`.
      */
-    value: string;
+    value?: string;
   }
   /**
    * The source of a field.
@@ -1143,25 +1146,25 @@ export namespace people_v1 {
      * tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the source. Used for web
      * cache validation.
      */
-    etag: string;
+    etag?: string;
     /**
      * The unique identifier within the source type generated by the server.
      */
-    id: string;
+    id?: string;
     /**
      * **Only populated in `person.metadata.sources`.**  Metadata about a source
      * of type PROFILE.
      */
-    profileMetadata: Schema$ProfileMetadata;
+    profileMetadata?: Schema$ProfileMetadata;
     /**
      * The source type.
      */
-    type: string;
+    type?: string;
     /**
      * **Only populated in `person.metadata.sources`.**  Last update timestamp
      * of this source.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1203,18 +1206,18 @@ export namespace people_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A read-only brief one-line description of the person.
@@ -1223,11 +1226,11 @@ export namespace people_v1 {
     /**
      * Metadata about the tagline.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The tagline.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A request to update an existing user contact group. All updated fields will
@@ -1237,7 +1240,7 @@ export namespace people_v1 {
     /**
      * The contact group to update.
      */
-    contactGroup: Schema$ContactGroup;
+    contactGroup?: Schema$ContactGroup;
   }
   /**
    * A person&#39;s associated URLs.
@@ -1247,22 +1250,22 @@ export namespace people_v1 {
      * The read-only type of the URL translated and formatted in the
      * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType: string;
+    formattedType?: string;
     /**
      * Metadata about the URL.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The type of the URL. The type can be custom or predefined. Possible
      * values include, but are not limited to, the following:  * `home` * `work`
      * * `blog` * `profile` * `homePage` * `ftp` * `reservations` *
      * `appInstallPage`: website for a Google+ application. * `other`
      */
-    type: string;
+    type?: string;
     /**
      * The URL.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Arbitrary user data that is populated by the end users.
@@ -1271,16 +1274,17 @@ export namespace people_v1 {
     /**
      * The end user specified key of the user defined data.
      */
-    key: string;
+    key?: string;
     /**
      * Metadata about the user defined data.
      */
-    metadata: Schema$FieldMetadata;
+    metadata?: Schema$FieldMetadata;
     /**
      * The end user specified value of the user defined data.
      */
-    value: string;
+    value?: string;
   }
+
 
   export class Resource$Contactgroups {
     root: People;
@@ -1310,29 +1314,45 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params?: any, options?: MethodOptions):
+    batchGet(
+        params?: Params$Resource$Contactgroups$Batchget,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchGetContactGroupsResponse>;
     batchGet(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contactgroups$Batchget,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
+        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
         void;
     batchGet(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contactgroups$Batchget,
+        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
+        void;
+    batchGet(callback:
+                 BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
+        void;
+    batchGet(
+        paramsOrCallback?: Params$Resource$Contactgroups$Batchget|
+        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
         void|AxiosPromise<Schema$BatchGetContactGroupsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Batchget;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1369,26 +1389,39 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContactGroup>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>): void;
+        params?: Params$Resource$Contactgroups$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+        params: Params$Resource$Contactgroups$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    create(
+        params: Params$Resource$Contactgroups$Create,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    create(callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Contactgroups$Create|
+        BodyResponseCallback<Schema$ContactGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
         void|AxiosPromise<Schema$ContactGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1425,25 +1458,38 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Contactgroups$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Contactgroups$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Contactgroups$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Contactgroups$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1480,24 +1526,35 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Contactgroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+    get(params: Params$Resource$Contactgroups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    get(params: Params$Resource$Contactgroups$Get,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    get(callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Contactgroups$Get|
+        BodyResponseCallback<Schema$ContactGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
         void|AxiosPromise<Schema$ContactGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1535,29 +1592,40 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Contactgroups$List, options?: MethodOptions):
         AxiosPromise<Schema$ListContactGroupsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contactgroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
+        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
+    list(
+        params: Params$Resource$Contactgroups$List,
+        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListContactGroupsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Contactgroups$List|
+        BodyResponseCallback<Schema$ListContactGroupsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContactGroupsResponse>,
         callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
         void|AxiosPromise<Schema$ListContactGroupsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1595,26 +1663,39 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContactGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>): void;
+        params?: Params$Resource$Contactgroups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+        params: Params$Resource$Contactgroups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    update(
+        params: Params$Resource$Contactgroups$Update,
+        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    update(callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Contactgroups$Update|
+        BodyResponseCallback<Schema$ContactGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
         void|AxiosPromise<Schema$ContactGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1636,6 +1717,102 @@ export namespace people_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Contactgroups$Batchget {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Specifies the maximum number of members to return for each group.
+     */
+    maxMembers?: number;
+    /**
+     * The resource names of the contact groups to get.
+     */
+    resourceNames?: string;
+  }
+  export interface Params$Resource$Contactgroups$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateContactGroupRequest;
+  }
+  export interface Params$Resource$Contactgroups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Set to true to also delete the contacts in the specified group.
+     */
+    deleteContacts?: boolean;
+    /**
+     * The resource name of the contact group to delete.
+     */
+    resourceName?: string;
+  }
+  export interface Params$Resource$Contactgroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Specifies the maximum number of members to return.
+     */
+    maxMembers?: number;
+    /**
+     * The resource name of the contact group to get.
+     */
+    resourceName?: string;
+  }
+  export interface Params$Resource$Contactgroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of resources to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous call to
+     * [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the
+     * next page of resources.
+     */
+    pageToken?: string;
+    /**
+     * A sync token, returned by a previous call to `contactgroups.list`. Only
+     * resources changed since the sync token was created will be returned.
+     */
+    syncToken?: string;
+  }
+  export interface Params$Resource$Contactgroups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name for the contact group, assigned by the server. An ASCII
+     * string, in the form of `contactGroups/`<var>contact_group_id</var>.
+     */
+    resourceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateContactGroupRequest;
+  }
+
   export class Resource$Contactgroups$Members {
     root: People;
     constructor(root: People) {
@@ -1662,31 +1839,48 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modify(params?: any, options?: MethodOptions):
+    modify(
+        params?: Params$Resource$Contactgroups$Members$Modify,
+        options?: MethodOptions):
         AxiosPromise<Schema$ModifyContactGroupMembersResponse>;
     modify(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contactgroups$Members$Modify,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
         void;
     modify(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contactgroups$Members$Modify,
+        callback:
+            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
+        void;
+    modify(callback:
+               BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
+        void;
+    modify(
+        paramsOrCallback?: Params$Resource$Contactgroups$Members$Modify|
+        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
         callback?:
             BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
         void|AxiosPromise<Schema$ModifyContactGroupMembersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Contactgroups$Members$Modify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contactgroups$Members$Modify;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1710,6 +1904,23 @@ export namespace people_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Contactgroups$Members$Modify {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the contact group to modify.
+     */
+    resourceName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ModifyContactGroupMembersRequest;
+  }
+
 
 
   export class Resource$People {
@@ -1740,26 +1951,38 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createContact(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Person>;
     createContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>): void;
+        params?: Params$Resource$People$Createcontact,
+        options?: MethodOptions): AxiosPromise<Schema$Person>;
     createContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+        params: Params$Resource$People$Createcontact,
+        options: MethodOptions|BodyResponseCallback<Schema$Person>,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    createContact(
+        params: Params$Resource$People$Createcontact,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    createContact(callback: BodyResponseCallback<Schema$Person>): void;
+    createContact(
+        paramsOrCallback?: Params$Resource$People$Createcontact|
+        BodyResponseCallback<Schema$Person>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
         void|AxiosPromise<Schema$Person> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$People$Createcontact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Createcontact;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1794,26 +2017,38 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteContact(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     deleteContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$People$Deletecontact,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     deleteContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$People$Deletecontact,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteContact(
+        params: Params$Resource$People$Deletecontact,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteContact(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteContact(
+        paramsOrCallback?: Params$Resource$People$Deletecontact|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$People$Deletecontact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Deletecontact;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1852,23 +2087,33 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Person>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+    get(params?: Params$Resource$People$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Person>;
+    get(params: Params$Resource$People$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Person>,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    get(params: Params$Resource$People$Get,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    get(callback: BodyResponseCallback<Schema$Person>): void;
+    get(paramsOrCallback?: Params$Resource$People$Get|
+        BodyResponseCallback<Schema$Person>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
         void|AxiosPromise<Schema$Person> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1908,26 +2153,39 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getBatchGet(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetPeopleResponse>;
     getBatchGet(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
-        callback?: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+        params?: Params$Resource$People$Getbatchget,
+        options?: MethodOptions): AxiosPromise<Schema$GetPeopleResponse>;
     getBatchGet(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
+        params: Params$Resource$People$Getbatchget,
+        options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
+        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+    getBatchGet(
+        params: Params$Resource$People$Getbatchget,
+        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+    getBatchGet(callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+    getBatchGet(
+        paramsOrCallback?: Params$Resource$People$Getbatchget|
+        BodyResponseCallback<Schema$GetPeopleResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetPeopleResponse>,
         callback?: BodyResponseCallback<Schema$GetPeopleResponse>):
         void|AxiosPromise<Schema$GetPeopleResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$People$Getbatchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Getbatchget;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1972,26 +2230,38 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateContact(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Person>;
     updateContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>): void;
+        params?: Params$Resource$People$Updatecontact,
+        options?: MethodOptions): AxiosPromise<Schema$Person>;
     updateContact(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+        params: Params$Resource$People$Updatecontact,
+        options: MethodOptions|BodyResponseCallback<Schema$Person>,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    updateContact(
+        params: Params$Resource$People$Updatecontact,
+        callback: BodyResponseCallback<Schema$Person>): void;
+    updateContact(callback: BodyResponseCallback<Schema$Person>): void;
+    updateContact(
+        paramsOrCallback?: Params$Resource$People$Updatecontact|
+        BodyResponseCallback<Schema$Person>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
         void|AxiosPromise<Schema$Person> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$People$Updatecontact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Updatecontact;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2013,6 +2283,127 @@ export namespace people_v1 {
       }
     }
   }
+
+  export interface Params$Resource$People$Createcontact {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the owning person resource.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Person;
+  }
+  export interface Params$Resource$People$Deletecontact {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the contact to delete.
+     */
+    resourceName?: string;
+  }
+  export interface Params$Resource$People$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * **Required.** A field mask to restrict which fields on the person are
+     * returned. Multiple fields can be specified by separating them with
+     * commas. Valid values are:  * addresses * ageRanges * biographies *
+     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
+     * genders * imClients * interests * locales * memberships * metadata *
+     * names * nicknames * occupations * organizations * phoneNumbers * photos *
+     * relations * relationshipInterests * relationshipStatuses * residences *
+     * skills * taglines * urls
+     */
+    personFields?: string;
+    /**
+     * **Required.** Comma-separated list of person fields to be included in the
+     * response. Each path should start with `person.`: for example,
+     * `person.names` or `person.photos`.
+     */
+    'requestMask.includeField'?: string;
+    /**
+     * The resource name of the person to provide information about.  - To get
+     * information about the authenticated user, specify `people/me`. - To get
+     * information about a google account, specify
+     * `people/`<var>account_id</var>. - To get information about a contact,
+     * specify the resource name that   identifies the contact as returned by
+     * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     */
+    resourceName?: string;
+  }
+  export interface Params$Resource$People$Getbatchget {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * **Required.** A field mask to restrict which fields on each person are
+     * returned. Multiple fields can be specified by separating them with
+     * commas. Valid values are:  * addresses * ageRanges * biographies *
+     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
+     * genders * imClients * interests * locales * memberships * metadata *
+     * names * nicknames * occupations * organizations * phoneNumbers * photos *
+     * relations * relationshipInterests * relationshipStatuses * residences *
+     * skills * taglines * urls
+     */
+    personFields?: string;
+    /**
+     * **Required.** Comma-separated list of person fields to be included in the
+     * response. Each path should start with `person.`: for example,
+     * `person.names` or `person.photos`.
+     */
+    'requestMask.includeField'?: string;
+    /**
+     * The resource names of the people to provide information about.  - To get
+     * information about the authenticated user, specify `people/me`. - To get
+     * information about a google account, specify
+     * `people/`<var>account_id</var>. - To get information about a contact,
+     * specify the resource name that   identifies the contact as returned by
+     * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * You can include up to 50 resource names in one request.
+     */
+    resourceNames?: string;
+  }
+  export interface Params$Resource$People$Updatecontact {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name for the person, assigned by the server. An ASCII string
+     * with a max length of 27 characters, in the form of
+     * `people/`<var>person_id</var>.
+     */
+    resourceName?: string;
+    /**
+     * **Required.** A field mask to restrict which fields on the person are
+     * updated. Multiple fields can be specified by separating them with commas.
+     * All updated fields will be replaced. Valid values are:  * addresses *
+     * biographies * birthdays * emailAddresses * events * genders * imClients *
+     * interests * locales * names * nicknames * occupations * organizations *
+     * phoneNumbers * relations * residences * urls
+     */
+    updatePersonFields?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Person;
+  }
+
   export class Resource$People$Connections {
     root: People;
     constructor(root: People) {
@@ -2046,28 +2437,40 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListConnectionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$People$Connections$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListConnectionsResponse>;
+    list(
+        params: Params$Resource$People$Connections$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$People$Connections$List,
+        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$People$Connections$List|
+        BodyResponseCallback<Schema$ListConnectionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListConnectionsResponse>,
         callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
         void|AxiosPromise<Schema$ListConnectionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$People$Connections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Connections$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2088,5 +2491,61 @@ export namespace people_v1 {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$People$Connections$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The number of connections to include in the response. Valid values are
+     * between 1 and 2000, inclusive. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * The token of the page to be returned.
+     */
+    pageToken?: string;
+    /**
+     * **Required.** A field mask to restrict which fields on each person are
+     * returned. Multiple fields can be specified by separating them with
+     * commas. Valid values are:  * addresses * ageRanges * biographies *
+     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
+     * genders * imClients * interests * locales * memberships * metadata *
+     * names * nicknames * occupations * organizations * phoneNumbers * photos *
+     * relations * relationshipInterests * relationshipStatuses * residences *
+     * skills * taglines * urls
+     */
+    personFields?: string;
+    /**
+     * **Required.** Comma-separated list of person fields to be included in the
+     * response. Each path should start with `person.`: for example,
+     * `person.names` or `person.photos`.
+     */
+    'requestMask.includeField'?: string;
+    /**
+     * Whether the response should include a sync token, which can be used to
+     * get all changes since the last request. For subsequent sync requests use
+     * the `sync_token` param instead. Initial sync requests that specify
+     * `request_sync_token` have an additional rate limit.
+     */
+    requestSyncToken?: boolean;
+    /**
+     * The resource name to return connections for. Only `people/me` is valid.
+     */
+    resourceName?: string;
+    /**
+     * The order in which the connections should be sorted. Defaults to
+     * `LAST_MODIFIED_ASCENDING`.
+     */
+    sortOrder?: string;
+    /**
+     * A sync token returned by a previous call to `people.connections.list`.
+     * Only resources changed since the sync token was created will be returned.
+     * Sync requests that specify `sync_token` have an additional rate limit.
+     */
+    syncToken?: string;
   }
 }

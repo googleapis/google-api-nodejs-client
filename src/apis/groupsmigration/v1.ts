@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace groupsmigration_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Groups Migration API
    *
@@ -72,12 +75,13 @@ export namespace groupsmigration_v1 {
     /**
      * The kind of insert resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The status of the insert request.
      */
-    responseCode: string;
+    responseCode?: string;
   }
+
 
   export class Resource$Archive {
     root: Groupsmigration;
@@ -106,25 +110,36 @@ export namespace groupsmigration_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+    insert(params?: Params$Resource$Archive$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Groups>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>): void;
+        params: Params$Resource$Archive$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+        callback: BodyResponseCallback<Schema$Groups>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+        params: Params$Resource$Archive$Insert,
+        callback: BodyResponseCallback<Schema$Groups>): void;
+    insert(callback: BodyResponseCallback<Schema$Groups>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Archive$Insert|
+        BodyResponseCallback<Schema$Groups>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
         void|AxiosPromise<Schema$Groups> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Archive$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Archive$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -147,5 +162,31 @@ export namespace groupsmigration_v1 {
         return createAPIRequest<Schema$Groups>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Archive$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The group ID
+     */
+    groupId?: string;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
   }
 }

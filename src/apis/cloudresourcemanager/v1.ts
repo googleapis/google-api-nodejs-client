@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudresourcemanager_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Resource Manager API
    *
@@ -81,7 +84,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Resource id of the ancestor.
      */
-    resourceId: Schema$ResourceId;
+    resourceId?: Schema$ResourceId;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -110,13 +113,13 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -132,11 +135,11 @@ export namespace cloudresourcemanager_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -157,12 +160,12 @@ export namespace cloudresourcemanager_v1 {
      * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A `Constraint` that is either enforced or not.  For example a constraint
@@ -203,7 +206,7 @@ export namespace cloudresourcemanager_v1 {
      * The constraint at `projects/bar` is not enforced, because
      * `constraint_default` for the `Constraint` is `ALLOW`.
      */
-    enforced: boolean;
+    enforced?: boolean;
   }
   /**
    * The request sent to the ClearOrgPolicy method.
@@ -212,12 +215,12 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the `Constraint` of the `Policy` to clear.
      */
-    constraint: string;
+    constraint?: string;
     /**
      * The current version, for concurrency control. Not sending an `etag` will
      * cause the `Policy` to be cleared blindly.
      */
-    etag: string;
+    etag?: string;
   }
   /**
    * A `Constraint` describes a way in which a resource&#39;s configuration can
@@ -238,34 +241,34 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Defines this constraint as being a BooleanConstraint.
      */
-    booleanConstraint: Schema$BooleanConstraint;
+    booleanConstraint?: Schema$BooleanConstraint;
     /**
      * The evaluation behavior of this constraint in the absense of
      * &#39;Policy&#39;.
      */
-    constraintDefault: string;
+    constraintDefault?: string;
     /**
      * Detailed description of what this `Constraint` controls as well as how
      * and where it is enforced.  Mutable.
      */
-    description: string;
+    description?: string;
     /**
      * The human readable name.  Mutable.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Defines this constraint as being a ListConstraint.
      */
-    listConstraint: Schema$ListConstraint;
+    listConstraint?: Schema$ListConstraint;
     /**
      * Immutable value, required to globally be unique. For example,
      * `constraints/serviceuser.services`
      */
-    name: string;
+    name?: string;
     /**
      * Version of the `Constraint`. Default version is 0;
      */
-    version: number;
+    version?: number;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -283,20 +286,20 @@ export namespace cloudresourcemanager_v1 {
      * The resource name of the folder or organization we are either creating
      * the folder under or moving the folder to.
      */
-    destinationParent: string;
+    destinationParent?: string;
     /**
      * The display name of the folder.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The type of this operation.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The resource name of the folder&#39;s parent. Only applicable when the
      * operation_type is MOVE.
      */
-    sourceParent: string;
+    sourceParent?: string;
   }
   /**
    * A classification of the Folder Operation error.
@@ -305,7 +308,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The type of operation error experienced.
      */
-    errorMessageId: string;
+    errorMessageId?: string;
   }
   /**
    * The request sent to the GetAncestry method.
@@ -320,7 +323,7 @@ export namespace cloudresourcemanager_v1 {
      * first ancestor is the project itself, followed by the project&#39;s
      * parent, etc..
      */
-    ancestor: Schema$Ancestor[];
+    ancestor?: Schema$Ancestor[];
   }
   /**
    * The request sent to the GetEffectiveOrgPolicy method.
@@ -329,7 +332,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the `Constraint` to compute the effective `Policy`.
      */
-    constraint: string;
+    constraint?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -342,7 +345,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the `Constraint` to get the `Policy`.
      */
-    constraint: string;
+    constraint?: string;
   }
   /**
    * A Lien represents an encumbrance on the actions that can be performed on a
@@ -352,30 +355,30 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The creation time of this Lien.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * A system-generated unique identifier for this Lien.  Example:
      * `liens/1234abcd`
      */
-    name: string;
+    name?: string;
     /**
      * A stable, user-visible/meaningful string identifying the origin of the
      * Lien, intended to be inspected programmatically. Maximum length of 200
      * characters.  Example: &#39;compute.googleapis.com&#39;
      */
-    origin: string;
+    origin?: string;
     /**
      * A reference to the resource this Lien is attached to. The server will
      * validate the parent against those for which Liens are supported. Example:
      * `projects/1234`
      */
-    parent: string;
+    parent?: string;
     /**
      * Concise user-visible strings indicating why an action cannot be performed
      * on a resource. Maximum lenth of 200 characters.  Example: &#39;Holds
      * production API key&#39;
      */
-    reason: string;
+    reason?: string;
     /**
      * The types of operations which should be blocked as a result of this Lien.
      * Each value should correspond to an IAM permission. The server will
@@ -383,7 +386,7 @@ export namespace cloudresourcemanager_v1 {
      * empty list is meaningless and will be rejected.  Example:
      * [&#39;resourcemanager.projects.delete&#39;]
      */
-    restrictions: string[];
+    restrictions?: string[];
   }
   /**
    * The request sent to the [ListAvailableOrgPolicyConstraints]
@@ -395,12 +398,12 @@ export namespace cloudresourcemanager_v1 {
      * be ignored. The server may at any point start using this field to limit
      * page size.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * Page token used to retrieve the next page. This is currently unsupported
      * and will be ignored. The server may at any point start using this field.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The response returned from the ListAvailableOrgPolicyConstraints method.
@@ -412,11 +415,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The collection of constraints that are settable on the request resource.
      */
-    constraints: Schema$Constraint[];
+    constraints?: Schema$Constraint[];
     /**
      * Page token used to retrieve the next page. This is currently not used.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A `Constraint` that allows or disallows a list of string values, which are
@@ -427,7 +430,7 @@ export namespace cloudresourcemanager_v1 {
      * Optional. The Google Cloud Console will try to default to a configuration
      * that matches the value specified in this `Constraint`.
      */
-    suggestedValue: string;
+    suggestedValue?: string;
   }
   /**
    * The response message for Liens.ListLiens.
@@ -436,12 +439,12 @@ export namespace cloudresourcemanager_v1 {
     /**
      * A list of Liens.
      */
-    liens: Schema$Lien[];
+    liens?: Schema$Lien[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more
      * results in the list.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The request sent to the ListOrgPolicies method.
@@ -452,12 +455,12 @@ export namespace cloudresourcemanager_v1 {
      * be ignored. The server may at any point start using this field to limit
      * page size.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * Page token used to retrieve the next page. This is currently unsupported
      * and will be ignored. The server may at any point start using this field.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The response returned from the ListOrgPolicies method. It will be empty if
@@ -468,12 +471,12 @@ export namespace cloudresourcemanager_v1 {
      * Page token used to retrieve the next page. This is currently not used,
      * but the server may at any point start supplying a valid token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The `Policies` that are set on the resource. It will be empty if no
      * `Policies` are set.
      */
-    policies: Schema$OrgPolicy[];
+    policies?: Schema$OrgPolicy[];
   }
   /**
    * Used in `policy_type` to specify how `list_policy` behaves at this
@@ -491,17 +494,17 @@ export namespace cloudresourcemanager_v1 {
      * are set for `denied_values` and `all_values` is set to
      * `ALL_VALUES_UNSPECIFIED`.
      */
-    allowedValues: string[];
+    allowedValues?: string[];
     /**
      * The policy all_values state.
      */
-    allValues: string;
+    allValues?: string;
     /**
      * List of values denied at this resource. Can only be set if no values are
      * set for `allowed_values` and `all_values` is set to
      * `ALL_VALUES_UNSPECIFIED`.
      */
-    deniedValues: string[];
+    deniedValues?: string[];
     /**
      * Determines the inheritance behavior for this `Policy`.  By default, a
      * `ListPolicy` set at a resource supercedes any `Policy` set anywhere up
@@ -558,14 +561,14 @@ export namespace cloudresourcemanager_v1 {
      * DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value
      * is accepted at `projects/bar`.
      */
-    inheritFromParent: boolean;
+    inheritFromParent?: boolean;
     /**
      * Optional. The Google Cloud Console will try to default to a configuration
      * that matches the value specified in this `Policy`. If `suggested_value`
      * is not set, it will inherit the value specified higher in the hierarchy,
      * unless `inherit_from_parent` is `false`.
      */
-    suggestedValue: string;
+    suggestedValue?: string;
   }
   /**
    * A page of the response received from the ListProjects method.  A paginated
@@ -583,12 +586,12 @@ export namespace cloudresourcemanager_v1 {
      * returned is the last page in the result set.  Pagination tokens have a
      * limited lifetime.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of Projects that matched the list filter. This list can be
      * paginated.
      */
-    projects: Schema$Project[];
+    projects?: Schema$Project[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -600,24 +603,24 @@ export namespace cloudresourcemanager_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -627,7 +630,7 @@ export namespace cloudresourcemanager_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * The root node in the resource hierarchy to which a particular entity&#39;s
@@ -638,7 +641,7 @@ export namespace cloudresourcemanager_v1 {
      * Timestamp when the Organization was created. Assigned by the server.
      * @OutputOnly
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * A human-readable string that refers to the Organization in the GCP
      * Console UI. This string is set by the server and cannot be changed. The
@@ -646,24 +649,24 @@ export namespace cloudresourcemanager_v1 {
      * &quot;google.com&quot;) of the G Suite customer that owns the
      * organization. @OutputOnly
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The organization&#39;s current lifecycle state. Assigned by the server.
      * @OutputOnly
      */
-    lifecycleState: string;
+    lifecycleState?: string;
     /**
      * Output Only. The resource name of the organization. This is the
      * organization&#39;s relative path in the API. Its format is
      * &quot;organizations/[organization_id]&quot;. For example,
      * &quot;organizations/1234&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * The owner of this Organization. The owner should be specified on
      * creation. Once set, it cannot be changed. This field is required.
      */
-    owner: Schema$OrganizationOwner;
+    owner?: Schema$OrganizationOwner;
   }
   /**
    * The entity that owns an Organization. The lifetime of the Organization and
@@ -675,7 +678,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The G Suite customer id used in the Directory API.
      */
-    directoryCustomerId: string;
+    directoryCustomerId?: string;
   }
   /**
    * Defines a Cloud Organization `Policy` which is used to specify
@@ -685,12 +688,12 @@ export namespace cloudresourcemanager_v1 {
     /**
      * For boolean `Constraints`, whether to enforce the `Constraint` or not.
      */
-    booleanPolicy: Schema$BooleanPolicy;
+    booleanPolicy?: Schema$BooleanPolicy;
     /**
      * The name of the `Constraint` the `Policy` is configuring, for example,
      * `constraints/serviceuser.services`.  Immutable after creation.
      */
-    constraint: string;
+    constraint?: string;
     /**
      * An opaque tag indicating the current version of the `Policy`, used for
      * concurrency control.  When the `Policy` is returned from either a
@@ -703,27 +706,27 @@ export namespace cloudresourcemanager_v1 {
      * setting the `etag`in a `SetOrgPolicy` request will result in an
      * unconditional write of the `Policy`.
      */
-    etag: string;
+    etag?: string;
     /**
      * List of values either allowed or disallowed.
      */
-    listPolicy: Schema$ListPolicy;
+    listPolicy?: Schema$ListPolicy;
     /**
      * Restores the default behavior of the constraint; independent of
      * `Constraint` type.
      */
-    restoreDefault: Schema$RestoreDefault;
+    restoreDefault?: Schema$RestoreDefault;
     /**
      * The time stamp the `Policy` was previously updated. This is set by the
      * server, not specified by the caller, and represents the last time a call
      * to `SetOrgPolicy` was made for that `Policy`. Any value set by the client
      * will be ignored.
      */
-    updateTime: string;
+    updateTime?: string;
     /**
      * Version of the `Policy`. Default version is 0;
      */
-    version: number;
+    version?: number;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -749,12 +752,12 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -766,11 +769,11 @@ export namespace cloudresourcemanager_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A Project is a high-level Google Cloud Platform entity.  It is a container
@@ -781,7 +784,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Creation time.  Read-only.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The labels associated with this Project.  Label keys must be between 1
      * and 63 characters long and must conform to the following regular
@@ -793,18 +796,18 @@ export namespace cloudresourcemanager_v1 {
      * being disallowed.  Example: &lt;code&gt;&quot;environment&quot; :
      * &quot;dev&quot;&lt;/code&gt; Read-write.
      */
-    labels: any;
+    labels?: any;
     /**
      * The Project lifecycle state.  Read-only.
      */
-    lifecycleState: string;
+    lifecycleState?: string;
     /**
      * The user-assigned display name of the Project. It must be 4 to 30
      * characters. Allowed characters are: lowercase and uppercase letters,
      * numbers, hyphen, single-quote, double-quote, space, and exclamation
      * point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
      */
-    name: string;
+    name?: string;
     /**
      * An optional reference to a parent Resource.  Supported parent types
      * include &quot;organization&quot; and &quot;folder&quot;. Once set, the
@@ -812,19 +815,19 @@ export namespace cloudresourcemanager_v1 {
      * the `UpdateProject` method; the end user must have the
      * `resourcemanager.projects.create` permission on the parent.  Read-write.
      */
-    parent: Schema$ResourceId;
+    parent?: Schema$ResourceId;
     /**
      * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase
      * letters, digits, or hyphens. It must start with a letter. Trailing
      * hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt;
      * Read-only after creation.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The number uniquely identifying the project.  Example:
      * &lt;code&gt;415104041262&lt;/code&gt; Read-only.
      */
-    projectNumber: string;
+    projectNumber?: string;
   }
   /**
    * A status object which is used as the `metadata` field for the Operation
@@ -835,17 +838,17 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Creation time of the project creation workflow.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * True if the project can be retrieved using GetProject. No other
      * operations on the project are guaranteed to work until the project
      * creation is complete.
      */
-    gettable: boolean;
+    gettable?: boolean;
     /**
      * True if the project creation process is complete.
      */
-    ready: boolean;
+    ready?: boolean;
   }
   /**
    * A container to reference an id for any resource type. A `resource` in
@@ -858,12 +861,12 @@ export namespace cloudresourcemanager_v1 {
      * Required field for the type-specific id. This should correspond to the id
      * used in the type-specific API&#39;s.
      */
-    id: string;
+    id?: string;
     /**
      * Required field representing the resource type this id is for. At present,
      * the valid types are: &quot;organization&quot;
      */
-    type: string;
+    type?: string;
   }
   /**
    * Ignores policies set above this resource and restores the
@@ -892,18 +895,18 @@ export namespace cloudresourcemanager_v1 {
      * |domain:google.com|Organizations corresponding to the domain
      * `google.com`.|  This field is optional.
      */
-    filter: string;
+    filter?: string;
     /**
      * The maximum number of Organizations to return in the response. This field
      * is optional.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * A pagination token returned from a previous call to `SearchOrganizations`
      * that indicates from where listing should continue. This field is
      * optional.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The response returned from the `SearchOrganizations` method.
@@ -916,12 +919,12 @@ export namespace cloudresourcemanager_v1 {
      * the next page of results. If this field is empty, it indicates that this
      * response contains the last page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of Organizations that matched the search query, possibly
      * paginated.
      */
-    organizations: Schema$Organization[];
+    organizations?: Schema$Organization[];
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -933,14 +936,14 @@ export namespace cloudresourcemanager_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * The request sent to the SetOrgPolicyRequest method.
@@ -949,7 +952,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * `Policy` to set on the resource.
      */
-    policy: Schema$OrgPolicy;
+    policy?: Schema$OrgPolicy;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -991,18 +994,18 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1014,7 +1017,7 @@ export namespace cloudresourcemanager_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1024,12 +1027,13 @@ export namespace cloudresourcemanager_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * The request sent to the UndeleteProject method.
    */
   export interface Schema$UndeleteProjectRequest {}
+
 
   export class Resource$Folders {
     root: Cloudresourcemanager;
@@ -1110,26 +1114,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clearOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Folders$Clearorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Folders$Clearorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        params: Params$Resource$Folders$Clearorgpolicy,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Clearorgpolicy|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Clearorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Clearorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1225,26 +1241,40 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getEffectiveOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Folders$Geteffectiveorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Folders$Geteffectiveorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(
+        params: Params$Resource$Folders$Geteffectiveorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
+        void;
+    getEffectiveOrgPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Geteffectiveorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Folders$Geteffectiveorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Geteffectiveorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1340,26 +1370,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Folders$Getorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Folders$Getorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        params: Params$Resource$Folders$Getorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Getorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Getorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1470,30 +1513,48 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listAvailableOrgPolicyConstraints(params?: any, options?: MethodOptions):
+    listAvailableOrgPolicyConstraints(
+        params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        paramsOrCallback?:
+            Params$Resource$Folders$Listavailableorgpolicyconstraints|
+        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>):
         void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Folders$Listavailableorgpolicyconstraints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Folders$Listavailableorgpolicyconstraints;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1603,28 +1664,41 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOrgPolicies(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Folders$Listorgpolicies,
+        options?: MethodOptions): AxiosPromise<Schema$ListOrgPoliciesResponse>;
+    listOrgPolicies(
+        params: Params$Resource$Folders$Listorgpolicies,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Listorgpolicies,
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        paramsOrCallback?: Params$Resource$Folders$Listorgpolicies|
+        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
         callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
         void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Listorgpolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Listorgpolicies;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1719,26 +1793,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Folders$Setorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Folders$Setorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        params: Params$Resource$Folders$Setorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Setorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Setorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Setorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1761,6 +1848,98 @@ export namespace cloudresourcemanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Folders$Clearorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource for the `Policy` to clear.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ClearOrgPolicyRequest;
+  }
+  export interface Params$Resource$Folders$Geteffectiveorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the resource to start computing the effective `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+  }
+  export interface Params$Resource$Folders$Getorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource the `Policy` is set on.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetOrgPolicyRequest;
+  }
+  export interface Params$Resource$Folders$Listavailableorgpolicyconstraints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list `Constraints` for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+  }
+  export interface Params$Resource$Folders$Listorgpolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list Policies for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListOrgPoliciesRequest;
+  }
+  export interface Params$Resource$Folders$Setorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the resource to attach the `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetOrgPolicyRequest;
+  }
+
 
   export class Resource$Liens {
     root: Cloudresourcemanager;
@@ -1844,23 +2023,36 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Lien>;
+    create(params?: Params$Resource$Liens$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Lien>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback?: BodyResponseCallback<Schema$Lien>): void;
+        params: Params$Resource$Liens$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
+        callback: BodyResponseCallback<Schema$Lien>): void;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Lien>,
+        params: Params$Resource$Liens$Create,
+        callback: BodyResponseCallback<Schema$Lien>): void;
+    create(callback: BodyResponseCallback<Schema$Lien>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Liens$Create|
+        BodyResponseCallback<Schema$Lien>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
         callback?: BodyResponseCallback<Schema$Lien>):
         void|AxiosPromise<Schema$Lien> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Liens$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liens$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1948,25 +2140,36 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Liens$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Liens$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Liens$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Liens$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Liens$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liens$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2069,26 +2272,37 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Liens$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLiensResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
-        callback?: BodyResponseCallback<Schema$ListLiensResponse>): void;
+        params: Params$Resource$Liens$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
+        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
+        params: Params$Resource$Liens$List,
+        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Liens$List|
+        BodyResponseCallback<Schema$ListLiensResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLiensResponse>,
         callback?: BodyResponseCallback<Schema$ListLiensResponse>):
         void|AxiosPromise<Schema$ListLiensResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Liens$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liens$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2110,6 +2324,52 @@ export namespace cloudresourcemanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Liens$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Lien;
+  }
+  export interface Params$Resource$Liens$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name/identifier of the Lien to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Liens$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of items to return. This is a suggestion for the
+     * server.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous List request, if
+     * any.
+     */
+    pageToken?: string;
+    /**
+     * The name of the resource to list all attached Liens. For example,
+     * `projects/1234`.
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Operations {
     root: Cloudresourcemanager;
@@ -2190,23 +2450,34 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2228,6 +2499,19 @@ export namespace cloudresourcemanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
 
   export class Resource$Organizations {
     root: Cloudresourcemanager;
@@ -2307,26 +2591,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clearOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Organizations$Clearorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Organizations$Clearorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        params: Params$Resource$Organizations$Clearorgpolicy,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Clearorgpolicy|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Clearorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Clearorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2415,24 +2711,35 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Organizations$Get,
         options?: MethodOptions): AxiosPromise<Schema$Organization>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Organization>,
-        callback?: BodyResponseCallback<Schema$Organization>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Organization>,
+    get(params: Params$Resource$Organizations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Organization>,
+        callback: BodyResponseCallback<Schema$Organization>): void;
+    get(params: Params$Resource$Organizations$Get,
+        callback: BodyResponseCallback<Schema$Organization>): void;
+    get(callback: BodyResponseCallback<Schema$Organization>): void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Get|
+        BodyResponseCallback<Schema$Organization>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Organization>,
         callback?: BodyResponseCallback<Schema$Organization>):
         void|AxiosPromise<Schema$Organization> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2527,26 +2834,40 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getEffectiveOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(
+        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
+        void;
+    getEffectiveOrgPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Geteffectiveorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Geteffectiveorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Geteffectiveorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2645,26 +2966,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Organizations$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Organizations$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Organizations$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2761,26 +3094,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Organizations$Getorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Organizations$Getorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        params: Params$Resource$Organizations$Getorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Getorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Getorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -2893,30 +3239,49 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listAvailableOrgPolicyConstraints(params?: any, options?: MethodOptions):
+    listAvailableOrgPolicyConstraints(
+        params?:
+            Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        paramsOrCallback?:
+            Params$Resource$Organizations$Listavailableorgpolicyconstraints|
+        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>):
         void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Organizations$Listavailableorgpolicyconstraints;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3029,28 +3394,41 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOrgPolicies(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Organizations$Listorgpolicies,
+        options?: MethodOptions): AxiosPromise<Schema$ListOrgPoliciesResponse>;
+    listOrgPolicies(
+        params: Params$Resource$Organizations$Listorgpolicies,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Listorgpolicies,
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        paramsOrCallback?: Params$Resource$Organizations$Listorgpolicies|
+        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
         callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
         void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Listorgpolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Listorgpolicies;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3158,29 +3536,43 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Organizations$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchOrganizationsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
+        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Search,
+        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Organizations$Search|
+        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchOrganizationsResponse>,
         callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
         void|AxiosPromise<Schema$SearchOrganizationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3280,26 +3672,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Organizations$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Organizations$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Organizations$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3395,26 +3799,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Organizations$Setorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Organizations$Setorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        params: Params$Resource$Organizations$Setorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        paramsOrCallback?: Params$Resource$Organizations$Setorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Setorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Setorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3512,29 +3929,45 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Organizations$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Organizations$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3558,6 +3991,169 @@ export namespace cloudresourcemanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Organizations$Clearorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource for the `Policy` to clear.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ClearOrgPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the Organization to fetch, e.g.
+     * "organizations/1234".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Geteffectiveorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the resource to start computing the effective `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Getorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource the `Policy` is set on.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetOrgPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list `Constraints` for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+  }
+  export interface Params$Resource$Organizations$Listorgpolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list Policies for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListOrgPoliciesRequest;
+  }
+  export interface Params$Resource$Organizations$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchOrganizationsRequest;
+  }
+  export interface Params$Resource$Organizations$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Setorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the resource to attach the `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetOrgPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects {
     root: Cloudresourcemanager;
@@ -3638,26 +4234,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clearOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Clearorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Clearorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        params: Params$Resource$Projects$Clearorgpolicy,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
+    clearOrgPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Clearorgpolicy|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Clearorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Clearorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3757,26 +4365,37 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Projects$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3872,25 +4491,36 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Projects$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Projects$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -3982,23 +4612,33 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+    get(params?: Params$Resource$Projects$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Project>;
+    get(params: Params$Resource$Projects$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(params: Params$Resource$Projects$Get,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(callback: BodyResponseCallback<Schema$Project>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Get|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4093,28 +4733,40 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAncestry(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetAncestryResponse>;
     getAncestry(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Getancestry,
+        options?: MethodOptions): AxiosPromise<Schema$GetAncestryResponse>;
+    getAncestry(
+        params: Params$Resource$Projects$Getancestry,
+        options: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
+        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
+    getAncestry(
+        params: Params$Resource$Projects$Getancestry,
+        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
+    getAncestry(callback: BodyResponseCallback<Schema$GetAncestryResponse>):
+        void;
+    getAncestry(
+        paramsOrCallback?: Params$Resource$Projects$Getancestry|
         BodyResponseCallback<Schema$GetAncestryResponse>,
-        callback?: BodyResponseCallback<Schema$GetAncestryResponse>): void;
-    getAncestry(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetAncestryResponse>,
         callback?: BodyResponseCallback<Schema$GetAncestryResponse>):
         void|AxiosPromise<Schema$GetAncestryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getancestry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getancestry;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4210,26 +4862,40 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getEffectiveOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Projects$Geteffectiveorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Projects$Geteffectiveorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(
+        params: Params$Resource$Projects$Geteffectiveorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
+        void;
+    getEffectiveOrgPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Geteffectiveorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Geteffectiveorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Geteffectiveorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4327,26 +4993,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4442,26 +5120,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Projects$Getorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Projects$Getorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        params: Params$Resource$Projects$Getorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    getOrgPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Getorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4567,28 +5258,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
         AxiosPromise<Schema$ListProjectsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListProjectsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$List,
+        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$List|
+        BodyResponseCallback<Schema$ListProjectsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListProjectsResponse>,
         callback?: BodyResponseCallback<Schema$ListProjectsResponse>):
         void|AxiosPromise<Schema$ListProjectsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4698,30 +5399,48 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listAvailableOrgPolicyConstraints(params?: any, options?: MethodOptions):
+    listAvailableOrgPolicyConstraints(
+        params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
     listAvailableOrgPolicyConstraints(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        callback: BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+    listAvailableOrgPolicyConstraints(
+        paramsOrCallback?:
+            Params$Resource$Projects$Listavailableorgpolicyconstraints|
+        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListAvailableOrgPolicyConstraintsResponse>):
         void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Listavailableorgpolicyconstraints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Listavailableorgpolicyconstraints;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4831,28 +5550,41 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOrgPolicies(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Listorgpolicies,
+        options?: MethodOptions): AxiosPromise<Schema$ListOrgPoliciesResponse>;
+    listOrgPolicies(
+        params: Params$Resource$Projects$Listorgpolicies,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
     listOrgPolicies(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Listorgpolicies,
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+    listOrgPolicies(
+        paramsOrCallback?: Params$Resource$Projects$Listorgpolicies|
+        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
         callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
         void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Listorgpolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Listorgpolicies;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -4973,26 +5705,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -5087,26 +5831,39 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setOrgPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+        params?: Params$Resource$Projects$Setorgpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        params: Params$Resource$Projects$Setorgpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        params: Params$Resource$Projects$Setorgpolicy,
+        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+    setOrgPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Setorgpolicy|
+        BodyResponseCallback<Schema$OrgPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrgPolicy>,
         callback?: BodyResponseCallback<Schema$OrgPolicy>):
         void|AxiosPromise<Schema$OrgPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Setorgpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Setorgpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -5201,29 +5958,45 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -5320,25 +6093,38 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+        params: Params$Resource$Projects$Undelete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Projects$Undelete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -5437,25 +6223,36 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
+    update(params?: Params$Resource$Projects$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Project>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
+        params: Params$Resource$Projects$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+        params: Params$Resource$Projects$Update,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    update(callback: BodyResponseCallback<Schema$Project>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Update|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -5477,5 +6274,262 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Project>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Clearorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource for the `Policy` to clear.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ClearOrgPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Project;
+  }
+  export interface Params$Resource$Projects$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Project ID (for example, `foo-bar-123`).  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Project ID (for example, `my-project-123`).  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Getancestry {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Project ID (for example, `my-project-123`).  Required.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetAncestryRequest;
+  }
+  export interface Params$Resource$Projects$Geteffectiveorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the resource to start computing the effective `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Getorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource the `Policy` is set on.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetOrgPolicyRequest;
+  }
+  export interface Params$Resource$Projects$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An expression for filtering the results of the request.  Filter rules are
+     * case insensitive. The fields eligible for filtering are:  + `name` + `id`
+     * + <code>labels.<em>key</em></code> where *key* is the name of a label
+     * Some examples of using labels as filters:  |Filter|Description|
+     * |------|-----------| |name:how*|The project's name starts with "how".|
+     * |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent
+     * to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project
+     * has the label `color`.| |labels.color:red|The project's label `color` has
+     * the value `red`.| |labels.color:red&nbsp;labels.size:big|The project's
+     * label `color` has the value `red` and its label `size` has the value
+     * `big`.  If you specify a filter that has both `parent.type` and
+     * `parent.id`, then the `resourcemanager.projects.list` permission is
+     * checked on the parent. If the user has this permission, all projects
+     * under the parent will be returned after remaining filters have been
+     * applied. If the user lacks this permission, then all projects for which
+     * the user has the `resourcemanager.projects.get` permission will be
+     * returned after remaining filters have been applied. If no filter is
+     * specified, the call will return projects for which the user has
+     * `resourcemanager.projects.get` permissions.  Optional.
+     */
+    filter?: string;
+    /**
+     * The maximum number of Projects to return in the response. The server can
+     * return fewer Projects than requested. If unspecified, server picks an
+     * appropriate default.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListProjects that
+     * indicates from where listing should continue.  Optional.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Listavailableorgpolicyconstraints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list `Constraints` for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+  }
+  export interface Params$Resource$Projects$Listorgpolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource to list Policies for.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$ListOrgPoliciesRequest;
+  }
+  export interface Params$Resource$Projects$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Setorgpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the resource to attach the `Policy`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetOrgPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID (for example, `foo-bar-123`).  Required.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UndeleteProjectRequest;
+  }
+  export interface Params$Resource$Projects$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID (for example, `my-project-123`).  Required.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Project;
   }
 }

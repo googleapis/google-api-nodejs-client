@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace gamesConfiguration_v1configuration {
+  export interface Options extends GlobalOptions { version: 'v1configuration'; }
+
   /**
    * Google Play Game Services Publishing API
    *
@@ -80,39 +83,39 @@ export namespace gamesConfiguration_v1configuration {
      * &quot;STANDARD&quot; - Achievement is either locked or unlocked.  -
      * &quot;INCREMENTAL&quot; - Achievement is incremental.
      */
-    achievementType: string;
+    achievementType?: string;
     /**
      * The draft data of the achievement.
      */
-    draft: Schema$AchievementConfigurationDetail;
+    draft?: Schema$AchievementConfigurationDetail;
     /**
      * The ID of the achievement.
      */
-    id: string;
+    id?: string;
     /**
      * The initial state of the achievement. Possible values are:   -
      * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
      * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
      * unlocked.
      */
-    initialState: string;
+    initialState?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#achievementConfiguration.
      */
-    kind: string;
+    kind?: string;
     /**
      * The read-only published data of the achievement.
      */
-    published: Schema$AchievementConfigurationDetail;
+    published?: Schema$AchievementConfigurationDetail;
     /**
      * Steps to unlock. Only applicable to incremental achievements.
      */
-    stepsToUnlock: number;
+    stepsToUnlock?: number;
     /**
      * The token for this resource.
      */
-    token: string;
+    token?: string;
   }
   /**
    * This is a JSON template for an achievement configuration detail.
@@ -121,28 +124,28 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Localized strings for the achievement description.
      */
-    description: Schema$LocalizedStringBundle;
+    description?: Schema$LocalizedStringBundle;
     /**
      * The icon url of this achievement. Writes to this field are ignored.
      */
-    iconUrl: string;
+    iconUrl?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#achievementConfigurationDetail.
      */
-    kind: string;
+    kind?: string;
     /**
      * Localized strings for the achievement name.
      */
-    name: Schema$LocalizedStringBundle;
+    name?: Schema$LocalizedStringBundle;
     /**
      * Point value for the achievement.
      */
-    pointValue: number;
+    pointValue?: number;
     /**
      * The sort rank of this achievement. Writes to this field are ignored.
      */
-    sortRank: number;
+    sortRank?: number;
   }
   /**
    * This is a JSON template for a ListConfigurations response.
@@ -151,16 +154,16 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The achievement configurations.
      */
-    items: Schema$AchievementConfiguration[];
+    items?: Schema$AchievementConfiguration[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementConfigurationListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a number affix resource.
@@ -171,33 +174,33 @@ export namespace gamesConfiguration_v1configuration {
      * (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12,
      * 13, or 14 in Polish).
      */
-    few: Schema$LocalizedStringBundle;
+    few?: Schema$LocalizedStringBundle;
     /**
      * When the language requires special treatment of &quot;large&quot; numbers
      * (as with numbers ending 11-99 in Maltese).
      */
-    many: Schema$LocalizedStringBundle;
+    many?: Schema$LocalizedStringBundle;
     /**
      * When the language requires special treatment of numbers like one (as with
      * the number 1 in English and most other languages; in Russian, any number
      * ending in 1 but not ending in 11 is in this class).
      */
-    one: Schema$LocalizedStringBundle;
+    one?: Schema$LocalizedStringBundle;
     /**
      * When the language does not require special treatment of the given
      * quantity (as with all numbers in Chinese, or 42 in English).
      */
-    other: Schema$LocalizedStringBundle;
+    other?: Schema$LocalizedStringBundle;
     /**
      * When the language requires special treatment of numbers like two (as with
      * 2 in Welsh, or 102 in Slovenian).
      */
-    two: Schema$LocalizedStringBundle;
+    two?: Schema$LocalizedStringBundle;
     /**
      * When the language requires special treatment of the number 0 (as in
      * Arabic).
      */
-    zero: Schema$LocalizedStringBundle;
+    zero?: Schema$LocalizedStringBundle;
   }
   /**
    * This is a JSON template for a number format resource.
@@ -206,7 +209,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The curreny code string. Only used for CURRENCY format type.
      */
-    currencyCode: string;
+    currencyCode?: string;
     /**
      * The formatting for the number. Possible values are:   -
      * &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed
@@ -215,17 +218,17 @@ export namespace gamesConfiguration_v1configuration {
      * formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers
      * are formatted to currency according to locale.
      */
-    numberFormatType: string;
+    numberFormatType?: string;
     /**
      * The number of decimal places for number. Only used for NUMERIC format
      * type.
      */
-    numDecimalPlaces: number;
+    numDecimalPlaces?: number;
     /**
      * An optional suffix for the NUMERIC format type. These strings follow the
      * same  plural rules as all Android string resources.
      */
-    suffix: Schema$GamesNumberAffixConfiguration;
+    suffix?: Schema$GamesNumberAffixConfiguration;
   }
   /**
    * This is a JSON template for an image configuration resource.
@@ -234,20 +237,20 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The image type for the image.
      */
-    imageType: string;
+    imageType?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#imageConfiguration.
      */
-    kind: string;
+    kind?: string;
     /**
      * The resource ID of resource which the image belongs to.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * The url for this image.
      */
-    url: string;
+    url?: string;
   }
   /**
    * This is a JSON template for an leaderboard configuration resource.
@@ -256,38 +259,38 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The draft data of the leaderboard.
      */
-    draft: Schema$LeaderboardConfigurationDetail;
+    draft?: Schema$LeaderboardConfigurationDetail;
     /**
      * The ID of the leaderboard.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#leaderboardConfiguration.
      */
-    kind: string;
+    kind?: string;
     /**
      * The read-only published data of the leaderboard.
      */
-    published: Schema$LeaderboardConfigurationDetail;
+    published?: Schema$LeaderboardConfigurationDetail;
     /**
      * Maximum score that can be posted to this leaderboard.
      */
-    scoreMax: string;
+    scoreMax?: string;
     /**
      * Minimum score that can be posted to this leaderboard.
      */
-    scoreMin: string;
+    scoreMin?: string;
     /**
      * The type of the leaderboard. Possible values are:   -
      * &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  -
      * &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
      */
-    scoreOrder: string;
+    scoreOrder?: string;
     /**
      * The token for this resource.
      */
-    token: string;
+    token?: string;
   }
   /**
    * This is a JSON template for a leaderboard configuration detail.
@@ -296,24 +299,24 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The icon url of this leaderboard. Writes to this field are ignored.
      */
-    iconUrl: string;
+    iconUrl?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#leaderboardConfigurationDetail.
      */
-    kind: string;
+    kind?: string;
     /**
      * Localized strings for the leaderboard name.
      */
-    name: Schema$LocalizedStringBundle;
+    name?: Schema$LocalizedStringBundle;
     /**
      * The score formatting for the leaderboard.
      */
-    scoreFormat: Schema$GamesNumberFormatConfiguration;
+    scoreFormat?: Schema$GamesNumberFormatConfiguration;
     /**
      * The sort rank of this leaderboard. Writes to this field are ignored.
      */
-    sortRank: number;
+    sortRank?: number;
   }
   /**
    * This is a JSON template for a ListConfigurations response.
@@ -322,16 +325,16 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The leaderboard configurations.
      */
-    items: Schema$LeaderboardConfiguration[];
+    items?: Schema$LeaderboardConfiguration[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboardConfigurationListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a localized string resource.
@@ -341,15 +344,15 @@ export namespace gamesConfiguration_v1configuration {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#localizedString.
      */
-    kind: string;
+    kind?: string;
     /**
      * The locale string.
      */
-    locale: string;
+    locale?: string;
     /**
      * The string value.
      */
-    value: string;
+    value?: string;
   }
   /**
    * This is a JSON template for a localized string bundle resource.
@@ -359,12 +362,13 @@ export namespace gamesConfiguration_v1configuration {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesConfiguration#localizedStringBundle.
      */
-    kind: string;
+    kind?: string;
     /**
      * The locale strings.
      */
-    translations: Schema$LocalizedString[];
+    translations?: Schema$LocalizedString[];
   }
+
 
   export class Resource$Achievementconfigurations {
     root: Gamesconfiguration;
@@ -390,22 +394,37 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Achievementconfigurations$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Achievementconfigurations$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Achievementconfigurations$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Achievementconfigurations$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -442,26 +461,36 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Achievementconfigurations$Get,
         options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Achievementconfigurations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
-        callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    get(params: Params$Resource$Achievementconfigurations$Get,
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    get(callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    get(paramsOrCallback?: Params$Resource$Achievementconfigurations$Get|
+        BodyResponseCallback<Schema$AchievementConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
         callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
         void|AxiosPromise<Schema$AchievementConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -498,28 +527,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementConfiguration>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Achievementconfigurations$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
+    insert(
+        params: Params$Resource$Achievementconfigurations$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
-        callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementconfigurations$Insert,
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    insert(callback: BodyResponseCallback<Schema$AchievementConfiguration>):
+        void;
+    insert(
+        paramsOrCallback?: Params$Resource$Achievementconfigurations$Insert|
+        BodyResponseCallback<Schema$AchievementConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
         callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
         void|AxiosPromise<Schema$AchievementConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -559,31 +601,48 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Achievementconfigurations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementConfigurationListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementconfigurations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementconfigurations$List,
+        callback:
+            BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Achievementconfigurations$List|
+        BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
         void|AxiosPromise<Schema$AchievementConfigurationListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -624,28 +683,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementConfiguration>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Achievementconfigurations$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
+    patch(
+        params: Params$Resource$Achievementconfigurations$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
-        callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementconfigurations$Patch,
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    patch(callback: BodyResponseCallback<Schema$AchievementConfiguration>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Achievementconfigurations$Patch|
+        BodyResponseCallback<Schema$AchievementConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
         callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
         void|AxiosPromise<Schema$AchievementConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -683,28 +755,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementConfiguration>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Achievementconfigurations$Update,
+        options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
+    update(
+        params: Params$Resource$Achievementconfigurations$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
-        callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementconfigurations$Update,
+        callback: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+    update(callback: BodyResponseCallback<Schema$AchievementConfiguration>):
+        void;
+    update(
+        paramsOrCallback?: Params$Resource$Achievementconfigurations$Update|
+        BodyResponseCallback<Schema$AchievementConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementConfiguration>,
         callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
         void|AxiosPromise<Schema$AchievementConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementconfigurations$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementconfigurations$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -727,6 +812,96 @@ export namespace gamesConfiguration_v1configuration {
       }
     }
   }
+
+  export interface Params$Resource$Achievementconfigurations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievementconfigurations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievementconfigurations$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AchievementConfiguration;
+  }
+  export interface Params$Resource$Achievementconfigurations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * The maximum number of resource configurations to return in the response,
+     * used for paging. For any response, the actual number of resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Achievementconfigurations$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AchievementConfiguration;
+  }
+  export interface Params$Resource$Achievementconfigurations$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AchievementConfiguration;
+  }
+
 
   export class Resource$Imageconfigurations {
     root: Gamesconfiguration;
@@ -756,26 +931,39 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ImageConfiguration>;
     upload(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
-        callback?: BodyResponseCallback<Schema$ImageConfiguration>): void;
+        params?: Params$Resource$Imageconfigurations$Upload,
+        options?: MethodOptions): AxiosPromise<Schema$ImageConfiguration>;
     upload(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+        params: Params$Resource$Imageconfigurations$Upload,
+        options: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+        callback: BodyResponseCallback<Schema$ImageConfiguration>): void;
+    upload(
+        params: Params$Resource$Imageconfigurations$Upload,
+        callback: BodyResponseCallback<Schema$ImageConfiguration>): void;
+    upload(callback: BodyResponseCallback<Schema$ImageConfiguration>): void;
+    upload(
+        paramsOrCallback?: Params$Resource$Imageconfigurations$Upload|
+        BodyResponseCallback<Schema$ImageConfiguration>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ImageConfiguration>,
         callback?: BodyResponseCallback<Schema$ImageConfiguration>):
         void|AxiosPromise<Schema$ImageConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Imageconfigurations$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Imageconfigurations$Upload;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -804,6 +992,37 @@ export namespace gamesConfiguration_v1configuration {
     }
   }
 
+  export interface Params$Resource$Imageconfigurations$Upload {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Selects which image in a resource for this method.
+     */
+    imageType?: string;
+    /**
+     * The ID of the resource used by this method.
+     */
+    resourceId?: string;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+
+
   export class Resource$Leaderboardconfigurations {
     root: Gamesconfiguration;
     constructor(root: Gamesconfiguration) {
@@ -828,22 +1047,37 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Leaderboardconfigurations$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Leaderboardconfigurations$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Leaderboardconfigurations$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Leaderboardconfigurations$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -880,26 +1114,36 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Leaderboardconfigurations$Get,
         options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Leaderboardconfigurations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
-        callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    get(params: Params$Resource$Leaderboardconfigurations$Get,
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    get(callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    get(paramsOrCallback?: Params$Resource$Leaderboardconfigurations$Get|
+        BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
         callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
         void|AxiosPromise<Schema$LeaderboardConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -936,28 +1180,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardConfiguration>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Leaderboardconfigurations$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
+    insert(
+        params: Params$Resource$Leaderboardconfigurations$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
-        callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboardconfigurations$Insert,
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    insert(callback: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+        void;
+    insert(
+        paramsOrCallback?: Params$Resource$Leaderboardconfigurations$Insert|
+        BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
         callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
         void|AxiosPromise<Schema$LeaderboardConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -997,31 +1254,48 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Leaderboardconfigurations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$LeaderboardConfigurationListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboardconfigurations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboardconfigurations$List,
+        callback:
+            BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Leaderboardconfigurations$List|
+        BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
         callback?:
             BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
         void|AxiosPromise<Schema$LeaderboardConfigurationListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1062,28 +1336,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardConfiguration>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Leaderboardconfigurations$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
+    patch(
+        params: Params$Resource$Leaderboardconfigurations$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
-        callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboardconfigurations$Patch,
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    patch(callback: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Leaderboardconfigurations$Patch|
+        BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
         callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
         void|AxiosPromise<Schema$LeaderboardConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1121,28 +1408,41 @@ export namespace gamesConfiguration_v1configuration {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardConfiguration>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Leaderboardconfigurations$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
+    update(
+        params: Params$Resource$Leaderboardconfigurations$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
-        callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboardconfigurations$Update,
+        callback: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+    update(callback: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+        void;
+    update(
+        paramsOrCallback?: Params$Resource$Leaderboardconfigurations$Update|
+        BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardConfiguration>,
         callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
         void|AxiosPromise<Schema$LeaderboardConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Leaderboardconfigurations$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboardconfigurations$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1164,5 +1464,94 @@ export namespace gamesConfiguration_v1configuration {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Leaderboardconfigurations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+  }
+  export interface Params$Resource$Leaderboardconfigurations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+  }
+  export interface Params$Resource$Leaderboardconfigurations$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaderboardConfiguration;
+  }
+  export interface Params$Resource$Leaderboardconfigurations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * The maximum number of resource configurations to return in the response,
+     * used for paging. For any response, the actual number of resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Leaderboardconfigurations$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaderboardConfiguration;
+  }
+  export interface Params$Resource$Leaderboardconfigurations$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaderboardConfiguration;
   }
 }

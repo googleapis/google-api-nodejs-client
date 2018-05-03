@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace analytics_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Google Analytics API
    *
@@ -79,39 +82,39 @@ export namespace analytics_v3 {
      * Child link for an account entry. Points to the list of web properties for
      * this account.
      */
-    childLink: any;
+    childLink?: any;
     /**
      * Time the account was created.
      */
-    created: string;
+    created?: string;
     /**
      * Account ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics account.
      */
-    kind: string;
+    kind?: string;
     /**
      * Account name.
      */
-    name: string;
+    name?: string;
     /**
      * Permissions the user has for this account.
      */
-    permissions: any;
+    permissions?: any;
     /**
      * Link for this account.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Indicates whether this account is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * Time the account was last modified.
      */
-    updated: string;
+    updated?: string;
   }
   /**
    * JSON template for a linked account.
@@ -120,19 +123,19 @@ export namespace analytics_v3 {
     /**
      * Link for this account.
      */
-    href: string;
+    href?: string;
     /**
      * Account ID.
      */
-    id: string;
+    id?: string;
     /**
      * Analytics account reference.
      */
-    kind: string;
+    kind?: string;
     /**
      * Account name.
      */
-    name: string;
+    name?: string;
   }
   /**
    * An account collection provides a list of Analytics accounts to which a user
@@ -144,40 +147,40 @@ export namespace analytics_v3 {
     /**
      * A list of accounts.
      */
-    items: Schema$Account[];
+    items?: Schema$Account[];
     /**
      * The maximum number of entries the response can contain, regardless of the
      * actual number of entries returned. Its value ranges from 1 to 1000 with a
      * value of 1000 by default, or otherwise specified by the max-results query
      * parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Next link for this account collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Previous link for this account collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the entries, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * An AccountSummary collection lists a summary of accounts, properties and
@@ -188,40 +191,40 @@ export namespace analytics_v3 {
     /**
      * A list of AccountSummaries.
      */
-    items: Schema$AccountSummary[];
+    items?: Schema$AccountSummary[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this AccountSummary collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this AccountSummary collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics AccountSummary. An AccountSummary is a
@@ -231,23 +234,23 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics AccountSummary.
      */
-    kind: string;
+    kind?: string;
     /**
      * Account name.
      */
-    name: string;
+    name?: string;
     /**
      * Indicates whether this account is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * List of web properties under this account.
      */
-    webProperties: Schema$WebPropertySummary[];
+    webProperties?: Schema$WebPropertySummary[];
   }
   /**
    * JSON template for an Analytics account ticket. The account ticket consists
@@ -258,28 +261,28 @@ export namespace analytics_v3 {
     /**
      * Account for this ticket.
      */
-    account: Schema$Account;
+    account?: Schema$Account;
     /**
      * Account ticket ID used to access the account ticket.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for account ticket.
      */
-    kind: string;
+    kind?: string;
     /**
      * View (Profile) for the account.
      */
-    profile: Schema$Profile;
+    profile?: Schema$Profile;
     /**
      * Redirect URI where the user will be sent after accepting Terms of
      * Service. Must be configured in APIs console as a callback URL.
      */
-    redirectUri: string;
+    redirectUri?: string;
     /**
      * Web property for the account.
      */
-    webproperty: Schema$Webproperty;
+    webproperty?: Schema$Webproperty;
   }
   /**
    * JSON template for an Analytics account tree requests. The account tree
@@ -288,16 +291,16 @@ export namespace analytics_v3 {
    * fields.
    */
   export interface Schema$AccountTreeRequest {
-    accountName: string;
-    accountSettings: any;
+    accountName?: string;
+    accountSettings?: any;
     /**
      * Resource type for account ticket.
      */
-    kind: string;
-    profileName: string;
-    timezone: string;
-    webpropertyName: string;
-    websiteUrl: string;
+    kind?: string;
+    profileName?: string;
+    timezone?: string;
+    webpropertyName?: string;
+    websiteUrl?: string;
   }
   /**
    * JSON template for an Analytics account tree response. The account tree
@@ -308,20 +311,20 @@ export namespace analytics_v3 {
     /**
      * The account created.
      */
-    account: Schema$Account;
-    accountSettings: any;
+    account?: Schema$Account;
+    accountSettings?: any;
     /**
      * Resource type for account ticket.
      */
-    kind: string;
+    kind?: string;
     /**
      * View (Profile) for the account.
      */
-    profile: Schema$Profile;
+    profile?: Schema$Profile;
     /**
      * Web property for the account.
      */
-    webproperty: Schema$Webproperty;
+    webproperty?: Schema$Webproperty;
   }
   /**
    * JSON template for an AdWords account.
@@ -331,15 +334,15 @@ export namespace analytics_v3 {
      * True if auto-tagging is enabled on the AdWords account. Read-only after
      * the insert operation.
      */
-    autoTaggingEnabled: boolean;
+    autoTaggingEnabled?: boolean;
     /**
      * Customer ID. This field is required when creating an AdWords link.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Resource type for AdWords account.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Request template for the delete upload data request.
@@ -348,7 +351,7 @@ export namespace analytics_v3 {
     /**
      * A list of upload UIDs.
      */
-    customDataImportUids: string[];
+    customDataImportUids?: string[];
   }
   /**
    * JSON template for a metadata column.
@@ -357,15 +360,15 @@ export namespace analytics_v3 {
     /**
      * Map of attribute name and value for this column.
      */
-    attributes: any;
+    attributes?: any;
     /**
      * Column id.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics column.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Lists columns (dimensions and metrics) for a particular report type.
@@ -374,24 +377,24 @@ export namespace analytics_v3 {
     /**
      * List of attributes names returned by columns.
      */
-    attributeNames: string[];
+    attributeNames?: string[];
     /**
      * Etag of collection. This etag can be compared with the last response etag
      * to check if response has changed.
      */
-    etag: string;
+    etag?: string;
     /**
      * List of columns for a report type.
      */
-    items: Schema$Column[];
+    items?: Schema$Column[];
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Total number of columns returned in the response.
      */
-    totalResults: number;
+    totalResults?: number;
   }
   /**
    * JSON template for an Analytics custom data source.
@@ -400,63 +403,63 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this custom data source belongs.
      */
-    accountId: string;
-    childLink: any;
+    accountId?: string;
+    childLink?: any;
     /**
      * Time this custom data source was created.
      */
-    created: string;
+    created?: string;
     /**
      * Description of custom data source.
      */
-    description: string;
+    description?: string;
     /**
      * Custom data source ID.
      */
-    id: string;
-    importBehavior: string;
+    id?: string;
+    importBehavior?: string;
     /**
      * Resource type for Analytics custom data source.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this custom data source.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for this custom data source. Points to the web property to
      * which this custom data source belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * IDs of views (profiles) linked to the custom data source.
      */
-    profilesLinked: string[];
+    profilesLinked?: string[];
     /**
      * Collection of schema headers of the custom data source.
      */
-    schema: string[];
+    schema?: string[];
     /**
      * Link for this Analytics custom data source.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Type of the custom data source.
      */
-    type: string;
+    type?: string;
     /**
      * Time this custom data source was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Upload type of the custom data source.
      */
-    uploadType: string;
+    uploadType?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this custom data source
      * belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * Lists Analytics custom data sources to which the user has access. Each
@@ -467,40 +470,40 @@ export namespace analytics_v3 {
     /**
      * Collection of custom data sources.
      */
-    items: Schema$CustomDataSource[];
+    items?: Schema$CustomDataSource[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this custom data source collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this custom data source collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for Analytics Custom Dimension.
@@ -509,53 +512,53 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Boolean indicating whether the custom dimension is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Time the custom dimension was created.
      */
-    created: string;
+    created?: string;
     /**
      * Custom dimension ID.
      */
-    id: string;
+    id?: string;
     /**
      * Index of the custom dimension.
      */
-    index: number;
+    index?: number;
     /**
      * Kind value for a custom dimension. Set to
      * &quot;analytics#customDimension&quot;. It is a read-only field.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of the custom dimension.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for the custom dimension. Points to the property to which the
      * custom dimension belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.
      */
-    scope: string;
+    scope?: string;
     /**
      * Link for the custom dimension
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Time the custom dimension was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Property ID.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * A custom dimension collection lists Analytics custom dimensions to which
@@ -566,40 +569,40 @@ export namespace analytics_v3 {
     /**
      * Collection of custom dimensions.
      */
-    items: Schema$CustomDimension[];
+    items?: Schema$CustomDimension[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this custom dimension collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this custom dimension collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for Analytics Custom Metric.
@@ -608,65 +611,65 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Boolean indicating whether the custom metric is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Time the custom metric was created.
      */
-    created: string;
+    created?: string;
     /**
      * Custom metric ID.
      */
-    id: string;
+    id?: string;
     /**
      * Index of the custom metric.
      */
-    index: number;
+    index?: number;
     /**
      * Kind value for a custom metric. Set to
      * &quot;analytics#customMetric&quot;. It is a read-only field.
      */
-    kind: string;
+    kind?: string;
     /**
      * Max value of custom metric.
      */
-    max_value: string;
+    max_value?: string;
     /**
      * Min value of custom metric.
      */
-    min_value: string;
+    min_value?: string;
     /**
      * Name of the custom metric.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for the custom metric. Points to the property to which the
      * custom metric belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * Scope of the custom metric: HIT or PRODUCT.
      */
-    scope: string;
+    scope?: string;
     /**
      * Link for the custom metric
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Data type of custom metric.
      */
-    type: string;
+    type?: string;
     /**
      * Time the custom metric was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Property ID.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * A custom metric collection lists Analytics custom metrics to which the user
@@ -677,40 +680,40 @@ export namespace analytics_v3 {
     /**
      * Collection of custom metrics.
      */
-    items: Schema$CustomMetric[];
+    items?: Schema$CustomMetric[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this custom metric collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this custom metric collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for Analytics Entity AdWords Link.
@@ -720,31 +723,31 @@ export namespace analytics_v3 {
      * A list of AdWords client accounts. These cannot be MCC accounts. This
      * field is required when creating an AdWords link. It cannot be empty.
      */
-    adWordsAccounts: Schema$AdWordsAccount[];
+    adWordsAccounts?: Schema$AdWordsAccount[];
     /**
      * Web property being linked.
      */
-    entity: any;
+    entity?: any;
     /**
      * Entity AdWords link ID
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for entity AdWords link.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of the link. This field is required when creating an AdWords link.
      */
-    name: string;
+    name?: string;
     /**
      * IDs of linked Views (Profiles) represented as strings.
      */
-    profileIds: string[];
+    profileIds?: string[];
     /**
      * URL link for this Google Analytics - Google AdWords link.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * An entity AdWords link collection provides a list of GA-AdWords links Each
@@ -754,36 +757,36 @@ export namespace analytics_v3 {
     /**
      * A list of entity AdWords links.
      */
-    items: Schema$EntityAdWordsLink[];
+    items?: Schema$EntityAdWordsLink[];
     /**
      * The maximum number of entries the response can contain, regardless of the
      * actual number of entries returned. Its value ranges from 1 to 1000 with a
      * value of 1000 by default, or otherwise specified by the max-results query
      * parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Next link for this AdWords link collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Previous link for this AdWords link collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the entries, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
   }
   /**
    * JSON template for an Analytics Entity-User Link. Returns permissions that a
@@ -794,27 +797,27 @@ export namespace analytics_v3 {
      * Entity for this link. It can be an account, a web property, or a view
      * (profile).
      */
-    entity: any;
+    entity?: any;
     /**
      * Entity user link ID
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for entity user link.
      */
-    kind: string;
+    kind?: string;
     /**
      * Permissions the user has for this entity.
      */
-    permissions: any;
+    permissions?: any;
     /**
      * Self link for this resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * User reference.
      */
-    userRef: Schema$UserRef;
+    userRef?: Schema$UserRef;
   }
   /**
    * An entity user link collection provides a list of Analytics ACL links Each
@@ -824,36 +827,36 @@ export namespace analytics_v3 {
     /**
      * A list of entity user links.
      */
-    items: Schema$EntityUserLink[];
+    items?: Schema$EntityUserLink[];
     /**
      * The maximum number of entries the response can contain, regardless of the
      * actual number of entries returned. Its value ranges from 1 to 1000 with a
      * value of 1000 by default, or otherwise specified by the max-results query
      * parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Next link for this account collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Previous link for this account collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the entries, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
   }
   /**
    * JSON template for Analytics experiment resource.
@@ -862,26 +865,26 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this experiment belongs. This field is read-only.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Time the experiment was created. This field is read-only.
      */
-    created: string;
+    created?: string;
     /**
      * Notes about this experiment.
      */
-    description: string;
+    description?: string;
     /**
      * If true, the end user will be able to edit the experiment via the Google
      * Analytics user interface.
      */
-    editableInGaUi: boolean;
+    editableInGaUi?: boolean;
     /**
      * The ending time of the experiment (the time the status changed from
      * RUNNING to ENDED). This field is present only if the experiment has
      * ended. This field is read-only.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Boolean specifying whether to distribute traffic evenly across all
      * variations. If the value is False, content experiments follows the
@@ -889,31 +892,31 @@ export namespace analytics_v3 {
      * performance. Optional -- defaults to False. This field may not be changed
      * for an experiment whose status is ENDED.
      */
-    equalWeighting: boolean;
+    equalWeighting?: boolean;
     /**
      * Experiment ID. Required for patch and update. Disallowed for create.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this experiment belongs. This
      * field is read-only.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for an Analytics experiment. This field is read-only.
      */
-    kind: string;
+    kind?: string;
     /**
      * An integer number in [3, 90]. Specifies the minimum length of the
      * experiment. Can be changed for a running experiment. This field may not
      * be changed for an experiments whose status is ENDED.
      */
-    minimumExperimentLengthInDays: number;
+    minimumExperimentLengthInDays?: number;
     /**
      * Experiment name. This field may not be changed for an experiment whose
      * status is ENDED. This field is required when creating an experiment.
      */
-    name: string;
+    name?: string;
     /**
      * The metric that the experiment is optimizing. Valid values:
      * &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;,
@@ -924,24 +927,24 @@ export namespace analytics_v3 {
      * &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot;
      * or &quot;API&quot;.
      */
-    objectiveMetric: string;
+    objectiveMetric?: string;
     /**
      * Whether the objectiveMetric should be minimized or maximized. Possible
      * values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to
      * &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot
      * be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
      */
-    optimizationType: string;
+    optimizationType?: string;
     /**
      * Parent link for an experiment. Points to the view (profile) to which this
      * experiment belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * View (Profile) ID to which this experiment belongs. This field is
      * read-only.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;,
      * &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;,
@@ -951,17 +954,17 @@ export namespace analytics_v3 {
      * is changed via the API to ENDED this field is set to STOPPED_BY_USER.
      * This field is read-only.
      */
-    reasonExperimentEnded: string;
+    reasonExperimentEnded?: string;
     /**
      * Boolean specifying whether variations URLS are rewritten to match those
      * of the original. This field may not be changed for an experiments whose
      * status is ENDED.
      */
-    rewriteVariationUrlsAsOriginal: boolean;
+    rewriteVariationUrlsAsOriginal?: boolean;
     /**
      * Link for this experiment. This field is read-only.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The framework used to serve the experiment variations and evaluate the
      * results. One of:   - REDIRECT: Google Analytics redirects traffic to
@@ -973,18 +976,18 @@ export namespace analytics_v3 {
      * caller is responsible for serving the selected variation and evaluating
      * the results.
      */
-    servingFramework: string;
+    servingFramework?: string;
     /**
      * The snippet of code to include on the control page(s). This field is
      * read-only.
      */
-    snippet: string;
+    snippet?: string;
     /**
      * The starting time of the experiment (the time the status changed from
      * READY_TO_RUN to RUNNING). This field is present only if the experiment
      * has started. This field is read-only.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Experiment status. Possible values: &quot;DRAFT&quot;,
      * &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;.
@@ -992,41 +995,41 @@ export namespace analytics_v3 {
      * &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is
      * required when creating an experiment.
      */
-    status: string;
+    status?: string;
     /**
      * A floating-point number in (0, 1]. Specifies the fraction of the traffic
      * that participates in the experiment. Can be changed for a running
      * experiment. This field may not be changed for an experiments whose status
      * is ENDED.
      */
-    trafficCoverage: number;
+    trafficCoverage?: number;
     /**
      * Time the experiment was last modified. This field is read-only.
      */
-    updated: string;
+    updated?: string;
     /**
      * Array of variations. The first variation in the array is the original.
      * The number of variations may not change once an experiment is in the
      * RUNNING state. At least two variations are required before status can be
      * set to RUNNING.
      */
-    variations: any[];
+    variations?: any[];
     /**
      * Web property ID to which this experiment belongs. The web property ID is
      * of the form UA-XXXXX-YY. This field is read-only.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * A floating-point number in (0, 1). Specifies the necessary confidence
      * level to choose a winner. This field may not be changed for an
      * experiments whose status is ENDED.
      */
-    winnerConfidenceLevel: number;
+    winnerConfidenceLevel?: number;
     /**
      * Boolean specifying whether a winner has been found for this experiment.
      * This field is read-only.
      */
-    winnerFound: boolean;
+    winnerFound?: boolean;
   }
   /**
    * An experiment collection lists Analytics experiments to which the user has
@@ -1037,40 +1040,40 @@ export namespace analytics_v3 {
     /**
      * A list of experiments.
      */
-    items: Schema$Experiment[];
+    items?: Schema$Experiment[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this experiment collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this experiment collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * resources in the result.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics account filter.
@@ -1079,65 +1082,65 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this filter belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Details for the filter of the type ADVANCED.
      */
-    advancedDetails: any;
+    advancedDetails?: any;
     /**
      * Time this filter was created.
      */
-    created: string;
+    created?: string;
     /**
      * Details for the filter of the type EXCLUDE.
      */
-    excludeDetails: Schema$FilterExpression;
+    excludeDetails?: Schema$FilterExpression;
     /**
      * Filter ID.
      */
-    id: string;
+    id?: string;
     /**
      * Details for the filter of the type INCLUDE.
      */
-    includeDetails: Schema$FilterExpression;
+    includeDetails?: Schema$FilterExpression;
     /**
      * Resource type for Analytics filter.
      */
-    kind: string;
+    kind?: string;
     /**
      * Details for the filter of the type LOWER.
      */
-    lowercaseDetails: any;
+    lowercaseDetails?: any;
     /**
      * Name of this filter.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for this filter. Points to the account to which this filter
      * belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * Details for the filter of the type SEARCH_AND_REPLACE.
      */
-    searchAndReplaceDetails: any;
+    searchAndReplaceDetails?: any;
     /**
      * Link for this filter.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Type of this filter. Possible values are INCLUDE, EXCLUDE, LOWERCASE,
      * UPPERCASE, SEARCH_AND_REPLACE and ADVANCED.
      */
-    type: string;
+    type?: string;
     /**
      * Time this filter was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Details for the filter of the type UPPER.
      */
-    uppercaseDetails: any;
+    uppercaseDetails?: any;
   }
   /**
    * JSON template for an Analytics filter expression.
@@ -1146,11 +1149,11 @@ export namespace analytics_v3 {
     /**
      * Determines if the filter is case sensitive.
      */
-    caseSensitive: boolean;
+    caseSensitive?: boolean;
     /**
      * Filter expression value
      */
-    expressionValue: string;
+    expressionValue?: string;
     /**
      * Field to filter. Possible values:   - Content and Traffic   -
      * PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  -
@@ -1184,23 +1187,23 @@ export namespace analytics_v3 {
      * - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,
      * - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
      */
-    field: string;
+    field?: string;
     /**
      * The Index of the custom dimension. Set only if the field is a is
      * CUSTOM_DIMENSION.
      */
-    fieldIndex: number;
+    fieldIndex?: number;
     /**
      * Kind value for filter expression
      */
-    kind: string;
+    kind?: string;
     /**
      * Match type for this filter. Possible values are BEGINS_WITH, EQUAL,
      * ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS,
      * PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all
      * other filters must use MATCHES.
      */
-    matchType: string;
+    matchType?: string;
   }
   /**
    * JSON template for a profile filter link.
@@ -1209,23 +1212,23 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this filter belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link for this filter.
      */
-    href: string;
+    href?: string;
     /**
      * Filter ID.
      */
-    id: string;
+    id?: string;
     /**
      * Kind value for filter reference.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this filter.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A filter collection lists filters created by users in an Analytics account.
@@ -1235,40 +1238,40 @@ export namespace analytics_v3 {
     /**
      * A list of filters.
      */
-    items: Schema$Filter[];
+    items?: Schema$Filter[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1,000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this filter collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this filter collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * Analytics data for a given view (profile).
@@ -1278,77 +1281,77 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders: any[];
+    columnHeaders?: any[];
     /**
      * Determines if Analytics data contains samples.
      */
-    containsSampledData: boolean;
+    containsSampledData?: boolean;
     /**
      * The last refreshed time in seconds for Analytics data.
      */
-    dataLastRefreshed: string;
-    dataTable: any;
+    dataLastRefreshed?: string;
+    dataTable?: any;
     /**
      * Unique ID for this data response.
      */
-    id: string;
+    id?: string;
     /**
      * The maximum number of rows the response can contain, regardless of the
      * actual number of rows returned. Its value ranges from 1 to 10,000 with a
      * value of 1000 by default, or otherwise specified by the max-results query
      * parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this Analytics data query.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this Analytics data query.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * Information for the view (profile), for which the Analytics data was
      * requested.
      */
-    profileInfo: any;
+    profileInfo?: any;
     /**
      * Analytics data request query parameters.
      */
-    query: any;
+    query?: any;
     /**
      * Analytics data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
      * same as specified in the request.
      */
-    rows: string[][];
+    rows?: string[][];
     /**
      * The number of samples used to calculate the result.
      */
-    sampleSize: string;
+    sampleSize?: string;
     /**
      * Total size of the sample space from which the samples were selected.
      */
-    sampleSpace: string;
+    sampleSpace?: string;
     /**
      * Link to this page.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The total number of rows for the query, regardless of the number of rows
      * in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Total values for the requested metrics over all the results, not just the
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults: any;
+    totalsForAllResults?: any;
   }
   /**
    * JSON template for Analytics goal resource.
@@ -1357,78 +1360,78 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this goal belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Determines whether this goal is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Time this goal was created.
      */
-    created: string;
+    created?: string;
     /**
      * Details for the goal of the type EVENT.
      */
-    eventDetails: any;
+    eventDetails?: any;
     /**
      * Goal ID.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this goal belongs.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for an Analytics goal.
      */
-    kind: string;
+    kind?: string;
     /**
      * Goal name.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for a goal. Points to the view (profile) to which this goal
      * belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * View (Profile) ID to which this goal belongs.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Link for this goal.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE,
      * VISIT_NUM_PAGES, AND EVENT.
      */
-    type: string;
+    type?: string;
     /**
      * Time this goal was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Details for the goal of the type URL_DESTINATION.
      */
-    urlDestinationDetails: any;
+    urlDestinationDetails?: any;
     /**
      * Goal value.
      */
-    value: number;
+    value?: number;
     /**
      * Details for the goal of the type VISIT_NUM_PAGES.
      */
-    visitNumPagesDetails: any;
+    visitNumPagesDetails?: any;
     /**
      * Details for the goal of the type VISIT_TIME_ON_SITE.
      */
-    visitTimeOnSiteDetails: any;
+    visitTimeOnSiteDetails?: any;
     /**
      * Web property ID to which this goal belongs. The web property ID is of the
      * form UA-XXXXX-YY.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * A goal collection lists Analytics goals to which the user has access. Each
@@ -1439,40 +1442,40 @@ export namespace analytics_v3 {
     /**
      * A list of goals.
      */
-    items: Schema$Goal[];
+    items?: Schema$Goal[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this goal collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this goal collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * resources in the result.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics Remarketing Include Conditions.
@@ -1486,24 +1489,24 @@ export namespace analytics_v3 {
      * Asia whose cumulative transactions exceed 2 during the last 14 days is
      * added to the audience.
      */
-    daysToLookBack: number;
+    daysToLookBack?: number;
     /**
      * Boolean indicating whether this segment is a smart list.
      * https://support.google.com/analytics/answer/4628577
      */
-    isSmartList: boolean;
+    isSmartList?: boolean;
     /**
      * Resource type for include conditions.
      */
-    kind: string;
+    kind?: string;
     /**
      * Number of days (in the range 1 to 540) a user remains in the audience.
      */
-    membershipDurationDays: number;
+    membershipDurationDays?: number;
     /**
      * The segment condition that will cause a user to be added to an audience.
      */
-    segment: string;
+    segment?: string;
   }
   /**
    * JSON template for an Analytics Remarketing Audience Foreign Link.
@@ -1512,47 +1515,47 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this linked foreign account belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Boolean indicating whether this is eligible for search.
      */
-    eligibleForSearch: boolean;
+    eligibleForSearch?: boolean;
     /**
      * Entity ad account link ID.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this linked foreign account
      * belongs.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for linked foreign account.
      */
-    kind: string;
+    kind?: string;
     /**
      * The foreign account ID. For example the an AdWords `linkedAccountId` has
      * the following format XXX-XXX-XXXX.
      */
-    linkedAccountId: string;
+    linkedAccountId?: string;
     /**
      * Remarketing audience ID to which this linked foreign account belongs.
      */
-    remarketingAudienceId: string;
+    remarketingAudienceId?: string;
     /**
      * The status of this foreign account link.
      */
-    status: string;
+    status?: string;
     /**
      * The type of the foreign account. For example, `ADWORDS_LINKS`,
      * `DBM_LINKS`, `MCC_LINKS` or `OPTIMIZE`.
      */
-    type: string;
+    type?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this linked foreign
      * account belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * Multi-Channel Funnels data for a given view (profile).
@@ -1562,72 +1565,72 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders: any[];
+    columnHeaders?: any[];
     /**
      * Determines if the Analytics data contains sampled data.
      */
-    containsSampledData: boolean;
+    containsSampledData?: boolean;
     /**
      * Unique ID for this data response.
      */
-    id: string;
+    id?: string;
     /**
      * The maximum number of rows the response can contain, regardless of the
      * actual number of rows returned. Its value ranges from 1 to 10,000 with a
      * value of 1000 by default, or otherwise specified by the max-results query
      * parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this Analytics data query.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this Analytics data query.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * Information for the view (profile), for which the Analytics data was
      * requested.
      */
-    profileInfo: any;
+    profileInfo?: any;
     /**
      * Analytics data request query parameters.
      */
-    query: any;
+    query?: any;
     /**
      * Analytics data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
      * same as specified in the request.
      */
-    rows: any[][];
+    rows?: any[][];
     /**
      * The number of samples used to calculate the result.
      */
-    sampleSize: string;
+    sampleSize?: string;
     /**
      * Total size of the sample space from which the samples were selected.
      */
-    sampleSpace: string;
+    sampleSpace?: string;
     /**
      * Link to this page.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The total number of rows for the query, regardless of the number of rows
      * in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Total values for the requested metrics over all the results, not just the
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults: any;
+    totalsForAllResults?: any;
   }
   /**
    * JSON template for an Analytics view (profile).
@@ -1636,20 +1639,20 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this view (profile) belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Indicates whether bot filtering is enabled for this view (profile).
      */
-    botFilteringEnabled: boolean;
+    botFilteringEnabled?: boolean;
     /**
      * Child link for this view (profile). Points to the list of goals for this
      * view (profile).
      */
-    childLink: any;
+    childLink?: any;
     /**
      * Time this view (profile) was created.
      */
-    created: string;
+    created?: string;
     /**
      * The currency type associated with this view (profile), defaults to USD.
      * The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK,
@@ -1657,98 +1660,98 @@ export namespace analytics_v3 {
      * CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP,
      * HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
      */
-    currency: string;
+    currency?: string;
     /**
      * Default page for this view (profile).
      */
-    defaultPage: string;
+    defaultPage?: string;
     /**
      * Indicates whether ecommerce tracking is enabled for this view (profile).
      */
-    eCommerceTracking: boolean;
+    eCommerceTracking?: boolean;
     /**
      * Indicates whether enhanced ecommerce tracking is enabled for this view
      * (profile). This property can only be enabled if ecommerce tracking is
      * enabled.
      */
-    enhancedECommerceTracking: boolean;
+    enhancedECommerceTracking?: boolean;
     /**
      * The query parameters that are excluded from this view (profile).
      */
-    excludeQueryParameters: string;
+    excludeQueryParameters?: string;
     /**
      * View (Profile) ID.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this view (profile) belongs.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for Analytics view (profile).
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this view (profile).
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for this view (profile). Points to the web property to which
      * this view (profile) belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * Permissions the user has for this view (profile).
      */
-    permissions: any;
+    permissions?: any;
     /**
      * Link for this view (profile).
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Site search category parameters for this view (profile).
      */
-    siteSearchCategoryParameters: string;
+    siteSearchCategoryParameters?: string;
     /**
      * The site search query parameters for this view (profile).
      */
-    siteSearchQueryParameters: string;
+    siteSearchQueryParameters?: string;
     /**
      * Indicates whether this view (profile) is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * Whether or not Analytics will strip search category parameters from the
      * URLs in your reports.
      */
-    stripSiteSearchCategoryParameters: boolean;
+    stripSiteSearchCategoryParameters?: boolean;
     /**
      * Whether or not Analytics will strip search query parameters from the URLs
      * in your reports.
      */
-    stripSiteSearchQueryParameters: boolean;
+    stripSiteSearchQueryParameters?: boolean;
     /**
      * Time zone for which this view (profile) has been configured. Time zones
      * are identified by strings from the TZ database.
      */
-    timezone: string;
+    timezone?: string;
     /**
      * View (Profile) type. Supported types: WEB or APP.
      */
-    type: string;
+    type?: string;
     /**
      * Time this view (profile) was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this view (profile)
      * belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Website URL for this view (profile).
      */
-    websiteUrl: string;
+    websiteUrl?: string;
   }
   /**
    * JSON template for an Analytics profile filter link.
@@ -1757,19 +1760,19 @@ export namespace analytics_v3 {
     /**
      * Filter for this link.
      */
-    filterRef: Schema$FilterRef;
+    filterRef?: Schema$FilterRef;
     /**
      * Profile filter link ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics filter.
      */
-    kind: string;
+    kind?: string;
     /**
      * View (Profile) for this link.
      */
-    profileRef: Schema$ProfileRef;
+    profileRef?: Schema$ProfileRef;
     /**
      * The rank of this profile filter link relative to the other filters linked
      * to the same profile. For readonly (i.e., list and get) operations, the
@@ -1783,11 +1786,11 @@ export namespace analytics_v3 {
      * link is inserted/updated/deleted all profile filter links will be
      * renumbered starting at 1.
      */
-    rank: number;
+    rank?: number;
     /**
      * Link for this profile filter link.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A profile filter link collection lists profile filter links between
@@ -1798,40 +1801,40 @@ export namespace analytics_v3 {
     /**
      * A list of profile filter links.
      */
-    items: Schema$ProfileFilterLink[];
+    items?: Schema$ProfileFilterLink[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1,000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this profile filter link collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this profile filter link collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for a linked view (profile).
@@ -1840,32 +1843,32 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this view (profile) belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link for this view (profile).
      */
-    href: string;
+    href?: string;
     /**
      * View (Profile) ID.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this view (profile) belongs.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Analytics view (profile) reference.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this view (profile).
      */
-    name: string;
+    name?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this view (profile)
      * belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * A view (profile) collection lists Analytics views (profiles) to which the
@@ -1876,40 +1879,40 @@ export namespace analytics_v3 {
     /**
      * A list of views (profiles).
      */
-    items: Schema$Profile[];
+    items?: Schema$Profile[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this view (profile) collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this view (profile) collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics ProfileSummary. ProfileSummary returns basic
@@ -1919,23 +1922,23 @@ export namespace analytics_v3 {
     /**
      * View (profile) ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics ProfileSummary.
      */
-    kind: string;
+    kind?: string;
     /**
      * View (profile) name.
      */
-    name: string;
+    name?: string;
     /**
      * Indicates whether this view (profile) is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * View (Profile) type. Supported types: WEB or APP.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Real time data for a given view (profile).
@@ -1945,45 +1948,45 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders: any[];
+    columnHeaders?: any[];
     /**
      * Unique ID for this data response.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information for the view (profile), for which the real time data was
      * requested.
      */
-    profileInfo: any;
+    profileInfo?: any;
     /**
      * Real time data request query parameters.
      */
-    query: any;
+    query?: any;
     /**
      * Real time data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
      * same as specified in the request.
      */
-    rows: string[][];
+    rows?: string[][];
     /**
      * Link to this page.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The total number of rows for the query, regardless of the number of rows
      * in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Total values for the requested metrics over all the results, not just the
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults: any;
+    totalsForAllResults?: any;
   }
   /**
    * JSON template for an Analytics remarketing audience.
@@ -1992,64 +1995,64 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this remarketing audience belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The simple audience definition that will cause a user to be added to an
      * audience.
      */
-    audienceDefinition: any;
+    audienceDefinition?: any;
     /**
      * The type of audience, either SIMPLE or STATE_BASED.
      */
-    audienceType: string;
+    audienceType?: string;
     /**
      * Time this remarketing audience was created.
      */
-    created: string;
+    created?: string;
     /**
      * The description of this remarketing audience.
      */
-    description: string;
+    description?: string;
     /**
      * Remarketing Audience ID.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for the web property to which this remarketing audience
      * belongs.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The linked ad accounts associated with this remarketing audience. A
      * remarketing audience can have only one linkedAdAccount currently.
      */
-    linkedAdAccounts: Schema$LinkedForeignAccount[];
+    linkedAdAccounts?: Schema$LinkedForeignAccount[];
     /**
      * The views (profiles) that this remarketing audience is linked to.
      */
-    linkedViews: string[];
+    linkedViews?: string[];
     /**
      * The name of this remarketing audience.
      */
-    name: string;
+    name?: string;
     /**
      * A state based audience definition that will cause a user to be added or
      * removed from an audience.
      */
-    stateBasedAudienceDefinition: any;
+    stateBasedAudienceDefinition?: any;
     /**
      * Time this remarketing audience was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this remarketing
      * audience belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * A remarketing audience collection lists Analytics remarketing audiences to
@@ -2060,40 +2063,40 @@ export namespace analytics_v3 {
     /**
      * A list of remarketing audiences.
      */
-    items: Schema$RemarketingAudience[];
+    items?: Schema$RemarketingAudience[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this remarketing audience collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this view (profile) collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics segment.
@@ -2102,41 +2105,41 @@ export namespace analytics_v3 {
     /**
      * Time the segment was created.
      */
-    created: string;
+    created?: string;
     /**
      * Segment definition.
      */
-    definition: string;
+    definition?: string;
     /**
      * Segment ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics segment.
      */
-    kind: string;
+    kind?: string;
     /**
      * Segment name.
      */
-    name: string;
+    name?: string;
     /**
      * Segment ID. Can be used with the &#39;segment&#39; parameter in Core
      * Reporting API.
      */
-    segmentId: string;
+    segmentId?: string;
     /**
      * Link for this segment.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Type for a segment. Possible values are &quot;BUILT_IN&quot; or
      * &quot;CUSTOM&quot;.
      */
-    type: string;
+    type?: string;
     /**
      * Time the segment was last modified.
      */
-    updated: string;
+    updated?: string;
   }
   /**
    * An segment collection lists Analytics segments that the user has access to.
@@ -2146,40 +2149,40 @@ export namespace analytics_v3 {
     /**
      * A list of segments.
      */
-    items: Schema$Segment[];
+    items?: Schema$Segment[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type for segments.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this segment collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this segment collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for Analytics unsampled report resource.
@@ -2188,84 +2191,84 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this unsampled report belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Download details for a file stored in Google Cloud Storage.
      */
-    cloudStorageDownloadDetails: any;
+    cloudStorageDownloadDetails?: any;
     /**
      * Time this unsampled report was created.
      */
-    created: string;
+    created?: string;
     /**
      * The dimensions for the unsampled report.
      */
-    dimensions: string;
+    dimensions?: string;
     /**
      * The type of download you need to use for the report data file. Possible
      * values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is
      * `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is
      * `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.
      */
-    downloadType: string;
+    downloadType?: string;
     /**
      * Download details for a file stored in Google Drive.
      */
-    driveDownloadDetails: any;
+    driveDownloadDetails?: any;
     /**
      * The end date for the unsampled report.
      */
-    enddate: string;
+    'end-date'?: string;
     /**
      * The filters for the unsampled report.
      */
-    filters: string;
+    filters?: string;
     /**
      * Unsampled report ID.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for an Analytics unsampled report.
      */
-    kind: string;
+    kind?: string;
     /**
      * The metrics for the unsampled report.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * View (Profile) ID to which this unsampled report belongs.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The segment for the unsampled report.
      */
-    segment: string;
+    segment?: string;
     /**
      * Link for this unsampled report.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The start date for the unsampled report.
      */
-    startdate: string;
+    'start-date'?: string;
     /**
      * Status of this unsampled report. Possible values are PENDING, COMPLETED,
      * or FAILED.
      */
-    status: string;
+    status?: string;
     /**
      * Title of the unsampled report.
      */
-    title: string;
+    title?: string;
     /**
      * Time this unsampled report was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Web property ID to which this unsampled report belongs. The web property
      * ID is of the form UA-XXXXX-YY.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   /**
    * An unsampled report collection lists Analytics unsampled reports to which
@@ -2277,40 +2280,40 @@ export namespace analytics_v3 {
     /**
      * A list of unsampled reports.
      */
-    items: Schema$UnsampledReport[];
+    items?: Schema$UnsampledReport[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this unsampled report collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this unsampled report collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * resources in the result.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * Metadata returned for an upload operation.
@@ -2319,32 +2322,32 @@ export namespace analytics_v3 {
     /**
      * Account Id to which this upload belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom data source Id to which this data import belongs.
      */
-    customDataSourceId: string;
+    customDataSourceId?: string;
     /**
      * Data import errors collection.
      */
-    errors: string[];
+    errors?: string[];
     /**
      * A unique ID for this upload.
      */
-    id: string;
+    id?: string;
     /**
      * Resource type for Analytics upload.
      */
-    kind: string;
+    kind?: string;
     /**
      * Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING,
      * DELETED.
      */
-    status: string;
+    status?: string;
     /**
      * Time this file is uploaded.
      */
-    uploadTime: string;
+    uploadTime?: string;
   }
   /**
    * Upload collection lists Analytics uploads to which the user has access.
@@ -2355,36 +2358,36 @@ export namespace analytics_v3 {
     /**
      * A list of uploads.
      */
-    items: Schema$Upload[];
+    items?: Schema$Upload[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this upload collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this upload collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * resources in the result.
      */
-    totalResults: number;
+    totalResults?: number;
   }
   /**
    * JSON template for a user reference.
@@ -2393,12 +2396,12 @@ export namespace analytics_v3 {
     /**
      * Email ID of this user.
      */
-    email: string;
+    email?: string;
     /**
      * User ID.
      */
-    id: string;
-    kind: string;
+    id?: string;
+    kind?: string;
   }
   /**
    * A web property collection lists Analytics web properties to which the user
@@ -2409,40 +2412,40 @@ export namespace analytics_v3 {
     /**
      * A list of web properties.
      */
-    items: Schema$Webproperty[];
+    items?: Schema$Webproperty[];
     /**
      * The maximum number of resources the response can contain, regardless of
      * the actual number of resources returned. Its value ranges from 1 to 1000
      * with a value of 1000 by default, or otherwise specified by the
      * max-results query parameter.
      */
-    itemsPerPage: number;
+    itemsPerPage?: number;
     /**
      * Collection type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Link to next page for this web property collection.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * Link to previous page for this web property collection.
      */
-    previousLink: string;
+    previousLink?: string;
     /**
      * The starting index of the resources, which is 1 by default or otherwise
      * specified by the start-index query parameter.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The total number of results for the query, regardless of the number of
      * results in the response.
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * Email ID of the authenticated user
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for an Analytics web property.
@@ -2451,73 +2454,73 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this web property belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Child link for this web property. Points to the list of views (profiles)
      * for this web property.
      */
-    childLink: any;
+    childLink?: any;
     /**
      * Time this web property was created.
      */
-    created: string;
+    created?: string;
     /**
      * Default view (profile) ID.
      */
-    defaultProfileId: string;
+    defaultProfileId?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id: string;
+    id?: string;
     /**
      * The industry vertical/category selected for this web property.
      */
-    industryVertical: string;
+    industryVertical?: string;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for Analytics WebProperty.
      */
-    kind: string;
+    kind?: string;
     /**
      * Level for this web property. Possible values are STANDARD or PREMIUM.
      */
-    level: string;
+    level?: string;
     /**
      * Name of this web property.
      */
-    name: string;
+    name?: string;
     /**
      * Parent link for this web property. Points to the account to which this
      * web property belongs.
      */
-    parentLink: any;
+    parentLink?: any;
     /**
      * Permissions the user has for this web property.
      */
-    permissions: any;
+    permissions?: any;
     /**
      * View (Profile) count for this web property.
      */
-    profileCount: number;
+    profileCount?: number;
     /**
      * Link for this web property.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Indicates whether this web property is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * Time this web property was last modified.
      */
-    updated: string;
+    updated?: string;
     /**
      * Website url for this web property.
      */
-    websiteUrl: string;
+    websiteUrl?: string;
   }
   /**
    * JSON template for a web property reference.
@@ -2526,27 +2529,27 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this web property belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link for this web property.
      */
-    href: string;
+    href?: string;
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Analytics web property reference.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this web property.
      */
-    name: string;
+    name?: string;
   }
   /**
    * JSON template for an Analytics WebPropertySummary. WebPropertySummary
@@ -2556,36 +2559,37 @@ export namespace analytics_v3 {
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id: string;
+    id?: string;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId: string;
+    internalWebPropertyId?: string;
     /**
      * Resource type for Analytics WebPropertySummary.
      */
-    kind: string;
+    kind?: string;
     /**
      * Level for this web property. Possible values are STANDARD or PREMIUM.
      */
-    level: string;
+    level?: string;
     /**
      * Web property name.
      */
-    name: string;
+    name?: string;
     /**
      * List of profiles under this web property.
      */
-    profiles: Schema$ProfileSummary[];
+    profiles?: Schema$ProfileSummary[];
     /**
      * Indicates whether this web property is starred or not.
      */
-    starred: boolean;
+    starred?: boolean;
     /**
      * Website url for this web property.
      */
-    websiteUrl: string;
+    websiteUrl?: string;
   }
+
 
   export class Resource$Data {
     root: Analytics;
@@ -2604,6 +2608,8 @@ export namespace analytics_v3 {
       return this.root;
     }
   }
+
+
   export class Resource$Data$Ga {
     root: Analytics;
     constructor(root: Analytics) {
@@ -2640,23 +2646,33 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$GaData>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GaData>,
-        callback?: BodyResponseCallback<Schema$GaData>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GaData>,
+    get(params?: Params$Resource$Data$Ga$Get,
+        options?: MethodOptions): AxiosPromise<Schema$GaData>;
+    get(params: Params$Resource$Data$Ga$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$GaData>,
+        callback: BodyResponseCallback<Schema$GaData>): void;
+    get(params: Params$Resource$Data$Ga$Get,
+        callback: BodyResponseCallback<Schema$GaData>): void;
+    get(callback: BodyResponseCallback<Schema$GaData>): void;
+    get(paramsOrCallback?: Params$Resource$Data$Ga$Get|
+        BodyResponseCallback<Schema$GaData>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GaData>,
         callback?: BodyResponseCallback<Schema$GaData>):
         void|AxiosPromise<Schema$GaData> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Data$Ga$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Data$Ga$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2678,6 +2694,78 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Data$Ga$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A comma-separated list of Analytics dimensions. E.g.,
+     * 'ga:browser,ga:city'.
+     */
+    dimensions?: string;
+    /**
+     * End date for fetching Analytics data. Request can should specify an end
+     * date formatted as YYYY-MM-DD, or as a relative date (e.g., today,
+     * yesterday, or 7daysAgo). The default value is yesterday.
+     */
+    'end-date'?: string;
+    /**
+     * A comma-separated list of dimension or metric filters to be applied to
+     * Analytics data.
+     */
+    filters?: string;
+    /**
+     * Unique table ID for retrieving Analytics data. Table ID is of the form
+     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     */
+    ids?: string;
+    /**
+     * The response will include empty rows if this parameter is set to true,
+     * the default is true
+     */
+    'include-empty-rows'?: boolean;
+    /**
+     * The maximum number of entries to include in this feed.
+     */
+    'max-results'?: number;
+    /**
+     * A comma-separated list of Analytics metrics. E.g.,
+     * 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     */
+    metrics?: string;
+    /**
+     * The selected format for the response. Default format is JSON.
+     */
+    output?: string;
+    /**
+     * The desired sampling level.
+     */
+    samplingLevel?: string;
+    /**
+     * An Analytics segment to be applied to data.
+     */
+    segment?: string;
+    /**
+     * A comma-separated list of dimensions or metrics that determine the sort
+     * order for Analytics data.
+     */
+    sort?: string;
+    /**
+     * Start date for fetching Analytics data. Requests can specify a start date
+     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
+     * or 7daysAgo). The default value is 7daysAgo.
+     */
+    'start-date'?: string;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Data$Mcf {
     root: Analytics;
@@ -2712,23 +2800,33 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$McfData>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$McfData>,
-        callback?: BodyResponseCallback<Schema$McfData>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$McfData>,
+    get(params?: Params$Resource$Data$Mcf$Get,
+        options?: MethodOptions): AxiosPromise<Schema$McfData>;
+    get(params: Params$Resource$Data$Mcf$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$McfData>,
+        callback: BodyResponseCallback<Schema$McfData>): void;
+    get(params: Params$Resource$Data$Mcf$Get,
+        callback: BodyResponseCallback<Schema$McfData>): void;
+    get(callback: BodyResponseCallback<Schema$McfData>): void;
+    get(paramsOrCallback?: Params$Resource$Data$Mcf$Get|
+        BodyResponseCallback<Schema$McfData>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$McfData>,
         callback?: BodyResponseCallback<Schema$McfData>):
         void|AxiosPromise<Schema$McfData> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Data$Mcf$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Data$Mcf$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2750,6 +2848,66 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Data$Mcf$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A comma-separated list of Multi-Channel Funnels dimensions. E.g.,
+     * 'mcf:source,mcf:medium'.
+     */
+    dimensions?: string;
+    /**
+     * End date for fetching Analytics data. Requests can specify a start date
+     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
+     * or 7daysAgo). The default value is 7daysAgo.
+     */
+    'end-date'?: string;
+    /**
+     * A comma-separated list of dimension or metric filters to be applied to
+     * the Analytics data.
+     */
+    filters?: string;
+    /**
+     * Unique table ID for retrieving Analytics data. Table ID is of the form
+     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     */
+    ids?: string;
+    /**
+     * The maximum number of entries to include in this feed.
+     */
+    'max-results'?: number;
+    /**
+     * A comma-separated list of Multi-Channel Funnels metrics. E.g.,
+     * 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must
+     * be specified.
+     */
+    metrics?: string;
+    /**
+     * The desired sampling level.
+     */
+    samplingLevel?: string;
+    /**
+     * A comma-separated list of dimensions or metrics that determine the sort
+     * order for the Analytics data.
+     */
+    sort?: string;
+    /**
+     * Start date for fetching Analytics data. Requests can specify a start date
+     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
+     * or 7daysAgo). The default value is 7daysAgo.
+     */
+    'start-date'?: string;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Data$Realtime {
     root: Analytics;
@@ -2780,24 +2938,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Data$Realtime$Get,
         options?: MethodOptions): AxiosPromise<Schema$RealtimeData>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
-        callback?: BodyResponseCallback<Schema$RealtimeData>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
+    get(params: Params$Resource$Data$Realtime$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
+        callback: BodyResponseCallback<Schema$RealtimeData>): void;
+    get(params: Params$Resource$Data$Realtime$Get,
+        callback: BodyResponseCallback<Schema$RealtimeData>): void;
+    get(callback: BodyResponseCallback<Schema$RealtimeData>): void;
+    get(paramsOrCallback?: Params$Resource$Data$Realtime$Get|
+        BodyResponseCallback<Schema$RealtimeData>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RealtimeData>,
         callback?: BodyResponseCallback<Schema$RealtimeData>):
         void|AxiosPromise<Schema$RealtimeData> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Data$Realtime$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Data$Realtime$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2819,6 +2988,44 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Data$Realtime$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A comma-separated list of real time dimensions. E.g.,
+     * 'rt:medium,rt:city'.
+     */
+    dimensions?: string;
+    /**
+     * A comma-separated list of dimension or metric filters to be applied to
+     * real time data.
+     */
+    filters?: string;
+    /**
+     * Unique table ID for retrieving real time data. Table ID is of the form
+     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     */
+    ids?: string;
+    /**
+     * The maximum number of entries to include in this feed.
+     */
+    'max-results'?: number;
+    /**
+     * A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At
+     * least one metric must be specified.
+     */
+    metrics?: string;
+    /**
+     * A comma-separated list of dimensions or metrics that determine the sort
+     * order for real time data.
+     */
+    sort?: string;
+  }
+
 
 
   export class Resource$Management {
@@ -2874,6 +3081,8 @@ export namespace analytics_v3 {
       return this.root;
     }
   }
+
+
   export class Resource$Management$Accounts {
     root: Analytics;
     constructor(root: Analytics) {
@@ -2899,25 +3108,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Accounts>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-        callback?: BodyResponseCallback<Schema$Accounts>): void;
+        params?: Params$Resource$Management$Accounts$List,
+        options?: MethodOptions): AxiosPromise<Schema$Accounts>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+        params: Params$Resource$Management$Accounts$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+        callback: BodyResponseCallback<Schema$Accounts>): void;
+    list(
+        params: Params$Resource$Management$Accounts$List,
+        callback: BodyResponseCallback<Schema$Accounts>): void;
+    list(callback: BodyResponseCallback<Schema$Accounts>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Accounts$List|
+        BodyResponseCallback<Schema$Accounts>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
         callback?: BodyResponseCallback<Schema$Accounts>):
         void|AxiosPromise<Schema$Accounts> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Accounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2939,6 +3161,24 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Accounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of accounts to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first account to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Management$Accountsummaries {
     root: Analytics;
@@ -2966,26 +3206,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountSummaries>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
-        callback?: BodyResponseCallback<Schema$AccountSummaries>): void;
+        params?: Params$Resource$Management$Accountsummaries$List,
+        options?: MethodOptions): AxiosPromise<Schema$AccountSummaries>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
+        params: Params$Resource$Management$Accountsummaries$List,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
+        callback: BodyResponseCallback<Schema$AccountSummaries>): void;
+    list(
+        params: Params$Resource$Management$Accountsummaries$List,
+        callback: BodyResponseCallback<Schema$AccountSummaries>): void;
+    list(callback: BodyResponseCallback<Schema$AccountSummaries>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Accountsummaries$List|
+        BodyResponseCallback<Schema$AccountSummaries>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountSummaries>,
         callback?: BodyResponseCallback<Schema$AccountSummaries>):
         void|AxiosPromise<Schema$AccountSummaries> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Accountsummaries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accountsummaries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3007,6 +3260,25 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Accountsummaries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of account summaries to include in this response,
+     * where the largest acceptable value is 1000.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Management$Accountuserlinks {
     root: Analytics;
@@ -3033,22 +3305,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Accountuserlinks$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Accountuserlinks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Accountuserlinks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Accountuserlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accountuserlinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3086,26 +3373,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Accountuserlinks$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Accountuserlinks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        params: Params$Resource$Management$Accountuserlinks$Insert,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Insert|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Accountuserlinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accountuserlinks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3144,26 +3444,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+        params?: Params$Resource$Management$Accountuserlinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        params: Params$Resource$Management$Accountuserlinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        params: Params$Resource$Management$Accountuserlinks$List,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$List|
+        BodyResponseCallback<Schema$EntityUserLinks>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
         void|AxiosPromise<Schema$EntityUserLinks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Accountuserlinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accountuserlinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3202,26 +3515,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Accountuserlinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Accountuserlinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        params: Params$Resource$Management$Accountuserlinks$Update,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Update|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Accountuserlinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accountuserlinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3245,6 +3571,77 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Accountuserlinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to delete the user link for.
+     */
+    linkId?: string;
+  }
+  export interface Params$Resource$Management$Accountuserlinks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the user link for.
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+  export interface Params$Resource$Management$Accountuserlinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve the user links for.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of account-user links to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first account-user link to retrieve. Use this parameter
+     * as a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+  export interface Params$Resource$Management$Accountuserlinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to update the account-user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to update the account-user link for.
+     */
+    linkId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+
 
   export class Resource$Management$Customdatasources {
     root: Analytics;
@@ -3273,26 +3670,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomDataSources>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
-        callback?: BodyResponseCallback<Schema$CustomDataSources>): void;
+        params?: Params$Resource$Management$Customdatasources$List,
+        options?: MethodOptions): AxiosPromise<Schema$CustomDataSources>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
+        params: Params$Resource$Management$Customdatasources$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
+        callback: BodyResponseCallback<Schema$CustomDataSources>): void;
+    list(
+        params: Params$Resource$Management$Customdatasources$List,
+        callback: BodyResponseCallback<Schema$CustomDataSources>): void;
+    list(callback: BodyResponseCallback<Schema$CustomDataSources>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Customdatasources$List|
+        BodyResponseCallback<Schema$CustomDataSources>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDataSources>,
         callback?: BodyResponseCallback<Schema$CustomDataSources>):
         void|AxiosPromise<Schema$CustomDataSources> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdatasources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdatasources$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3316,6 +3726,32 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Customdatasources$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account Id for the custom data sources to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of custom data sources to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * A 1-based index of the first custom data source to retrieve. Use this
+     * parameter as a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property Id for the custom data sources to retrieve.
+     */
+    webPropertyId?: string;
+  }
+
 
   export class Resource$Management$Customdimensions {
     root: Analytics;
@@ -3343,24 +3779,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Customdimensions$Get,
         options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+    get(params: Params$Resource$Management$Customdimensions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    get(params: Params$Resource$Management$Customdimensions$Get,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    get(callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Customdimensions$Get|
+        BodyResponseCallback<Schema$CustomDimension>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
         void|AxiosPromise<Schema$CustomDimension> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdimensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdimensions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3399,26 +3846,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomDimension>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+        params?: Params$Resource$Management$Customdimensions$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        params: Params$Resource$Management$Customdimensions$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    insert(
+        params: Params$Resource$Management$Customdimensions$Insert,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    insert(callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Customdimensions$Insert|
+        BodyResponseCallback<Schema$CustomDimension>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
         void|AxiosPromise<Schema$CustomDimension> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdimensions$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdimensions$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3458,26 +3918,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomDimensions>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
-        callback?: BodyResponseCallback<Schema$CustomDimensions>): void;
+        params?: Params$Resource$Management$Customdimensions$List,
+        options?: MethodOptions): AxiosPromise<Schema$CustomDimensions>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
+        params: Params$Resource$Management$Customdimensions$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
+        callback: BodyResponseCallback<Schema$CustomDimensions>): void;
+    list(
+        params: Params$Resource$Management$Customdimensions$List,
+        callback: BodyResponseCallback<Schema$CustomDimensions>): void;
+    list(callback: BodyResponseCallback<Schema$CustomDimensions>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Customdimensions$List|
+        BodyResponseCallback<Schema$CustomDimensions>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDimensions>,
         callback?: BodyResponseCallback<Schema$CustomDimensions>):
         void|AxiosPromise<Schema$CustomDimensions> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdimensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdimensions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3519,26 +3992,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomDimension>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+        params?: Params$Resource$Management$Customdimensions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        params: Params$Resource$Management$Customdimensions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    patch(
+        params: Params$Resource$Management$Customdimensions$Patch,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    patch(callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Customdimensions$Patch|
+        BodyResponseCallback<Schema$CustomDimension>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
         void|AxiosPromise<Schema$CustomDimension> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdimensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdimensions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3579,26 +4065,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomDimension>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+        params?: Params$Resource$Management$Customdimensions$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        params: Params$Resource$Management$Customdimensions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    update(
+        params: Params$Resource$Management$Customdimensions$Update,
+        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    update(callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Customdimensions$Update|
+        BodyResponseCallback<Schema$CustomDimension>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
         void|AxiosPromise<Schema$CustomDimension> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Customdimensions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Customdimensions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3622,6 +4121,126 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Customdimensions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom dimension to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The ID of the custom dimension to retrieve.
+     */
+    customDimensionId?: string;
+    /**
+     * Web property ID for the custom dimension to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Customdimensions$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom dimension to create.
+     */
+    accountId?: string;
+    /**
+     * Web property ID for the custom dimension to create.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomDimension;
+  }
+  export interface Params$Resource$Management$Customdimensions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom dimensions to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of custom dimensions to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID for the custom dimensions to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Customdimensions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom dimension to update.
+     */
+    accountId?: string;
+    /**
+     * Custom dimension ID for the custom dimension to update.
+     */
+    customDimensionId?: string;
+    /**
+     * Force the update and ignore any warnings related to the custom dimension
+     * being linked to a custom data source / data set.
+     */
+    ignoreCustomDataSourceLinks?: boolean;
+    /**
+     * Web property ID for the custom dimension to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomDimension;
+  }
+  export interface Params$Resource$Management$Customdimensions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom dimension to update.
+     */
+    accountId?: string;
+    /**
+     * Custom dimension ID for the custom dimension to update.
+     */
+    customDimensionId?: string;
+    /**
+     * Force the update and ignore any warnings related to the custom dimension
+     * being linked to a custom data source / data set.
+     */
+    ignoreCustomDataSourceLinks?: boolean;
+    /**
+     * Web property ID for the custom dimension to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomDimension;
+  }
+
 
   export class Resource$Management$Custommetrics {
     root: Analytics;
@@ -3649,24 +4268,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Custommetrics$Get,
         options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+    get(params: Params$Resource$Management$Custommetrics$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    get(params: Params$Resource$Management$Custommetrics$Get,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    get(callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Custommetrics$Get|
+        BodyResponseCallback<Schema$CustomMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
         void|AxiosPromise<Schema$CustomMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Custommetrics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Custommetrics$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3705,26 +4335,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomMetric>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+        params?: Params$Resource$Management$Custommetrics$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        params: Params$Resource$Management$Custommetrics$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    insert(
+        params: Params$Resource$Management$Custommetrics$Insert,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    insert(callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Custommetrics$Insert|
+        BodyResponseCallback<Schema$CustomMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
         void|AxiosPromise<Schema$CustomMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Custommetrics$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Custommetrics$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3764,26 +4407,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomMetrics>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
-        callback?: BodyResponseCallback<Schema$CustomMetrics>): void;
+        params?: Params$Resource$Management$Custommetrics$List,
+        options?: MethodOptions): AxiosPromise<Schema$CustomMetrics>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
+        params: Params$Resource$Management$Custommetrics$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
+        callback: BodyResponseCallback<Schema$CustomMetrics>): void;
+    list(
+        params: Params$Resource$Management$Custommetrics$List,
+        callback: BodyResponseCallback<Schema$CustomMetrics>): void;
+    list(callback: BodyResponseCallback<Schema$CustomMetrics>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Custommetrics$List|
+        BodyResponseCallback<Schema$CustomMetrics>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomMetrics>,
         callback?: BodyResponseCallback<Schema$CustomMetrics>):
         void|AxiosPromise<Schema$CustomMetrics> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Custommetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Custommetrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3825,26 +4481,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomMetric>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+        params?: Params$Resource$Management$Custommetrics$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        params: Params$Resource$Management$Custommetrics$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    patch(
+        params: Params$Resource$Management$Custommetrics$Patch,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    patch(callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Custommetrics$Patch|
+        BodyResponseCallback<Schema$CustomMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
         void|AxiosPromise<Schema$CustomMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Custommetrics$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Custommetrics$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3885,26 +4554,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomMetric>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+        params?: Params$Resource$Management$Custommetrics$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        params: Params$Resource$Management$Custommetrics$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    update(
+        params: Params$Resource$Management$Custommetrics$Update,
+        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    update(callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Custommetrics$Update|
+        BodyResponseCallback<Schema$CustomMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
         void|AxiosPromise<Schema$CustomMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Custommetrics$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Custommetrics$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3928,6 +4610,126 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Custommetrics$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom metric to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The ID of the custom metric to retrieve.
+     */
+    customMetricId?: string;
+    /**
+     * Web property ID for the custom metric to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Custommetrics$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom metric to create.
+     */
+    accountId?: string;
+    /**
+     * Web property ID for the custom dimension to create.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomMetric;
+  }
+  export interface Params$Resource$Management$Custommetrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom metrics to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of custom metrics to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID for the custom metrics to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Custommetrics$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom metric to update.
+     */
+    accountId?: string;
+    /**
+     * Custom metric ID for the custom metric to update.
+     */
+    customMetricId?: string;
+    /**
+     * Force the update and ignore any warnings related to the custom metric
+     * being linked to a custom data source / data set.
+     */
+    ignoreCustomDataSourceLinks?: boolean;
+    /**
+     * Web property ID for the custom metric to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomMetric;
+  }
+  export interface Params$Resource$Management$Custommetrics$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the custom metric to update.
+     */
+    accountId?: string;
+    /**
+     * Custom metric ID for the custom metric to update.
+     */
+    customMetricId?: string;
+    /**
+     * Force the update and ignore any warnings related to the custom metric
+     * being linked to a custom data source / data set.
+     */
+    ignoreCustomDataSourceLinks?: boolean;
+    /**
+     * Web property ID for the custom metric to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomMetric;
+  }
+
 
   export class Resource$Management$Experiments {
     root: Analytics;
@@ -3956,22 +4758,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Experiments$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Experiments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Experiments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Experiments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4012,23 +4829,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Experiment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+    get(params?: Params$Resource$Management$Experiments$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+    get(params: Params$Resource$Management$Experiments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    get(params: Params$Resource$Management$Experiments$Get,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    get(callback: BodyResponseCallback<Schema$Experiment>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Experiments$Get|
+        BodyResponseCallback<Schema$Experiment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
         void|AxiosPromise<Schema$Experiment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4069,26 +4898,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Experiment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>): void;
+        params?: Params$Resource$Management$Experiments$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        params: Params$Resource$Management$Experiments$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    insert(
+        params: Params$Resource$Management$Experiments$Insert,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    insert(callback: BodyResponseCallback<Schema$Experiment>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Experiments$Insert|
+        BodyResponseCallback<Schema$Experiment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
         void|AxiosPromise<Schema$Experiment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4129,26 +4971,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Experiments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiments>,
-        callback?: BodyResponseCallback<Schema$Experiments>): void;
+        params?: Params$Resource$Management$Experiments$List,
+        options?: MethodOptions): AxiosPromise<Schema$Experiments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiments>,
+        params: Params$Resource$Management$Experiments$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Experiments>,
+        callback: BodyResponseCallback<Schema$Experiments>): void;
+    list(
+        params: Params$Resource$Management$Experiments$List,
+        callback: BodyResponseCallback<Schema$Experiments>): void;
+    list(callback: BodyResponseCallback<Schema$Experiments>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Experiments$List|
+        BodyResponseCallback<Schema$Experiments>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Experiments>,
         callback?: BodyResponseCallback<Schema$Experiments>):
         void|AxiosPromise<Schema$Experiments> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4190,26 +5045,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Experiment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>): void;
+        params?: Params$Resource$Management$Experiments$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        params: Params$Resource$Management$Experiments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    patch(
+        params: Params$Resource$Management$Experiments$Patch,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    patch(callback: BodyResponseCallback<Schema$Experiment>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Experiments$Patch|
+        BodyResponseCallback<Schema$Experiment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
         void|AxiosPromise<Schema$Experiment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4251,26 +5119,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Experiment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>): void;
+        params?: Params$Resource$Management$Experiments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        params: Params$Resource$Management$Experiments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    update(
+        params: Params$Resource$Management$Experiments$Update,
+        callback: BodyResponseCallback<Schema$Experiment>): void;
+    update(callback: BodyResponseCallback<Schema$Experiment>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Experiments$Update|
+        BodyResponseCallback<Schema$Experiment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
         void|AxiosPromise<Schema$Experiment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Experiments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Experiments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4295,6 +5176,159 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Experiments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the experiment belongs
+     */
+    accountId?: string;
+    /**
+     * ID of the experiment to delete
+     */
+    experimentId?: string;
+    /**
+     * View (Profile) ID to which the experiment belongs
+     */
+    profileId?: string;
+    /**
+     * Web property ID to which the experiment belongs
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Experiments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve the experiment for.
+     */
+    accountId?: string;
+    /**
+     * Experiment ID to retrieve the experiment for.
+     */
+    experimentId?: string;
+    /**
+     * View (Profile) ID to retrieve the experiment for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to retrieve the experiment for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Experiments$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the experiment for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to create the experiment for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to create the experiment for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Experiment;
+  }
+  export interface Params$Resource$Management$Experiments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve experiments for.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of experiments to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * View (Profile) ID to retrieve experiments for.
+     */
+    profileId?: string;
+    /**
+     * An index of the first experiment to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID to retrieve experiments for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Experiments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID of the experiment to update.
+     */
+    accountId?: string;
+    /**
+     * Experiment ID of the experiment to update.
+     */
+    experimentId?: string;
+    /**
+     * View (Profile) ID of the experiment to update.
+     */
+    profileId?: string;
+    /**
+     * Web property ID of the experiment to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Experiment;
+  }
+  export interface Params$Resource$Management$Experiments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID of the experiment to update.
+     */
+    accountId?: string;
+    /**
+     * Experiment ID of the experiment to update.
+     */
+    experimentId?: string;
+    /**
+     * View (Profile) ID of the experiment to update.
+     */
+    profileId?: string;
+    /**
+     * Web property ID of the experiment to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Experiment;
+  }
+
 
   export class Resource$Management$Filters {
     root: Analytics;
@@ -4321,25 +5355,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>): void;
+        params?: Params$Resource$Management$Filters$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Filter>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        params: Params$Resource$Management$Filters$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    delete(
+        params: Params$Resource$Management$Filters$Delete,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    delete(callback: BodyResponseCallback<Schema$Filter>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Filters$Delete|
+        BodyResponseCallback<Schema$Filter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
         void|AxiosPromise<Schema$Filter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4377,23 +5424,34 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+    get(params?: Params$Resource$Management$Filters$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+    get(params: Params$Resource$Management$Filters$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    get(params: Params$Resource$Management$Filters$Get,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    get(callback: BodyResponseCallback<Schema$Filter>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Filters$Get|
+        BodyResponseCallback<Schema$Filter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
         void|AxiosPromise<Schema$Filter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4431,25 +5489,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>): void;
+        params?: Params$Resource$Management$Filters$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Filter>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        params: Params$Resource$Management$Filters$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    insert(
+        params: Params$Resource$Management$Filters$Insert,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    insert(callback: BodyResponseCallback<Schema$Filter>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Filters$Insert|
+        BodyResponseCallback<Schema$Filter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
         void|AxiosPromise<Schema$Filter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4487,25 +5558,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filters>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filters>,
-        callback?: BodyResponseCallback<Schema$Filters>): void;
+        params?: Params$Resource$Management$Filters$List,
+        options?: MethodOptions): AxiosPromise<Schema$Filters>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filters>,
+        params: Params$Resource$Management$Filters$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Filters>,
+        callback: BodyResponseCallback<Schema$Filters>): void;
+    list(
+        params: Params$Resource$Management$Filters$List,
+        callback: BodyResponseCallback<Schema$Filters>): void;
+    list(callback: BodyResponseCallback<Schema$Filters>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Filters$List|
+        BodyResponseCallback<Schema$Filters>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filters>,
         callback?: BodyResponseCallback<Schema$Filters>):
         void|AxiosPromise<Schema$Filters> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4543,25 +5627,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>): void;
+        params?: Params$Resource$Management$Filters$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Filter>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        params: Params$Resource$Management$Filters$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    patch(
+        params: Params$Resource$Management$Filters$Patch,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    patch(callback: BodyResponseCallback<Schema$Filter>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Filters$Patch|
+        BodyResponseCallback<Schema$Filter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
         void|AxiosPromise<Schema$Filter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4600,25 +5697,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>): void;
+        params?: Params$Resource$Management$Filters$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Filter>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        params: Params$Resource$Management$Filters$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    update(
+        params: Params$Resource$Management$Filters$Update,
+        callback: BodyResponseCallback<Schema$Filter>): void;
+    update(callback: BodyResponseCallback<Schema$Filter>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Filters$Update|
+        BodyResponseCallback<Schema$Filter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
         void|AxiosPromise<Schema$Filter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Filters$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4642,6 +5752,111 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Filters$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the filter for.
+     */
+    accountId?: string;
+    /**
+     * ID of the filter to be deleted.
+     */
+    filterId?: string;
+  }
+  export interface Params$Resource$Management$Filters$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve filters for.
+     */
+    accountId?: string;
+    /**
+     * Filter ID to retrieve filters for.
+     */
+    filterId?: string;
+  }
+  export interface Params$Resource$Management$Filters$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create filter for.
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Filter;
+  }
+  export interface Params$Resource$Management$Filters$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve filters for.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of filters to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+  export interface Params$Resource$Management$Filters$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the filter belongs.
+     */
+    accountId?: string;
+    /**
+     * ID of the filter to be updated.
+     */
+    filterId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Filter;
+  }
+  export interface Params$Resource$Management$Filters$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the filter belongs.
+     */
+    accountId?: string;
+    /**
+     * ID of the filter to be updated.
+     */
+    filterId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Filter;
+  }
+
 
   export class Resource$Management$Goals {
     root: Analytics;
@@ -4670,21 +5885,34 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+    get(params?: Params$Resource$Management$Goals$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Goal>;
+    get(params: Params$Resource$Management$Goals$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    get(params: Params$Resource$Management$Goals$Get,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    get(callback: BodyResponseCallback<Schema$Goal>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Goals$Get|
+        BodyResponseCallback<Schema$Goal>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
         void|AxiosPromise<Schema$Goal> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4724,23 +5952,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>): void;
+        params?: Params$Resource$Management$Goals$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Goal>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        params: Params$Resource$Management$Goals$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    insert(
+        params: Params$Resource$Management$Goals$Insert,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    insert(callback: BodyResponseCallback<Schema$Goal>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Goals$Insert|
+        BodyResponseCallback<Schema$Goal>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
         void|AxiosPromise<Schema$Goal> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4781,25 +6024,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Goals>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Goals>,
-        callback?: BodyResponseCallback<Schema$Goals>): void;
+        params?: Params$Resource$Management$Goals$List,
+        options?: MethodOptions): AxiosPromise<Schema$Goals>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Goals>,
+        params: Params$Resource$Management$Goals$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Goals>,
+        callback: BodyResponseCallback<Schema$Goals>): void;
+    list(
+        params: Params$Resource$Management$Goals$List,
+        callback: BodyResponseCallback<Schema$Goals>): void;
+    list(callback: BodyResponseCallback<Schema$Goals>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Goals$List|
+        BodyResponseCallback<Schema$Goals>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goals>,
         callback?: BodyResponseCallback<Schema$Goals>):
         void|AxiosPromise<Schema$Goals> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4840,23 +6096,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>): void;
+        params?: Params$Resource$Management$Goals$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Goal>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        params: Params$Resource$Management$Goals$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    patch(
+        params: Params$Resource$Management$Goals$Patch,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    patch(callback: BodyResponseCallback<Schema$Goal>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Goals$Patch|
+        BodyResponseCallback<Schema$Goal>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
         void|AxiosPromise<Schema$Goal> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4897,23 +6168,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>): void;
+        params?: Params$Resource$Management$Goals$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Goal>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        params: Params$Resource$Management$Goals$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    update(
+        params: Params$Resource$Management$Goals$Update,
+        callback: BodyResponseCallback<Schema$Goal>): void;
+    update(callback: BodyResponseCallback<Schema$Goal>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Goals$Update|
+        BodyResponseCallback<Schema$Goal>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
         void|AxiosPromise<Schema$Goal> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4937,6 +6223,141 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Goals$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve the goal for.
+     */
+    accountId?: string;
+    /**
+     * Goal ID to retrieve the goal for.
+     */
+    goalId?: string;
+    /**
+     * View (Profile) ID to retrieve the goal for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to retrieve the goal for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Goals$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the goal for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to create the goal for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to create the goal for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Goal;
+  }
+  export interface Params$Resource$Management$Goals$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve goals for. Can either be a specific account ID or
+     * '~all', which refers to all the accounts that user has access to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of goals to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * View (Profile) ID to retrieve goals for. Can either be a specific view
+     * (profile) ID or '~all', which refers to all the views (profiles) that
+     * user has access to.
+     */
+    profileId?: string;
+    /**
+     * An index of the first goal to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID to retrieve goals for. Can either be a specific web
+     * property ID or '~all', which refers to all the web properties that user
+     * has access to.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Goals$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to update the goal.
+     */
+    accountId?: string;
+    /**
+     * Index of the goal to be updated.
+     */
+    goalId?: string;
+    /**
+     * View (Profile) ID to update the goal.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to update the goal.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Goal;
+  }
+  export interface Params$Resource$Management$Goals$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to update the goal.
+     */
+    accountId?: string;
+    /**
+     * Index of the goal to be updated.
+     */
+    goalId?: string;
+    /**
+     * View (Profile) ID to update the goal.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to update the goal.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Goal;
+  }
+
 
   export class Resource$Management$Profilefilterlinks {
     root: Analytics;
@@ -4965,22 +6386,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Profilefilterlinks$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Profilefilterlinks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Profilefilterlinks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5020,24 +6456,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Profilefilterlinks$Get,
         options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+    get(params: Params$Resource$Management$Profilefilterlinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    get(params: Params$Resource$Management$Profilefilterlinks$Get,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    get(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Get|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
         void|AxiosPromise<Schema$ProfileFilterLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5077,26 +6524,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProfileFilterLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+        params?: Params$Resource$Management$Profilefilterlinks$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        params: Params$Resource$Management$Profilefilterlinks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    insert(
+        params: Params$Resource$Management$Profilefilterlinks$Insert,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    insert(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Insert|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
         void|AxiosPromise<Schema$ProfileFilterLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5137,26 +6597,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProfileFilterLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+        params?: Params$Resource$Management$Profilefilterlinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
+        params: Params$Resource$Management$Profilefilterlinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
+        callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+    list(
+        params: Params$Resource$Management$Profilefilterlinks$List,
+        callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+    list(callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$List|
+        BodyResponseCallback<Schema$ProfileFilterLinks>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProfileFilterLinks>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLinks>):
         void|AxiosPromise<Schema$ProfileFilterLinks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5198,26 +6671,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProfileFilterLink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+        params?: Params$Resource$Management$Profilefilterlinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        params: Params$Resource$Management$Profilefilterlinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    patch(
+        params: Params$Resource$Management$Profilefilterlinks$Patch,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    patch(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Patch|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
         void|AxiosPromise<Schema$ProfileFilterLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5258,26 +6744,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ProfileFilterLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+        params?: Params$Resource$Management$Profilefilterlinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        params: Params$Resource$Management$Profilefilterlinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    update(
+        params: Params$Resource$Management$Profilefilterlinks$Update,
+        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    update(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Update|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
         void|AxiosPromise<Schema$ProfileFilterLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profilefilterlinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profilefilterlinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5301,6 +6800,162 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Profilefilterlinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the profile filter link belongs.
+     */
+    accountId?: string;
+    /**
+     * ID of the profile filter link to delete.
+     */
+    linkId?: string;
+    /**
+     * Profile ID to which the filter link belongs.
+     */
+    profileId?: string;
+    /**
+     * Web property Id to which the profile filter link belongs.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profilefilterlinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve profile filter link for.
+     */
+    accountId?: string;
+    /**
+     * ID of the profile filter link.
+     */
+    linkId?: string;
+    /**
+     * Profile ID to retrieve filter link for.
+     */
+    profileId?: string;
+    /**
+     * Web property Id to retrieve profile filter link for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profilefilterlinks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create profile filter link for.
+     */
+    accountId?: string;
+    /**
+     * Profile ID to create filter link for.
+     */
+    profileId?: string;
+    /**
+     * Web property Id to create profile filter link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ProfileFilterLink;
+  }
+  export interface Params$Resource$Management$Profilefilterlinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve profile filter links for.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of profile filter links to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * Profile ID to retrieve filter links for. Can either be a specific profile
+     * ID or '~all', which refers to all the profiles that user has access to.
+     */
+    profileId?: string;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property Id for profile filter links for. Can either be a specific
+     * web property ID or '~all', which refers to all the web properties that
+     * user has access to.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profilefilterlinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which profile filter link belongs.
+     */
+    accountId?: string;
+    /**
+     * ID of the profile filter link to be updated.
+     */
+    linkId?: string;
+    /**
+     * Profile ID to which filter link belongs
+     */
+    profileId?: string;
+    /**
+     * Web property Id to which profile filter link belongs
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ProfileFilterLink;
+  }
+  export interface Params$Resource$Management$Profilefilterlinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which profile filter link belongs.
+     */
+    accountId?: string;
+    /**
+     * ID of the profile filter link to be updated.
+     */
+    linkId?: string;
+    /**
+     * Profile ID to which filter link belongs
+     */
+    profileId?: string;
+    /**
+     * Web property Id to which profile filter link belongs
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ProfileFilterLink;
+  }
+
 
   export class Resource$Management$Profiles {
     root: Analytics;
@@ -5328,22 +6983,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Profiles$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Profiles$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Profiles$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Profiles$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5382,23 +7052,34 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+    get(params?: Params$Resource$Management$Profiles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+    get(params: Params$Resource$Management$Profiles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    get(params: Params$Resource$Management$Profiles$Get,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    get(callback: BodyResponseCallback<Schema$Profile>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Profiles$Get|
+        BodyResponseCallback<Schema$Profile>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
         void|AxiosPromise<Schema$Profile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5437,25 +7118,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>): void;
+        params?: Params$Resource$Management$Profiles$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Profile>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        params: Params$Resource$Management$Profiles$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    insert(
+        params: Params$Resource$Management$Profiles$Insert,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    insert(callback: BodyResponseCallback<Schema$Profile>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Profiles$Insert|
+        BodyResponseCallback<Schema$Profile>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
         void|AxiosPromise<Schema$Profile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profiles$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5495,25 +7189,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Profiles>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
-        callback?: BodyResponseCallback<Schema$Profiles>): void;
+        params?: Params$Resource$Management$Profiles$List,
+        options?: MethodOptions): AxiosPromise<Schema$Profiles>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
+        params: Params$Resource$Management$Profiles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Profiles>,
+        callback: BodyResponseCallback<Schema$Profiles>): void;
+    list(
+        params: Params$Resource$Management$Profiles$List,
+        callback: BodyResponseCallback<Schema$Profiles>): void;
+    list(callback: BodyResponseCallback<Schema$Profiles>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Profiles$List|
+        BodyResponseCallback<Schema$Profiles>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
         callback?: BodyResponseCallback<Schema$Profiles>):
         void|AxiosPromise<Schema$Profiles> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5554,25 +7261,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>): void;
+        params?: Params$Resource$Management$Profiles$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Profile>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        params: Params$Resource$Management$Profiles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    patch(
+        params: Params$Resource$Management$Profiles$Patch,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    patch(callback: BodyResponseCallback<Schema$Profile>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Profiles$Patch|
+        BodyResponseCallback<Schema$Profile>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
         void|AxiosPromise<Schema$Profile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5612,25 +7332,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>): void;
+        params?: Params$Resource$Management$Profiles$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Profile>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        params: Params$Resource$Management$Profiles$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    update(
+        params: Params$Resource$Management$Profiles$Update,
+        callback: BodyResponseCallback<Schema$Profile>): void;
+    update(callback: BodyResponseCallback<Schema$Profile>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Profiles$Update|
+        BodyResponseCallback<Schema$Profile>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
         void|AxiosPromise<Schema$Profile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profiles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5654,6 +7387,139 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Profiles$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the view (profile) for.
+     */
+    accountId?: string;
+    /**
+     * ID of the view (profile) to be deleted.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to delete the view (profile) for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profiles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve the view (profile) for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to retrieve the view (profile) for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to retrieve the view (profile) for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profiles$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the view (profile) for.
+     */
+    accountId?: string;
+    /**
+     * Web property ID to create the view (profile) for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Profile;
+  }
+  export interface Params$Resource$Management$Profiles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the view (profiles) to retrieve. Can either be a specific
+     * account ID or '~all', which refers to all the accounts to which the user
+     * has access.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of views (profiles) to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID for the views (profiles) to retrieve. Can either be a
+     * specific web property ID or '~all', which refers to all the web
+     * properties to which the user has access.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profiles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the view (profile) belongs
+     */
+    accountId?: string;
+    /**
+     * ID of the view (profile) to be updated.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to which the view (profile) belongs
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Profile;
+  }
+  export interface Params$Resource$Management$Profiles$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the view (profile) belongs
+     */
+    accountId?: string;
+    /**
+     * ID of the view (profile) to be updated.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to which the view (profile) belongs
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Profile;
+  }
+
 
   export class Resource$Management$Profileuserlinks {
     root: Analytics;
@@ -5682,22 +7548,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Profileuserlinks$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Profileuserlinks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Profileuserlinks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profileuserlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profileuserlinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5737,26 +7618,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Profileuserlinks$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Profileuserlinks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        params: Params$Resource$Management$Profileuserlinks$Insert,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Insert|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profileuserlinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profileuserlinks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5797,26 +7691,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+        params?: Params$Resource$Management$Profileuserlinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        params: Params$Resource$Management$Profileuserlinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        params: Params$Resource$Management$Profileuserlinks$List,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$List|
+        BodyResponseCallback<Schema$EntityUserLinks>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
         void|AxiosPromise<Schema$EntityUserLinks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profileuserlinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profileuserlinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5858,26 +7765,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Profileuserlinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Profileuserlinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        params: Params$Resource$Management$Profileuserlinks$Update,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Update|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Profileuserlinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profileuserlinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5901,6 +7821,113 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Profileuserlinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to delete the user link for.
+     */
+    linkId?: string;
+    /**
+     * View (Profile) ID to delete the user link for.
+     */
+    profileId?: string;
+    /**
+     * Web Property ID to delete the user link for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profileuserlinks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the user link for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to create the user link for.
+     */
+    profileId?: string;
+    /**
+     * Web Property ID to create the user link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+  export interface Params$Resource$Management$Profileuserlinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID which the given view (profile) belongs to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of profile-user links to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * View (Profile) ID to retrieve the profile-user links for. Can either be a
+     * specific profile ID or '~all', which refers to all the profiles that user
+     * has access to.
+     */
+    profileId?: string;
+    /**
+     * An index of the first profile-user link to retrieve. Use this parameter
+     * as a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web Property ID which the given view (profile) belongs to. Can either be
+     * a specific web property ID or '~all', which refers to all the web
+     * properties that user has access to.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Profileuserlinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to update the user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to update the user link for.
+     */
+    linkId?: string;
+    /**
+     * View (Profile ID) to update the user link for.
+     */
+    profileId?: string;
+    /**
+     * Web Property ID to update the user link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+
 
   export class Resource$Management$Remarketingaudience {
     root: Analytics;
@@ -5928,22 +7955,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Remarketingaudience$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Remarketingaudience$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Remarketingaudience$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Management$Remarketingaudience$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5982,26 +8025,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Remarketingaudience$Get,
         options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Management$Remarketingaudience$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    get(params: Params$Resource$Management$Remarketingaudience$Get,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    get(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Remarketingaudience$Get|
         BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
         void|AxiosPromise<Schema$RemarketingAudience> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6040,28 +8092,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingAudience>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Management$Remarketingaudience$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+    insert(
+        params: Params$Resource$Management$Remarketingaudience$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    insert(
+        params: Params$Resource$Management$Remarketingaudience$Insert,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    insert(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    insert(
+        paramsOrCallback?:
+            Params$Resource$Management$Remarketingaudience$Insert|
         BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    insert(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
         void|AxiosPromise<Schema$RemarketingAudience> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6102,28 +8166,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingAudiences>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Management$Remarketingaudience$List,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudiences>;
+    list(
+        params: Params$Resource$Management$Remarketingaudience$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudiences>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+        callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Management$Remarketingaudience$List,
+        callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+    list(callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Remarketingaudience$List|
+        BodyResponseCallback<Schema$RemarketingAudiences>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudiences>,
         callback?: BodyResponseCallback<Schema$RemarketingAudiences>):
         void|AxiosPromise<Schema$RemarketingAudiences> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6164,28 +8240,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingAudience>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Management$Remarketingaudience$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+    patch(
+        params: Params$Resource$Management$Remarketingaudience$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    patch(
+        params: Params$Resource$Management$Remarketingaudience$Patch,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    patch(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Remarketingaudience$Patch|
         BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    patch(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
         void|AxiosPromise<Schema$RemarketingAudience> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6225,28 +8312,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingAudience>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Management$Remarketingaudience$Update,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+    update(
+        params: Params$Resource$Management$Remarketingaudience$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    update(
+        params: Params$Resource$Management$Remarketingaudience$Update,
+        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    update(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Management$Remarketingaudience$Update|
         BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    update(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
         void|AxiosPromise<Schema$RemarketingAudience> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Remarketingaudience$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Remarketingaudience$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6270,6 +8369,139 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Remarketingaudience$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the remarketing audience belongs.
+     */
+    accountId?: string;
+    /**
+     * The ID of the remarketing audience to delete.
+     */
+    remarketingAudienceId?: string;
+    /**
+     * Web property ID to which the remarketing audience belongs.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Remarketingaudience$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account ID of the remarketing audience to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The ID of the remarketing audience to retrieve.
+     */
+    remarketingAudienceId?: string;
+    /**
+     * The web property ID of the remarketing audience to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Remarketingaudience$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account ID for which to create the remarketing audience.
+     */
+    accountId?: string;
+    /**
+     * Web property ID for which to create the remarketing audience.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingAudience;
+  }
+  export interface Params$Resource$Management$Remarketingaudience$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account ID of the remarketing audiences to retrieve.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of remarketing audiences to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     *
+     */
+    type?: string;
+    /**
+     * The web property ID of the remarketing audiences to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Remarketingaudience$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account ID of the remarketing audience to update.
+     */
+    accountId?: string;
+    /**
+     * The ID of the remarketing audience to update.
+     */
+    remarketingAudienceId?: string;
+    /**
+     * The web property ID of the remarketing audience to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingAudience;
+  }
+  export interface Params$Resource$Management$Remarketingaudience$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account ID of the remarketing audience to update.
+     */
+    accountId?: string;
+    /**
+     * The ID of the remarketing audience to update.
+     */
+    remarketingAudienceId?: string;
+    /**
+     * The web property ID of the remarketing audience to update.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingAudience;
+  }
+
 
   export class Resource$Management$Segments {
     root: Analytics;
@@ -6296,25 +8528,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Segments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Segments>,
-        callback?: BodyResponseCallback<Schema$Segments>): void;
+        params?: Params$Resource$Management$Segments$List,
+        options?: MethodOptions): AxiosPromise<Schema$Segments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Segments>,
+        params: Params$Resource$Management$Segments$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Segments>,
+        callback: BodyResponseCallback<Schema$Segments>): void;
+    list(
+        params: Params$Resource$Management$Segments$List,
+        callback: BodyResponseCallback<Schema$Segments>): void;
+    list(callback: BodyResponseCallback<Schema$Segments>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Segments$List|
+        BodyResponseCallback<Schema$Segments>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Segments>,
         callback?: BodyResponseCallback<Schema$Segments>):
         void|AxiosPromise<Schema$Segments> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Segments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Segments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6336,6 +8581,24 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Segments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of segments to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first segment to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Management$Unsampledreports {
     root: Analytics;
@@ -6364,22 +8627,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Unsampledreports$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Unsampledreports$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Unsampledreports$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Management$Unsampledreports$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Unsampledreports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Unsampledreports$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6421,24 +8699,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Unsampledreports$Get,
         options?: MethodOptions): AxiosPromise<Schema$UnsampledReport>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-        callback?: BodyResponseCallback<Schema$UnsampledReport>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+    get(params: Params$Resource$Management$Unsampledreports$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    get(params: Params$Resource$Management$Unsampledreports$Get,
+        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    get(callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Unsampledreports$Get|
+        BodyResponseCallback<Schema$UnsampledReport>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UnsampledReport>,
         callback?: BodyResponseCallback<Schema$UnsampledReport>):
         void|AxiosPromise<Schema$UnsampledReport> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Unsampledreports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Unsampledreports$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6480,26 +8769,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UnsampledReport>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-        callback?: BodyResponseCallback<Schema$UnsampledReport>): void;
+        params?: Params$Resource$Management$Unsampledreports$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$UnsampledReport>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+        params: Params$Resource$Management$Unsampledreports$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    insert(
+        params: Params$Resource$Management$Unsampledreports$Insert,
+        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    insert(callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Unsampledreports$Insert|
+        BodyResponseCallback<Schema$UnsampledReport>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UnsampledReport>,
         callback?: BodyResponseCallback<Schema$UnsampledReport>):
         void|AxiosPromise<Schema$UnsampledReport> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Unsampledreports$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Unsampledreports$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6540,26 +8842,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UnsampledReports>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
-        callback?: BodyResponseCallback<Schema$UnsampledReports>): void;
+        params?: Params$Resource$Management$Unsampledreports$List,
+        options?: MethodOptions): AxiosPromise<Schema$UnsampledReports>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
+        params: Params$Resource$Management$Unsampledreports$List,
+        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
+        callback: BodyResponseCallback<Schema$UnsampledReports>): void;
+    list(
+        params: Params$Resource$Management$Unsampledreports$List,
+        callback: BodyResponseCallback<Schema$UnsampledReports>): void;
+    list(callback: BodyResponseCallback<Schema$UnsampledReports>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Unsampledreports$List|
+        BodyResponseCallback<Schema$UnsampledReports>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UnsampledReports>,
         callback?: BodyResponseCallback<Schema$UnsampledReports>):
         void|AxiosPromise<Schema$UnsampledReports> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Unsampledreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Unsampledreports$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6583,6 +8898,108 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Unsampledreports$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the unsampled report for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to delete the unsampled report for.
+     */
+    profileId?: string;
+    /**
+     * ID of the unsampled report to be deleted.
+     */
+    unsampledReportId?: string;
+    /**
+     * Web property ID to delete the unsampled reports for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Unsampledreports$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve unsampled report for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to retrieve unsampled report for.
+     */
+    profileId?: string;
+    /**
+     * ID of the unsampled report to retrieve.
+     */
+    unsampledReportId?: string;
+    /**
+     * Web property ID to retrieve unsampled reports for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Unsampledreports$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the unsampled report for.
+     */
+    accountId?: string;
+    /**
+     * View (Profile) ID to create the unsampled report for.
+     */
+    profileId?: string;
+    /**
+     * Web property ID to create the unsampled report for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UnsampledReport;
+  }
+  export interface Params$Resource$Management$Unsampledreports$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve unsampled reports for. Must be a specific account
+     * ID, ~all is not supported.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of unsampled reports to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * View (Profile) ID to retrieve unsampled reports for. Must be a specific
+     * view (profile) ID, ~all is not supported.
+     */
+    profileId?: string;
+    /**
+     * An index of the first unsampled report to retrieve. Use this parameter as
+     * a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID to retrieve unsampled reports for. Must be a specific web
+     * property ID, ~all is not supported.
+     */
+    webPropertyId?: string;
+  }
+
 
   export class Resource$Management$Uploads {
     root: Analytics;
@@ -6611,22 +9028,37 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteUploadData(params?: any, options?: MethodOptions): AxiosPromise<void>;
     deleteUploadData(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Uploads$Deleteuploaddata,
+        options?: MethodOptions): AxiosPromise<void>;
     deleteUploadData(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Uploads$Deleteuploaddata,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    deleteUploadData(
+        params: Params$Resource$Management$Uploads$Deleteuploaddata,
+        callback: BodyResponseCallback<void>): void;
+    deleteUploadData(callback: BodyResponseCallback<void>): void;
+    deleteUploadData(
+        paramsOrCallback?: Params$Resource$Management$Uploads$Deleteuploaddata|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Uploads$Deleteuploaddata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Uploads$Deleteuploaddata;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6666,23 +9098,34 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Upload>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback?: BodyResponseCallback<Schema$Upload>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
+    get(params?: Params$Resource$Management$Uploads$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Upload>;
+    get(params: Params$Resource$Management$Uploads$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Upload>,
+        callback: BodyResponseCallback<Schema$Upload>): void;
+    get(params: Params$Resource$Management$Uploads$Get,
+        callback: BodyResponseCallback<Schema$Upload>): void;
+    get(callback: BodyResponseCallback<Schema$Upload>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Uploads$Get|
+        BodyResponseCallback<Schema$Upload>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
         callback?: BodyResponseCallback<Schema$Upload>):
         void|AxiosPromise<Schema$Upload> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Uploads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Uploads$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6725,25 +9168,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Uploads>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
-        callback?: BodyResponseCallback<Schema$Uploads>): void;
+        params?: Params$Resource$Management$Uploads$List,
+        options?: MethodOptions): AxiosPromise<Schema$Uploads>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
+        params: Params$Resource$Management$Uploads$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Uploads>,
+        callback: BodyResponseCallback<Schema$Uploads>): void;
+    list(
+        params: Params$Resource$Management$Uploads$List,
+        callback: BodyResponseCallback<Schema$Uploads>): void;
+    list(callback: BodyResponseCallback<Schema$Uploads>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Uploads$List|
+        BodyResponseCallback<Schema$Uploads>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
         callback?: BodyResponseCallback<Schema$Uploads>):
         void|AxiosPromise<Schema$Uploads> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Uploads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Uploads$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6785,26 +9241,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadData(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Upload>;
     uploadData(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback?: BodyResponseCallback<Schema$Upload>): void;
+        params?: Params$Resource$Management$Uploads$Uploaddata,
+        options?: MethodOptions): AxiosPromise<Schema$Upload>;
     uploadData(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
+        params: Params$Resource$Management$Uploads$Uploaddata,
+        options: MethodOptions|BodyResponseCallback<Schema$Upload>,
+        callback: BodyResponseCallback<Schema$Upload>): void;
+    uploadData(
+        params: Params$Resource$Management$Uploads$Uploaddata,
+        callback: BodyResponseCallback<Schema$Upload>): void;
+    uploadData(callback: BodyResponseCallback<Schema$Upload>): void;
+    uploadData(
+        paramsOrCallback?: Params$Resource$Management$Uploads$Uploaddata|
+        BodyResponseCallback<Schema$Upload>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
         callback?: BodyResponseCallback<Schema$Upload>):
         void|AxiosPromise<Schema$Upload> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Uploads$Uploaddata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Uploads$Uploaddata;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6833,6 +9301,115 @@ export namespace analytics_v3 {
     }
   }
 
+  export interface Params$Resource$Management$Uploads$Deleteuploaddata {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account Id for the uploads to be deleted.
+     */
+    accountId?: string;
+    /**
+     * Custom data source Id for the uploads to be deleted.
+     */
+    customDataSourceId?: string;
+    /**
+     * Web property Id for the uploads to be deleted.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
+  }
+  export interface Params$Resource$Management$Uploads$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account Id for the upload to retrieve.
+     */
+    accountId?: string;
+    /**
+     * Custom data source Id for upload to retrieve.
+     */
+    customDataSourceId?: string;
+    /**
+     * Upload Id to retrieve.
+     */
+    uploadId?: string;
+    /**
+     * Web property Id for the upload to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Uploads$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account Id for the uploads to retrieve.
+     */
+    accountId?: string;
+    /**
+     * Custom data source Id for uploads to retrieve.
+     */
+    customDataSourceId?: string;
+    /**
+     * The maximum number of uploads to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * A 1-based index of the first upload to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property Id for the uploads to retrieve.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Uploads$Uploaddata {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account Id associated with the upload.
+     */
+    accountId?: string;
+    /**
+     * Custom data source Id to which the data being uploaded belongs.
+     */
+    customDataSourceId?: string;
+    /**
+     * Web property UA-string associated with the upload.
+     */
+    webPropertyId?: string;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+
+
   export class Resource$Management$Webproperties {
     root: Analytics;
     constructor(root: Analytics) {
@@ -6858,24 +9435,35 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Webproperties$Get,
         options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+    get(params: Params$Resource$Management$Webproperties$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    get(params: Params$Resource$Management$Webproperties$Get,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    get(callback: BodyResponseCallback<Schema$Webproperty>): void;
+    get(paramsOrCallback?: Params$Resource$Management$Webproperties$Get|
+        BodyResponseCallback<Schema$Webproperty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
         void|AxiosPromise<Schema$Webproperty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6915,26 +9503,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Webproperty>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>): void;
+        params?: Params$Resource$Management$Webproperties$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        params: Params$Resource$Management$Webproperties$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    insert(
+        params: Params$Resource$Management$Webproperties$Insert,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    insert(callback: BodyResponseCallback<Schema$Webproperty>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Management$Webproperties$Insert|
+        BodyResponseCallback<Schema$Webproperty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
         void|AxiosPromise<Schema$Webproperty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6973,26 +9574,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Webproperties>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
-        callback?: BodyResponseCallback<Schema$Webproperties>): void;
+        params?: Params$Resource$Management$Webproperties$List,
+        options?: MethodOptions): AxiosPromise<Schema$Webproperties>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
+        params: Params$Resource$Management$Webproperties$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
+        callback: BodyResponseCallback<Schema$Webproperties>): void;
+    list(
+        params: Params$Resource$Management$Webproperties$List,
+        callback: BodyResponseCallback<Schema$Webproperties>): void;
+    list(callback: BodyResponseCallback<Schema$Webproperties>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Webproperties$List|
+        BodyResponseCallback<Schema$Webproperties>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Webproperties>,
         callback?: BodyResponseCallback<Schema$Webproperties>):
         void|AxiosPromise<Schema$Webproperties> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7032,26 +9646,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Webproperty>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>): void;
+        params?: Params$Resource$Management$Webproperties$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        params: Params$Resource$Management$Webproperties$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    patch(
+        params: Params$Resource$Management$Webproperties$Patch,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    patch(callback: BodyResponseCallback<Schema$Webproperty>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Management$Webproperties$Patch|
+        BodyResponseCallback<Schema$Webproperty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
         void|AxiosPromise<Schema$Webproperty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7090,26 +9717,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Webproperty>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>): void;
+        params?: Params$Resource$Management$Webproperties$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        params: Params$Resource$Management$Webproperties$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    update(
+        params: Params$Resource$Management$Webproperties$Update,
+        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    update(callback: BodyResponseCallback<Schema$Webproperty>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Management$Webproperties$Update|
+        BodyResponseCallback<Schema$Webproperty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
         void|AxiosPromise<Schema$Webproperty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7133,6 +9773,98 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Webproperties$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve the web property for.
+     */
+    accountId?: string;
+    /**
+     * ID to retrieve the web property for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webproperties$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the web property for.
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Webproperty;
+  }
+  export interface Params$Resource$Management$Webproperties$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve web properties for. Can either be a specific
+     * account ID or '~all', which refers to all the accounts that user has
+     * access to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of web properties to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+  export interface Params$Resource$Management$Webproperties$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the web property belongs
+     */
+    accountId?: string;
+    /**
+     * Web property ID
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Webproperty;
+  }
+  export interface Params$Resource$Management$Webproperties$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to which the web property belongs
+     */
+    accountId?: string;
+    /**
+     * Web property ID
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Webproperty;
+  }
+
 
   export class Resource$Management$Webpropertyadwordslinks {
     root: Analytics;
@@ -7160,22 +9892,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Management$Webpropertyadwordslinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7215,24 +9964,36 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Management$Webpropertyadwordslinks$Get,
         options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+    get(params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    get(params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    get(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$Get|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
         void|AxiosPromise<Schema$EntityAdWordsLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7272,26 +10033,41 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityAdWordsLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+        params?: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    insert(
+        params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    insert(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    insert(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$Insert|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
         void|AxiosPromise<Schema$EntityAdWordsLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Management$Webpropertyadwordslinks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7331,26 +10107,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityAdWordsLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+        params?: Params$Resource$Management$Webpropertyadwordslinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
+        params: Params$Resource$Management$Webpropertyadwordslinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+    list(
+        params: Params$Resource$Management$Webpropertyadwordslinks$List,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+    list(callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$List|
+        BodyResponseCallback<Schema$EntityAdWordsLinks>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityAdWordsLinks>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>):
         void|AxiosPromise<Schema$EntityAdWordsLinks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7391,26 +10181,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityAdWordsLink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+        params?: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    patch(
+        params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    patch(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$Patch|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
         void|AxiosPromise<Schema$EntityAdWordsLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7451,26 +10255,41 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityAdWordsLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+        params?: Params$Resource$Management$Webpropertyadwordslinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    update(
+        params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    update(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyadwordslinks$Update|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
         void|AxiosPromise<Schema$EntityAdWordsLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyadwordslinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Management$Webpropertyadwordslinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7495,6 +10314,136 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the account which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * Web property AdWords link ID.
+     */
+    webPropertyAdWordsLinkId?: string;
+    /**
+     * Web property ID to delete the AdWords link for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the account which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * Web property-AdWords link ID.
+     */
+    webPropertyAdWordsLinkId?: string;
+    /**
+     * Web property ID to retrieve the AdWords link for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the Google Analytics account to create the link for.
+     */
+    accountId?: string;
+    /**
+     * Web property ID to create the link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityAdWordsLink;
+  }
+  export interface Params$Resource$Management$Webpropertyadwordslinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the account which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of webProperty-AdWords links to include in this
+     * response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first webProperty-AdWords link to retrieve. Use this
+     * parameter as a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID to retrieve the AdWords links for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the account which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * Web property-AdWords link ID.
+     */
+    webPropertyAdWordsLinkId?: string;
+    /**
+     * Web property ID to retrieve the AdWords link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityAdWordsLink;
+  }
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the account which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * Web property-AdWords link ID.
+     */
+    webPropertyAdWordsLinkId?: string;
+    /**
+     * Web property ID to retrieve the AdWords link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityAdWordsLink;
+  }
+
 
   export class Resource$Management$Webpropertyuserlinks {
     root: Analytics;
@@ -7522,22 +10471,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Webpropertyuserlinks$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyuserlinks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyuserlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyuserlinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7576,26 +10541,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Webpropertyuserlinks$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    insert(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyuserlinks$Insert|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyuserlinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyuserlinks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7635,26 +10614,39 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+        params?: Params$Resource$Management$Webpropertyuserlinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        params: Params$Resource$Management$Webpropertyuserlinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        params: Params$Resource$Management$Webpropertyuserlinks$List,
+        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Webpropertyuserlinks$List|
+        BodyResponseCallback<Schema$EntityUserLinks>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
         void|AxiosPromise<Schema$EntityUserLinks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyuserlinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyuserlinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7694,26 +10686,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+        params?: Params$Resource$Management$Webpropertyuserlinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        params: Params$Resource$Management$Webpropertyuserlinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        params: Params$Resource$Management$Webpropertyuserlinks$Update,
+        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Management$Webpropertyuserlinks$Update|
+        BodyResponseCallback<Schema$EntityUserLink>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
         void|AxiosPromise<Schema$EntityUserLink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webpropertyuserlinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webpropertyuserlinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7738,6 +10744,95 @@ export namespace analytics_v3 {
     }
   }
 
+  export interface Params$Resource$Management$Webpropertyuserlinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to delete the user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to delete the user link for.
+     */
+    linkId?: string;
+    /**
+     * Web Property ID to delete the user link for.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webpropertyuserlinks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to create the user link for.
+     */
+    accountId?: string;
+    /**
+     * Web Property ID to create the user link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+  export interface Params$Resource$Management$Webpropertyuserlinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID which the given web property belongs to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of webProperty-user Links to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first webProperty-user link to retrieve. Use this
+     * parameter as a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web Property ID for the webProperty-user links to retrieve. Can either be
+     * a specific web property ID or '~all', which refers to all the web
+     * properties that user has access to.
+     */
+    webPropertyId?: string;
+  }
+  export interface Params$Resource$Management$Webpropertyuserlinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to update the account-user link for.
+     */
+    accountId?: string;
+    /**
+     * Link ID to update the account-user link for.
+     */
+    linkId?: string;
+    /**
+     * Web property ID to update the account-user link for.
+     */
+    webPropertyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EntityUserLink;
+  }
+
+
 
   export class Resource$Metadata {
     root: Analytics;
@@ -7752,6 +10847,8 @@ export namespace analytics_v3 {
       return this.root;
     }
   }
+
+
   export class Resource$Metadata$Columns {
     root: Analytics;
     constructor(root: Analytics) {
@@ -7776,25 +10873,38 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Columns>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Columns>,
-        callback?: BodyResponseCallback<Schema$Columns>): void;
+        params?: Params$Resource$Metadata$Columns$List,
+        options?: MethodOptions): AxiosPromise<Schema$Columns>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Columns>,
+        params: Params$Resource$Metadata$Columns$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Columns>,
+        callback: BodyResponseCallback<Schema$Columns>): void;
+    list(
+        params: Params$Resource$Metadata$Columns$List,
+        callback: BodyResponseCallback<Schema$Columns>): void;
+    list(callback: BodyResponseCallback<Schema$Columns>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Metadata$Columns$List|
+        BodyResponseCallback<Schema$Columns>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Columns>,
         callback?: BodyResponseCallback<Schema$Columns>):
         void|AxiosPromise<Schema$Columns> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Metadata$Columns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metadata$Columns$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7816,6 +10926,20 @@ export namespace analytics_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Metadata$Columns$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core
+     * Reporting API
+     */
+    reportType?: string;
+  }
+
 
 
   export class Resource$Provisioning {
@@ -7842,26 +10966,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAccountTicket(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountTicket>;
     createAccountTicket(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
-        callback?: BodyResponseCallback<Schema$AccountTicket>): void;
+        params?: Params$Resource$Provisioning$Createaccountticket,
+        options?: MethodOptions): AxiosPromise<Schema$AccountTicket>;
     createAccountTicket(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
+        params: Params$Resource$Provisioning$Createaccountticket,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
+        callback: BodyResponseCallback<Schema$AccountTicket>): void;
+    createAccountTicket(
+        params: Params$Resource$Provisioning$Createaccountticket,
+        callback: BodyResponseCallback<Schema$AccountTicket>): void;
+    createAccountTicket(callback: BodyResponseCallback<Schema$AccountTicket>):
+        void;
+    createAccountTicket(
+        paramsOrCallback?: Params$Resource$Provisioning$Createaccountticket|
+        BodyResponseCallback<Schema$AccountTicket>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountTicket>,
         callback?: BodyResponseCallback<Schema$AccountTicket>):
         void|AxiosPromise<Schema$AccountTicket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Provisioning$Createaccountticket;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Provisioning$Createaccountticket;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7896,28 +11034,40 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAccountTree(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountTreeResponse>;
     createAccountTree(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Provisioning$Createaccounttree,
+        options?: MethodOptions): AxiosPromise<Schema$AccountTreeResponse>;
+    createAccountTree(
+        params: Params$Resource$Provisioning$Createaccounttree,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
+        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+    createAccountTree(
+        params: Params$Resource$Provisioning$Createaccounttree,
+        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+    createAccountTree(
+        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+    createAccountTree(
+        paramsOrCallback?: Params$Resource$Provisioning$Createaccounttree|
         BodyResponseCallback<Schema$AccountTreeResponse>,
-        callback?: BodyResponseCallback<Schema$AccountTreeResponse>): void;
-    createAccountTree(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTreeResponse>,
         callback?: BodyResponseCallback<Schema$AccountTreeResponse>):
         void|AxiosPromise<Schema$AccountTreeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Provisioning$Createaccounttree;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Provisioning$Createaccounttree;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7938,5 +11088,18 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$AccountTreeResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Provisioning$Createaccountticket {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Provisioning$Createaccounttree {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

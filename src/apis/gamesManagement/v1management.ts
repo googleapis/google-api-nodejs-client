@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace gamesManagement_v1management {
+  export interface Options extends GlobalOptions { version: 'v1management'; }
+
   /**
    * Google Play Game Services Management API
    *
@@ -87,11 +90,11 @@ export namespace gamesManagement_v1management {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#achievementResetAllResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The achievement reset results.
      */
-    results: Schema$AchievementResetResponse[];
+    results?: Schema$AchievementResetResponse[];
   }
   /**
    * This is a JSON template for multiple achievements reset all request.
@@ -100,12 +103,12 @@ export namespace gamesManagement_v1management {
     /**
      * The IDs of achievements to reset.
      */
-    achievement_ids: string[];
+    achievement_ids?: string[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#achievementResetMultipleForAllRequest.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for an achievement reset response.
@@ -117,20 +120,20 @@ export namespace gamesManagement_v1management {
      * Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.
      * - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
-    currentState: string;
+    currentState?: string;
     /**
      * The ID of an achievement for which player state has been updated.
      */
-    definitionId: string;
+    definitionId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#achievementResetResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Flag to indicate if the requested update actually occurred.
      */
-    updateOccurred: boolean;
+    updateOccurred?: boolean;
   }
   /**
    * This is a JSON template for multiple events reset all request.
@@ -139,12 +142,12 @@ export namespace gamesManagement_v1management {
     /**
      * The IDs of events to reset.
      */
-    event_ids: string[];
+    event_ids?: string[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#eventsResetMultipleForAllRequest.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for metadata about a player playing a game with the
@@ -155,12 +158,12 @@ export namespace gamesManagement_v1management {
      * True if the player was auto-matched with the currently authenticated
      * user.
      */
-    autoMatched: boolean;
+    autoMatched?: boolean;
     /**
      * The last time the player played the game in milliseconds since the epoch
      * in UTC.
      */
-    timeMillis: string;
+    timeMillis?: string;
   }
   /**
    * This is a JSON template for 1P/3P metadata about the player&#39;s
@@ -170,21 +173,21 @@ export namespace gamesManagement_v1management {
     /**
      * The current number of experience points for the player.
      */
-    currentExperiencePoints: string;
+    currentExperiencePoints?: string;
     /**
      * The current level of the player.
      */
-    currentLevel: Schema$GamesPlayerLevelResource;
+    currentLevel?: Schema$GamesPlayerLevelResource;
     /**
      * The timestamp when the player was leveled up, in millis since Unix epoch
      * UTC.
      */
-    lastLevelUpTimestampMillis: string;
+    lastLevelUpTimestampMillis?: string;
     /**
      * The next level of the player. If the current level is the maximum level,
      * this should be same as the current level.
      */
-    nextLevel: Schema$GamesPlayerLevelResource;
+    nextLevel?: Schema$GamesPlayerLevelResource;
   }
   /**
    * This is a JSON template for 1P/3P metadata about a user&#39;s level.
@@ -193,15 +196,15 @@ export namespace gamesManagement_v1management {
     /**
      * The level for the user.
      */
-    level: number;
+    level?: number;
     /**
      * The maximum experience points for this level.
      */
-    maxExperiencePoints: string;
+    maxExperiencePoints?: string;
     /**
      * The minimum experience points for this level.
      */
-    minExperiencePoints: string;
+    minExperiencePoints?: string;
   }
   /**
    * This is a JSON template for the HiddenPlayer resource.
@@ -210,16 +213,16 @@ export namespace gamesManagement_v1management {
     /**
      * The time this player was hidden.
      */
-    hiddenTimeMillis: string;
+    hiddenTimeMillis?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#hiddenPlayer.
      */
-    kind: string;
+    kind?: string;
     /**
      * The player information.
      */
-    player: Schema$Player;
+    player?: Schema$Player;
   }
   /**
    * This is a JSON template for a list of hidden players.
@@ -228,16 +231,16 @@ export namespace gamesManagement_v1management {
     /**
      * The players.
      */
-    items: Schema$HiddenPlayer[];
+    items?: Schema$HiddenPlayer[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#hiddenPlayerList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a Player resource.
@@ -246,59 +249,59 @@ export namespace gamesManagement_v1management {
     /**
      * The base URL for the image that represents the player.
      */
-    avatarImageUrl: string;
+    avatarImageUrl?: string;
     /**
      * The url to the landscape mode player banner image.
      */
-    bannerUrlLandscape: string;
+    bannerUrlLandscape?: string;
     /**
      * The url to the portrait mode player banner image.
      */
-    bannerUrlPortrait: string;
+    bannerUrlPortrait?: string;
     /**
      * The name to display for the player.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * An object to represent Play Game experience information for the player.
      */
-    experienceInfo: Schema$GamesPlayerExperienceInfoResource;
+    experienceInfo?: Schema$GamesPlayerExperienceInfoResource;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#player.
      */
-    kind: string;
+    kind?: string;
     /**
      * Details about the last time this player played a multiplayer game with
      * the currently authenticated player. Populated for PLAYED_WITH player
      * collection members.
      */
-    lastPlayedWith: Schema$GamesPlayedResource;
+    lastPlayedWith?: Schema$GamesPlayedResource;
     /**
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name: any;
+    name?: any;
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
      * for the requesting player, only if the player ID has subsequently
      * changed, and only to clients that support remapping player IDs.
      */
-    originalPlayerId: string;
+    originalPlayerId?: string;
     /**
      * The ID of the player.
      */
-    playerId: string;
+    playerId?: string;
     /**
      * The player&#39;s profile settings. Controls whether or not the
      * player&#39;s profile is visible to other players.
      */
-    profileSettings: Schema$ProfileSettings;
+    profileSettings?: Schema$ProfileSettings;
     /**
      * The player&#39;s title rewarded for their game activities.
      */
-    title: string;
+    title?: string;
   }
   /**
    * This is a JSON template for a list of leaderboard reset resources.
@@ -308,11 +311,11 @@ export namespace gamesManagement_v1management {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#playerScoreResetResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The leaderboard reset results.
      */
-    results: Schema$PlayerScoreResetResponse[];
+    results?: Schema$PlayerScoreResetResponse[];
   }
   /**
    * This is a JSON template for a list of reset leaderboard entry resources.
@@ -321,19 +324,19 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of an leaderboard for which player state has been updated.
      */
-    definitionId: string;
+    definitionId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#playerScoreResetResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time spans of the updated score. Possible values are:   -
      * &quot;ALL_TIME&quot; - The score is an all-time score.  -
      * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
      * The score is a daily score.
      */
-    resetScoreTimeSpans: string[];
+    resetScoreTimeSpans?: string[];
   }
   /**
    * This is a JSON template for profile settings
@@ -343,12 +346,12 @@ export namespace gamesManagement_v1management {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#profileSettings.
      */
-    kind: string;
+    kind?: string;
     /**
      * The player&#39;s current profile visibility. This field is visible to
      * both 1P and 3P APIs.
      */
-    profileVisible: boolean;
+    profileVisible?: boolean;
   }
   /**
    * This is a JSON template for multiple quests reset all request.
@@ -358,11 +361,11 @@ export namespace gamesManagement_v1management {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#questsResetMultipleForAllRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The IDs of quests to reset.
      */
-    quest_ids: string[];
+    quest_ids?: string[];
   }
   /**
    * This is a JSON template for multiple scores reset all request.
@@ -372,12 +375,13 @@ export namespace gamesManagement_v1management {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string gamesManagement#scoresResetMultipleForAllRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The IDs of leaderboards to reset.
      */
-    leaderboard_ids: string[];
+    leaderboard_ids?: string[];
   }
+
 
   export class Resource$Achievements {
     root: Gamesmanagement;
@@ -405,28 +409,40 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions):
+    reset(params?: Params$Resource$Achievements$Reset, options?: MethodOptions):
         AxiosPromise<Schema$AchievementResetResponse>;
     reset(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Reset,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementResetResponse>): void;
+        callback: BodyResponseCallback<Schema$AchievementResetResponse>): void;
     reset(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Reset,
+        callback: BodyResponseCallback<Schema$AchievementResetResponse>): void;
+    reset(callback: BodyResponseCallback<Schema$AchievementResetResponse>):
+        void;
+    reset(
+        paramsOrCallback?: Params$Resource$Achievements$Reset|
+        BodyResponseCallback<Schema$AchievementResetResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetResponse>,
         callback?: BodyResponseCallback<Schema$AchievementResetResponse>):
         void|AxiosPromise<Schema$AchievementResetResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -463,29 +479,45 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: any, options?: MethodOptions):
+    resetAll(
+        params?: Params$Resource$Achievements$Resetall,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementResetAllResponse>;
     resetAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Resetall,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetAllResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
+        callback: BodyResponseCallback<Schema$AchievementResetAllResponse>):
         void;
     resetAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Resetall,
+        callback: BodyResponseCallback<Schema$AchievementResetAllResponse>):
+        void;
+    resetAll(callback:
+                 BodyResponseCallback<Schema$AchievementResetAllResponse>):
+        void;
+    resetAll(
+        paramsOrCallback?: Params$Resource$Achievements$Resetall|
+        BodyResponseCallback<Schema$AchievementResetAllResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetAllResponse>,
         callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
         void|AxiosPromise<Schema$AchievementResetAllResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$Resetall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Resetall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -521,23 +553,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Achievements$Resetallforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Achievements$Resetallforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        params: Params$Resource$Achievements$Resetallforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        paramsOrCallback?: Params$Resource$Achievements$Resetallforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievements$Resetallforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Resetallforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -575,23 +621,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Achievements$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Achievements$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Achievements$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Achievements$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievements$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -630,23 +690,38 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Achievements$Resetmultipleforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Achievements$Resetmultipleforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        params: Params$Resource$Achievements$Resetmultipleforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        paramsOrCallback?:
+            Params$Resource$Achievements$Resetmultipleforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievements$Resetmultipleforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Resetmultipleforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -670,6 +745,48 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Achievements$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievements$Resetall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Achievements$Resetallforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Achievements$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievements$Resetmultipleforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Applications {
     root: Gamesmanagement;
@@ -698,26 +815,39 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listHidden(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$HiddenPlayerList>;
     listHidden(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
-        callback?: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+        params?: Params$Resource$Applications$Listhidden,
+        options?: MethodOptions): AxiosPromise<Schema$HiddenPlayerList>;
     listHidden(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
+        params: Params$Resource$Applications$Listhidden,
+        options: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
+        callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+    listHidden(
+        params: Params$Resource$Applications$Listhidden,
+        callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+    listHidden(callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+    listHidden(
+        paramsOrCallback?: Params$Resource$Applications$Listhidden|
+        BodyResponseCallback<Schema$HiddenPlayerList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$HiddenPlayerList>,
         callback?: BodyResponseCallback<Schema$HiddenPlayerList>):
         void|AxiosPromise<Schema$HiddenPlayerList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Applications$Listhidden;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Listhidden;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -741,6 +871,29 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Applications$Listhidden {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * The maximum number of player resources to return in the response, used
+     * for paging. For any response, the actual number of player resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Events {
     root: Gamesmanagement;
@@ -769,22 +922,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    reset(params?: Params$Resource$Events$Reset, options?: MethodOptions):
+        AxiosPromise<void>;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Events$Reset,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Events$Reset,
+        callback: BodyResponseCallback<void>): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+        paramsOrCallback?: Params$Resource$Events$Reset|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -821,22 +987,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    resetAll(params?: Params$Resource$Events$Resetall, options?: MethodOptions):
+        AxiosPromise<void>;
     resetAll(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Events$Resetall,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     resetAll(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Events$Resetall,
+        callback: BodyResponseCallback<void>): void;
+    resetAll(callback: BodyResponseCallback<void>): void;
+    resetAll(
+        paramsOrCallback?: Params$Resource$Events$Resetall|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Resetall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -872,23 +1051,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Events$Resetallforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Events$Resetallforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        params: Params$Resource$Events$Resetallforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        paramsOrCallback?: Params$Resource$Events$Resetallforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Events$Resetallforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Resetallforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -926,23 +1119,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Events$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Events$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Events$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Events$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Events$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -981,23 +1188,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Events$Resetmultipleforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Events$Resetmultipleforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        params: Params$Resource$Events$Resetmultipleforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        paramsOrCallback?: Params$Resource$Events$Resetmultipleforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Events$Resetmultipleforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Resetmultipleforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1020,6 +1241,48 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Events$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the event.
+     */
+    eventId?: string;
+  }
+  export interface Params$Resource$Events$Resetall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Events$Resetallforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Events$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the event.
+     */
+    eventId?: string;
+  }
+  export interface Params$Resource$Events$Resetmultipleforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Players {
     root: Gamesmanagement;
@@ -1048,22 +1311,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    hide(params?: Params$Resource$Players$Hide, options?: MethodOptions):
+        AxiosPromise<void>;
     hide(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Players$Hide,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     hide(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Players$Hide,
+        callback: BodyResponseCallback<void>): void;
+    hide(callback: BodyResponseCallback<void>): void;
+    hide(
+        paramsOrCallback?: Params$Resource$Players$Hide|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$Hide;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1103,22 +1379,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unhide(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    unhide(params?: Params$Resource$Players$Unhide, options?: MethodOptions):
+        AxiosPromise<void>;
     unhide(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Players$Unhide,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     unhide(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Players$Unhide,
+        callback: BodyResponseCallback<void>): void;
+    unhide(callback: BodyResponseCallback<void>): void;
+    unhide(
+        paramsOrCallback?: Params$Resource$Players$Unhide|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$Unhide;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1142,6 +1431,40 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Players$Hide {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+  export interface Params$Resource$Players$Unhide {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+
 
   export class Resource$Quests {
     root: Gamesmanagement;
@@ -1169,22 +1492,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    reset(params?: Params$Resource$Quests$Reset, options?: MethodOptions):
+        AxiosPromise<void>;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Quests$Reset,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Quests$Reset,
+        callback: BodyResponseCallback<void>): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+        paramsOrCallback?: Params$Resource$Quests$Reset|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Quests$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1220,22 +1556,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    resetAll(params?: Params$Resource$Quests$Resetall, options?: MethodOptions):
+        AxiosPromise<void>;
     resetAll(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Quests$Resetall,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     resetAll(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Quests$Resetall,
+        callback: BodyResponseCallback<void>): void;
+    resetAll(callback: BodyResponseCallback<void>): void;
+    resetAll(
+        paramsOrCallback?: Params$Resource$Quests$Resetall|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Quests$Resetall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Resetall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1270,23 +1619,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Quests$Resetallforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Quests$Resetallforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        params: Params$Resource$Quests$Resetallforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        paramsOrCallback?: Params$Resource$Quests$Resetallforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Quests$Resetallforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Resetallforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1324,23 +1687,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Quests$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Quests$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Quests$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Quests$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Quests$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1378,23 +1755,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Quests$Resetmultipleforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Quests$Resetmultipleforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        params: Params$Resource$Quests$Resetmultipleforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        paramsOrCallback?: Params$Resource$Quests$Resetmultipleforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Quests$Resetmultipleforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Resetmultipleforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1417,6 +1808,48 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Quests$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the quest.
+     */
+    questId?: string;
+  }
+  export interface Params$Resource$Quests$Resetall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Quests$Resetallforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Quests$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the quest.
+     */
+    questId?: string;
+  }
+  export interface Params$Resource$Quests$Resetmultipleforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Rooms {
     root: Gamesmanagement;
@@ -1443,22 +1876,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    reset(params?: Params$Resource$Rooms$Reset, options?: MethodOptions):
+        AxiosPromise<void>;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Rooms$Reset,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Rooms$Reset,
+        callback: BodyResponseCallback<void>): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+        paramsOrCallback?: Params$Resource$Rooms$Reset|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1494,23 +1940,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Rooms$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Rooms$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Rooms$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Rooms$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rooms$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1532,6 +1992,20 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Rooms$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Rooms$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Scores {
     root: Gamesmanagement;
@@ -1559,28 +2033,39 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions):
+    reset(params?: Params$Resource$Scores$Reset, options?: MethodOptions):
         AxiosPromise<Schema$PlayerScoreResetResponse>;
     reset(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Reset,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
+        callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
     reset(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Reset,
+        callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
+    reset(callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
+        void;
+    reset(
+        paramsOrCallback?: Params$Resource$Scores$Reset|
+        BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
         void|AxiosPromise<Schema$PlayerScoreResetResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1618,29 +2103,42 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: any, options?: MethodOptions):
+    resetAll(params?: Params$Resource$Scores$Resetall, options?: MethodOptions):
         AxiosPromise<Schema$PlayerScoreResetAllResponse>;
     resetAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Resetall,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
+        callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
         void;
     resetAll(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Resetall,
+        callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
+        void;
+    resetAll(callback:
+                 BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
+        void;
+    resetAll(
+        paramsOrCallback?: Params$Resource$Scores$Resetall|
+        BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
         void|AxiosPromise<Schema$PlayerScoreResetAllResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Resetall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1676,23 +2174,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Scores$Resetallforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetAllForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Scores$Resetallforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        params: Params$Resource$Scores$Resetallforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetAllForAllPlayers(
+        paramsOrCallback?: Params$Resource$Scores$Resetallforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Scores$Resetallforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Resetallforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1730,23 +2242,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Scores$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Scores$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Scores$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Scores$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Scores$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1785,23 +2311,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Scores$Resetmultipleforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Scores$Resetmultipleforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        params: Params$Resource$Scores$Resetmultipleforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetMultipleForAllPlayers(
+        paramsOrCallback?: Params$Resource$Scores$Resetmultipleforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Scores$Resetmultipleforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Resetmultipleforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1824,6 +2364,48 @@ export namespace gamesManagement_v1management {
       }
     }
   }
+
+  export interface Params$Resource$Scores$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+  }
+  export interface Params$Resource$Scores$Resetall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Scores$Resetallforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Scores$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+  }
+  export interface Params$Resource$Scores$Resetmultipleforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Turnbasedmatches {
     root: Gamesmanagement;
@@ -1849,22 +2431,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Turnbasedmatches$Reset,
+        options?: MethodOptions): AxiosPromise<void>;
     reset(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Turnbasedmatches$Reset,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    reset(
+        params: Params$Resource$Turnbasedmatches$Reset,
+        callback: BodyResponseCallback<void>): void;
+    reset(callback: BodyResponseCallback<void>): void;
+    reset(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Reset|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1900,23 +2497,37 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers(params?: any, options?: MethodOptions):
-        AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Turnbasedmatches$Resetforallplayers,
+        options?: MethodOptions): AxiosPromise<void>;
     resetForAllPlayers(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+        callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(callback: BodyResponseCallback<void>): void;
+    resetForAllPlayers(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Resetforallplayers|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Turnbasedmatches$Resetforallplayers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Resetforallplayers;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1938,5 +2549,18 @@ export namespace gamesManagement_v1management {
         return createAPIRequest<void>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Turnbasedmatches$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Turnbasedmatches$Resetforallplayers {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

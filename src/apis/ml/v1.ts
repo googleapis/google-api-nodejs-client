@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace ml_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Machine Learning Engine
    *
@@ -89,16 +92,16 @@ export namespace ml_v1 {
     /**
      * The HTTP Content-Type string representing the content type of the body.
      */
-    contentType: string;
+    contentType?: string;
     /**
      * HTTP body binary data.
      */
-    data: string;
+    data?: string;
     /**
      * Application specific response metadata. Must be set in the first response
      * for streaming APIs.
      */
-    extensions: any[];
+    extensions?: any[];
   }
   /**
    * An observed value of a metric.
@@ -107,11 +110,11 @@ export namespace ml_v1 {
     /**
      * The objective value at this training step.
      */
-    objectiveValue: number;
+    objectiveValue?: number;
     /**
      * The global training step for this metric.
      */
-    trainingStep: string;
+    trainingStep?: string;
   }
   /**
    * Options for automatically scaling a model.
@@ -133,7 +136,7 @@ export namespace ml_v1 {
      * period), nodes will be shut down and no charges will be incurred until
      * traffic to the model resumes.
      */
-    minNodes: number;
+    minNodes?: number;
   }
   /**
    * Request message for the CancelJob method.
@@ -143,28 +146,28 @@ export namespace ml_v1 {
     /**
      * Available accelerators for the capability.
      */
-    availableAccelerators: string[];
-    type: string;
+    availableAccelerators?: string[];
+    type?: string;
   }
   export interface Schema$GoogleCloudMlV1__Config {
     /**
      * The service account Cloud ML uses to run on TPU node.
      */
-    tpuServiceAccount: string;
+    tpuServiceAccount?: string;
   }
   /**
    * Returns service account information associated with a project.
    */
   export interface Schema$GoogleCloudMlV1__GetConfigResponse {
-    config: Schema$GoogleCloudMlV1__Config;
+    config?: Schema$GoogleCloudMlV1__Config;
     /**
      * The service account Cloud ML uses to access resources in the project.
      */
-    serviceAccount: string;
+    serviceAccount?: string;
     /**
      * The project number for `service_account`.
      */
-    serviceAccountProject: string;
+    serviceAccountProject?: string;
   }
   /**
    * Represents the result of a single hyperparameter tuning trial from a
@@ -177,25 +180,25 @@ export namespace ml_v1 {
      * All recorded object metrics for this trial. This field is not currently
      * populated.
      */
-    allMetrics:
+    allMetrics?:
         Schema$GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[];
     /**
      * The final objective metric seen for this trial.
      */
-    finalMetric:
+    finalMetric?:
         Schema$GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric;
     /**
      * The hyperparameters given to this trial.
      */
-    hyperparameters: any;
+    hyperparameters?: any;
     /**
      * True if the trial is stopped early.
      */
-    isTrialStoppedEarly: boolean;
+    isTrialStoppedEarly?: boolean;
     /**
      * The trial id for these results.
      */
-    trialId: string;
+    trialId?: string;
   }
   /**
    * Represents a set of hyperparameters to optimize.
@@ -206,17 +209,17 @@ export namespace ml_v1 {
      * job. Uses the default CloudML Engine hyperparameter tuning algorithm if
      * unspecified.
      */
-    algorithm: string;
+    algorithm?: string;
     /**
      * Optional. Indicates if the hyperparameter tuning job enables auto trial
      * early stopping.
      */
-    enableTrialEarlyStopping: boolean;
+    enableTrialEarlyStopping?: boolean;
     /**
      * Required. The type of goal to use for tuning. Available types are
      * `MAXIMIZE` and `MINIMIZE`.  Defaults to `MAXIMIZE`.
      */
-    goal: string;
+    goal?: string;
     /**
      * Optional. The Tensorflow summary tag name to use for optimizing trials.
      * For current versions of Tensorflow, this tag name should exactly match
@@ -225,7 +228,7 @@ export namespace ml_v1 {
      * tf.Summary. By default, &quot;training/hptuning/metric&quot; will be
      * used.
      */
-    hyperparameterMetricTag: string;
+    hyperparameterMetricTag?: string;
     /**
      * Optional. The number of training trials to run concurrently. You can
      * reduce the time it takes to perform hyperparameter tuning by adding
@@ -235,22 +238,22 @@ export namespace ml_v1 {
      * reduce the quality of the overall optimization.  Each trial will use the
      * same scale tier and machine types.  Defaults to one.
      */
-    maxParallelTrials: number;
+    maxParallelTrials?: number;
     /**
      * Optional. How many training trials should be attempted to optimize the
      * specified hyperparameters.  Defaults to one.
      */
-    maxTrials: number;
+    maxTrials?: number;
     /**
      * Required. The set of parameters to tune.
      */
-    params: Schema$GoogleCloudMlV1__ParameterSpec[];
+    params?: Schema$GoogleCloudMlV1__ParameterSpec[];
     /**
      * Optional. The prior hyperparameter tuning job id that users hope to
      * continue with. The job id will be used to find the corresponding vizier
      * study guid and resume the study.
      */
-    resumePreviousJobId: string;
+    resumePreviousJobId?: string;
   }
   /**
    * Represents a training or prediction job.
@@ -259,43 +262,43 @@ export namespace ml_v1 {
     /**
      * Output only. When the job was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Output only. When the job processing was completed.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Output only. The details of a failure or a cancellation.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * Required. The user-specified id of the job.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Input parameters to create a prediction job.
      */
-    predictionInput: Schema$GoogleCloudMlV1__PredictionInput;
+    predictionInput?: Schema$GoogleCloudMlV1__PredictionInput;
     /**
      * The current prediction job result.
      */
-    predictionOutput: Schema$GoogleCloudMlV1__PredictionOutput;
+    predictionOutput?: Schema$GoogleCloudMlV1__PredictionOutput;
     /**
      * Output only. When the job processing was started.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Output only. The detailed state of a job.
      */
-    state: string;
+    state?: string;
     /**
      * Input parameters to create a training job.
      */
-    trainingInput: Schema$GoogleCloudMlV1__TrainingInput;
+    trainingInput?: Schema$GoogleCloudMlV1__TrainingInput;
     /**
      * The current training job result.
      */
-    trainingOutput: Schema$GoogleCloudMlV1__TrainingOutput;
+    trainingOutput?: Schema$GoogleCloudMlV1__TrainingOutput;
   }
   /**
    * Response message for the ListJobs method.
@@ -304,23 +307,23 @@ export namespace ml_v1 {
     /**
      * The list of jobs.
      */
-    jobs: Schema$GoogleCloudMlV1__Job[];
+    jobs?: Schema$GoogleCloudMlV1__Job[];
     /**
      * Optional. Pass this token as the `page_token` field of the request for a
      * subsequent call.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$GoogleCloudMlV1__ListLocationsResponse {
     /**
      * Locations where at least one type of CMLE capability is available.
      */
-    locations: Schema$GoogleCloudMlV1__Location[];
+    locations?: Schema$GoogleCloudMlV1__Location[];
     /**
      * Optional. Pass this token as the `page_token` field of the request for a
      * subsequent call.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for the ListModels method.
@@ -329,12 +332,12 @@ export namespace ml_v1 {
     /**
      * The list of models.
      */
-    models: Schema$GoogleCloudMlV1__Model[];
+    models?: Schema$GoogleCloudMlV1__Model[];
     /**
      * Optional. Pass this token as the `page_token` field of the request for a
      * subsequent call.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for the ListVersions method.
@@ -344,18 +347,18 @@ export namespace ml_v1 {
      * Optional. Pass this token as the `page_token` field of the request for a
      * subsequent call.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of versions.
      */
-    versions: Schema$GoogleCloudMlV1__Version[];
+    versions?: Schema$GoogleCloudMlV1__Version[];
   }
   export interface Schema$GoogleCloudMlV1__Location {
     /**
      * Capabilities available in the location.
      */
-    capabilities: Schema$GoogleCloudMlV1__Capability[];
-    name: string;
+    capabilities?: Schema$GoogleCloudMlV1__Capability[];
+    name?: string;
   }
   /**
    * Options for manually scaling a model.
@@ -367,7 +370,7 @@ export namespace ml_v1 {
      * operating this model will be proportional to `nodes` * number of hours
      * since last billing cycle plus the cost for each prediction performed.
      */
-    nodes: number;
+    nodes?: number;
   }
   /**
    * Represents a machine learning solution.  A model can have multiple
@@ -381,21 +384,21 @@ export namespace ml_v1 {
      * change the default version by calling
      * [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
      */
-    defaultVersion: Schema$GoogleCloudMlV1__Version;
+    defaultVersion?: Schema$GoogleCloudMlV1__Version;
     /**
      * Optional. The description specified for the model when it was created.
      */
-    description: string;
+    description?: string;
     /**
      * Required. The name specified for the model when it was created.  The
      * model name must be unique within the project it is created in.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. If true, enables StackDriver Logging for online prediction.
      * Default is false.
      */
-    onlinePredictionLogging: boolean;
+    onlinePredictionLogging?: boolean;
     /**
      * Optional. The list of regions where the model is going to be deployed.
      * Currently only one region per model is supported. Defaults to
@@ -407,7 +410,7 @@ export namespace ml_v1 {
      * prediction job is set by the region field when     submitting the batch
      * prediction job and does not take its value from     this field.
      */
-    regions: string[];
+    regions?: string[];
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -416,35 +419,35 @@ export namespace ml_v1 {
     /**
      * The time the operation was submitted.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The time operation processing completed.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Indicates whether a request to cancel this operation has been made.
      */
-    isCancellationRequested: boolean;
+    isCancellationRequested?: boolean;
     /**
      * Contains the name of the model associated with the operation.
      */
-    modelName: string;
+    modelName?: string;
     /**
      * The operation type.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * Contains the project number associated with the operation.
      */
-    projectNumber: string;
+    projectNumber?: string;
     /**
      * The time operation processing started.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Contains the version associated with the operation.
      */
-    version: Schema$GoogleCloudMlV1__Version;
+    version?: Schema$GoogleCloudMlV1__Version;
   }
   /**
    * Represents a single hyperparameter to optimize.
@@ -453,40 +456,40 @@ export namespace ml_v1 {
     /**
      * Required if type is `CATEGORICAL`. The list of possible categories.
      */
-    categoricalValues: string[];
+    categoricalValues?: string[];
     /**
      * Required if type is `DISCRETE`. A list of feasible points. The list
      * should be in strictly increasing order. For instance, this parameter
      * might have possible settings of 1.5, 2.5, and 4.0. This list should not
      * contain more than 1,000 values.
      */
-    discreteValues: number[];
+    discreteValues?: number[];
     /**
      * Required if type is `DOUBLE` or `INTEGER`. This field should be unset if
      * type is `CATEGORICAL`. This value should be integers if type is
      * `INTEGER`.
      */
-    maxValue: number;
+    maxValue?: number;
     /**
      * Required if type is `DOUBLE` or `INTEGER`. This field should be unset if
      * type is `CATEGORICAL`. This value should be integers if type is INTEGER.
      */
-    minValue: number;
+    minValue?: number;
     /**
      * Required. The parameter name must be unique amongst all ParameterConfigs
      * in a HyperparameterSpec message. E.g., &quot;learning_rate&quot;.
      */
-    parameterName: string;
+    parameterName?: string;
     /**
      * Optional. How the parameter should be scaled to the hypercube. Leave
      * unset for categorical parameters. Some kind of scaling is strongly
      * recommended for real or integral parameters (e.g., `UNIT_LINEAR_SCALE`).
      */
-    scaleType: string;
+    scaleType?: string;
     /**
      * Required. The type of the parameter.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents input parameters for a prediction job.
@@ -498,38 +501,38 @@ export namespace ml_v1 {
      * Tensorflow prediction call internally. So take the record size and memory
      * available into consideration when setting this parameter.
      */
-    batchSize: string;
+    batchSize?: string;
     /**
      * Required. The format of the input data files.
      */
-    dataFormat: string;
+    dataFormat?: string;
     /**
      * Required. The Google Cloud Storage location of the input data files. May
      * contain wildcards.
      */
-    inputPaths: string[];
+    inputPaths?: string[];
     /**
      * Optional. The maximum number of workers to be used for parallel
      * processing. Defaults to 10 if not specified.
      */
-    maxWorkerCount: string;
+    maxWorkerCount?: string;
     /**
      * Use this field if you want to use the default version for the specified
      * model. The string must use the following format:
      * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL&quot;`
      */
-    modelName: string;
+    modelName?: string;
     /**
      * Required. The output Google Cloud Storage location.
      */
-    outputPath: string;
+    outputPath?: string;
     /**
      * Required. The Google Compute Engine region to run the prediction job in.
      * See the &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available
      * regions&lt;/a&gt; for ML Engine services.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. The Google Cloud ML runtime version to use for this batch
      * prediction. If not set, Google Cloud ML will pick the runtime version
@@ -537,7 +540,7 @@ export namespace ml_v1 {
      * the latest stable version when model version information is not available
      * such as when the model is specified by uri.
      */
-    runtimeVersion: string;
+    runtimeVersion?: string;
     /**
      * Optional. The name of the signature defined in the SavedModel to use for
      * this job. Please refer to
@@ -546,19 +549,19 @@ export namespace ml_v1 {
      * [DEFAULT_SERVING_SIGNATURE_DEF_KEY](https://www.tensorflow.org/api_docs/python/tf/saved_model/signature_constants)
      * , which is &quot;serving_default&quot;.
      */
-    signatureName: string;
+    signatureName?: string;
     /**
      * Use this field if you want to specify a Google Cloud Storage path for the
      * model to use.
      */
-    uri: string;
+    uri?: string;
     /**
      * Use this field if you want to specify a version of the model to use. The
      * string is formatted the same way as `model_version`, with the addition of
      * the version information:
      * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL/versions/YOUR_VERSION&quot;`
      */
-    versionName: string;
+    versionName?: string;
   }
   /**
    * Represents results of a prediction job.
@@ -567,20 +570,20 @@ export namespace ml_v1 {
     /**
      * The number of data instances which resulted in errors.
      */
-    errorCount: string;
+    errorCount?: string;
     /**
      * Node hours used by the batch prediction job.
      */
-    nodeHours: number;
+    nodeHours?: number;
     /**
      * The output Google Cloud Storage location provided at the job creation
      * time.
      */
-    outputPath: string;
+    outputPath?: string;
     /**
      * The number of generated predictions.
      */
-    predictionCount: string;
+    predictionCount?: string;
   }
   /**
    * Request for predictions to be issued against a trained model.
@@ -589,7 +592,7 @@ export namespace ml_v1 {
     /**
      *  Required. The prediction request body.
      */
-    httpBody: Schema$GoogleApi__HttpBody;
+    httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
    * Request message for the SetDefaultVersion request.
@@ -608,11 +611,11 @@ export namespace ml_v1 {
     /**
      * Optional. Command line arguments to pass to the program.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. The set of Hyperparameters to tune.
      */
-    hyperparameters: Schema$GoogleCloudMlV1__HyperparameterSpec;
+    hyperparameters?: Schema$GoogleCloudMlV1__HyperparameterSpec;
     /**
      * Optional. A Google Cloud Storage path in which to store training outputs
      * and other data needed for training. This path is passed to your
@@ -620,7 +623,7 @@ export namespace ml_v1 {
      * benefit of specifying this field is that Cloud ML validates the path for
      * use in training.
      */
-    jobDir: string;
+    jobDir?: string;
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s master worker.  The following types are supported:  &lt;dl&gt;
@@ -671,13 +674,13 @@ export namespace ml_v1 {
      * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You must set
      * this value when `scaleTier` is set to `CUSTOM`.
      */
-    masterType: string;
+    masterType?: string;
     /**
      * Required. The Google Cloud Storage location of the packages with the
      * training program and any additional dependencies. The maximum number of
      * package URIs is 100.
      */
-    packageUris: string[];
+    packageUris?: string[];
     /**
      * Optional. The number of parameter server replicas to use for the training
      * job. Each replica in the cluster will be of the type specified in
@@ -685,7 +688,7 @@ export namespace ml_v1 {
      * is set to `CUSTOM`.If you set this value, you must also set
      * `parameter_server_type`.
      */
-    parameterServerCount: string;
+    parameterServerCount?: string;
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s parameter server.  The supported values are the same as those
@@ -693,49 +696,50 @@ export namespace ml_v1 {
      * when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is
      * greater than zero.
      */
-    parameterServerType: string;
+    parameterServerType?: string;
     /**
      * Required. The Python module name to run after installing the packages.
      */
-    pythonModule: string;
+    pythonModule?: string;
     /**
      * Optional. The version of Python used in training. If not set, the default
      * version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when
      * `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39;
      * works with all supported runtime versions.
      */
-    pythonVersion: string;
+    pythonVersion?: string;
     /**
      * Required. The Google Compute Engine region to run the training job in.
      * See the &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available
      * regions&lt;/a&gt; for ML Engine services.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. The Google Cloud ML runtime version to use for training.  If
-     * not set, Google Cloud ML will choose the latest stable version.
+     * not set, Google Cloud ML will choose a stable version, which is defined
+     * in the documentation of runtime version list.
      */
-    runtimeVersion: string;
+    runtimeVersion?: string;
     /**
      * Required. Specifies the machine types, the number of replicas for workers
      * and parameter servers.
      */
-    scaleTier: string;
+    scaleTier?: string;
     /**
      * Optional. The number of worker replicas to use for the training job. Each
      * replica in the cluster will be of the type specified in `worker_type`.
      * This value can only be used when `scale_tier` is set to `CUSTOM`. If you
      * set this value, you must also set `worker_type`.
      */
-    workerCount: string;
+    workerCount?: string;
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s worker nodes.  The supported values are the same as those
      * described in the entry for `masterType`.  This value must be present when
      * `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero.
      */
-    workerType: string;
+    workerType?: string;
   }
   /**
    * Represents results of a training job. Output only.
@@ -745,20 +749,20 @@ export namespace ml_v1 {
      * The number of hyperparameter tuning trials that completed successfully.
      * Only set for hyperparameter tuning jobs.
      */
-    completedTrialCount: string;
+    completedTrialCount?: string;
     /**
      * The amount of ML units consumed by the job.
      */
-    consumedMLUnits: number;
+    consumedMLUnits?: number;
     /**
      * Whether this job is a hyperparameter tuning job.
      */
-    isHyperparameterTuningJob: boolean;
+    isHyperparameterTuningJob?: boolean;
     /**
      * Results for individual Hyperparameter trials. Only set for hyperparameter
      * tuning jobs.
      */
-    trials: Schema$GoogleCloudMlV1__HyperparameterOutput[];
+    trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
   }
   /**
    * Represents a version of the model.  Each version is a trained model
@@ -774,11 +778,11 @@ export namespace ml_v1 {
      * ramp up traffic according to the model&#39;s ability to scale or you will
      * start seeing increases in latency and 429 response codes.
      */
-    autoScaling: Schema$GoogleCloudMlV1__AutoScaling;
+    autoScaling?: Schema$GoogleCloudMlV1__AutoScaling;
     /**
      * Output only. The time the version was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Required. The Google Cloud Storage location of the trained model used to
      * create the version. See the [guide to model
@@ -790,15 +794,15 @@ export namespace ml_v1 {
      * this location is useful only as a historical record. The total number of
      * model files can&#39;t exceed 1000.
      */
-    deploymentUri: string;
+    deploymentUri?: string;
     /**
      * Optional. The description specified for the version when it was created.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. The details of a failure or a cancellation.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * Optional. The machine learning framework Cloud ML Engine uses to train
      * this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`,
@@ -806,18 +810,18 @@ export namespace ml_v1 {
      * TensorFlow. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set
      * the runtime version of the model to 1.4 or greater.
      */
-    framework: string;
+    framework?: string;
     /**
      * Output only. If true, this version will be used to handle prediction
      * requests that do not specify a version.  You can change the default
      * version by calling
      * [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
      */
-    isDefault: boolean;
+    isDefault?: boolean;
     /**
      * Output only. The time the version was last used for prediction.
      */
-    lastUseTime: string;
+    lastUseTime?: string;
     /**
      * Manually select the number of nodes to use for serving the model. You
      * should generally use `auto_scaling` with an appropriate `min_nodes`
@@ -826,28 +830,28 @@ export namespace ml_v1 {
      * exceeds that capability of the system to serve it based on the selected
      * number of nodes.
      */
-    manualScaling: Schema$GoogleCloudMlV1__ManualScaling;
+    manualScaling?: Schema$GoogleCloudMlV1__ManualScaling;
     /**
      * Required.The name specified for the version when it was created.  The
      * version name must be unique within the model it is created in.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The version of Python used in prediction. If not set, the
      * default version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when
      * `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39;
      * works with all supported runtime versions.
      */
-    pythonVersion: string;
+    pythonVersion?: string;
     /**
      * Optional. The Google Cloud ML runtime version to use for this deployment.
      * If not set, Google Cloud ML will choose a version.
      */
-    runtimeVersion: string;
+    runtimeVersion?: string;
     /**
      * Output only. The state of a version.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -876,13 +880,13 @@ export namespace ml_v1 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$GoogleIamV1__AuditLogConfig[];
+    auditLogConfigs?: Schema$GoogleIamV1__AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -898,11 +902,11 @@ export namespace ml_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -915,21 +919,20 @@ export namespace ml_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -955,12 +958,12 @@ export namespace ml_v1 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$GoogleIamV1__AuditConfig[];
+    auditConfigs?: Schema$GoogleIamV1__AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$GoogleIamV1__Binding[];
+    bindings?: Schema$GoogleIamV1__Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -972,11 +975,11 @@ export namespace ml_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -988,14 +991,14 @@ export namespace ml_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$GoogleIamV1__Policy;
+    policy?: Schema$GoogleIamV1__Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1007,7 +1010,7 @@ export namespace ml_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1017,7 +1020,7 @@ export namespace ml_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1026,11 +1029,11 @@ export namespace ml_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$GoogleLongrunning__Operation[];
+    operations?: Schema$GoogleLongrunning__Operation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1042,24 +1045,24 @@ export namespace ml_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$GoogleRpc__Status;
+    error?: Schema$GoogleRpc__Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -1069,7 +1072,7 @@ export namespace ml_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1119,19 +1122,20 @@ export namespace ml_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
+
 
   export class Resource$Projects {
     root: Ml;
@@ -1169,31 +1173,48 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig(params?: any, options?: MethodOptions):
+    getConfig(
+        params?: Params$Resource$Projects$Getconfig, options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Getconfig,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
         void;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Getconfig,
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
+        void;
+    getConfig(
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
+        void;
+    getConfig(
+        paramsOrCallback?: Params$Resource$Projects$Getconfig|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1234,28 +1255,37 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict(params?: any, options?: MethodOptions):
+    predict(params?: Params$Resource$Projects$Predict, options?: MethodOptions):
         AxiosPromise<Schema$GoogleApi__HttpBody>;
     predict(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleApi__HttpBody>,
-        callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
+        params: Params$Resource$Projects$Predict,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+        callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
     predict(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Predict,
+        callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
+    predict(callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
+    predict(
+        paramsOrCallback?: Params$Resource$Projects$Predict|
+        BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleApi__HttpBody>,
         callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>):
         void|AxiosPromise<Schema$GoogleApi__HttpBody> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Predict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Predict;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1277,6 +1307,35 @@ export namespace ml_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Getconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The project name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Predict {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of a model or a version.  Authorization:
+     * requires the `predict` permission on the specified resource.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__PredictRequest;
+  }
+
   export class Resource$Projects$Jobs {
     root: Ml;
     constructor(root: Ml) {
@@ -1302,28 +1361,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobuf__Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+        params: Params$Resource$Projects$Jobs$Cancel,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Cancel,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Cancel|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
         void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1359,28 +1430,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__Job>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    create(
+        params: Params$Resource$Projects$Jobs$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Create,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    create(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Create|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1415,26 +1498,36 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Jobs$Get,
         options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Jobs$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    get(params: Params$Resource$Projects$Jobs$Get,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Jobs$Get|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1469,28 +1562,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Jobs$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Jobs$Getiampolicy,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+        void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Getiampolicy|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    getIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
         void|AxiosPromise<Schema$GoogleIamV1__Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1529,31 +1634,46 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Jobs$List, options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$List,
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$List|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1592,28 +1712,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Jobs$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Jobs$Setiampolicy,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+        void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Setiampolicy|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    setIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
         void|AxiosPromise<Schema$GoogleIamV1__Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1653,30 +1785,45 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Jobs$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Testiampermissions,
+        callback: BodyResponseCallback<
+            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+    testIamPermissions(callback: BodyResponseCallback<
+                       Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Testiampermissions|
+        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1700,6 +1847,128 @@ export namespace ml_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Jobs$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the job to cancel.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__CancelJobRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The project name.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__Job;
+  }
+  export interface Params$Resource$Projects$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the job to get the description of.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Specifies the subset of jobs to retrieve. You can filter on the
+     * value of one or more attributes of the job object. For example, retrieve
+     * jobs with a job identifier that starts with 'census': <p><code>gcloud
+     * ml-engine jobs list --filter='jobId:census*'</code> <p>List all failed
+     * jobs with names that start with 'rnn': <p><code>gcloud ml-engine jobs
+     * list --filter='jobId:rnn* AND state:FAILED'</code> <p>For more examples,
+     * see the guide to <a
+     * href="/ml-engine/docs/tensorflow/monitor-training">monitoring jobs</a>.
+     */
+    filter?: string;
+    /**
+     * Optional. The number of jobs to retrieve per "page" of results. If there
+     * are more remaining results than this number, the response message will
+     * contain a valid value in the `next_page_token` field.  The default value
+     * is 20, and the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token to request the next page of results.  You get the
+     * token from the `next_page_token` field of the response from the previous
+     * call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project for which to list jobs.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Locations {
     root: Ml;
@@ -1726,27 +1995,37 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Projects$Locations$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__Location>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Locations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>):
-        void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>): void;
+    get(params: Params$Resource$Projects$Locations$Get,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Location> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1784,30 +2063,45 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Locations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleCloudMlV1__ListLocationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleCloudMlV1__ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$List|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudMlV1__ListLocationsResponse>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1831,6 +2125,44 @@ export namespace ml_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The number of locations to retrieve per "page" of results. If
+     * there are more remaining results than this number, the response message
+     * will contain a valid value in the `next_page_token` field.  The default
+     * value is 20, and the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token to request the next page of results.  You get the
+     * token from the `next_page_token` field of the response from the previous
+     * call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project for which available locations are to be
+     * listed (since some locations might be whitelisted for specific projects).
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Projects$Models {
     root: Ml;
@@ -1862,28 +2194,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__Model>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Models$Create,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
+    create(
+        params: Params$Resource$Projects$Models$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Create,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+    create(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Models$Create|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Models$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1920,29 +2264,44 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(
+        params?: Params$Resource$Projects$Models$Delete,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Delete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Delete,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    delete(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Models$Delete|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Models$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1980,26 +2339,36 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Models$Get,
         options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Models$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+    get(params: Params$Resource$Projects$Models$Get,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Models$Get|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Models$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2034,28 +2403,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Models$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Models$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Models$Getiampolicy,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+        void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Models$Getiampolicy|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    getIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
         void|AxiosPromise<Schema$GoogleIamV1__Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2096,31 +2477,47 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Models$List, options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$List,
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Models$List|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Models$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2160,29 +2557,44 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(
+        params?: Params$Resource$Projects$Models$Patch,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Patch,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    patch(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Models$Patch|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Models$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2220,28 +2632,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Models$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Models$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Models$Setiampolicy,
+        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+        void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Models$Setiampolicy|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    setIamPolicy(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
         void|AxiosPromise<Schema$GoogleIamV1__Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2281,30 +2705,45 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Models$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Testiampermissions,
+        callback: BodyResponseCallback<
+            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+    testIamPermissions(callback: BodyResponseCallback<
+                       Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Models$Testiampermissions|
+        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2328,6 +2767,143 @@ export namespace ml_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Models$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The project name.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__Model;
+  }
+  export interface Params$Resource$Projects$Models$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the model.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Models$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the model.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Models$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Models$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Specifies the subset of models to retrieve.
+     */
+    filter?: string;
+    /**
+     * Optional. The number of models to retrieve per "page" of results. If
+     * there are more remaining results than this number, the response message
+     * will contain a valid value in the `next_page_token` field.  The default
+     * value is 20, and the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token to request the next page of results.  You get the
+     * token from the `next_page_token` field of the response from the previous
+     * call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project whose models are to be listed.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Models$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The project name.
+     */
+    name?: string;
+    /**
+     * Required. Specifies the path, relative to `Model`, of the field to
+     * update.  For example, to change the description of a model to "foo" and
+     * set its default version to "version_1", the `update_mask` parameter would
+     * be specified as `description`, `default_version.name`, and the `PATCH`
+     * request body would specify the new value, as follows:     {
+     * "description": "foo",       "defaultVersion": { "name":"version_1" } }
+     * Currently the supported update masks are `description` and
+     * `default_version.name`.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__Model;
+  }
+  export interface Params$Resource$Projects$Models$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Models$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Models$Versions {
     root: Ml;
     constructor(root: Ml) {
@@ -2359,29 +2935,44 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(
+        params?: Params$Resource$Projects$Models$Versions$Create,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Create,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    create(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Models$Versions$Create|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2421,29 +3012,44 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(
+        params?: Params$Resource$Projects$Models$Versions$Delete,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Delete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Delete,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    delete(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Models$Versions$Delete|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2483,26 +3089,36 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Models$Versions$Get,
         options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Models$Versions$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+    get(params: Params$Resource$Projects$Models$Versions$Get,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Models$Versions$Get|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2544,31 +3160,49 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Models$Versions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$List,
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
+        void;
+    list(
+        callback:
+            BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Models$Versions$List|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2608,29 +3242,44 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(
+        params?: Params$Resource$Projects$Models$Versions$Patch,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Patch,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    patch(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Models$Versions$Patch|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2671,28 +3320,41 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setDefault(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__Version>;
     setDefault(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Models$Versions$Setdefault,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
+    setDefault(
+        params: Params$Resource$Projects$Models$Versions$Setdefault,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
     setDefault(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Models$Versions$Setdefault,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+    setDefault(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
+        void;
+    setDefault(
+        paramsOrCallback?: Params$Resource$Projects$Models$Versions$Setdefault|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
         void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Models$Versions$Setdefault;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Models$Versions$Setdefault;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2714,6 +3376,116 @@ export namespace ml_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Models$Versions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the model.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__Version;
+  }
+  export interface Params$Resource$Projects$Models$Versions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the version. You can get the names of all the
+     * versions of a model by calling
+     * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Models$Versions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the version.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Models$Versions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Specifies the subset of versions to retrieve.
+     */
+    filter?: string;
+    /**
+     * Optional. The number of versions to retrieve per "page" of results. If
+     * there are more remaining results than this number, the response message
+     * will contain a valid value in the `next_page_token` field.  The default
+     * value is 20, and the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token to request the next page of results.  You get the
+     * token from the `next_page_token` field of the response from the previous
+     * call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the model for which to list the version.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Models$Versions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the model.
+     */
+    name?: string;
+    /**
+     * Required. Specifies the path, relative to `Version`, of the field to
+     * update. Must be present and non-empty.  For example, to change the
+     * description of a version to "foo", the `update_mask` parameter would be
+     * specified as `description`, and the `PATCH` request body would specify
+     * the new value, as follows:     {       "description": "foo"     }
+     * Currently the only supported update mask is`description`.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__Version;
+  }
+  export interface Params$Resource$Projects$Models$Versions$Setdefault {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the version to make the default for the model. You
+     * can get the names of all the versions of a model by calling
+     * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudMlV1__SetDefaultVersionRequest;
+  }
+
 
 
   export class Resource$Projects$Operations {
@@ -2748,28 +3520,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobuf__Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+        params: Params$Resource$Projects$Operations$Cancel,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Operations$Cancel|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
         void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2807,28 +3591,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobuf__Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+        params: Params$Resource$Projects$Operations$Delete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Operations$Delete|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
         void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2864,27 +3660,40 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Projects$Operations$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__Operation>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Operations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Operations$Get,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
+        BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2931,30 +3740,45 @@ export namespace ml_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Operations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleLongrunning__ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Operations$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleLongrunning__ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleLongrunning__ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Operations$List|
+        BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunning__ListOperationsResponse>):
         void|AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2977,5 +3801,62 @@ export namespace ml_v1 {
             Schema$GoogleLongrunning__ListOperationsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

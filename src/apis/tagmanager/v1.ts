@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace tagmanager_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Tag Manager API
    *
@@ -72,20 +75,20 @@ export namespace tagmanager_v1 {
     /**
      * The Account ID uniquely identifies the GTM Account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The fingerprint of the GTM Account as computed at storage time. This
      * value is recomputed whenever the account is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Account display name.
      */
-    name: string;
+    name?: string;
     /**
      * Whether the account shares data anonymously with Google and others.
      */
-    shareData: boolean;
+    shareData?: boolean;
   }
   /**
    * Defines the Google Tag Manager Account access permissions.
@@ -95,7 +98,7 @@ export namespace tagmanager_v1 {
      * List of Account permissions. Valid account permissions are read and
      * manage.
      */
-    permission: string[];
+    permission?: string[];
   }
   /**
    * Represents a predicate.
@@ -112,11 +115,11 @@ export namespace tagmanager_v1 {
      * include a boolean parameter named negate boolean parameter that is set to
      * true.
      */
-    parameter: Schema$Parameter[];
+    parameter?: Schema$Parameter[];
     /**
      * The type of operator for this condition.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents a Google Tag Manager Container.
@@ -125,15 +128,15 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The Container ID uniquely identifies the GTM Container.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Optional list of domain names associated with the Container.
      */
-    domainName: string[];
+    domainName?: string[];
     /**
      * List of enabled built-in variables. Valid values include: pageUrl,
      * pageHostname, pagePath, referrer, event, clickElement, clickClasses,
@@ -142,37 +145,37 @@ export namespace tagmanager_v1 {
      * newHistoryFragment, oldHistoryFragment, newHistoryState, oldHistoryState,
      * historySource, containerVersion, debugMode, randomNumber, containerId.
      */
-    enabledBuiltInVariable: string[];
+    enabledBuiltInVariable?: string[];
     /**
      * The fingerprint of the GTM Container as computed at storage time. This
      * value is recomputed whenever the account is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Container display name.
      */
-    name: string;
+    name?: string;
     /**
      * Container Notes.
      */
-    notes: string;
+    notes?: string;
     /**
      * Container Public ID.
      */
-    publicId: string;
+    publicId?: string;
     /**
      * Container Country ID.
      */
-    timeZoneCountryId: string;
+    timeZoneCountryId?: string;
     /**
      * Container Time Zone ID.
      */
-    timeZoneId: string;
+    timeZoneId?: string;
     /**
      * List of Usage Contexts for the Container. Valid values include: web,
      * android, ios.
      */
-    usageContext: string[];
+    usageContext?: string[];
   }
   /**
    * Defines the Google Tag Manager Container access permissions.
@@ -181,12 +184,12 @@ export namespace tagmanager_v1 {
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * List of Container permissions. Valid container permissions are: read,
      * edit, delete, publish.
      */
-    permission: string[];
+    permission?: string[];
   }
   /**
    * Represents a Google Tag Manager Container Version.
@@ -195,60 +198,60 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The container that this version was taken from.
      */
-    container: Schema$Container;
+    container?: Schema$Container;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The Container Version ID uniquely identifies the GTM Container Version.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
     /**
      * A value of true indicates this container version has been deleted.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * The fingerprint of the GTM Container Version as computed at storage time.
      * This value is recomputed whenever the container version is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * The folders in the container that this version was taken from.
      */
-    folder: Schema$Folder[];
+    folder?: Schema$Folder[];
     /**
      * The macros in the container that this version was taken from.
      */
-    macro: Schema$Macro[];
+    macro?: Schema$Macro[];
     /**
      * Container version display name.
      */
-    name: string;
+    name?: string;
     /**
      * User notes on how to apply this container version in the container.
      */
-    notes: string;
+    notes?: string;
     /**
      * The rules in the container that this version was taken from.
      */
-    rule: Schema$Rule[];
+    rule?: Schema$Rule[];
     /**
      * The tags in the container that this version was taken from.
      */
-    tag: Schema$Tag[];
+    tag?: Schema$Tag[];
     /**
      * The triggers in the container that this version was taken from.
      */
-    trigger: Schema$Trigger[];
+    trigger?: Schema$Trigger[];
     /**
      * The variables in the container that this version was taken from.
      */
-    variable: Schema$Variable[];
+    variable?: Schema$Variable[];
   }
   /**
    * Represents a Google Tag Manager Container Version Header.
@@ -257,43 +260,43 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The Container Version ID uniquely identifies the GTM Container Version.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
     /**
      * A value of true indicates this container version has been deleted.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * Container version display name.
      */
-    name: string;
+    name?: string;
     /**
      * Number of macros in the container version.
      */
-    numMacros: string;
+    numMacros?: string;
     /**
      * Number of rules in the container version.
      */
-    numRules: string;
+    numRules?: string;
     /**
      * Number of tags in the container version.
      */
-    numTags: string;
+    numTags?: string;
     /**
      * Number of triggers in the container version.
      */
-    numTriggers: string;
+    numTriggers?: string;
     /**
      * Number of variables in the container version.
      */
-    numVariables: string;
+    numVariables?: string;
   }
   /**
    * Options for new container versions.
@@ -302,16 +305,16 @@ export namespace tagmanager_v1 {
     /**
      * The name of the container version to be created.
      */
-    name: string;
+    name?: string;
     /**
      * The notes of the container version to be created.
      */
-    notes: string;
+    notes?: string;
     /**
      * The creation of this version may be for quick preview and shouldn&#39;t
      * be saved.
      */
-    quickPreview: boolean;
+    quickPreview?: boolean;
   }
   /**
    * Create container versions response.
@@ -320,11 +323,11 @@ export namespace tagmanager_v1 {
     /**
      * Compiler errors or not.
      */
-    compilerError: boolean;
+    compilerError?: boolean;
     /**
      * The container version created.
      */
-    containerVersion: Schema$ContainerVersion;
+    containerVersion?: Schema$ContainerVersion;
   }
   /**
    * Represents a Google Tag Manager Environment. Note that a user can create,
@@ -335,51 +338,51 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The environment authorization code.
      */
-    authorizationCode: string;
+    authorizationCode?: string;
     /**
      * The last update time-stamp for the authorization code.
      */
-    authorizationTimestampMs: string;
+    authorizationTimestampMs?: string;
     /**
      * GTM Container ID.
      */
-    containerId: string;
-    containerVersionId: string;
+    containerId?: string;
+    containerVersionId?: string;
     /**
      * The environment description. Can be set or changed only on USER type
      * environments.
      */
-    description: string;
+    description?: string;
     /**
      * Whether or not to enable debug by default on for the environment.
      */
-    enableDebug: boolean;
+    enableDebug?: boolean;
     /**
      * GTM Environment ID uniquely identifies the GTM Environment.
      */
-    environmentId: string;
+    environmentId?: string;
     /**
      * The fingerprint of the GTM environment as computed at storage time. This
      * value is recomputed whenever the environment is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * The environment display name. Can be set or changed only on USER type
      * environments.
      */
-    name: string;
+    name?: string;
     /**
      * The type of this environment.
      */
-    type: string;
+    type?: string;
     /**
      * Default preview page url for the environment.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Represents a Google Tag Manager Folder.
@@ -388,24 +391,24 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The fingerprint of the GTM Folder as computed at storage time. This value
      * is recomputed whenever the folder is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * The Folder ID uniquely identifies the GTM Folder.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * Folder display name.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Represents a Google Tag Manager Folder&#39;s contents.
@@ -414,15 +417,15 @@ export namespace tagmanager_v1 {
     /**
      * The list of tags inside the folder.
      */
-    tag: Schema$Tag[];
+    tag?: Schema$Tag[];
     /**
      * The list of triggers inside the folder.
      */
-    trigger: Schema$Trigger[];
+    trigger?: Schema$Trigger[];
     /**
      * The list of variables inside the folder.
      */
-    variable: Schema$Variable[];
+    variable?: Schema$Variable[];
   }
   /**
    * List Accounts Response.
@@ -431,7 +434,7 @@ export namespace tagmanager_v1 {
     /**
      * List of GTM Accounts that a user has access to.
      */
-    accounts: Schema$Account[];
+    accounts?: Schema$Account[];
   }
   /**
    * List AccountUsers Response.
@@ -440,7 +443,7 @@ export namespace tagmanager_v1 {
     /**
      * All GTM AccountUsers of a GTM Account.
      */
-    userAccess: Schema$UserAccess[];
+    userAccess?: Schema$UserAccess[];
   }
   /**
    * List Containers Response.
@@ -449,7 +452,7 @@ export namespace tagmanager_v1 {
     /**
      * All Containers of a GTM Account.
      */
-    containers: Schema$Container[];
+    containers?: Schema$Container[];
   }
   /**
    * List container versions response.
@@ -458,11 +461,11 @@ export namespace tagmanager_v1 {
     /**
      * All versions of a GTM Container.
      */
-    containerVersion: Schema$ContainerVersion[];
+    containerVersion?: Schema$ContainerVersion[];
     /**
      * All container version headers of a GTM Container.
      */
-    containerVersionHeader: Schema$ContainerVersionHeader[];
+    containerVersionHeader?: Schema$ContainerVersionHeader[];
   }
   /**
    * List Environments Response.
@@ -471,7 +474,7 @@ export namespace tagmanager_v1 {
     /**
      * All Environments of a GTM Container.
      */
-    environments: Schema$Environment[];
+    environments?: Schema$Environment[];
   }
   /**
    * List Folders Response.
@@ -480,7 +483,7 @@ export namespace tagmanager_v1 {
     /**
      * All GTM Folders of a GTM Container.
      */
-    folders: Schema$Folder[];
+    folders?: Schema$Folder[];
   }
   /**
    * List Tags Response.
@@ -489,7 +492,7 @@ export namespace tagmanager_v1 {
     /**
      * All GTM Tags of a GTM Container.
      */
-    tags: Schema$Tag[];
+    tags?: Schema$Tag[];
   }
   /**
    * List triggers response.
@@ -498,7 +501,7 @@ export namespace tagmanager_v1 {
     /**
      * All GTM Triggers of a GTM Container.
      */
-    triggers: Schema$Trigger[];
+    triggers?: Schema$Trigger[];
   }
   /**
    * List Variables Response.
@@ -507,7 +510,7 @@ export namespace tagmanager_v1 {
     /**
      * All GTM Variables of a GTM Container.
      */
-    variables: Schema$Variable[];
+    variables?: Schema$Variable[];
   }
   /**
    * Represents a Google Tag Manager Macro.
@@ -516,60 +519,60 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * For mobile containers only: A list of rule IDs for disabling conditional
      * macros; the macro is enabled if one of the enabling rules is true while
      * all the disabling rules are false. Treated as an unordered set.
      */
-    disablingRuleId: string[];
+    disablingRuleId?: string[];
     /**
      * For mobile containers only: A list of rule IDs for enabling conditional
      * macros; the macro is enabled if one of the enabling rules is true while
      * all the disabling rules are false. Treated as an unordered set.
      */
-    enablingRuleId: string[];
+    enablingRuleId?: string[];
     /**
      * The fingerprint of the GTM Macro as computed at storage time. This value
      * is recomputed whenever the macro is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * The Macro ID uniquely identifies the GTM Macro.
      */
-    macroId: string;
+    macroId?: string;
     /**
      * Macro display name.
      */
-    name: string;
+    name?: string;
     /**
      * User notes on how to apply this macro in the container.
      */
-    notes: string;
+    notes?: string;
     /**
      * The macro&#39;s parameters.
      */
-    parameter: Schema$Parameter[];
+    parameter?: Schema$Parameter[];
     /**
      * Parent folder id.
      */
-    parentFolderId: string;
+    parentFolderId?: string;
     /**
      * The end timestamp in milliseconds to schedule a macro.
      */
-    scheduleEndMs: string;
+    scheduleEndMs?: string;
     /**
      * The start timestamp in milliseconds to schedule a macro.
      */
-    scheduleStartMs: string;
+    scheduleStartMs?: string;
     /**
      * GTM Macro Type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents a Google Tag Manager Parameter.
@@ -579,16 +582,16 @@ export namespace tagmanager_v1 {
      * The named key that uniquely identifies a parameter. Required for
      * top-level parameters, as well as map values. Ignored for list values.
      */
-    key: string;
+    key?: string;
     /**
      * This list parameter&#39;s parameters (keys will be ignored).
      */
-    list: Schema$Parameter[];
+    list?: Schema$Parameter[];
     /**
      * This map parameter&#39;s parameters (must have keys; keys must be
      * unique).
      */
-    map: Schema$Parameter[];
+    map?: Schema$Parameter[];
     /**
      * The parameter type. Valid values are:  - boolean: The value represents a
      * boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The
@@ -598,12 +601,12 @@ export namespace tagmanager_v1 {
      * variable references (even variable references that might return
      * non-string types)
      */
-    type: string;
+    type?: string;
     /**
      * A parameter&#39;s value (may contain variable references such as
      * &quot;{{myVariable}}&quot;) as appropriate to the specified type.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Publish container version response.
@@ -612,11 +615,11 @@ export namespace tagmanager_v1 {
     /**
      * Compiler errors or not.
      */
-    compilerError: boolean;
+    compilerError?: boolean;
     /**
      * The container version created.
      */
-    containerVersion: Schema$ContainerVersion;
+    containerVersion?: Schema$ContainerVersion;
   }
   /**
    * Represents a Google Tag Manager Rule.
@@ -625,33 +628,33 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The list of conditions that make up this rule (implicit AND between
      * them).
      */
-    condition: Schema$Condition[];
+    condition?: Schema$Condition[];
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The fingerprint of the GTM Rule as computed at storage time. This value
      * is recomputed whenever the rule is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Rule display name.
      */
-    name: string;
+    name?: string;
     /**
      * User notes on how to apply this rule in the container.
      */
-    notes: string;
+    notes?: string;
     /**
      * The Rule ID uniquely identifies the GTM Rule.
      */
-    ruleId: string;
+    ruleId?: string;
   }
   export interface Schema$SetupTag {
     /**
@@ -659,11 +662,11 @@ export namespace tagmanager_v1 {
      * successfully. If false, fire the main tag regardless of setup tag firing
      * status.
      */
-    stopOnSetupFailure: boolean;
+    stopOnSetupFailure?: boolean;
     /**
      * The name of the setup tag.
      */
-    tagName: string;
+    tagName?: string;
   }
   /**
    * Represents a Google Tag Manager Tag.
@@ -672,96 +675,96 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Blocking rule IDs. If any of the listed rules evaluate to true, the tag
      * will not fire.
      */
-    blockingRuleId: string[];
+    blockingRuleId?: string[];
     /**
      * Blocking trigger IDs. If any of the listed triggers evaluate to true, the
      * tag will not fire.
      */
-    blockingTriggerId: string[];
+    blockingTriggerId?: string[];
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The fingerprint of the GTM Tag as computed at storage time. This value is
      * recomputed whenever the tag is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Firing rule IDs. A tag will fire when any of the listed rules are true
      * and all of its blockingRuleIds (if any specified) are false.
      */
-    firingRuleId: string[];
+    firingRuleId?: string[];
     /**
      * Firing trigger IDs. A tag will fire when any of the listed triggers are
      * true and all of its blockingTriggerIds (if any specified) are false.
      */
-    firingTriggerId: string[];
+    firingTriggerId?: string[];
     /**
      * If set to true, this tag will only fire in the live environment (e.g. not
      * in preview or debug mode).
      */
-    liveOnly: boolean;
+    liveOnly?: boolean;
     /**
      * Tag display name.
      */
-    name: string;
+    name?: string;
     /**
      * User notes on how to apply this tag in the container.
      */
-    notes: string;
+    notes?: string;
     /**
      * The tag&#39;s parameters.
      */
-    parameter: Schema$Parameter[];
+    parameter?: Schema$Parameter[];
     /**
      * Parent folder id.
      */
-    parentFolderId: string;
+    parentFolderId?: string;
     /**
      * True if the tag is paused.
      */
-    paused: boolean;
+    paused?: boolean;
     /**
      * User defined numeric priority of the tag. Tags are fired asynchronously
      * in order of priority. Tags with higher numeric value fire first. A
      * tag&#39;s priority can be a positive or negative value. The default value
      * is 0.
      */
-    priority: Schema$Parameter;
+    priority?: Schema$Parameter;
     /**
      * The end timestamp in milliseconds to schedule a tag.
      */
-    scheduleEndMs: string;
+    scheduleEndMs?: string;
     /**
      * The start timestamp in milliseconds to schedule a tag.
      */
-    scheduleStartMs: string;
+    scheduleStartMs?: string;
     /**
      * The list of setup tags. Currently we only allow one.
      */
-    setupTag: Schema$SetupTag[];
+    setupTag?: Schema$SetupTag[];
     /**
      * Option to fire this tag.
      */
-    tagFiringOption: string;
+    tagFiringOption?: string;
     /**
      * The Tag ID uniquely identifies the GTM Tag.
      */
-    tagId: string;
+    tagId?: string;
     /**
      * The list of teardown tags. Currently we only allow one.
      */
-    teardownTag: Schema$TeardownTag[];
+    teardownTag?: Schema$TeardownTag[];
     /**
      * GTM Tag Type.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$TeardownTag {
     /**
@@ -769,11 +772,11 @@ export namespace tagmanager_v1 {
      * successfully. If false, fire the teardown tag regardless of main tag
      * firing status.
      */
-    stopTeardownOnFailure: boolean;
+    stopTeardownOnFailure?: boolean;
     /**
      * The name of the teardown tag.
      */
-    tagName: string;
+    tagName?: string;
   }
   /**
    * Represents a Google Tag Manager Trigger
@@ -782,101 +785,101 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Used in the case of auto event tracking.
      */
-    autoEventFilter: Schema$Condition[];
+    autoEventFilter?: Schema$Condition[];
     /**
      * Whether or not we should only fire tags if the form submit or link click
      * event is not cancelled by some other event handler (e.g. because of
      * validation). Only valid for Form Submission and Link Click triggers.
      */
-    checkValidation: Schema$Parameter;
+    checkValidation?: Schema$Parameter;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * A visibility trigger minimum continuous visible time (in milliseconds).
      * Only valid for AMP Visibility trigger.
      */
-    continuousTimeMinMilliseconds: Schema$Parameter;
+    continuousTimeMinMilliseconds?: Schema$Parameter;
     /**
      * Used in the case of custom event, which is fired iff all Conditions are
      * true.
      */
-    customEventFilter: Schema$Condition[];
+    customEventFilter?: Schema$Condition[];
     /**
      * Name of the GTM event that is fired. Only valid for Timer triggers.
      */
-    eventName: Schema$Parameter;
+    eventName?: Schema$Parameter;
     /**
      * The trigger will only fire iff all Conditions are true.
      */
-    filter: Schema$Condition[];
+    filter?: Schema$Condition[];
     /**
      * The fingerprint of the GTM Trigger as computed at storage time. This
      * value is recomputed whenever the trigger is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * List of integer percentage values for scroll triggers. The trigger will
      * fire when each percentage is reached when the view is scrolled
      * horizontally. Only valid for AMP scroll triggers.
      */
-    horizontalScrollPercentageList: Schema$Parameter;
+    horizontalScrollPercentageList?: Schema$Parameter;
     /**
      * Time between triggering recurring Timer Events (in milliseconds). Only
      * valid for Timer triggers.
      */
-    interval: Schema$Parameter;
+    interval?: Schema$Parameter;
     /**
      * Time between Timer Events to fire (in seconds). Only valid for AMP Timer
      * trigger.
      */
-    intervalSeconds: Schema$Parameter;
+    intervalSeconds?: Schema$Parameter;
     /**
      * Limit of the number of GTM events this Timer Trigger will fire. If no
      * limit is set, we will continue to fire GTM events until the user leaves
      * the page. Only valid for Timer triggers.
      */
-    limit: Schema$Parameter;
+    limit?: Schema$Parameter;
     /**
      * Max time to fire Timer Events (in seconds). Only valid for AMP Timer
      * trigger.
      */
-    maxTimerLengthSeconds: Schema$Parameter;
+    maxTimerLengthSeconds?: Schema$Parameter;
     /**
      * Trigger display name.
      */
-    name: string;
+    name?: string;
     /**
      * Additional parameters.
      */
-    parameter: Schema$Parameter[];
+    parameter?: Schema$Parameter[];
     /**
      * Parent folder id.
      */
-    parentFolderId: string;
+    parentFolderId?: string;
     /**
      * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot;
      * etc.). Only valid for AMP Click trigger.
      */
-    selector: Schema$Parameter;
+    selector?: Schema$Parameter;
     /**
      * A visibility trigger minimum total visible time (in milliseconds). Only
      * valid for AMP Visibility trigger.
      */
-    totalTimeMinMilliseconds: Schema$Parameter;
+    totalTimeMinMilliseconds?: Schema$Parameter;
     /**
      * The Trigger ID uniquely identifies the GTM Trigger.
      */
-    triggerId: string;
+    triggerId?: string;
     /**
      * Defines the data layer event that causes this trigger.
      */
-    type: string;
+    type?: string;
     /**
      * Globally unique id of the trigger that auto-generates this (a Form
      * Submit, Link Click or Timer listener) if any. Used to make incompatible
@@ -885,41 +888,41 @@ export namespace tagmanager_v1 {
      * by triggers don&#39;t exist until then. Only valid for Form Submit, Link
      * Click and Timer triggers.
      */
-    uniqueTriggerId: Schema$Parameter;
+    uniqueTriggerId?: Schema$Parameter;
     /**
      * List of integer percentage values for scroll triggers. The trigger will
      * fire when each percentage is reached when the view is scrolled
      * vertically. Only valid for AMP scroll triggers.
      */
-    verticalScrollPercentageList: Schema$Parameter;
+    verticalScrollPercentageList?: Schema$Parameter;
     /**
      * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for
      * AMP Visibility trigger.
      */
-    visibilitySelector: Schema$Parameter;
+    visibilitySelector?: Schema$Parameter;
     /**
      * A visibility trigger maximum percent visibility. Only valid for AMP
      * Visibility trigger.
      */
-    visiblePercentageMax: Schema$Parameter;
+    visiblePercentageMax?: Schema$Parameter;
     /**
      * A visibility trigger minimum percent visibility. Only valid for AMP
      * Visibility trigger.
      */
-    visiblePercentageMin: Schema$Parameter;
+    visiblePercentageMin?: Schema$Parameter;
     /**
      * Whether or not we should delay the form submissions or link opening until
      * all of the tags have fired (by preventing the default action and later
      * simulating the default action). Only valid for Form Submission and Link
      * Click triggers.
      */
-    waitForTags: Schema$Parameter;
+    waitForTags?: Schema$Parameter;
     /**
      * How long to wait (in milliseconds) for tags to fire when
      * &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form
      * Submission and Link Click triggers.
      */
-    waitForTagsTimeout: Schema$Parameter;
+    waitForTagsTimeout?: Schema$Parameter;
   }
   /**
    * Represents a user&#39;s permissions to an account and its container.
@@ -928,23 +931,23 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account access permissions.
      */
-    accountAccess: Schema$AccountAccess;
+    accountAccess?: Schema$AccountAccess;
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * GTM Container access permissions.
      */
-    containerAccess: Schema$ContainerAccess[];
+    containerAccess?: Schema$ContainerAccess[];
     /**
      * User&#39;s email address.
      */
-    emailAddress: string;
+    emailAddress?: string;
     /**
      * Account Permission ID.
      */
-    permissionId: string;
+    permissionId?: string;
   }
   /**
    * Represents a Google Tag Manager Variable.
@@ -953,63 +956,64 @@ export namespace tagmanager_v1 {
     /**
      * GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * For mobile containers only: A list of trigger IDs for disabling
      * conditional variables; the variable is enabled if one of the enabling
      * trigger is true while all the disabling trigger are false. Treated as an
      * unordered set.
      */
-    disablingTriggerId: string[];
+    disablingTriggerId?: string[];
     /**
      * For mobile containers only: A list of trigger IDs for enabling
      * conditional variables; the variable is enabled if one of the enabling
      * triggers is true while all the disabling triggers are false. Treated as
      * an unordered set.
      */
-    enablingTriggerId: string[];
+    enablingTriggerId?: string[];
     /**
      * The fingerprint of the GTM Variable as computed at storage time. This
      * value is recomputed whenever the variable is modified.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Variable display name.
      */
-    name: string;
+    name?: string;
     /**
      * User notes on how to apply this variable in the container.
      */
-    notes: string;
+    notes?: string;
     /**
      * The variable&#39;s parameters.
      */
-    parameter: Schema$Parameter[];
+    parameter?: Schema$Parameter[];
     /**
      * Parent folder id.
      */
-    parentFolderId: string;
+    parentFolderId?: string;
     /**
      * The end timestamp in milliseconds to schedule a variable.
      */
-    scheduleEndMs: string;
+    scheduleEndMs?: string;
     /**
      * The start timestamp in milliseconds to schedule a variable.
      */
-    scheduleStartMs: string;
+    scheduleStartMs?: string;
     /**
      * GTM Variable Type.
      */
-    type: string;
+    type?: string;
     /**
      * The Variable ID uniquely identifies the GTM Variable.
      */
-    variableId: string;
+    variableId?: string;
   }
+
 
   export class Resource$Accounts {
     root: Tagmanager;
@@ -1039,23 +1043,33 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+    get(params?: Params$Resource$Accounts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Account>;
+    get(params: Params$Resource$Accounts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(params: Params$Resource$Accounts$Get,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(callback: BodyResponseCallback<Schema$Account>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Get|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1089,28 +1103,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
         AxiosPromise<Schema$ListAccountsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$List,
+        callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$List|
+        BodyResponseCallback<Schema$ListAccountsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccountsResponse>,
         callback?: BodyResponseCallback<Schema$ListAccountsResponse>):
         void|AxiosPromise<Schema$ListAccountsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1147,25 +1171,36 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Account>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
+        params: Params$Resource$Accounts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+        params: Params$Resource$Accounts$Update,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    update(callback: BodyResponseCallback<Schema$Account>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Update|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1187,6 +1222,45 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+  }
+  export interface Params$Resource$Accounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Accounts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the account
+     * in storage.
+     */
+    fingerprint?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Account;
+  }
+
   export class Resource$Accounts$Containers {
     root: Tagmanager;
     environments: Resource$Accounts$Containers$Environments;
@@ -1230,26 +1304,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Container>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>): void;
+        params?: Params$Resource$Accounts$Containers$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Container>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+        params: Params$Resource$Accounts$Containers$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Container>,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Create,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    create(callback: BodyResponseCallback<Schema$Container>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Create|
+        BodyResponseCallback<Schema$Container>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
         void|AxiosPromise<Schema$Container> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1285,22 +1372,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1338,23 +1440,35 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Container>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+    get(params?: Params$Resource$Accounts$Containers$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Container>;
+    get(params: Params$Resource$Accounts$Containers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Container>,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    get(params: Params$Resource$Accounts$Containers$Get,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    get(callback: BodyResponseCallback<Schema$Container>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Get|
+        BodyResponseCallback<Schema$Container>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
         void|AxiosPromise<Schema$Container> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1391,28 +1505,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListContainersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Containers$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListContainersResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListContainersResponse>,
-        callback?: BodyResponseCallback<Schema$ListContainersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$List,
+        callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$List|
+        BodyResponseCallback<Schema$ListContainersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContainersResponse>,
         callback?: BodyResponseCallback<Schema$ListContainersResponse>):
         void|AxiosPromise<Schema$ListContainersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1450,26 +1576,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Container>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>): void;
+        params?: Params$Resource$Accounts$Containers$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Container>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+        params: Params$Resource$Accounts$Containers$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Container>,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Update,
+        callback: BodyResponseCallback<Schema$Container>): void;
+    update(callback: BodyResponseCallback<Schema$Container>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Update|
+        BodyResponseCallback<Schema$Container>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
         void|AxiosPromise<Schema$Container> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1493,6 +1632,88 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Container;
+  }
+  export interface Params$Resource$Accounts$Containers$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * container in storage.
+     */
+    fingerprint?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Container;
+  }
+
   export class Resource$Accounts$Containers$Environments {
     root: Tagmanager;
     constructor(root: Tagmanager) {
@@ -1519,26 +1740,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Environment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
+        params?: Params$Resource$Accounts$Containers$Environments$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Environment>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        params: Params$Resource$Accounts$Containers$Environments$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Environments$Create,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    create(callback: BodyResponseCallback<Schema$Environment>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Environments$Create|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1577,22 +1812,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Environments$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Environments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Environments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Environments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1631,24 +1882,35 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accounts$Containers$Environments$Get,
         options?: MethodOptions): AxiosPromise<Schema$Environment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+    get(params: Params$Resource$Accounts$Containers$Environments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(params: Params$Resource$Accounts$Containers$Environments$Get,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(callback: BodyResponseCallback<Schema$Environment>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Environments$Get|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1686,28 +1948,41 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListEnvironmentsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Containers$Environments$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListEnvironmentsResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$Environments$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Environments$List,
+        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Environments$List|
+        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListEnvironmentsResponse>,
         callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>):
         void|AxiosPromise<Schema$ListEnvironmentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1748,26 +2023,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Environment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
+        params?: Params$Resource$Accounts$Containers$Environments$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Environment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        params: Params$Resource$Accounts$Containers$Environments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(
+        params: Params$Resource$Accounts$Containers$Environments$Patch,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(callback: BodyResponseCallback<Schema$Environment>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Environments$Patch|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1808,26 +2097,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Environment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
+        params?: Params$Resource$Accounts$Containers$Environments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Environment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        params: Params$Resource$Accounts$Containers$Environments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Environments$Update,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    update(callback: BodyResponseCallback<Schema$Environment>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Environments$Update|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Environments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1851,6 +2154,136 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Environments$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Environment;
+  }
+  export interface Params$Resource$Accounts$Containers$Environments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Environment ID.
+     */
+    environmentId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Environments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Environment ID.
+     */
+    environmentId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Environments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Environments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Environment ID.
+     */
+    environmentId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * environment in storage.
+     */
+    fingerprint?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Environment;
+  }
+  export interface Params$Resource$Accounts$Containers$Environments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Environment ID.
+     */
+    environmentId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * environment in storage.
+     */
+    fingerprint?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Environment;
+  }
+
 
   export class Resource$Accounts$Containers$Folders {
     root: Tagmanager;
@@ -1880,25 +2313,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
+        params?: Params$Resource$Accounts$Containers$Folders$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Folder>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        params: Params$Resource$Accounts$Containers$Folders$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Folders$Create,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    create(callback: BodyResponseCallback<Schema$Folder>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$Create|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Folders$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1937,22 +2383,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Folders$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Folders$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Folders$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Folders$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1991,23 +2452,34 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+    get(params?: Params$Resource$Accounts$Containers$Folders$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Folder>;
+    get(params: Params$Resource$Accounts$Containers$Folders$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(params: Params$Resource$Accounts$Containers$Folders$Get,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(callback: BodyResponseCallback<Schema$Folder>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$Get|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Folders$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2045,28 +2517,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListFoldersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Containers$Folders$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListFoldersResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$Folders$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
+        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+    list(
+        params: Params$Resource$Accounts$Containers$Folders$List,
+        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$List|
         BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$ListFoldersResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFoldersResponse>,
         callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
         void|AxiosPromise<Schema$ListFoldersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Folders$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2107,25 +2590,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
+        params?: Params$Resource$Accounts$Containers$Folders$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Folder>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        params: Params$Resource$Accounts$Containers$Folders$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Folders$Update,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    update(callback: BodyResponseCallback<Schema$Folder>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$Update|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Folders$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2149,6 +2645,108 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Folders$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Folder;
+  }
+  export interface Params$Resource$Accounts$Containers$Folders$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Folder ID.
+     */
+    folderId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Folders$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Folder ID.
+     */
+    folderId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Folders$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Folders$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the folder
+     * in storage.
+     */
+    fingerprint?: string;
+    /**
+     * The GTM Folder ID.
+     */
+    folderId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Folder;
+  }
+
   export class Resource$Accounts$Containers$Folders$Entities {
     root: Tagmanager;
     constructor(root: Tagmanager) {
@@ -2175,26 +2773,41 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FolderEntities>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
-        callback?: BodyResponseCallback<Schema$FolderEntities>): void;
+        params?: Params$Resource$Accounts$Containers$Folders$Entities$List,
+        options?: MethodOptions): AxiosPromise<Schema$FolderEntities>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
+        params: Params$Resource$Accounts$Containers$Folders$Entities$List,
+        options: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
+        callback: BodyResponseCallback<Schema$FolderEntities>): void;
+    list(
+        params: Params$Resource$Accounts$Containers$Folders$Entities$List,
+        callback: BodyResponseCallback<Schema$FolderEntities>): void;
+    list(callback: BodyResponseCallback<Schema$FolderEntities>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Folders$Entities$List|
+        BodyResponseCallback<Schema$FolderEntities>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FolderEntities>,
         callback?: BodyResponseCallback<Schema$FolderEntities>):
         void|AxiosPromise<Schema$FolderEntities> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Folders$Entities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Folders$Entities$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2218,6 +2831,27 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Folders$Entities$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Folder ID.
+     */
+    folderId?: string;
+  }
+
 
 
   export class Resource$Accounts$Containers$Move_folders {
@@ -2250,22 +2884,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<void>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Move_folders$Update,
+        options?: MethodOptions): AxiosPromise<void>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Move_folders$Update,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Move_folders$Update,
+        callback: BodyResponseCallback<void>): void;
+    update(callback: BodyResponseCallback<void>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Move_folders$Update|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Move_folders$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Move_folders$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2289,6 +2939,43 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Move_folders$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Folder ID.
+     */
+    folderId?: string;
+    /**
+     * The tags to be moved to the folder.
+     */
+    tagId?: string;
+    /**
+     * The triggers to be moved to the folder.
+     */
+    triggerId?: string;
+    /**
+     * The variables to be moved to the folder.
+     */
+    variableId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Folder;
+  }
+
 
   export class Resource$Accounts$Containers$Reauthorize_environments {
     root: Tagmanager;
@@ -2317,26 +3004,44 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Environment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>): void;
+        params?:
+            Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Environment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        params:
+            Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    update(
+        params:
+            Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
+        callback: BodyResponseCallback<Schema$Environment>): void;
+    update(callback: BodyResponseCallback<Schema$Environment>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Reauthorize_environments$Update|
+        BodyResponseCallback<Schema$Environment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
         void|AxiosPromise<Schema$Environment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2360,6 +3065,31 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Reauthorize_environments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Environment ID.
+     */
+    environmentId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Environment;
+  }
+
 
   export class Resource$Accounts$Containers$Tags {
     root: Tagmanager;
@@ -2387,23 +3117,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>): void;
+        params?: Params$Resource$Accounts$Containers$Tags$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Tag>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+        params: Params$Resource$Accounts$Containers$Tags$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Tags$Create,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    create(callback: BodyResponseCallback<Schema$Tag>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$Create|
+        BodyResponseCallback<Schema$Tag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
         void|AxiosPromise<Schema$Tag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Tags$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Tags$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2442,22 +3187,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Tags$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Tags$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Tags$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Tags$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Tags$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2496,21 +3256,34 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+    get(params?: Params$Resource$Accounts$Containers$Tags$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Tag>;
+    get(params: Params$Resource$Accounts$Containers$Tags$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    get(params: Params$Resource$Accounts$Containers$Tags$Get,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    get(callback: BodyResponseCallback<Schema$Tag>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$Get|
+        BodyResponseCallback<Schema$Tag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
         void|AxiosPromise<Schema$Tag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Tags$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Tags$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2548,26 +3321,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTagsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTagsResponse>): void;
+        params?: Params$Resource$Accounts$Containers$Tags$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTagsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
+        params: Params$Resource$Accounts$Containers$Tags$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
+        callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
+    list(
+        params: Params$Resource$Accounts$Containers$Tags$List,
+        callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$List|
+        BodyResponseCallback<Schema$ListTagsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTagsResponse>,
         callback?: BodyResponseCallback<Schema$ListTagsResponse>):
         void|AxiosPromise<Schema$ListTagsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Tags$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Tags$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2608,23 +3394,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>): void;
+        params?: Params$Resource$Accounts$Containers$Tags$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Tag>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+        params: Params$Resource$Accounts$Containers$Tags$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Tags$Update,
+        callback: BodyResponseCallback<Schema$Tag>): void;
+    update(callback: BodyResponseCallback<Schema$Tag>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$Update|
+        BodyResponseCallback<Schema$Tag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
         void|AxiosPromise<Schema$Tag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Tags$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Tags$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2648,6 +3449,108 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Tags$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Tag;
+  }
+  export interface Params$Resource$Accounts$Containers$Tags$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Tag ID.
+     */
+    tagId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Tags$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Tag ID.
+     */
+    tagId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Tags$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Tags$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the tag in
+     * storage.
+     */
+    fingerprint?: string;
+    /**
+     * The GTM Tag ID.
+     */
+    tagId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Tag;
+  }
+
 
   export class Resource$Accounts$Containers$Triggers {
     root: Tagmanager;
@@ -2675,25 +3578,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>): void;
+        params?: Params$Resource$Accounts$Containers$Triggers$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+        params: Params$Resource$Accounts$Containers$Triggers$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Triggers$Create,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    create(callback: BodyResponseCallback<Schema$Trigger>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$Create|
+        BodyResponseCallback<Schema$Trigger>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
         void|AxiosPromise<Schema$Trigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Triggers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Triggers$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2732,22 +3648,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Triggers$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Triggers$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Triggers$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Triggers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Triggers$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2786,23 +3717,34 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+    get(params?: Params$Resource$Accounts$Containers$Triggers$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+    get(params: Params$Resource$Accounts$Containers$Triggers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    get(params: Params$Resource$Accounts$Containers$Triggers$Get,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    get(callback: BodyResponseCallback<Schema$Trigger>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$Get|
+        BodyResponseCallback<Schema$Trigger>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
         void|AxiosPromise<Schema$Trigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Triggers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Triggers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2840,28 +3782,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTriggersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Containers$Triggers$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTriggersResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$Triggers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTriggersResponse>,
-        callback?: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Triggers$List,
+        callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$List|
+        BodyResponseCallback<Schema$ListTriggersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTriggersResponse>,
         callback?: BodyResponseCallback<Schema$ListTriggersResponse>):
         void|AxiosPromise<Schema$ListTriggersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Triggers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Triggers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2902,25 +3856,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>): void;
+        params?: Params$Resource$Accounts$Containers$Triggers$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+        params: Params$Resource$Accounts$Containers$Triggers$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Triggers$Update,
+        callback: BodyResponseCallback<Schema$Trigger>): void;
+    update(callback: BodyResponseCallback<Schema$Trigger>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$Update|
+        BodyResponseCallback<Schema$Trigger>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
         void|AxiosPromise<Schema$Trigger> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Triggers$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Triggers$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2944,6 +3911,108 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Triggers$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Trigger;
+  }
+  export interface Params$Resource$Accounts$Containers$Triggers$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Trigger ID.
+     */
+    triggerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Triggers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Trigger ID.
+     */
+    triggerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Triggers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Triggers$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the trigger
+     * in storage.
+     */
+    fingerprint?: string;
+    /**
+     * The GTM Trigger ID.
+     */
+    triggerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Trigger;
+  }
+
 
   export class Resource$Accounts$Containers$Variables {
     root: Tagmanager;
@@ -2971,26 +4040,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Variable>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
+        params?: Params$Resource$Accounts$Containers$Variables$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        params: Params$Resource$Accounts$Containers$Variables$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Variables$Create,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    create(callback: BodyResponseCallback<Schema$Variable>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$Create|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Variables$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Variables$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3029,22 +4110,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Variables$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Variables$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Variables$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Variables$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Variables$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3083,23 +4179,34 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+    get(params?: Params$Resource$Accounts$Containers$Variables$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+    get(params: Params$Resource$Accounts$Containers$Variables$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    get(params: Params$Resource$Accounts$Containers$Variables$Get,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    get(callback: BodyResponseCallback<Schema$Variable>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$Get|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Variables$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Variables$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3137,28 +4244,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListVariablesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Containers$Variables$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListVariablesResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$Variables$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Variables$List,
+        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$List|
+        BodyResponseCallback<Schema$ListVariablesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
         callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
         void|AxiosPromise<Schema$ListVariablesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Variables$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Variables$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3199,26 +4318,38 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Variable>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
+        params?: Params$Resource$Accounts$Containers$Variables$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        params: Params$Resource$Accounts$Containers$Variables$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Variables$Update,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    update(callback: BodyResponseCallback<Schema$Variable>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$Update|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Variables$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Variables$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3242,6 +4373,108 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Variables$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variable;
+  }
+  export interface Params$Resource$Accounts$Containers$Variables$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Variable ID.
+     */
+    variableId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Variables$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Variable ID.
+     */
+    variableId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Variables$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Variables$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * variable in storage.
+     */
+    fingerprint?: string;
+    /**
+     * The GTM Variable ID.
+     */
+    variableId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variable;
+  }
+
 
   export class Resource$Accounts$Containers$Versions {
     root: Tagmanager;
@@ -3269,29 +4502,45 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(
+        params?: Params$Resource$Accounts$Containers$Versions$Create,
+        options?: MethodOptions):
         AxiosPromise<Schema$CreateContainerVersionResponse>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-        callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
+        callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
         void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$Create,
+        callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$CreateContainerVersionResponse>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Create|
+        BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateContainerVersionResponse>,
         callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
         void|AxiosPromise<Schema$CreateContainerVersionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3332,22 +4581,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Containers$Versions$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Containers$Versions$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Versions$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3386,24 +4650,35 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accounts$Containers$Versions$Get,
         options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+    get(params: Params$Resource$Accounts$Containers$Versions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    get(params: Params$Resource$Accounts$Containers$Versions$Get,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    get(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Get|
+        BodyResponseCallback<Schema$ContainerVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
         void|AxiosPromise<Schema$ContainerVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3443,29 +4718,44 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accounts$Containers$Versions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListContainerVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
+        callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$List,
+        callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$List|
+        BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContainerVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
         void|AxiosPromise<Schema$ListContainerVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3507,30 +4797,46 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish(params?: any, options?: MethodOptions):
+    publish(
+        params?: Params$Resource$Accounts$Containers$Versions$Publish,
+        options?: MethodOptions):
         AxiosPromise<Schema$PublishContainerVersionResponse>;
     publish(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$Publish,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-        callback?:
-            BodyResponseCallback<Schema$PublishContainerVersionResponse>): void;
+        callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
+        void;
     publish(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Containers$Versions$Publish,
+        callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
+        void;
+    publish(callback:
+                BodyResponseCallback<Schema$PublishContainerVersionResponse>):
+        void;
+    publish(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Publish|
+        BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PublishContainerVersionResponse>,
         callback?:
             BodyResponseCallback<Schema$PublishContainerVersionResponse>):
         void|AxiosPromise<Schema$PublishContainerVersionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Publish;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3574,26 +4880,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restore(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContainerVersion>;
     restore(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+        params?: Params$Resource$Accounts$Containers$Versions$Restore,
+        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
     restore(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        params: Params$Resource$Accounts$Containers$Versions$Restore,
+        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    restore(
+        params: Params$Resource$Accounts$Containers$Versions$Restore,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    restore(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    restore(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Restore|
+        BodyResponseCallback<Schema$ContainerVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
         void|AxiosPromise<Schema$ContainerVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Restore;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3632,26 +4951,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContainerVersion>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+        params?: Params$Resource$Accounts$Containers$Versions$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        params: Params$Resource$Accounts$Containers$Versions$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    undelete(
+        params: Params$Resource$Accounts$Containers$Versions$Undelete,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    undelete(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    undelete(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Versions$Undelete|
+        BodyResponseCallback<Schema$ContainerVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
         void|AxiosPromise<Schema$ContainerVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3692,26 +5025,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContainerVersion>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+        params?: Params$Resource$Accounts$Containers$Versions$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        params: Params$Resource$Accounts$Containers$Versions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Versions$Update,
+        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    update(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Update|
+        BodyResponseCallback<Schema$ContainerVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
         void|AxiosPromise<Schema$ContainerVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Versions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Versions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3735,6 +5081,179 @@ export namespace tagmanager_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Containers$Versions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateContainerVersionRequestVersionOptions;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID.
+     */
+    containerVersionId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID. Specify published to retrieve the currently
+     * published version.
+     */
+    containerVersionId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * Retrieve headers only when true.
+     */
+    headers?: boolean;
+    /**
+     * Also retrieve deleted (archived) versions when true.
+     */
+    includeDeleted?: boolean;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Publish {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID.
+     */
+    containerVersionId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * container version in storage.
+     */
+    fingerprint?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Restore {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID.
+     */
+    containerVersionId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID.
+     */
+    containerVersionId?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Versions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM Container ID.
+     */
+    containerId?: string;
+    /**
+     * The GTM Container Version ID.
+     */
+    containerVersionId?: string;
+    /**
+     * When provided, this fingerprint must match the fingerprint of the
+     * container version in storage.
+     */
+    fingerprint?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ContainerVersion;
+  }
+
 
 
   export class Resource$Accounts$Permissions {
@@ -3762,26 +5281,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UserAccess>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-        callback?: BodyResponseCallback<Schema$UserAccess>): void;
+        params?: Params$Resource$Accounts$Permissions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+        params: Params$Resource$Accounts$Permissions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    create(
+        params: Params$Resource$Accounts$Permissions$Create,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    create(callback: BodyResponseCallback<Schema$UserAccess>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Permissions$Create|
+        BodyResponseCallback<Schema$UserAccess>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
         void|AxiosPromise<Schema$UserAccess> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Permissions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Permissions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3818,22 +5350,37 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Accounts$Permissions$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Accounts$Permissions$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Permissions$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Accounts$Permissions$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Permissions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Permissions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3871,23 +5418,35 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-        callback?: BodyResponseCallback<Schema$UserAccess>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+    get(params?: Params$Resource$Accounts$Permissions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+    get(params: Params$Resource$Accounts$Permissions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    get(params: Params$Resource$Accounts$Permissions$Get,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    get(callback: BodyResponseCallback<Schema$UserAccess>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Permissions$Get|
+        BodyResponseCallback<Schema$UserAccess>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
         void|AxiosPromise<Schema$UserAccess> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Permissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Permissions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3925,28 +5484,40 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListAccountUsersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Permissions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListAccountUsersResponse>;
+    list(
+        params: Params$Resource$Accounts$Permissions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAccountUsersResponse>,
-        callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListAccountUsersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Permissions$List,
+        callback: BodyResponseCallback<Schema$ListAccountUsersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListAccountUsersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Permissions$List|
+        BodyResponseCallback<Schema$ListAccountUsersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccountUsersResponse>,
         callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>):
         void|AxiosPromise<Schema$ListAccountUsersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Permissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Permissions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3983,26 +5554,39 @@ export namespace tagmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UserAccess>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-        callback?: BodyResponseCallback<Schema$UserAccess>): void;
+        params?: Params$Resource$Accounts$Permissions$Update,
+        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+        params: Params$Resource$Accounts$Permissions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    update(
+        params: Params$Resource$Accounts$Permissions$Update,
+        callback: BodyResponseCallback<Schema$UserAccess>): void;
+    update(callback: BodyResponseCallback<Schema$UserAccess>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Permissions$Update|
+        BodyResponseCallback<Schema$UserAccess>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
         void|AxiosPromise<Schema$UserAccess> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Permissions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Permissions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4025,5 +5609,81 @@ export namespace tagmanager_v1 {
         return createAPIRequest<Schema$UserAccess>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Accounts$Permissions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserAccess;
+  }
+  export interface Params$Resource$Accounts$Permissions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM User ID.
+     */
+    permissionId?: string;
+  }
+  export interface Params$Resource$Accounts$Permissions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM User ID.
+     */
+    permissionId?: string;
+  }
+  export interface Params$Resource$Accounts$Permissions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID. @required tagmanager.accounts.permissions.list
+     */
+    accountId?: string;
+  }
+  export interface Params$Resource$Accounts$Permissions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GTM Account ID.
+     */
+    accountId?: string;
+    /**
+     * The GTM User ID.
+     */
+    permissionId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserAccess;
   }
 }

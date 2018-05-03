@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace slides_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Slides API
    *
@@ -77,31 +80,31 @@ export namespace slides_v1 {
     /**
      * The X coordinate scaling element.
      */
-    scaleX: number;
+    scaleX?: number;
     /**
      * The Y coordinate scaling element.
      */
-    scaleY: number;
+    scaleY?: number;
     /**
      * The X coordinate shearing element.
      */
-    shearX: number;
+    shearX?: number;
     /**
      * The Y coordinate shearing element.
      */
-    shearY: number;
+    shearY?: number;
     /**
      * The X coordinate translation element.
      */
-    translateX: number;
+    translateX?: number;
     /**
      * The Y coordinate translation element.
      */
-    translateY: number;
+    translateY?: number;
     /**
      * The units for translate elements.
      */
-    unit: string;
+    unit?: string;
   }
   /**
    * A TextElement kind that represents auto text.
@@ -110,15 +113,15 @@ export namespace slides_v1 {
     /**
      * The rendered content of this auto text, if available.
      */
-    content: string;
+    content?: string;
     /**
      * The styling applied to this auto text.
      */
-    style: Schema$TextStyle;
+    style?: Schema$TextStyle;
     /**
      * The type of this auto text.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Request message for PresentationsService.BatchUpdatePresentation.
@@ -127,11 +130,11 @@ export namespace slides_v1 {
     /**
      * A list of updates to apply to the presentation.
      */
-    requests: Schema$Request[];
+    requests?: Schema$Request[];
     /**
      * Provides control over how write requests are executed.
      */
-    writeControl: Schema$WriteControl;
+    writeControl?: Schema$WriteControl;
   }
   /**
    * Response message from a batch update.
@@ -140,16 +143,16 @@ export namespace slides_v1 {
     /**
      * The presentation the updates were applied to.
      */
-    presentationId: string;
+    presentationId?: string;
     /**
      * The reply of the updates.  This maps 1:1 with the updates, although
      * replies to some requests may be empty.
      */
-    replies: Schema$Response[];
+    replies?: Schema$Response[];
     /**
      * The updated write control after applying the request.
      */
-    writeControl: Schema$WriteControl;
+    writeControl?: Schema$WriteControl;
   }
   /**
    * Describes the bullet of a paragraph.
@@ -158,19 +161,19 @@ export namespace slides_v1 {
     /**
      * The paragraph specific text style applied to this bullet.
      */
-    bulletStyle: Schema$TextStyle;
+    bulletStyle?: Schema$TextStyle;
     /**
      * The rendered bullet glyph for this paragraph.
      */
-    glyph: string;
+    glyph?: string;
     /**
      * The ID of the list this paragraph belongs to.
      */
-    listId: string;
+    listId?: string;
     /**
      * The nesting level of this paragraph in the list.
      */
-    nestingLevel: number;
+    nestingLevel?: number;
   }
   /**
    * The palette of predefined colors for a page.
@@ -179,7 +182,7 @@ export namespace slides_v1 {
     /**
      * The ThemeColorType and corresponding concrete color pairs.
      */
-    colors: Schema$ThemeColorPair[];
+    colors?: Schema$ThemeColorPair[];
   }
   /**
    * A color and position in a gradient band.
@@ -189,16 +192,16 @@ export namespace slides_v1 {
      * The alpha value of this color in the gradient band. Defaults to 1.0,
      * fully opaque.
      */
-    alpha: number;
+    alpha?: number;
     /**
      * The color of the gradient stop.
      */
-    color: Schema$OpaqueColor;
+    color?: Schema$OpaqueColor;
     /**
      * The relative position of the color stop in the gradient band measured in
      * percentage. The value should be in the interval [0.0, 1.0].
      */
-    position: number;
+    position?: number;
   }
   /**
    * Creates an image.
@@ -215,7 +218,7 @@ export namespace slides_v1 {
      * specify a transform, the image will be placed at the top left corner of
      * the page.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -225,7 +228,7 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50.  If you don&#39;t specify an
      * ID, a unique one is generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The image URL.  The image is fetched once at insertion time and a copy is
      * stored for display inside the presentation. Images must be less than 50MB
@@ -234,7 +237,7 @@ export namespace slides_v1 {
      * itself is saved with the image, and exposed via the Image.source_url
      * field.
      */
-    url: string;
+    url?: string;
   }
   /**
    * The result of creating an image.
@@ -243,7 +246,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created image.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates a line.
@@ -252,11 +255,11 @@ export namespace slides_v1 {
     /**
      * The element properties for the line.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * The category of line to be created.
      */
-    lineCategory: string;
+    lineCategory?: string;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -266,7 +269,7 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50.  If you don&#39;t specify an
      * ID, a unique one is generated.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * The result of creating a line.
@@ -275,7 +278,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created line.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates bullets for all of the paragraphs that overlap with the given text
@@ -292,22 +295,22 @@ export namespace slides_v1 {
      * The kinds of bullet glyphs to be used. Defaults to the
      * `BULLET_DISC_CIRCLE_SQUARE` preset.
      */
-    bulletPreset: string;
+    bulletPreset?: string;
     /**
      * The optional table cell location if the text to be modified is in a table
      * cell. If present, the object_id must refer to a table.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The object ID of the shape or table containing the text to add bullets
      * to.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The range of text to apply the bullet presets to, based on TextElement
      * indexes.
      */
-    textRange: Schema$Range;
+    textRange?: Schema$Range;
   }
   /**
    * Creates a new shape.
@@ -316,7 +319,7 @@ export namespace slides_v1 {
     /**
      * The element properties for the shape.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -326,11 +329,11 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50. If empty, a unique identifier
      * will be generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The shape type.
      */
-    shapeType: string;
+    shapeType?: string;
   }
   /**
    * The result of creating a shape.
@@ -339,7 +342,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created shape.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates an embedded Google Sheets chart.  NOTE: Chart creation requires at
@@ -350,19 +353,19 @@ export namespace slides_v1 {
     /**
      * The ID of the specific chart in the Google Sheets spreadsheet.
      */
-    chartId: number;
+    chartId?: number;
     /**
      * The element properties for the chart.  When the aspect ratio of the
      * provided size does not match the chart aspect ratio, the chart is scaled
      * and centered with respect to the size in order to maintain aspect ratio.
      * The provided transform is applied after this operation.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * The mode with which the chart is linked to the source spreadsheet. When
      * not specified, the chart will be an image that is not linked.
      */
-    linkingMode: string;
+    linkingMode?: string;
     /**
      * A user-supplied object ID.  If specified, the ID must be unique among all
      * pages and page elements in the presentation. The ID should start with a
@@ -371,11 +374,11 @@ export namespace slides_v1 {
      * less than 5 or greater than 50. If empty, a unique identifier will be
      * generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The ID of the Google Sheets spreadsheet that contains the chart.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
   }
   /**
    * The result of creating an embedded Google Sheets chart.
@@ -384,7 +387,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created chart.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates a new slide.
@@ -394,7 +397,7 @@ export namespace slides_v1 {
      * The optional zero-based index indicating where to insert the slides.  If
      * you don&#39;t specify an index, the new slide is created at the end.
      */
-    insertionIndex: number;
+    insertionIndex?: number;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -404,14 +407,14 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50.  If you don&#39;t specify an
      * ID, a unique one is generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * An optional list of object ID mappings from the placeholder(s) on the
      * layout to the placeholder(s) that will be created on the new slide from
      * that specified layout. Can only be used when `slide_layout_reference` is
      * specified.
      */
-    placeholderIdMappings: Schema$LayoutPlaceholderIdMapping[];
+    placeholderIdMappings?: Schema$LayoutPlaceholderIdMapping[];
     /**
      * Layout reference of the slide to be inserted, based on the *current
      * master*, which is one of the following:  - The master of the previous
@@ -421,7 +424,7 @@ export namespace slides_v1 {
      * error is returned.  If you don&#39;t specify a layout reference, then the
      * new slide will use the predefined layout `BLANK`.
      */
-    slideLayoutReference: Schema$LayoutReference;
+    slideLayoutReference?: Schema$LayoutReference;
   }
   /**
    * The result of creating a slide.
@@ -430,7 +433,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created slide.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates a new table.
@@ -439,7 +442,7 @@ export namespace slides_v1 {
     /**
      * Number of columns in the table.
      */
-    columns: number;
+    columns?: number;
     /**
      * The element properties for the table.  The table will be created at the
      * provided size, subject to a minimum size. If no size is provided, the
@@ -447,7 +450,7 @@ export namespace slides_v1 {
      * 1 and no shear components. If no transform is provided, the table will be
      * centered on the page.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -457,11 +460,11 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50.  If you don&#39;t specify an
      * ID, a unique one is generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * Number of rows in the table.
      */
-    rows: number;
+    rows?: number;
   }
   /**
    * The result of creating a table.
@@ -470,7 +473,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created table.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Creates a video.
@@ -484,13 +487,13 @@ export namespace slides_v1 {
      * specify a transform, the video will be placed at the top left corner of
      * the page.
      */
-    elementProperties: Schema$PageElementProperties;
+    elementProperties?: Schema$PageElementProperties;
     /**
      * The video source&#39;s unique identifier for this video.  e.g. For
      * YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is
      * 7U3axjORYZ0.
      */
-    id: string;
+    id?: string;
     /**
      * A user-supplied object ID.  If you specify an ID, it must be unique among
      * all pages and page elements in the presentation. The ID must start with
@@ -500,11 +503,11 @@ export namespace slides_v1 {
      * must not be less than 5 or greater than 50.  If you don&#39;t specify an
      * ID, a unique one is generated.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The video source.
      */
-    source: string;
+    source?: string;
   }
   /**
    * The result of creating a video.
@@ -513,7 +516,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created video.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * The crop properties of an object enclosed in a container. For example, an
@@ -537,31 +540,31 @@ export namespace slides_v1 {
      * The rotation angle of the crop window around its center, in radians.
      * Rotation angle is applied after the offset.
      */
-    angle: number;
+    angle?: number;
     /**
      * The offset specifies the bottom edge of the crop rectangle that is
      * located above the original bounding rectangle bottom edge, relative to
      * the object&#39;s original height.
      */
-    bottomOffset: number;
+    bottomOffset?: number;
     /**
      * The offset specifies the left edge of the crop rectangle that is located
      * to the right of the original bounding rectangle left edge, relative to
      * the object&#39;s original width.
      */
-    leftOffset: number;
+    leftOffset?: number;
     /**
      * The offset specifies the right edge of the crop rectangle that is located
      * to the left of the original bounding rectangle right edge, relative to
      * the object&#39;s original width.
      */
-    rightOffset: number;
+    rightOffset?: number;
     /**
      * The offset specifies the top edge of the crop rectangle that is located
      * below the original bounding rectangle top edge, relative to the
      * object&#39;s original height.
      */
-    topOffset: number;
+    topOffset?: number;
   }
   /**
    * Deletes an object, either pages or page elements, from the presentation.
@@ -573,7 +576,7 @@ export namespace slides_v1 {
      * deleted.  If a placeholder is deleted on a layout, any empty inheriting
      * shapes are also deleted.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Deletes bullets from all of the paragraphs that overlap with the given text
@@ -585,16 +588,16 @@ export namespace slides_v1 {
      * The optional table cell location if the text to be modified is in a table
      * cell. If present, the object_id must refer to a table.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The object ID of the shape or table containing the text to delete bullets
      * from.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The range of text to delete bullets from, based on TextElement indexes.
      */
-    textRange: Schema$Range;
+    textRange?: Schema$Range;
   }
   /**
    * Deletes a column from a table.
@@ -606,11 +609,11 @@ export namespace slides_v1 {
      * multiple columns will be deleted. If no columns remain in the table after
      * this deletion, the whole table is deleted.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The table to delete columns from.
      */
-    tableObjectId: string;
+    tableObjectId?: string;
   }
   /**
    * Deletes a row from a table.
@@ -622,11 +625,11 @@ export namespace slides_v1 {
      * rows will be deleted. If no rows remain in the table after this deletion,
      * the whole table is deleted.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The table to delete rows from.
      */
-    tableObjectId: string;
+    tableObjectId?: string;
   }
   /**
    * Deletes text from a shape or a table cell.
@@ -636,11 +639,11 @@ export namespace slides_v1 {
      * The optional table cell location if the text is to be deleted from a
      * table cell. If present, the object_id must refer to a table.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The object ID of the shape or table from which the text will be deleted.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The range of text to delete, based on TextElement indexes.  There is
      * always an implicit newline character at the end of a shape&#39;s or table
@@ -654,7 +657,7 @@ export namespace slides_v1 {
      * are merged.  Ranges that include only one code unit of a surrogate pair
      * are expanded to include both code units.
      */
-    textRange: Schema$Range;
+    textRange?: Schema$Range;
   }
   /**
    * A magnitude in a single direction in the specified units.
@@ -663,11 +666,11 @@ export namespace slides_v1 {
     /**
      * The magnitude.
      */
-    magnitude: number;
+    magnitude?: number;
     /**
      * The units for magnitude.
      */
-    unit: string;
+    unit?: string;
   }
   /**
    * Duplicates a slide or page element.  When duplicating a slide, the
@@ -679,7 +682,7 @@ export namespace slides_v1 {
     /**
      * The ID of the object to duplicate.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The object being duplicated may contain other objects, for example when
      * duplicating a slide or a group page element. This map defines how the IDs
@@ -697,7 +700,7 @@ export namespace slides_v1 {
      * a new random ID will be assigned. If the map is empty or unset, all
      * duplicate objects will receive a new random ID.
      */
-    objectIds: any;
+    objectIds?: any;
   }
   /**
    * The response of duplicating an object.
@@ -706,7 +709,7 @@ export namespace slides_v1 {
     /**
      * The ID of the new duplicate object.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * A PageElement kind representing a joined collection of PageElements.
@@ -716,7 +719,7 @@ export namespace slides_v1 {
      * The collection of elements in the group. The minimum size of a group
      * is 2.
      */
-    children: Schema$PageElement[];
+    children?: Schema$PageElement[];
   }
   /**
    * Groups objects to create an object group. For example, groups PageElements
@@ -729,7 +732,7 @@ export namespace slides_v1 {
      * are not already in another group. Some page elements, such as videos,
      * tables and placeholder shapes cannot be grouped.
      */
-    childrenObjectIds: string[];
+    childrenObjectIds?: string[];
     /**
      * A user-supplied object ID for the group to be created.  If you specify an
      * ID, it must be unique among all pages and page elements in the
@@ -740,7 +743,7 @@ export namespace slides_v1 {
      * greater than 50.  If you don&#39;t specify an ID, a unique one is
      * generated.
      */
-    groupObjectId: string;
+    groupObjectId?: string;
   }
   /**
    * The result of grouping objects.
@@ -749,7 +752,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the created group.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * A PageElement kind representing an image.
@@ -761,16 +764,16 @@ export namespace slides_v1 {
      * accesses the image as the original requester. Access to the image may be
      * lost if the presentation&#39;s sharing settings change.
      */
-    contentUrl: string;
+    contentUrl?: string;
     /**
      * The properties of the image.
      */
-    imageProperties: Schema$ImageProperties;
+    imageProperties?: Schema$ImageProperties;
     /**
      * The source URL is the URL used to insert the image. The source URL can be
      * empty.
      */
-    sourceUrl: string;
+    sourceUrl?: string;
   }
   /**
    * The properties of the Image.
@@ -780,41 +783,41 @@ export namespace slides_v1 {
      * The brightness effect of the image. The value should be in the interval
      * [-1.0, 1.0], where 0 means no effect. This property is read-only.
      */
-    brightness: number;
+    brightness?: number;
     /**
      * The contrast effect of the image. The value should be in the interval
      * [-1.0, 1.0], where 0 means no effect. This property is read-only.
      */
-    contrast: number;
+    contrast?: number;
     /**
      * The crop properties of the image. If not set, the image is not cropped.
      * This property is read-only.
      */
-    cropProperties: Schema$CropProperties;
+    cropProperties?: Schema$CropProperties;
     /**
      * The hyperlink destination of the image. If unset, there is no link.
      */
-    link: Schema$Link;
+    link?: Schema$Link;
     /**
      * The outline of the image. If not set, the image has no outline.
      */
-    outline: Schema$Outline;
+    outline?: Schema$Outline;
     /**
      * The recolor effect of the image. If not set, the image is not recolored.
      * This property is read-only.
      */
-    recolor: Schema$Recolor;
+    recolor?: Schema$Recolor;
     /**
      * The shadow of the image. If not set, the image has no shadow. This
      * property is read-only.
      */
-    shadow: Schema$Shadow;
+    shadow?: Schema$Shadow;
     /**
      * The transparency effect of the image. The value should be in the interval
      * [0.0, 1.0], where 0 means no effect and 1 means completely transparent.
      * This property is read-only.
      */
-    transparency: number;
+    transparency?: number;
   }
   /**
    * Inserts columns into a table.  Other columns in the table will be resized
@@ -827,20 +830,20 @@ export namespace slides_v1 {
      * the reference cell is. If the reference cell is a merged cell, a new
      * column will be inserted to the left (or right) of the merged cell.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * Whether to insert new columns to the right of the reference cell
      * location.  - `True`: insert to the right. - `False`: insert to the left.
      */
-    insertRight: boolean;
+    insertRight?: boolean;
     /**
      * The number of columns to be inserted. Maximum 20 per request.
      */
-    number: number;
+    number?: number;
     /**
      * The table to insert columns into.
      */
-    tableObjectId: string;
+    tableObjectId?: string;
   }
   /**
    * Inserts rows into a table.
@@ -852,20 +855,20 @@ export namespace slides_v1 {
      * cell is. If the reference cell is a merged cell, a new row will be
      * inserted above (or below) the merged cell.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * Whether to insert new rows below the reference cell location.  - `True`:
      * insert below the cell. - `False`: insert above the cell.
      */
-    insertBelow: boolean;
+    insertBelow?: boolean;
     /**
      * The number of rows to be inserted. Maximum 20 per request.
      */
-    number: number;
+    number?: number;
     /**
      * The table to insert rows into.
      */
-    tableObjectId: string;
+    tableObjectId?: string;
   }
   /**
    * Inserts text into a shape or a table cell.
@@ -875,7 +878,7 @@ export namespace slides_v1 {
      * The optional table cell location if the text is to be inserted into a
      * table cell. If present, the object_id must refer to a table.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The index where the text will be inserted, in Unicode code units, based
      * on TextElement indexes.  The index is zero-based and is computed from the
@@ -883,11 +886,11 @@ export namespace slides_v1 {
      * inside Unicode grapheme clusters. In these cases, the text will be
      * inserted immediately after the grapheme cluster.
      */
-    insertionIndex: number;
+    insertionIndex?: number;
     /**
      * The object ID of the shape or table where the text will be inserted.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The text to be inserted.  Inserting a newline character will implicitly
      * create a new ParagraphMarker at that index. The paragraph style of the
@@ -900,7 +903,7 @@ export namespace slides_v1 {
      * Multilingual Plane Private Use Area (U+E000-U+F8FF) will be stripped out
      * of the inserted text.
      */
-    text: string;
+    text?: string;
   }
   /**
    * The user-specified ID mapping for a placeholder that will be created on a
@@ -913,12 +916,12 @@ export namespace slides_v1 {
      * may usually have a TITLE placeholder with index 0 and a BODY placeholder
      * with index 0.
      */
-    layoutPlaceholder: Schema$Placeholder;
+    layoutPlaceholder?: Schema$Placeholder;
     /**
      * The object ID of the placeholder on a layout that will be applied to a
      * slide.
      */
-    layoutPlaceholderObjectId: string;
+    layoutPlaceholderObjectId?: string;
     /**
      * A user-supplied object ID for the placeholder identified above that to be
      * created onto a slide.  If you specify an ID, it must be unique among all
@@ -929,7 +932,7 @@ export namespace slides_v1 {
      * than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one
      * is generated.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * The properties of Page are only relevant for pages with page_type LAYOUT.
@@ -938,15 +941,15 @@ export namespace slides_v1 {
     /**
      * The human-readable name of the layout.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The object ID of the master that this layout is based on.
      */
-    masterObjectId: string;
+    masterObjectId?: string;
     /**
      * The name of the layout.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Slide layout reference. This may reference either:  - A predefined layout -
@@ -956,11 +959,11 @@ export namespace slides_v1 {
     /**
      * Layout ID: the object ID of one of the layouts in the presentation.
      */
-    layoutId: string;
+    layoutId?: string;
     /**
      * Predefined layout.
      */
-    predefinedLayout: string;
+    predefinedLayout?: string;
   }
   /**
    * A PageElement kind representing a non-connector line, straight connector,
@@ -970,11 +973,11 @@ export namespace slides_v1 {
     /**
      * The properties of the line.
      */
-    lineProperties: Schema$LineProperties;
+    lineProperties?: Schema$LineProperties;
     /**
      * The type of the line.
      */
-    lineType: string;
+    lineType?: string;
   }
   /**
    * The fill of the line.
@@ -983,7 +986,7 @@ export namespace slides_v1 {
     /**
      * Solid color fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
   }
   /**
    * The properties of the Line.  When unset, these fields default to values
@@ -993,28 +996,28 @@ export namespace slides_v1 {
     /**
      * The dash style of the line.
      */
-    dashStyle: string;
+    dashStyle?: string;
     /**
      * The style of the arrow at the end of the line.
      */
-    endArrow: string;
+    endArrow?: string;
     /**
      * The fill of the line. The default line fill matches the defaults for new
      * lines created in the Slides editor.
      */
-    lineFill: Schema$LineFill;
+    lineFill?: Schema$LineFill;
     /**
      * The hyperlink destination of the line. If unset, there is no link.
      */
-    link: Schema$Link;
+    link?: Schema$Link;
     /**
      * The style of the arrow at the beginning of the line.
      */
-    startArrow: string;
+    startArrow?: string;
     /**
      * The thickness of the line.
      */
-    weight: Schema$Dimension;
+    weight?: Schema$Dimension;
   }
   /**
    * A hypertext link.
@@ -1024,21 +1027,21 @@ export namespace slides_v1 {
      * If set, indicates this is a link to the specific page in this
      * presentation with this ID. A page with this ID may not exist.
      */
-    pageObjectId: string;
+    pageObjectId?: string;
     /**
      * If set, indicates this is a link to a slide in this presentation,
      * addressed by its position.
      */
-    relativeLink: string;
+    relativeLink?: string;
     /**
      * If set, indicates this is a link to the slide at this zero-based index in
      * the presentation. There may not be a slide at this index.
      */
-    slideIndex: number;
+    slideIndex?: number;
     /**
      * If set, indicates this is a link to the external web page at this URL.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A List describes the look and feel of bullets belonging to paragraphs
@@ -1049,13 +1052,13 @@ export namespace slides_v1 {
     /**
      * The ID of the list.
      */
-    listId: string;
+    listId?: string;
     /**
      * A map of nesting levels to the properties of bullets at the associated
      * level. A list has at most nine levels of nesting, so the possible values
      * for the keys of this map are 0 through 8, inclusive.
      */
-    nestingLevel: any;
+    nestingLevel?: any;
   }
   /**
    * The properties of Page that are only relevant for pages with page_type
@@ -1065,7 +1068,7 @@ export namespace slides_v1 {
     /**
      * The human-readable name of the master.
      */
-    displayName: string;
+    displayName?: string;
   }
   /**
    * Merges cells in a Table.
@@ -1074,7 +1077,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The table range specifying which cells of the table to merge.  Any text
      * in the cells being merged will be concatenated and stored in the
@@ -1082,7 +1085,7 @@ export namespace slides_v1 {
      * non-rectangular (which can occur in some cases where the range covers
      * cells that are already merged), a 400 bad request error is returned.
      */
-    tableRange: Schema$TableRange;
+    tableRange?: Schema$TableRange;
   }
   /**
    * Contains properties describing the look and feel of a list bullet at a
@@ -1092,7 +1095,7 @@ export namespace slides_v1 {
     /**
      * The style of a bullet at this level of nesting.
      */
-    bulletStyle: Schema$TextStyle;
+    bulletStyle?: Schema$TextStyle;
   }
   /**
    * The properties of Page that are only relevant for pages with page_type
@@ -1107,7 +1110,7 @@ export namespace slides_v1 {
      * object ID. The `GetPresentation` or `GetPage` action will always return
      * the latest object ID.
      */
-    speakerNotesObjectId: string;
+    speakerNotesObjectId?: string;
   }
   /**
    * A themeable solid color value.
@@ -1116,11 +1119,11 @@ export namespace slides_v1 {
     /**
      * An opaque RGB color.
      */
-    rgbColor: Schema$RgbColor;
+    rgbColor?: Schema$RgbColor;
     /**
      * An opaque theme color.
      */
-    themeColor: string;
+    themeColor?: string;
   }
   /**
    * A color that can either be fully opaque or fully transparent.
@@ -1130,7 +1133,7 @@ export namespace slides_v1 {
      * If set, this will be used as an opaque color. If unset, this represents a
      * transparent color.
      */
-    opaqueColor: Schema$OpaqueColor;
+    opaqueColor?: Schema$OpaqueColor;
   }
   /**
    * The outline of a PageElement.  If these fields are unset, they may be
@@ -1142,11 +1145,11 @@ export namespace slides_v1 {
     /**
      * The dash style of the outline.
      */
-    dashStyle: string;
+    dashStyle?: string;
     /**
      * The fill of the outline.
      */
-    outlineFill: Schema$OutlineFill;
+    outlineFill?: Schema$OutlineFill;
     /**
      * The outline property state.  Updating the outline on a page element will
      * implicitly update this field to `RENDERED`, unless another value is
@@ -1154,11 +1157,11 @@ export namespace slides_v1 {
      * this field to `NOT_RENDERED`. In this case, any other outline fields set
      * in the same request will be ignored.
      */
-    propertyState: string;
+    propertyState?: string;
     /**
      * The thickness of the outline.
      */
-    weight: Schema$Dimension;
+    weight?: Schema$Dimension;
   }
   /**
    * The fill of the outline.
@@ -1167,7 +1170,7 @@ export namespace slides_v1 {
     /**
      * Solid color fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
   }
   /**
    * A page in a presentation.
@@ -1176,32 +1179,32 @@ export namespace slides_v1 {
     /**
      * Layout specific properties. Only set if page_type = LAYOUT.
      */
-    layoutProperties: Schema$LayoutProperties;
+    layoutProperties?: Schema$LayoutProperties;
     /**
      * Master specific properties. Only set if page_type = MASTER.
      */
-    masterProperties: Schema$MasterProperties;
+    masterProperties?: Schema$MasterProperties;
     /**
      * Notes specific properties. Only set if page_type = NOTES.
      */
-    notesProperties: Schema$NotesProperties;
+    notesProperties?: Schema$NotesProperties;
     /**
      * The object ID for this page. Object IDs used by Page and PageElement
      * share the same namespace.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The page elements rendered on the page.
      */
-    pageElements: Schema$PageElement[];
+    pageElements?: Schema$PageElement[];
     /**
      * The properties of the page.
      */
-    pageProperties: Schema$PageProperties;
+    pageProperties?: Schema$PageProperties;
     /**
      * The type of the page.
      */
-    pageType: string;
+    pageType?: string;
     /**
      * The revision ID of the presentation containing this page. Can be used in
      * update requests to assert that the presentation revision hasn&#39;t
@@ -1215,11 +1218,11 @@ export namespace slides_v1 {
      * presentation has been updated; however, a changed ID can also be due to
      * internal factors such as ID format changes.
      */
-    revisionId: string;
+    revisionId?: string;
     /**
      * Slide specific properties. Only set if page_type = SLIDE.
      */
-    slideProperties: Schema$SlideProperties;
+    slideProperties?: Schema$SlideProperties;
   }
   /**
    * The page background fill.
@@ -1232,15 +1235,15 @@ export namespace slides_v1 {
      * to `NOT_RENDERED`. In this case, any other fill fields set in the same
      * request will be ignored.
      */
-    propertyState: string;
+    propertyState?: string;
     /**
      * Solid color fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
     /**
      * Stretched picture fill.
      */
-    stretchedPictureFill: Schema$StretchedPictureFill;
+    stretchedPictureFill?: Schema$StretchedPictureFill;
   }
   /**
    * A visual element rendered on a page.
@@ -1250,47 +1253,47 @@ export namespace slides_v1 {
      * The description of the page element. Combined with title to display alt
      * text.
      */
-    description: string;
+    description?: string;
     /**
      * A collection of page elements joined as a single unit.
      */
-    elementGroup: Schema$Group;
+    elementGroup?: Schema$Group;
     /**
      * An image page element.
      */
-    image: Schema$Image;
+    image?: Schema$Image;
     /**
      * A line page element.
      */
-    line: Schema$Line;
+    line?: Schema$Line;
     /**
      * The object ID for this page element. Object IDs used by
      * google.apps.slides.v1.Page and google.apps.slides.v1.PageElement share
      * the same namespace.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * A generic shape.
      */
-    shape: Schema$Shape;
+    shape?: Schema$Shape;
     /**
      * A linked chart embedded from Google Sheets. Unlinked charts are
      * represented as images.
      */
-    sheetsChart: Schema$SheetsChart;
+    sheetsChart?: Schema$SheetsChart;
     /**
      * The size of the page element.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * A table page element.
      */
-    table: Schema$Table;
+    table?: Schema$Table;
     /**
      * The title of the page element. Combined with description to display alt
      * text.
      */
-    title: string;
+    title?: string;
     /**
      * The transform of the page element.  The visual appearance of the page
      * element is determined by its absolute transform. To compute the absolute
@@ -1300,15 +1303,15 @@ export namespace slides_v1 {
      * initial transform for the newly created Group is always the identity
      * transform.
      */
-    transform: Schema$AffineTransform;
+    transform?: Schema$AffineTransform;
     /**
      * A video page element.
      */
-    video: Schema$Video;
+    video?: Schema$Video;
     /**
      * A word art page element.
      */
-    wordArt: Schema$WordArt;
+    wordArt?: Schema$WordArt;
   }
   /**
    * Common properties for a page element.  Note: When you initially create a
@@ -1319,15 +1322,15 @@ export namespace slides_v1 {
     /**
      * The object ID of the page where the element is located.
      */
-    pageObjectId: string;
+    pageObjectId?: string;
     /**
      * The size of the element.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * The transform for the element.
      */
-    transform: Schema$AffineTransform;
+    transform?: Schema$AffineTransform;
   }
   /**
    * The properties of the Page.  The page will inherit properties from the
@@ -1340,14 +1343,14 @@ export namespace slides_v1 {
      * from a parent page. If the page has no parent, the color scheme uses a
      * default Slides color scheme. This field is read-only.
      */
-    colorScheme: Schema$ColorScheme;
+    colorScheme?: Schema$ColorScheme;
     /**
      * The background fill of the page. If unset, the background fill is
      * inherited from a parent page if it exists. If the page has no parent,
      * then the background fill defaults to the corresponding fill in the Slides
      * editor.
      */
-    pageBackgroundFill: Schema$PageBackgroundFill;
+    pageBackgroundFill?: Schema$PageBackgroundFill;
   }
   /**
    * A TextElement kind that represents the beginning of a new paragraph.
@@ -1357,11 +1360,11 @@ export namespace slides_v1 {
      * The bullet for this paragraph. If not present, the paragraph does not
      * belong to a list.
      */
-    bullet: Schema$Bullet;
+    bullet?: Schema$Bullet;
     /**
      * The paragraph&#39;s style
      */
-    style: Schema$ParagraphStyle;
+    style?: Schema$ParagraphStyle;
   }
   /**
    * Styles that apply to a whole paragraph.  If this text is contained in a
@@ -1378,49 +1381,49 @@ export namespace slides_v1 {
     /**
      * The text alignment for this paragraph.
      */
-    alignment: string;
+    alignment?: string;
     /**
      * The text direction of this paragraph. If unset, the value defaults to
      * LEFT_TO_RIGHT since text direction is not inherited.
      */
-    direction: string;
+    direction?: string;
     /**
      * The amount indentation for the paragraph on the side that corresponds to
      * the end of the text, based on the current text direction. If unset, the
      * value is inherited from the parent.
      */
-    indentEnd: Schema$Dimension;
+    indentEnd?: Schema$Dimension;
     /**
      * The amount of indentation for the start of the first line of the
      * paragraph. If unset, the value is inherited from the parent.
      */
-    indentFirstLine: Schema$Dimension;
+    indentFirstLine?: Schema$Dimension;
     /**
      * The amount indentation for the paragraph on the side that corresponds to
      * the start of the text, based on the current text direction. If unset, the
      * value is inherited from the parent.
      */
-    indentStart: Schema$Dimension;
+    indentStart?: Schema$Dimension;
     /**
      * The amount of space between lines, as a percentage of normal, where
      * normal is represented as 100.0. If unset, the value is inherited from the
      * parent.
      */
-    lineSpacing: number;
+    lineSpacing?: number;
     /**
      * The amount of extra space above the paragraph. If unset, the value is
      * inherited from the parent.
      */
-    spaceAbove: Schema$Dimension;
+    spaceAbove?: Schema$Dimension;
     /**
      * The amount of extra space above the paragraph. If unset, the value is
      * inherited from the parent.
      */
-    spaceBelow: Schema$Dimension;
+    spaceBelow?: Schema$Dimension;
     /**
      * The spacing mode for the paragraph.
      */
-    spacingMode: string;
+    spacingMode?: string;
   }
   /**
    * The placeholder information that uniquely identifies a placeholder shape.
@@ -1430,17 +1433,17 @@ export namespace slides_v1 {
      * The index of the placeholder. If the same placeholder types are present
      * in the same page, they would have different index values.
      */
-    index: number;
+    index?: number;
     /**
      * The object ID of this shape&#39;s parent placeholder. If unset, the
      * parent placeholder shape does not exist, so the shape does not inherit
      * properties from any other shape.
      */
-    parentObjectId: string;
+    parentObjectId?: string;
     /**
      * The type of the placeholder.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A Google Slides presentation.
@@ -1451,11 +1454,11 @@ export namespace slides_v1 {
      * how content is arranged and styled on the slides that inherit from that
      * layout.
      */
-    layouts: Schema$Page[];
+    layouts?: Schema$Page[];
     /**
      * The locale of the presentation, as an IETF BCP 47 language tag.
      */
-    locale: string;
+    locale?: string;
     /**
      * The slide masters in the presentation. A slide master contains all common
      * page elements and the common properties for a set of layouts. They serve
@@ -1466,7 +1469,7 @@ export namespace slides_v1 {
      * slide will appear on all slides using that   master, regardless of their
      * layout.
      */
-    masters: Schema$Page[];
+    masters?: Schema$Page[];
     /**
      * The notes master in the presentation. It serves three purposes:  -
      * Placeholder shapes on a notes master contain the default text styles and
@@ -1477,15 +1480,15 @@ export namespace slides_v1 {
      * notes pages. - Any other shapes on the notes master will appear on all
      * notes pages.  The notes master is read-only.
      */
-    notesMaster: Schema$Page;
+    notesMaster?: Schema$Page;
     /**
      * The size of pages in the presentation.
      */
-    pageSize: Schema$Size;
+    pageSize?: Schema$Size;
     /**
      * The ID of the presentation.
      */
-    presentationId: string;
+    presentationId?: string;
     /**
      * The revision ID of the presentation. Can be used in update requests to
      * assert that the presentation revision hasn&#39;t changed since the last
@@ -1499,16 +1502,16 @@ export namespace slides_v1 {
      * however, a changed ID can also be due to internal factors such as ID
      * format changes.
      */
-    revisionId: string;
+    revisionId?: string;
     /**
      * The slides in the presentation. A slide inherits properties from a slide
      * layout.
      */
-    slides: Schema$Page[];
+    slides?: Schema$Page[];
     /**
      * The title of the presentation.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Specifies a contiguous range of an indexed collection, such as characters
@@ -1519,16 +1522,16 @@ export namespace slides_v1 {
      * The optional zero-based index of the end of the collection. Required for
      * `FIXED_RANGE` ranges.
      */
-    endIndex: number;
+    endIndex?: number;
     /**
      * The optional zero-based index of the beginning of the collection.
      * Required for `FIXED_RANGE` and `FROM_START_INDEX` ranges.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * The type of range.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A recolor effect applied on an image.
@@ -1539,14 +1542,14 @@ export namespace slides_v1 {
      * `recolor_stops` by matching the gradient against the colors in the
      * page&#39;s current color scheme. This property is read-only.
      */
-    name: string;
+    name?: string;
     /**
      * The recolor effect is represented by a gradient, which is a list of color
      * stops.  The colors in the gradient will replace the corresponding colors
      * at the same position in the color palette and apply to the image. This
      * property is read-only.
      */
-    recolorStops: Schema$ColorStop[];
+    recolorStops?: Schema$ColorStop[];
   }
   /**
    * Refreshes an embedded Google Sheets chart by replacing it with the latest
@@ -1558,7 +1561,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the chart to refresh.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Replaces all shapes that match the given criteria with the provided image.
@@ -1570,7 +1573,7 @@ export namespace slides_v1 {
      * If set, this request will replace all of the shapes that contain the
      * given text.
      */
-    containsText: Schema$SubstringMatchCriteria;
+    containsText?: Schema$SubstringMatchCriteria;
     /**
      * The image replace method.  If you specify both a `replace_method` and an
      * `image_replace_method`, the `image_replace_method` takes precedence.  If
@@ -1578,7 +1581,7 @@ export namespace slides_v1 {
      * value for `replace_method`, then the specified `replace_method` value is
      * used.  If you do not specify either, then CENTER_INSIDE is used.
      */
-    imageReplaceMethod: string;
+    imageReplaceMethod?: string;
     /**
      * The image URL.  The image is fetched once at insertion time and a copy is
      * stored for display inside the presentation. Images must be less than 50MB
@@ -1587,20 +1590,20 @@ export namespace slides_v1 {
      * itself is saved with the image, and exposed via the Image.source_url
      * field.
      */
-    imageUrl: string;
+    imageUrl?: string;
     /**
      * If non-empty, limits the matches to page elements only on the given
      * pages.  Returns a 400 bad request error if given the page object ID of a
      * notes page or a notes master, or if a page with that object ID
      * doesn&#39;t exist in the presentation.
      */
-    pageObjectIds: string[];
+    pageObjectIds?: string[];
     /**
      * The replace method. Deprecated: use `image_replace_method` instead.  If
      * you specify both a `replace_method` and an `image_replace_method`, the
      * `image_replace_method` takes precedence.
      */
-    replaceMethod: string;
+    replaceMethod?: string;
   }
   /**
    * The result of replacing shapes with an image.
@@ -1609,7 +1612,7 @@ export namespace slides_v1 {
     /**
      * The number of shapes replaced with images.
      */
-    occurrencesChanged: number;
+    occurrencesChanged?: number;
   }
   /**
    * Replaces all shapes that match the given criteria with the provided Google
@@ -1622,28 +1625,28 @@ export namespace slides_v1 {
     /**
      * The ID of the specific chart in the Google Sheets spreadsheet.
      */
-    chartId: number;
+    chartId?: number;
     /**
      * The criteria that the shapes must match in order to be replaced. The
      * request will replace all of the shapes that contain the given text.
      */
-    containsText: Schema$SubstringMatchCriteria;
+    containsText?: Schema$SubstringMatchCriteria;
     /**
      * The mode with which the chart is linked to the source spreadsheet. When
      * not specified, the chart will be an image that is not linked.
      */
-    linkingMode: string;
+    linkingMode?: string;
     /**
      * If non-empty, limits the matches to page elements only on the given
      * pages.  Returns a 400 bad request error if given the page object ID of a
      * notes page or a notes master, or if a page with that object ID
      * doesn&#39;t exist in the presentation.
      */
-    pageObjectIds: string[];
+    pageObjectIds?: string[];
     /**
      * The ID of the Google Sheets spreadsheet that contains the chart.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
   }
   /**
    * The result of replacing shapes with a Google Sheets chart.
@@ -1652,7 +1655,7 @@ export namespace slides_v1 {
     /**
      * The number of shapes replaced with charts.
      */
-    occurrencesChanged: number;
+    occurrencesChanged?: number;
   }
   /**
    * Replaces all instances of text matching a criteria with replace text.
@@ -1661,18 +1664,18 @@ export namespace slides_v1 {
     /**
      * Finds text in a shape matching this substring.
      */
-    containsText: Schema$SubstringMatchCriteria;
+    containsText?: Schema$SubstringMatchCriteria;
     /**
      * If non-empty, limits the matches to page elements only on the given
      * pages.  Returns a 400 bad request error if given the page object ID of a
      * notes master, or if a page with that object ID doesn&#39;t exist in the
      * presentation.
      */
-    pageObjectIds: string[];
+    pageObjectIds?: string[];
     /**
      * The text that will replace the matched text.
      */
-    replaceText: string;
+    replaceText?: string;
   }
   /**
    * The result of replacing text.
@@ -1681,7 +1684,7 @@ export namespace slides_v1 {
     /**
      * The number of occurrences changed by replacing all text.
      */
-    occurrencesChanged: number;
+    occurrencesChanged?: number;
   }
   /**
    * Replaces an existing image with a new image.  Replacing an image removes
@@ -1691,11 +1694,11 @@ export namespace slides_v1 {
     /**
      * The ID of the existing image that will be replaced.
      */
-    imageObjectId: string;
+    imageObjectId?: string;
     /**
      * The replacement method.
      */
-    imageReplaceMethod: string;
+    imageReplaceMethod?: string;
     /**
      * The URL of the new image.  The image is fetched once at insertion time
      * and a copy is stored for display inside the presentation. Images must be
@@ -1704,7 +1707,7 @@ export namespace slides_v1 {
      * length. The URL itself is saved with the image, and exposed via the
      * Image.source_url field.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A single kind of update to apply to a presentation.
@@ -1713,164 +1716,164 @@ export namespace slides_v1 {
     /**
      * Creates an image.
      */
-    createImage: Schema$CreateImageRequest;
+    createImage?: Schema$CreateImageRequest;
     /**
      * Creates a line.
      */
-    createLine: Schema$CreateLineRequest;
+    createLine?: Schema$CreateLineRequest;
     /**
      * Creates bullets for paragraphs.
      */
-    createParagraphBullets: Schema$CreateParagraphBulletsRequest;
+    createParagraphBullets?: Schema$CreateParagraphBulletsRequest;
     /**
      * Creates a new shape.
      */
-    createShape: Schema$CreateShapeRequest;
+    createShape?: Schema$CreateShapeRequest;
     /**
      * Creates an embedded Google Sheets chart.
      */
-    createSheetsChart: Schema$CreateSheetsChartRequest;
+    createSheetsChart?: Schema$CreateSheetsChartRequest;
     /**
      * Creates a new slide.
      */
-    createSlide: Schema$CreateSlideRequest;
+    createSlide?: Schema$CreateSlideRequest;
     /**
      * Creates a new table.
      */
-    createTable: Schema$CreateTableRequest;
+    createTable?: Schema$CreateTableRequest;
     /**
      * Creates a video.
      */
-    createVideo: Schema$CreateVideoRequest;
+    createVideo?: Schema$CreateVideoRequest;
     /**
      * Deletes a page or page element from the presentation.
      */
-    deleteObject: Schema$DeleteObjectRequest;
+    deleteObject?: Schema$DeleteObjectRequest;
     /**
      * Deletes bullets from paragraphs.
      */
-    deleteParagraphBullets: Schema$DeleteParagraphBulletsRequest;
+    deleteParagraphBullets?: Schema$DeleteParagraphBulletsRequest;
     /**
      * Deletes a column from a table.
      */
-    deleteTableColumn: Schema$DeleteTableColumnRequest;
+    deleteTableColumn?: Schema$DeleteTableColumnRequest;
     /**
      * Deletes a row from a table.
      */
-    deleteTableRow: Schema$DeleteTableRowRequest;
+    deleteTableRow?: Schema$DeleteTableRowRequest;
     /**
      * Deletes text from a shape or a table cell.
      */
-    deleteText: Schema$DeleteTextRequest;
+    deleteText?: Schema$DeleteTextRequest;
     /**
      * Duplicates a slide or page element.
      */
-    duplicateObject: Schema$DuplicateObjectRequest;
+    duplicateObject?: Schema$DuplicateObjectRequest;
     /**
      * Groups objects, such as page elements.
      */
-    groupObjects: Schema$GroupObjectsRequest;
+    groupObjects?: Schema$GroupObjectsRequest;
     /**
      * Inserts columns into a table.
      */
-    insertTableColumns: Schema$InsertTableColumnsRequest;
+    insertTableColumns?: Schema$InsertTableColumnsRequest;
     /**
      * Inserts rows into a table.
      */
-    insertTableRows: Schema$InsertTableRowsRequest;
+    insertTableRows?: Schema$InsertTableRowsRequest;
     /**
      * Inserts text into a shape or table cell.
      */
-    insertText: Schema$InsertTextRequest;
+    insertText?: Schema$InsertTextRequest;
     /**
      * Merges cells in a Table.
      */
-    mergeTableCells: Schema$MergeTableCellsRequest;
+    mergeTableCells?: Schema$MergeTableCellsRequest;
     /**
      * Refreshes a Google Sheets chart.
      */
-    refreshSheetsChart: Schema$RefreshSheetsChartRequest;
+    refreshSheetsChart?: Schema$RefreshSheetsChartRequest;
     /**
      * Replaces all shapes matching some criteria with an image.
      */
-    replaceAllShapesWithImage: Schema$ReplaceAllShapesWithImageRequest;
+    replaceAllShapesWithImage?: Schema$ReplaceAllShapesWithImageRequest;
     /**
      * Replaces all shapes matching some criteria with a Google Sheets chart.
      */
-    replaceAllShapesWithSheetsChart:
+    replaceAllShapesWithSheetsChart?:
         Schema$ReplaceAllShapesWithSheetsChartRequest;
     /**
      * Replaces all instances of specified text.
      */
-    replaceAllText: Schema$ReplaceAllTextRequest;
+    replaceAllText?: Schema$ReplaceAllTextRequest;
     /**
      * Replaces an existing image with a new image.
      */
-    replaceImage: Schema$ReplaceImageRequest;
+    replaceImage?: Schema$ReplaceImageRequest;
     /**
      * Ungroups objects, such as groups.
      */
-    ungroupObjects: Schema$UngroupObjectsRequest;
+    ungroupObjects?: Schema$UngroupObjectsRequest;
     /**
      * Unmerges cells in a Table.
      */
-    unmergeTableCells: Schema$UnmergeTableCellsRequest;
+    unmergeTableCells?: Schema$UnmergeTableCellsRequest;
     /**
      * Updates the properties of an Image.
      */
-    updateImageProperties: Schema$UpdateImagePropertiesRequest;
+    updateImageProperties?: Schema$UpdateImagePropertiesRequest;
     /**
      * Updates the properties of a Line.
      */
-    updateLineProperties: Schema$UpdateLinePropertiesRequest;
+    updateLineProperties?: Schema$UpdateLinePropertiesRequest;
     /**
      * Updates the alt text title and/or description of a page element.
      */
-    updatePageElementAltText: Schema$UpdatePageElementAltTextRequest;
+    updatePageElementAltText?: Schema$UpdatePageElementAltTextRequest;
     /**
      * Updates the transform of a page element.
      */
-    updatePageElementTransform: Schema$UpdatePageElementTransformRequest;
+    updatePageElementTransform?: Schema$UpdatePageElementTransformRequest;
     /**
      * Updates the properties of a Page.
      */
-    updatePageProperties: Schema$UpdatePagePropertiesRequest;
+    updatePageProperties?: Schema$UpdatePagePropertiesRequest;
     /**
      * Updates the styling of paragraphs within a Shape or Table.
      */
-    updateParagraphStyle: Schema$UpdateParagraphStyleRequest;
+    updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
     /**
      * Updates the properties of a Shape.
      */
-    updateShapeProperties: Schema$UpdateShapePropertiesRequest;
+    updateShapeProperties?: Schema$UpdateShapePropertiesRequest;
     /**
      * Updates the position of a set of slides in the presentation.
      */
-    updateSlidesPosition: Schema$UpdateSlidesPositionRequest;
+    updateSlidesPosition?: Schema$UpdateSlidesPositionRequest;
     /**
      * Updates the properties of the table borders in a Table.
      */
-    updateTableBorderProperties: Schema$UpdateTableBorderPropertiesRequest;
+    updateTableBorderProperties?: Schema$UpdateTableBorderPropertiesRequest;
     /**
      * Updates the properties of a TableCell.
      */
-    updateTableCellProperties: Schema$UpdateTableCellPropertiesRequest;
+    updateTableCellProperties?: Schema$UpdateTableCellPropertiesRequest;
     /**
      * Updates the properties of a Table column.
      */
-    updateTableColumnProperties: Schema$UpdateTableColumnPropertiesRequest;
+    updateTableColumnProperties?: Schema$UpdateTableColumnPropertiesRequest;
     /**
      * Updates the properties of a Table row.
      */
-    updateTableRowProperties: Schema$UpdateTableRowPropertiesRequest;
+    updateTableRowProperties?: Schema$UpdateTableRowPropertiesRequest;
     /**
      * Updates the styling of text within a Shape or Table.
      */
-    updateTextStyle: Schema$UpdateTextStyleRequest;
+    updateTextStyle?: Schema$UpdateTextStyleRequest;
     /**
      * Updates the properties of a Video.
      */
-    updateVideoProperties: Schema$UpdateVideoPropertiesRequest;
+    updateVideoProperties?: Schema$UpdateVideoPropertiesRequest;
   }
   /**
    * A single response from an update.
@@ -1879,53 +1882,53 @@ export namespace slides_v1 {
     /**
      * The result of creating an image.
      */
-    createImage: Schema$CreateImageResponse;
+    createImage?: Schema$CreateImageResponse;
     /**
      * The result of creating a line.
      */
-    createLine: Schema$CreateLineResponse;
+    createLine?: Schema$CreateLineResponse;
     /**
      * The result of creating a shape.
      */
-    createShape: Schema$CreateShapeResponse;
+    createShape?: Schema$CreateShapeResponse;
     /**
      * The result of creating a Google Sheets chart.
      */
-    createSheetsChart: Schema$CreateSheetsChartResponse;
+    createSheetsChart?: Schema$CreateSheetsChartResponse;
     /**
      * The result of creating a slide.
      */
-    createSlide: Schema$CreateSlideResponse;
+    createSlide?: Schema$CreateSlideResponse;
     /**
      * The result of creating a table.
      */
-    createTable: Schema$CreateTableResponse;
+    createTable?: Schema$CreateTableResponse;
     /**
      * The result of creating a video.
      */
-    createVideo: Schema$CreateVideoResponse;
+    createVideo?: Schema$CreateVideoResponse;
     /**
      * The result of duplicating an object.
      */
-    duplicateObject: Schema$DuplicateObjectResponse;
+    duplicateObject?: Schema$DuplicateObjectResponse;
     /**
      * The result of grouping objects.
      */
-    groupObjects: Schema$GroupObjectsResponse;
+    groupObjects?: Schema$GroupObjectsResponse;
     /**
      * The result of replacing all shapes matching some criteria with an image.
      */
-    replaceAllShapesWithImage: Schema$ReplaceAllShapesWithImageResponse;
+    replaceAllShapesWithImage?: Schema$ReplaceAllShapesWithImageResponse;
     /**
      * The result of replacing all shapes matching some criteria with a Google
      * Sheets chart.
      */
-    replaceAllShapesWithSheetsChart:
+    replaceAllShapesWithSheetsChart?:
         Schema$ReplaceAllShapesWithSheetsChartResponse;
     /**
      * The result of replacing text.
      */
-    replaceAllText: Schema$ReplaceAllTextResponse;
+    replaceAllText?: Schema$ReplaceAllTextResponse;
   }
   /**
    * An RGB color.
@@ -1934,15 +1937,15 @@ export namespace slides_v1 {
     /**
      * The blue component of the color, from 0.0 to 1.0.
      */
-    blue: number;
+    blue?: number;
     /**
      * The green component of the color, from 0.0 to 1.0.
      */
-    green: number;
+    green?: number;
     /**
      * The red component of the color, from 0.0 to 1.0.
      */
-    red: number;
+    red?: number;
   }
   /**
    * The shadow properties of a page element.  If these fields are unset, they
@@ -1955,20 +1958,20 @@ export namespace slides_v1 {
      * The alignment point of the shadow, that sets the origin for translate,
      * scale and skew of the shadow.
      */
-    alignment: string;
+    alignment?: string;
     /**
      * The alpha of the shadow&#39;s color, from 0.0 to 1.0.
      */
-    alpha: number;
+    alpha?: number;
     /**
      * The radius of the shadow blur. The larger the radius, the more diffuse
      * the shadow becomes.
      */
-    blurRadius: Schema$Dimension;
+    blurRadius?: Schema$Dimension;
     /**
      * The shadow color value.
      */
-    color: Schema$OpaqueColor;
+    color?: Schema$OpaqueColor;
     /**
      * The shadow property state.  Updating the shadow on a page element will
      * implicitly update this field to `RENDERED`, unless another value is
@@ -1976,20 +1979,20 @@ export namespace slides_v1 {
      * this field to `NOT_RENDERED`. In this case, any other shadow fields set
      * in the same request will be ignored.
      */
-    propertyState: string;
+    propertyState?: string;
     /**
      * Whether the shadow should rotate with the shape.
      */
-    rotateWithShape: boolean;
+    rotateWithShape?: boolean;
     /**
      * Transform that encodes the translate, scale, and skew of the shadow,
      * relative to the alignment position.
      */
-    transform: Schema$AffineTransform;
+    transform?: Schema$AffineTransform;
     /**
      * The type of the shadow.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A PageElement kind representing a generic shape that does not have a more
@@ -2002,19 +2005,19 @@ export namespace slides_v1 {
      * inherited properties can be resolved by looking at the parent placeholder
      * identified by the Placeholder.parent_object_id field.
      */
-    placeholder: Schema$Placeholder;
+    placeholder?: Schema$Placeholder;
     /**
      * The properties of the shape.
      */
-    shapeProperties: Schema$ShapeProperties;
+    shapeProperties?: Schema$ShapeProperties;
     /**
      * The type of the shape.
      */
-    shapeType: string;
+    shapeType?: string;
     /**
      * The text content of the shape.
      */
-    text: Schema$TextContent;
+    text?: Schema$TextContent;
   }
   /**
    * The shape background fill.
@@ -2027,11 +2030,11 @@ export namespace slides_v1 {
      * to `NOT_RENDERED`. In this case, any other fill fields set in the same
      * request will be ignored.
      */
-    propertyState: string;
+    propertyState?: string;
     /**
      * Solid color fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
   }
   /**
    * The properties of a Shape.  If the shape is a placeholder shape as
@@ -2046,33 +2049,33 @@ export namespace slides_v1 {
      * parent, the default alignment matches the alignment for new shapes
      * created in the Slides editor.
      */
-    contentAlignment: string;
+    contentAlignment?: string;
     /**
      * The hyperlink destination of the shape. If unset, there is no link. Links
      * are not inherited from parent placeholders.
      */
-    link: Schema$Link;
+    link?: Schema$Link;
     /**
      * The outline of the shape. If unset, the outline is inherited from a
      * parent placeholder if it exists. If the shape has no parent, then the
      * default outline depends on the shape type, matching the defaults for new
      * shapes created in the Slides editor.
      */
-    outline: Schema$Outline;
+    outline?: Schema$Outline;
     /**
      * The shadow properties of the shape. If unset, the shadow is inherited
      * from a parent placeholder if it exists. If the shape has no parent, then
      * the default shadow matches the defaults for new shapes created in the
      * Slides editor. This property is read-only.
      */
-    shadow: Schema$Shadow;
+    shadow?: Schema$Shadow;
     /**
      * The background fill of the shape. If unset, the background fill is
      * inherited from a parent placeholder if it exists. If the shape has no
      * parent, then the default background fill depends on the shape type,
      * matching the defaults for new shapes created in the Slides editor.
      */
-    shapeBackgroundFill: Schema$ShapeBackgroundFill;
+    shapeBackgroundFill?: Schema$ShapeBackgroundFill;
   }
   /**
    * A PageElement kind representing a linked chart embedded from Google Sheets.
@@ -2082,7 +2085,7 @@ export namespace slides_v1 {
      * The ID of the specific chart in the Google Sheets spreadsheet that is
      * embedded.
      */
-    chartId: number;
+    chartId?: number;
     /**
      * The URL of an image of the embedded chart, with a default lifetime of 30
      * minutes. This URL is tagged with the account of the requester. Anyone
@@ -2090,15 +2093,15 @@ export namespace slides_v1 {
      * Access to the image may be lost if the presentation&#39;s sharing
      * settings change.
      */
-    contentUrl: string;
+    contentUrl?: string;
     /**
      * The properties of the Sheets chart.
      */
-    sheetsChartProperties: Schema$SheetsChartProperties;
+    sheetsChartProperties?: Schema$SheetsChartProperties;
     /**
      * The ID of the Google Sheets spreadsheet that contains the source chart.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
   }
   /**
    * The properties of the SheetsChart.
@@ -2107,7 +2110,7 @@ export namespace slides_v1 {
     /**
      * The properties of the embedded chart image.
      */
-    chartImageProperties: Schema$ImageProperties;
+    chartImageProperties?: Schema$ImageProperties;
   }
   /**
    * A width and height.
@@ -2116,11 +2119,11 @@ export namespace slides_v1 {
     /**
      * The height of the object.
      */
-    height: Schema$Dimension;
+    height?: Schema$Dimension;
     /**
      * The width of the object.
      */
-    width: Schema$Dimension;
+    width?: Schema$Dimension;
   }
   /**
    * The properties of Page that are only relevant for pages with page_type
@@ -2130,11 +2133,11 @@ export namespace slides_v1 {
     /**
      * The object ID of the layout that this slide is based on.
      */
-    layoutObjectId: string;
+    layoutObjectId?: string;
     /**
      * The object ID of the master that this slide is based on.
      */
-    masterObjectId: string;
+    masterObjectId?: string;
     /**
      * The notes page that this slide is associated with. It defines the visual
      * appearance of a notes page when printing or exporting slides with speaker
@@ -2144,7 +2147,7 @@ export namespace slides_v1 {
      * speakerNotesObjectId field. The notes page is read-only except for the
      * text content and styles of the speaker notes shape.
      */
-    notesPage: Schema$Page;
+    notesPage?: Schema$Page;
   }
   /**
    * A solid color fill. The page or page element is filled entirely with the
@@ -2159,11 +2162,11 @@ export namespace slides_v1 {
      * value of 1.0 corresponds to a solid color, whereas a value of 0.0
      * corresponds to a completely transparent color.
      */
-    alpha: number;
+    alpha?: number;
     /**
      * The color value of the solid fill.
      */
-    color: Schema$OpaqueColor;
+    color?: Schema$OpaqueColor;
   }
   /**
    * The stretched picture fill. The page or page element is filled entirely
@@ -2181,11 +2184,11 @@ export namespace slides_v1 {
      * megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided
      * URL can be at most 2 kB in length.
      */
-    contentUrl: string;
+    contentUrl?: string;
     /**
      * The original size of the picture fill. This field is read-only.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
   }
   /**
    * A criteria that matches a specific string of text in a shape or table.
@@ -2195,11 +2198,11 @@ export namespace slides_v1 {
      * Indicates whether the search should respect case:  - `True`: the search
      * is case sensitive. - `False`: the search is case insensitive.
      */
-    matchCase: boolean;
+    matchCase?: boolean;
     /**
      * The text to search for in the shape or table.
      */
-    text: string;
+    text?: string;
   }
   /**
    * A PageElement kind representing a table.
@@ -2208,7 +2211,7 @@ export namespace slides_v1 {
     /**
      * Number of columns in the table.
      */
-    columns: number;
+    columns?: number;
     /**
      * Properties of horizontal cell borders.  A table&#39;s horizontal cell
      * borders are represented as a grid. The grid has one more row than the
@@ -2216,20 +2219,20 @@ export namespace slides_v1 {
      * For example, if the table is 3 x 3, its horizontal borders will be
      * represented as a grid with 4 rows and 3 columns.
      */
-    horizontalBorderRows: Schema$TableBorderRow[];
+    horizontalBorderRows?: Schema$TableBorderRow[];
     /**
      * Number of rows in the table.
      */
-    rows: number;
+    rows?: number;
     /**
      * Properties of each column.
      */
-    tableColumns: Schema$TableColumnProperties[];
+    tableColumns?: Schema$TableColumnProperties[];
     /**
      * Properties and contents of each row.  Cells that span multiple rows are
      * contained in only one of these rows and have a row_span greater than 1.
      */
-    tableRows: Schema$TableRow[];
+    tableRows?: Schema$TableRow[];
     /**
      * Properties of vertical cell borders.  A table&#39;s vertical cell borders
      * are represented as a grid. The grid has the same number of rows as the
@@ -2237,7 +2240,7 @@ export namespace slides_v1 {
      * example, if the table is 3 x 3, its vertical borders will be represented
      * as a grid with 3 rows and 4 columns.
      */
-    verticalBorderRows: Schema$TableBorderRow[];
+    verticalBorderRows?: Schema$TableBorderRow[];
   }
   /**
    * The properties of each border cell.
@@ -2246,11 +2249,11 @@ export namespace slides_v1 {
     /**
      * The location of the border within the border table.
      */
-    location: Schema$TableCellLocation;
+    location?: Schema$TableCellLocation;
     /**
      * The border properties.
      */
-    tableBorderProperties: Schema$TableBorderProperties;
+    tableBorderProperties?: Schema$TableBorderProperties;
   }
   /**
    * The fill of the border.
@@ -2259,7 +2262,7 @@ export namespace slides_v1 {
     /**
      * Solid fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
   }
   /**
    * The border styling properties of the TableBorderCell.
@@ -2268,15 +2271,15 @@ export namespace slides_v1 {
     /**
      * The dash style of the border.
      */
-    dashStyle: string;
+    dashStyle?: string;
     /**
      * The fill of the table border.
      */
-    tableBorderFill: Schema$TableBorderFill;
+    tableBorderFill?: Schema$TableBorderFill;
     /**
      * The thickness of the border.
      */
-    weight: Schema$Dimension;
+    weight?: Schema$Dimension;
   }
   /**
    * Contents of each border row in a table.
@@ -2286,7 +2289,7 @@ export namespace slides_v1 {
      * Properties of each border cell. When a border&#39;s adjacent table cells
      * are merged, it is not included in the response.
      */
-    tableBorderCells: Schema$TableBorderCell[];
+    tableBorderCells?: Schema$TableBorderCell[];
   }
   /**
    * Properties and contents of each table cell.
@@ -2295,23 +2298,23 @@ export namespace slides_v1 {
     /**
      * Column span of the cell.
      */
-    columnSpan: number;
+    columnSpan?: number;
     /**
      * The location of the cell within the table.
      */
-    location: Schema$TableCellLocation;
+    location?: Schema$TableCellLocation;
     /**
      * Row span of the cell.
      */
-    rowSpan: number;
+    rowSpan?: number;
     /**
      * The properties of the table cell.
      */
-    tableCellProperties: Schema$TableCellProperties;
+    tableCellProperties?: Schema$TableCellProperties;
     /**
      * The text content of the cell.
      */
-    text: Schema$TextContent;
+    text?: Schema$TextContent;
   }
   /**
    * The table cell background fill.
@@ -2324,11 +2327,11 @@ export namespace slides_v1 {
      * field to `NOT_RENDERED`. In this case, any other fill fields set in the
      * same request will be ignored.
      */
-    propertyState: string;
+    propertyState?: string;
     /**
      * Solid color fill.
      */
-    solidFill: Schema$SolidFill;
+    solidFill?: Schema$SolidFill;
   }
   /**
    * A location of a single table cell within a table.
@@ -2337,11 +2340,11 @@ export namespace slides_v1 {
     /**
      * The 0-based column index.
      */
-    columnIndex: number;
+    columnIndex?: number;
     /**
      * The 0-based row index.
      */
-    rowIndex: number;
+    rowIndex?: number;
   }
   /**
    * The properties of the TableCell.
@@ -2351,12 +2354,12 @@ export namespace slides_v1 {
      * The alignment of the content in the table cell. The default alignment
      * matches the alignment for newly created table cells in the Slides editor.
      */
-    contentAlignment: string;
+    contentAlignment?: string;
     /**
      * The background fill of the table cell. The default fill matches the fill
      * for newly created table cells in the Slides editor.
      */
-    tableCellBackgroundFill: Schema$TableCellBackgroundFill;
+    tableCellBackgroundFill?: Schema$TableCellBackgroundFill;
   }
   /**
    * Properties of each column in a table.
@@ -2365,7 +2368,7 @@ export namespace slides_v1 {
     /**
      * Width of a column.
      */
-    columnWidth: Schema$Dimension;
+    columnWidth?: Schema$Dimension;
   }
   /**
    * A table range represents a reference to a subset of a table.  It&#39;s
@@ -2380,15 +2383,15 @@ export namespace slides_v1 {
     /**
      * The column span of the table range.
      */
-    columnSpan: number;
+    columnSpan?: number;
     /**
      * The starting location of the table range.
      */
-    location: Schema$TableCellLocation;
+    location?: Schema$TableCellLocation;
     /**
      * The row span of the table range.
      */
-    rowSpan: number;
+    rowSpan?: number;
   }
   /**
    * Properties and contents of each row in a table.
@@ -2397,18 +2400,18 @@ export namespace slides_v1 {
     /**
      * Height of a row.
      */
-    rowHeight: Schema$Dimension;
+    rowHeight?: Schema$Dimension;
     /**
      * Properties and contents of each cell.  Cells that span multiple columns
      * are represented only once with a column_span greater than 1. As a result,
      * the length of this collection does not always match the number of columns
      * of the entire table.
      */
-    tableCells: Schema$TableCell[];
+    tableCells?: Schema$TableCell[];
     /**
      * Properties of the row.
      */
-    tableRowProperties: Schema$TableRowProperties;
+    tableRowProperties?: Schema$TableRowProperties;
   }
   /**
    * Properties of each row in a table.
@@ -2419,7 +2422,7 @@ export namespace slides_v1 {
      * at a height equal to or greater than this value in order to show all the
      * text in the row&#39;s cell(s).
      */
-    minRowHeight: Schema$Dimension;
+    minRowHeight?: Schema$Dimension;
   }
   /**
    * The general text content. The text must reside in a compatible shape (e.g.
@@ -2429,12 +2432,12 @@ export namespace slides_v1 {
     /**
      * The bulleted lists contained in this text, keyed by list ID.
      */
-    lists: any;
+    lists?: any;
     /**
      * The text contents broken down into its component parts, including styling
      * information. This property is read-only.
      */
-    textElements: Schema$TextElement[];
+    textElements?: Schema$TextElement[];
   }
   /**
    * A TextElement describes the content of a range of indices in the text
@@ -2445,12 +2448,12 @@ export namespace slides_v1 {
      * A TextElement representing a spot in the text that is dynamically
      * replaced with content that can change over time.
      */
-    autoText: Schema$AutoText;
+    autoText?: Schema$AutoText;
     /**
      * The zero-based end index of this text element, exclusive, in Unicode code
      * units.
      */
-    endIndex: number;
+    endIndex?: number;
     /**
      * A marker representing the beginning of a new paragraph.  The
      * `start_index` and `end_index` of this TextElement represent the range of
@@ -2458,11 +2461,11 @@ export namespace slides_v1 {
      * this paragraph&#39;s range are considered to be part of this paragraph.
      * The range of indices of two separate paragraphs will never overlap.
      */
-    paragraphMarker: Schema$ParagraphMarker;
+    paragraphMarker?: Schema$ParagraphMarker;
     /**
      * The zero-based start index of this text element, in Unicode code units.
      */
-    startIndex: number;
+    startIndex?: number;
     /**
      * A TextElement representing a run of text where all of the characters in
      * the run have the same TextStyle.  The `start_index` and `end_index` of
@@ -2470,7 +2473,7 @@ export namespace slides_v1 {
      * `paragraph_marker` TextElement. In other words, a TextRun will never span
      * multiple paragraphs.
      */
-    textRun: Schema$TextRun;
+    textRun?: Schema$TextRun;
   }
   /**
    * A TextElement kind that represents a run of text that all has the same
@@ -2480,11 +2483,11 @@ export namespace slides_v1 {
     /**
      * The text of this run.
      */
-    content: string;
+    content?: string;
     /**
      * The styling applied to this run.
      */
-    style: Schema$TextStyle;
+    style?: Schema$TextStyle;
   }
   /**
    * Represents the styling that can be applied to a TextRun.  If this text is
@@ -2506,18 +2509,18 @@ export namespace slides_v1 {
      * The background color of the text. If set, the color is either opaque or
      * transparent, depending on if the `opaque_color` field in it is set.
      */
-    backgroundColor: Schema$OptionalColor;
+    backgroundColor?: Schema$OptionalColor;
     /**
      * The text&#39;s vertical offset from its normal position.  Text with
      * `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered
      * in a smaller font size, computed based on the `font_size` field. The
      * `font_size` itself is not affected by changes in this field.
      */
-    baselineOffset: string;
+    baselineOffset?: string;
     /**
      * Whether or not the text is rendered as bold.
      */
-    bold: boolean;
+    bold?: boolean;
     /**
      * The font family of the text.  The font family can be any font from the
      * Font menu in Slides or from [Google Fonts] (https://fonts.google.com/).
@@ -2526,21 +2529,21 @@ export namespace slides_v1 {
      * values for both `font_family` and `bold`, the explicitly-set `bold` value
      * is used.
      */
-    fontFamily: string;
+    fontFamily?: string;
     /**
      * The size of the text&#39;s font. When read, the `font_size` will
      * specified in points.
      */
-    fontSize: Schema$Dimension;
+    fontSize?: Schema$Dimension;
     /**
      * The color of the text itself. If set, the color is either opaque or
      * transparent, depending on if the `opaque_color` field in it is set.
      */
-    foregroundColor: Schema$OptionalColor;
+    foregroundColor?: Schema$OptionalColor;
     /**
      * Whether or not the text is italicized.
      */
-    italic: boolean;
+    italic?: boolean;
     /**
      * The hyperlink destination of the text. If unset, there is no link. Links
      * are not inherited from parent text.  Changing the link in an update
@@ -2559,19 +2562,19 @@ export namespace slides_v1 {
      * preceding text (or the default text styles if the preceding   text is
      * another link) unless different styles are being set in the same request.
      */
-    link: Schema$Link;
+    link?: Schema$Link;
     /**
      * Whether or not the text is in small capital letters.
      */
-    smallCaps: boolean;
+    smallCaps?: boolean;
     /**
      * Whether or not the text is struck through.
      */
-    strikethrough: boolean;
+    strikethrough?: boolean;
     /**
      * Whether or not the text is underlined.
      */
-    underline: boolean;
+    underline?: boolean;
     /**
      * The font family and rendered weight of the text.  This field is an
      * extension of `font_family` meant to support explicit font weights without
@@ -2596,7 +2599,7 @@ export namespace slides_v1 {
      * `weighted_font_family#font_family` must also be set with a non-empty
      * value. Otherwise, a 400 bad request error is returned.
      */
-    weightedFontFamily: Schema$WeightedFontFamily;
+    weightedFontFamily?: Schema$WeightedFontFamily;
   }
   /**
    * A pair mapping a theme color type to the concrete color it represents.
@@ -2605,11 +2608,11 @@ export namespace slides_v1 {
     /**
      * The concrete color corresponding to the theme color type above.
      */
-    color: Schema$RgbColor;
+    color?: Schema$RgbColor;
     /**
      * The type of the theme color.
      */
-    type: string;
+    type?: string;
   }
   /**
    * The thumbnail of a page.
@@ -2624,15 +2627,15 @@ export namespace slides_v1 {
      * thumbnail image is the same as specified in the
      * `GetPageThumbnailRequest`.
      */
-    contentUrl: string;
+    contentUrl?: string;
     /**
      * The positive height in pixels of the thumbnail image.
      */
-    height: number;
+    height?: number;
     /**
      * The positive width in pixels of the thumbnail image.
      */
-    width: number;
+    width?: number;
   }
   /**
    * Ungroups objects, such as groups.
@@ -2644,7 +2647,7 @@ export namespace slides_v1 {
      * same page. The group itself is deleted. The visual sizes and positions of
      * all the children are preserved.
      */
-    objectIds: string[];
+    objectIds?: string[];
   }
   /**
    * Unmerges cells in a Table.
@@ -2653,7 +2656,7 @@ export namespace slides_v1 {
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The table range specifying which cells of the table to unmerge.  All
      * merged cells in this range will be unmerged, and cells that are already
@@ -2662,7 +2665,7 @@ export namespace slides_v1 {
      * text will remain in the upper-left (&quot;head&quot;) cell of the
      * resulting block of unmerged cells.
      */
-    tableRange: Schema$TableRange;
+    tableRange?: Schema$TableRange;
   }
   /**
    * Update the properties of an Image.
@@ -2677,15 +2680,15 @@ export namespace slides_v1 {
      * to its default value, include its field name in the field mask but leave
      * the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The image properties to update.
      */
-    imageProperties: Schema$ImageProperties;
+    imageProperties?: Schema$ImageProperties;
     /**
      * The object ID of the image the updates are applied to.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Updates the properties of a Line.
@@ -2700,15 +2703,15 @@ export namespace slides_v1 {
      * default value, include its field name in the field mask but leave the
      * field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The line properties to update.
      */
-    lineProperties: Schema$LineProperties;
+    lineProperties?: Schema$LineProperties;
     /**
      * The object ID of the line the update is applied to.
      */
-    objectId: string;
+    objectId?: string;
   }
   /**
    * Updates the alt text title and/or description of a page element.
@@ -2720,18 +2723,18 @@ export namespace slides_v1 {
      * readers and other accessibility interfaces. Only use human readable
      * values related to the content of the page element.
      */
-    description: string;
+    description?: string;
     /**
      * The object ID of the page element the updates are applied to.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The updated alt text title of the page element. If unset the existing
      * value will be maintained. The title is exposed to screen readers and
      * other accessibility interfaces. Only use human readable values related to
      * the content of the page element.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Updates the transform of a page element.  Updating the transform of a group
@@ -2743,15 +2746,15 @@ export namespace slides_v1 {
     /**
      * The apply mode of the transform update.
      */
-    applyMode: string;
+    applyMode?: string;
     /**
      * The object ID of the page element to update.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The input transform matrix used to update the page element.
      */
-    transform: Schema$AffineTransform;
+    transform?: Schema$AffineTransform;
   }
   /**
    * Updates the properties of a Page.
@@ -2766,15 +2769,15 @@ export namespace slides_v1 {
      * to its default value, include its field name in the field mask but leave
      * the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the page the update is applied to.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The page properties to update.
      */
-    pageProperties: Schema$PageProperties;
+    pageProperties?: Schema$PageProperties;
   }
   /**
    * Updates the styling for all of the paragraphs within a Shape or Table that
@@ -2786,7 +2789,7 @@ export namespace slides_v1 {
      * style. If `object_id` refers to a table, `cell_location` must have a
      * value. Otherwise, it must not.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The fields that should be updated.  At least one field must be specified.
      * The root `style` is implied and should not be specified. A single
@@ -2796,19 +2799,19 @@ export namespace slides_v1 {
      * include its field name in the field mask but leave the field itself
      * unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the shape or table with the text to be styled.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The paragraph&#39;s style.
      */
-    style: Schema$ParagraphStyle;
+    style?: Schema$ParagraphStyle;
     /**
      * The range of text containing the paragraph(s) to style.
      */
-    textRange: Schema$Range;
+    textRange?: Schema$Range;
   }
   /**
    * Update the properties of a Shape.
@@ -2823,15 +2826,15 @@ export namespace slides_v1 {
      * property to its default value, include its field name in the field mask
      * but leave the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the shape the updates are applied to.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The shape properties to update.
      */
-    shapeProperties: Schema$ShapeProperties;
+    shapeProperties?: Schema$ShapeProperties;
   }
   /**
    * Updates the position of slides in the presentation.
@@ -2842,13 +2845,13 @@ export namespace slides_v1 {
      * arrangement before the move takes place. Must be between zero and the
      * number of slides in the presentation, inclusive.
      */
-    insertionIndex: number;
+    insertionIndex?: number;
     /**
      * The IDs of the slides in the presentation that should be moved. The
      * slides in this list must be in existing presentation order, without
      * duplicates.
      */
-    slideObjectIds: string[];
+    slideObjectIds?: string[];
   }
   /**
    * Updates the properties of the table borders in a Table.
@@ -2859,7 +2862,7 @@ export namespace slides_v1 {
      * border position is not specified, the updates will apply to all borders
      * in the table range.
      */
-    borderPosition: string;
+    borderPosition?: string;
     /**
      * The fields that should be updated.  At least one field must be specified.
      * The root `tableBorderProperties` is implied and should not be specified.
@@ -2869,21 +2872,21 @@ export namespace slides_v1 {
      * property to its default value, include its field name in the field mask
      * but leave the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The table border properties to update.
      */
-    tableBorderProperties: Schema$TableBorderProperties;
+    tableBorderProperties?: Schema$TableBorderProperties;
     /**
      * The table range representing the subset of the table to which the updates
      * are applied. If a table range is not specified, the updates will apply to
      * the entire table.
      */
-    tableRange: Schema$TableRange;
+    tableRange?: Schema$TableRange;
   }
   /**
    * Update the properties of a TableCell.
@@ -2898,21 +2901,21 @@ export namespace slides_v1 {
      * reset a property to its default value, include its field name in the
      * field mask but leave the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The table cell properties to update.
      */
-    tableCellProperties: Schema$TableCellProperties;
+    tableCellProperties?: Schema$TableCellProperties;
     /**
      * The table range representing the subset of the table to which the updates
      * are applied. If a table range is not specified, the updates will apply to
      * the entire table.
      */
-    tableRange: Schema$TableRange;
+    tableRange?: Schema$TableRange;
   }
   /**
    * Updates the properties of a Table column.
@@ -2922,7 +2925,7 @@ export namespace slides_v1 {
      * The list of zero-based indices specifying which columns to update. If no
      * indices are provided, all columns in the table will be updated.
      */
-    columnIndices: number[];
+    columnIndices?: number[];
     /**
      * The fields that should be updated.  At least one field must be specified.
      * The root `tableColumnProperties` is implied and should not be specified.
@@ -2932,17 +2935,17 @@ export namespace slides_v1 {
      * included in the field mask but the property is left unset, the column
      * width will default to 406,400 EMU (32 points).
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The table column properties to update.  If the value of
      * `table_column_properties#column_width` in the request is less than
      * 406,400 EMU (32 points), a 400 bad request error is returned.
      */
-    tableColumnProperties: Schema$TableColumnProperties;
+    tableColumnProperties?: Schema$TableColumnProperties;
   }
   /**
    * Updates the properties of a Table row.
@@ -2957,20 +2960,20 @@ export namespace slides_v1 {
      * included in the field mask but the property is left unset, the minimum
      * row height will default to 0.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the table.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The list of zero-based indices specifying which rows to update. If no
      * indices are provided, all rows in the table will be updated.
      */
-    rowIndices: number[];
+    rowIndices?: number[];
     /**
      * The table row properties to update.
      */
-    tableRowProperties: Schema$TableRowProperties;
+    tableRowProperties?: Schema$TableRowProperties;
   }
   /**
    * Update the styling of text in a Shape or Table.
@@ -2981,7 +2984,7 @@ export namespace slides_v1 {
      * `object_id` refers to a table, `cell_location` must have a value.
      * Otherwise, it must not.
      */
-    cellLocation: Schema$TableCellLocation;
+    cellLocation?: Schema$TableCellLocation;
     /**
      * The fields that should be updated.  At least one field must be specified.
      * The root `style` is implied and should not be specified. A single
@@ -2990,11 +2993,11 @@ export namespace slides_v1 {
      * `&quot;bold&quot;`.  To reset a property to its default value, include
      * its field name in the field mask but leave the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the shape or table with the text to be styled.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The style(s) to set on the text.  If the value for a particular style
      * matches that of the parent, that style will be set to inherit.  Certain
@@ -3002,14 +3005,14 @@ export namespace slides_v1 {
      * of the Slides editor. See the documentation of TextStyle for more
      * information.
      */
-    style: Schema$TextStyle;
+    style?: Schema$TextStyle;
     /**
      * The range of text to style.  The range may be extended to include
      * adjacent newlines.  If the range fully contains a paragraph belonging to
      * a list, the paragraph&#39;s bullet is also updated with the matching text
      * style.
      */
-    textRange: Schema$Range;
+    textRange?: Schema$Range;
   }
   /**
    * Update the properties of a Video.
@@ -3024,15 +3027,15 @@ export namespace slides_v1 {
      * to its default value, include its field name in the field mask but leave
      * the field itself unset.
      */
-    fields: string;
+    fields?: string;
     /**
      * The object ID of the video the updates are applied to.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * The video properties to update.
      */
-    videoProperties: Schema$VideoProperties;
+    videoProperties?: Schema$VideoProperties;
   }
   /**
    * A PageElement kind representing a video.
@@ -3041,20 +3044,20 @@ export namespace slides_v1 {
     /**
      * The video source&#39;s unique identifier for this video.
      */
-    id: string;
+    id?: string;
     /**
      * The video source.
      */
-    source: string;
+    source?: string;
     /**
      * An URL to a video. The URL is valid as long as the source video exists
      * and sharing settings do not change.
      */
-    url: string;
+    url?: string;
     /**
      * The properties of the video.
      */
-    videoProperties: Schema$VideoProperties;
+    videoProperties?: Schema$VideoProperties;
   }
   /**
    * The properties of the Video.
@@ -3064,23 +3067,23 @@ export namespace slides_v1 {
      * Whether to enable video autoplay when the page is displayed in present
      * mode. Defaults to false.
      */
-    autoPlay: boolean;
+    autoPlay?: boolean;
     /**
      * The time at which to end playback, measured in seconds from the beginning
      * of the video. If set, the end time should be after the start time. If not
      * set or if you set this to a value that exceeds the video&#39;s length,
      * the video will be played until its end.
      */
-    end: number;
+    end?: number;
     /**
      * Whether to mute the audio during video playback. Defaults to false.
      */
-    mute: boolean;
+    mute?: boolean;
     /**
      * The outline of the video. The default outline matches the defaults for
      * new videos created in the Slides editor.
      */
-    outline: Schema$Outline;
+    outline?: Schema$Outline;
     /**
      * The time at which to start playback, measured in seconds from the
      * beginning of the video. If set, the start time should be before the end
@@ -3088,7 +3091,7 @@ export namespace slides_v1 {
      * seconds, the video will be played from the last second. If not set, the
      * video will be played from the beginning.
      */
-    start: number;
+    start?: number;
   }
   /**
    * Represents a font family and weight used to style a TextRun.
@@ -3099,7 +3102,7 @@ export namespace slides_v1 {
      * Font menu in Slides or from [Google Fonts] (https://fonts.google.com/).
      * If the font name is unrecognized, the text is rendered in `Arial`.
      */
-    fontFamily: string;
+    fontFamily?: string;
     /**
      * The rendered weight of the text. This field can have any value that is a
      * multiple of `100` between `100` and `900`, inclusive. This range
@@ -3110,7 +3113,7 @@ export namespace slides_v1 {
      * `700` are considered bold, and weights less than `700`are not bold. The
      * default value is `400` (&quot;normal&quot;).
      */
-    weight: number;
+    weight?: number;
   }
   /**
    * A PageElement kind representing word art.
@@ -3119,7 +3122,7 @@ export namespace slides_v1 {
     /**
      * The text rendered as word art.
      */
-    renderedText: string;
+    renderedText?: string;
   }
   /**
    * Provides control over how write requests are executed.
@@ -3131,8 +3134,9 @@ export namespace slides_v1 {
      * presentation&#39;s current `revision_id`, the request will not be
      * processed and will return a 400 bad request error.
      */
-    requiredRevisionId: string;
+    requiredRevisionId?: string;
   }
+
 
   export class Resource$Presentations {
     root: Slides;
@@ -3174,30 +3178,46 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate(params?: any, options?: MethodOptions):
+    batchUpdate(
+        params?: Params$Resource$Presentations$Batchupdate,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchUpdatePresentationResponse>;
     batchUpdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Presentations$Batchupdate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-        callback?:
-            BodyResponseCallback<Schema$BatchUpdatePresentationResponse>): void;
+        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
+        void;
     batchUpdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Presentations$Batchupdate,
+        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
+        void;
+    batchUpdate(
+        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
+        void;
+    batchUpdate(
+        paramsOrCallback?: Params$Resource$Presentations$Batchupdate|
+        BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
         void|AxiosPromise<Schema$BatchUpdatePresentationResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Presentations$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Presentations$Batchupdate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3237,26 +3257,39 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Presentation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-        callback?: BodyResponseCallback<Schema$Presentation>): void;
+        params?: Params$Resource$Presentations$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Presentation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+        params: Params$Resource$Presentations$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+        callback: BodyResponseCallback<Schema$Presentation>): void;
+    create(
+        params: Params$Resource$Presentations$Create,
+        callback: BodyResponseCallback<Schema$Presentation>): void;
+    create(callback: BodyResponseCallback<Schema$Presentation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Presentations$Create|
+        BodyResponseCallback<Schema$Presentation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Presentation>,
         callback?: BodyResponseCallback<Schema$Presentation>):
         void|AxiosPromise<Schema$Presentation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Presentations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Presentations$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3291,24 +3324,35 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Presentations$Get,
         options?: MethodOptions): AxiosPromise<Schema$Presentation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-        callback?: BodyResponseCallback<Schema$Presentation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+    get(params: Params$Resource$Presentations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+        callback: BodyResponseCallback<Schema$Presentation>): void;
+    get(params: Params$Resource$Presentations$Get,
+        callback: BodyResponseCallback<Schema$Presentation>): void;
+    get(callback: BodyResponseCallback<Schema$Presentation>): void;
+    get(paramsOrCallback?: Params$Resource$Presentations$Get|
+        BodyResponseCallback<Schema$Presentation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Presentation>,
         callback?: BodyResponseCallback<Schema$Presentation>):
         void|AxiosPromise<Schema$Presentation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Presentations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Presentations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3330,6 +3374,45 @@ export namespace slides_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Presentations$Batchupdate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The presentation to apply the updates to.
+     */
+    presentationId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchUpdatePresentationRequest;
+  }
+  export interface Params$Resource$Presentations$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Presentation;
+  }
+  export interface Params$Resource$Presentations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the presentation to retrieve.
+     */
+    presentationId?: string;
+  }
+
   export class Resource$Presentations$Pages {
     root: Slides;
     constructor(root: Slides) {
@@ -3355,21 +3438,34 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+    get(params?: Params$Resource$Presentations$Pages$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Page>;
+    get(params: Params$Resource$Presentations$Pages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    get(params: Params$Resource$Presentations$Pages$Get,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    get(callback: BodyResponseCallback<Schema$Page>): void;
+    get(paramsOrCallback?: Params$Resource$Presentations$Pages$Get|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Presentations$Pages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Presentations$Pages$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3411,26 +3507,39 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getThumbnail(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Thumbnail>;
     getThumbnail(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
-        callback?: BodyResponseCallback<Schema$Thumbnail>): void;
+        params?: Params$Resource$Presentations$Pages$Getthumbnail,
+        options?: MethodOptions): AxiosPromise<Schema$Thumbnail>;
     getThumbnail(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
+        params: Params$Resource$Presentations$Pages$Getthumbnail,
+        options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
+        callback: BodyResponseCallback<Schema$Thumbnail>): void;
+    getThumbnail(
+        params: Params$Resource$Presentations$Pages$Getthumbnail,
+        callback: BodyResponseCallback<Schema$Thumbnail>): void;
+    getThumbnail(callback: BodyResponseCallback<Schema$Thumbnail>): void;
+    getThumbnail(
+        paramsOrCallback?: Params$Resource$Presentations$Pages$Getthumbnail|
+        BodyResponseCallback<Schema$Thumbnail>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Thumbnail>,
         callback?: BodyResponseCallback<Schema$Thumbnail>):
         void|AxiosPromise<Schema$Thumbnail> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Presentations$Pages$Getthumbnail;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Presentations$Pages$Getthumbnail;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3453,5 +3562,46 @@ export namespace slides_v1 {
         return createAPIRequest<Schema$Thumbnail>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Presentations$Pages$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The object ID of the page to retrieve.
+     */
+    pageObjectId?: string;
+    /**
+     * The ID of the presentation to retrieve.
+     */
+    presentationId?: string;
+  }
+  export interface Params$Resource$Presentations$Pages$Getthumbnail {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The object ID of the page whose thumbnail to retrieve.
+     */
+    pageObjectId?: string;
+    /**
+     * The ID of the presentation to retrieve.
+     */
+    presentationId?: string;
+    /**
+     * The optional mime type of the thumbnail image.  If you don't specify the
+     * mime type, the default mime type will be PNG.
+     */
+    'thumbnailProperties.mimeType'?: string;
+    /**
+     * The optional thumbnail image size.  If you don't specify the size, the
+     * server chooses a default size of the image.
+     */
+    'thumbnailProperties.thumbnailSize'?: string;
   }
 }

@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace vision_v1p2beta1 {
+  export interface Options extends GlobalOptions { version: 'v1p2beta1'; }
+
   /**
    * Cloud Vision API
    *
@@ -135,19 +138,19 @@ export namespace vision_v1p2beta1 {
      * omitted, this color object is to be rendered as a solid color (as if the
      * alpha value had been explicitly given with a value of 1.0).
      */
-    alpha: number;
+    alpha?: number;
     /**
      * The amount of blue in the color as a value in the interval [0, 1].
      */
-    blue: number;
+    blue?: number;
     /**
      * The amount of green in the color as a value in the interval [0, 1].
      */
-    green: number;
+    green?: number;
     /**
      * The amount of red in the color as a value in the interval [0, 1].
      */
-    red: number;
+    red?: number;
   }
   /**
    * Response to a single file annotation request. A file may contain one or
@@ -157,11 +160,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Information about the file for which this response is generated.
      */
-    inputConfig: Schema$GoogleCloudVisionV1p2beta1InputConfig;
+    inputConfig?: Schema$GoogleCloudVisionV1p2beta1InputConfig;
     /**
      * Individual responses to images found within the file.
      */
-    responses: Schema$GoogleCloudVisionV1p2beta1AnnotateImageResponse[];
+    responses?: Schema$GoogleCloudVisionV1p2beta1AnnotateImageResponse[];
   }
   /**
    * Request for performing Google Cloud Vision API tasks over a user-provided
@@ -171,15 +174,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Requested features.
      */
-    features: Schema$GoogleCloudVisionV1p2beta1Feature[];
+    features?: Schema$GoogleCloudVisionV1p2beta1Feature[];
     /**
      * The image to be processed.
      */
-    image: Schema$GoogleCloudVisionV1p2beta1Image;
+    image?: Schema$GoogleCloudVisionV1p2beta1Image;
     /**
      * Additional context that may accompany the image.
      */
-    imageContext: Schema$GoogleCloudVisionV1p2beta1ImageContext;
+    imageContext?: Schema$GoogleCloudVisionV1p2beta1ImageContext;
   }
   /**
    * Response to an image annotation request.
@@ -189,55 +192,57 @@ export namespace vision_v1p2beta1 {
      * If present, contextual information is needed to understand where this
      * image comes from.
      */
-    context: Schema$GoogleCloudVisionV1p2beta1ImageAnnotationContext;
+    context?: Schema$GoogleCloudVisionV1p2beta1ImageAnnotationContext;
     /**
      * If present, crop hints have completed successfully.
      */
-    cropHintsAnnotation: Schema$GoogleCloudVisionV1p2beta1CropHintsAnnotation;
+    cropHintsAnnotation?: Schema$GoogleCloudVisionV1p2beta1CropHintsAnnotation;
     /**
      * If set, represents the error message for the operation. Note that
      * filled-in image annotations are guaranteed to be correct, even when
      * `error` is set.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * If present, face detection has completed successfully.
      */
-    faceAnnotations: Schema$GoogleCloudVisionV1p2beta1FaceAnnotation[];
+    faceAnnotations?: Schema$GoogleCloudVisionV1p2beta1FaceAnnotation[];
     /**
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully. This annotation provides the structural hierarchy
      * for the OCR detected text.
      */
-    fullTextAnnotation: Schema$GoogleCloudVisionV1p2beta1TextAnnotation;
+    fullTextAnnotation?: Schema$GoogleCloudVisionV1p2beta1TextAnnotation;
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation: Schema$GoogleCloudVisionV1p2beta1ImageProperties;
+    imagePropertiesAnnotation?:
+        Schema$GoogleCloudVisionV1p2beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
-    labelAnnotations: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    labelAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
     /**
      * If present, landmark detection has completed successfully.
      */
-    landmarkAnnotations: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    landmarkAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
-    logoAnnotations: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    logoAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation: Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
+    safeSearchAnnotation?:
+        Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
-    textAnnotations: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    textAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
     /**
      * If present, web detection has completed successfully.
      */
-    webDetection: Schema$GoogleCloudVisionV1p2beta1WebDetection;
+    webDetection?: Schema$GoogleCloudVisionV1p2beta1WebDetection;
   }
   /**
    * An offline file annotation request.
@@ -246,19 +251,19 @@ export namespace vision_v1p2beta1 {
     /**
      * Required. Requested features.
      */
-    features: Schema$GoogleCloudVisionV1p2beta1Feature[];
+    features?: Schema$GoogleCloudVisionV1p2beta1Feature[];
     /**
      * Additional context that may accompany the image(s) in the file.
      */
-    imageContext: Schema$GoogleCloudVisionV1p2beta1ImageContext;
+    imageContext?: Schema$GoogleCloudVisionV1p2beta1ImageContext;
     /**
      * Required. Information about the input file.
      */
-    inputConfig: Schema$GoogleCloudVisionV1p2beta1InputConfig;
+    inputConfig?: Schema$GoogleCloudVisionV1p2beta1InputConfig;
     /**
      * Required. The desired output location and metadata (e.g. format).
      */
-    outputConfig: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
+    outputConfig?: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
   }
   /**
    * The response for a single offline file annotation request.
@@ -267,7 +272,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The output location and metadata from AsyncAnnotateFileRequest.
      */
-    outputConfig: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
+    outputConfig?: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
   }
   /**
    * Multiple async file annotation requests are batched into a single service
@@ -277,7 +282,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Individual async file annotation requests for this batch.
      */
-    requests: Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest[];
+    requests?: Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest[];
   }
   /**
    * Response to an async batch file annotation request.
@@ -287,7 +292,7 @@ export namespace vision_v1p2beta1 {
      * The list of file annotation responses, one for each request in
      * AsyncBatchAnnotateFilesRequest.
      */
-    responses: Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse[];
+    responses?: Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse[];
   }
   /**
    * Multiple image annotation requests are batched into a single service call.
@@ -296,7 +301,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Individual image annotation requests for this batch.
      */
-    requests: Schema$GoogleCloudVisionV1p2beta1AnnotateImageRequest[];
+    requests?: Schema$GoogleCloudVisionV1p2beta1AnnotateImageRequest[];
   }
   /**
    * Response to a batch image annotation request.
@@ -305,7 +310,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Individual responses to image annotation requests within the batch.
      */
-    responses: Schema$GoogleCloudVisionV1p2beta1AnnotateImageResponse[];
+    responses?: Schema$GoogleCloudVisionV1p2beta1AnnotateImageResponse[];
   }
   /**
    * Logical element on the page.
@@ -314,7 +319,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType: string;
+    blockType?: string;
     /**
      * The bounding box for the block. The vertices are in the order of
      * top-left, top-right, bottom-right, bottom-left. When a rotation of the
@@ -325,19 +330,19 @@ export namespace vision_v1p2beta1 {
      * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
      * 1----0    and the vertice order will still be (0, 1, 2, 3).
      */
-    boundingBox: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
-    paragraphs: Schema$GoogleCloudVisionV1p2beta1Paragraph[];
+    paragraphs?: Schema$GoogleCloudVisionV1p2beta1Paragraph[];
     /**
      * Additional information detected for the block.
      */
-    property: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
+    property?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
   }
   /**
    * A bounding polygon for the detected image annotation.
@@ -346,11 +351,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The bounding polygon normalized vertices.
      */
-    normalizedVertices: Schema$GoogleCloudVisionV1p2beta1NormalizedVertex[];
+    normalizedVertices?: Schema$GoogleCloudVisionV1p2beta1NormalizedVertex[];
     /**
      * The bounding polygon vertices.
      */
-    vertices: Schema$GoogleCloudVisionV1p2beta1Vertex[];
+    vertices?: Schema$GoogleCloudVisionV1p2beta1Vertex[];
   }
   /**
    * Color information consists of RGB channels, score, and the fraction of the
@@ -360,16 +365,16 @@ export namespace vision_v1p2beta1 {
     /**
      * RGB components of the color.
      */
-    color: Schema$Color;
+    color?: Schema$Color;
     /**
      * The fraction of pixels the color occupies in the image. Value in range
      * [0, 1].
      */
-    pixelFraction: number;
+    pixelFraction?: number;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score: number;
+    score?: number;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -379,16 +384,16 @@ export namespace vision_v1p2beta1 {
      * The bounding polygon for the crop region. The coordinates of the bounding
      * box are in the original image&#39;s scale, as returned in `ImageParams`.
      */
-    boundingPoly: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Fraction of importance of this salient region with respect to the
      * original image.
      */
-    importanceFraction: number;
+    importanceFraction?: number;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -397,7 +402,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Crop hint results.
      */
-    cropHints: Schema$GoogleCloudVisionV1p2beta1CropHint[];
+    cropHints?: Schema$GoogleCloudVisionV1p2beta1CropHint[];
   }
   /**
    * Parameters for crop hints annotation request.
@@ -411,7 +416,7 @@ export namespace vision_v1p2beta1 {
      * limited to a maximum of 16; any aspect ratios provided after the 16th are
      * ignored.
      */
-    aspectRatios: number[];
+    aspectRatios?: number[];
   }
   /**
    * Set of dominant colors and their corresponding scores.
@@ -420,7 +425,7 @@ export namespace vision_v1p2beta1 {
     /**
      * RGB color values with their score and pixel fraction.
      */
-    colors: Schema$GoogleCloudVisionV1p2beta1ColorInfo[];
+    colors?: Schema$GoogleCloudVisionV1p2beta1ColorInfo[];
   }
   /**
    * Set of detected entity features.
@@ -430,23 +435,23 @@ export namespace vision_v1p2beta1 {
      * Image region to which this entity belongs. Not produced for
      * `LABEL_DETECTION` features.
      */
-    boundingPoly: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection
      * in an image. For example, for an image in which the &quot;Eiffel
      * Tower&quot; entity is detected, this field represents the confidence that
      * there is a tower in the query image. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description: string;
+    description?: string;
     /**
      * The language code for the locale in which the entity textual
      * `description` is expressed.
      */
-    locale: string;
+    locale?: string;
     /**
      * The location information for the detected entity. Multiple `LocationInfo`
      * elements can be present because one location may indicate the location of
@@ -454,21 +459,21 @@ export namespace vision_v1p2beta1 {
      * the place where the image was taken. Location information is usually
      * present for landmarks.
      */
-    locations: Schema$GoogleCloudVisionV1p2beta1LocationInfo[];
+    locations?: Schema$GoogleCloudVisionV1p2beta1LocationInfo[];
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
      * Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid: string;
+    mid?: string;
     /**
      * Some entities may have optional user-supplied `Property` (name/value)
      * fields, such a score or string that qualifies the entity.
      */
-    properties: Schema$GoogleCloudVisionV1p2beta1Property[];
+    properties?: Schema$GoogleCloudVisionV1p2beta1Property[];
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score: number;
+    score?: number;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image.
      * For example, the relevancy of &quot;tower&quot; is likely higher to an
@@ -477,7 +482,7 @@ export namespace vision_v1p2beta1 {
      * confidence that there is a tower in each image may be the same. Range [0,
      * 1].
      */
-    topicality: number;
+    topicality?: number;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -486,11 +491,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood: string;
+    angerLikelihood?: string;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood: string;
+    blurredLikelihood?: string;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box
      * are in the original image&#39;s scale, as returned in `ImageParams`. The
@@ -500,11 +505,11 @@ export namespace vision_v1p2beta1 {
      * (the polygon will be unbounded) if only a partial face appears in the
      * image to be annotated.
      */
-    boundingPoly: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence: number;
+    detectionConfidence?: number;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the
      * `boundingPoly`, and encloses only the skin part of the face. Typically,
@@ -513,52 +518,52 @@ export namespace vision_v1p2beta1 {
      * landmarker results, only on the initial face detection, hence the
      * &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
-    fdBoundingPoly: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    fdBoundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood: string;
+    headwearLikelihood?: string;
     /**
      * Joy likelihood.
      */
-    joyLikelihood: string;
+    joyLikelihood?: string;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence: number;
+    landmarkingConfidence?: number;
     /**
      * Detected face landmarks.
      */
-    landmarks: Schema$GoogleCloudVisionV1p2beta1FaceAnnotationLandmark[];
+    landmarks?: Schema$GoogleCloudVisionV1p2beta1FaceAnnotationLandmark[];
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is
      * pointing relative to the vertical plane perpendicular to the image. Range
      * [-180,180].
      */
-    panAngle: number;
+    panAngle?: number;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise
      * rotation of the face relative to the image vertical about the axis
      * perpendicular to the face. Range [-180,180].
      */
-    rollAngle: number;
+    rollAngle?: number;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood: string;
+    sorrowLikelihood?: string;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood: string;
+    surpriseLikelihood?: string;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is
      * pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle: number;
+    tiltAngle?: number;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood: string;
+    underExposedLikelihood?: string;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -567,11 +572,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark position.
      */
-    position: Schema$GoogleCloudVisionV1p2beta1Position;
+    position?: Schema$GoogleCloudVisionV1p2beta1Position;
     /**
      * Face landmark type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * The type of Google Cloud Vision API detection to perform, and the maximum
@@ -583,17 +588,17 @@ export namespace vision_v1p2beta1 {
      * Maximum number of results of this type. Does not apply to
      * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      */
-    maxResults: number;
+    maxResults?: number;
     /**
      * Model to use for the feature. Supported values:
      * &quot;builtin/stable&quot; (the default if unset) and
      * &quot;builtin/latest&quot;.
      */
-    model: string;
+    model?: string;
     /**
      * The feature type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -611,7 +616,7 @@ export namespace vision_v1p2beta1 {
      * happen if, for example, the output JSON is too large and overflows into
      * multiple sharded files.
      */
-    uri: string;
+    uri?: string;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -621,7 +626,7 @@ export namespace vision_v1p2beta1 {
      * Google Cloud Storage URI for the input file. This must only be a Google
      * Cloud Storage object. Wildcards are not currently supported.
      */
-    uri: string;
+    uri?: string;
   }
   /**
    * Client image to perform Google Cloud Vision API tasks over.
@@ -632,13 +637,13 @@ export namespace vision_v1p2beta1 {
      * `bytes` fields, protobuffers use a pure binary representation, whereas
      * JSON representations use base64.
      */
-    content: string;
+    content?: string;
     /**
      * Google Cloud Storage image location, or publicly-accessible image URL. If
      * both `content` and `source` are provided for an image, `content` takes
      * precedence and is used to perform the image annotation request.
      */
-    source: Schema$GoogleCloudVisionV1p2beta1ImageSource;
+    source?: Schema$GoogleCloudVisionV1p2beta1ImageSource;
   }
   /**
    * If an image was produced from a file (e.g. a PDF), this message gives
@@ -649,11 +654,11 @@ export namespace vision_v1p2beta1 {
      * If the file was a PDF or TIFF, this field gives the page number within
      * the file used to produce the image.
      */
-    pageNumber: number;
+    pageNumber?: number;
     /**
      * The URI of the file used to produce the image.
      */
-    uri: string;
+    uri?: string;
   }
   /**
    * Image context and/or feature-specific parameters.
@@ -662,7 +667,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Parameters for crop hints annotation request.
      */
-    cropHintsParams: Schema$GoogleCloudVisionV1p2beta1CropHintsParams;
+    cropHintsParams?: Schema$GoogleCloudVisionV1p2beta1CropHintsParams;
     /**
      * List of languages to use for TEXT_DETECTION. In most cases, an empty
      * value yields the best results since it enables automatic language
@@ -673,15 +678,15 @@ export namespace vision_v1p2beta1 {
      * detection returns an error if one or more of the specified languages is
      * not one of the [supported languages](/vision/docs/languages).
      */
-    languageHints: string[];
+    languageHints?: string[];
     /**
      * Not used.
      */
-    latLongRect: Schema$GoogleCloudVisionV1p2beta1LatLongRect;
+    latLongRect?: Schema$GoogleCloudVisionV1p2beta1LatLongRect;
     /**
      * Parameters for web detection.
      */
-    webDetectionParams: Schema$GoogleCloudVisionV1p2beta1WebDetectionParams;
+    webDetectionParams?: Schema$GoogleCloudVisionV1p2beta1WebDetectionParams;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -690,7 +695,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, dominant colors completed successfully.
      */
-    dominantColors: Schema$GoogleCloudVisionV1p2beta1DominantColorsAnnotation;
+    dominantColors?: Schema$GoogleCloudVisionV1p2beta1DominantColorsAnnotation;
   }
   /**
    * External image source (Google Cloud Storage or web URL image location).
@@ -703,7 +708,7 @@ export namespace vision_v1p2beta1 {
      * URIs](https://cloud.google.com/storage/docs/reference-uris) for more
      * info.
      */
-    gcsImageUri: string;
+    gcsImageUri?: string;
     /**
      * The URI of the source image. Can be either:  1. A Google Cloud Storage
      * URI of the form    `gs://bucket_name/object_name`. Object versioning is
@@ -718,7 +723,7 @@ export namespace vision_v1p2beta1 {
      * When both `gcs_image_uri` and `image_uri` are specified, `image_uri`
      * takes precedence.
      */
-    imageUri: string;
+    imageUri?: string;
   }
   /**
    * The desired input location and metadata.
@@ -727,12 +732,12 @@ export namespace vision_v1p2beta1 {
     /**
      * The Google Cloud Storage location to read the input from.
      */
-    gcsSource: Schema$GoogleCloudVisionV1p2beta1GcsSource;
+    gcsSource?: Schema$GoogleCloudVisionV1p2beta1GcsSource;
     /**
      * The type of the file. Currently only &quot;application/pdf&quot; and
      * &quot;image/tiff&quot; are supported. Wildcards are not supported.
      */
-    mimeType: string;
+    mimeType?: string;
   }
   /**
    * Rectangle determined by min and max `LatLng` pairs.
@@ -741,11 +746,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Max lat/long pair.
      */
-    maxLatLng: Schema$LatLng;
+    maxLatLng?: Schema$LatLng;
     /**
      * Min lat/long pair.
      */
-    minLatLng: Schema$LatLng;
+    minLatLng?: Schema$LatLng;
   }
   /**
    * Detected entity location information.
@@ -754,7 +759,7 @@ export namespace vision_v1p2beta1 {
     /**
      * lat/long location coordinates.
      */
-    latLng: Schema$LatLng;
+    latLng?: Schema$LatLng;
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the normalized vertex
@@ -764,11 +769,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x: number;
+    x?: number;
     /**
      * Y coordinate.
      */
-    y: number;
+    y?: number;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -777,15 +782,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Current state of the batch operation.
      */
-    state: string;
+    state?: string;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * The desired output location and metadata.
@@ -801,11 +806,11 @@ export namespace vision_v1p2beta1 {
      * GcsDestination, with potential future support for other output
      * configurations.
      */
-    batchSize: number;
+    batchSize?: number;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
-    gcsDestination: Schema$GoogleCloudVisionV1p2beta1GcsDestination;
+    gcsDestination?: Schema$GoogleCloudVisionV1p2beta1GcsDestination;
   }
   /**
    * Detected page from OCR.
@@ -814,25 +819,25 @@ export namespace vision_v1p2beta1 {
     /**
      * List of blocks of text, images etc on this page.
      */
-    blocks: Schema$GoogleCloudVisionV1p2beta1Block[];
+    blocks?: Schema$GoogleCloudVisionV1p2beta1Block[];
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs)
      * the unit is pixels.
      */
-    height: number;
+    height?: number;
     /**
      * Additional information detected on the page.
      */
-    property: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
+    property?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the
      * unit is pixels.
      */
-    width: number;
+    width?: number;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -848,19 +853,19 @@ export namespace vision_v1p2beta1 {
      * degrees around the top-left corner it becomes:      2----3      |    |
      * 1----0   and the vertice order will still be (0, 1, 2, 3).
      */
-    boundingBox: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Additional information detected for the paragraph.
      */
-    property: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
+    property?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
     /**
      * List of words in this paragraph.
      */
-    words: Schema$GoogleCloudVisionV1p2beta1Word[];
+    words?: Schema$GoogleCloudVisionV1p2beta1Word[];
   }
   /**
    * A 3D position in the image, used primarily for Face detection landmarks. A
@@ -871,15 +876,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x: number;
+    x?: number;
     /**
      * Y coordinate.
      */
-    y: number;
+    y?: number;
     /**
      * Z coordinate (or depth).
      */
-    z: number;
+    z?: number;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -888,15 +893,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name: string;
+    name?: string;
     /**
      * Value of numeric properties.
      */
-    uint64Value: string;
+    uint64Value?: string;
     /**
      * Value of the property.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision
@@ -909,27 +914,27 @@ export namespace vision_v1p2beta1 {
      * contain elements such as nudity, pornographic images or cartoons, or
      * sexual activities.
      */
-    adult: string;
+    adult?: string;
     /**
      * Likelihood that this is a medical image.
      */
-    medical: string;
+    medical?: string;
     /**
      * Likelihood that the request image contains racy content. Racy content may
      * include (but is not limited to) skimpy or sheer clothing, strategically
      * covered nudity, lewd or provocative poses, or close-ups of sensitive body
      * areas.
      */
-    racy: string;
+    racy?: string;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the
      * image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof: string;
+    spoof?: string;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence: string;
+    violence?: string;
   }
   /**
    * A single symbol representation.
@@ -945,19 +950,19 @@ export namespace vision_v1p2beta1 {
      * degrees around the top-left corner it becomes:      2----3      |    |
      * 1----0   and the vertice order will still be (0, 1, 2, 3).
      */
-    boundingBox: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Additional information detected for the symbol.
      */
-    property: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
+    property?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text: string;
+    text?: string;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text.
@@ -972,11 +977,11 @@ export namespace vision_v1p2beta1 {
     /**
      * List of pages detected by OCR.
      */
-    pages: Schema$GoogleCloudVisionV1p2beta1Page[];
+    pages?: Schema$GoogleCloudVisionV1p2beta1Page[];
     /**
      * UTF-8 text detected on the pages.
      */
-    text: string;
+    text?: string;
   }
   /**
    * Detected start or end of a structural component.
@@ -985,11 +990,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix: boolean;
+    isPrefix?: boolean;
     /**
      * Detected break type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Detected language for a structural component.
@@ -998,13 +1003,13 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * Additional information detected on the structural component.
@@ -1013,11 +1018,12 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
+    detectedBreak?:
+        Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages:
+    detectedLanguages?:
         Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
   }
   /**
@@ -1028,11 +1034,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x: number;
+    x?: number;
     /**
      * Y coordinate.
      */
-    y: number;
+    y?: number;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -1041,33 +1047,34 @@ export namespace vision_v1p2beta1 {
     /**
      * Best guess text labels for the request image.
      */
-    bestGuessLabels: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebLabel[];
+    bestGuessLabels?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebLabel[];
     /**
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?:
+        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages:
+    pagesWithMatchingImages?:
         Schema$GoogleCloudVisionV1p2beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages:
+    partialMatchingImages?:
         Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages:
+    visuallySimilarImages?:
         Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
-    webEntities: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebEntity[];
+    webEntities?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebEntity[];
   }
   /**
    * Parameters for web detection request.
@@ -1076,7 +1083,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Whether to include results derived from the geo information in the image.
      */
-    includeGeoResults: boolean;
+    includeGeoResults?: boolean;
   }
   /**
    * Entity deduced from similar images on the Internet.
@@ -1085,16 +1092,16 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description: string;
+    description?: string;
     /**
      * Opaque entity ID.
      */
-    entityId: string;
+    entityId?: string;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable
      * across different image queries.
      */
-    score: number;
+    score?: number;
   }
   /**
    * Metadata for online images.
@@ -1103,11 +1110,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score: number;
+    score?: number;
     /**
      * The result image URL.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -1116,13 +1123,13 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label: string;
+    label?: string;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * Metadata for web pages.
@@ -1132,26 +1139,27 @@ export namespace vision_v1p2beta1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?:
+        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle: string;
+    pageTitle?: string;
     /**
      * Partial matching images on the page. Those images are similar enough to
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages:
+    partialMatchingImages?:
         Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score: number;
+    score?: number;
     /**
      * The result web page URL.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A word representation.
@@ -1167,20 +1175,20 @@ export namespace vision_v1p2beta1 {
      * top-left corner it becomes:      2----3      |    |      1----0   and the
      * vertice order will still be (0, 1, 2, 3).
      */
-    boundingBox: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Additional information detected for the word.
      */
-    property: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
+    property?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationTextProperty;
     /**
      * List of symbols in the word. The order of the symbols follows the natural
      * reading order.
      */
-    symbols: Schema$GoogleCloudVisionV1p2beta1Symbol[];
+    symbols?: Schema$GoogleCloudVisionV1p2beta1Symbol[];
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -1193,11 +1201,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude: number;
+    latitude?: number;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude: number;
+    longitude?: number;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1209,24 +1217,24 @@ export namespace vision_v1p2beta1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -1236,7 +1244,7 @@ export namespace vision_v1p2beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1278,19 +1286,20 @@ export namespace vision_v1p2beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
+
 
   export class Resource$Files {
     root: Vision;
@@ -1321,26 +1330,39 @@ export namespace vision_v1p2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    asyncBatchAnnotate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Files$Asyncbatchannotate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Files$Asyncbatchannotate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        params: Params$Resource$Files$Asyncbatchannotate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        paramsOrCallback?: Params$Resource$Files$Asyncbatchannotate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Asyncbatchannotate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1362,6 +1384,19 @@ export namespace vision_v1p2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Files$Asyncbatchannotate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest;
+  }
+
 
   export class Resource$Images {
     root: Vision;
@@ -1387,32 +1422,47 @@ export namespace vision_v1p2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params?: any, options?: MethodOptions): AxiosPromise<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
+    annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
+        AxiosPromise<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Images$Annotate,
+        options: MethodOptions|BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
         void;
     annotate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Images$Annotate,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
+        void;
+    annotate(callback: BodyResponseCallback<
+             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
+        void;
+    annotate(
+        paramsOrCallback?: Params$Resource$Images$Annotate|BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
         void|AxiosPromise<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Annotate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1437,5 +1487,17 @@ export namespace vision_v1p2beta1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Images$Annotate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest;
   }
 }

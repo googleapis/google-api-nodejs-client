@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace tpu_v1alpha1 {
+  export interface Options extends GlobalOptions { version: 'v1alpha1'; }
+
   /**
    * Cloud TPU API
    *
@@ -72,11 +75,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * the accelerator type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -93,11 +96,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The listed nodes.
      */
-    acceleratorTypes: Schema$AcceleratorType[];
+    acceleratorTypes?: Schema$AcceleratorType[];
     /**
      * The next page token or empty if none.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -106,11 +109,11 @@ export namespace tpu_v1alpha1 {
     /**
      * A list of locations that matches the specified filter in the request.
      */
-    locations: Schema$Location[];
+    locations?: Schema$Location[];
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response for ListNodes.
@@ -119,11 +122,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The next page token or empty if none.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The listed nodes.
      */
-    nodes: Schema$Node[];
+    nodes?: Schema$Node[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -132,11 +135,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Response for ListTensorFlowVersions.
@@ -145,11 +148,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The next page token or empty if none.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The listed nodes.
      */
-    tensorflowVersions: Schema$TensorFlowVersion[];
+    tensorflowVersions?: Schema$TensorFlowVersion[];
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -159,26 +162,26 @@ export namespace tpu_v1alpha1 {
      * The friendly name for this location, typically a nearby city name. For
      * example, &quot;Tokyo&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels: any;
+    labels?: any;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name: string;
+    name?: string;
   }
   /**
    * A network endpoint over which a TPU worker can be reached.
@@ -187,11 +190,11 @@ export namespace tpu_v1alpha1 {
     /**
      * The IP address of this network endpoint.
      */
-    ipAddress: string;
+    ipAddress?: string;
     /**
      * The port of this network endpoint.
      */
-    port: number;
+    port?: number;
   }
   /**
    * A TPU instance.
@@ -200,7 +203,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The type of hardware accelerators associated with this node. Required.
      */
-    acceleratorType: string;
+    acceleratorType?: string;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address.
      * This CIDR block must be a /29 block; the Compute Engine networks API
@@ -211,70 +214,70 @@ export namespace tpu_v1alpha1 {
      * or the provided network is peered with another network that is using that
      * CIDR block. Required.
      */
-    cidrBlock: string;
+    cidrBlock?: string;
     /**
      * Output only. The time when the node was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
-    description: string;
+    description?: string;
     /**
      * The health status of the TPU node.
      */
-    health: string;
+    health?: string;
     /**
      * Output only. If this field is populated, it contains a description of why
      * the TPU Node is unhealthy.
      */
-    healthDescription: string;
+    healthDescription?: string;
     /**
      * Output only. DEPRECATED! Use network_endpoints instead. The network
      * address for the TPU Node as visible to Compute Engine instances.
      */
-    ipAddress: string;
+    ipAddress?: string;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    labels: any;
+    labels?: any;
     /**
      * Output only. The immutable name of the TPU
      */
-    name: string;
+    name?: string;
     /**
      * The name of a network they wish to peer the TPU node to. It must be a
      * preexisting Compute Engine network inside of the project on which this
      * API has been activated. If none is provided, &quot;default&quot; will be
      * used.
      */
-    network: string;
+    network?: string;
     /**
      * Output only. The network endpoints where TPU workers can be accessed and
      * sent work. It is recommended that Tensorflow clients of the node reach
      * out to the 0th entry in this map first.
      */
-    networkEndpoints: Schema$NetworkEndpoint[];
+    networkEndpoints?: Schema$NetworkEndpoint[];
     /**
      * Output only. DEPRECATED! Use network_endpoints instead. The network port
      * for the TPU Node as visible to Compute Engine instances.
      */
-    port: string;
+    port?: string;
     /**
      * Output only. The service account used to run the tensor flow services
      * within the node. To share resources, including Google Cloud Storage data,
      * with the Tensorflow job running in the Node, this account must have
      * permissions to that data.
      */
-    serviceAccount: string;
+    serviceAccount?: string;
     /**
      * Output only. The current state for the TPU Node.
      */
-    state: string;
+    state?: string;
     /**
      * The version of Tensorflow running in the Node. Required.
      */
-    tensorflowVersion: string;
+    tensorflowVersion?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -286,24 +289,24 @@ export namespace tpu_v1alpha1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -313,7 +316,7 @@ export namespace tpu_v1alpha1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -322,35 +325,35 @@ export namespace tpu_v1alpha1 {
     /**
      * [Output only] API version used to start the operation.
      */
-    apiVersion: string;
+    apiVersion?: string;
     /**
      * [Output only] Identifies whether the user has requested cancellation of
      * the operation. Operations that have successfully been cancelled have
      * Operation.error value with a google.rpc.Status.code of 1, corresponding
      * to `Code.CANCELLED`.
      */
-    cancelRequested: boolean;
+    cancelRequested?: boolean;
     /**
      * [Output only] The time the operation was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * [Output only] The time the operation finished running.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * [Output only] Human-readable status of the operation, if any.
      */
-    statusDetail: string;
+    statusDetail?: string;
     /**
      * [Output only] Server-defined resource path for the target of the
      * operation.
      */
-    target: string;
+    target?: string;
     /**
      * [Output only] Name of the verb executed by the operation.
      */
-    verb: string;
+    verb?: string;
   }
   /**
    * Request for ReimageNode.
@@ -359,7 +362,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The version for reimage to create.
      */
-    tensorflowVersion: string;
+    tensorflowVersion?: string;
   }
   /**
    * Request for ResetNode.
@@ -409,18 +412,18 @@ export namespace tpu_v1alpha1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request for StopNode.
@@ -433,12 +436,13 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * the tensorflow version.
      */
-    version: string;
+    version?: string;
   }
+
 
   export class Resource$Projects {
     root: Tpu;
@@ -453,6 +457,8 @@ export namespace tpu_v1alpha1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations {
     root: Tpu;
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
@@ -487,23 +493,34 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+    get(params?: Params$Resource$Projects$Locations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Location>;
+    get(params: Params$Resource$Projects$Locations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Location>,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(params: Params$Resource$Projects$Locations$Get,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
+        BodyResponseCallback<Schema$Location>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
         void|AxiosPromise<Schema$Location> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -541,28 +558,40 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$List,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$List|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
         void|AxiosPromise<Schema$ListLocationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -584,6 +613,42 @@ export namespace tpu_v1alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Projects$Locations$Acceleratortypes {
     root: Tpu;
     constructor(root: Tpu) {
@@ -608,24 +673,36 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
         options?: MethodOptions): AxiosPromise<Schema$AcceleratorType>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
-        callback?: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
+    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
+        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
+    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
+        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
+    get(callback: BodyResponseCallback<Schema$AcceleratorType>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Acceleratortypes$Get|
+        BodyResponseCallback<Schema$AcceleratorType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AcceleratorType>,
         callback?: BodyResponseCallback<Schema$AcceleratorType>):
         void|AxiosPromise<Schema$AcceleratorType> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Acceleratortypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Acceleratortypes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -664,29 +741,45 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAcceleratorTypesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
+        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
+        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Acceleratortypes$List|
+        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
         callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
         void|AxiosPromise<Schema$ListAcceleratorTypesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Acceleratortypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Acceleratortypes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -710,6 +803,46 @@ export namespace tpu_v1alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Sort results.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name.
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Projects$Locations$Nodes {
     root: Tpu;
@@ -737,26 +870,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Nodes$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -791,26 +937,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Nodes$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -845,21 +1004,34 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Node>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Node>,
-        callback?: BodyResponseCallback<Schema$Node>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Node>,
+    get(params?: Params$Resource$Projects$Locations$Nodes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Node>;
+    get(params: Params$Resource$Projects$Locations$Nodes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Node>,
+        callback: BodyResponseCallback<Schema$Node>): void;
+    get(params: Params$Resource$Projects$Locations$Nodes$Get,
+        callback: BodyResponseCallback<Schema$Node>): void;
+    get(callback: BodyResponseCallback<Schema$Node>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Get|
+        BodyResponseCallback<Schema$Node>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Node>,
         callback?: BodyResponseCallback<Schema$Node>):
         void|AxiosPromise<Schema$Node> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -896,26 +1068,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListNodesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNodesResponse>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListNodesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
+        params: Params$Resource$Projects$Locations$Nodes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
+        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Nodes$List,
+        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$List|
+        BodyResponseCallback<Schema$ListNodesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListNodesResponse>,
         callback?: BodyResponseCallback<Schema$ListNodesResponse>):
         void|AxiosPromise<Schema$ListNodesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -951,26 +1136,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reimage(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     reimage(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Reimage,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     reimage(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Reimage,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    reimage(
+        params: Params$Resource$Projects$Locations$Nodes$Reimage,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    reimage(callback: BodyResponseCallback<Schema$Operation>): void;
+    reimage(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Reimage|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Reimage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Reimage;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1006,26 +1204,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     reset(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Reset,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     reset(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Reset,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(
+        params: Params$Resource$Projects$Locations$Nodes$Reset,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Reset|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Reset;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1061,26 +1272,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     start(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Start,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     start(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Start,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+        params: Params$Resource$Projects$Locations$Nodes$Start,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Start|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Start;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1116,25 +1340,39 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
     stop(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Locations$Nodes$Stop,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     stop(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Locations$Nodes$Stop,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+        params: Params$Resource$Projects$Locations$Nodes$Stop,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Stop|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Nodes$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nodes$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1156,6 +1394,128 @@ export namespace tpu_v1alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Nodes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unqualified resource name.
+     */
+    nodeId?: string;
+    /**
+     * The parent resource name.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Node;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Reimage {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReimageNodeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Reset {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResetNodeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Start {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$StartNodeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$StopNodeRequest;
+  }
+
 
   export class Resource$Projects$Locations$Operations {
     root: Tpu;
@@ -1189,25 +1549,38 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1245,25 +1618,38 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1300,23 +1686,35 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Locations$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1362,28 +1760,40 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1405,6 +1815,64 @@ export namespace tpu_v1alpha1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Projects$Locations$Tensorflowversions {
     root: Tpu;
@@ -1430,24 +1898,37 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Locations$Tensorflowversions$Get,
         options?: MethodOptions): AxiosPromise<Schema$TensorFlowVersion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
-        callback?: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
+    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
+        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
+    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
+        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
+    get(callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Tensorflowversions$Get|
+        BodyResponseCallback<Schema$TensorFlowVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TensorFlowVersion>,
         callback?: BodyResponseCallback<Schema$TensorFlowVersion>):
         void|AxiosPromise<Schema$TensorFlowVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Tensorflowversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Tensorflowversions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1486,29 +1967,46 @@ export namespace tpu_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Locations$Tensorflowversions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListTensorFlowVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
+        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
+        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Tensorflowversions$List|
+        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
         void|AxiosPromise<Schema$ListTensorFlowVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Tensorflowversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Tensorflowversions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1531,5 +2029,44 @@ export namespace tpu_v1alpha1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Sort results.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name.
+     */
+    parent?: string;
   }
 }

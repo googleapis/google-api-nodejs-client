@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace serviceconsumermanagement_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Service Consumer Management API
    *
@@ -77,11 +80,11 @@ export namespace serviceconsumermanagement_v1 {
      * Configuration of the new tenant project that will be added to tenancy
      * unit resources.
      */
-    projectConfig: Schema$TenantProjectConfig;
+    projectConfig?: Schema$TenantProjectConfig;
     /**
      * Tag of the added project. Must be less than 128 characters. Required.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Api is a light-weight descriptor for an API Interface.  Interfaces are also
@@ -97,29 +100,29 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The methods of this interface, in unspecified order.
      */
-    methods: Schema$Method[];
+    methods?: Schema$Method[];
     /**
      * Included interfaces. See Mixin.
      */
-    mixins: Schema$Mixin[];
+    mixins?: Schema$Mixin[];
     /**
      * The fully qualified name of this interface, including package name
      * followed by the interface&#39;s simple name.
      */
-    name: string;
+    name?: string;
     /**
      * Any metadata attached to the interface.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * Source context for the protocol buffer service represented by this
      * message.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax of the service.
      */
-    syntax: string;
+    syntax?: string;
     /**
      * A version string for this interface. If specified, must have the form
      * `major-version.minor-version`, as in `1.10`. If the minor version is
@@ -137,7 +140,7 @@ export namespace serviceconsumermanagement_v1 {
      * omitted. Zero major versions must only be used for experimental, non-GA
      * interfaces.
      */
-    version: string;
+    version?: string;
   }
   /**
    * `Authentication` defines the authentication configuration for an API.
@@ -152,13 +155,13 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Defines a set of authentication providers that a service supports.
      */
-    providers: Schema$AuthProvider[];
+    providers?: Schema$AuthProvider[];
     /**
      * A list of authentication rules that apply to individual API methods.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$AuthenticationRule[];
+    rules?: Schema$AuthenticationRule[];
   }
   /**
    * Authentication rules for the service.  By default, if a method has any
@@ -171,24 +174,24 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If true, the service accepts API keys without any other credential.
      */
-    allowWithoutCredential: boolean;
+    allowWithoutCredential?: boolean;
     /**
      * Configuration for custom authentication.
      */
-    customAuth: Schema$CustomAuthRequirements;
+    customAuth?: Schema$CustomAuthRequirements;
     /**
      * The requirements for OAuth credentials.
      */
-    oauth: Schema$OAuthRequirements;
+    oauth?: Schema$OAuthRequirements;
     /**
      * Requirements for additional authentication providers.
      */
-    requirements: Schema$AuthRequirement[];
+    requirements?: Schema$AuthRequirement[];
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Configuration of authorization.  This section determines the authorization
@@ -201,7 +204,7 @@ export namespace serviceconsumermanagement_v1 {
      * The name of the authorization provider, such as
      * firebaserules.googleapis.com.
      */
-    provider: string;
+    provider?: string;
   }
   /**
    * Authorization rule for API services.  It specifies the permission(s)
@@ -222,12 +225,12 @@ export namespace serviceconsumermanagement_v1 {
      * are listed, the semantics is not defined by the system. Additional
      * documentation must be provided manually.
      */
-    permissions: string;
+    permissions?: string;
     /**
      * Selects the API elements to which this rule applies.  Refer to selector
      * for syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Configuration for an anthentication provider, including support for [JSON
@@ -247,17 +250,17 @@ export namespace serviceconsumermanagement_v1 {
      * Example:      audiences: bookstore_android.apps.googleusercontent.com,
      * bookstore_web.apps.googleusercontent.com
      */
-    audiences: string;
+    audiences?: string;
     /**
      * Redirect URL if JWT token is required but no present or is expired.
      * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
      */
-    authorizationUrl: string;
+    authorizationUrl?: string;
     /**
      * The unique identifier of the auth provider. It will be referred to by
      * `AuthRequirement.provider_id`.  Example: &quot;bookstore_auth&quot;.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies the principal that issued the JWT. See
      * https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
@@ -265,7 +268,7 @@ export namespace serviceconsumermanagement_v1 {
      * https://securetoken.google.com Example:
      * 1234567-compute@developer.gserviceaccount.com
      */
-    issuer: string;
+    issuer?: string;
     /**
      * URL of the provider&#39;s public key set to validate signature of the
      * JWT. See [OpenID
@@ -276,7 +279,7 @@ export namespace serviceconsumermanagement_v1 {
      * a Google service account).  Example:
      * https://www.googleapis.com/oauth2/v1/certs
      */
-    jwksUri: string;
+    jwksUri?: string;
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web
@@ -297,12 +300,12 @@ export namespace serviceconsumermanagement_v1 {
      * Example:      audiences: bookstore_android.apps.googleusercontent.com,
      * bookstore_web.apps.googleusercontent.com
      */
-    audiences: string;
+    audiences?: string;
     /**
      * id from authentication provider.  Example:      provider_id:
      * bookstore_auth
      */
-    providerId: string;
+    providerId?: string;
   }
   /**
    * `Backend` defines the backend configuration for a service.
@@ -313,7 +316,7 @@ export namespace serviceconsumermanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$BackendRule[];
+    rules?: Schema$BackendRule[];
   }
   /**
    * A backend rule provides configuration for an individual API element.
@@ -322,23 +325,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The address of the API backend.
      */
-    address: string;
+    address?: string;
     /**
      * The number of seconds to wait for a response from a request.  The default
      * deadline for gRPC is infinite (no deadline) and HTTP requests is 5
      * seconds.
      */
-    deadline: number;
+    deadline?: number;
     /**
      * Minimum deadline in seconds needed for this method. Calls having deadline
      * value lower than this will be rejected.
      */
-    minDeadline: number;
+    minDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Billing related configuration of the service.  The following example shows
@@ -359,7 +362,7 @@ export namespace serviceconsumermanagement_v1 {
      * different monitored resource type. A metric can be used in at most one
      * consumer destination.
      */
-    consumerDestinations: Schema$BillingDestination[];
+    consumerDestinations?: Schema$BillingDestination[];
   }
   /**
    * Describes billing configuration for a new tenant project.
@@ -369,7 +372,7 @@ export namespace serviceconsumermanagement_v1 {
      * Name of the billing account. For example
      * `billingAccounts/012345-567890-ABCDEF`.
      */
-    billingAccount: string;
+    billingAccount?: string;
   }
   /**
    * Configuration of a specific billing destination (Currently only support
@@ -380,12 +383,12 @@ export namespace serviceconsumermanagement_v1 {
      * Names of the metrics to report to this billing destination. Each name
      * must be defined in Service.metrics section.
      */
-    metrics: string[];
+    metrics?: string[];
     /**
      * The monitored resource type. The type must be defined in
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -415,7 +418,7 @@ export namespace serviceconsumermanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$ContextRule[];
+    rules?: Schema$ContextRule[];
   }
   /**
    * A context rule provides information about the context for an individual API
@@ -426,25 +429,25 @@ export namespace serviceconsumermanagement_v1 {
      * A list of full type names or extension IDs of extensions allowed in grpc
      * side channel from client to backend.
      */
-    allowedRequestExtensions: string[];
+    allowedRequestExtensions?: string[];
     /**
      * A list of full type names or extension IDs of extensions allowed in grpc
      * side channel from backend to client.
      */
-    allowedResponseExtensions: string[];
+    allowedResponseExtensions?: string[];
     /**
      * A list of full type names of provided contexts.
      */
-    provided: string[];
+    provided?: string[];
     /**
      * A list of full type names of requested contexts.
      */
-    requested: string[];
+    requested?: string[];
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Selects and configures the service controller used by the service.  The
@@ -456,7 +459,7 @@ export namespace serviceconsumermanagement_v1 {
      * The service control environment to use. If empty, no control plane
      * feature (like quota and billing) will be enabled.
      */
-    environment: string;
+    environment?: string;
   }
   /**
    * Request to create a tenancy unit for a consumer of a service.
@@ -471,7 +474,7 @@ export namespace serviceconsumermanagement_v1 {
      * tenancy unit if the provided identifier is identical or empty, otherwise
      * the call will fail.
      */
-    tenancyUnitId: string;
+    tenancyUnitId?: string;
   }
   /**
    * Configuration for a custom authentication provider.
@@ -482,7 +485,7 @@ export namespace serviceconsumermanagement_v1 {
      * authentication provider, typically formatted as a SmartService string
      * (go/smartservice).
      */
-    provider: string;
+    provider?: string;
   }
   /**
    * Customize service error responses.  For example, list any service specific
@@ -496,12 +499,12 @@ export namespace serviceconsumermanagement_v1 {
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$CustomErrorRule[];
+    rules?: Schema$CustomErrorRule[];
     /**
      * The list of custom error detail types, e.g.
      * &#39;google.foo.v1.CustomError&#39;.
      */
-    types: string[];
+    types?: string[];
   }
   /**
    * A custom error rule.
@@ -511,12 +514,12 @@ export namespace serviceconsumermanagement_v1 {
      * Mark this message as possible payload in error response.  Otherwise,
      * objects of this type will be filtered when they appear in error payload.
      */
-    isErrorType: boolean;
+    isErrorType?: boolean;
     /**
      * Selects messages to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * A custom pattern is used for defining custom HTTP verb.
@@ -525,11 +528,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of this custom HTTP verb.
      */
-    kind: string;
+    kind?: string;
     /**
      * The path matched by this custom verb.
      */
-    path: string;
+    path?: string;
   }
   /**
    * `Documentation` provides the information for describing a service. Example:
@@ -573,7 +576,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The URL to the root of documentation.
      */
-    documentationRootUrl: string;
+    documentationRootUrl?: string;
     /**
      * Declares a single overview page. For example:
      * &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   overview:
@@ -584,22 +587,22 @@ export namespace serviceconsumermanagement_v1 {
      * &lt;/code&gt;&lt;/pre&gt; Note: you cannot specify both `overview` field
      * and `pages` field.
      */
-    overview: string;
+    overview?: string;
     /**
      * The top level pages for the documentation set.
      */
-    pages: Schema$Page[];
+    pages?: Schema$Page[];
     /**
      * A list of documentation rules that apply to individual API elements.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$DocumentationRule[];
+    rules?: Schema$DocumentationRule[];
     /**
      * A short summary of what the service does. Can only be provided by plain
      * text.
      */
-    summary: string;
+    summary?: string;
   }
   /**
    * A documentation rule provides information about individual API elements.
@@ -609,11 +612,11 @@ export namespace serviceconsumermanagement_v1 {
      * Deprecation description of the selected element(s). It can be provided if
      * an element is marked as `deprecated`.
      */
-    deprecationDescription: string;
+    deprecationDescription?: string;
     /**
      * Description of the selected API(s).
      */
-    description: string;
+    description?: string;
     /**
      * The selector is a comma-separated list of patterns. Each pattern is a
      * qualified name of the element which may end in &quot;*&quot;, indicating
@@ -622,7 +625,7 @@ export namespace serviceconsumermanagement_v1 {
      * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To specify a default for all
      * applicable elements, the whole pattern &quot;*&quot; is used.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -650,7 +653,7 @@ export namespace serviceconsumermanagement_v1 {
      * please specify multiple google.api.Endpoint for each of the intended
      * aliases.  Additional names that this endpoint will be hosted on.
      */
-    aliases: string[];
+    aliases?: string[];
     /**
      * Allowing
      * [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka
@@ -659,15 +662,15 @@ export namespace serviceconsumermanagement_v1 {
      * used by the browser to determine whether the subsequent cross-origin
      * request is allowed to proceed.
      */
-    allowCors: boolean;
+    allowCors?: boolean;
     /**
      * The list of features enabled on this endpoint.
      */
-    features: string[];
+    features?: string[];
     /**
      * The canonical name of this endpoint.
      */
-    name: string;
+    name?: string;
     /**
      * The specification of an Internet routable address of API frontend that
      * will handle requests to this [API
@@ -675,7 +678,7 @@ export namespace serviceconsumermanagement_v1 {
      * either a valid IPv4 address or a fully-qualified domain name. For
      * example, &quot;8.8.8.8&quot; or &quot;myservice.appspot.com&quot;.
      */
-    target: string;
+    target?: string;
   }
   /**
    * Enum type definition.
@@ -684,23 +687,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Enum value definitions.
      */
-    enumvalue: Schema$EnumValue[];
+    enumvalue?: Schema$EnumValue[];
     /**
      * Enum type name.
      */
-    name: string;
+    name?: string;
     /**
      * Protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * The source context.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Enum value definition.
@@ -709,15 +712,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Enum value name.
      */
-    name: string;
+    name?: string;
     /**
      * Enum value number.
      */
-    number: number;
+    number?: number;
     /**
      * Protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
   }
   /**
    * Experimental service configuration. These configuration options can only be
@@ -727,7 +730,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Authorization configuration.
      */
-    authorization: Schema$AuthorizationConfig;
+    authorization?: Schema$AuthorizationConfig;
   }
   /**
    * A single field of a message type.
@@ -736,46 +739,46 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The field cardinality.
      */
-    cardinality: string;
+    cardinality?: string;
     /**
      * The string value of the default value of this field. Proto2 syntax only.
      */
-    defaultValue: string;
+    defaultValue?: string;
     /**
      * The field JSON name.
      */
-    jsonName: string;
+    jsonName?: string;
     /**
      * The field type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The field name.
      */
-    name: string;
+    name?: string;
     /**
      * The field number.
      */
-    number: number;
+    number?: number;
     /**
      * The index of the field type in `Type.oneofs`, for message or enumeration
      * types. The first type has index 1; zero means the type is not in the
      * list.
      */
-    oneofIndex: number;
+    oneofIndex?: number;
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * Whether to use alternative packed wire representation.
      */
-    packed: boolean;
+    packed?: boolean;
     /**
      * The field type URL, without the scheme, for message or enumeration types.
      * Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
      */
-    typeUrl: string;
+    typeUrl?: string;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of
@@ -789,13 +792,13 @@ export namespace serviceconsumermanagement_v1 {
      * &quot;%2F&quot; will be left encoded.  The default behavior is to not
      * decode RFC 6570 reserved characters in multi segment matches.
      */
-    fullyDecodeReservedExpansion: boolean;
+    fullyDecodeReservedExpansion?: boolean;
     /**
      * A list of HTTP configuration rules that apply to individual API methods.
      * **NOTE:** All service configuration rules follow &quot;last one
      * wins&quot; order.
      */
-    rules: Schema$HttpRule[];
+    rules?: Schema$HttpRule[];
   }
   /**
    * `HttpRule` defines the mapping of an RPC method to one or more HTTP REST
@@ -922,60 +925,60 @@ export namespace serviceconsumermanagement_v1 {
      * contain an `additional_bindings` field themselves (that is, the nesting
      * may only be one level deep).
      */
-    additionalBindings: Schema$HttpRule[];
+    additionalBindings?: Schema$HttpRule[];
     /**
      * Specifies the permission(s) required for an API element for the overall
      * API request to succeed. It is typically used to mark request message
      * fields that contain the name of the resource and indicates the
      * permissions that will be checked on that resource.
      */
-    authorizations: Schema$AuthorizationRule[];
+    authorizations?: Schema$AuthorizationRule[];
     /**
      * The name of the request field whose value is mapped to the HTTP body, or
      * `*` for mapping all fields not captured by the path pattern to the HTTP
      * body. NOTE: the referred field must not be a repeated field and must be
      * present at the top-level of request message type.
      */
-    body: string;
+    body?: string;
     /**
      * The custom pattern is used for specifying an HTTP method that is not
      * included in the `pattern` field, such as HEAD, or &quot;*&quot; to leave
      * the HTTP method unspecified for this rule. The wild-card rule is useful
      * for services that provide content to Web (HTML) clients.
      */
-    custom: Schema$CustomHttpPattern;
+    custom?: Schema$CustomHttpPattern;
     /**
      * Used for deleting a resource.
      */
-    delete: string;
+    delete?: string;
     /**
      * Used for listing and getting information about resources.
      */
-    get: string;
+    get?: string;
     /**
      * Use this only for Scotty Requests. Do not use this for bytestream
      * methods. For media support, add instead
      * [][google.bytestream.RestByteStream] as an API to your configuration.
      */
-    mediaDownload: Schema$MediaDownload;
+    mediaDownload?: Schema$MediaDownload;
     /**
      * Use this only for Scotty Requests. Do not use this for media support
      * using Bytestream, add instead [][google.bytestream.RestByteStream] as an
      * API to your configuration for Bytestream methods.
      */
-    mediaUpload: Schema$MediaUpload;
+    mediaUpload?: Schema$MediaUpload;
     /**
      * Used for updating a resource.
      */
-    patch: string;
+    patch?: string;
     /**
      * Used for creating a resource.
      */
-    post: string;
+    post?: string;
     /**
      * Used for updating a resource.
      */
-    put: string;
+    put?: string;
     /**
      * DO NOT USE. This is an experimental field.  Optional. The REST collection
      * name is by default derived from the URL pattern. If specified, this field
@@ -990,7 +993,7 @@ export namespace serviceconsumermanagement_v1 {
      * the `rest_collection` field is configured to override the derived
      * collection name.
      */
-    restCollection: string;
+    restCollection?: string;
     /**
      * DO NOT USE. This is an experimental field.  Optional. The rest method
      * name is by default derived from the URL pattern. If specified, this field
@@ -1002,12 +1005,12 @@ export namespace serviceconsumermanagement_v1 {
      * automatically derived rest method name &quot;create&quot;, but for
      * backwards compatibility with apiary, it is specified as insert.
      */
-    restMethodName: string;
+    restMethodName?: string;
     /**
      * Selects methods to which this rule applies.  Refer to selector for syntax
      * details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * A description of a label.
@@ -1016,15 +1019,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A human-readable description for the label.
      */
-    description: string;
+    description?: string;
     /**
      * The label key.
      */
-    key: string;
+    key?: string;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1033,11 +1036,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Response for the list request.
@@ -1046,11 +1049,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Pagination token for large results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Tenancy units matching the request.
      */
-    tenancyUnits: Schema$TenancyUnit[];
+    tenancyUnits?: Schema$TenancyUnit[];
   }
   /**
    * A description of a log type. Example in YAML format:      - name:
@@ -1063,25 +1066,25 @@ export namespace serviceconsumermanagement_v1 {
      * A human-readable description of this log. This information appears in the
      * documentation and can contain details.
      */
-    description: string;
+    description?: string;
     /**
      * The human-readable name for this log. This information appears on the
      * user interface and should be concise.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that are available to describe a specific log entry.
      * Runtime requests that contain labels not specified here are considered
      * invalid.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * The name of the log. It must be less than 512 characters long and can
      * include the following characters: upper- and lower-case alphanumeric
      * characters [A-Za-z0-9], and punctuation characters including slash,
      * underscore, hyphen, period [/_-.].
      */
-    name: string;
+    name?: string;
   }
   /**
    * Logging configuration of the service.  The following example shows how to
@@ -1105,14 +1108,14 @@ export namespace serviceconsumermanagement_v1 {
      * monitored resource type. A log can be used in at most one consumer
      * destination.
      */
-    consumerDestinations: Schema$LoggingDestination[];
+    consumerDestinations?: Schema$LoggingDestination[];
     /**
      * Logging configurations for sending logs to the producer project. There
      * can be multiple producer destinations, each one must have a different
      * monitored resource type. A log can be used in at most one producer
      * destination.
      */
-    producerDestinations: Schema$LoggingDestination[];
+    producerDestinations?: Schema$LoggingDestination[];
   }
   /**
    * Configuration of a specific logging destination (the producer project or
@@ -1125,12 +1128,12 @@ export namespace serviceconsumermanagement_v1 {
      * scoped name, it will be automatically prefixed with the service name
      * followed by &quot;/&quot;.
      */
-    logs: string[];
+    logs?: string[];
     /**
      * The monitored resource type. The type must be defined in the
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * Defines the Media configuration for a service in case of a download. Use
@@ -1143,30 +1146,30 @@ export namespace serviceconsumermanagement_v1 {
      * A boolean that determines whether a notification for the completion of a
      * download should be sent to the backend.
      */
-    completeNotification: boolean;
+    completeNotification?: boolean;
     /**
      * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
      * name of the download service if one is used for download.
      */
-    downloadService: string;
+    downloadService?: string;
     /**
      * Name of the Scotty dropzone to use for the current API.
      */
-    dropzone: string;
+    dropzone?: string;
     /**
      * Whether download is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Optional maximum acceptable size for direct download. The size is
      * specified in bytes.
      */
-    maxDirectDownloadSize: string;
+    maxDirectDownloadSize?: string;
     /**
      * A boolean that determines if direct download from ESF should be used for
      * download of this media.
      */
-    useDirectDownload: boolean;
+    useDirectDownload?: boolean;
   }
   /**
    * Defines the Media configuration for a service in case of an upload. Use
@@ -1180,38 +1183,38 @@ export namespace serviceconsumermanagement_v1 {
      * upload should be sent to the backend. These notifications will not be
      * seen by the client and will not consume quota.
      */
-    completeNotification: boolean;
+    completeNotification?: boolean;
     /**
      * Name of the Scotty dropzone to use for the current API.
      */
-    dropzone: string;
+    dropzone?: string;
     /**
      * Whether upload is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Optional maximum acceptable size for an upload. The size is specified in
      * bytes.
      */
-    maxSize: string;
+    maxSize?: string;
     /**
      * An array of mimetype patterns. Esf will only accept uploads that match
      * one of the given patterns.
      */
-    mimeTypes: string[];
+    mimeTypes?: string[];
     /**
      * Whether to receive a notification for progress changes of media upload.
      */
-    progressNotification: boolean;
+    progressNotification?: boolean;
     /**
      * Whether to receive a notification on the start of media upload.
      */
-    startNotification: boolean;
+    startNotification?: boolean;
     /**
      * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
      * name of the upload service if one is used for upload.
      */
-    uploadService: string;
+    uploadService?: string;
   }
   /**
    * Method represents a method of an API interface.
@@ -1220,31 +1223,31 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The simple name of this method.
      */
-    name: string;
+    name?: string;
     /**
      * Any metadata attached to the method.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * If true, the request is streamed.
      */
-    requestStreaming: boolean;
+    requestStreaming?: boolean;
     /**
      * A URL of the input message type.
      */
-    requestTypeUrl: string;
+    requestTypeUrl?: string;
     /**
      * If true, the response is streamed.
      */
-    responseStreaming: boolean;
+    responseStreaming?: boolean;
     /**
      * The URL of the output message type.
      */
-    responseTypeUrl: string;
+    responseTypeUrl?: string;
     /**
      * The source syntax of this method.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created,
@@ -1255,14 +1258,14 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * A concise name for the metric, which can be displayed in user interfaces.
      * Use sentence case without an ending period, for example &quot;Request
      * count&quot;. This field is optional but it is recommended to be set for
      * any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that can be used to describe a specific instance of
      * this metric type. For example, the
@@ -1270,17 +1273,17 @@ export namespace serviceconsumermanagement_v1 {
      * a label for the HTTP response code, `response_code`, so you can look at
      * latencies for successful responses or just for responses that failed.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
      */
-    metricKind: string;
+    metricKind?: string;
     /**
      * The resource name of the metric descriptor.
      */
-    name: string;
+    name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
      * URL-encoded.  All user-defined custom metric types have the DNS name
@@ -1289,7 +1292,7 @@ export namespace serviceconsumermanagement_v1 {
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type: string;
+    type?: string;
     /**
      * The unit in which the metric value is reported. It is only applicable if
      * the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported
@@ -1318,12 +1321,12 @@ export namespace serviceconsumermanagement_v1 {
      * value 1, such as in `1/s`. * `%` represents dimensionless value 1/100,
      * and annotates values giving    a percentage.
      */
-    unit: string;
+    unit?: string;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some
      * combinations of `metric_kind` and `value_type` might not be supported.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that
@@ -1336,12 +1339,12 @@ export namespace serviceconsumermanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts: any;
+    metricCosts?: any;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * Declares an API Interface to be included in this interface. The including
@@ -1384,12 +1387,12 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The fully qualified name of the interface which is included.
      */
-    name: string;
+    name?: string;
     /**
      * If non-empty specifies a path under which inherited HTTP paths are
      * rooted.
      */
-    root: string;
+    root?: string;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a
@@ -1406,21 +1409,21 @@ export namespace serviceconsumermanagement_v1 {
      * Optional. A detailed description of the monitored resource type that
      * might be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * Optional. A concise name for the monitored resource type that might be
      * displayed in user interfaces. It should be a Title Cased Noun Phrase,
      * without any article or other determiners. For example, `&quot;Google
      * Cloud SQL Database&quot;`.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Required. A set of labels used to describe instances of this monitored
      * resource type. For example, an individual Google Cloud SQL database is
      * identified by values for the labels `&quot;database_id&quot;` and
      * `&quot;zone&quot;`.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
@@ -1429,13 +1432,13 @@ export namespace serviceconsumermanagement_v1 {
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The monitored resource type. For example, the type
      * `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL.
      * The maximum length of this value is 256 characters.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Monitoring configuration of the service.  The example below shows how to
@@ -1466,14 +1469,14 @@ export namespace serviceconsumermanagement_v1 {
      * different monitored resource type. A metric can be used in at most one
      * consumer destination.
      */
-    consumerDestinations: Schema$MonitoringDestination[];
+    consumerDestinations?: Schema$MonitoringDestination[];
     /**
      * Monitoring configurations for sending metrics to the producer project.
      * There can be multiple producer destinations, each one must have a
      * different monitored resource type. A metric can be used in at most one
      * producer destination.
      */
-    producerDestinations: Schema$MonitoringDestination[];
+    producerDestinations?: Schema$MonitoringDestination[];
   }
   /**
    * Configuration of a specific monitoring destination (the producer project or
@@ -1484,12 +1487,12 @@ export namespace serviceconsumermanagement_v1 {
      * Names of the metrics to report to this monitoring destination. Each name
      * must be defined in Service.metrics section.
      */
-    metrics: string[];
+    metrics?: string[];
     /**
      * The monitored resource type. The type must be defined in
      * Service.monitored_resources section.
      */
-    monitoredResource: string;
+    monitoredResource?: string;
   }
   /**
    * OAuth scopes are a way to define data and permissions on data. For example,
@@ -1514,7 +1517,7 @@ export namespace serviceconsumermanagement_v1 {
      * canonical_scopes: https://www.googleapis.com/auth/calendar,
      * https://www.googleapis.com/auth/calendar.read
      */
-    canonicalScopes: string;
+    canonicalScopes?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1526,24 +1529,24 @@ export namespace serviceconsumermanagement_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -1553,7 +1556,7 @@ export namespace serviceconsumermanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1566,7 +1569,7 @@ export namespace serviceconsumermanagement_v1 {
      * `&quot;map_entry&quot;`. For custom options, it should be the
      * fully-qualified name. For example, `&quot;google.api.http&quot;`.
      */
-    name: string;
+    name?: string;
     /**
      * The option&#39;s value packed in an Any message. If the value is a
      * primitive, the corresponding wrapper type defined in
@@ -1574,7 +1577,7 @@ export namespace serviceconsumermanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value: any;
+    value?: any;
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1586,7 +1589,7 @@ export namespace serviceconsumermanagement_v1 {
      * include {path} ==&amp;#41;&lt;/code&gt; to include content from a
      * Markdown file.
      */
-    content: string;
+    content?: string;
     /**
      * The name of the page. It will be used as an identity of the page to
      * generate URI of the page, text of the link to this page in navigation,
@@ -1598,12 +1601,12 @@ export namespace serviceconsumermanagement_v1 {
      * ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; You can reference `Java` page using
      * Markdown reference link syntax: `Java`.
      */
-    name: string;
+    name?: string;
     /**
      * Subpages of this page. The order of subpages specified here will be
      * honored in the generated docset.
      */
-    subpages: Schema$Page[];
+    subpages?: Schema$Page[];
   }
   /**
    * Translates to IAM Policy bindings (without auditing at this level)
@@ -1614,12 +1617,12 @@ export namespace serviceconsumermanagement_v1 {
      * and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`,
      * `group:{emailId}`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role. (https://cloud.google.com/iam/docs/understanding-roles) For
      * example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role: string;
+    role?: string;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service
@@ -1649,12 +1652,12 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * List of `QuotaLimit` definitions for the service.
      */
-    limits: Schema$QuotaLimit[];
+    limits?: Schema$QuotaLimit[];
     /**
      * List of `MetricRule` definitions, each one mapping a selected method to
      * one or more metrics.
      */
-    metricRules: Schema$MetricRule[];
+    metricRules?: Schema$MetricRule[];
   }
   /**
    * `QuotaLimit` defines a specific limit that applies over a specified
@@ -1671,20 +1674,20 @@ export namespace serviceconsumermanagement_v1 {
      * will indicate an unlimited quota. No other negative values are allowed.
      * Used by group-based quotas only.
      */
-    defaultLimit: string;
+    defaultLimit?: string;
     /**
      * Optional. User-visible, extended description for this quota limit. Should
      * be used only when more context is needed to understand this limit than
      * provided by the limit&#39;s display name (see: `display_name`).
      */
-    description: string;
+    description?: string;
     /**
      * User-visible display name for this limit. Optional. If not set, the UI
      * will provide a default display name based on the quota configuration.
      * This field can be used to override the default display name generated
      * from the configuration.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Duration of this limit in textual notation. Example: &quot;100s&quot;,
      * &quot;24h&quot;, &quot;1d&quot;. For duration longer than a day, only
@@ -1693,7 +1696,7 @@ export namespace serviceconsumermanagement_v1 {
      * &quot;0&quot; indicates indefinite duration.  Used by group-based quotas
      * only.
      */
-    duration: string;
+    duration?: string;
     /**
      * Free tier value displayed in the Developers Console for this limit. The
      * free tier is the number of tokens that will be subtracted from the billed
@@ -1702,7 +1705,7 @@ export namespace serviceconsumermanagement_v1 {
      * other limit. If this field is not set, it defaults to 0, indicating that
      * there is no free tier for this service.  Used by group-based quotas only.
      */
-    freeTier: string;
+    freeTier?: string;
     /**
      * Maximum number of tokens that can be consumed during the specified
      * duration. Client application developers can override the default limit up
@@ -1711,20 +1714,20 @@ export namespace serviceconsumermanagement_v1 {
      * To allow clients to apply overrides with no upper bound, set this to -1,
      * indicating unlimited maximum quota.  Used by group-based quotas only.
      */
-    maxLimit: string;
+    maxLimit?: string;
     /**
      * The name of the metric this quota limit applies to. The quota limits with
      * the same metric will be checked together during runtime. The metric must
      * be defined within the service config.
      */
-    metric: string;
+    metric?: string;
     /**
      * Name of the quota limit.  The name must be provided, and it must be
      * unique within the service. The name can only include alphanumeric
      * characters as well as &#39;-&#39;.  The maximum length of the limit name
      * is 64 characters.
      */
-    name: string;
+    name?: string;
     /**
      * Specify the unit of the quota limit. It uses the same syntax as
      * Metric.unit. The supported unit kinds are determined by the quota backend
@@ -1733,13 +1736,13 @@ export namespace serviceconsumermanagement_v1 {
      * insignificant. The &quot;1&quot; at the beginning is required to follow
      * the metric unit syntax.
      */
-    unit: string;
+    unit?: string;
     /**
      * Tiered limit values. You must specify this as a key:value pair, with an
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values: any;
+    values?: any;
   }
   /**
    * Request message to remove tenant project resource from the tenancy unit.
@@ -1748,7 +1751,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the resource within the tenancy unit.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Response for the search query.
@@ -1757,11 +1760,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Pagination token for large results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Tenancy Units matching the request.
      */
-    tenancyUnits: Schema$TenancyUnit[];
+    tenancyUnits?: Schema$TenancyUnit[];
   }
   /**
    * `Service` is the root object of Google service configuration schema. It
@@ -1785,111 +1788,111 @@ export namespace serviceconsumermanagement_v1 {
      * normalization process. It is an error to specify an API interface here
      * which cannot be resolved against the associated IDL files.
      */
-    apis: Schema$Api[];
+    apis?: Schema$Api[];
     /**
      * Auth configuration.
      */
-    authentication: Schema$Authentication;
+    authentication?: Schema$Authentication;
     /**
      * API backend configuration.
      */
-    backend: Schema$Backend;
+    backend?: Schema$Backend;
     /**
      * Billing configuration.
      */
-    billing: Schema$Billing;
+    billing?: Schema$Billing;
     /**
      * The semantic version of the service configuration. The config version
      * affects the interpretation of the service configuration. For example,
      * certain features are enabled by default for certain config versions. The
      * latest config version is `3`.
      */
-    configVersion: number;
+    configVersion?: number;
     /**
      * Context configuration.
      */
-    context: Schema$Context;
+    context?: Schema$Context;
     /**
      * Configuration for the service control plane.
      */
-    control: Schema$Control;
+    control?: Schema$Control;
     /**
      * Custom error configuration.
      */
-    customError: Schema$CustomError;
+    customError?: Schema$CustomError;
     /**
      * Additional API documentation.
      */
-    documentation: Schema$Documentation;
+    documentation?: Schema$Documentation;
     /**
      * Configuration for network endpoints.  If this is empty, then an endpoint
      * with the same name as the service is automatically generated to service
      * all defined APIs.
      */
-    endpoints: Schema$Endpoint[];
+    endpoints?: Schema$Endpoint[];
     /**
      * A list of all enum types included in this API service.  Enums referenced
      * directly or indirectly by the `apis` are automatically included.  Enums
      * which are not referenced but shall be included should be listed here by
      * name. Example:      enums:     - name: google.someapi.v1.SomeEnum
      */
-    enums: Schema$Enum[];
+    enums?: Schema$Enum[];
     /**
      * Experimental configuration.
      */
-    experimental: Schema$Experimental;
+    experimental?: Schema$Experimental;
     /**
      * HTTP configuration.
      */
-    http: Schema$Http;
+    http?: Schema$Http;
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
      * generate one instead.
      */
-    id: string;
+    id?: string;
     /**
      * Logging configuration.
      */
-    logging: Schema$Logging;
+    logging?: Schema$Logging;
     /**
      * Defines the logs used by this service.
      */
-    logs: Schema$LogDescriptor[];
+    logs?: Schema$LogDescriptor[];
     /**
      * Defines the metrics used by this service.
      */
-    metrics: Schema$MetricDescriptor[];
+    metrics?: Schema$MetricDescriptor[];
     /**
      * Defines the monitored resources used by this service. This is required by
      * the Service.monitoring and Service.logging configurations.
      */
-    monitoredResources: Schema$MonitoredResourceDescriptor[];
+    monitoredResources?: Schema$MonitoredResourceDescriptor[];
     /**
      * Monitoring configuration.
      */
-    monitoring: Schema$Monitoring;
+    monitoring?: Schema$Monitoring;
     /**
      * The DNS address at which this service is available, e.g.
      * `calendar.googleapis.com`.
      */
-    name: string;
+    name?: string;
     /**
      * The Google project that owns this service.
      */
-    producerProjectId: string;
+    producerProjectId?: string;
     /**
      * Quota configuration.
      */
-    quota: Schema$Quota;
+    quota?: Schema$Quota;
     /**
      * Output only. The source information for this configuration if available.
      */
-    sourceInfo: Schema$SourceInfo;
+    sourceInfo?: Schema$SourceInfo;
     /**
      * System parameter configuration.
      */
-    systemParameters: Schema$SystemParameters;
+    systemParameters?: Schema$SystemParameters;
     /**
      * A list of all proto message types included in this API service. It serves
      * similar purpose as [google.api.Service.types], except that these types
@@ -1897,11 +1900,11 @@ export namespace serviceconsumermanagement_v1 {
      * the generated discovery doc. This field should only be used to define
      * system APIs in ESF.
      */
-    systemTypes: Schema$Type[];
+    systemTypes?: Schema$Type[];
     /**
      * The product title for this service.
      */
-    title: string;
+    title?: string;
     /**
      * A list of all proto message types included in this API service. Types
      * referenced directly or indirectly by the `apis` are automatically
@@ -1909,11 +1912,11 @@ export namespace serviceconsumermanagement_v1 {
      * as types used by the `google.protobuf.Any` type, should be listed here by
      * name. Example:      types:     - name: google.protobuf.Int32
      */
-    types: Schema$Type[];
+    types?: Schema$Type[];
     /**
      * Configuration controlling usage of this service.
      */
-    usage: Schema$Usage;
+    usage?: Schema$Usage;
   }
   /**
    * Describes service account configuration for the tenant project.
@@ -1927,11 +1930,11 @@ export namespace serviceconsumermanagement_v1 {
      * to guarantee it. And it must be 6-30 characters long, and matches the
      * regular expression `[a-z]([-a-z0-9]*[a-z0-9])`.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Roles for the associated service account for the tenant project.
      */
-    tenantProjectRoles: string[];
+    tenantProjectRoles?: string[];
   }
   /**
    * `SourceContext` represents information about the source of a protobuf
@@ -1943,7 +1946,7 @@ export namespace serviceconsumermanagement_v1 {
      * protobuf element.  For example:
      * `&quot;google/protobuf/source_context.proto&quot;`.
      */
-    fileName: string;
+    fileName?: string;
   }
   /**
    * Source information used to create a Service Config
@@ -1952,7 +1955,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles: any[];
+    sourceFiles?: any[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1994,18 +1997,18 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as
@@ -2017,17 +2020,17 @@ export namespace serviceconsumermanagement_v1 {
      * Define the HTTP header name to use for the parameter. It is case
      * insensitive.
      */
-    httpHeader: string;
+    httpHeader?: string;
     /**
      * Define the name of the parameter, such as &quot;api_key&quot; . It is
      * case sensitive.
      */
-    name: string;
+    name?: string;
     /**
      * Define the URL query parameter name to use for the parameter. It is case
      * sensitive.
      */
-    urlQueryParameter: string;
+    urlQueryParameter?: string;
   }
   /**
    * Define a system parameter rule mapping system parameter definitions to
@@ -2040,12 +2043,12 @@ export namespace serviceconsumermanagement_v1 {
      * used the behavior is implementation-dependent. If none of the specified
      * names are present the behavior is parameter-dependent.
      */
-    parameters: Schema$SystemParameter[];
+    parameters?: Schema$SystemParameter[];
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to
      * indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector: string;
+    selector?: string;
   }
   /**
    * ### System parameter configuration  A system parameter is a special kind of
@@ -2069,7 +2072,7 @@ export namespace serviceconsumermanagement_v1 {
      * http_header: Api-Key2  **NOTE:** All service configuration rules follow
      * &quot;last one wins&quot; order.
      */
-    rules: Schema$SystemParameterRule[];
+    rules?: Schema$SystemParameterRule[];
   }
   /**
    * Representation of a tenancy unit.
@@ -2079,27 +2082,27 @@ export namespace serviceconsumermanagement_v1 {
      * @OutputOnly Cloud resource name of the consumer of this service. For
      * example &#39;projects/123456&#39;.
      */
-    consumer: string;
+    consumer?: string;
     /**
      * @OutputOnly The time this tenancy unit was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Globally unique identifier of this tenancy unit
      * &quot;services/{service}/{collection id}/{resource
      * id}/tenancyUnits/{unit}&quot;
      */
-    name: string;
+    name?: string;
     /**
      * @OutputOnly Google Cloud API name of the service owning this tenancy
      * unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
      */
-    service: string;
+    service?: string;
     /**
      * Resources constituting the tenancy unit. There can be at most 512 tenant
      * resources in a tenancy unit.
      */
-    tenantResources: Schema$TenantResource[];
+    tenantResources?: Schema$TenantResource[];
   }
   /**
    * This structure defines a tenant project to be added to the specified
@@ -2113,33 +2116,33 @@ export namespace serviceconsumermanagement_v1 {
      * Billing account properties. It might be specified explicitly, or created
      * from the specified group during provisioning
      */
-    billingConfig: Schema$BillingConfig;
+    billingConfig?: Schema$BillingConfig;
     /**
      * Folder where project in this tenancy unit must be located This folder
      * must have been previously created with proper permissions for the caller
      * to create and configure a project in it. Valid folder resource names have
      * the format `folders/{folder_number}` (for example, `folders/123456`).
      */
-    folder: string;
+    folder?: string;
     /**
      * Labels that will be applied to this project.
      */
-    labels: any;
+    labels?: any;
     /**
      * Configuration for IAM service account on tenant project.
      */
-    serviceAccountConfig: Schema$ServiceAccountConfig;
+    serviceAccountConfig?: Schema$ServiceAccountConfig;
     /**
      * Google Cloud API names of services that will be activated on this project
      * during provisioning.  If any of these services can not be activated,
      * request will fail. For example:
      * &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
      */
-    services: string[];
+    services?: string[];
     /**
      * Describes ownership and policies for the new tenant project. Required.
      */
-    tenantProjectPolicy: Schema$TenantProjectPolicy;
+    tenantProjectPolicy?: Schema$TenantProjectPolicy;
   }
   /**
    * Describes policy settings that need to be applied to a newly created tenant
@@ -2153,7 +2156,7 @@ export namespace serviceconsumermanagement_v1 {
      * Among the list of members for `roles/owner`, at least one of them must be
      * either `user` or `group` type.
      */
-    policyBindings: Schema$PolicyBinding[];
+    policyBindings?: Schema$PolicyBinding[];
   }
   /**
    * Resource constituting the TenancyUnit.
@@ -2164,15 +2167,15 @@ export namespace serviceconsumermanagement_v1 {
      * in the form &#39;projects/{number}&#39;. For example
      * &#39;projects/123456&#39;.
      */
-    resource: string;
+    resource?: string;
     /**
      * Status of tenant resource.
      */
-    status: string;
+    status?: string;
     /**
      * Unique per single tenancy unit.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * A protocol buffer message type.
@@ -2181,27 +2184,27 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The list of fields.
      */
-    fields: Schema$Field[];
+    fields?: Schema$Field[];
     /**
      * The fully qualified message name.
      */
-    name: string;
+    name?: string;
     /**
      * The list of types appearing in `oneof` definitions in this type.
      */
-    oneofs: string[];
+    oneofs?: string[];
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * The source context.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * Configuration controlling usage of a service.
@@ -2215,19 +2218,19 @@ export namespace serviceconsumermanagement_v1 {
      * name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name
      * format documented in https://cloud.google.com/pubsub/docs/overview.
      */
-    producerNotificationChannel: string;
+    producerNotificationChannel?: string;
     /**
      * Requirements that must be satisfied before a consumer project can use the
      * service. Each requirement is of the form
      * &lt;service.name&gt;/&lt;requirement-id&gt;; for example
      * &#39;serviceusage.googleapis.com/billing-enabled&#39;.
      */
-    requirements: string[];
+    requirements?: string[];
     /**
      * A list of usage rules that apply to individual API methods.  **NOTE:**
      * All service configuration rules follow &quot;last one wins&quot; order.
      */
-    rules: Schema$UsageRule[];
+    rules?: Schema$UsageRule[];
   }
   /**
    * Usage configuration rules for the service.  NOTE: Under development.   Use
@@ -2248,20 +2251,21 @@ export namespace serviceconsumermanagement_v1 {
      * If true, the selected method allows unregistered calls, e.g. calls that
      * don&#39;t identify any user or application.
      */
-    allowUnregisteredCalls: boolean;
+    allowUnregisteredCalls?: boolean;
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to
      * indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector: string;
+    selector?: string;
     /**
      * If true, the selected method should skip service control and the control
      * plane features, such as quota and billing, will not be available. This
      * flag is used by Google Cloud Endpoints to bypass checks for internal
      * methods, such as service health check methods.
      */
-    skipServiceControl: boolean;
+    skipServiceControl?: boolean;
   }
+
 
   export class Resource$Operations {
     root: Serviceconsumermanagement;
@@ -2296,25 +2300,37 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2353,25 +2369,37 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2408,23 +2436,34 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2470,28 +2509,38 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2513,6 +2562,68 @@ export namespace serviceconsumermanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Services {
     root: Serviceconsumermanagement;
@@ -2543,29 +2654,41 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Services$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchTenancyUnitsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
+        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Search,
+        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Services$Search|
+        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
         callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
         void|AxiosPromise<Schema$SearchTenancyUnitsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2589,6 +2712,48 @@ export namespace serviceconsumermanagement_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Services$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results returned by this request. Currently, the
+     * default maximum is set to 1000. If page_size is not provided or the size
+     * provided is a number larger than 1000, it will be automatically set to
+     * 1000.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * `nextPageToken` from the previous response.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * Service for which search is performed. services/{service} {service} the
+     * name of a service, for example 'service.googleapis.com'.
+     */
+    parent?: string;
+    /**
+     * Set a query `{expression}` for querying tenancy units. Your
+     * `{expression}` must be in the format: `field_name=literal_string`. The
+     * `field_name` is the name of the field you want to compare. Supported
+     * fields are `tenant_resources.tag` and `tenant_resources.resource`.  For
+     * example, to search tenancy units that contain at least one tenant
+     * resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To
+     * search tenancy units that contain at least one tenant resource with given
+     * resource name 'projects/123456', use query
+     * `tenant_resources.resource=projects/123456`.  Multiple expressions can be
+     * joined with `AND`s. Tenancy units must match all expressions to be
+     * included in the result set. For example, `tenant_resources.tag=xyz AND
+     * tenant_resources.resource=projects/123456`  Optional.
+     */
+    query?: string;
+  }
+
   export class Resource$Services$Tenancyunits {
     root: Serviceconsumermanagement;
     constructor(root: Serviceconsumermanagement) {
@@ -2618,26 +2783,39 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addProject(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     addProject(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Tenancyunits$Addproject,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     addProject(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Tenancyunits$Addproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addProject(
+        params: Params$Resource$Services$Tenancyunits$Addproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    addProject(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Addproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Addproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Addproject;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2674,26 +2852,39 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TenancyUnit>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
-        callback?: BodyResponseCallback<Schema$TenancyUnit>): void;
+        params?: Params$Resource$Services$Tenancyunits$Create,
+        options?: MethodOptions): AxiosPromise<Schema$TenancyUnit>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
+        params: Params$Resource$Services$Tenancyunits$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
+        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
+    create(
+        params: Params$Resource$Services$Tenancyunits$Create,
+        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
+    create(callback: BodyResponseCallback<Schema$TenancyUnit>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Create|
+        BodyResponseCallback<Schema$TenancyUnit>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TenancyUnit>,
         callback?: BodyResponseCallback<Schema$TenancyUnit>):
         void|AxiosPromise<Schema$TenancyUnit> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2730,26 +2921,39 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Tenancyunits$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Tenancyunits$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Services$Tenancyunits$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2790,28 +2994,40 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTenancyUnitsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Services$Tenancyunits$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTenancyUnitsResponse>;
+    list(
+        params: Params$Resource$Services$Tenancyunits$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Services$Tenancyunits$List,
+        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$List|
+        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
         callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>):
         void|AxiosPromise<Schema$ListTenancyUnitsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2851,26 +3067,39 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeProject(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     removeProject(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Services$Tenancyunits$Removeproject,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     removeProject(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Services$Tenancyunits$Removeproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeProject(
+        params: Params$Resource$Services$Tenancyunits$Removeproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    removeProject(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Removeproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Removeproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Removeproject;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl ||
           'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
@@ -2892,5 +3121,98 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Services$Tenancyunits$Addproject {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AddTenantProjectRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * services/{service}/{collection id}/{resource id} {collection id} is the
+     * cloud resource collection type representing the service consumer, for
+     * example 'projects', or 'organizations'. {resource id} is the consumer
+     * numeric id, such as project number: '123456'. {service} the name of a
+     * service, for example 'service.googleapis.com'. Enabled service binding
+     * using the new tenancy unit.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateTenancyUnitRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Tenancyunits$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Filter expression over tenancy resources field. Optional.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results returned by this request.
+     */
+    pageSize?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * `nextPageToken` from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * Service and consumer. Required. services/{service}/{collection
+     * id}/{resource id} {collection id} is the cloud resource collection type
+     * representing the service consumer, for example 'projects', or
+     * 'organizations'. {resource id} is the consumer numeric id, such as
+     * project number: '123456'. {service} the name of a service, for example
+     * 'service.googleapis.com'.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Removeproject {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit. Such as
+     * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemoveTenantProjectRequest;
   }
 }

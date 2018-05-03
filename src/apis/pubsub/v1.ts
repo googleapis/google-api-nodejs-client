@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace pubsub_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Pub/Sub API
    *
@@ -74,7 +77,7 @@ export namespace pubsub_v1 {
      * The acknowledgment ID for the messages being acknowledged that was
      * returned by the Pub/Sub system in the `Pull` response. Must not be empty.
      */
-    ackIds: string[];
+    ackIds?: string[];
   }
   /**
    * Associates `members` with a `role`.
@@ -96,12 +99,12 @@ export namespace pubsub_v1 {
      * that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * Request for the `CreateSnapshot` method.
@@ -117,7 +120,7 @@ export namespace pubsub_v1 {
      * successful completion of the CreateSnapshot request. Format is
      * `projects/{project}/subscriptions/{sub}`.
      */
-    subscription: string;
+    subscription?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -135,11 +138,11 @@ export namespace pubsub_v1 {
      * If not empty, indicates that there may be more snapshot that match the
      * request; this value should be passed in a new `ListSnapshotsRequest`.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The resulting snapshots.
      */
-    snapshots: Schema$Snapshot[];
+    snapshots?: Schema$Snapshot[];
   }
   /**
    * Response for the `ListSubscriptions` method.
@@ -150,11 +153,11 @@ export namespace pubsub_v1 {
      * the request; this value should be passed in a new
      * `ListSubscriptionsRequest` to get more subscriptions.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The subscriptions that match the request.
      */
-    subscriptions: Schema$Subscription[];
+    subscriptions?: Schema$Subscription[];
   }
   /**
    * Response for the `ListTopicSnapshots` method. [ALPHA] This method is a part
@@ -166,11 +169,11 @@ export namespace pubsub_v1 {
      * request; this value should be passed in a new `ListTopicSnapshotsRequest`
      * to get more snapshots.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The names of the snapshots that match the request.
      */
-    snapshots: string[];
+    snapshots?: string[];
   }
   /**
    * Response for the `ListTopics` method.
@@ -180,11 +183,11 @@ export namespace pubsub_v1 {
      * If not empty, indicates that there may be more topics that match the
      * request; this value should be passed in a new `ListTopicsRequest`.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The resulting topics.
      */
-    topics: Schema$Topic[];
+    topics?: Schema$Topic[];
   }
   /**
    * Response for the `ListTopicSubscriptions` method.
@@ -195,11 +198,11 @@ export namespace pubsub_v1 {
      * the request; this value should be passed in a new
      * `ListTopicSubscriptionsRequest` to get more subscriptions.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The names of the subscriptions that match the request.
      */
-    subscriptions: string[];
+    subscriptions?: string[];
   }
   /**
    * Request for the ModifyAckDeadline method.
@@ -213,11 +216,11 @@ export namespace pubsub_v1 {
      * pull request. The minimum deadline you can specify is 0 seconds. The
      * maximum deadline you can specify is 600 seconds (10 minutes).
      */
-    ackDeadlineSeconds: number;
+    ackDeadlineSeconds?: number;
     /**
      * List of acknowledgment IDs.
      */
-    ackIds: string[];
+    ackIds?: string[];
   }
   /**
    * Request for the ModifyPushConfig method.
@@ -230,30 +233,34 @@ export namespace pubsub_v1 {
      * effectively pausing the subscription if `Pull` or `StreamingPull` is not
      * called.
      */
-    pushConfig: Schema$PushConfig;
+    pushConfig?: Schema$PushConfig;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -265,11 +272,11 @@ export namespace pubsub_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Request for the Publish method.
@@ -278,7 +285,7 @@ export namespace pubsub_v1 {
     /**
      * The messages to publish.
      */
-    messages: Schema$PubsubMessage[];
+    messages?: Schema$PubsubMessage[];
   }
   /**
    * Response for the `Publish` method.
@@ -289,7 +296,7 @@ export namespace pubsub_v1 {
      * the messages in the request. IDs are guaranteed to be unique within the
      * topic.
      */
-    messageIds: string[];
+    messageIds?: string[];
   }
   /**
    * A message data and its attributes. The message payload must not be empty;
@@ -299,24 +306,24 @@ export namespace pubsub_v1 {
     /**
      * Optional attributes for this message.
      */
-    attributes: any;
+    attributes?: any;
     /**
      * The message payload.
      */
-    data: string;
+    data?: string;
     /**
      * ID of this message, assigned by the server when the message is published.
      * Guaranteed to be unique within the topic. This value may be read by a
      * subscriber that receives a `PubsubMessage` via a `Pull` call or a push
      * delivery. It must not be populated by the publisher in a `Publish` call.
      */
-    messageId: string;
+    messageId?: string;
     /**
      * The time at which the message was published, populated by the server when
      * it receives the `Publish` call. It must not be populated by the publisher
      * in a `Publish` call.
      */
-    publishTime: string;
+    publishTime?: string;
   }
   /**
    * Request for the `Pull` method.
@@ -326,7 +333,7 @@ export namespace pubsub_v1 {
      * The maximum number of messages returned for this request. The Pub/Sub
      * system may return fewer than the number specified.
      */
-    maxMessages: number;
+    maxMessages?: number;
     /**
      * If this field set to true, the system will respond immediately even if it
      * there are no messages available to return in the `Pull` response.
@@ -335,7 +342,7 @@ export namespace pubsub_v1 {
      * client may cancel the request if it does not wish to wait any longer for
      * the response.
      */
-    returnImmediately: boolean;
+    returnImmediately?: boolean;
   }
   /**
    * Response for the `Pull` method.
@@ -347,7 +354,7 @@ export namespace pubsub_v1 {
      * return fewer than the `maxMessages` requested even if there are more
      * messages available in the backlog.
      */
-    receivedMessages: Schema$ReceivedMessage[];
+    receivedMessages?: Schema$ReceivedMessage[];
   }
   /**
    * Configuration for a push delivery endpoint.
@@ -370,13 +377,13 @@ export namespace pubsub_v1 {
      * v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in
      * the v1 Pub/Sub API.
      */
-    attributes: any;
+    attributes?: any;
     /**
      * A URL locating the endpoint to which messages should be pushed. For
      * example, a Webhook endpoint might use
      * &quot;https://example.com/push&quot;.
      */
-    pushEndpoint: string;
+    pushEndpoint?: string;
   }
   /**
    * A message and its corresponding acknowledgment ID.
@@ -385,11 +392,11 @@ export namespace pubsub_v1 {
     /**
      * This ID can be used to acknowledge the received message.
      */
-    ackId: string;
+    ackId?: string;
     /**
      * The message.
      */
-    message: Schema$PubsubMessage;
+    message?: Schema$PubsubMessage;
   }
   /**
    * Request for the `Seek` method.
@@ -400,7 +407,7 @@ export namespace pubsub_v1 {
      * that of the provided subscription. Format is
      * `projects/{project}/snapshots/{snap}`.
      */
-    snapshot: string;
+    snapshot?: string;
     /**
      * The time to seek to. Messages retained in the subscription that were
      * published before this time are marked as acknowledged, and messages
@@ -413,7 +420,7 @@ export namespace pubsub_v1 {
      * time), only retained messages will be marked as unacknowledged, and
      * already-expunged messages will not be restored.
      */
-    time: string;
+    time?: string;
   }
   export interface Schema$SeekResponse {}
   /**
@@ -426,7 +433,7 @@ export namespace pubsub_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * A snapshot resource.
@@ -444,15 +451,15 @@ export namespace pubsub_v1 {
      * will expire in 4 days. The service will refuse to create a snapshot that
      * would expire in less than 1 hour after creation.
      */
-    expireTime: string;
+    expireTime?: string;
     /**
      * The name of the snapshot.
      */
-    name: string;
+    name?: string;
     /**
      * The name of the topic from which this snapshot is retaining messages.
      */
-    topic: string;
+    topic?: string;
   }
   /**
    * A subscription resource.
@@ -475,7 +482,7 @@ export namespace pubsub_v1 {
      * endpoint.  If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
      */
-    ackDeadlineSeconds: number;
+    ackDeadlineSeconds?: number;
     /**
      * How long to retain unacknowledged messages in the subscription&#39;s
      * backlog, from the moment a message is published. If
@@ -484,7 +491,7 @@ export namespace pubsub_v1 {
      * `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or
      * less than 10 minutes. [ALPHA] This field is a part of a closed Alpha API.
      */
-    messageRetentionDuration: string;
+    messageRetentionDuration?: string;
     /**
      * The name of the subscription. It must have the format
      * `&quot;projects/{project}/subscriptions/{subscription}&quot;`.
@@ -494,26 +501,26 @@ export namespace pubsub_v1 {
      * between 3 and 255 characters in length, and it must not start with
      * `&quot;goog&quot;`.
      */
-    name: string;
+    name?: string;
     /**
      * If push delivery is used with this subscription, this field is used to
      * configure it. An empty `pushConfig` signifies that the subscriber will
      * pull and ack messages using API methods.
      */
-    pushConfig: Schema$PushConfig;
+    pushConfig?: Schema$PushConfig;
     /**
      * Indicates whether to retain acknowledged messages. If true, then messages
      * are not expunged from the subscription&#39;s backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. [ALPHA] This field is a part of a closed Alpha API.
      */
-    retainAckedMessages: boolean;
+    retainAckedMessages?: boolean;
     /**
      * The name of the topic from which this subscription is receiving messages.
      * Format is `projects/{project}/topics/{topic}`. The value of this field
      * will be `_deleted-topic_` if the topic has been deleted.
      */
-    topic: string;
+    topic?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -525,7 +532,7 @@ export namespace pubsub_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -535,7 +542,7 @@ export namespace pubsub_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * A topic resource.
@@ -549,7 +556,7 @@ export namespace pubsub_v1 {
      * or percent signs (`%`). It must be between 3 and 255 characters in
      * length, and it must not start with `&quot;goog&quot;`.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Request for the UpdateSnapshot method.
@@ -558,12 +565,12 @@ export namespace pubsub_v1 {
     /**
      * The updated snpashot object.
      */
-    snapshot: Schema$Snapshot;
+    snapshot?: Schema$Snapshot;
     /**
      * Indicates which fields in the provided snapshot to update. Must be
      * specified and non-empty.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * Request for the UpdateSubscription method.
@@ -572,13 +579,14 @@ export namespace pubsub_v1 {
     /**
      * The updated subscription object.
      */
-    subscription: Schema$Subscription;
+    subscription?: Schema$Subscription;
     /**
      * Indicates which fields in the provided subscription to update. Must be
      * specified and non-empty.
      */
-    updateMask: string;
+    updateMask?: string;
   }
+
 
   export class Resource$Projects {
     root: Pubsub;
@@ -597,6 +605,8 @@ export namespace pubsub_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Snapshots {
     root: Pubsub;
     constructor(root: Pubsub) {
@@ -633,26 +643,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Snapshot>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>): void;
+        params?: Params$Resource$Projects$Snapshots$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        params: Params$Resource$Projects$Snapshots$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    create(
+        params: Params$Resource$Projects$Snapshots$Create,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    create(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$Create|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
         void|AxiosPromise<Schema$Snapshot> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Snapshots$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -690,25 +712,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Snapshots$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Snapshots$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Snapshots$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Snapshots$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -743,23 +778,34 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+    get(params?: Params$Resource$Projects$Snapshots$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+    get(params: Params$Resource$Projects$Snapshots$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(params: Params$Resource$Projects$Snapshots$Get,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Snapshots$Get|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
         void|AxiosPromise<Schema$Snapshot> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -847,26 +893,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Snapshots$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Snapshots$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Snapshots$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Snapshots$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -904,28 +962,40 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListSnapshotsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Snapshots$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+        params: Params$Resource$Projects$Snapshots$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListSnapshotsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Snapshots$List,
+        callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$List|
+        BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSnapshotsResponse>,
         callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>):
         void|AxiosPromise<Schema$ListSnapshotsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -963,25 +1033,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>): void;
+        params?: Params$Resource$Projects$Snapshots$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        params: Params$Resource$Projects$Snapshots$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    patch(
+        params: Params$Resource$Projects$Snapshots$Patch,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    patch(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$Patch|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
         void|AxiosPromise<Schema$Snapshot> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Snapshots$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1074,26 +1157,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Snapshots$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Snapshots$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Snapshots$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Snapshots$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Snapshots$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1191,29 +1286,46 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Snapshots$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Snapshots$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Snapshots$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Snapshots$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Snapshots$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1236,6 +1348,132 @@ export namespace pubsub_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Snapshots$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional user-provided name for this snapshot. If the name is not
+     * provided in the request, the server will assign a random name for this
+     * snapshot on the same project as the subscription. Note that for REST API
+     * requests, you must specify a name. Format is
+     * `projects/{project}/snapshots/{snap}`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateSnapshotRequest;
+  }
+  export interface Params$Resource$Projects$Snapshots$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the snapshot to delete. Format is
+     * `projects/{project}/snapshots/{snap}`.
+     */
+    snapshot?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the snapshot to get. Format is
+     * `projects/{project}/snapshots/{snap}`.
+     */
+    snapshot?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of snapshots to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListSnapshotsResponse`; indicates that
+     * this is a continuation of a prior `ListSnapshots` call, and that the
+     * system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The name of the cloud project that snapshots belong to. Format is
+     * `projects/{project}`.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the snapshot.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateSnapshotRequest;
+  }
+  export interface Params$Resource$Projects$Snapshots$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Snapshots$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Subscriptions {
     root: Pubsub;
@@ -1322,26 +1560,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     acknowledge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Subscriptions$Acknowledge,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     acknowledge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Subscriptions$Acknowledge,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(
+        params: Params$Resource$Projects$Subscriptions$Acknowledge,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Acknowledge|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Acknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Acknowledge;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1453,26 +1703,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Subscription>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>): void;
+        params?: Params$Resource$Projects$Subscriptions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+        params: Params$Resource$Projects$Subscriptions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    create(
+        params: Params$Resource$Projects$Subscriptions$Create,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    create(callback: BodyResponseCallback<Schema$Subscription>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Create|
+        BodyResponseCallback<Schema$Subscription>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
         void|AxiosPromise<Schema$Subscription> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1562,25 +1825,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Subscriptions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Subscriptions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Subscriptions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1670,24 +1946,35 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Subscriptions$Get,
         options?: MethodOptions): AxiosPromise<Schema$Subscription>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+    get(params: Params$Resource$Projects$Subscriptions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    get(params: Params$Resource$Projects$Subscriptions$Get,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    get(callback: BodyResponseCallback<Schema$Subscription>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Subscriptions$Get|
+        BodyResponseCallback<Schema$Subscription>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
         void|AxiosPromise<Schema$Subscription> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1776,26 +2063,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Subscriptions$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Subscriptions$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Subscriptions$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1900,29 +2199,42 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Subscriptions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListSubscriptionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Subscriptions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListSubscriptionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>):
+        callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Subscriptions$List,
+        callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$List|
+        BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSubscriptionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>):
         void|AxiosPromise<Schema$ListSubscriptionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2017,26 +2329,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyAckDeadline(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     modifyAckDeadline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Subscriptions$Modifyackdeadline,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     modifyAckDeadline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Subscriptions$Modifyackdeadline,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyAckDeadline(
+        params: Params$Resource$Projects$Subscriptions$Modifyackdeadline,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyAckDeadline(callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyAckDeadline(
+        paramsOrCallback?:
+            Params$Resource$Projects$Subscriptions$Modifyackdeadline|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Modifyackdeadline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Modifyackdeadline;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2132,26 +2457,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyPushConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     modifyPushConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Subscriptions$Modifypushconfig,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     modifyPushConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Subscriptions$Modifypushconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyPushConfig(
+        params: Params$Resource$Projects$Subscriptions$Modifypushconfig,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyPushConfig(callback: BodyResponseCallback<Schema$Empty>): void;
+    modifyPushConfig(
+        paramsOrCallback?:
+            Params$Resource$Projects$Subscriptions$Modifypushconfig|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Modifypushconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Modifypushconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2188,26 +2526,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Subscription>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>): void;
+        params?: Params$Resource$Projects$Subscriptions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+        params: Params$Resource$Projects$Subscriptions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    patch(
+        params: Params$Resource$Projects$Subscriptions$Patch,
+        callback: BodyResponseCallback<Schema$Subscription>): void;
+    patch(callback: BodyResponseCallback<Schema$Subscription>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Patch|
+        BodyResponseCallback<Schema$Subscription>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
         void|AxiosPromise<Schema$Subscription> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2304,26 +2655,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pull(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PullResponse>;
     pull(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
-        callback?: BodyResponseCallback<Schema$PullResponse>): void;
+        params?: Params$Resource$Projects$Subscriptions$Pull,
+        options?: MethodOptions): AxiosPromise<Schema$PullResponse>;
     pull(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
+        params: Params$Resource$Projects$Subscriptions$Pull,
+        options: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
+        callback: BodyResponseCallback<Schema$PullResponse>): void;
+    pull(
+        params: Params$Resource$Projects$Subscriptions$Pull,
+        callback: BodyResponseCallback<Schema$PullResponse>): void;
+    pull(callback: BodyResponseCallback<Schema$PullResponse>): void;
+    pull(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Pull|
+        BodyResponseCallback<Schema$PullResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PullResponse>,
         callback?: BodyResponseCallback<Schema$PullResponse>):
         void|AxiosPromise<Schema$PullResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Pull;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Pull;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2361,26 +2725,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    seek(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SeekResponse>;
     seek(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SeekResponse>,
-        callback?: BodyResponseCallback<Schema$SeekResponse>): void;
+        params?: Params$Resource$Projects$Subscriptions$Seek,
+        options?: MethodOptions): AxiosPromise<Schema$SeekResponse>;
     seek(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SeekResponse>,
+        params: Params$Resource$Projects$Subscriptions$Seek,
+        options: MethodOptions|BodyResponseCallback<Schema$SeekResponse>,
+        callback: BodyResponseCallback<Schema$SeekResponse>): void;
+    seek(
+        params: Params$Resource$Projects$Subscriptions$Seek,
+        callback: BodyResponseCallback<Schema$SeekResponse>): void;
+    seek(callback: BodyResponseCallback<Schema$SeekResponse>): void;
+    seek(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Seek|
+        BodyResponseCallback<Schema$SeekResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SeekResponse>,
         callback?: BodyResponseCallback<Schema$SeekResponse>):
         void|AxiosPromise<Schema$SeekResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Seek;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Seek;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2474,26 +2851,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Subscriptions$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Subscriptions$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Subscriptions$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Subscriptions$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2591,29 +2980,47 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Subscriptions$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Subscriptions$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Subscriptions$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Subscriptions$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Subscriptions$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Subscriptions$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2636,6 +3043,217 @@ export namespace pubsub_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Subscriptions$Acknowledge {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The subscription whose message is being acknowledged. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AcknowledgeRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the subscription. It must have the format
+     * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
+     * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     * plus (`+`) or percent signs (`%`). It must be between 3 and 255
+     * characters in length, and it must not start with `"goog"`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Subscription;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The subscription to delete. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the subscription to get. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of subscriptions to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListSubscriptionsResponse`; indicates
+     * that this is a continuation of a prior `ListSubscriptions` call, and that
+     * the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The name of the cloud project that subscriptions belong to. Format is
+     * `projects/{project}`.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the subscription. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ModifyAckDeadlineRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the subscription. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ModifyPushConfigRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the subscription. It must have the format
+     * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
+     * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     * plus (`+`) or percent signs (`%`). It must be between 3 and 255
+     * characters in length, and it must not start with `"goog"`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateSubscriptionRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Pull {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The subscription from which messages should be pulled. Format is
+     * `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PullRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Seek {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The subscription to affect.
+     */
+    subscription?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SeekRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Topics {
     root: Pubsub;
@@ -2735,25 +3353,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Topic>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback?: BodyResponseCallback<Schema$Topic>): void;
+        params?: Params$Resource$Projects$Topics$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Topic>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+        params: Params$Resource$Projects$Topics$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    create(
+        params: Params$Resource$Projects$Topics$Create,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    create(callback: BodyResponseCallback<Schema$Topic>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Create|
+        BodyResponseCallback<Schema$Topic>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
         callback?: BodyResponseCallback<Schema$Topic>):
         void|AxiosPromise<Schema$Topic> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2844,25 +3475,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Topics$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Topics$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Topics$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2951,23 +3595,34 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Topic>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback?: BodyResponseCallback<Schema$Topic>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+    get(params?: Params$Resource$Projects$Topics$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Topic>;
+    get(params: Params$Resource$Projects$Topics$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    get(params: Params$Resource$Projects$Topics$Get,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    get(callback: BodyResponseCallback<Schema$Topic>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Topics$Get|
+        BodyResponseCallback<Schema$Topic>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
         callback?: BodyResponseCallback<Schema$Topic>):
         void|AxiosPromise<Schema$Topic> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3057,26 +3712,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Topics$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Topics$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Topics$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Topics$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3180,26 +3847,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTopicsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTopicsResponse>): void;
+        params?: Params$Resource$Projects$Topics$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTopicsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
+        params: Params$Resource$Projects$Topics$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
+        callback: BodyResponseCallback<Schema$ListTopicsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Topics$List,
+        callback: BodyResponseCallback<Schema$ListTopicsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTopicsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Topics$List|
+        BodyResponseCallback<Schema$ListTopicsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTopicsResponse>,
         callback?: BodyResponseCallback<Schema$ListTopicsResponse>):
         void|AxiosPromise<Schema$ListTopicsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3296,26 +3976,39 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PublishResponse>;
     publish(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
-        callback?: BodyResponseCallback<Schema$PublishResponse>): void;
+        params?: Params$Resource$Projects$Topics$Publish,
+        options?: MethodOptions): AxiosPromise<Schema$PublishResponse>;
     publish(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
+        params: Params$Resource$Projects$Topics$Publish,
+        options: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
+        callback: BodyResponseCallback<Schema$PublishResponse>): void;
+    publish(
+        params: Params$Resource$Projects$Topics$Publish,
+        callback: BodyResponseCallback<Schema$PublishResponse>): void;
+    publish(callback: BodyResponseCallback<Schema$PublishResponse>): void;
+    publish(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Publish|
+        BodyResponseCallback<Schema$PublishResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PublishResponse>,
         callback?: BodyResponseCallback<Schema$PublishResponse>):
         void|AxiosPromise<Schema$PublishResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Publish;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3411,26 +4104,38 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Topics$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Topics$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Topics$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Topics$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3528,29 +4233,45 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Topics$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Topics$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3573,6 +4294,134 @@ export namespace pubsub_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Topics$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the topic. It must have the format
+     * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a
+     * letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes
+     * (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or
+     * percent signs (`%`). It must be between 3 and 255 characters in length,
+     * and it must not start with `"goog"`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Topic;
+  }
+  export interface Params$Resource$Projects$Topics$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the topic to delete. Format is
+     * `projects/{project}/topics/{topic}`.
+     */
+    topic?: string;
+  }
+  export interface Params$Resource$Projects$Topics$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the topic to get. Format is
+     * `projects/{project}/topics/{topic}`.
+     */
+    topic?: string;
+  }
+  export interface Params$Resource$Projects$Topics$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Topics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of topics to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListTopicsResponse`; indicates that this
+     * is a continuation of a prior `ListTopics` call, and that the system
+     * should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The name of the cloud project that topics belong to. Format is
+     * `projects/{project}`.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Topics$Publish {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The messages in the request will be published on this topic. Format is
+     * `projects/{project}/topics/{topic}`.
+     */
+    topic?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PublishRequest;
+  }
+  export interface Params$Resource$Projects$Topics$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Topics$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Topics$Snapshots {
     root: Pubsub;
     constructor(root: Pubsub) {
@@ -3600,29 +4449,44 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Topics$Snapshots$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListTopicSnapshotsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Snapshots$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTopicSnapshotsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>):
+        callback: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Snapshots$List,
+        callback: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Snapshots$List|
+        BodyResponseCallback<Schema$ListTopicSnapshotsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTopicSnapshotsResponse>,
         callback?: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>):
         void|AxiosPromise<Schema$ListTopicSnapshotsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Topics$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Snapshots$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3645,6 +4509,30 @@ export namespace pubsub_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Topics$Snapshots$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of snapshot names to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListTopicSnapshotsResponse`; indicates
+     * that this is a continuation of a prior `ListTopicSnapshots` call, and
+     * that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The name of the topic that snapshots are attached to. Format is
+     * `projects/{project}/topics/{topic}`.
+     */
+    topic?: string;
+  }
+
 
   export class Resource$Projects$Topics$Subscriptions {
     root: Pubsub;
@@ -3741,29 +4629,44 @@ export namespace pubsub_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Topics$Subscriptions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListTopicSubscriptionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Subscriptions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
+        callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Topics$Subscriptions$List,
+        callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Subscriptions$List|
+        BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
         callback?: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
         void|AxiosPromise<Schema$ListTopicSubscriptionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Topics$Subscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Subscriptions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3786,5 +4689,28 @@ export namespace pubsub_v1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Topics$Subscriptions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of subscription names to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListTopicSubscriptionsResponse`;
+     * indicates that this is a continuation of a prior `ListTopicSubscriptions`
+     * call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The name of the topic that subscriptions are attached to. Format is
+     * `projects/{project}/topics/{topic}`.
+     */
+    topic?: string;
   }
 }

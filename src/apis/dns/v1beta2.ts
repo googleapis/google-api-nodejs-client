@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dns_v1beta2 {
+  export interface Options extends GlobalOptions { version: 'v1beta2'; }
+
   /**
    * Google Cloud DNS API
    *
@@ -82,33 +85,33 @@ export namespace dns_v1beta2 {
     /**
      * Which ResourceRecordSets to add?
      */
-    additions: Schema$ResourceRecordSet[];
+    additions?: Schema$ResourceRecordSet[];
     /**
      * Which ResourceRecordSets to remove? Must match existing data exactly.
      */
-    deletions: Schema$ResourceRecordSet[];
+    deletions?: Schema$ResourceRecordSet[];
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id: string;
+    id?: string;
     /**
      * If the DNS queries for the zone will be served.
      */
-    isServing: boolean;
+    isServing?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#change&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time that this operation was started by the server (output only).
      * This is in RFC3339 text format.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Status of the operation (output only).
      */
-    status: string;
+    status?: string;
   }
   /**
    * The response to a request to enumerate Changes to a ResourceRecordSets
@@ -118,12 +121,12 @@ export namespace dns_v1beta2 {
     /**
      * The requested changes.
      */
-    changes: Schema$Change[];
-    header: Schema$ResponseHeader;
+    changes?: Schema$Change[];
+    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The presence of this field indicates that there exist more results
      * following your last page of results in pagination order. To fetch them,
@@ -135,7 +138,7 @@ export namespace dns_v1beta2 {
      * collection. There is no way to retrieve a &quot;snapshot&quot; of
      * collections larger than the maximum page size.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A DNSSEC key pair.
@@ -145,38 +148,38 @@ export namespace dns_v1beta2 {
      * String mnemonic specifying the DNSSEC algorithm of this key. Immutable
      * after creation time.
      */
-    algorithm: string;
+    algorithm?: string;
     /**
      * The time that this resource was created in the control plane. This is in
      * RFC3339 text format. Output only.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * A mutable string of at most 1024 characters associated with this resource
      * for the user&#39;s convenience. Has no effect on the resource&#39;s
      * function.
      */
-    description: string;
+    description?: string;
     /**
      * Cryptographic hashes of the DNSKEY resource record associated with this
      * DnsKey. These digests are needed to construct a DS record that points at
      * this DNS key. Output only.
      */
-    digests: Schema$DnsKeyDigest[];
+    digests?: Schema$DnsKeyDigest[];
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id: string;
+    id?: string;
     /**
      * Active keys will be used to sign subsequent changes to the ManagedZone.
      * Inactive keys will still be present as DNSKEY Resource Records for the
      * use of resolvers validating existing signatures.
      */
-    isActive: boolean;
+    isActive?: boolean;
     /**
      * Length of the key in bits. Specified at creation time then immutable.
      */
-    keyLength: number;
+    keyLength?: number;
     /**
      * The key tag is a non-cryptographic hash of the a DNSKEY resource record
      * associated with this DnsKey. The key tag can be used to identify a DNSKEY
@@ -186,16 +189,16 @@ export namespace dns_v1beta2 {
      * and the algorithm to calculate it is specified in RFC4034 Appendix B.
      * Output only.
      */
-    keyTag: number;
+    keyTag?: number;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#dnsKey&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Base64 encoded public half of this key. Output only.
      */
-    publicKey: string;
+    publicKey?: string;
     /**
      * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type
      * KEY_SIGNING have the Secure Entry Point flag set and, when active, will
@@ -203,18 +206,18 @@ export namespace dns_v1beta2 {
      * Secure Entry Point flag will be cleared and this key will be used to sign
      * only resource record sets of other types. Immutable after creation time.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$DnsKeyDigest {
     /**
      * The base-16 encoded bytes of this digest. Suitable for use in a DS
      * resource record.
      */
-    digest: string;
+    digest?: string;
     /**
      * Specifies the algorithm used to calculate this digest.
      */
-    type: string;
+    type?: string;
   }
   /**
    * The response to a request to enumerate DnsKeys in a ManagedZone.
@@ -223,12 +226,12 @@ export namespace dns_v1beta2 {
     /**
      * The requested resources.
      */
-    dnsKeys: Schema$DnsKey[];
-    header: Schema$ResponseHeader;
+    dnsKeys?: Schema$DnsKey[];
+    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The presence of this field indicates that there exist more results
      * following your last page of results in pagination order. To fetch them,
@@ -240,7 +243,7 @@ export namespace dns_v1beta2 {
      * collection. There is no way to retrieve a &quot;snapshot&quot; of
      * collections larger than the maximum page size.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Parameters for DnsKey key generation. Used for generating initial keys for
@@ -250,11 +253,11 @@ export namespace dns_v1beta2 {
     /**
      * String mnemonic specifying the DNSSEC algorithm of this key.
      */
-    algorithm: string;
+    algorithm?: string;
     /**
      * Length of the keys in bits.
      */
-    keyLength: number;
+    keyLength?: number;
     /**
      * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type
      * KEY_SIGNING have the Secure Entry Point flag set and, when active, will
@@ -262,12 +265,12 @@ export namespace dns_v1beta2 {
      * Secure Entry Point flag will be cleared and this key will be used to sign
      * only resource record sets of other types.
      */
-    keyType: string;
+    keyType?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#dnsKeySpec&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A zone is a subtree of the DNS namespace under one administrative
@@ -279,79 +282,79 @@ export namespace dns_v1beta2 {
      * The time that this resource was created on the server. This is in RFC3339
      * text format. Output only.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * A mutable string of at most 1024 characters associated with this resource
      * for the user&#39;s convenience. Has no effect on the managed zone&#39;s
      * function.
      */
-    description: string;
+    description?: string;
     /**
      * The DNS name of this managed zone, for instance &quot;example.com.&quot;.
      */
-    dnsName: string;
+    dnsName?: string;
     /**
      * DNSSEC configuration.
      */
-    dnssecConfig: Schema$ManagedZoneDnsSecConfig;
+    dnssecConfig?: Schema$ManagedZoneDnsSecConfig;
     /**
      * Unique identifier for the resource; defined by the server (output only)
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#managedZone&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * User labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * User assigned name for this resource. Must be unique within the project.
      * The name must be 1-63 characters long, must begin with a letter, end with
      * a letter or digit, and only contain lowercase letters, digits or dashes.
      */
-    name: string;
+    name?: string;
     /**
      * Delegate your managed_zone to these virtual name servers; defined by the
      * server (output only)
      */
-    nameServers: string[];
+    nameServers?: string[];
     /**
      * Optionally specifies the NameServerSet for this ManagedZone. A
      * NameServerSet is a set of DNS name servers that all host the same
      * ManagedZones. Most users will leave this field unset.
      */
-    nameServerSet: string;
+    nameServerSet?: string;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
      * Specifies parameters that will be used for generating initial DnsKeys for
      * this ManagedZone. Output only while state is not OFF.
      */
-    defaultKeySpecs: Schema$DnsKeySpec[];
+    defaultKeySpecs?: Schema$DnsKeySpec[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#managedZoneDnsSecConfig&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Specifies the mechanism used to provide authenticated denial-of-existence
      * responses. Output only while state is not OFF.
      */
-    nonExistence: string;
+    nonExistence?: string;
     /**
      * Specifies whether DNSSEC is enabled, and what mode it is in.
      */
-    state: string;
+    state?: string;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
-    header: Schema$ResponseHeader;
+    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The presence of this field indicates that there exist more results
      * following your last page of results in pagination order. To fetch them,
@@ -363,22 +366,22 @@ export namespace dns_v1beta2 {
      * is no way to retrieve a consistent snapshot of a collection larger than
      * the maximum page size.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The operation resources.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   export interface Schema$ManagedZonesListResponse {
-    header: Schema$ResponseHeader;
+    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The managed zone resources.
      */
-    managedZones: Schema$ManagedZone[];
+    managedZones?: Schema$ManagedZone[];
     /**
      * The presence of this field indicates that there exist more results
      * following your last page of results in pagination order. To fetch them,
@@ -390,7 +393,7 @@ export namespace dns_v1beta2 {
      * is no way to retrieve a consistent snapshot of a collection larger than
      * the maximum page size.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * An operation represents a successful mutation performed on a Cloud DNS
@@ -402,64 +405,64 @@ export namespace dns_v1beta2 {
     /**
      * Only populated if the operation targeted a DnsKey (output only).
      */
-    dnsKeyContext: Schema$OperationDnsKeyContext;
+    dnsKeyContext?: Schema$OperationDnsKeyContext;
     /**
      * Unique identifier for the resource. This is the client_operation_id if
      * the client specified it when the mutation was initiated, otherwise, it is
      * generated by the server. The name must be 1-63 characters long and match
      * the regular expression [-a-z0-9]? (output only)
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#operation&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time that this operation was started by the server. This is in
      * RFC3339 text format (output only).
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Status of the operation. Can be one of the following: &quot;PENDING&quot;
      * or &quot;DONE&quot; (output only).
      */
-    status: string;
+    status?: string;
     /**
      * Type of the operation. Operations include insert, update, and delete
      * (output only).
      */
-    type: string;
+    type?: string;
     /**
      * User who requested the operation, for example: user@example.com.
      * cloud-dns-system for operations automatically done by the system. (output
      * only)
      */
-    user: string;
+    user?: string;
     /**
      * Only populated if the operation targeted a ManagedZone (output only).
      */
-    zoneContext: Schema$OperationManagedZoneContext;
+    zoneContext?: Schema$OperationManagedZoneContext;
   }
   export interface Schema$OperationDnsKeyContext {
     /**
      * The post-operation DnsKey resource.
      */
-    newValue: Schema$DnsKey;
+    newValue?: Schema$DnsKey;
     /**
      * The pre-operation DnsKey resource.
      */
-    oldValue: Schema$DnsKey;
+    oldValue?: Schema$DnsKey;
   }
   export interface Schema$OperationManagedZoneContext {
     /**
      * The post-operation ManagedZone resource.
      */
-    newValue: Schema$ManagedZone;
+    newValue?: Schema$ManagedZone;
     /**
      * The pre-operation ManagedZone resource.
      */
-    oldValue: Schema$ManagedZone;
+    oldValue?: Schema$ManagedZone;
   }
   /**
    * A project resource. The project is a top level container for resources
@@ -470,21 +473,21 @@ export namespace dns_v1beta2 {
     /**
      * User assigned unique identifier for the resource (output only).
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#project&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Unique numeric identifier for the resource; defined by the server (output
      * only).
      */
-    number: string;
+    number?: string;
     /**
      * Quotas assigned to this project (output only).
      */
-    quota: Schema$Quota;
+    quota?: Schema$Quota;
   }
   /**
    * Limits associated with a Project.
@@ -493,47 +496,47 @@ export namespace dns_v1beta2 {
     /**
      * Whether a black hole zone should suppress system zones for this project.
      */
-    blackHoleHidesSystemZones: boolean;
+    blackHoleHidesSystemZones?: boolean;
     /**
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
-    dnsKeysPerManagedZone: number;
+    dnsKeysPerManagedZone?: number;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#quota&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Maximum allowed number of managed zones in the project.
      */
-    managedZones: number;
+    managedZones?: number;
     /**
      * Maximum allowed number of ResourceRecords per ResourceRecordSet.
      */
-    resourceRecordsPerRrset: number;
+    resourceRecordsPerRrset?: number;
     /**
      * Maximum allowed number of ResourceRecordSets to add per
      * ChangesCreateRequest.
      */
-    rrsetAdditionsPerChange: number;
+    rrsetAdditionsPerChange?: number;
     /**
      * Maximum allowed number of ResourceRecordSets to delete per
      * ChangesCreateRequest.
      */
-    rrsetDeletionsPerChange: number;
+    rrsetDeletionsPerChange?: number;
     /**
      * Maximum allowed number of ResourceRecordSets per zone in the project.
      */
-    rrsetsPerManagedZone: number;
+    rrsetsPerManagedZone?: number;
     /**
      * Maximum allowed size for total rrdata in one ChangesCreateRequest in
      * bytes.
      */
-    totalRrdataSizePerChange: number;
+    totalRrdataSizePerChange?: number;
     /**
      * DNSSEC algorithm and key length types that can be used for DnsKeys.
      */
-    whitelistedKeySpecs: Schema$DnsKeySpec[];
+    whitelistedKeySpecs?: Schema$DnsKeySpec[];
   }
   /**
    * A unit of data that will be returned by the DNS servers.
@@ -543,35 +546,35 @@ export namespace dns_v1beta2 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dns#resourceRecordSet&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * For example, www.example.com.
      */
-    name: string;
+    name?: string;
     /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1).
      */
-    rrdatas: string[];
+    rrdatas?: string[];
     /**
      * As defined in RFC 4034 (section 3.2).
      */
-    signatureRrdatas: string[];
+    signatureRrdatas?: string[];
     /**
      * Number of seconds that this ResourceRecordSet can be cached by resolvers.
      */
-    ttl: number;
+    ttl?: number;
     /**
      * The identifier of a supported record type, for example, A, AAAA, MX, TXT,
      * and so on.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$ResourceRecordSetsListResponse {
-    header: Schema$ResponseHeader;
+    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The presence of this field indicates that there exist more results
      * following your last page of results in pagination order. To fetch them,
@@ -583,11 +586,11 @@ export namespace dns_v1beta2 {
      * collection. There is no way to retrieve a consistent snapshot of a
      * collection larger than the maximum page size.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The resource record set resources.
      */
-    rrsets: Schema$ResourceRecordSet[];
+    rrsets?: Schema$ResourceRecordSet[];
   }
   /**
    * Elements common to every response.
@@ -598,8 +601,9 @@ export namespace dns_v1beta2 {
      * client_operation_id if the client specified it, otherwise it is generated
      * by the server (output only).
      */
-    operationId: string;
+    operationId?: string;
   }
+
 
   export class Resource$Changes {
     root: Dns;
@@ -628,25 +632,36 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Change>;
+    create(params?: Params$Resource$Changes$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Change>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>): void;
+        params: Params$Resource$Changes$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Change>,
+        callback: BodyResponseCallback<Schema$Change>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
+        params: Params$Resource$Changes$Create,
+        callback: BodyResponseCallback<Schema$Change>): void;
+    create(callback: BodyResponseCallback<Schema$Change>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Changes$Create|
+        BodyResponseCallback<Schema$Change>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback?: BodyResponseCallback<Schema$Change>):
         void|AxiosPromise<Schema$Change> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -686,23 +701,33 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Change>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
+    get(params?: Params$Resource$Changes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Change>;
+    get(params: Params$Resource$Changes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Change>,
+        callback: BodyResponseCallback<Schema$Change>): void;
+    get(params: Params$Resource$Changes$Get,
+        callback: BodyResponseCallback<Schema$Change>): void;
+    get(callback: BodyResponseCallback<Schema$Change>): void;
+    get(paramsOrCallback?: Params$Resource$Changes$Get|
+        BodyResponseCallback<Schema$Change>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback?: BodyResponseCallback<Schema$Change>):
         void|AxiosPromise<Schema$Change> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -744,28 +769,37 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Changes$List, options?: MethodOptions):
         AxiosPromise<Schema$ChangesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$ChangesListResponse>,
-        callback?: BodyResponseCallback<Schema$ChangesListResponse>): void;
+        params: Params$Resource$Changes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ChangesListResponse>,
+        callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Changes$List,
+        callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Changes$List|
+        BodyResponseCallback<Schema$ChangesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangesListResponse>,
         callback?: BodyResponseCallback<Schema$ChangesListResponse>):
         void|AxiosPromise<Schema$ChangesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -789,6 +823,95 @@ export namespace dns_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Changes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Change;
+  }
+  export interface Params$Resource$Changes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The identifier of the requested change, from a previous
+     * ResourceRecordSetsChangeResponse.
+     */
+    changeId?: string;
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Changes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Sorting criterion. The only supported value is change sequence.
+     */
+    sortBy?: string;
+    /**
+     * Sorting order direction: 'ascending' or 'descending'.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Dnskeys {
     root: Dns;
@@ -818,23 +941,33 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$DnsKey>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
-        callback?: BodyResponseCallback<Schema$DnsKey>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
+    get(params?: Params$Resource$Dnskeys$Get,
+        options?: MethodOptions): AxiosPromise<Schema$DnsKey>;
+    get(params: Params$Resource$Dnskeys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
+        callback: BodyResponseCallback<Schema$DnsKey>): void;
+    get(params: Params$Resource$Dnskeys$Get,
+        callback: BodyResponseCallback<Schema$DnsKey>): void;
+    get(callback: BodyResponseCallback<Schema$DnsKey>): void;
+    get(paramsOrCallback?: Params$Resource$Dnskeys$Get|
+        BodyResponseCallback<Schema$DnsKey>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
         callback?: BodyResponseCallback<Schema$DnsKey>):
         void|AxiosPromise<Schema$DnsKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dnskeys$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -875,28 +1008,37 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Dnskeys$List, options?: MethodOptions):
         AxiosPromise<Schema$DnsKeysListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$DnsKeysListResponse>,
-        callback?: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
+        params: Params$Resource$Dnskeys$List,
+        options: MethodOptions|BodyResponseCallback<Schema$DnsKeysListResponse>,
+        callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Dnskeys$List,
+        callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Dnskeys$List|
+        BodyResponseCallback<Schema$DnsKeysListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DnsKeysListResponse>,
         callback?: BodyResponseCallback<Schema$DnsKeysListResponse>):
         void|AxiosPromise<Schema$DnsKeysListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dnskeys$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -920,6 +1062,72 @@ export namespace dns_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Dnskeys$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * An optional comma-separated list of digest types to compute and display
+     * for key signing keys. If omitted, the recommended digest type will be
+     * computed and displayed.
+     */
+    digestType?: string;
+    /**
+     * The identifier of the requested DnsKey.
+     */
+    dnsKeyId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Dnskeys$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional comma-separated list of digest types to compute and display
+     * for key signing keys. If omitted, the recommended digest type will be
+     * computed and displayed.
+     */
+    digestType?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+
 
   export class Resource$Managedzoneoperations {
     root: Dns;
@@ -948,23 +1156,35 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Managedzoneoperations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Managedzoneoperations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Managedzoneoperations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Managedzoneoperations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzoneoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzoneoperations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1005,31 +1225,48 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Managedzoneoperations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ManagedZoneOperationsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedzoneoperations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedzoneoperations$List,
+        callback:
+            BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Managedzoneoperations$List|
+        BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
         callback?:
             BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
         void|AxiosPromise<Schema$ManagedZoneOperationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Managedzoneoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzoneoperations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1055,6 +1292,62 @@ export namespace dns_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Managedzoneoperations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the operation addressed by this request.
+     */
+    operation?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedzoneoperations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the managed zone addressed by this request.
+     */
+    managedZone?: string;
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Sorting criterion. The only supported values are START_TIME and ID.
+     */
+    sortBy?: string;
+  }
+
 
   export class Resource$Managedzones {
     root: Dns;
@@ -1082,26 +1375,39 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ManagedZone>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
-        callback?: BodyResponseCallback<Schema$ManagedZone>): void;
+        params?: Params$Resource$Managedzones$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ManagedZone>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
+        params: Params$Resource$Managedzones$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
+        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    create(
+        params: Params$Resource$Managedzones$Create,
+        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    create(callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Managedzones$Create|
+        BodyResponseCallback<Schema$ManagedZone>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ManagedZone>,
         callback?: BodyResponseCallback<Schema$ManagedZone>):
         void|AxiosPromise<Schema$ManagedZone> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzones$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1138,22 +1444,37 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Managedzones$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Managedzones$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Managedzones$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Managedzones$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzones$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1192,24 +1513,34 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Managedzones$Get,
         options?: MethodOptions): AxiosPromise<Schema$ManagedZone>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
-        callback?: BodyResponseCallback<Schema$ManagedZone>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
+    get(params: Params$Resource$Managedzones$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
+        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    get(params: Params$Resource$Managedzones$Get,
+        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    get(callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    get(paramsOrCallback?: Params$Resource$Managedzones$Get|
+        BodyResponseCallback<Schema$ManagedZone>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ManagedZone>,
         callback?: BodyResponseCallback<Schema$ManagedZone>):
         void|AxiosPromise<Schema$ManagedZone> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Managedzones$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1249,28 +1580,39 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Managedzones$List, options?: MethodOptions):
         AxiosPromise<Schema$ManagedZonesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedzones$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ManagedZonesListResponse>,
-        callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
+        callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedzones$List,
+        callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Managedzones$List|
+        BodyResponseCallback<Schema$ManagedZonesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedZonesListResponse>,
         callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>):
         void|AxiosPromise<Schema$ManagedZonesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzones$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1308,26 +1650,38 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Managedzones$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Managedzones$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Managedzones$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Managedzones$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzones$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1367,26 +1721,39 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Managedzones$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Managedzones$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        params: Params$Resource$Managedzones$Update,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Managedzones$Update|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedzones$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedzones$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1410,6 +1777,150 @@ export namespace dns_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Managedzones$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ManagedZone;
+  }
+  export interface Params$Resource$Managedzones$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedzones$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedzones$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Restricts the list to return only zones with this domain name.
+     */
+    dnsName?: string;
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedzones$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ManagedZone;
+  }
+  export interface Params$Resource$Managedzones$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ManagedZone;
+  }
+
 
   export class Resource$Projects {
     root: Dns;
@@ -1436,23 +1947,33 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+    get(params?: Params$Resource$Projects$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Project>;
+    get(params: Params$Resource$Projects$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(params: Params$Resource$Projects$Get,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(callback: BodyResponseCallback<Schema$Project>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Get|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1474,6 +1995,25 @@ export namespace dns_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+
 
   export class Resource$Resourcerecordsets {
     root: Dns;
@@ -1505,29 +2045,44 @@ export namespace dns_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Resourcerecordsets$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ResourceRecordSetsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Resourcerecordsets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
-        callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
+        callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Resourcerecordsets$List,
+        callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Resourcerecordsets$List|
+        BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
         callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
         void|AxiosPromise<Schema$ResourceRecordSetsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resourcerecordsets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcerecordsets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1552,5 +2107,42 @@ export namespace dns_v1beta2 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Resourcerecordsets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed
+     * zone name or id.
+     */
+    managedZone?: string;
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Restricts the list to return only records with this fully qualified
+     * domain name.
+     */
+    name?: string;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * Restricts the list to return only records of this type. If present, the
+     * "name" parameter must also be present.
+     */
+    type?: string;
   }
 }

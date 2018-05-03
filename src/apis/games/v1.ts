@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace games_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Play Game Services API
    *
@@ -102,61 +105,61 @@ export namespace games_v1 {
      * &quot;STANDARD&quot; - Achievement is either locked or unlocked.  -
      * &quot;INCREMENTAL&quot; - Achievement is incremental.
      */
-    achievementType: string;
+    achievementType?: string;
     /**
      * The description of the achievement.
      */
-    description: string;
+    description?: string;
     /**
      * Experience points which will be earned when unlocking this achievement.
      */
-    experiencePoints: string;
+    experiencePoints?: string;
     /**
      * The total steps for an incremental achievement as a string.
      */
-    formattedTotalSteps: string;
+    formattedTotalSteps?: string;
     /**
      * The ID of the achievement.
      */
-    id: string;
+    id?: string;
     /**
      * The initial state of the achievement. Possible values are:   -
      * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
      * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
      * unlocked.
      */
-    initialState: string;
+    initialState?: string;
     /**
      * Indicates whether the revealed icon image being returned is a default
      * image, or is provided by the game.
      */
-    isRevealedIconUrlDefault: boolean;
+    isRevealedIconUrlDefault?: boolean;
     /**
      * Indicates whether the unlocked icon image being returned is a default
      * image, or is game-provided.
      */
-    isUnlockedIconUrlDefault: boolean;
+    isUnlockedIconUrlDefault?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementDefinition.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the achievement.
      */
-    name: string;
+    name?: string;
     /**
      * The image URL for the revealed achievement icon.
      */
-    revealedIconUrl: string;
+    revealedIconUrl?: string;
     /**
      * The total steps for an incremental achievement.
      */
-    totalSteps: number;
+    totalSteps?: number;
     /**
      * The image URL for the unlocked achievement icon.
      */
-    unlockedIconUrl: string;
+    unlockedIconUrl?: string;
   }
   /**
    * This is a JSON template for a list of achievement definition objects.
@@ -165,16 +168,16 @@ export namespace games_v1 {
     /**
      * The achievement definitions.
      */
-    items: Schema$AchievementDefinition[];
+    items?: Schema$AchievementDefinition[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementDefinitionsListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for an achievement increment response
@@ -183,17 +186,17 @@ export namespace games_v1 {
     /**
      * The current steps recorded for this incremental achievement.
      */
-    currentSteps: number;
+    currentSteps?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementIncrementResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether the current steps for the achievement has reached the number of
      * steps required to unlock.
      */
-    newlyUnlocked: boolean;
+    newlyUnlocked?: boolean;
   }
   /**
    * This is a JSON template for an achievement reveal response
@@ -205,12 +208,12 @@ export namespace games_v1 {
      * values are:   - &quot;REVEALED&quot; - Achievement is revealed.  -
      * &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
-    currentState: string;
+    currentState?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementRevealResponse.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for an achievement set steps at least response.
@@ -219,17 +222,17 @@ export namespace games_v1 {
     /**
      * The current steps recorded for this incremental achievement.
      */
-    currentSteps: number;
+    currentSteps?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementSetStepsAtLeastResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether the the current steps for the achievement has reached the number
      * of steps required to unlock.
      */
-    newlyUnlocked: boolean;
+    newlyUnlocked?: boolean;
   }
   /**
    * This is a JSON template for an achievement unlock response
@@ -239,12 +242,12 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementUnlockResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether this achievement was newly unlocked (that is, whether the unlock
      * request for the achievement was the first for the player).
      */
-    newlyUnlocked: boolean;
+    newlyUnlocked?: boolean;
   }
   /**
    * This is a JSON template for a list of achievement update requests.
@@ -254,11 +257,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementUpdateMultipleRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The individual achievement update requests.
      */
-    updates: Schema$AchievementUpdateRequest[];
+    updates?: Schema$AchievementUpdateRequest[];
   }
   /**
    * This is a JSON template for an achievement unlock response.
@@ -268,11 +271,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementUpdateListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The updated state of the achievements.
      */
-    updatedAchievements: Schema$AchievementUpdateResponse[];
+    updatedAchievements?: Schema$AchievementUpdateResponse[];
   }
   /**
    * This is a JSON template for a request to update an achievement.
@@ -281,22 +284,22 @@ export namespace games_v1 {
     /**
      * The achievement this update is being applied to.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * The payload if an update of type INCREMENT was requested for the
      * achievement.
      */
-    incrementPayload: Schema$GamesAchievementIncrement;
+    incrementPayload?: Schema$GamesAchievementIncrement;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementUpdateRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The payload if an update of type SET_STEPS_AT_LEAST was requested for the
      * achievement.
      */
-    setStepsAtLeastPayload: Schema$GamesAchievementSetStepsAtLeast;
+    setStepsAtLeastPayload?: Schema$GamesAchievementSetStepsAtLeast;
     /**
      * The type of update being applied. Possible values are:   -
      * &quot;REVEAL&quot; - Achievement is revealed.  - &quot;UNLOCK&quot; -
@@ -304,7 +307,7 @@ export namespace games_v1 {
      * incremented.  - &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is
      * set to at least the passed value.
      */
-    updateType: string;
+    updateType?: string;
   }
   /**
    * This is a JSON template for an achievement update response.
@@ -313,32 +316,32 @@ export namespace games_v1 {
     /**
      * The achievement this update is was applied to.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * The current state of the achievement. Possible values are:   -
      * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
      * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
      * unlocked.
      */
-    currentState: string;
+    currentState?: string;
     /**
      * The current steps recorded for this achievement if it is incremental.
      */
-    currentSteps: number;
+    currentSteps?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#achievementUpdateResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether this achievement was newly unlocked (that is, whether the unlock
      * request for the achievement was the first for the player).
      */
-    newlyUnlocked: boolean;
+    newlyUnlocked?: boolean;
     /**
      * Whether the requested updates actually affected the achievement.
      */
-    updateOccurred: boolean;
+    updateOccurred?: boolean;
   }
   /**
    * This is a JSON template for aggregate stats.
@@ -347,24 +350,24 @@ export namespace games_v1 {
     /**
      * The number of messages sent between a pair of peers.
      */
-    count: string;
+    count?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#aggregateStats.
      */
-    kind: string;
+    kind?: string;
     /**
      * The maximum amount.
      */
-    max: string;
+    max?: string;
     /**
      * The minimum amount.
      */
-    min: string;
+    min?: string;
     /**
      * The total number of bytes sent for messages between a pair of peers.
      */
-    sum: string;
+    sum?: string;
   }
   /**
    * This is a JSON template for an anonymous player
@@ -373,16 +376,16 @@ export namespace games_v1 {
     /**
      * The base URL for the image to display for the anonymous player.
      */
-    avatarImageUrl: string;
+    avatarImageUrl?: string;
     /**
      * The name to display for the anonymous player.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#anonymousPlayer.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for the Application resource.
@@ -391,58 +394,58 @@ export namespace games_v1 {
     /**
      * The number of achievements visible to the currently authenticated player.
      */
-    achievement_count: number;
+    achievement_count?: number;
     /**
      * The assets of the application.
      */
-    assets: Schema$ImageAsset[];
+    assets?: Schema$ImageAsset[];
     /**
      * The author of the application.
      */
-    author: string;
+    author?: string;
     /**
      * The category of the application.
      */
-    category: Schema$ApplicationCategory;
+    category?: Schema$ApplicationCategory;
     /**
      * The description of the application.
      */
-    description: string;
+    description?: string;
     /**
      * A list of features that have been enabled for the application. Possible
      * values are:   - &quot;SNAPSHOTS&quot; - Snapshots has been enabled
      */
-    enabledFeatures: string[];
+    enabledFeatures?: string[];
     /**
      * The ID of the application.
      */
-    id: string;
+    id?: string;
     /**
      * The instances of the application.
      */
-    instances: Schema$Instance[];
+    instances?: Schema$Instance[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#application.
      */
-    kind: string;
+    kind?: string;
     /**
      * The last updated timestamp of the application.
      */
-    lastUpdatedTimestamp: string;
+    lastUpdatedTimestamp?: string;
     /**
      * The number of leaderboards visible to the currently authenticated player.
      */
-    leaderboard_count: number;
+    leaderboard_count?: number;
     /**
      * The name of the application.
      */
-    name: string;
+    name?: string;
     /**
      * A hint to the client UI for what color to use as an app-themed color. The
      * color is given as an RGB triplet (e.g. &quot;E0E0E0&quot;).
      */
-    themeColor: string;
+    themeColor?: string;
   }
   /**
    * This is a JSON template for an application category object.
@@ -452,15 +455,15 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#applicationCategory.
      */
-    kind: string;
+    kind?: string;
     /**
      * The primary category.
      */
-    primary: string;
+    primary?: string;
     /**
      * The secondary category.
      */
-    secondary: string;
+    secondary?: string;
   }
   /**
    * This is a JSON template for a third party application verification response
@@ -471,16 +474,16 @@ export namespace games_v1 {
      * An alternate ID that was once used for the player that was issued the
      * auth token used in this request. (This field is not normally populated.)
      */
-    alternate_player_id: string;
+    alternate_player_id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#applicationVerifyResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The ID of the player that was issued the auth token used in this request.
      */
-    player_id: string;
+    player_id?: string;
   }
   /**
    * This is a JSON template for data related to individual game categories.
@@ -489,16 +492,16 @@ export namespace games_v1 {
     /**
      * The category name.
      */
-    category: string;
+    category?: string;
     /**
      * Experience points earned in this category.
      */
-    experiencePoints: string;
+    experiencePoints?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#category.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for a list of category data objects.
@@ -507,16 +510,16 @@ export namespace games_v1 {
     /**
      * The list of categories with usage data.
      */
-    items: Schema$Category[];
+    items?: Schema$Category[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#categoryListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a batch update failure resource.
@@ -534,16 +537,16 @@ export namespace games_v1 {
      * &quot;RECORD_RATE_HIGH&quot;: An attempt was made to record data faster
      * than the server will apply updates.
      */
-    failureCause: string;
+    failureCause?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventBatchRecordFailure.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time range which was rejected; empty for a request-wide failure.
      */
-    range: Schema$EventPeriodRange;
+    range?: Schema$EventPeriodRange;
   }
   /**
    * This is a JSON template for an event child relationship resource.
@@ -552,12 +555,12 @@ export namespace games_v1 {
     /**
      * The ID of the child event.
      */
-    childId: string;
+    childId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventChild.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for an event definition resource.
@@ -566,40 +569,40 @@ export namespace games_v1 {
     /**
      * A list of events that are a child of this event.
      */
-    childEvents: Schema$EventChild[];
+    childEvents?: Schema$EventChild[];
     /**
      * Description of what this event represents.
      */
-    description: string;
+    description?: string;
     /**
      * The name to display for the event.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The ID of the event.
      */
-    id: string;
+    id?: string;
     /**
      * The base URL for the image that represents the event.
      */
-    imageUrl: string;
+    imageUrl?: string;
     /**
      * Indicates whether the icon image being returned is a default image, or is
      * game-provided.
      */
-    isDefaultImageUrl: boolean;
+    isDefaultImageUrl?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventDefinition.
      */
-    kind: string;
+    kind?: string;
     /**
      * The visibility of event being tracked in this definition. Possible values
      * are:   - &quot;REVEALED&quot;: This event should be visible to all users.
      * - &quot;HIDDEN&quot;: This event should only be shown to users that have
      * recorded this event at least once.
      */
-    visibility: string;
+    visibility?: string;
   }
   /**
    * This is a JSON template for a ListDefinitions response.
@@ -608,16 +611,16 @@ export namespace games_v1 {
     /**
      * The event definitions.
      */
-    items: Schema$EventDefinition[];
+    items?: Schema$EventDefinition[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventDefinitionListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for an event period time range.
@@ -627,17 +630,17 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventPeriodRange.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time when this update period ends, in millis, since 1970 UTC (Unix
      * Epoch).
      */
-    periodEndMillis: string;
+    periodEndMillis?: string;
     /**
      * The time when this update period begins, in millis, since 1970 UTC (Unix
      * Epoch).
      */
-    periodStartMillis: string;
+    periodStartMillis?: string;
   }
   /**
    * This is a JSON template for an event period update resource.
@@ -647,15 +650,15 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventPeriodUpdate.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time period being covered by this update.
      */
-    timePeriod: Schema$EventPeriodRange;
+    timePeriod?: Schema$EventPeriodRange;
     /**
      * The updates being made for this time period.
      */
-    updates: Schema$EventUpdateRequest[];
+    updates?: Schema$EventUpdateRequest[];
   }
   /**
    * This is a JSON template for an event update failure resource.
@@ -664,19 +667,19 @@ export namespace games_v1 {
     /**
      * The ID of the event that was not updated.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The cause for the update failure. Possible values are:   -
      * &quot;NOT_FOUND&quot; - An attempt was made to set an event that was not
      * defined.  - &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to
      * increment an event by a non-positive value.
      */
-    failureCause: string;
+    failureCause?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventRecordFailure.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for an event period update resource.
@@ -686,20 +689,20 @@ export namespace games_v1 {
      * The current time when this update was sent, in milliseconds, since 1970
      * UTC (Unix Epoch).
      */
-    currentTimeMillis: string;
+    currentTimeMillis?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventRecordRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The request ID used to identify this attempt to record events.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * A list of the time period updates being made in this request.
      */
-    timePeriods: Schema$EventPeriodUpdate[];
+    timePeriods?: Schema$EventPeriodUpdate[];
   }
   /**
    * This is a JSON template for an event period update resource.
@@ -708,16 +711,16 @@ export namespace games_v1 {
     /**
      * The ID of the event being modified in this update.
      */
-    definitionId: string;
+    definitionId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventUpdateRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The number of times this event occurred in this time period.
      */
-    updateCount: string;
+    updateCount?: string;
   }
   /**
    * This is a JSON template for an event period update resource.
@@ -726,20 +729,20 @@ export namespace games_v1 {
     /**
      * Any batch-wide failures which occurred applying updates.
      */
-    batchFailures: Schema$EventBatchRecordFailure[];
+    batchFailures?: Schema$EventBatchRecordFailure[];
     /**
      * Any failures updating a particular event.
      */
-    eventFailures: Schema$EventRecordFailure[];
+    eventFailures?: Schema$EventRecordFailure[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#eventUpdateResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The current status of any updated events
      */
-    playerEvents: Schema$PlayerEvent[];
+    playerEvents?: Schema$PlayerEvent[];
   }
   /**
    * This is a JSON template for the payload to request to increment an
@@ -750,15 +753,15 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#GamesAchievementIncrement.
      */
-    kind: string;
+    kind?: string;
     /**
      * The requestId associated with an increment to an achievement.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * The number of steps to be incremented.
      */
-    steps: number;
+    steps?: number;
   }
   /**
    * This is a JSON template for the payload to request to increment an
@@ -769,11 +772,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#GamesAchievementSetStepsAtLeast.
      */
-    kind: string;
+    kind?: string;
     /**
      * The minimum number of steps for the achievement to be set to.
      */
-    steps: number;
+    steps?: number;
   }
   /**
    * This is a JSON template for an image asset object.
@@ -782,24 +785,24 @@ export namespace games_v1 {
     /**
      * The height of the asset.
      */
-    height: number;
+    height?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#imageAsset.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the asset.
      */
-    name: string;
+    name?: string;
     /**
      * The URL of the asset.
      */
-    url: string;
+    url?: string;
     /**
      * The width of the asset.
      */
-    width: number;
+    width?: number;
   }
   /**
    * This is a JSON template for the Instance resource.
@@ -808,42 +811,42 @@ export namespace games_v1 {
     /**
      * URI which shows where a user can acquire this instance.
      */
-    acquisitionUri: string;
+    acquisitionUri?: string;
     /**
      * Platform dependent details for Android.
      */
-    androidInstance: Schema$InstanceAndroidDetails;
+    androidInstance?: Schema$InstanceAndroidDetails;
     /**
      * Platform dependent details for iOS.
      */
-    iosInstance: Schema$InstanceIosDetails;
+    iosInstance?: Schema$InstanceIosDetails;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#instance.
      */
-    kind: string;
+    kind?: string;
     /**
      * Localized display name.
      */
-    name: string;
+    name?: string;
     /**
      * The platform type. Possible values are:   - &quot;ANDROID&quot; -
      * Instance is for Android.  - &quot;IOS&quot; - Instance is for iOS  -
      * &quot;WEB_APP&quot; - Instance is for Web App.
      */
-    platformType: string;
+    platformType?: string;
     /**
      * Flag to show if this game instance supports realtime play.
      */
-    realtimePlay: boolean;
+    realtimePlay?: boolean;
     /**
      * Flag to show if this game instance supports turn based play.
      */
-    turnBasedPlay: boolean;
+    turnBasedPlay?: boolean;
     /**
      * Platform dependent details for Web.
      */
-    webInstance: Schema$InstanceWebDetails;
+    webInstance?: Schema$InstanceWebDetails;
   }
   /**
    * This is a JSON template for the Android instance details resource.
@@ -852,20 +855,20 @@ export namespace games_v1 {
     /**
      * Flag indicating whether the anti-piracy check is enabled.
      */
-    enablePiracyCheck: boolean;
+    enablePiracyCheck?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#instanceAndroidDetails.
      */
-    kind: string;
+    kind?: string;
     /**
      * Android package name which maps to Google Play URL.
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Indicates that this instance is the default for new installations.
      */
-    preferred: boolean;
+    preferred?: boolean;
   }
   /**
    * This is a JSON template for the iOS details resource.
@@ -874,34 +877,34 @@ export namespace games_v1 {
     /**
      * Bundle identifier.
      */
-    bundleIdentifier: string;
+    bundleIdentifier?: string;
     /**
      * iTunes App ID.
      */
-    itunesAppId: string;
+    itunesAppId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#instanceIosDetails.
      */
-    kind: string;
+    kind?: string;
     /**
      * Indicates that this instance is the default for new installations on iPad
      * devices.
      */
-    preferredForIpad: boolean;
+    preferredForIpad?: boolean;
     /**
      * Indicates that this instance is the default for new installations on
      * iPhone devices.
      */
-    preferredForIphone: boolean;
+    preferredForIphone?: boolean;
     /**
      * Flag to indicate if this instance supports iPad.
      */
-    supportIpad: boolean;
+    supportIpad?: boolean;
     /**
      * Flag to indicate if this instance supports iPhone.
      */
-    supportIphone: boolean;
+    supportIphone?: boolean;
   }
   /**
    * This is a JSON template for the Web details resource.
@@ -911,15 +914,15 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#instanceWebDetails.
      */
-    kind: string;
+    kind?: string;
     /**
      * Launch URL for the game.
      */
-    launchUrl: string;
+    launchUrl?: string;
     /**
      * Indicates that this instance is the default for new installations.
      */
-    preferred: boolean;
+    preferred?: boolean;
   }
   /**
    * This is a JSON template for the Leaderboard resource.
@@ -928,32 +931,32 @@ export namespace games_v1 {
     /**
      * The icon for the leaderboard.
      */
-    iconUrl: string;
+    iconUrl?: string;
     /**
      * The leaderboard ID.
      */
-    id: string;
+    id?: string;
     /**
      * Indicates whether the icon image being returned is a default image, or is
      * game-provided.
      */
-    isIconUrlDefault: boolean;
+    isIconUrlDefault?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboard.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the leaderboard.
      */
-    name: string;
+    name?: string;
     /**
      * How scores are ordered. Possible values are:   -
      * &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are
      * sorted in descending order.  - &quot;SMALLER_IS_BETTER&quot; - Smaller
      * values are better; scores are sorted in ascending order.
      */
-    order: string;
+    order?: string;
   }
   /**
    * This is a JSON template for the Leaderboard Entry resource.
@@ -962,45 +965,45 @@ export namespace games_v1 {
     /**
      * The localized string for the numerical value of this score.
      */
-    formattedScore: string;
+    formattedScore?: string;
     /**
      * The localized string for the rank of this score for this leaderboard.
      */
-    formattedScoreRank: string;
+    formattedScoreRank?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboardEntry.
      */
-    kind: string;
+    kind?: string;
     /**
      * The player who holds this score.
      */
-    player: Schema$Player;
+    player?: Schema$Player;
     /**
      * The rank of this score for this leaderboard.
      */
-    scoreRank: string;
+    scoreRank?: string;
     /**
      * Additional information about the score. Values must contain no more than
      * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
-    scoreTag: string;
+    scoreTag?: string;
     /**
      * The numerical value of this score.
      */
-    scoreValue: string;
+    scoreValue?: string;
     /**
      * The time span of this high score. Possible values are:   -
      * &quot;ALL_TIME&quot; - The score is an all-time high score.  -
      * &quot;WEEKLY&quot; - The score is a weekly high score.  -
      * &quot;DAILY&quot; - The score is a daily high score.
      */
-    timeSpan: string;
+    timeSpan?: string;
     /**
      * The timestamp at which this score was recorded, in milliseconds since the
      * epoch in UTC.
      */
-    writeTimestampMillis: string;
+    writeTimestampMillis?: string;
   }
   /**
    * This is a JSON template for a list of leaderboard objects.
@@ -1009,16 +1012,16 @@ export namespace games_v1 {
     /**
      * The leaderboards.
      */
-    items: Schema$Leaderboard[];
+    items?: Schema$Leaderboard[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboardListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a score rank in a leaderboard.
@@ -1027,24 +1030,24 @@ export namespace games_v1 {
     /**
      * The number of scores in the leaderboard as a string.
      */
-    formattedNumScores: string;
+    formattedNumScores?: string;
     /**
      * The rank in the leaderboard as a string.
      */
-    formattedRank: string;
+    formattedRank?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboardScoreRank.
      */
-    kind: string;
+    kind?: string;
     /**
      * The number of scores in the leaderboard.
      */
-    numScores: string;
+    numScores?: string;
     /**
      * The rank in the leaderboard.
      */
-    rank: string;
+    rank?: string;
   }
   /**
    * This is a JSON template for a ListScores response.
@@ -1053,20 +1056,20 @@ export namespace games_v1 {
     /**
      * The scores in the leaderboard.
      */
-    items: Schema$LeaderboardEntry[];
+    items?: Schema$LeaderboardEntry[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#leaderboardScores.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of scores in the leaderboard.
      */
-    numScores: string;
+    numScores?: string;
     /**
      * The score of the requesting player on the leaderboard. The player&#39;s
      * score may appear both here and in the list of scores above. If you are
@@ -1074,11 +1077,11 @@ export namespace games_v1 {
      * information publicly, the scoreRank and formattedScoreRank values will
      * not be present.
      */
-    playerScore: Schema$LeaderboardEntry;
+    playerScore?: Schema$LeaderboardEntry;
     /**
      * The pagination token for the previous page of results.
      */
-    prevPageToken: string;
+    prevPageToken?: string;
   }
   /**
    * This is a JSON template for the metagame config resource
@@ -1088,16 +1091,16 @@ export namespace games_v1 {
      * Current version of the metagame configuration data. When this data is
      * updated, the version number will be increased by one.
      */
-    currentVersion: number;
+    currentVersion?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#metagameConfig.
      */
-    kind: string;
+    kind?: string;
     /**
      * The list of player levels.
      */
-    playerLevels: Schema$PlayerLevel[];
+    playerLevels?: Schema$PlayerLevel[];
   }
   /**
    * This is a JSON template for network diagnostics reported for a client.
@@ -1106,27 +1109,27 @@ export namespace games_v1 {
     /**
      * The Android network subtype.
      */
-    androidNetworkSubtype: number;
+    androidNetworkSubtype?: number;
     /**
      * The Android network type.
      */
-    androidNetworkType: number;
+    androidNetworkType?: number;
     /**
      * iOS network type as defined in Reachability.h.
      */
-    iosNetworkType: number;
+    iosNetworkType?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#networkDiagnostics.
      */
-    kind: string;
+    kind?: string;
     /**
      * The MCC+MNC code for the client&#39;s network connection. On Android:
      * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator()
      * On iOS, see:
      * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
      */
-    networkOperatorCode: string;
+    networkOperatorCode?: string;
     /**
      * The name of the carrier of the client&#39;s network connection. On
      * Android:
@@ -1134,12 +1137,12 @@ export namespace games_v1 {
      * On iOS:
      * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
      */
-    networkOperatorName: string;
+    networkOperatorName?: string;
     /**
      * The amount of time in milliseconds it took for the client to establish a
      * connection with the XMPP server.
      */
-    registrationLatencyMillis: number;
+    registrationLatencyMillis?: number;
   }
   /**
    * This is a JSON template for a result for a match participant.
@@ -1149,17 +1152,17 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#participantResult.
      */
-    kind: string;
+    kind?: string;
     /**
      * The ID of the participant.
      */
-    participantId: string;
+    participantId?: string;
     /**
      * The placement or ranking of the participant in the match results; a
      * number from one to the number of participants in the match. Multiple
      * participants may have the same placing value in case of a type.
      */
-    placing: number;
+    placing?: number;
     /**
      * The result of the participant for this match. Possible values are:   -
      * &quot;MATCH_RESULT_WIN&quot; - The participant won the match.  -
@@ -1171,7 +1174,7 @@ export namespace games_v1 {
      * &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different
      * results for this participant.
      */
-    result: string;
+    result?: string;
   }
   /**
    * This is a JSON template for peer channel diagnostics.
@@ -1180,36 +1183,36 @@ export namespace games_v1 {
     /**
      * Number of bytes received.
      */
-    bytesReceived: Schema$AggregateStats;
+    bytesReceived?: Schema$AggregateStats;
     /**
      * Number of bytes sent.
      */
-    bytesSent: Schema$AggregateStats;
+    bytesSent?: Schema$AggregateStats;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#peerChannelDiagnostics.
      */
-    kind: string;
+    kind?: string;
     /**
      * Number of messages lost.
      */
-    numMessagesLost: number;
+    numMessagesLost?: number;
     /**
      * Number of messages received.
      */
-    numMessagesReceived: number;
+    numMessagesReceived?: number;
     /**
      * Number of messages sent.
      */
-    numMessagesSent: number;
+    numMessagesSent?: number;
     /**
      * Number of send failures.
      */
-    numSendFailures: number;
+    numSendFailures?: number;
     /**
      * Roundtrip latency stats in milliseconds.
      */
-    roundtripLatencyMillis: Schema$AggregateStats;
+    roundtripLatencyMillis?: Schema$AggregateStats;
   }
   /**
    * This is a JSON template for peer session diagnostics.
@@ -1218,24 +1221,24 @@ export namespace games_v1 {
     /**
      * Connected time in milliseconds.
      */
-    connectedTimestampMillis: string;
+    connectedTimestampMillis?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#peerSessionDiagnostics.
      */
-    kind: string;
+    kind?: string;
     /**
      * The participant ID of the peer.
      */
-    participantId: string;
+    participantId?: string;
     /**
      * Reliable channel diagnostics.
      */
-    reliableChannel: Schema$PeerChannelDiagnostics;
+    reliableChannel?: Schema$PeerChannelDiagnostics;
     /**
      * Unreliable channel diagnostics.
      */
-    unreliableChannel: Schema$PeerChannelDiagnostics;
+    unreliableChannel?: Schema$PeerChannelDiagnostics;
   }
   /**
    * This is a JSON template for metadata about a player playing a game with the
@@ -1246,17 +1249,17 @@ export namespace games_v1 {
      * True if the player was auto-matched with the currently authenticated
      * user.
      */
-    autoMatched: boolean;
+    autoMatched?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#played.
      */
-    kind: string;
+    kind?: string;
     /**
      * The last time the player played the game in milliseconds since the epoch
      * in UTC.
      */
-    timeMillis: string;
+    timeMillis?: string;
   }
   /**
    * This is a JSON template for a Player resource.
@@ -1265,59 +1268,59 @@ export namespace games_v1 {
     /**
      * The base URL for the image that represents the player.
      */
-    avatarImageUrl: string;
+    avatarImageUrl?: string;
     /**
      * The url to the landscape mode player banner image.
      */
-    bannerUrlLandscape: string;
+    bannerUrlLandscape?: string;
     /**
      * The url to the portrait mode player banner image.
      */
-    bannerUrlPortrait: string;
+    bannerUrlPortrait?: string;
     /**
      * The name to display for the player.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * An object to represent Play Game experience information for the player.
      */
-    experienceInfo: Schema$PlayerExperienceInfo;
+    experienceInfo?: Schema$PlayerExperienceInfo;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#player.
      */
-    kind: string;
+    kind?: string;
     /**
      * Details about the last time this player played a multiplayer game with
      * the currently authenticated player. Populated for PLAYED_WITH player
      * collection members.
      */
-    lastPlayedWith: Schema$Played;
+    lastPlayedWith?: Schema$Played;
     /**
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name: any;
+    name?: any;
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
      * for the requesting player, only if the player ID has subsequently
      * changed, and only to clients that support remapping player IDs.
      */
-    originalPlayerId: string;
+    originalPlayerId?: string;
     /**
      * The ID of the player.
      */
-    playerId: string;
+    playerId?: string;
     /**
      * The player&#39;s profile settings. Controls whether or not the
      * player&#39;s profile is visible to other players.
      */
-    profileSettings: Schema$ProfileSettings;
+    profileSettings?: Schema$ProfileSettings;
     /**
      * The player&#39;s title rewarded for their game activities.
      */
-    title: string;
+    title?: string;
   }
   /**
    * This is a JSON template for an achievement object.
@@ -1328,34 +1331,34 @@ export namespace games_v1 {
      * - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is
      * revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
-    achievementState: string;
+    achievementState?: string;
     /**
      * The current steps for an incremental achievement.
      */
-    currentSteps: number;
+    currentSteps?: number;
     /**
      * Experience points earned for the achievement. This field is absent for
      * achievements that have not yet been unlocked and 0 for achievements that
      * have been unlocked by testers but that are unpublished.
      */
-    experiencePoints: string;
+    experiencePoints?: string;
     /**
      * The current steps for an incremental achievement as a string.
      */
-    formattedCurrentStepsString: string;
+    formattedCurrentStepsString?: string;
     /**
      * The ID of the achievement.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerAchievement.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp of the last modification to this achievement&#39;s state.
      */
-    lastUpdatedTimestamp: string;
+    lastUpdatedTimestamp?: string;
   }
   /**
    * This is a JSON template for a list of achievement objects.
@@ -1364,16 +1367,16 @@ export namespace games_v1 {
     /**
      * The achievements.
      */
-    items: Schema$PlayerAchievement[];
+    items?: Schema$PlayerAchievement[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerAchievementListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for an event status resource.
@@ -1382,26 +1385,26 @@ export namespace games_v1 {
     /**
      * The ID of the event definition.
      */
-    definitionId: string;
+    definitionId?: string;
     /**
      * The current number of times this event has occurred, as a string. The
      * formatting of this string depends on the configuration of your event in
      * the Play Games Developer Console.
      */
-    formattedNumEvents: string;
+    formattedNumEvents?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerEvent.
      */
-    kind: string;
+    kind?: string;
     /**
      * The current number of times this event has occurred.
      */
-    numEvents: string;
+    numEvents?: string;
     /**
      * The ID of the player.
      */
-    playerId: string;
+    playerId?: string;
   }
   /**
    * This is a JSON template for a ListByPlayer response.
@@ -1410,16 +1413,16 @@ export namespace games_v1 {
     /**
      * The player events.
      */
-    items: Schema$PlayerEvent[];
+    items?: Schema$PlayerEvent[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerEventListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for 1P/3P metadata about the player&#39;s
@@ -1429,26 +1432,26 @@ export namespace games_v1 {
     /**
      * The current number of experience points for the player.
      */
-    currentExperiencePoints: string;
+    currentExperiencePoints?: string;
     /**
      * The current level of the player.
      */
-    currentLevel: Schema$PlayerLevel;
+    currentLevel?: Schema$PlayerLevel;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerExperienceInfo.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp when the player was leveled up, in millis since Unix epoch
      * UTC.
      */
-    lastLevelUpTimestampMillis: string;
+    lastLevelUpTimestampMillis?: string;
     /**
      * The next level of the player. If the current level is the maximum level,
      * this should be same as the current level.
      */
-    nextLevel: Schema$PlayerLevel;
+    nextLevel?: Schema$PlayerLevel;
   }
   /**
    * This is a JSON template for a player leaderboard score object.
@@ -1458,45 +1461,45 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerLeaderboardScore.
      */
-    kind: string;
+    kind?: string;
     /**
      * The ID of the leaderboard this score is in.
      */
-    leaderboard_id: string;
+    leaderboard_id?: string;
     /**
      * The public rank of the score in this leaderboard. This object will not be
      * present if the user is not sharing their scores publicly.
      */
-    publicRank: Schema$LeaderboardScoreRank;
+    publicRank?: Schema$LeaderboardScoreRank;
     /**
      * The formatted value of this score.
      */
-    scoreString: string;
+    scoreString?: string;
     /**
      * Additional information about the score. Values must contain no more than
      * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
-    scoreTag: string;
+    scoreTag?: string;
     /**
      * The numerical value of this score.
      */
-    scoreValue: string;
+    scoreValue?: string;
     /**
      * The social rank of the score in this leaderboard.
      */
-    socialRank: Schema$LeaderboardScoreRank;
+    socialRank?: Schema$LeaderboardScoreRank;
     /**
      * The time span of this score. Possible values are:   -
      * &quot;ALL_TIME&quot; - The score is an all-time score.  -
      * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
      * The score is a daily score.
      */
-    timeSpan: string;
+    timeSpan?: string;
     /**
      * The timestamp at which this score was recorded, in milliseconds since the
      * epoch in UTC.
      */
-    writeTimestamp: string;
+    writeTimestamp?: string;
   }
   /**
    * This is a JSON template for a list of player leaderboard scores.
@@ -1505,20 +1508,20 @@ export namespace games_v1 {
     /**
      * The leaderboard scores.
      */
-    items: Schema$PlayerLeaderboardScore[];
+    items?: Schema$PlayerLeaderboardScore[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerLeaderboardScoreListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The Player resources for the owner of this score.
      */
-    player: Schema$Player;
+    player?: Schema$Player;
   }
   /**
    * This is a JSON template for 1P/3P metadata about a user&#39;s level.
@@ -1528,19 +1531,19 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerLevel.
      */
-    kind: string;
+    kind?: string;
     /**
      * The level for the user.
      */
-    level: number;
+    level?: number;
     /**
      * The maximum experience points for this level.
      */
-    maxExperiencePoints: string;
+    maxExperiencePoints?: string;
     /**
      * The minimum experience points for this level.
      */
-    minExperiencePoints: string;
+    minExperiencePoints?: string;
   }
   /**
    * This is a JSON template for a third party player list response.
@@ -1549,16 +1552,16 @@ export namespace games_v1 {
     /**
      * The players.
      */
-    items: Schema$Player[];
+    items?: Schema$Player[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a player score.
@@ -1567,28 +1570,28 @@ export namespace games_v1 {
     /**
      * The formatted score for this player score.
      */
-    formattedScore: string;
+    formattedScore?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerScore.
      */
-    kind: string;
+    kind?: string;
     /**
      * The numerical value for this player score.
      */
-    score: string;
+    score?: string;
     /**
      * Additional information about this score. Values will contain no more than
      * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
-    scoreTag: string;
+    scoreTag?: string;
     /**
      * The time span for this player score. Possible values are:   -
      * &quot;ALL_TIME&quot; - The score is an all-time score.  -
      * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
      * The score is a daily score.
      */
-    timeSpan: string;
+    timeSpan?: string;
   }
   /**
    * This is a JSON template for a list of score submission statuses.
@@ -1598,11 +1601,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerScoreListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The score submissions statuses.
      */
-    submittedScores: Schema$PlayerScoreResponse[];
+    submittedScores?: Schema$PlayerScoreResponse[];
   }
   /**
    * This is a JSON template for a list of leaderboard entry resources.
@@ -1614,32 +1617,32 @@ export namespace games_v1 {
      * The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a
      * weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
-    beatenScoreTimeSpans: string[];
+    beatenScoreTimeSpans?: string[];
     /**
      * The formatted value of the submitted score.
      */
-    formattedScore: string;
+    formattedScore?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerScoreResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The leaderboard ID that this score was submitted to.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * Additional information about this score. Values will contain no more than
      * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
-    scoreTag: string;
+    scoreTag?: string;
     /**
      * The scores in time spans that have not been beaten. As an example, the
      * submitted score may be better than the player&#39;s DAILY score, but not
      * better than the player&#39;s scores for the WEEKLY or ALL_TIME time
      * spans.
      */
-    unbeatenScores: Schema$PlayerScore[];
+    unbeatenScores?: Schema$PlayerScore[];
   }
   /**
    * This is a JSON template for a list of score submission requests
@@ -1649,11 +1652,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#playerScoreSubmissionList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The score submissions.
      */
-    scores: Schema$ScoreSubmission[];
+    scores?: Schema$ScoreSubmission[];
   }
   /**
    * This is a JSON template for profile settings
@@ -1663,12 +1666,12 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#profileSettings.
      */
-    kind: string;
+    kind?: string;
     /**
      * The player&#39;s current profile visibility. This field is visible to
      * both 1P and 3P APIs.
      */
-    profileVisible: boolean;
+    profileVisible?: boolean;
   }
   /**
    * This is a JSON template for a push token resource.
@@ -1680,20 +1683,20 @@ export namespace games_v1 {
      * compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible
      * values of PLATFORM_TYPE are:   - IOS - Push token is for iOS
      */
-    clientRevision: string;
+    clientRevision?: string;
     /**
      * Unique identifier for this push token.
      */
-    id: Schema$PushTokenId;
+    id?: Schema$PushTokenId;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#pushToken.
      */
-    kind: string;
+    kind?: string;
     /**
      * The preferred language for notifications that are sent using this token.
      */
-    language: string;
+    language?: string;
   }
   /**
    * This is a JSON template for a push token ID resource.
@@ -1702,12 +1705,12 @@ export namespace games_v1 {
     /**
      * A push token ID for iOS devices.
      */
-    ios: any;
+    ios?: any;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#pushTokenId.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for a Quest resource.
@@ -1717,71 +1720,71 @@ export namespace games_v1 {
      * The timestamp at which the user accepted the quest in milliseconds since
      * the epoch in UTC. Only present if the player has accepted the quest.
      */
-    acceptedTimestampMillis: string;
+    acceptedTimestampMillis?: string;
     /**
      * The ID of the application this quest is part of.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * The banner image URL for the quest.
      */
-    bannerUrl: string;
+    bannerUrl?: string;
     /**
      * The description of the quest.
      */
-    description: string;
+    description?: string;
     /**
      * The timestamp at which the quest ceases to be active in milliseconds
      * since the epoch in UTC.
      */
-    endTimestampMillis: string;
+    endTimestampMillis?: string;
     /**
      * The icon image URL for the quest.
      */
-    iconUrl: string;
+    iconUrl?: string;
     /**
      * The ID of the quest.
      */
-    id: string;
+    id?: string;
     /**
      * Indicates whether the banner image being returned is a default image, or
      * is game-provided.
      */
-    isDefaultBannerUrl: boolean;
+    isDefaultBannerUrl?: boolean;
     /**
      * Indicates whether the icon image being returned is a default image, or is
      * game-provided.
      */
-    isDefaultIconUrl: boolean;
+    isDefaultIconUrl?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#quest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp at which the quest was last updated by the user in
      * milliseconds since the epoch in UTC. Only present if the player has
      * accepted the quest.
      */
-    lastUpdatedTimestampMillis: string;
+    lastUpdatedTimestampMillis?: string;
     /**
      * The quest milestones.
      */
-    milestones: Schema$QuestMilestone[];
+    milestones?: Schema$QuestMilestone[];
     /**
      * The name of the quest.
      */
-    name: string;
+    name?: string;
     /**
      * The timestamp at which the user should be notified that the quest will
      * end soon in milliseconds since the epoch in UTC.
      */
-    notifyTimestampMillis: string;
+    notifyTimestampMillis?: string;
     /**
      * The timestamp at which the quest becomes active in milliseconds since the
      * epoch in UTC.
      */
-    startTimestampMillis: string;
+    startTimestampMillis?: string;
     /**
      * The state of the quest. Possible values are:   - &quot;UPCOMING&quot;:
      * The quest is upcoming. The user can see the quest, but cannot accept it
@@ -1793,7 +1796,7 @@ export namespace games_v1 {
      * &quot;EXPIRED&quot;: The quest has expired and was not accepted.  -
      * &quot;DELETED&quot;: The quest should be deleted from the local database.
      */
-    state: string;
+    state?: string;
   }
   /**
    * This is a JSON template for a Quest Criterion Contribution resource.
@@ -1804,16 +1807,16 @@ export namespace games_v1 {
      * the configuration for the associated event definition in the Play Games
      * Developer Console.
      */
-    formattedValue: string;
+    formattedValue?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#questContribution.
      */
-    kind: string;
+    kind?: string;
     /**
      * The value of the contribution.
      */
-    value: string;
+    value?: string;
   }
   /**
    * This is a JSON template for a Quest Criterion resource.
@@ -1823,18 +1826,18 @@ export namespace games_v1 {
      * The total number of times the associated event must be incremented for
      * the player to complete this quest.
      */
-    completionContribution: Schema$QuestContribution;
+    completionContribution?: Schema$QuestContribution;
     /**
      * The number of increments the player has made toward the completion count
      * event increments required to complete the quest. This value will not
      * exceed the completion contribution. There will be no currentContribution
      * until the player has accepted the quest.
      */
-    currentContribution: Schema$QuestContribution;
+    currentContribution?: Schema$QuestContribution;
     /**
      * The ID of the event the criterion corresponds to.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The value of the event associated with this quest at the time that the
      * quest was accepted. This value may change if event increments that took
@@ -1842,12 +1845,12 @@ export namespace games_v1 {
      * There will be no initialPlayerProgress until the player has accepted the
      * quest.
      */
-    initialPlayerProgress: Schema$QuestContribution;
+    initialPlayerProgress?: Schema$QuestContribution;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#questCriterion.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for a list of quest objects.
@@ -1856,16 +1859,16 @@ export namespace games_v1 {
     /**
      * The quests.
      */
-    items: Schema$Quest[];
+    items?: Schema$Quest[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#questListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for a Quest Milestone resource.
@@ -1876,20 +1879,20 @@ export namespace games_v1 {
      * Base64-encoded string. This is a developer-specified binary blob with
      * size between 0 and 2 KB before encoding.
      */
-    completionRewardData: string;
+    completionRewardData?: string;
     /**
      * The criteria of the milestone.
      */
-    criteria: Schema$QuestCriterion[];
+    criteria?: Schema$QuestCriterion[];
     /**
      * The milestone ID.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#questMilestone.
      */
-    kind: string;
+    kind?: string;
     /**
      * The current state of the milestone. Possible values are:   -
      * &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has
@@ -1898,7 +1901,7 @@ export namespace games_v1 {
      * not yet been completed.  - &quot;NOT_STARTED&quot; - The milestone is for
      * a quest that has not yet been accepted.
      */
-    state: string;
+    state?: string;
   }
   /**
    * This is a JSON template for the result of checking a revision.
@@ -1908,12 +1911,12 @@ export namespace games_v1 {
      * The version of the API this client revision should use when calling API
      * methods.
      */
-    apiVersion: string;
+    apiVersion?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#revisionCheckResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The result of the revision check. Possible values are:   - &quot;OK&quot;
      * - The revision being used is current.  - &quot;DEPRECATED&quot; - There
@@ -1921,7 +1924,7 @@ export namespace games_v1 {
      * works.  - &quot;INVALID&quot; - The revision being used is not supported
      * in any released version.
      */
-    revisionStatus: string;
+    revisionStatus?: string;
   }
   /**
    * This is a JSON template for a room resource object.
@@ -1930,54 +1933,54 @@ export namespace games_v1 {
     /**
      * The ID of the application being played.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * Criteria for auto-matching players into this room.
      */
-    autoMatchingCriteria: Schema$RoomAutoMatchingCriteria;
+    autoMatchingCriteria?: Schema$RoomAutoMatchingCriteria;
     /**
      * Auto-matching status for this room. Not set if the room is not currently
      * in the auto-matching queue.
      */
-    autoMatchingStatus: Schema$RoomAutoMatchStatus;
+    autoMatchingStatus?: Schema$RoomAutoMatchStatus;
     /**
      * Details about the room creation.
      */
-    creationDetails: Schema$RoomModification;
+    creationDetails?: Schema$RoomModification;
     /**
      * This short description is generated by our servers and worded relative to
      * the player requesting the room. It is intended to be displayed when the
      * room is shown in a list (that is, an invitation to a room.)
      */
-    description: string;
+    description?: string;
     /**
      * The ID of the participant that invited the user to the room. Not set if
      * the user was not invited to the room.
      */
-    inviterId: string;
+    inviterId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#room.
      */
-    kind: string;
+    kind?: string;
     /**
      * Details about the last update to the room.
      */
-    lastUpdateDetails: Schema$RoomModification;
+    lastUpdateDetails?: Schema$RoomModification;
     /**
      * The participants involved in the room, along with their statuses.
      * Includes participants who have left or declined invitations.
      */
-    participants: Schema$RoomParticipant[];
+    participants?: Schema$RoomParticipant[];
     /**
      * Globally unique ID for a room.
      */
-    roomId: string;
+    roomId?: string;
     /**
      * The version of the room status: an increasing counter, used by the client
      * to ignore out-of-order updates to room status.
      */
-    roomStatusVersion: number;
+    roomStatusVersion?: number;
     /**
      * The status of the room. Possible values are:   -
      * &quot;ROOM_INVITING&quot; - One or more players have been invited and not
@@ -1990,12 +1993,12 @@ export namespace games_v1 {
      * a room (as a tombstone), or for rooms where all joined participants have
      * left.
      */
-    status: string;
+    status?: string;
     /**
      * The variant / mode of the application being played; can be any integer
      * value, or left blank.
      */
-    variant: number;
+    variant?: number;
   }
   /**
    * This is a JSON template for a room auto-match criteria object.
@@ -2006,22 +2009,22 @@ export namespace games_v1 {
      * exclusive bitmasks, the result must be zero. Can be used to support
      * exclusive roles within a game.
      */
-    exclusiveBitmask: string;
+    exclusiveBitmask?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomAutoMatchingCriteria.
      */
-    kind: string;
+    kind?: string;
     /**
      * The maximum number of players that should be added to the room by
      * auto-matching.
      */
-    maxAutoMatchingPlayers: number;
+    maxAutoMatchingPlayers?: number;
     /**
      * The minimum number of players that should be added to the room by
      * auto-matching.
      */
-    minAutoMatchingPlayers: number;
+    minAutoMatchingPlayers?: number;
   }
   /**
    * This is a JSON template for status of room automatching that is in
@@ -2032,12 +2035,12 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomAutoMatchStatus.
      */
-    kind: string;
+    kind?: string;
     /**
      * An estimate for the amount of time (in seconds) that auto-matching is
      * expected to take to complete.
      */
-    waitEstimateSeconds: number;
+    waitEstimateSeconds?: number;
   }
   /**
    * This is a JSON template for the client address when setting up a room.
@@ -2047,11 +2050,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomClientAddress.
      */
-    kind: string;
+    kind?: string;
     /**
      * The XMPP address of the client on the Google Games XMPP network.
      */
-    xmppAddress: string;
+    xmppAddress?: string;
   }
   /**
    * This is a JSON template for a room creation request.
@@ -2060,39 +2063,39 @@ export namespace games_v1 {
     /**
      * Criteria for auto-matching players into this room.
      */
-    autoMatchingCriteria: Schema$RoomAutoMatchingCriteria;
+    autoMatchingCriteria?: Schema$RoomAutoMatchingCriteria;
     /**
      * The capabilities that this client supports for realtime communication.
      */
-    capabilities: string[];
+    capabilities?: string[];
     /**
      * Client address for the player creating the room.
      */
-    clientAddress: Schema$RoomClientAddress;
+    clientAddress?: Schema$RoomClientAddress;
     /**
      * The player IDs to invite to the room.
      */
-    invitedPlayerIds: string[];
+    invitedPlayerIds?: string[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomCreateRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * Network diagnostics for the client creating the room.
      */
-    networkDiagnostics: Schema$NetworkDiagnostics;
+    networkDiagnostics?: Schema$NetworkDiagnostics;
     /**
      * A randomly generated numeric ID. This number is used at the server to
      * ensure that the request is handled correctly across retries.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * The variant / mode of the application to be played. This can be any
      * integer value, or left blank. You should use a small number of variants
      * to keep the auto-matching pool as large as possible.
      */
-    variant: number;
+    variant?: number;
   }
   /**
    * This is a JSON template for a join room request.
@@ -2101,20 +2104,20 @@ export namespace games_v1 {
     /**
      * The capabilities that this client supports for realtime communication.
      */
-    capabilities: string[];
+    capabilities?: string[];
     /**
      * Client address for the player joining the room.
      */
-    clientAddress: Schema$RoomClientAddress;
+    clientAddress?: Schema$RoomClientAddress;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomJoinRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * Network diagnostics for the client joining the room.
      */
-    networkDiagnostics: Schema$NetworkDiagnostics;
+    networkDiagnostics?: Schema$NetworkDiagnostics;
   }
   /**
    * This is a JSON template for room leave diagnostics.
@@ -2124,28 +2127,28 @@ export namespace games_v1 {
      * Android network subtype.
      * http://developer.android.com/reference/android/net/NetworkInfo.html#getSubtype()
      */
-    androidNetworkSubtype: number;
+    androidNetworkSubtype?: number;
     /**
      * Android network type.
      * http://developer.android.com/reference/android/net/NetworkInfo.html#getType()
      */
-    androidNetworkType: number;
+    androidNetworkType?: number;
     /**
      * iOS network type as defined in Reachability.h.
      */
-    iosNetworkType: number;
+    iosNetworkType?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomLeaveDiagnostics.
      */
-    kind: string;
+    kind?: string;
     /**
      * The MCC+MNC code for the client&#39;s network connection. On Android:
      * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator()
      * On iOS, see:
      * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
      */
-    networkOperatorCode: string;
+    networkOperatorCode?: string;
     /**
      * The name of the carrier of the client&#39;s network connection. On
      * Android:
@@ -2153,15 +2156,15 @@ export namespace games_v1 {
      * On iOS:
      * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
      */
-    networkOperatorName: string;
+    networkOperatorName?: string;
     /**
      * Diagnostics about all peer sessions.
      */
-    peerSession: Schema$PeerSessionDiagnostics[];
+    peerSession?: Schema$PeerSessionDiagnostics[];
     /**
      * Whether or not sockets were used.
      */
-    socketsUsed: boolean;
+    socketsUsed?: boolean;
   }
   /**
    * This is a JSON template for a leave room request.
@@ -2171,11 +2174,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomLeaveRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * Diagnostics for a player leaving the room.
      */
-    leaveDiagnostics: Schema$RoomLeaveDiagnostics;
+    leaveDiagnostics?: Schema$RoomLeaveDiagnostics;
     /**
      * Reason for leaving the match. Possible values are:   -
      * &quot;PLAYER_LEFT&quot; - The player chose to leave the room..  -
@@ -2198,7 +2201,7 @@ export namespace games_v1 {
      * &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is
      * trying to enter a new room.
      */
-    reason: string;
+    reason?: string;
   }
   /**
    * This is a JSON template for a list of rooms.
@@ -2207,16 +2210,16 @@ export namespace games_v1 {
     /**
      * The rooms.
      */
-    items: Schema$Room[];
+    items?: Schema$Room[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for room modification metadata.
@@ -2226,16 +2229,16 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomModification.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp at which they modified the room, in milliseconds since the
      * epoch in UTC.
      */
-    modifiedTimestampMillis: string;
+    modifiedTimestampMillis?: string;
     /**
      * The ID of the participant that modified the room.
      */
-    participantId: string;
+    participantId?: string;
   }
   /**
    * This is a JSON template for an update on the status of a peer in a room.
@@ -2245,7 +2248,7 @@ export namespace games_v1 {
      * The amount of time in milliseconds it took to establish connections with
      * this peer.
      */
-    connectionSetupLatencyMillis: number;
+    connectionSetupLatencyMillis?: number;
     /**
      * The error code in event of a failure. Possible values are:   -
      * &quot;P2P_FAILED&quot; - The client failed to establish a P2P connection
@@ -2254,32 +2257,32 @@ export namespace games_v1 {
      * The client received an error when trying to use the relay server to
      * establish a P2P connection with the peer.
      */
-    error: string;
+    error?: string;
     /**
      * More detailed diagnostic message returned in event of a failure.
      */
-    error_reason: string;
+    error_reason?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomP2PStatus.
      */
-    kind: string;
+    kind?: string;
     /**
      * The ID of the participant.
      */
-    participantId: string;
+    participantId?: string;
     /**
      * The status of the peer in the room. Possible values are:   -
      * &quot;CONNECTION_ESTABLISHED&quot; - The client established a P2P
      * connection with the peer.  - &quot;CONNECTION_FAILED&quot; - The client
      * failed to establish directed presence with the peer.
      */
-    status: string;
+    status?: string;
     /**
      * The amount of time in milliseconds it took to send packets back and forth
      * on the unreliable channel with this peer.
      */
-    unreliableRoundtripLatencyMillis: number;
+    unreliableRoundtripLatencyMillis?: number;
   }
   /**
    * This is a JSON template for an update on the status of peers in a room.
@@ -2289,11 +2292,11 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomP2PStatuses.
      */
-    kind: string;
+    kind?: string;
     /**
      * The updates for the peers.
      */
-    updates: Schema$RoomP2PStatus[];
+    updates?: Schema$RoomP2PStatus[];
   }
   /**
    * This is a JSON template for a participant in a room.
@@ -2302,36 +2305,36 @@ export namespace games_v1 {
     /**
      * True if this participant was auto-matched with the requesting player.
      */
-    autoMatched: boolean;
+    autoMatched?: boolean;
     /**
      * Information about a player that has been anonymously auto-matched against
      * the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
-    autoMatchedPlayer: Schema$AnonymousPlayer;
+    autoMatchedPlayer?: Schema$AnonymousPlayer;
     /**
      * The capabilities which can be used when communicating with this
      * participant.
      */
-    capabilities: string[];
+    capabilities?: string[];
     /**
      * Client address for the participant.
      */
-    clientAddress: Schema$RoomClientAddress;
+    clientAddress?: Schema$RoomClientAddress;
     /**
      * True if this participant is in the fully connected set of peers in the
      * room.
      */
-    connected: boolean;
+    connected?: boolean;
     /**
      * An identifier for the participant in the scope of the room. Cannot be
      * used to identify a player across rooms or in other contexts.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomParticipant.
      */
-    kind: string;
+    kind?: string;
     /**
      * The reason the participant left the room; populated if the participant
      * status is PARTICIPANT_LEFT. Possible values are:   -
@@ -2346,13 +2349,13 @@ export namespace games_v1 {
      * join and connect.  - &quot;PRESENCE_FAILURE&quot; - The client&#39;s XMPP
      * connection ended abruptly.
      */
-    leaveReason: string;
+    leaveReason?: string;
     /**
      * Information about the player. Not populated if this player was
      * anonymously auto-matched against the requesting player. (Either player or
      * autoMatchedPlayer will be set.)
      */
-    player: Schema$Player;
+    player?: Schema$Player;
     /**
      * The status of the participant with respect to the room. Possible values
      * are:   - &quot;PARTICIPANT_INVITED&quot; - The participant has been
@@ -2363,7 +2366,7 @@ export namespace games_v1 {
      * to join the room.  - &quot;PARTICIPANT_LEFT&quot; - The participant
      * joined the room and then left it.
      */
-    status: string;
+    status?: string;
   }
   /**
    * This is a JSON template for the status of a room that the player has
@@ -2374,21 +2377,21 @@ export namespace games_v1 {
      * Auto-matching status for this room. Not set if the room is not currently
      * in the automatching queue.
      */
-    autoMatchingStatus: Schema$RoomAutoMatchStatus;
+    autoMatchingStatus?: Schema$RoomAutoMatchStatus;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#roomStatus.
      */
-    kind: string;
+    kind?: string;
     /**
      * The participants involved in the room, along with their statuses.
      * Includes participants who have left or declined invitations.
      */
-    participants: Schema$RoomParticipant[];
+    participants?: Schema$RoomParticipant[];
     /**
      * Globally unique ID for a room.
      */
-    roomId: string;
+    roomId?: string;
     /**
      * The status of the room. Possible values are:   -
      * &quot;ROOM_INVITING&quot; - One or more players have been invited and not
@@ -2399,12 +2402,12 @@ export namespace games_v1 {
      * connected to each other.  - &quot;ROOM_DELETED&quot; - All joined players
      * have left.
      */
-    status: string;
+    status?: string;
     /**
      * The version of the status for the room: an increasing counter, used by
      * the client to ignore out-of-order updates to room status.
      */
-    statusVersion: number;
+    statusVersion?: number;
   }
   /**
    * This is a JSON template for a request to submit a score to leaderboards.
@@ -2414,25 +2417,25 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#scoreSubmission.
      */
-    kind: string;
+    kind?: string;
     /**
      * The leaderboard this score is being submitted to.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * The new score being submitted.
      */
-    score: string;
+    score?: string;
     /**
      * Additional information about this score. Values will contain no more than
      * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
-    scoreTag: string;
+    scoreTag?: string;
     /**
      * Signature Values will contain URI-safe characters as defined by
      * section 2.3 of RFC 3986.
      */
-    signature: string;
+    signature?: string;
   }
   /**
    * This is a JSON template for an snapshot object.
@@ -2441,53 +2444,53 @@ export namespace games_v1 {
     /**
      * The cover image of this snapshot. May be absent if there is no image.
      */
-    coverImage: Schema$SnapshotImage;
+    coverImage?: Schema$SnapshotImage;
     /**
      * The description of this snapshot.
      */
-    description: string;
+    description?: string;
     /**
      * The ID of the file underlying this snapshot in the Drive API. Only
      * present if the snapshot is a view on a Drive file and the file is owned
      * by the caller.
      */
-    driveId: string;
+    driveId?: string;
     /**
      * The duration associated with this snapshot, in millis.
      */
-    durationMillis: string;
+    durationMillis?: string;
     /**
      * The ID of the snapshot.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#snapshot.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp (in millis since Unix epoch) of the last modification to
      * this snapshot.
      */
-    lastModifiedMillis: string;
+    lastModifiedMillis?: string;
     /**
      * The progress value (64-bit integer set by developer) associated with this
      * snapshot.
      */
-    progressValue: string;
+    progressValue?: string;
     /**
      * The title of this snapshot.
      */
-    title: string;
+    title?: string;
     /**
      * The type of this snapshot. Possible values are:   - &quot;SAVE_GAME&quot;
      * - A snapshot representing a save game.
      */
-    type: string;
+    type?: string;
     /**
      * The unique name provided when the snapshot was created.
      */
-    uniqueName: string;
+    uniqueName?: string;
   }
   /**
    * This is a JSON template for an image of a snapshot.
@@ -2496,25 +2499,25 @@ export namespace games_v1 {
     /**
      * The height of the image.
      */
-    height: number;
+    height?: number;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#snapshotImage.
      */
-    kind: string;
+    kind?: string;
     /**
      * The MIME type of the image.
      */
-    mime_type: string;
+    mime_type?: string;
     /**
      * The URL of the image. This URL may be invalidated at any time and should
      * not be cached.
      */
-    url: string;
+    url?: string;
     /**
      * The width of the image.
      */
-    width: number;
+    width?: number;
   }
   /**
    * This is a JSON template for a list of snapshot objects.
@@ -2523,17 +2526,17 @@ export namespace games_v1 {
     /**
      * The snapshots.
      */
-    items: Schema$Snapshot[];
+    items?: Schema$Snapshot[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#snapshotListResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token corresponding to the next page of results. If there are no more
      * results, the token is omitted.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for an turn-based auto-match criteria object.
@@ -2544,22 +2547,22 @@ export namespace games_v1 {
      * exclusive bitmasks, the result must be zero. Can be used to support
      * exclusive roles within a game.
      */
-    exclusiveBitmask: string;
+    exclusiveBitmask?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedAutoMatchingCriteria.
      */
-    kind: string;
+    kind?: string;
     /**
      * The maximum number of players that should be added to the match by
      * auto-matching.
      */
-    maxAutoMatchingPlayers: number;
+    maxAutoMatchingPlayers?: number;
     /**
      * The minimum number of players that should be added to the match by
      * auto-matching.
      */
-    minAutoMatchingPlayers: number;
+    minAutoMatchingPlayers?: number;
   }
   /**
    * This is a JSON template for a turn-based match resource object.
@@ -2568,76 +2571,76 @@ export namespace games_v1 {
     /**
      * The ID of the application being played.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * Criteria for auto-matching players into this match.
      */
-    autoMatchingCriteria: Schema$TurnBasedAutoMatchingCriteria;
+    autoMatchingCriteria?: Schema$TurnBasedAutoMatchingCriteria;
     /**
      * Details about the match creation.
      */
-    creationDetails: Schema$TurnBasedMatchModification;
+    creationDetails?: Schema$TurnBasedMatchModification;
     /**
      * The data / game state for this match.
      */
-    data: Schema$TurnBasedMatchData;
+    data?: Schema$TurnBasedMatchData;
     /**
      * This short description is generated by our servers based on turn state
      * and is localized and worded relative to the player requesting the match.
      * It is intended to be displayed when the match is shown in a list.
      */
-    description: string;
+    description?: string;
     /**
      * The ID of the participant that invited the user to the match. Not set if
      * the user was not invited to the match.
      */
-    inviterId: string;
+    inviterId?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatch.
      */
-    kind: string;
+    kind?: string;
     /**
      * Details about the last update to the match.
      */
-    lastUpdateDetails: Schema$TurnBasedMatchModification;
+    lastUpdateDetails?: Schema$TurnBasedMatchModification;
     /**
      * Globally unique ID for a turn-based match.
      */
-    matchId: string;
+    matchId?: string;
     /**
      * The number of the match in a chain of rematches. Will be set to 1 for the
      * first match and incremented by 1 for each rematch.
      */
-    matchNumber: number;
+    matchNumber?: number;
     /**
      * The version of this match: an increasing counter, used to avoid
      * out-of-date updates to the match.
      */
-    matchVersion: number;
+    matchVersion?: number;
     /**
      * The participants involved in the match, along with their statuses.
      * Includes participants who have left or declined invitations.
      */
-    participants: Schema$TurnBasedMatchParticipant[];
+    participants?: Schema$TurnBasedMatchParticipant[];
     /**
      * The ID of the participant that is taking a turn.
      */
-    pendingParticipantId: string;
+    pendingParticipantId?: string;
     /**
      * The data / game state for the previous match; set for the first turn of
      * rematches only.
      */
-    previousMatchData: Schema$TurnBasedMatchData;
+    previousMatchData?: Schema$TurnBasedMatchData;
     /**
      * The ID of a rematch of this match. Only set for completed matches that
      * have been rematched.
      */
-    rematchId: string;
+    rematchId?: string;
     /**
      * The results reported for this match.
      */
-    results: Schema$ParticipantResult[];
+    results?: Schema$ParticipantResult[];
     /**
      * The status of the match. Possible values are:   -
      * &quot;MATCH_AUTO_MATCHING&quot; - One or more slots need to be filled by
@@ -2649,7 +2652,7 @@ export namespace games_v1 {
      * &quot;MATCH_DELETED&quot; - The match should no longer be shown on the
      * client. Returned only for tombstones for matches when sync is called.
      */
-    status: string;
+    status?: string;
     /**
      * The status of the current user in the match. Derived from the match type,
      * match status, the user&#39;s participant status, and the pending
@@ -2660,17 +2663,17 @@ export namespace games_v1 {
      * action to take in the match.  - &quot;USER_MATCH_COMPLETED&quot; - The
      * match has ended (it is completed, canceled, or expired.)
      */
-    userMatchStatus: string;
+    userMatchStatus?: string;
     /**
      * The variant / mode of the application being played; can be any integer
      * value, or left blank.
      */
-    variant: number;
+    variant?: number;
     /**
      * The ID of another participant in the match that can be used when
      * describing the participants the user is playing with.
      */
-    withParticipantId: string;
+    withParticipantId?: string;
   }
   /**
    * This is a JSON template for a turn-based match creation request.
@@ -2679,27 +2682,27 @@ export namespace games_v1 {
     /**
      * Criteria for auto-matching players into this match.
      */
-    autoMatchingCriteria: Schema$TurnBasedAutoMatchingCriteria;
+    autoMatchingCriteria?: Schema$TurnBasedAutoMatchingCriteria;
     /**
      * The player ids to invite to the match.
      */
-    invitedPlayerIds: string[];
+    invitedPlayerIds?: string[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchCreateRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * A randomly generated numeric ID. This number is used at the server to
      * ensure that the request is handled correctly across retries.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * The variant / mode of the application to be played. This can be any
      * integer value, or left blank. You should use a small number of variants
      * to keep the auto-matching pool as large as possible.
      */
-    variant: number;
+    variant?: number;
   }
   /**
    * This is a JSON template for a turn-based match data object.
@@ -2709,17 +2712,17 @@ export namespace games_v1 {
      * The byte representation of the data (limited to 128 kB), as a
      * Base64-encoded string with the URL_SAFE encoding option.
      */
-    data: string;
+    data?: string;
     /**
      * True if this match has data available but it wasn&#39;t returned in a
      * list response; fetching the match individually will retrieve this data.
      */
-    dataAvailable: boolean;
+    dataAvailable?: boolean;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchData.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for sending a turn-based match data object.
@@ -2729,12 +2732,12 @@ export namespace games_v1 {
      * The byte representation of the data (limited to 128 kB), as a
      * Base64-encoded string with the URL_SAFE encoding option.
      */
-    data: string;
+    data?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchDataRequest.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for a list of turn-based matches.
@@ -2743,16 +2746,16 @@ export namespace games_v1 {
     /**
      * The matches.
      */
-    items: Schema$TurnBasedMatch[];
+    items?: Schema$TurnBasedMatch[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for turn-based match modification metadata.
@@ -2762,16 +2765,16 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchModification.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp at which they modified the match, in milliseconds since the
      * epoch in UTC.
      */
-    modifiedTimestampMillis: string;
+    modifiedTimestampMillis?: string;
     /**
      * The ID of the participant that modified the match.
      */
-    participantId: string;
+    participantId?: string;
   }
   /**
    * This is a JSON template for a participant in a turn-based match.
@@ -2780,28 +2783,28 @@ export namespace games_v1 {
     /**
      * True if this participant was auto-matched with the requesting player.
      */
-    autoMatched: boolean;
+    autoMatched?: boolean;
     /**
      * Information about a player that has been anonymously auto-matched against
      * the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
-    autoMatchedPlayer: Schema$AnonymousPlayer;
+    autoMatchedPlayer?: Schema$AnonymousPlayer;
     /**
      * An identifier for the participant in the scope of the match. Cannot be
      * used to identify a player across matches or in other contexts.
      */
-    id: string;
+    id?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchParticipant.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the player. Not populated if this player was
      * anonymously auto-matched against the requesting player. (Either player or
      * autoMatchedPlayer will be set.)
      */
-    player: Schema$Player;
+    player?: Schema$Player;
     /**
      * The status of the participant with respect to the match. Possible values
      * are:   - &quot;PARTICIPANT_NOT_INVITED_YET&quot; - The participant is
@@ -2818,7 +2821,7 @@ export namespace games_v1 {
      * &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their
      * turn in the allotted time.
      */
-    status: string;
+    status?: string;
   }
   /**
    * This is a JSON template for a rematch response.
@@ -2828,17 +2831,17 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchRematch.
      */
-    kind: string;
+    kind?: string;
     /**
      * The old match that the rematch was created from; will be updated such
      * that the rematchId field will point at the new match.
      */
-    previousMatch: Schema$TurnBasedMatch;
+    previousMatch?: Schema$TurnBasedMatch;
     /**
      * The newly created match; a rematch of the old match with the same
      * participants.
      */
-    rematch: Schema$TurnBasedMatch;
+    rematch?: Schema$TurnBasedMatch;
   }
   /**
    * This is a JSON template for a turn-based match results object.
@@ -2847,20 +2850,20 @@ export namespace games_v1 {
     /**
      * The final match data.
      */
-    data: Schema$TurnBasedMatchDataRequest;
+    data?: Schema$TurnBasedMatchDataRequest;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchResults.
      */
-    kind: string;
+    kind?: string;
     /**
      * The version of the match being updated.
      */
-    matchVersion: number;
+    matchVersion?: number;
     /**
      * The match results for the participants in the match.
      */
-    results: Schema$ParticipantResult[];
+    results?: Schema$ParticipantResult[];
   }
   /**
    * This is a JSON template for a list of turn-based matches returned from a
@@ -2870,21 +2873,21 @@ export namespace games_v1 {
     /**
      * The matches.
      */
-    items: Schema$TurnBasedMatch[];
+    items?: Schema$TurnBasedMatch[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchSync.
      */
-    kind: string;
+    kind?: string;
     /**
      * True if there were more matches available to fetch at the time the
      * response was generated (which were not returned due to page size limits.)
      */
-    moreAvailable: boolean;
+    moreAvailable?: boolean;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * This is a JSON template for the object representing a turn.
@@ -2893,17 +2896,17 @@ export namespace games_v1 {
     /**
      * The shared game state data after the turn is over.
      */
-    data: Schema$TurnBasedMatchDataRequest;
+    data?: Schema$TurnBasedMatchDataRequest;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#turnBasedMatchTurn.
      */
-    kind: string;
+    kind?: string;
     /**
      * The version of this match: an increasing counter, used to avoid
      * out-of-date updates to the match.
      */
-    matchVersion: number;
+    matchVersion?: number;
     /**
      * The ID of the participant who should take their turn next. May be set to
      * the current player&#39;s participant ID to update match state without
@@ -2911,12 +2914,13 @@ export namespace games_v1 {
      * join via automatching; this is only valid if automatch criteria is set on
      * the match with remaining slots for automatched players.
      */
-    pendingParticipantId: string;
+    pendingParticipantId?: string;
     /**
      * The match results for the participants in the match.
      */
-    results: Schema$ParticipantResult[];
+    results?: Schema$ParticipantResult[];
   }
+
 
   export class Resource$Achievementdefinitions {
     root: Games;
@@ -2944,31 +2948,48 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Achievementdefinitions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementDefinitionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementdefinitions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievementdefinitions$List,
+        callback:
+            BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Achievementdefinitions$List|
+        BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
         void|AxiosPromise<Schema$AchievementDefinitionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievementdefinitions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievementdefinitions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2992,6 +3013,29 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Achievementdefinitions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of achievement resources to return in the response,
+     * used for paging. For any response, the actual number of achievement
+     * resources returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Achievements {
     root: Games;
@@ -3020,29 +3064,45 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    increment(params?: any, options?: MethodOptions):
+    increment(
+        params?: Params$Resource$Achievements$Increment,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementIncrementResponse>;
     increment(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Increment,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementIncrementResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>):
+        callback: BodyResponseCallback<Schema$AchievementIncrementResponse>):
         void;
     increment(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Increment,
+        callback: BodyResponseCallback<Schema$AchievementIncrementResponse>):
+        void;
+    increment(callback:
+                  BodyResponseCallback<Schema$AchievementIncrementResponse>):
+        void;
+    increment(
+        paramsOrCallback?: Params$Resource$Achievements$Increment|
+        BodyResponseCallback<Schema$AchievementIncrementResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementIncrementResponse>,
         callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>):
         void|AxiosPromise<Schema$AchievementIncrementResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$Increment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Increment;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3085,29 +3145,42 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Achievements$List, options?: MethodOptions):
         AxiosPromise<Schema$PlayerAchievementListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
+        callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$List,
+        callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Achievements$List|
+        BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerAchievementListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
         void|AxiosPromise<Schema$PlayerAchievementListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3145,29 +3218,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reveal(params?: any, options?: MethodOptions):
+    reveal(
+        params?: Params$Resource$Achievements$Reveal, options?: MethodOptions):
         AxiosPromise<Schema$AchievementRevealResponse>;
     reveal(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Reveal,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementRevealResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementRevealResponse>):
+        callback: BodyResponseCallback<Schema$AchievementRevealResponse>): void;
+    reveal(
+        params: Params$Resource$Achievements$Reveal,
+        callback: BodyResponseCallback<Schema$AchievementRevealResponse>): void;
+    reveal(callback: BodyResponseCallback<Schema$AchievementRevealResponse>):
         void;
     reveal(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Achievements$Reveal|
+        BodyResponseCallback<Schema$AchievementRevealResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementRevealResponse>,
         callback?: BodyResponseCallback<Schema$AchievementRevealResponse>):
         void|AxiosPromise<Schema$AchievementRevealResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$Reveal;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Reveal;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3207,31 +3292,49 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setStepsAtLeast(params?: any, options?: MethodOptions):
+    setStepsAtLeast(
+        params?: Params$Resource$Achievements$Setstepsatleast,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
     setStepsAtLeast(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Setstepsatleast,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
         void;
     setStepsAtLeast(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Setstepsatleast,
+        callback:
+            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
+        void;
+    setStepsAtLeast(
+        callback:
+            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
+        void;
+    setStepsAtLeast(
+        paramsOrCallback?: Params$Resource$Achievements$Setstepsatleast|
+        BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
         void|AxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievements$Setstepsatleast;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Setstepsatleast;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3269,29 +3372,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unlock(params?: any, options?: MethodOptions):
+    unlock(
+        params?: Params$Resource$Achievements$Unlock, options?: MethodOptions):
         AxiosPromise<Schema$AchievementUnlockResponse>;
     unlock(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Unlock,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementUnlockResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>):
+        callback: BodyResponseCallback<Schema$AchievementUnlockResponse>): void;
+    unlock(
+        params: Params$Resource$Achievements$Unlock,
+        callback: BodyResponseCallback<Schema$AchievementUnlockResponse>): void;
+    unlock(callback: BodyResponseCallback<Schema$AchievementUnlockResponse>):
         void;
     unlock(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Achievements$Unlock|
+        BodyResponseCallback<Schema$AchievementUnlockResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementUnlockResponse>,
         callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>):
         void|AxiosPromise<Schema$AchievementUnlockResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Achievements$Unlock;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Unlock;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3328,31 +3443,49 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateMultiple(params?: any, options?: MethodOptions):
+    updateMultiple(
+        params?: Params$Resource$Achievements$Updatemultiple,
+        options?: MethodOptions):
         AxiosPromise<Schema$AchievementUpdateMultipleResponse>;
     updateMultiple(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Updatemultiple,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
         void;
     updateMultiple(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Achievements$Updatemultiple,
+        callback:
+            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
+        void;
+    updateMultiple(
+        callback:
+            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
+        void;
+    updateMultiple(
+        paramsOrCallback?: Params$Resource$Achievements$Updatemultiple|
+        BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
         void|AxiosPromise<Schema$AchievementUpdateMultipleResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Achievements$Updatemultiple;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Achievements$Updatemultiple;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3376,6 +3509,103 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Achievements$Increment {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+    /**
+     * A randomly generated numeric ID for each request specified by the caller.
+     * This number is used at the server to ensure that the request is handled
+     * correctly across retries.
+     */
+    requestId?: string;
+    /**
+     * The number of steps to increment.
+     */
+    stepsToIncrement?: number;
+  }
+  export interface Params$Resource$Achievements$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of achievement resources to return in the response,
+     * used for paging. For any response, the actual number of achievement
+     * resources returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+    /**
+     * Tells the server to return only achievements with the specified state. If
+     * this parameter isn't specified, all achievements are returned.
+     */
+    state?: string;
+  }
+  export interface Params$Resource$Achievements$Reveal {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievements$Setstepsatleast {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+    /**
+     * The minimum value to set the steps to.
+     */
+    steps?: number;
+  }
+  export interface Params$Resource$Achievements$Unlock {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the achievement used by this method.
+     */
+    achievementId?: string;
+  }
+  export interface Params$Resource$Achievements$Updatemultiple {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Applications {
     root: Games;
@@ -3405,24 +3635,34 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Applications$Get,
         options?: MethodOptions): AxiosPromise<Schema$Application>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Application>,
-        callback?: BodyResponseCallback<Schema$Application>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Application>,
+    get(params: Params$Resource$Applications$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Application>,
+        callback: BodyResponseCallback<Schema$Application>): void;
+    get(params: Params$Resource$Applications$Get,
+        callback: BodyResponseCallback<Schema$Application>): void;
+    get(callback: BodyResponseCallback<Schema$Application>): void;
+    get(paramsOrCallback?: Params$Resource$Applications$Get|
+        BodyResponseCallback<Schema$Application>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Application>,
         callback?: BodyResponseCallback<Schema$Application>):
         void|AxiosPromise<Schema$Application> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3457,22 +3697,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    played(params?: any, options?: MethodOptions): AxiosPromise<void>;
     played(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Applications$Played,
+        options?: MethodOptions): AxiosPromise<void>;
     played(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Applications$Played,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    played(
+        params: Params$Resource$Applications$Played,
+        callback: BodyResponseCallback<void>): void;
+    played(callback: BodyResponseCallback<void>): void;
+    played(
+        paramsOrCallback?: Params$Resource$Applications$Played|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Applications$Played;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Played;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3509,29 +3764,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verify(params?: any, options?: MethodOptions):
+    verify(
+        params?: Params$Resource$Applications$Verify, options?: MethodOptions):
         AxiosPromise<Schema$ApplicationVerifyResponse>;
     verify(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Applications$Verify,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-        callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
+        callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>): void;
+    verify(
+        params: Params$Resource$Applications$Verify,
+        callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>): void;
+    verify(callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
         void;
     verify(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Applications$Verify|
+        BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApplicationVerifyResponse>,
         callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
         void|AxiosPromise<Schema$ApplicationVerifyResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Applications$Verify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Verify;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3554,6 +3821,44 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Applications$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * Restrict application details returned to the specific platform.
+     */
+    platformType?: string;
+  }
+  export interface Params$Resource$Applications$Played {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Applications$Verify {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+  }
+
 
   export class Resource$Events {
     root: Games;
@@ -3582,28 +3887,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByPlayer(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerEventListResponse>;
     listByPlayer(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Events$Listbyplayer,
+        options?: MethodOptions): AxiosPromise<Schema$PlayerEventListResponse>;
+    listByPlayer(
+        params: Params$Resource$Events$Listbyplayer,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerEventListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
     listByPlayer(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Events$Listbyplayer,
+        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+    listByPlayer(
+        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+    listByPlayer(
+        paramsOrCallback?: Params$Resource$Events$Listbyplayer|
+        BodyResponseCallback<Schema$PlayerEventListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerEventListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerEventListResponse>):
         void|AxiosPromise<Schema$PlayerEventListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Events$Listbyplayer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Listbyplayer;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3639,29 +3957,45 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listDefinitions(params?: any, options?: MethodOptions):
+    listDefinitions(
+        params?: Params$Resource$Events$Listdefinitions,
+        options?: MethodOptions):
         AxiosPromise<Schema$EventDefinitionListResponse>;
     listDefinitions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Events$Listdefinitions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$EventDefinitionListResponse>,
-        callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>):
+        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
         void;
     listDefinitions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Events$Listdefinitions,
+        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
+        void;
+    listDefinitions(
+        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
+        void;
+    listDefinitions(
+        paramsOrCallback?: Params$Resource$Events$Listdefinitions|
+        BodyResponseCallback<Schema$EventDefinitionListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventDefinitionListResponse>,
         callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>):
         void|AxiosPromise<Schema$EventDefinitionListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Events$Listdefinitions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Listdefinitions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3699,28 +4033,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    record(params?: any, options?: MethodOptions):
+    record(params?: Params$Resource$Events$Record, options?: MethodOptions):
         AxiosPromise<Schema$EventUpdateResponse>;
     record(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$EventUpdateResponse>,
-        callback?: BodyResponseCallback<Schema$EventUpdateResponse>): void;
+        params: Params$Resource$Events$Record,
+        options: MethodOptions|BodyResponseCallback<Schema$EventUpdateResponse>,
+        callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
     record(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Events$Record,
+        callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
+    record(callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
+    record(
+        paramsOrCallback?: Params$Resource$Events$Record|
+        BodyResponseCallback<Schema$EventUpdateResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventUpdateResponse>,
         callback?: BodyResponseCallback<Schema$EventUpdateResponse>):
         void|AxiosPromise<Schema$EventUpdateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Record;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3741,6 +4084,65 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Events$Listbyplayer {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of events to return in the response, used for paging.
+     * For any response, the actual number of events to return may be less than
+     * the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Events$Listdefinitions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of event definitions to return in the response, used
+     * for paging. For any response, the actual number of event definitions to
+     * return may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Events$Record {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EventRecordRequest;
+  }
+
 
   export class Resource$Leaderboards {
     root: Games;
@@ -3767,24 +4169,34 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Leaderboards$Get,
         options?: MethodOptions): AxiosPromise<Schema$Leaderboard>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Leaderboard>,
-        callback?: BodyResponseCallback<Schema$Leaderboard>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Leaderboard>,
+    get(params: Params$Resource$Leaderboards$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Leaderboard>,
+        callback: BodyResponseCallback<Schema$Leaderboard>): void;
+    get(params: Params$Resource$Leaderboards$Get,
+        callback: BodyResponseCallback<Schema$Leaderboard>): void;
+    get(callback: BodyResponseCallback<Schema$Leaderboard>): void;
+    get(paramsOrCallback?: Params$Resource$Leaderboards$Get|
+        BodyResponseCallback<Schema$Leaderboard>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Leaderboard>,
         callback?: BodyResponseCallback<Schema$Leaderboard>):
         void|AxiosPromise<Schema$Leaderboard> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboards$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3821,28 +4233,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Leaderboards$List, options?: MethodOptions):
         AxiosPromise<Schema$LeaderboardListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboards$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardListResponse>,
-        callback?: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
+        callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Leaderboards$List,
+        callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Leaderboards$List|
+        BodyResponseCallback<Schema$LeaderboardListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardListResponse>,
         callback?: BodyResponseCallback<Schema$LeaderboardListResponse>):
         void|AxiosPromise<Schema$LeaderboardListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Leaderboards$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Leaderboards$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3864,6 +4287,44 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Leaderboards$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+  }
+  export interface Params$Resource$Leaderboards$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of leaderboards to return in the response. For any
+     * response, the actual number of leaderboards returned may be less than the
+     * specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Metagame {
     root: Games;
@@ -3888,26 +4349,40 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetagameConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$MetagameConfig>;
     getMetagameConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetagameConfig>,
-        callback?: BodyResponseCallback<Schema$MetagameConfig>): void;
+        params?: Params$Resource$Metagame$Getmetagameconfig,
+        options?: MethodOptions): AxiosPromise<Schema$MetagameConfig>;
     getMetagameConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetagameConfig>,
+        params: Params$Resource$Metagame$Getmetagameconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$MetagameConfig>,
+        callback: BodyResponseCallback<Schema$MetagameConfig>): void;
+    getMetagameConfig(
+        params: Params$Resource$Metagame$Getmetagameconfig,
+        callback: BodyResponseCallback<Schema$MetagameConfig>): void;
+    getMetagameConfig(callback: BodyResponseCallback<Schema$MetagameConfig>):
+        void;
+    getMetagameConfig(
+        paramsOrCallback?: Params$Resource$Metagame$Getmetagameconfig|
+        BodyResponseCallback<Schema$MetagameConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetagameConfig>,
         callback?: BodyResponseCallback<Schema$MetagameConfig>):
         void|AxiosPromise<Schema$MetagameConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Metagame$Getmetagameconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metagame$Getmetagameconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3947,28 +4422,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategoriesByPlayer(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CategoryListResponse>;
     listCategoriesByPlayer(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Metagame$Listcategoriesbyplayer,
+        options?: MethodOptions): AxiosPromise<Schema$CategoryListResponse>;
+    listCategoriesByPlayer(
+        params: Params$Resource$Metagame$Listcategoriesbyplayer,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$CategoryListResponse>): void;
+        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
     listCategoriesByPlayer(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Metagame$Listcategoriesbyplayer,
+        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
+    listCategoriesByPlayer(
+        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
+    listCategoriesByPlayer(
+        paramsOrCallback?: Params$Resource$Metagame$Listcategoriesbyplayer|
+        BodyResponseCallback<Schema$CategoryListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CategoryListResponse>,
         callback?: BodyResponseCallback<Schema$CategoryListResponse>):
         void|AxiosPromise<Schema$CategoryListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Metagame$Listcategoriesbyplayer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metagame$Listcategoriesbyplayer;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3991,6 +4479,44 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Metagame$Getmetagameconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Metagame$Listcategoriesbyplayer {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The collection of categories for which data will be returned.
+     */
+    collection?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of category resources to return in the response, used
+     * for paging. For any response, the actual number of category resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+
 
   export class Resource$Players {
     root: Games;
@@ -4018,23 +4544,33 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Player>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Player>,
-        callback?: BodyResponseCallback<Schema$Player>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Player>,
+    get(params?: Params$Resource$Players$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Player>;
+    get(params: Params$Resource$Players$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Player>,
+        callback: BodyResponseCallback<Schema$Player>): void;
+    get(params: Params$Resource$Players$Get,
+        callback: BodyResponseCallback<Schema$Player>): void;
+    get(callback: BodyResponseCallback<Schema$Player>): void;
+    get(paramsOrCallback?: Params$Resource$Players$Get|
+        BodyResponseCallback<Schema$Player>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Player>,
         callback?: BodyResponseCallback<Schema$Player>):
         void|AxiosPromise<Schema$Player> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4072,26 +4608,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Players$List, options?: MethodOptions):
         AxiosPromise<Schema$PlayerListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlayerListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerListResponse>): void;
+        params: Params$Resource$Players$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PlayerListResponse>,
+        callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlayerListResponse>,
+        params: Params$Resource$Players$List,
+        callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Players$List|
+        BodyResponseCallback<Schema$PlayerListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlayerListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerListResponse>):
         void|AxiosPromise<Schema$PlayerListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4113,6 +4660,49 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Players$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+  export interface Params$Resource$Players$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Collection of players being retrieved
+     */
+    collection?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of player resources to return in the response, used
+     * for paging. For any response, the actual number of player resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Pushtokens {
     root: Games;
@@ -4139,22 +4729,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    remove(params?: Params$Resource$Pushtokens$Remove, options?: MethodOptions):
+        AxiosPromise<void>;
     remove(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Pushtokens$Remove,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     remove(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Pushtokens$Remove,
+        callback: BodyResponseCallback<void>): void;
+    remove(callback: BodyResponseCallback<void>): void;
+    remove(
+        paramsOrCallback?: Params$Resource$Pushtokens$Remove|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Pushtokens$Remove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pushtokens$Remove;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4189,22 +4793,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    update(params?: Params$Resource$Pushtokens$Update, options?: MethodOptions):
+        AxiosPromise<void>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Pushtokens$Update,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Pushtokens$Update,
+        callback: BodyResponseCallback<void>): void;
+    update(callback: BodyResponseCallback<void>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Pushtokens$Update|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Pushtokens$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pushtokens$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4226,6 +4844,20 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Pushtokens$Remove {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Pushtokens$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Questmilestones {
     root: Games;
@@ -4255,22 +4887,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    claim(params?: any, options?: MethodOptions): AxiosPromise<void>;
     claim(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Questmilestones$Claim,
+        options?: MethodOptions): AxiosPromise<void>;
     claim(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Questmilestones$Claim,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    claim(
+        params: Params$Resource$Questmilestones$Claim,
+        callback: BodyResponseCallback<void>): void;
+    claim(callback: BodyResponseCallback<void>): void;
+    claim(
+        paramsOrCallback?: Params$Resource$Questmilestones$Claim|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Questmilestones$Claim;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Questmilestones$Claim;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4293,6 +4940,28 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Questmilestones$Claim {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the milestone.
+     */
+    milestoneId?: string;
+    /**
+     * The ID of the quest.
+     */
+    questId?: string;
+    /**
+     * A numeric ID to ensure that the request is handled correctly across
+     * retries. Your client application must generate this ID randomly.
+     */
+    requestId?: string;
+  }
+
 
   export class Resource$Quests {
     root: Games;
@@ -4320,25 +4989,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params?: any, options?: MethodOptions): AxiosPromise<Schema$Quest>;
+    accept(params?: Params$Resource$Quests$Accept, options?: MethodOptions):
+        AxiosPromise<Schema$Quest>;
     accept(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Quest>,
-        callback?: BodyResponseCallback<Schema$Quest>): void;
+        params: Params$Resource$Quests$Accept,
+        options: MethodOptions|BodyResponseCallback<Schema$Quest>,
+        callback: BodyResponseCallback<Schema$Quest>): void;
     accept(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Quest>,
+        params: Params$Resource$Quests$Accept,
+        callback: BodyResponseCallback<Schema$Quest>): void;
+    accept(callback: BodyResponseCallback<Schema$Quest>): void;
+    accept(
+        paramsOrCallback?: Params$Resource$Quests$Accept|
+        BodyResponseCallback<Schema$Quest>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Quest>,
         callback?: BodyResponseCallback<Schema$Quest>):
         void|AxiosPromise<Schema$Quest> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Quests$Accept;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$Accept;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4377,26 +5057,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Quests$List, options?: MethodOptions):
         AxiosPromise<Schema$QuestListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$QuestListResponse>,
-        callback?: BodyResponseCallback<Schema$QuestListResponse>): void;
+        params: Params$Resource$Quests$List,
+        options: MethodOptions|BodyResponseCallback<Schema$QuestListResponse>,
+        callback: BodyResponseCallback<Schema$QuestListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$QuestListResponse>,
+        params: Params$Resource$Quests$List,
+        callback: BodyResponseCallback<Schema$QuestListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$QuestListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Quests$List|
+        BodyResponseCallback<Schema$QuestListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$QuestListResponse>,
         callback?: BodyResponseCallback<Schema$QuestListResponse>):
         void|AxiosPromise<Schema$QuestListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Quests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quests$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4418,6 +5109,50 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Quests$Accept {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the quest.
+     */
+    questId?: string;
+  }
+  export interface Params$Resource$Quests$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of quest resources to return in the response, used for
+     * paging. For any response, the actual number of quest resources returned
+     * may be less than the specified maxResults. Acceptable values are 1 to 50,
+     * inclusive. (Default: 50).
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+
 
   export class Resource$Revisions {
     root: Games;
@@ -4443,28 +5178,38 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params?: any, options?: MethodOptions):
+    check(params?: Params$Resource$Revisions$Check, options?: MethodOptions):
         AxiosPromise<Schema$RevisionCheckResponse>;
     check(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Revisions$Check,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RevisionCheckResponse>,
-        callback?: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
+        callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
     check(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Revisions$Check,
+        callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
+    check(callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
+    check(
+        paramsOrCallback?: Params$Resource$Revisions$Check|
+        BodyResponseCallback<Schema$RevisionCheckResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RevisionCheckResponse>,
         callback?: BodyResponseCallback<Schema$RevisionCheckResponse>):
         void|AxiosPromise<Schema$RevisionCheckResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$Check;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4486,6 +5231,22 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Revisions$Check {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The revision of the client SDK used by your application. Format:
+     * [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:
+     * - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is
+     * running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
+     */
+    clientRevision?: string;
+  }
+
 
   export class Resource$Rooms {
     root: Games;
@@ -4513,23 +5274,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Room>;
+    create(params?: Params$Resource$Rooms$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Room>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>): void;
+        params: Params$Resource$Rooms$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Room>,
+        callback: BodyResponseCallback<Schema$Room>): void;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
+        params: Params$Resource$Rooms$Create,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    create(callback: BodyResponseCallback<Schema$Room>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Rooms$Create|
+        BodyResponseCallback<Schema$Room>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
         void|AxiosPromise<Schema$Room> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4566,23 +5340,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decline(params?: any, options?: MethodOptions): AxiosPromise<Schema$Room>;
+    decline(params?: Params$Resource$Rooms$Decline, options?: MethodOptions):
+        AxiosPromise<Schema$Room>;
     decline(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>): void;
+        params: Params$Resource$Rooms$Decline,
+        options: MethodOptions|BodyResponseCallback<Schema$Room>,
+        callback: BodyResponseCallback<Schema$Room>): void;
     decline(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
+        params: Params$Resource$Rooms$Decline,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    decline(callback: BodyResponseCallback<Schema$Room>): void;
+    decline(
+        paramsOrCallback?: Params$Resource$Rooms$Decline|
+        BodyResponseCallback<Schema$Room>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
         void|AxiosPromise<Schema$Room> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Decline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Decline;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4618,22 +5405,35 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    dismiss(params?: Params$Resource$Rooms$Dismiss, options?: MethodOptions):
+        AxiosPromise<void>;
     dismiss(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Rooms$Dismiss,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     dismiss(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Rooms$Dismiss,
+        callback: BodyResponseCallback<void>): void;
+    dismiss(callback: BodyResponseCallback<void>): void;
+    dismiss(
+        paramsOrCallback?: Params$Resource$Rooms$Dismiss|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Dismiss;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Dismiss;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4669,21 +5469,33 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Room>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
+    get(params?: Params$Resource$Rooms$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Room>;
+    get(params: Params$Resource$Rooms$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Room>,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    get(params: Params$Resource$Rooms$Get,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    get(callback: BodyResponseCallback<Schema$Room>): void;
+    get(paramsOrCallback?: Params$Resource$Rooms$Get|
+        BodyResponseCallback<Schema$Room>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
         void|AxiosPromise<Schema$Room> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4721,23 +5533,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    join(params?: any, options?: MethodOptions): AxiosPromise<Schema$Room>;
+    join(params?: Params$Resource$Rooms$Join, options?: MethodOptions):
+        AxiosPromise<Schema$Room>;
     join(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>): void;
+        params: Params$Resource$Rooms$Join,
+        options: MethodOptions|BodyResponseCallback<Schema$Room>,
+        callback: BodyResponseCallback<Schema$Room>): void;
     join(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
+        params: Params$Resource$Rooms$Join,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    join(callback: BodyResponseCallback<Schema$Room>): void;
+    join(
+        paramsOrCallback?: Params$Resource$Rooms$Join|
+        BodyResponseCallback<Schema$Room>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
         void|AxiosPromise<Schema$Room> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Join;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Join;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4775,23 +5600,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leave(params?: any, options?: MethodOptions): AxiosPromise<Schema$Room>;
+    leave(params?: Params$Resource$Rooms$Leave, options?: MethodOptions):
+        AxiosPromise<Schema$Room>;
     leave(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>): void;
+        params: Params$Resource$Rooms$Leave,
+        options: MethodOptions|BodyResponseCallback<Schema$Room>,
+        callback: BodyResponseCallback<Schema$Room>): void;
     leave(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Room>,
+        params: Params$Resource$Rooms$Leave,
+        callback: BodyResponseCallback<Schema$Room>): void;
+    leave(callback: BodyResponseCallback<Schema$Room>): void;
+    leave(
+        paramsOrCallback?: Params$Resource$Rooms$Leave|
+        BodyResponseCallback<Schema$Room>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
         void|AxiosPromise<Schema$Room> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Leave;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Leave;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4828,25 +5666,36 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$RoomList>;
+    list(params?: Params$Resource$Rooms$List, options?: MethodOptions):
+        AxiosPromise<Schema$RoomList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoomList>,
-        callback?: BodyResponseCallback<Schema$RoomList>): void;
+        params: Params$Resource$Rooms$List,
+        options: MethodOptions|BodyResponseCallback<Schema$RoomList>,
+        callback: BodyResponseCallback<Schema$RoomList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoomList>,
+        params: Params$Resource$Rooms$List,
+        callback: BodyResponseCallback<Schema$RoomList>): void;
+    list(callback: BodyResponseCallback<Schema$RoomList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Rooms$List|
+        BodyResponseCallback<Schema$RoomList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$RoomList>,
         callback?: BodyResponseCallback<Schema$RoomList>):
         void|AxiosPromise<Schema$RoomList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4884,26 +5733,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reportStatus(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RoomStatus>;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoomStatus>,
-        callback?: BodyResponseCallback<Schema$RoomStatus>): void;
+        params?: Params$Resource$Rooms$Reportstatus,
+        options?: MethodOptions): AxiosPromise<Schema$RoomStatus>;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoomStatus>,
+        params: Params$Resource$Rooms$Reportstatus,
+        options: MethodOptions|BodyResponseCallback<Schema$RoomStatus>,
+        callback: BodyResponseCallback<Schema$RoomStatus>): void;
+    reportStatus(
+        params: Params$Resource$Rooms$Reportstatus,
+        callback: BodyResponseCallback<Schema$RoomStatus>): void;
+    reportStatus(callback: BodyResponseCallback<Schema$RoomStatus>): void;
+    reportStatus(
+        paramsOrCallback?: Params$Resource$Rooms$Reportstatus|
+        BodyResponseCallback<Schema$RoomStatus>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RoomStatus>,
         callback?: BodyResponseCallback<Schema$RoomStatus>):
         void|AxiosPromise<Schema$RoomStatus> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rooms$Reportstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Reportstatus;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4925,6 +5787,142 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Rooms$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RoomCreateRequest;
+  }
+  export interface Params$Resource$Rooms$Decline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+  }
+  export interface Params$Resource$Rooms$Dismiss {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+  }
+  export interface Params$Resource$Rooms$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+  }
+  export interface Params$Resource$Rooms$Join {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RoomJoinRequest;
+  }
+  export interface Params$Resource$Rooms$Leave {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RoomLeaveRequest;
+  }
+  export interface Params$Resource$Rooms$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of rooms to return in the response, used for paging.
+     * For any response, the actual number of rooms to return may be less than
+     * the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Rooms$Reportstatus {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the room.
+     */
+    roomId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RoomP2PStatuses;
+  }
+
 
   export class Resource$Scores {
     root: Games;
@@ -4960,29 +5958,42 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Scores$Get, options?: MethodOptions):
         AxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Scores$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Scores$Get,
+        callback:
+            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Scores$Get|
+        BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
         callback?:
             BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
         void|AxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5026,26 +6037,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Scores$List, options?: MethodOptions):
         AxiosPromise<Schema$LeaderboardScores>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
-        callback?: BodyResponseCallback<Schema$LeaderboardScores>): void;
+        params: Params$Resource$Scores$List,
+        options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
+        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
+        params: Params$Resource$Scores$List,
+        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+    list(callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Scores$List|
+        BodyResponseCallback<Schema$LeaderboardScores>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LeaderboardScores>,
         callback?: BodyResponseCallback<Schema$LeaderboardScores>):
         void|AxiosPromise<Schema$LeaderboardScores> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5090,26 +6112,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listWindow(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardScores>;
     listWindow(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
-        callback?: BodyResponseCallback<Schema$LeaderboardScores>): void;
+        params?: Params$Resource$Scores$Listwindow,
+        options?: MethodOptions): AxiosPromise<Schema$LeaderboardScores>;
     listWindow(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
+        params: Params$Resource$Scores$Listwindow,
+        options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
+        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+    listWindow(
+        params: Params$Resource$Scores$Listwindow,
+        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+    listWindow(callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+    listWindow(
+        paramsOrCallback?: Params$Resource$Scores$Listwindow|
+        BodyResponseCallback<Schema$LeaderboardScores>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LeaderboardScores>,
         callback?: BodyResponseCallback<Schema$LeaderboardScores>):
         void|AxiosPromise<Schema$LeaderboardScores> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Scores$Listwindow;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Listwindow;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5149,28 +6184,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: any, options?: MethodOptions):
+    submit(params?: Params$Resource$Scores$Submit, options?: MethodOptions):
         AxiosPromise<Schema$PlayerScoreResponse>;
     submit(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
+        params: Params$Resource$Scores$Submit,
+        options: MethodOptions|BodyResponseCallback<Schema$PlayerScoreResponse>,
+        callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
     submit(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Submit,
+        callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
+    submit(callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
+    submit(
+        paramsOrCallback?: Params$Resource$Scores$Submit|
+        BodyResponseCallback<Schema$PlayerScoreResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResponse>):
         void|AxiosPromise<Schema$PlayerScoreResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Submit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5206,28 +6250,41 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submitMultiple(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerScoreListResponse>;
     submitMultiple(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Scores$Submitmultiple,
+        options?: MethodOptions): AxiosPromise<Schema$PlayerScoreListResponse>;
+    submitMultiple(
+        params: Params$Resource$Scores$Submitmultiple,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
     submitMultiple(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Scores$Submitmultiple,
+        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+    submitMultiple(
+        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+    submitMultiple(
+        paramsOrCallback?: Params$Resource$Scores$Submitmultiple|
+        BodyResponseCallback<Schema$PlayerScoreListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>):
         void|AxiosPromise<Schema$PlayerScoreListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Scores$Submitmultiple;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scores$Submitmultiple;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5249,6 +6306,171 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Scores$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The types of ranks to return. If the parameter is omitted, no ranks will
+     * be returned.
+     */
+    includeRankType?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all
+     * leaderboards for this application.
+     */
+    leaderboardId?: string;
+    /**
+     * The maximum number of leaderboard scores to return in the response. For
+     * any response, the actual number of leaderboard scores returned may be
+     * less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+    /**
+     * The time span for the scores and ranks you're requesting.
+     */
+    timeSpan?: string;
+  }
+  export interface Params$Resource$Scores$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The collection of scores you're requesting.
+     */
+    collection?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+    /**
+     * The maximum number of leaderboard scores to return in the response. For
+     * any response, the actual number of leaderboard scores returned may be
+     * less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * The time span for the scores and ranks you're requesting.
+     */
+    timeSpan?: string;
+  }
+  export interface Params$Resource$Scores$Listwindow {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The collection of scores you're requesting.
+     */
+    collection?: string;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+    /**
+     * The maximum number of leaderboard scores to return in the response. For
+     * any response, the actual number of leaderboard scores returned may be
+     * less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * The preferred number of scores to return above the player's score. More
+     * scores may be returned if the player is at the bottom of the leaderboard;
+     * fewer may be returned if the player is at the top. Must be less than or
+     * equal to maxResults.
+     */
+    resultsAbove?: number;
+    /**
+     * True if the top scores should be returned when the player is not in the
+     * leaderboard. Defaults to true.
+     */
+    returnTopIfAbsent?: boolean;
+    /**
+     * The time span for the scores and ranks you're requesting.
+     */
+    timeSpan?: string;
+  }
+  export interface Params$Resource$Scores$Submit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the leaderboard.
+     */
+    leaderboardId?: string;
+    /**
+     * The score you're submitting. The submitted score is ignored if it is
+     * worse than a previously submitted score, where worse depends on the
+     * leaderboard sort order. The meaning of the score value depends on the
+     * leaderboard format type. For fixed-point, the score represents the raw
+     * value. For time, the score represents elapsed time in milliseconds. For
+     * currency, the score represents a value in micro units.
+     */
+    score?: string;
+    /**
+     * Additional information about the score you're submitting. Values must
+     * contain no more than 64 URI-safe characters as defined by section 2.3 of
+     * RFC 3986.
+     */
+    scoreTag?: string;
+  }
+  export interface Params$Resource$Scores$Submitmultiple {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlayerScoreSubmissionList;
+  }
+
 
   export class Resource$Snapshots {
     root: Games;
@@ -5275,23 +6497,33 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+    get(params?: Params$Resource$Snapshots$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+    get(params: Params$Resource$Snapshots$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(params: Params$Resource$Snapshots$Get,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(paramsOrCallback?: Params$Resource$Snapshots$Get|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
         void|AxiosPromise<Schema$Snapshot> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5330,28 +6562,38 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Snapshots$List, options?: MethodOptions):
         AxiosPromise<Schema$SnapshotListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Snapshots$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SnapshotListResponse>,
-        callback?: BodyResponseCallback<Schema$SnapshotListResponse>): void;
+        callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Snapshots$List,
+        callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Snapshots$List|
+        BodyResponseCallback<Schema$SnapshotListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SnapshotListResponse>,
         callback?: BodyResponseCallback<Schema$SnapshotListResponse>):
         void|AxiosPromise<Schema$SnapshotListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5373,6 +6615,49 @@ export namespace games_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Snapshots$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Snapshots$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of snapshot resources to return in the response, used
+     * for paging. For any response, the actual number of snapshot resources
+     * returned may be less than the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * A player ID. A value of me may be used in place of the authenticated
+     * player's ID.
+     */
+    playerId?: string;
+  }
+
 
   export class Resource$Turnbasedmatches {
     root: Games;
@@ -5398,22 +6683,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<void>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Turnbasedmatches$Cancel,
+        options?: MethodOptions): AxiosPromise<void>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Turnbasedmatches$Cancel,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    cancel(
+        params: Params$Resource$Turnbasedmatches$Cancel,
+        callback: BodyResponseCallback<void>): void;
+    cancel(callback: BodyResponseCallback<void>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Cancel|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5449,26 +6749,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Create,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    create(
+        params: Params$Resource$Turnbasedmatches$Create,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    create(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Create|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5504,26 +6817,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decline(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     decline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Decline,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     decline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Decline,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    decline(
+        params: Params$Resource$Turnbasedmatches$Decline,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    decline(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    decline(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Decline|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Decline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Decline;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5559,22 +6885,37 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss(params?: any, options?: MethodOptions): AxiosPromise<void>;
     dismiss(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Turnbasedmatches$Dismiss,
+        options?: MethodOptions): AxiosPromise<void>;
     dismiss(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Turnbasedmatches$Dismiss,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    dismiss(
+        params: Params$Resource$Turnbasedmatches$Dismiss,
+        callback: BodyResponseCallback<void>): void;
+    dismiss(callback: BodyResponseCallback<void>): void;
+    dismiss(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Dismiss|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Dismiss;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Dismiss;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5613,26 +6954,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    finish(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     finish(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Finish,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     finish(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Finish,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    finish(
+        params: Params$Resource$Turnbasedmatches$Finish,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    finish(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    finish(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Finish|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Finish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Finish;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5669,24 +7023,35 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Turnbasedmatches$Get,
         options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+    get(params: Params$Resource$Turnbasedmatches$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    get(params: Params$Resource$Turnbasedmatches$Get,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    get(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    get(paramsOrCallback?: Params$Resource$Turnbasedmatches$Get|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5722,26 +7087,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    join(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     join(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Join,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     join(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Join,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    join(
+        params: Params$Resource$Turnbasedmatches$Join,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    join(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    join(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Join|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Join;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Join;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5778,26 +7156,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leave(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     leave(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Leave,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     leave(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Leave,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leave(
+        params: Params$Resource$Turnbasedmatches$Leave,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leave(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leave(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Leave|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Leave;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Leave;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5836,26 +7227,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leaveTurn(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     leaveTurn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Leaveturn,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     leaveTurn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Leaveturn,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leaveTurn(
+        params: Params$Resource$Turnbasedmatches$Leaveturn,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leaveTurn(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    leaveTurn(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Leaveturn|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Turnbasedmatches$Leaveturn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Leaveturn;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5894,26 +7298,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatchList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchList>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+        params?: Params$Resource$Turnbasedmatches$List,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchList>,
+        params: Params$Resource$Turnbasedmatches$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchList>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+    list(
+        params: Params$Resource$Turnbasedmatches$List,
+        callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+    list(callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$List|
+        BodyResponseCallback<Schema$TurnBasedMatchList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatchList>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchList>):
         void|AxiosPromise<Schema$TurnBasedMatchList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5953,28 +7370,40 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rematch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatchRematch>;
     rematch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Turnbasedmatches$Rematch,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchRematch>;
+    rematch(
+        params: Params$Resource$Turnbasedmatches$Rematch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
+        callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
     rematch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Turnbasedmatches$Rematch,
+        callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
+    rematch(callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
+    rematch(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Rematch|
+        BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatchRematch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>):
         void|AxiosPromise<Schema$TurnBasedMatchRematch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Rematch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Rematch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6016,26 +7445,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sync(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatchSync>;
     sync(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchSync>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+        params?: Params$Resource$Turnbasedmatches$Sync,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchSync>;
     sync(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchSync>,
+        params: Params$Resource$Turnbasedmatches$Sync,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchSync>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+    sync(
+        params: Params$Resource$Turnbasedmatches$Sync,
+        callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+    sync(callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+    sync(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Sync|
+        BodyResponseCallback<Schema$TurnBasedMatchSync>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatchSync>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>):
         void|AxiosPromise<Schema$TurnBasedMatchSync> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Sync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Sync;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6072,26 +7514,39 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    takeTurn(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TurnBasedMatch>;
     takeTurn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+        params?: Params$Resource$Turnbasedmatches$Taketurn,
+        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
     takeTurn(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        params: Params$Resource$Turnbasedmatches$Taketurn,
+        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    takeTurn(
+        params: Params$Resource$Turnbasedmatches$Taketurn,
+        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    takeTurn(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    takeTurn(
+        paramsOrCallback?: Params$Resource$Turnbasedmatches$Taketurn|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
         void|AxiosPromise<Schema$TurnBasedMatch> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Taketurn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Turnbasedmatches$Taketurn;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6112,5 +7567,262 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Turnbasedmatches$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TurnBasedMatchCreateRequest;
+  }
+  export interface Params$Resource$Turnbasedmatches$Decline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Dismiss {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Finish {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TurnBasedMatchResults;
+  }
+  export interface Params$Resource$Turnbasedmatches$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Get match data along with metadata.
+     */
+    includeMatchData?: boolean;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Join {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Leave {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Leaveturn {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+    /**
+     * The version of the match being updated.
+     */
+    matchVersion?: number;
+    /**
+     * The ID of another participant who should take their turn next. If not
+     * set, the match will wait for other player(s) to join via automatching;
+     * this is only valid if automatch criteria is set on the match with
+     * remaining slots for automatched players.
+     */
+    pendingParticipantId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * True if match data should be returned in the response. Note that not all
+     * data will necessarily be returned if include_match_data is true; the
+     * server may decide to only return data for some of the matches to limit
+     * download size for the client. The remainder of the data for these matches
+     * will be retrievable on request.
+     */
+    includeMatchData?: boolean;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of completed or canceled matches to return in the
+     * response. If not set, all matches returned could be completed or
+     * canceled.
+     */
+    maxCompletedMatches?: number;
+    /**
+     * The maximum number of matches to return in the response, used for paging.
+     * For any response, the actual number of matches to return may be less than
+     * the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Rematch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+    /**
+     * A randomly generated numeric ID for each request specified by the caller.
+     * This number is used at the server to ensure that the request is handled
+     * correctly across retries.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Sync {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * True if match data should be returned in the response. Note that not all
+     * data will necessarily be returned if include_match_data is true; the
+     * server may decide to only return data for some of the matches to limit
+     * download size for the client. The remainder of the data for these matches
+     * will be retrievable on request.
+     */
+    includeMatchData?: boolean;
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The maximum number of completed or canceled matches to return in the
+     * response. If not set, all matches returned could be completed or
+     * canceled.
+     */
+    maxCompletedMatches?: number;
+    /**
+     * The maximum number of matches to return in the response, used for paging.
+     * For any response, the actual number of matches to return may be less than
+     * the specified maxResults.
+     */
+    maxResults?: number;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Turnbasedmatches$Taketurn {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The preferred language to use for strings returned by this method.
+     */
+    language?: string;
+    /**
+     * The ID of the match.
+     */
+    matchId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TurnBasedMatchTurn;
   }
 }

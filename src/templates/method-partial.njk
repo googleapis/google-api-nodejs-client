@@ -1,4 +1,4 @@
-{% macro render(m, mname, api, rootApi) %}
+{% macro render(m, mname, api, rootApi, ClassName) %}
 {% set lb = "{" %}
 {% set rb = "}" %}
 {% set pathParams = m.parameters|getPathParams|sort %}
@@ -22,35 +22,42 @@
 {% endfor %}
 {% endif %}
 {% if m.supportsMediaUpload %}
-{% if m.request %}
- * @param  {object} params.resource Media resource metadata
-{% endif %}
- * @param {object} params.media Media object
- * @param {string} params.media.mimeType Media mime-type
- * @param {string|object} params.media.body Media body contents
+  {% if m.request %}
+    * @param  {object} params.resource Media resource metadata
+  {% endif %}
+  * @param {object} params.media Media object
+  * @param {string} params.media.mimeType Media mime-type
+  * @param {string|object} params.media.body Media body contents
 {% elif m.request %}
-{% if m.request.$ref %}
- * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
-{% else %}
- * @param {object} params.resource Request body data
-{% endif %}
+  {% if m.request.$ref %}
+    * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
+  {% else %}
+    * @param {object} params.resource Request body data
+  {% endif %}
 {% endif %}
  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{{ mname }}(params?: any, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
-{{ mname }}(params?: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
-{{ mname }}(params?: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
-  if (typeof options === 'function') {
-    callback = options;
+{{ mname }}(params?: Params${{ClassName}}${{mname|capitalize}}, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname }}(params: Params${{ClassName}}${{mname|capitalize}}, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
+{{ mname }}(params: Params${{ClassName}}${{mname|capitalize}}, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
+{{ mname }}(callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
+{{ mname }}(paramsOrCallback?: Params${{ClassName}}${{mname|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, optionsOrCallback?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
+  let params = (paramsOrCallback || {}) as Params${{ClassName}}${{mname|capitalize}};
+  let options = (optionsOrCallback || {}) as MethodOptions;
+
+  if (typeof paramsOrCallback === 'function') {
+    callback = paramsOrCallback;
+    params = {} as Params${{ClassName}}${{mname|capitalize}};
     options = {};
   }
-  if (typeof params === 'function') {
-    callback = params;
-    params = {};
+
+  if (typeof optionsOrCallback === 'function') {
+    callback = optionsOrCallback;
+    options = {};
   }
-  options = options || {};
+
   const rootUrl = options.rootUrl || {{ rootApi.rootUrl|buildurl|safe }};
   const parameters = {
     options: Object.assign({

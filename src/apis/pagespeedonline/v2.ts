@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace pagespeedonline_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * PageSpeed Insights API
    *
@@ -70,93 +73,94 @@ export namespace pagespeedonline_v2 {
     /**
      * List of arguments for the format string.
      */
-    args: any[];
+    args?: any[];
     /**
      * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39;
      * is the key of the argument whose value should be substituted. For
      * HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}}
      * and {{END_FOO}} for the argument with key &#39;FOO&#39;.
      */
-    format: string;
+    format?: string;
   }
   export interface Schema$PagespeedApiImageV2 {
     /**
      * Image data base64 encoded.
      */
-    data: string;
+    data?: string;
     /**
      * Height of screenshot in pixels.
      */
-    height: number;
+    height?: number;
     /**
      * Unique string key, if any, identifying this image.
      */
-    key: string;
+    key?: string;
     /**
      * Mime type of image data (e.g. &quot;image/jpeg&quot;).
      */
-    mime_type: string;
+    mime_type?: string;
     /**
      * The region of the page that is captured by this image, with dimensions
      * measured in CSS pixels.
      */
-    page_rect: any;
+    page_rect?: any;
     /**
      * Width of screenshot in pixels.
      */
-    width: number;
+    width?: number;
   }
   export interface Schema$Result {
     /**
      * The captcha verify result
      */
-    captchaResult: string;
+    captchaResult?: string;
     /**
      * Localized PageSpeed results. Contains a ruleResults entry for each
      * PageSpeed rule instantiated and run by the server.
      */
-    formattedResults: any;
+    formattedResults?: any;
     /**
      * Canonicalized and final URL for the document, after following page
      * redirects (if any).
      */
-    id: string;
+    id?: string;
     /**
      * List of rules that were specified in the request, but which the server
      * did not know how to instantiate.
      */
-    invalidRules: string[];
+    invalidRules?: string[];
     /**
      * Kind of result.
      */
-    kind: string;
+    kind?: string;
     /**
      * Summary statistics for the page, such as number of JavaScript bytes,
      * number of HTML bytes, etc.
      */
-    pageStats: any;
+    pageStats?: any;
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx
      * indicates an error.
      */
-    responseCode: number;
+    responseCode?: number;
     /**
      * A map with one entry for each rule group in these results.
      */
-    ruleGroups: any;
+    ruleGroups?: any;
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
-    screenshot: Schema$PagespeedApiImageV2;
+    screenshot?: Schema$PagespeedApiImageV2;
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
-    title: string;
+    title?: string;
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version: any;
+    version?: any;
   }
+
 
   export class Resource$Pagespeedapi {
     root: Pagespeedonline;
@@ -189,26 +193,38 @@ export namespace pagespeedonline_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runpagespeed(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Result>;
     runpagespeed(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Result>,
-        callback?: BodyResponseCallback<Schema$Result>): void;
+        params?: Params$Resource$Pagespeedapi$Runpagespeed,
+        options?: MethodOptions): AxiosPromise<Schema$Result>;
     runpagespeed(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Result>,
+        params: Params$Resource$Pagespeedapi$Runpagespeed,
+        options: MethodOptions|BodyResponseCallback<Schema$Result>,
+        callback: BodyResponseCallback<Schema$Result>): void;
+    runpagespeed(
+        params: Params$Resource$Pagespeedapi$Runpagespeed,
+        callback: BodyResponseCallback<Schema$Result>): void;
+    runpagespeed(callback: BodyResponseCallback<Schema$Result>): void;
+    runpagespeed(
+        paramsOrCallback?: Params$Resource$Pagespeedapi$Runpagespeed|
+        BodyResponseCallback<Schema$Result>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Result>,
         callback?: BodyResponseCallback<Schema$Result>):
         void|AxiosPromise<Schema$Result> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Pagespeedapi$Runpagespeed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pagespeedapi$Runpagespeed;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -229,5 +245,38 @@ export namespace pagespeedonline_v2 {
         return createAPIRequest<Schema$Result>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Pagespeedapi$Runpagespeed {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Indicates if third party resources should be filtered out before
+     * PageSpeed analysis.
+     */
+    filter_third_party_resources?: boolean;
+    /**
+     * The locale used to localize formatted results
+     */
+    locale?: string;
+    /**
+     * A PageSpeed rule to run; if none are given, all rules are run
+     */
+    rule?: string;
+    /**
+     * Indicates if binary data containing a screenshot should be included
+     */
+    screenshot?: boolean;
+    /**
+     * The analysis strategy to use
+     */
+    strategy?: string;
+    /**
+     * The URL to fetch and analyze
+     */
+    url?: string;
   }
 }

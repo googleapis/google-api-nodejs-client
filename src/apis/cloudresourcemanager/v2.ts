@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudresourcemanager_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Cloud Resource Manager API
    *
@@ -93,13 +96,13 @@ export namespace cloudresourcemanager_v2 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -115,11 +118,11 @@ export namespace cloudresourcemanager_v2 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -140,12 +143,12 @@ export namespace cloudresourcemanager_v2 {
      * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A Folder in an Organization&#39;s resource hierarchy, used to organize that
@@ -156,7 +159,7 @@ export namespace cloudresourcemanager_v2 {
      * Output only. Timestamp when the Folder was created. Assigned by the
      * server.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The folder’s display name. A folder’s display name must be unique amongst
      * its siblings, e.g. no two folders with the same parent can share the same
@@ -165,22 +168,22 @@ export namespace cloudresourcemanager_v2 {
      * no longer than 30 characters. This is captured by the regular expression:
      * [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Output only.  The lifecycle state of the folder. Updates to the
      * lifecycle_state must be performed via DeleteFolder and UndeleteFolder.
      */
-    lifecycleState: string;
+    lifecycleState?: string;
     /**
      * Output only. The resource name of the Folder. Its format is
      * `folders/{folder_id}`, for example: &quot;folders/1234&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * The Folder’s parent&#39;s resource name. Updates to the folder&#39;s
      * parent must be performed via MoveFolder.
      */
-    parent: string;
+    parent?: string;
   }
   /**
    * Metadata describing a long running folder operation
@@ -190,20 +193,20 @@ export namespace cloudresourcemanager_v2 {
      * The resource name of the folder or organization we are either creating
      * the folder under or moving the folder to.
      */
-    destinationParent: string;
+    destinationParent?: string;
     /**
      * The display name of the folder.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The type of this operation.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The resource name of the folder&#39;s parent. Only applicable when the
      * operation_type is MOVE.
      */
-    sourceParent: string;
+    sourceParent?: string;
   }
   /**
    * A classification of the Folder Operation error.
@@ -212,7 +215,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * The type of operation error experienced.
      */
-    errorMessageId: string;
+    errorMessageId?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -226,12 +229,12 @@ export namespace cloudresourcemanager_v2 {
      * A possibly paginated list of Folders that are direct descendants of the
      * specified parent resource.
      */
-    folders: Schema$Folder[];
+    folders?: Schema$Folder[];
     /**
      * A pagination token returned from a previous call to `ListFolders` that
      * indicates from where listing should continue. This field is optional.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The MoveFolder request message.
@@ -242,7 +245,7 @@ export namespace cloudresourcemanager_v2 {
      * under. Must be of the form `folders/{folder_id}` or
      * `organizations/{org_id}`.
      */
-    destinationParent: string;
+    destinationParent?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -254,24 +257,24 @@ export namespace cloudresourcemanager_v2 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -281,7 +284,7 @@ export namespace cloudresourcemanager_v2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -307,12 +310,12 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -324,11 +327,11 @@ export namespace cloudresourcemanager_v2 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A status object which is used as the `metadata` field for the Operation
@@ -339,17 +342,17 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Creation time of the project creation workflow.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * True if the project can be retrieved using GetProject. No other
      * operations on the project are guaranteed to work until the project
      * creation is complete.
      */
-    gettable: boolean;
+    gettable?: boolean;
     /**
      * True if the project creation process is complete.
      */
-    ready: boolean;
+    ready?: boolean;
   }
   /**
    * The request message for searching folders.
@@ -359,12 +362,12 @@ export namespace cloudresourcemanager_v2 {
      * The maximum number of folders to return in the response. This field is
      * optional.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * A pagination token returned from a previous call to `SearchFolders` that
      * indicates from where search should continue. This field is optional.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * Search criteria used to select the Folders to return. If no search
      * criteria is specified then all accessible folders will be returned. Query
@@ -378,7 +381,7 @@ export namespace cloudresourcemanager_v2 {
      * &quot;folders/123&quot;. |parent=folders/123 AND lifecycleState=ACTIVE |
      * Active folders whose parent is &quot;folders/123&quot;.|
      */
-    query: string;
+    query?: string;
   }
   /**
    * The response message for searching folders.
@@ -388,12 +391,12 @@ export namespace cloudresourcemanager_v2 {
      * A possibly paginated folder search results. the specified parent
      * resource.
      */
-    folders: Schema$Folder[];
+    folders?: Schema$Folder[];
     /**
      * A pagination token returned from a previous call to `SearchFolders` that
      * indicates from where searching should continue. This field is optional.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -405,14 +408,14 @@ export namespace cloudresourcemanager_v2 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -454,18 +457,18 @@ export namespace cloudresourcemanager_v2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -477,7 +480,7 @@ export namespace cloudresourcemanager_v2 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -487,12 +490,13 @@ export namespace cloudresourcemanager_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * The UndeleteFolder request message.
    */
   export interface Schema$UndeleteFolderRequest {}
+
 
   export class Resource$Folders {
     root: Cloudresourcemanager;
@@ -536,26 +540,37 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Folders$Create, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Folders$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Folders$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Folders$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -595,25 +610,36 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+    delete(params?: Params$Resource$Folders$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Folder>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
+        params: Params$Resource$Folders$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        params: Params$Resource$Folders$Delete,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    delete(callback: BodyResponseCallback<Schema$Folder>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Folders$Delete|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -651,23 +677,33 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+    get(params?: Params$Resource$Folders$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Folder>;
+    get(params: Params$Resource$Folders$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(params: Params$Resource$Folders$Get,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(callback: BodyResponseCallback<Schema$Folder>): void;
+    get(paramsOrCallback?: Params$Resource$Folders$Get|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -707,26 +743,38 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Folders$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Folders$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Folders$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -770,28 +818,37 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Folders$List, options?: MethodOptions):
         AxiosPromise<Schema$ListFoldersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+        params: Params$Resource$Folders$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
+        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$List,
+        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Folders$List|
+        BodyResponseCallback<Schema$ListFoldersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFoldersResponse>,
         callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
         void|AxiosPromise<Schema$ListFoldersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -839,25 +896,37 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    move(params?: Params$Resource$Folders$Move, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
     move(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Folders$Move,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     move(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Folders$Move,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    move(callback: BodyResponseCallback<Schema$Operation>): void;
+    move(
+        paramsOrCallback?: Params$Resource$Folders$Move|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Move;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -904,25 +973,36 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+    patch(params?: Params$Resource$Folders$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Folder>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
+        params: Params$Resource$Folders$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        params: Params$Resource$Folders$Patch,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    patch(callback: BodyResponseCallback<Schema$Folder>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Folders$Patch|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -961,28 +1041,38 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Folders$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchFoldersResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
+        callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Search,
+        callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Folders$Search|
+        BodyResponseCallback<Schema$SearchFoldersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchFoldersResponse>,
         callback?: BodyResponseCallback<Schema$SearchFoldersResponse>):
         void|AxiosPromise<Schema$SearchFoldersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1023,26 +1113,38 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Folders$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Folders$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Folders$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Folders$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1082,29 +1184,45 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Folders$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Folders$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Folders$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1148,26 +1266,37 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Folder>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>): void;
+        params?: Params$Resource$Folders$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Folder>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        params: Params$Resource$Folders$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    undelete(
+        params: Params$Resource$Folders$Undelete,
+        callback: BodyResponseCallback<Schema$Folder>): void;
+    undelete(callback: BodyResponseCallback<Schema$Folder>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Folders$Undelete|
+        BodyResponseCallback<Schema$Folder>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
         void|AxiosPromise<Schema$Folder> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
@@ -1189,5 +1318,187 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Folders$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the new Folder's parent. Must be of the form
+     * `folders/{folder_id}` or `organizations/{org_id}`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Folder;
+  }
+  export interface Params$Resource$Folders$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * the resource name of the Folder to be deleted. Must be of the form
+     * `folders/{folder_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the Folder to retrieve. Must be of the form
+     * `folders/{folder_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Folders$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of Folders to return in the response. This field is
+     * optional.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to `ListFolders` that
+     * indicates where this listing should continue from. This field is
+     * optional.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the Organization or Folder whose Folders are being
+     * listed. Must be of the form `folders/{folder_id}` or
+     * `organizations/{org_id}`. Access to this method is controlled by checking
+     * the `resourcemanager.folders.list` permission on the `parent`.
+     */
+    parent?: string;
+    /**
+     * Controls whether Folders in the DELETE_REQUESTED state should be
+     * returned. Defaults to false. This field is optional.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Folders$Move {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the Folder to move. Must be of the form
+     * folders/{folder_id}
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$MoveFolderRequest;
+  }
+  export interface Params$Resource$Folders$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The resource name of the Folder. Its format is
+     * `folders/{folder_id}`, for example: "folders/1234".
+     */
+    name?: string;
+    /**
+     * Fields to be updated. Only the `display_name` can be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Folder;
+  }
+  export interface Params$Resource$Folders$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchFoldersRequest;
+  }
+  export interface Params$Resource$Folders$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Folders$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Folders$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the Folder to undelete. Must be of the form
+     * `folders/{folder_id}`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UndeleteFolderRequest;
   }
 }

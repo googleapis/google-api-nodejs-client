@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace texttospeech_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Cloud Text-to-Speech API
    *
@@ -75,13 +78,13 @@ export namespace texttospeech_v1beta1 {
     /**
      * Required. The format of the requested audio byte stream.
      */
-    audioEncoding: string;
+    audioEncoding?: string;
     /**
      * Optional speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20
      * semitones from the original pitch. -20 means decrease 20 semitones from
      * the original pitch.
      */
-    pitch: number;
+    pitch?: number;
     /**
      * The synthesis sample rate (in hertz) for this audio. Optional.  If this
      * is different from the voice&#39;s natural sample rate, then the
@@ -90,14 +93,14 @@ export namespace texttospeech_v1beta1 {
      * sample rate is not supported for the encoding chosen, in which case it
      * will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
      */
-    sampleRateHertz: number;
+    sampleRateHertz?: number;
     /**
      * Optional speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal
      * native speed supported by the specific voice. 2.0 is twice as fast, and
      * 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any
      * other values &lt; 0.25 or &gt; 4.0 will return an error.
      */
-    speakingRate: number;
+    speakingRate?: number;
     /**
      * Optional volume gain (in dB) of the normal native volume supported by the
      * specific voice, in the range [-96.0, 16.0]. If unset, or set to a value
@@ -108,7 +111,7 @@ export namespace texttospeech_v1beta1 {
      * not to exceed +10 (dB) as there&#39;s usually no effective increase in
      * loudness for any value greater than that.
      */
-    volumeGainDb: number;
+    volumeGainDb?: number;
   }
   /**
    * The message returned to the client by the `ListVoices` method.
@@ -117,7 +120,7 @@ export namespace texttospeech_v1beta1 {
     /**
      * The list of voices.
      */
-    voices: Schema$Voice[];
+    voices?: Schema$Voice[];
   }
   /**
    * Contains text input to be synthesized. Either `text` or `ssml` must be
@@ -132,11 +135,11 @@ export namespace texttospeech_v1beta1 {
      * google.rpc.Code.INVALID_ARGUMENT. For more information, see
      * [SSML](/speech/text-to-speech/docs/ssml).
      */
-    ssml: string;
+    ssml?: string;
     /**
      * The raw text to be synthesized.
      */
-    text: string;
+    text?: string;
   }
   /**
    * The top-level message sent by the client for the `SynthesizeSpeech` method.
@@ -145,15 +148,15 @@ export namespace texttospeech_v1beta1 {
     /**
      * Required. The configuration of the synthesized audio.
      */
-    audioConfig: Schema$AudioConfig;
+    audioConfig?: Schema$AudioConfig;
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      */
-    input: Schema$SynthesisInput;
+    input?: Schema$SynthesisInput;
     /**
      * Required. The desired voice of the synthesized audio.
      */
-    voice: Schema$VoiceSelectionParams;
+    voice?: Schema$VoiceSelectionParams;
   }
   /**
    * The message returned to the client by the `SynthesizeSpeech` method.
@@ -165,7 +168,7 @@ export namespace texttospeech_v1beta1 {
      * bytes fields, protobuffers use a pure binary representation, whereas JSON
      * representations use base64.
      */
-    audioContent: string;
+    audioContent?: string;
   }
   /**
    * Description of a voice supported by the TTS service.
@@ -176,19 +179,19 @@ export namespace texttospeech_v1beta1 {
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags
      * (e.g. &quot;en-US&quot;, &quot;es-419&quot;, &quot;cmn-tw&quot;).
      */
-    languageCodes: string[];
+    languageCodes?: string[];
     /**
      * The name of this voice.  Each distinct voice has a unique name.
      */
-    name: string;
+    name?: string;
     /**
      * The natural sample rate (in hertz) for this voice.
      */
-    naturalSampleRateHertz: number;
+    naturalSampleRateHertz?: number;
     /**
      * The gender of this voice.
      */
-    ssmlGender: string;
+    ssmlGender?: string;
   }
   /**
    * Description of which voice to use for a synthesis request.
@@ -208,12 +211,12 @@ export namespace texttospeech_v1beta1 {
      * &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot;
      * (Norwegian)&quot;.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * The name of the voice. Optional; if not set, the service will choose a
      * voice based on the other parameters such as language_code and gender.
      */
-    name: string;
+    name?: string;
     /**
      * The preferred gender of the voice. Optional; if not set, the service will
      * choose a voice based on the other parameters such as language_code and
@@ -222,8 +225,9 @@ export namespace texttospeech_v1beta1 {
      * substitute a voice with a different gender rather than failing the
      * request.
      */
-    ssmlGender: string;
+    ssmlGender?: string;
   }
+
 
   export class Resource$Text {
     root: Texttospeech;
@@ -250,28 +254,40 @@ export namespace texttospeech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    synthesize(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SynthesizeSpeechResponse>;
     synthesize(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Text$Synthesize,
+        options?: MethodOptions): AxiosPromise<Schema$SynthesizeSpeechResponse>;
+    synthesize(
+        params: Params$Resource$Text$Synthesize,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-        callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
+        callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
     synthesize(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Text$Synthesize,
+        callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
+    synthesize(callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
+        void;
+    synthesize(
+        paramsOrCallback?: Params$Resource$Text$Synthesize|
+        BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
         callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
         void|AxiosPromise<Schema$SynthesizeSpeechResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Text$Synthesize;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://texttospeech.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -293,6 +309,19 @@ export namespace texttospeech_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Text$Synthesize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SynthesizeSpeechRequest;
+  }
+
 
   export class Resource$Voices {
     root: Texttospeech;
@@ -318,26 +347,37 @@ export namespace texttospeech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Voices$List, options?: MethodOptions):
         AxiosPromise<Schema$ListVoicesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVoicesResponse>): void;
+        params: Params$Resource$Voices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
+        callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
+        params: Params$Resource$Voices$List,
+        callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Voices$List|
+        BodyResponseCallback<Schema$ListVoicesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListVoicesResponse>,
         callback?: BodyResponseCallback<Schema$ListVoicesResponse>):
         void|AxiosPromise<Schema$ListVoicesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Voices$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://texttospeech.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -357,5 +397,24 @@ export namespace texttospeech_v1beta1 {
         return createAPIRequest<Schema$ListVoicesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Voices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional (but recommended)
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
+     * specified, the ListVoices call will only return voices that can be used
+     * to synthesize this language_code. E.g. when specifying "en-NZ", you will
+     * get supported "en-*" voices; when specifying "no", you will get supported
+     * "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh"
+     * will also get supported "cmn-*" voices; specifying "zh-hk" will also get
+     * supported "yue-*" voices.
+     */
+    languageCode?: string;
   }
 }

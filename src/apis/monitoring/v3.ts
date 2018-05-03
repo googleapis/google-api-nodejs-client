@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace monitoring_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Stackdriver Monitoring API
    *
@@ -87,7 +90,7 @@ export namespace monitoring_v3 {
      * equal ALIGN_NONE, then this field must be defined; otherwise an error is
      * returned.
      */
-    alignmentPeriod: string;
+    alignmentPeriod?: string;
     /**
      * The approach to be used to combine time series. Not all reducer functions
      * may be applied to all time series, depending on the metric type and the
@@ -98,7 +101,7 @@ export namespace monitoring_v3 {
      * ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is
      * returned.
      */
-    crossSeriesReducer: string;
+    crossSeriesReducer?: string;
     /**
      * The set of fields to preserve when crossSeriesReducer is specified. The
      * groupByFields determine how the time series are partitioned into subsets
@@ -113,7 +116,7 @@ export namespace monitoring_v3 {
      * into a single output time series. If crossSeriesReducer is not defined,
      * this field is ignored.
      */
-    groupByFields: string[];
+    groupByFields?: string[];
     /**
      * The approach to be used to align individual time series. Not all
      * alignment functions may be applied to all time series, depending on the
@@ -124,7 +127,7 @@ export namespace monitoring_v3 {
      * and not equal ALIGN_NONE and alignmentPeriod must be specified;
      * otherwise, an error is returned.
      */
-    perSeriesAligner: string;
+    perSeriesAligner?: string;
   }
   /**
    * A description of the conditions under which some aspect of your system is
@@ -137,26 +140,26 @@ export namespace monitoring_v3 {
      * How to combine the results of multiple conditions to determine if an
      * incident should be opened.
      */
-    combiner: string;
+    combiner?: string;
     /**
      * A list of conditions for the policy. The conditions are combined by AND
      * or OR according to the combiner field. If the combined conditions
      * evaluate to true, then an incident is created. A policy can have from one
      * to six conditions.
      */
-    conditions: Schema$Condition[];
+    conditions?: Schema$Condition[];
     /**
      * A read-only record of the creation of the alerting policy. If provided in
      * a call to create or update, this field will be ignored.
      */
-    creationRecord: Schema$MutationRecord;
+    creationRecord?: Schema$MutationRecord;
     /**
      * A short name or phrase used to identify the policy in dashboards,
      * notifications, and incidents. To avoid confusion, don&#39;t use the same
      * display name for multiple policies in the same project. The name is
      * limited to 512 Unicode characters.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Documentation that is included with notifications and incidents related
      * to this policy. Best practice is for the documentation to include
@@ -165,7 +168,7 @@ export namespace monitoring_v3 {
      * Notification channels that have limited capacity might not show this
      * documentation.
      */
-    documentation: Schema$Documentation;
+    documentation?: Schema$Documentation;
     /**
      * Whether or not the policy is enabled. On write, the default
      * interpretation if unset is that the policy is enabled. On read, clients
@@ -174,12 +177,12 @@ export namespace monitoring_v3 {
      * operations, unless a field projection has been specified that strips it
      * out.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * A read-only record of the most recent change to the alerting policy. If
      * provided in a call to create or update, this field will be ignored.
      */
-    mutationRecord: Schema$MutationRecord;
+    mutationRecord?: Schema$MutationRecord;
     /**
      * Required if the policy exists. The resource name for this policy. The
      * syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
@@ -187,7 +190,7 @@ export namespace monitoring_v3 {
      * is created. When calling the alertPolicies.create method, do not include
      * the name field in the alerting policy passed as part of the request.
      */
-    name: string;
+    name?: string;
     /**
      * Identifies the notification channels to which notifications should be
      * sent when incidents are opened or closed or when new violations occur on
@@ -196,7 +199,7 @@ export namespace monitoring_v3 {
      * from the ListNotificationChannels method. The syntax of the entries in
      * this field is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
      */
-    notificationChannels: string[];
+    notificationChannels?: string[];
     /**
      * User-supplied key/value data to be used for organizing and identifying
      * the AlertPolicy objects.The field can contain up to 64 entries. Each key
@@ -204,7 +207,7 @@ export namespace monitoring_v3 {
      * smaller. Labels and values can contain only lowercase letters, numerals,
      * underscores, and dashes. Keys must begin with a letter.
      */
-    userLabels: any;
+    userLabels?: any;
   }
   /**
    * A type of authentication to perform against the specified resource or URL
@@ -215,11 +218,11 @@ export namespace monitoring_v3 {
     /**
      * The password to authenticate.
      */
-    password: string;
+    password?: string;
     /**
      * The username to authenticate.
      */
-    username: string;
+    username?: string;
   }
   /**
    * BucketOptions describes the bucket boundaries used to create a histogram
@@ -241,15 +244,15 @@ export namespace monitoring_v3 {
     /**
      * The explicit buckets.
      */
-    explicitBuckets: Schema$Explicit;
+    explicitBuckets?: Schema$Explicit;
     /**
      * The exponential buckets.
      */
-    exponentialBuckets: Schema$Exponential;
+    exponentialBuckets?: Schema$Exponential;
     /**
      * The linear bucket.
      */
-    linearBuckets: Schema$Linear;
+    linearBuckets?: Schema$Linear;
   }
   /**
    * A collection of data points sent from a collectd-based plugin. See the
@@ -259,36 +262,36 @@ export namespace monitoring_v3 {
     /**
      * The end time of the interval.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The name of the plugin. Example: &quot;disk&quot;.
      */
-    plugin: string;
+    plugin?: string;
     /**
      * The instance name of the plugin Example: &quot;hdcl&quot;.
      */
-    pluginInstance: string;
+    pluginInstance?: string;
     /**
      * The start time of the interval.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The measurement type. Example: &quot;memory&quot;.
      */
-    type: string;
+    type?: string;
     /**
      * The measurement type instance. Example: &quot;used&quot;.
      */
-    typeInstance: string;
+    typeInstance?: string;
     /**
      * The measured values during this time interval. Each value must have a
      * different dataSourceName.
      */
-    values: Schema$CollectdValue[];
+    values?: Schema$CollectdValue[];
   }
   /**
    * Describes the error status for payloads that were not written.
@@ -298,18 +301,18 @@ export namespace monitoring_v3 {
      * Records the error status for the payload. If this field is present, the
      * partial errors for nested values won&#39;t be populated.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * The zero-based index in
      * CreateCollectdTimeSeriesRequest.collectd_payloads.
      */
-    index: number;
+    index?: number;
     /**
      * Records the error status for values that were not written due to an
      * error.Failed payloads for which nothing is written will not include
      * partial value errors.
      */
-    valueErrors: Schema$CollectdValueError[];
+    valueErrors?: Schema$CollectdValueError[];
   }
   /**
    * A single data point from a collectd-based plugin.
@@ -319,15 +322,15 @@ export namespace monitoring_v3 {
      * The data source for the collectd value. For example there are two data
      * sources for network measurements: &quot;rx&quot; and &quot;tx&quot;.
      */
-    dataSourceName: string;
+    dataSourceName?: string;
     /**
      * The type of measurement.
      */
-    dataSourceType: string;
+    dataSourceType?: string;
     /**
      * The measurement value.
      */
-    value: Schema$TypedValue;
+    value?: Schema$TypedValue;
   }
   /**
    * Describes the error status for values that were not written.
@@ -336,12 +339,12 @@ export namespace monitoring_v3 {
     /**
      * Records the error status for the value.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * The zero-based index in CollectdPayload.values within the parent
      * CreateCollectdTimeSeriesRequest.collectd_payloads.
      */
-    index: number;
+    index?: number;
   }
   /**
    * A condition is a true/false test that determines when an alerting policy
@@ -353,17 +356,17 @@ export namespace monitoring_v3 {
      * A condition that checks that a time series continues to receive new data
      * points.
      */
-    conditionAbsent: Schema$MetricAbsence;
+    conditionAbsent?: Schema$MetricAbsence;
     /**
      * A condition that compares a time series against a threshold.
      */
-    conditionThreshold: Schema$MetricThreshold;
+    conditionThreshold?: Schema$MetricThreshold;
     /**
      * A short name or phrase used to identify the condition in dashboards,
      * notifications, and incidents. To avoid confusion, don&#39;t use the same
      * display name for multiple conditions in the same policy.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Required if the condition exists. The unique resource name for this
      * condition. Its syntax is:
@@ -381,7 +384,7 @@ export namespace monitoring_v3 {
      * condition thresholds, durations, or trigger values. Otherwise, treat the
      * change as a new condition and let the existing condition be deleted.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Used to perform string matching. Currently, this matches on the exact
@@ -392,7 +395,7 @@ export namespace monitoring_v3 {
     /**
      * String content to match (max 1024 bytes)
      */
-    content: string;
+    content?: string;
   }
   /**
    * The CreateCollectdTimeSeries request.
@@ -404,16 +407,16 @@ export namespace monitoring_v3 {
      * can have the same values for all of the fields plugin, plugin_instance,
      * type, and type_instance.
      */
-    collectdPayloads: Schema$CollectdPayload[];
+    collectdPayloads?: Schema$CollectdPayload[];
     /**
      * The version of collectd that collected the data. Example:
      * &quot;5.3.0-192.el6&quot;.
      */
-    collectdVersion: string;
+    collectdVersion?: string;
     /**
      * The monitored resource associated with the time series.
      */
-    resource: Schema$MonitoredResource;
+    resource?: Schema$MonitoredResource;
   }
   /**
    * The CreateCollectdTimeSeries response.
@@ -424,7 +427,7 @@ export namespace monitoring_v3 {
      * error.Failed requests for which nothing is written will return an error
      * response instead.
      */
-    payloadErrors: Schema$CollectdPayloadError[];
+    payloadErrors?: Schema$CollectdPayloadError[];
   }
   /**
    * The CreateTimeSeries request.
@@ -437,7 +440,7 @@ export namespace monitoring_v3 {
      * must fully specify a unique time series by supplying all label values for
      * the metric and the monitored resource.
      */
-    timeSeries: Schema$TimeSeries[];
+    timeSeries?: Schema$TimeSeries[];
   }
   /**
    * Distribution contains summary statistics for a population of values. It
@@ -464,29 +467,29 @@ export namespace monitoring_v3 {
      * size is less than N, then the remaining buckets are assigned values of
      * zero.
      */
-    bucketCounts: string[];
+    bucketCounts?: string[];
     /**
      * Required in the Stackdriver Monitoring API v3. Defines the histogram
      * bucket boundaries.
      */
-    bucketOptions: Schema$BucketOptions;
+    bucketOptions?: Schema$BucketOptions;
     /**
      * The number of values in the population. Must be non-negative. This value
      * must equal the sum of the values in bucket_counts if a histogram is
      * provided.
      */
-    count: string;
+    count?: string;
     /**
      * The arithmetic mean of the values in the population. If count is zero
      * then this field must be zero.
      */
-    mean: number;
+    mean?: number;
     /**
      * If specified, contains the range of the population values. The field must
      * not be present if the count is zero. This field is presently ignored by
      * the Stackdriver Monitoring API v3.
      */
-    range: Schema$Range;
+    range?: Schema$Range;
     /**
      * The sum of squared deviations from the mean of the values in the
      * population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth,
@@ -494,7 +497,7 @@ export namespace monitoring_v3 {
      * edition describes Welford&#39;s method for accumulating this sum in one
      * pass.If count is zero then this field must be zero.
      */
-    sumOfSquaredDeviation: number;
+    sumOfSquaredDeviation?: number;
   }
   /**
    * A content string and a MIME type that describes the content string&#39;s
@@ -506,13 +509,13 @@ export namespace monitoring_v3 {
      * content may not exceed 8,192 Unicode characters and may not exceed more
      * than 10,240 bytes when encoded in UTF-8 format, whichever is smaller.
      */
-    content: string;
+    content?: string;
     /**
      * The format of the content field. Presently, only the value
      * &quot;text/markdown&quot; is supported. See Markdown
      * (https://en.wikipedia.org/wiki/Markdown) for more information.
      */
-    mimeType: string;
+    mimeType?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -534,7 +537,7 @@ export namespace monitoring_v3 {
     /**
      * The values must be monotonically increasing.
      */
-    bounds: number[];
+    bounds?: number[];
   }
   /**
    * Specifies an exponential sequence of buckets that have a width that is
@@ -548,15 +551,15 @@ export namespace monitoring_v3 {
     /**
      * Must be greater than 1.
      */
-    growthFactor: number;
+    growthFactor?: number;
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets: number;
+    numFiniteBuckets?: number;
     /**
      * Must be greater than 0.
      */
-    scale: number;
+    scale?: number;
   }
   /**
    * A single field of a message type.
@@ -565,46 +568,46 @@ export namespace monitoring_v3 {
     /**
      * The field cardinality.
      */
-    cardinality: string;
+    cardinality?: string;
     /**
      * The string value of the default value of this field. Proto2 syntax only.
      */
-    defaultValue: string;
+    defaultValue?: string;
     /**
      * The field JSON name.
      */
-    jsonName: string;
+    jsonName?: string;
     /**
      * The field type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The field name.
      */
-    name: string;
+    name?: string;
     /**
      * The field number.
      */
-    number: number;
+    number?: number;
     /**
      * The index of the field type in Type.oneofs, for message or enumeration
      * types. The first type has index 1; zero means the type is not in the
      * list.
      */
-    oneofIndex: number;
+    oneofIndex?: number;
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * Whether to use alternative packed wire representation.
      */
-    packed: boolean;
+    packed?: boolean;
     /**
      * The field type URL, without the scheme, for message or enumeration types.
      * Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
      */
-    typeUrl: string;
+    typeUrl?: string;
   }
   /**
    * The GetNotificationChannelVerificationCode request.
@@ -621,7 +624,7 @@ export namespace monitoring_v3 {
      * code&#39;s lifetime over omitting an expiration, even though the API does
      * impose an upper limit on the maximum expiration that is permitted).
      */
-    expireTime: string;
+    expireTime?: string;
   }
   /**
    * The GetNotificationChannelVerificationCode request.
@@ -633,13 +636,13 @@ export namespace monitoring_v3 {
      * the same fingerprint such as other email channels with the same email
      * address or other sms channels with the same number).
      */
-    code: string;
+    code?: string;
     /**
      * The expiration time associated with the code that was returned. If an
      * expiration was provided in the request, this is the minimum of the
      * requested expiration in the request and the max permitted expiration.
      */
-    expireTime: string;
+    expireTime?: string;
   }
   /**
    * The description of a dynamic collection of monitored resources. Each group
@@ -668,17 +671,17 @@ export namespace monitoring_v3 {
     /**
      * A user-assigned name for this group, used only for display purposes.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The filter used to determine which monitored resources belong to this
      * group.
      */
-    filter: string;
+    filter?: string;
     /**
      * If true, the members of this group are considered to be a cluster. The
      * system can perform additional analysis on groups that are clusters.
      */
-    isCluster: boolean;
+    isCluster?: boolean;
     /**
      * Output only. The name of this group. The format is
      * &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. When
@@ -686,13 +689,13 @@ export namespace monitoring_v3 {
      * consisting of the project specified in the call to CreateGroup and a
      * unique {group_id} that is generated automatically.
      */
-    name: string;
+    name?: string;
     /**
      * The name of the group&#39;s parent, if it has one. The format is
      * &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. For groups
      * with no parent, parentName is the empty string, &quot;&quot;.
      */
-    parentName: string;
+    parentName?: string;
   }
   /**
    * Information involved in an HTTP/HTTPS uptime check request.
@@ -702,7 +705,7 @@ export namespace monitoring_v3 {
      * The authentication information. Optional when creating an HTTP check;
      * defaults to empty.
      */
-    authInfo: Schema$BasicAuthentication;
+    authInfo?: Schema$BasicAuthentication;
     /**
      * The list of headers to send as part of the uptime check request. If two
      * headers have the same key and different values, they should be entered as
@@ -713,7 +716,7 @@ export namespace monitoring_v3 {
      * to be overwritten by the second. The maximum number of headers allowed is
      * 100.
      */
-    headers: any;
+    headers?: any;
     /**
      * Boolean specifiying whether to encrypt the header information. Encryption
      * should be specified for any headers related to authentication that you do
@@ -722,23 +725,23 @@ export namespace monitoring_v3 {
      * mask_headers is set to True then the headers will be obscured with
      * ******.
      */
-    maskHeaders: boolean;
+    maskHeaders?: boolean;
     /**
      * The path to the page to run the check against. Will be combined with the
      * host (specified within the MonitoredResource) and port to construct the
      * full URL. Optional (defaults to &quot;/&quot;).
      */
-    path: string;
+    path?: string;
     /**
      * The port to the page to run the check against. Will be combined with host
      * (specified within the MonitoredResource) and path to construct the full
      * URL. Optional (defaults to 80 without SSL, or 443 with SSL).
      */
-    port: number;
+    port?: number;
     /**
      * If true, use HTTPS instead of HTTP to run the check.
      */
-    useSsl: boolean;
+    useSsl?: boolean;
   }
   /**
    * Nimbus InternalCheckers.
@@ -747,25 +750,25 @@ export namespace monitoring_v3 {
     /**
      * The checker ID.
      */
-    checkerId: string;
+    checkerId?: string;
     /**
      * The checker&#39;s human-readable name.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The GCP zone the uptime check should egress from. Only respected for
      * internal uptime checks, where internal_network is specified.
      */
-    gcpZone: string;
+    gcpZone?: string;
     /**
      * The internal network to perform this uptime check on.
      */
-    network: string;
+    network?: string;
     /**
      * The GCP project ID. Not necessarily the same as the project_id for the
      * config.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * A description of a label.
@@ -774,15 +777,15 @@ export namespace monitoring_v3 {
     /**
      * A human-readable description for the label.
      */
-    description: string;
+    description?: string;
     /**
      * The label key.
      */
-    key: string;
+    key?: string;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * Specifies a linear sequence of buckets that all have the same width (except
@@ -796,15 +799,15 @@ export namespace monitoring_v3 {
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets: number;
+    numFiniteBuckets?: number;
     /**
      * Lower bound of the first bucket.
      */
-    offset: number;
+    offset?: number;
     /**
      * Must be greater than 0.
      */
-    width: number;
+    width?: number;
   }
   /**
    * The protocol for the ListAlertPolicies response.
@@ -813,13 +816,13 @@ export namespace monitoring_v3 {
     /**
      * The returned alert policies.
      */
-    alertPolicies: Schema$AlertPolicy[];
+    alertPolicies?: Schema$AlertPolicy[];
     /**
      * If there might be more results than were returned, then this field is set
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The ListGroupMembers response.
@@ -828,17 +831,17 @@ export namespace monitoring_v3 {
     /**
      * A set of monitored resources in the group.
      */
-    members: Schema$MonitoredResource[];
+    members?: Schema$MonitoredResource[];
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of elements matching this request.
      */
-    totalSize: number;
+    totalSize?: number;
   }
   /**
    * The ListGroups response.
@@ -847,13 +850,13 @@ export namespace monitoring_v3 {
     /**
      * The groups that match the specified filters.
      */
-    group: Schema$Group[];
+    group?: Schema$Group[];
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The ListMetricDescriptors response.
@@ -863,13 +866,13 @@ export namespace monitoring_v3 {
      * The metric descriptors that are available to the project and that match
      * the value of filter, if present.
      */
-    metricDescriptors: Schema$MetricDescriptor[];
+    metricDescriptors?: Schema$MetricDescriptor[];
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The ListMonitoredResourceDescriptors response.
@@ -880,12 +883,12 @@ export namespace monitoring_v3 {
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The monitored resource descriptors that are available to this project and
      * that match filter, if present.
      */
-    resourceDescriptors: Schema$MonitoredResourceDescriptor[];
+    resourceDescriptors?: Schema$MonitoredResourceDescriptor[];
   }
   /**
    * The ListNotificationChannelDescriptors response.
@@ -895,13 +898,13 @@ export namespace monitoring_v3 {
      * The monitored resource descriptors supported for the specified project,
      * optionally filtered.
      */
-    channelDescriptors: Schema$NotificationChannelDescriptor[];
+    channelDescriptors?: Schema$NotificationChannelDescriptor[];
     /**
      * If not empty, indicates that there may be more results that match the
      * request. Use the value in the page_token field in a subsequent request to
      * fetch the next set of results. If empty, all results have been returned.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The ListNotificationChannels response.
@@ -912,11 +915,11 @@ export namespace monitoring_v3 {
      * request. Use the value in the page_token field in a subsequent request to
      * fetch the next set of results. If empty, all results have been returned.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The notification channels defined for the specified project.
      */
-    notificationChannels: Schema$NotificationChannel[];
+    notificationChannels?: Schema$NotificationChannel[];
   }
   /**
    * The ListTimeSeries response.
@@ -927,11 +930,11 @@ export namespace monitoring_v3 {
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * One or more time series that match the filter included in the request.
      */
-    timeSeries: Schema$TimeSeries[];
+    timeSeries?: Schema$TimeSeries[];
   }
   /**
    * The protocol for the ListUptimeCheckConfigs response.
@@ -944,16 +947,16 @@ export namespace monitoring_v3 {
      * next_page_token is passed to the subsequent List method call (in the
      * request message&#39;s page_token field).
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of uptime check configurations for the project,
      * irrespective of any pagination.
      */
-    totalSize: number;
+    totalSize?: number;
     /**
      * The returned uptime check configurations.
      */
-    uptimeCheckConfigs: Schema$UptimeCheckConfig[];
+    uptimeCheckConfigs?: Schema$UptimeCheckConfig[];
   }
   /**
    * The protocol for the ListUptimeCheckIps response.
@@ -967,12 +970,12 @@ export namespace monitoring_v3 {
      * request message&#39;s page_token field). NOTE: this field is not yet
      * implemented
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The returned list of IP addresses (including region and location) that
      * the checkers run from.
      */
-    uptimeCheckIps: Schema$UptimeCheckIp[];
+    uptimeCheckIps?: Schema$UptimeCheckIp[];
   }
   /**
    * A specific metric, identified by specifying values for all of the labels of
@@ -983,12 +986,12 @@ export namespace monitoring_v3 {
      * The set of label values that uniquely identify this metric. All labels
      * listed in the MetricDescriptor must be assigned values.
      */
-    labels: any;
+    labels?: any;
     /**
      * An existing metric type, see google.api.MetricDescriptor. For example,
      * custom.googleapis.com/invoice/paid/amount.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A condition type that checks that monitored resources are reporting data.
@@ -1008,14 +1011,14 @@ export namespace monitoring_v3 {
      * It is advisable to use the ListTimeSeries method when debugging this
      * field.
      */
-    aggregations: Schema$Aggregation[];
+    aggregations?: Schema$Aggregation[];
     /**
      * The amount of time that a time series must fail to report new data to be
      * considered failing. Currently, only values that are a multiple of a
      * minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value
      * is given, an error will be returned. The Duration.nanos field is ignored.
      */
-    duration: string;
+    duration?: string;
     /**
      * A filter that identifies which time series should be compared with the
      * threshold.The filter is similar to the one that is specified in the
@@ -1025,14 +1028,14 @@ export namespace monitoring_v3 {
      * resource labels, and metric labels. This field may not exceed 2048
      * Unicode characters in length.
      */
-    filter: string;
+    filter?: string;
     /**
      * The number/percent of time series for which the comparison must hold in
      * order for the condition to trigger. If unspecified, then the condition
      * will trigger if the comparison is true for any of the time series that
      * have been identified by filter and aggregations.
      */
-    trigger: Schema$Trigger;
+    trigger?: Schema$Trigger;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created,
@@ -1043,14 +1046,14 @@ export namespace monitoring_v3 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * A concise name for the metric, which can be displayed in user interfaces.
      * Use sentence case without an ending period, for example &quot;Request
      * count&quot;. This field is optional but it is recommended to be set for
      * any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that can be used to describe a specific instance of
      * this metric type. For example, the
@@ -1058,16 +1061,16 @@ export namespace monitoring_v3 {
      * label for the HTTP response code, response_code, so you can look at
      * latencies for successful responses or just for responses that failed.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
-    metricKind: string;
+    metricKind?: string;
     /**
      * The resource name of the metric descriptor.
      */
-    name: string;
+    name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
      * URL-encoded. All user-defined custom metric types have the DNS name
@@ -1076,7 +1079,7 @@ export namespace monitoring_v3 {
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type: string;
+    type?: string;
     /**
      * Optional. The unit in which the metric value is reported. For example,
      * kBy/s means kilobytes/sec, and 1 is the dimensionless unit. The supported
@@ -1084,12 +1087,12 @@ export namespace monitoring_v3 {
      * (http://unitsofmeasure.org/ucum.html).&lt;br&gt;&lt;br&gt; This field is
      * part of the metric&#39;s documentation, but it is ignored by Stackdriver.
      */
-    unit: string;
+    unit?: string;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some
      * combinations of metric_kind and value_type might not be supported.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * A condition type that compares a collection of time series against a
@@ -1106,7 +1109,7 @@ export namespace monitoring_v3 {
      * It is advisable to use the ListTimeSeries method when debugging this
      * field.
      */
-    aggregations: Schema$Aggregation[];
+    aggregations?: Schema$Aggregation[];
     /**
      * The comparison to apply between the time series (indicated by filter and
      * aggregation) and the threshold (indicated by threshold_value). The
@@ -1114,7 +1117,7 @@ export namespace monitoring_v3 {
      * left-hand side and the threshold on the right-hand side.Only
      * COMPARISON_LT and COMPARISON_GT are supported currently.
      */
-    comparison: string;
+    comparison?: string;
     /**
      * Specifies the alignment of data points in individual time series selected
      * by denominatorFilter as well as how to combine the retrieved time series
@@ -1127,7 +1130,7 @@ export namespace monitoring_v3 {
      * It is advisable to use the ListTimeSeries method when debugging this
      * field.
      */
-    denominatorAggregations: Schema$Aggregation[];
+    denominatorAggregations?: Schema$Aggregation[];
     /**
      * A filter that identifies a time series that should be used as the
      * denominator of a ratio that will be compared with the threshold. If a
@@ -1139,7 +1142,7 @@ export namespace monitoring_v3 {
      * resource type, resource labels, and metric labels. This field may not
      * exceed 2048 Unicode characters in length.
      */
-    denominatorFilter: string;
+    denominatorFilter?: string;
     /**
      * The amount of time that a time series must violate the threshold to be
      * considered failing. Currently, only values that are a multiple of a
@@ -1151,7 +1154,7 @@ export namespace monitoring_v3 {
      * enough so that a single outlier does not generate spurious alerts, but
      * short enough that unhealthy states are detected and alerted on quickly.
      */
-    duration: string;
+    duration?: string;
     /**
      * A filter that identifies which time series should be compared with the
      * threshold.The filter is similar to the one that is specified in the
@@ -1161,11 +1164,11 @@ export namespace monitoring_v3 {
      * resource labels, and metric labels. This field may not exceed 2048
      * Unicode characters in length.
      */
-    filter: string;
+    filter?: string;
     /**
      * A value against which to compare the time series.
      */
-    thresholdValue: number;
+    thresholdValue?: number;
     /**
      * The number/percent of time series for which the comparison must hold in
      * order for the condition to trigger. If unspecified, then the condition
@@ -1173,7 +1176,7 @@ export namespace monitoring_v3 {
      * have been identified by filter and aggregations, or by the ratio, if
      * denominator_filter and denominator_aggregations are specified.
      */
-    trigger: Schema$Trigger;
+    trigger?: Schema$Trigger;
   }
   /**
    * An object representing a resource that can be used for monitoring, logging,
@@ -1196,13 +1199,13 @@ export namespace monitoring_v3 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels: any;
+    labels?: any;
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
      * Compute Engine VM instance is gce_instance.
      */
-    type: string;
+    type?: string;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a
@@ -1219,21 +1222,21 @@ export namespace monitoring_v3 {
      * Optional. A detailed description of the monitored resource type that
      * might be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * Optional. A concise name for the monitored resource type that might be
      * displayed in user interfaces. It should be a Title Cased Noun Phrase,
      * without any article or other determiners. For example, &quot;Google Cloud
      * SQL Database&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Required. A set of labels used to describe instances of this monitored
      * resource type. For example, an individual Google Cloud SQL database is
      * identified by values for the labels &quot;database_id&quot; and
      * &quot;zone&quot;.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;
@@ -1242,13 +1245,13 @@ export namespace monitoring_v3 {
      * accessing the type. APIs that do not use project information can use the
      * resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The monitored resource type. For example, the type
      * &quot;cloudsql_database&quot; represents databases in Google Cloud SQL.
      * The maximum length of this value is 256 characters.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
@@ -1270,11 +1273,11 @@ export namespace monitoring_v3 {
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels: any;
+    systemLabels?: any;
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels: any;
+    userLabels?: any;
   }
   /**
    * Describes a change made to a configuration.
@@ -1283,11 +1286,11 @@ export namespace monitoring_v3 {
     /**
      * The email address of the user making the change.
      */
-    mutatedBy: string;
+    mutatedBy?: string;
     /**
      * When the change occurred.
      */
-    mutateTime: string;
+    mutateTime?: string;
   }
   /**
    * A NotificationChannel is a medium through which an alert is delivered when
@@ -1302,14 +1305,14 @@ export namespace monitoring_v3 {
      * description may provide additional details, beyond the display name, for
      * the channel. This may not exceeed 1024 Unicode characters.
      */
-    description: string;
+    description?: string;
     /**
      * An optional human-readable name for this notification channel. It is
      * recommended that you specify a non-empty and unique name in order to make
      * it easier to identify the channels in your project, though this is not
      * enforced. The display name is limited to 512 Unicode characters.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Whether notifications are forwarded to the described channel. This makes
      * it possible to disable delivery of notifications to a particular channel
@@ -1318,25 +1321,25 @@ export namespace monitoring_v3 {
      * temporary and you want to receive notifications from the same set of
      * alerting policies on the channel at some point in the future.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Configuration fields that define the channel and its behavior. The
      * permissible and required labels are specified in the
      * NotificationChannelDescriptor.labels of the NotificationChannelDescriptor
      * corresponding to the type field.
      */
-    labels: any;
+    labels?: any;
     /**
      * The full REST resource name for this channel. The syntax is:
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID]
      * is automatically assigned by the server on creation.
      */
-    name: string;
+    name?: string;
     /**
      * The type of the notification channel. This field matches the value of the
      * NotificationChannelDescriptor.type field.
      */
-    type: string;
+    type?: string;
     /**
      * User-supplied key/value data that does not need to conform to the
      * corresponding NotificationChannelDescriptor&#39;s schema, unlike the
@@ -1347,7 +1350,7 @@ export namespace monitoring_v3 {
      * letters, numerals, underscores, and dashes. Keys must begin with a
      * letter.
      */
-    userLabels: any;
+    userLabels?: any;
     /**
      * Indicates whether this channel has been verified or not. On a
      * ListNotificationChannels or GetNotificationChannel operation, this field
@@ -1362,7 +1365,7 @@ export namespace monitoring_v3 {
      * UpdateNotificationChannel operation. To change the value of this field,
      * you must call VerifyNotificationChannel.
      */
-    verificationStatus: string;
+    verificationStatus?: string;
   }
   /**
    * A description of a notification channel. The descriptor includes the
@@ -1375,34 +1378,34 @@ export namespace monitoring_v3 {
      * description may include a description of the properties of the channel
      * and pointers to external documentation.
      */
-    description: string;
+    description?: string;
     /**
      * A human-readable name for the notification channel type. This form of the
      * name is suitable for a user interface.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that must be defined to identify a particular channel
      * of the corresponding type. Each label includes a description for how that
      * field should be populated.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * The full REST resource name for this descriptor. The syntax is:
      * projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE] In the above,
      * [TYPE] is the value of the type field.
      */
-    name: string;
+    name?: string;
     /**
      * The tiers that support this notification channel; the project service
      * tier must be one of the supported_tiers.
      */
-    supportedTiers: string[];
+    supportedTiers?: string[];
     /**
      * The type of notification channel, such as &quot;email&quot;,
      * &quot;sms&quot;, etc. Notification channel types are globally unique.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1415,7 +1418,7 @@ export namespace monitoring_v3 {
      * &quot;map_entry&quot;. For custom options, it should be the
      * fully-qualified name. For example, &quot;google.api.http&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * The option&#39;s value packed in an Any message. If the value is a
      * primitive, the corresponding wrapper type defined in
@@ -1423,7 +1426,7 @@ export namespace monitoring_v3 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value: any;
+    value?: any;
   }
   /**
    * A single data point in a time series.
@@ -1439,11 +1442,11 @@ export namespace monitoring_v3 {
      * times, until an event resets the cumulative value to zero and sets a new
      * start time for the following points.
      */
-    interval: Schema$TimeInterval;
+    interval?: Schema$TimeInterval;
     /**
      * The value of the data point.
      */
-    value: Schema$TypedValue;
+    value?: Schema$TypedValue;
   }
   /**
    * The range of the population values.
@@ -1452,11 +1455,11 @@ export namespace monitoring_v3 {
     /**
      * The maximum of the population values.
      */
-    max: number;
+    max?: number;
     /**
      * The minimum of the population values.
      */
-    min: number;
+    min?: number;
   }
   /**
    * The resource submessage for group checks. It can be used instead of a
@@ -1467,11 +1470,11 @@ export namespace monitoring_v3 {
      * The group of resources being monitored. Should be only the group_id, not
      * projects/&lt;project_id&gt;/groups/&lt;group_id&gt;.
      */
-    groupId: string;
+    groupId?: string;
     /**
      * The resource type of the group members.
      */
-    resourceType: string;
+    resourceType?: string;
   }
   /**
    * The SendNotificationChannelVerificationCode request.
@@ -1487,7 +1490,7 @@ export namespace monitoring_v3 {
      * protobuf element. For example:
      * &quot;google/protobuf/source_context.proto&quot;.
      */
-    fileName: string;
+    fileName?: string;
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1528,18 +1531,18 @@ export namespace monitoring_v3 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Information required for a TCP uptime check request.
@@ -1550,7 +1553,7 @@ export namespace monitoring_v3 {
      * (specified within the MonitoredResource) to construct the full URL.
      * Required.
      */
-    port: number;
+    port?: number;
   }
   /**
    * A time interval extending just after a start time through an end time. If
@@ -1561,13 +1564,13 @@ export namespace monitoring_v3 {
     /**
      * Required. The end of the time interval.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional. The beginning of the time interval. The default value for the
      * start time is the end time. The start time must not be later than the end
      * time.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * A collection of data points that describes the time-varying values of a
@@ -1582,12 +1585,12 @@ export namespace monitoring_v3 {
      * named in the reduction. When creating a timeseries, this field is
      * ignored.
      */
-    metadata: Schema$MonitoredResourceMetadata;
+    metadata?: Schema$MonitoredResourceMetadata;
     /**
      * The associated metric. A fully-specified metric used to identify the time
      * series.
      */
-    metric: Schema$Metric;
+    metric?: Schema$Metric;
     /**
      * The metric kind of the time series. When listing time series, this metric
      * kind might be different from the metric kind of the associated metric if
@@ -1598,7 +1601,7 @@ export namespace monitoring_v3 {
      * the metric kind of the new descriptor and must be either GAUGE (the
      * default) or CUMULATIVE.
      */
-    metricKind: string;
+    metricKind?: string;
     /**
      * The data points of this time series. When listing time series, points are
      * returned in reverse time order.When creating a time series, this field
@@ -1608,12 +1611,12 @@ export namespace monitoring_v3 {
      * descriptor is determined by the point&#39;s type, which must be BOOL,
      * INT64, DOUBLE, or DISTRIBUTION.
      */
-    points: Schema$Point[];
+    points?: Schema$Point[];
     /**
      * The associated monitored resource. Custom metrics can use only certain
      * monitored resource types in their time series data.
      */
-    resource: Schema$MonitoredResource;
+    resource?: Schema$MonitoredResource;
     /**
      * The value type of the time series. When listing time series, this value
      * type might be different from the value type of the associated metric if
@@ -1621,7 +1624,7 @@ export namespace monitoring_v3 {
      * creating a time series, this field is optional. If present, it must be
      * the same as the type of the data in the points field.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * Specifies how many time series must fail a predicate to trigger a
@@ -1632,12 +1635,12 @@ export namespace monitoring_v3 {
      * The absolute number of time series that must fail the predicate for the
      * condition to be triggered.
      */
-    count: number;
+    count?: number;
     /**
      * The percentage of time series that must fail the predicate for the
      * condition to be triggered.
      */
-    percent: number;
+    percent?: number;
   }
   /**
    * A protocol buffer message type.
@@ -1646,27 +1649,27 @@ export namespace monitoring_v3 {
     /**
      * The list of fields.
      */
-    fields: Schema$Field[];
+    fields?: Schema$Field[];
     /**
      * The fully qualified message name.
      */
-    name: string;
+    name?: string;
     /**
      * The list of types appearing in oneof definitions in this type.
      */
-    oneofs: string[];
+    oneofs?: string[];
     /**
      * The protocol buffer options.
      */
-    options: Schema$Option[];
+    options?: Schema$Option[];
     /**
      * The source context.
      */
-    sourceContext: Schema$SourceContext;
+    sourceContext?: Schema$SourceContext;
     /**
      * The source syntax.
      */
-    syntax: string;
+    syntax?: string;
   }
   /**
    * A single strongly-typed value.
@@ -1675,26 +1678,26 @@ export namespace monitoring_v3 {
     /**
      * A Boolean value: true or false.
      */
-    boolValue: boolean;
+    boolValue?: boolean;
     /**
      * A distribution value.
      */
-    distributionValue: Schema$Distribution;
+    distributionValue?: Schema$Distribution;
     /**
      * A 64-bit double-precision floating-point number. Its magnitude is
      * approximately &amp;plusmn;10&lt;sup&gt;&amp;plusmn;300&lt;/sup&gt; and it
      * has 16 significant digits of precision.
      */
-    doubleValue: number;
+    doubleValue?: number;
     /**
      * A 64-bit integer. Its range is approximately
      * &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
      */
-    int64Value: string;
+    int64Value?: string;
     /**
      * A variable-length string value.
      */
-    stringValue: string;
+    stringValue?: string;
   }
   /**
    * This message configures which resources and services to monitor for
@@ -1708,27 +1711,27 @@ export namespace monitoring_v3 {
      * page response&#39;s content. This field is optional and should only be
      * specified if a content match is required.
      */
-    contentMatchers: Schema$ContentMatcher[];
+    contentMatchers?: Schema$ContentMatcher[];
     /**
      * A human-friendly name for the uptime check configuration. The display
      * name should be unique within a Stackdriver Account in order to make it
      * easier to identify; however, uniqueness is not enforced. Required.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Contains information needed to make an HTTP or HTTPS check.
      */
-    httpCheck: Schema$HttpCheck;
+    httpCheck?: Schema$HttpCheck;
     /**
      * The internal checkers that this check will egress from. If is_internal is
      * true and this list is empty, the check will egress from all
      * InternalCheckers configured for the project that owns this CheckConfig.
      */
-    internalCheckers: Schema$InternalChecker[];
+    internalCheckers?: Schema$InternalChecker[];
     /**
      * Denotes whether this is a check that egresses from InternalCheckers.
      */
-    isInternal: boolean;
+    isInternal?: boolean;
     /**
      * The monitored resource
      * (https://cloud.google.com/monitoring/api/resources) associated with the
@@ -1736,7 +1739,7 @@ export namespace monitoring_v3 {
      * uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance
      * aws_elb_load_balancer
      */
-    monitoredResource: Schema$MonitoredResource;
+    monitoredResource?: Schema$MonitoredResource;
     /**
      * A unique resource name for this UptimeCheckConfig. The format
      * is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field
@@ -1744,33 +1747,33 @@ export namespace monitoring_v3 {
      * create, the resource name is assigned by the server and included in the
      * response.
      */
-    name: string;
+    name?: string;
     /**
      * How often, in seconds, the uptime check is performed. Currently, the only
      * supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes),
      * and 900s (15 minutes). Optional, defaults to 300s.
      */
-    period: string;
+    period?: string;
     /**
      * The group resource associated with the configuration.
      */
-    resourceGroup: Schema$ResourceGroup;
+    resourceGroup?: Schema$ResourceGroup;
     /**
      * The list of regions from which the check will be run. If this field is
      * specified, enough regions to include a minimum of 3 locations must be
      * provided, or an error message is returned. Not specifying this field will
      * result in uptime checks running from all regions.
      */
-    selectedRegions: string[];
+    selectedRegions?: string[];
     /**
      * Contains information needed to make a TCP check.
      */
-    tcpCheck: Schema$TcpCheck;
+    tcpCheck?: Schema$TcpCheck;
     /**
      * The maximum amount of time to wait for the request to complete (must be
      * between 1 and 60 seconds). Required.
      */
-    timeout: string;
+    timeout?: string;
   }
   /**
    * Contains the region, location, and list of IP addresses where checkers in
@@ -1784,17 +1787,17 @@ export namespace monitoring_v3 {
      * addresses being in IPv4 format indefinitely and should support
      * interpreting this field in either IPv4 or IPv6 format.
      */
-    ipAddress: string;
+    ipAddress?: string;
     /**
      * A more specific location within the region that typically encodes a
      * particular city/town/metro (and its containing state/province or country)
      * within the broader umbrella region category.
      */
-    location: string;
+    location?: string;
     /**
      * A broad region category in which the IP address is located.
      */
-    region: string;
+    region?: string;
   }
   /**
    * The VerifyNotificationChannel request.
@@ -1809,8 +1812,9 @@ export namespace monitoring_v3 {
      * one is only guaranteed that the code is valid UTF-8; one should not make
      * any assumptions regarding the structure or format of the code).
      */
-    code: string;
+    code?: string;
   }
+
 
   export class Resource$Projects {
     root: Monitoring;
@@ -1846,6 +1850,8 @@ export namespace monitoring_v3 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Alertpolicies {
     root: Monitoring;
     constructor(root: Monitoring) {
@@ -1871,26 +1877,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AlertPolicy>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
+        params?: Params$Resource$Projects$Alertpolicies$Create,
+        options?: MethodOptions): AxiosPromise<Schema$AlertPolicy>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+        params: Params$Resource$Projects$Alertpolicies$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    create(
+        params: Params$Resource$Projects$Alertpolicies$Create,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    create(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Create|
+        BodyResponseCallback<Schema$AlertPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AlertPolicy>,
         callback?: BodyResponseCallback<Schema$AlertPolicy>):
         void|AxiosPromise<Schema$AlertPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Alertpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alertpolicies$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1925,25 +1944,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Alertpolicies$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Alertpolicies$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Alertpolicies$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Alertpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alertpolicies$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1977,24 +2009,35 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Alertpolicies$Get,
         options?: MethodOptions): AxiosPromise<Schema$AlertPolicy>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+    get(params: Params$Resource$Projects$Alertpolicies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    get(params: Params$Resource$Projects$Alertpolicies$Get,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    get(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Get|
+        BodyResponseCallback<Schema$AlertPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AlertPolicy>,
         callback?: BodyResponseCallback<Schema$AlertPolicy>):
         void|AxiosPromise<Schema$AlertPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Alertpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alertpolicies$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2032,29 +2075,42 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Alertpolicies$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAlertPoliciesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Alertpolicies$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
+        callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Alertpolicies$List,
+        callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$List|
+        BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
         callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
         void|AxiosPromise<Schema$ListAlertPoliciesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Alertpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alertpolicies$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2095,26 +2151,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AlertPolicy>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
+        params?: Params$Resource$Projects$Alertpolicies$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$AlertPolicy>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+        params: Params$Resource$Projects$Alertpolicies$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    patch(
+        params: Params$Resource$Projects$Alertpolicies$Patch,
+        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    patch(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Patch|
+        BodyResponseCallback<Schema$AlertPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AlertPolicy>,
         callback?: BodyResponseCallback<Schema$AlertPolicy>):
         void|AxiosPromise<Schema$AlertPolicy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Alertpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alertpolicies$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2135,6 +2204,130 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Alertpolicies$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which to create the alerting policy. The format is
+     * projects/[PROJECT_ID].Note that this field names the parent container in
+     * which the alerting policy will be written, not the name of the created
+     * policy. The alerting policy that is returned will have a name that
+     * contains a normalized representation of this name as a prefix but adds a
+     * suffix of the form /alertPolicies/[POLICY_ID], identifying the policy in
+     * the container.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AlertPolicy;
+  }
+  export interface Params$Resource$Projects$Alertpolicies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alerting policy to delete. The format is:
+     * projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] For more
+     * information, see AlertPolicy.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Alertpolicies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alerting policy to retrieve. The format is
+     * projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Alertpolicies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If provided, this field specifies the criteria that must be met by alert
+     * policies to be included in the response.For more details, see sorting and
+     * filtering.
+     */
+    filter?: string;
+    /**
+     * The project whose alert policies are to be listed. The format is
+     * projects/[PROJECT_ID] Note that this field names the parent container in
+     * which the alerting policies to be listed are stored. To retrieve a single
+     * alerting policy by name, use the GetAlertPolicy operation, instead.
+     */
+    name?: string;
+    /**
+     * A comma-separated list of fields by which to sort the result. Supports
+     * the same set of field references as the filter field. Entries can be
+     * prefixed with a minus sign to sort by the field in descending order.For
+     * more details, see sorting and filtering.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return in a single response.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return more results from the previous method call.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Alertpolicies$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required if the policy exists. The resource name for this policy. The
+     * syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     * [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy
+     * is created. When calling the alertPolicies.create method, do not include
+     * the name field in the alerting policy passed as part of the request.
+     */
+    name?: string;
+    /**
+     * Optional. A list of alerting policy field names. If this field is not
+     * empty, each listed field in the existing alerting policy is set to the
+     * value of the corresponding field in the supplied policy (alert_policy),
+     * or to the field's default value if the field is not in the supplied
+     * alerting policy. Fields not listed retain their previous value.Examples
+     * of valid field masks include display_name, documentation,
+     * documentation.content, documentation.mime_type, user_labels,
+     * user_label.nameofkey, enabled, conditions, combiner, etc.If this field is
+     * empty, then the supplied alerting policy replaces the existing policy. It
+     * is the same as deleting the existing policy and adding the supplied
+     * policy, except for the following: The new policy will have the same
+     * [ALERT_POLICY_ID] as the former policy. This gives you continuity with
+     * the former policy in your notifications and incidents. Conditions in the
+     * new policy will keep their former [CONDITION_ID] if the supplied
+     * condition includes the name field with that [CONDITION_ID]. If the
+     * supplied condition omits the name field, then a new [CONDITION_ID] is
+     * created.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AlertPolicy;
+  }
+
 
   export class Resource$Projects$Collectdtimeseries {
     root: Monitoring;
@@ -2207,31 +2400,48 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(
+        params?: Params$Resource$Projects$Collectdtimeseries$Create,
+        options?: MethodOptions):
         AxiosPromise<Schema$CreateCollectdTimeSeriesResponse>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Collectdtimeseries$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
         void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Collectdtimeseries$Create,
+        callback:
+            BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Collectdtimeseries$Create|
+        BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
         callback?:
             BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
         void|AxiosPromise<Schema$CreateCollectdTimeSeriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Collectdtimeseries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Collectdtimeseries$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2255,6 +2465,24 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Collectdtimeseries$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which to create the time series. The format is
+     * "projects/PROJECT_ID_OR_NUMBER".
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateCollectdTimeSeriesRequest;
+  }
+
 
   export class Resource$Projects$Groups {
     root: Monitoring;
@@ -2331,25 +2559,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
+        params?: Params$Resource$Projects$Groups$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Group>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+        params: Params$Resource$Projects$Groups$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    create(
+        params: Params$Resource$Projects$Groups$Create,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    create(callback: BodyResponseCallback<Schema$Group>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Groups$Create|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2431,25 +2672,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Groups$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Groups$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Groups$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Groups$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2530,23 +2784,34 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+    get(params?: Params$Resource$Projects$Groups$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Group>;
+    get(params: Params$Resource$Projects$Groups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    get(params: Params$Resource$Projects$Groups$Get,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    get(callback: BodyResponseCallback<Schema$Group>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Groups$Get|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2638,26 +2903,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListGroupsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+        params?: Params$Resource$Projects$Groups$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListGroupsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
+        params: Params$Resource$Projects$Groups$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
+        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Groups$List,
+        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Groups$List|
+        BodyResponseCallback<Schema$ListGroupsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListGroupsResponse>,
         callback?: BodyResponseCallback<Schema$ListGroupsResponse>):
         void|AxiosPromise<Schema$ListGroupsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2748,25 +3026,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
+        params?: Params$Resource$Projects$Groups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Group>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+        params: Params$Resource$Projects$Groups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    update(
+        params: Params$Resource$Projects$Groups$Update,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    update(callback: BodyResponseCallback<Schema$Group>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Groups$Update|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2787,6 +3078,118 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Groups$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which to create the group. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * If true, validate this request but do not create the group.
+     */
+    validateOnly?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Group;
+  }
+  export interface Params$Resource$Projects$Groups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The group to delete. The format is
+     * "projects/{project_id_or_number}/groups/{group_id}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Groups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The group to retrieve. The format is
+     * "projects/{project_id_or_number}/groups/{group_id}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Groups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A group name: "projects/{project_id_or_number}/groups/{group_id}".
+     * Returns groups that are ancestors of the specified group. The groups are
+     * returned in order, starting with the immediate parent and ending with the
+     * most distant ancestor. If the specified group has no immediate parent,
+     * the results are empty.
+     */
+    ancestorsOfGroup?: string;
+    /**
+     * A group name: "projects/{project_id_or_number}/groups/{group_id}".
+     * Returns groups whose parentName field contains the group name. If no
+     * groups have this parent, the results are empty.
+     */
+    childrenOfGroup?: string;
+    /**
+     * A group name: "projects/{project_id_or_number}/groups/{group_id}".
+     * Returns the descendants of the specified group. This is a superset of the
+     * results returned by the childrenOfGroup filter, and includes
+     * children-of-children, and so forth.
+     */
+    descendantsOfGroup?: string;
+    /**
+     * The project whose groups are to be listed. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Groups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The name of this group. The format is
+     * "projects/{project_id_or_number}/groups/{group_id}". When creating a
+     * group, this field is ignored and a new name is created consisting of the
+     * project specified in the call to CreateGroup and a unique {group_id} that
+     * is generated automatically.
+     */
+    name?: string;
+    /**
+     * If true, validate this request but do not update the existing group.
+     */
+    validateOnly?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Group;
+  }
+
   export class Resource$Projects$Groups$Members {
     root: Monitoring;
     constructor(root: Monitoring) {
@@ -2870,28 +3273,40 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListGroupMembersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Groups$Members$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListGroupMembersResponse>;
+    list(
+        params: Params$Resource$Projects$Groups$Members$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListGroupMembersResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Groups$Members$List,
+        callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Groups$Members$List|
+        BodyResponseCallback<Schema$ListGroupMembersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListGroupMembersResponse>,
         callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>):
         void|AxiosPromise<Schema$ListGroupMembersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Groups$Members$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Groups$Members$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2913,6 +3328,48 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Groups$Members$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional list filter describing the members to be returned. The filter
+     * may reference the type, labels, and metadata of monitored resources that
+     * comprise the group. For example, to return only resources representing
+     * Compute Engine VM instances, use this filter: resource.type =
+     * "gce_instance"
+     */
+    filter?: string;
+    /**
+     * Required. The end of the time interval.
+     */
+    'interval.endTime'?: string;
+    /**
+     * Optional. The beginning of the time interval. The default value for the
+     * start time is the end time. The start time must not be later than the end
+     * time.
+     */
+    'interval.startTime'?: string;
+    /**
+     * The group whose members are listed. The format is
+     * "projects/{project_id_or_number}/groups/{group_id}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+  }
+
 
 
   export class Resource$Projects$Metricdescriptors {
@@ -2985,26 +3442,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$MetricDescriptor>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-        callback?: BodyResponseCallback<Schema$MetricDescriptor>): void;
+        params?: Params$Resource$Projects$Metricdescriptors$Create,
+        options?: MethodOptions): AxiosPromise<Schema$MetricDescriptor>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+        params: Params$Resource$Projects$Metricdescriptors$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(
+        params: Params$Resource$Projects$Metricdescriptors$Create,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Create|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetricDescriptor>,
         callback?: BodyResponseCallback<Schema$MetricDescriptor>):
         void|AxiosPromise<Schema$MetricDescriptor> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Metricdescriptors$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metricdescriptors$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3087,25 +3557,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Metricdescriptors$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Metricdescriptors$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Metricdescriptors$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Metricdescriptors$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metricdescriptors$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3187,24 +3670,35 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Metricdescriptors$Get,
         options?: MethodOptions): AxiosPromise<Schema$MetricDescriptor>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-        callback?: BodyResponseCallback<Schema$MetricDescriptor>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+    get(params: Params$Resource$Projects$Metricdescriptors$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(params: Params$Resource$Projects$Metricdescriptors$Get,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Get|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetricDescriptor>,
         callback?: BodyResponseCallback<Schema$MetricDescriptor>):
         void|AxiosPromise<Schema$MetricDescriptor> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Metricdescriptors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metricdescriptors$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3295,29 +3789,44 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Metricdescriptors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListMetricDescriptorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Metricdescriptors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
-        callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Metricdescriptors$List,
+        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$List|
+        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
         callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
         void|AxiosPromise<Schema$ListMetricDescriptorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Metricdescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metricdescriptors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3341,6 +3850,80 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Metricdescriptors$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$MetricDescriptor;
+  }
+  export interface Params$Resource$Projects$Metricdescriptors$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The metric descriptor on which to execute the request. The format is
+     * "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An
+     * example of {metric_id} is: "custom.googleapis.com/my_test_metric".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Metricdescriptors$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The metric descriptor on which to execute the request. The format is
+     * "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An
+     * example value of {metric_id} is
+     * "compute.googleapis.com/instance/disk/read_bytes_count".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Metricdescriptors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If this field is empty, all custom and system-defined metric descriptors
+     * are returned. Otherwise, the filter specifies which metric descriptors
+     * are to be returned. For example, the following filter matches all custom
+     * metrics: metric.type = starts_with("custom.googleapis.com/")
+     */
+    filter?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Projects$Monitoredresourcedescriptors {
     root: Monitoring;
@@ -3416,27 +3999,42 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$MonitoredResourceDescriptor>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
-        callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void;
+    get(callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Monitoredresourcedescriptors$Get|
+        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
         callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
         void|AxiosPromise<Schema$MonitoredResourceDescriptor> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Monitoredresourcedescriptors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Monitoredresourcedescriptors$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3529,30 +4127,47 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListMonitoredResourceDescriptorsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+        callback: BodyResponseCallback<
+            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Monitoredresourcedescriptors$List|
+        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListMonitoredResourceDescriptorsResponse>):
         void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Monitoredresourcedescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Monitoredresourcedescriptors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3576,6 +4191,50 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The monitored resource descriptor to get. The format is
+     * "projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}".
+     * The {resource_type} is a predefined type, such as cloudsql_database.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional filter describing the descriptors to be returned. The filter
+     * can reference the descriptor's type and labels. For example, the
+     * following filter returns only Google Compute Engine descriptors that have
+     * an id label: resource.type = starts_with("gce_") AND resource.label:id
+     */
+    filter?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Projects$Notificationchanneldescriptors {
     root: Monitoring;
@@ -3603,27 +4262,42 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$NotificationChannelDescriptor>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannelDescriptor>,
-        callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
+        callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+        callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
+        void;
+    get(callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
+        void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Notificationchanneldescriptors$Get|
+        BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannelDescriptor>,
         callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
         void|AxiosPromise<Schema$NotificationChannelDescriptor> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchanneldescriptors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Notificationchanneldescriptors$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3663,30 +4337,47 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Notificationchanneldescriptors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListNotificationChannelDescriptorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Notificationchanneldescriptors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListNotificationChannelDescriptorsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Notificationchanneldescriptors$List,
+        callback: BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListNotificationChannelDescriptorsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Notificationchanneldescriptors$List|
+        BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListNotificationChannelDescriptorsResponse>):
         void|AxiosPromise<Schema$ListNotificationChannelDescriptorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchanneldescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Notificationchanneldescriptors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3710,6 +4401,46 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The channel type for which to execute the request. The format is
+     * projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The REST resource name of the parent from which to retrieve the
+     * notification channel descriptors. The expected syntax is:
+     * projects/[PROJECT_ID] Note that this names the parent container in which
+     * to look for the descriptors; to retrieve a single descriptor by name, use
+     * the GetNotificationChannelDescriptor operation, instead.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return in a single response. If not set
+     * to a positive number, a reasonable value will be chosen by the service.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, page_token must contain a value returned as the
+     * next_page_token in a previous response to request the next set of
+     * results.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Projects$Notificationchannels {
     root: Monitoring;
@@ -3738,28 +4469,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$NotificationChannel>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Notificationchannels$Create,
+        options?: MethodOptions): AxiosPromise<Schema$NotificationChannel>;
+    create(
+        params: Params$Resource$Projects$Notificationchannels$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    create(
+        params: Params$Resource$Projects$Notificationchannels$Create,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    create(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Create|
         BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
-    create(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannel>,
         callback?: BodyResponseCallback<Schema$NotificationChannel>):
         void|AxiosPromise<Schema$NotificationChannel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3795,25 +4537,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Notificationchannels$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Notificationchannels$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Notificationchannels$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3851,26 +4606,35 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Notificationchannels$Get,
         options?: MethodOptions): AxiosPromise<Schema$NotificationChannel>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Notificationchannels$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    get(params: Params$Resource$Projects$Notificationchannels$Get,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    get(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Get|
         BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannel>,
         callback?: BodyResponseCallback<Schema$NotificationChannel>):
         void|AxiosPromise<Schema$NotificationChannel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3924,30 +4688,52 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getVerificationCode(params?: any, options?: MethodOptions):
+    getVerificationCode(
+        params?:
+            Params$Resource$Projects$Notificationchannels$Getverificationcode,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse>;
     getVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Projects$Notificationchannels$Getverificationcode,
+        options: MethodOptions|BodyResponseCallback<
             Schema$GetNotificationChannelVerificationCodeResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GetNotificationChannelVerificationCodeResponse>): void;
     getVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Projects$Notificationchannels$Getverificationcode,
+        callback: BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse>): void;
+    getVerificationCode(callback: BodyResponseCallback<
+                        Schema$GetNotificationChannelVerificationCodeResponse>):
+        void;
+    getVerificationCode(
+        paramsOrCallback?:
+            Params$Resource$Projects$Notificationchannels$Getverificationcode|
+        BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$GetNotificationChannelVerificationCodeResponse>,
         callback?: BodyResponseCallback<
             Schema$GetNotificationChannelVerificationCodeResponse>): void|
         AxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Getverificationcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Notificationchannels$Getverificationcode;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3989,31 +4775,48 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Notificationchannels$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListNotificationChannelsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Notificationchannels$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Notificationchannels$List,
+        callback:
+            BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$List|
+        BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
         void|AxiosPromise<Schema$ListNotificationChannelsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4053,28 +4856,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$NotificationChannel>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Notificationchannels$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$NotificationChannel>;
+    patch(
+        params: Params$Resource$Projects$Notificationchannels$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    patch(
+        params: Params$Resource$Projects$Notificationchannels$Patch,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    patch(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Patch|
         BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
-    patch(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannel>,
         callback?: BodyResponseCallback<Schema$NotificationChannel>):
         void|AxiosPromise<Schema$NotificationChannel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4110,26 +4924,43 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendVerificationCode(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     sendVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?:
+            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     sendVerificationCode(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params:
+            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    sendVerificationCode(
+        params:
+            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    sendVerificationCode(callback: BodyResponseCallback<Schema$Empty>): void;
+    sendVerificationCode(
+        paramsOrCallback?:
+            Params$Resource$Projects$Notificationchannels$Sendverificationcode|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Sendverificationcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Notificationchannels$Sendverificationcode;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4167,28 +4998,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verify(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$NotificationChannel>;
     verify(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Notificationchannels$Verify,
+        options?: MethodOptions): AxiosPromise<Schema$NotificationChannel>;
+    verify(
+        params: Params$Resource$Projects$Notificationchannels$Verify,
+        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    verify(
+        params: Params$Resource$Projects$Notificationchannels$Verify,
+        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    verify(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    verify(
+        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Verify|
         BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
-    verify(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationChannel>,
         callback?: BodyResponseCallback<Schema$NotificationChannel>):
         void|AxiosPromise<Schema$NotificationChannel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Notificationchannels$Verify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationchannels$Verify;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4210,6 +5052,166 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Notificationchannels$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project on which to execute the request. The format is:
+     * projects/[PROJECT_ID] Note that this names the container into which the
+     * channel will be written. This does not name the newly created channel.
+     * The resulting channel's name will have a normalized version of this field
+     * as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify
+     * the channel.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$NotificationChannel;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If true, the notification channel will be deleted regardless of its use
+     * in alert policies (the policies will be updated to remove the channel).
+     * If false, channels that are still referenced by an existing alerting
+     * policy will fail to be deleted in a delete operation.
+     */
+    force?: boolean;
+    /**
+     * The channel for which to execute the request. The format is
+     * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The channel for which to execute the request. The format is
+     * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The notification channel for which a verification code is to be generated
+     * and retrieved. This must name a channel that is already verified; if the
+     * specified channel is not verified, the request will fail.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetNotificationChannelVerificationCodeRequest;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If provided, this field specifies the criteria that must be met by
+     * notification channels to be included in the response.For more details,
+     * see sorting and filtering.
+     */
+    filter?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * projects/[PROJECT_ID]. That is, this names the container in which to look
+     * for the notification channels; it does not name a specific channel. To
+     * query a specific channel by REST resource name, use the
+     * GetNotificationChannel operation.
+     */
+    name?: string;
+    /**
+     * A comma-separated list of fields by which to sort the result. Supports
+     * the same set of fields as in filter. Entries can be prefixed with a minus
+     * sign to sort in descending rather than ascending order.For more details,
+     * see sorting and filtering.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return in a single response. If not set
+     * to a positive number, a reasonable value will be chosen by the service.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, page_token must contain a value returned as the
+     * next_page_token in a previous response to request the next set of
+     * results.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The full REST resource name for this channel. The syntax is:
+     * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID]
+     * is automatically assigned by the server on creation.
+     */
+    name?: string;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$NotificationChannel;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The notification channel to which to send a verification code.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SendNotificationChannelVerificationCodeRequest;
+  }
+  export interface Params$Resource$Projects$Notificationchannels$Verify {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The notification channel to verify.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$VerifyNotificationChannelRequest;
+  }
+
 
   export class Resource$Projects$Timeseries {
     root: Monitoring;
@@ -4286,25 +5288,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Timeseries$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Timeseries$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    create(
+        params: Params$Resource$Projects$Timeseries$Create,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    create(callback: BodyResponseCallback<Schema$Empty>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Timeseries$Create|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Timeseries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Timeseries$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4404,28 +5419,40 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTimeSeriesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Timeseries$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTimeSeriesResponse>;
+    list(
+        params: Params$Resource$Projects$Timeseries$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTimeSeriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Timeseries$List,
+        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Timeseries$List|
+        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTimeSeriesResponse>,
         callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>):
         void|AxiosPromise<Schema$ListTimeSeriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Timeseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Timeseries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4447,6 +5474,123 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Timeseries$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateTimeSeriesRequest;
+  }
+  export interface Params$Resource$Projects$Timeseries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alignment period for per-time series alignment. If present,
+     * alignmentPeriod must be at least 60 seconds. After per-time series
+     * alignment, each time series will contain data points only on the period
+     * boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE,
+     * then this field is ignored. If perSeriesAligner is specified and does not
+     * equal ALIGN_NONE, then this field must be defined; otherwise an error is
+     * returned.
+     */
+    'aggregation.alignmentPeriod'?: string;
+    /**
+     * The approach to be used to combine time series. Not all reducer functions
+     * may be applied to all time series, depending on the metric type and the
+     * value type of the original time series. Reduction may change the metric
+     * type of value type of the time series.Time series data must be aligned in
+     * order to perform cross-time series reduction. If crossSeriesReducer is
+     * specified, then perSeriesAligner must be specified and not equal
+     * ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is
+     * returned.
+     */
+    'aggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when crossSeriesReducer is specified. The
+     * groupByFields determine how the time series are partitioned into subsets
+     * prior to applying the aggregation function. Each subset contains time
+     * series that have the same value for each of the grouping fields. Each
+     * individual time series is a member of exactly one subset. The
+     * crossSeriesReducer is applied to each subset of time series. It is not
+     * possible to reduce across different resource types, so this field
+     * implicitly contains resource.type. Fields not specified in groupByFields
+     * are aggregated away. If groupByFields is not specified and all the time
+     * series have the same resource type, then the time series are aggregated
+     * into a single output time series. If crossSeriesReducer is not defined,
+     * this field is ignored.
+     */
+    'aggregation.groupByFields'?: string;
+    /**
+     * The approach to be used to align individual time series. Not all
+     * alignment functions may be applied to all time series, depending on the
+     * metric type and value type of the original time series. Alignment may
+     * change the metric type or the value type of the time series.Time series
+     * data must be aligned in order to perform cross-time series reduction. If
+     * crossSeriesReducer is specified, then perSeriesAligner must be specified
+     * and not equal ALIGN_NONE and alignmentPeriod must be specified;
+     * otherwise, an error is returned.
+     */
+    'aggregation.perSeriesAligner'?: string;
+    /**
+     * A monitoring filter that specifies which time series should be returned.
+     * The filter must specify a single metric type, and can additionally
+     * specify metric labels and other information. For example: metric.type =
+     * "compute.googleapis.com/instance/cpu/usage_time" AND
+     * metric.label.instance_name = "my-instance-name"
+     */
+    filter?: string;
+    /**
+     * Required. The end of the time interval.
+     */
+    'interval.endTime'?: string;
+    /**
+     * Optional. The beginning of the time interval. The default value for the
+     * start time is the end time. The start time must not be later than the end
+     * time.
+     */
+    'interval.startTime'?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * Unsupported: must be left blank. The points in each time series are
+     * returned in reverse time order.
+     */
+    orderBy?: string;
+    /**
+     * A positive number that is the maximum number of results to return. When
+     * view field sets to FULL, it limits the number of Points server will
+     * return; if view field is HEADERS, it limits the number of TimeSeries
+     * server will return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * Specifies which information is returned about the time series.
+     */
+    view?: string;
+  }
+
 
   export class Resource$Projects$Uptimecheckconfigs {
     root: Monitoring;
@@ -4473,26 +5617,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UptimeCheckConfig>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+        params?: Params$Resource$Projects$Uptimecheckconfigs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$UptimeCheckConfig>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+        params: Params$Resource$Projects$Uptimecheckconfigs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    create(
+        params: Params$Resource$Projects$Uptimecheckconfigs$Create,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    create(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Create|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
         callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
         void|AxiosPromise<Schema$UptimeCheckConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Uptimecheckconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Uptimecheckconfigs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4530,25 +5687,38 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Uptimecheckconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Uptimecheckconfigs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4582,24 +5752,35 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Uptimecheckconfigs$Get,
         options?: MethodOptions): AxiosPromise<Schema$UptimeCheckConfig>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+    get(params: Params$Resource$Projects$Uptimecheckconfigs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    get(params: Params$Resource$Projects$Uptimecheckconfigs$Get,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    get(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Get|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
         callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
         void|AxiosPromise<Schema$UptimeCheckConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Uptimecheckconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Uptimecheckconfigs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4636,29 +5817,44 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Uptimecheckconfigs$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListUptimeCheckConfigsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Uptimecheckconfigs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
+        callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Uptimecheckconfigs$List,
+        callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$List|
+        BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
         void|AxiosPromise<Schema$ListUptimeCheckConfigsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Uptimecheckconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Uptimecheckconfigs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4700,26 +5896,39 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UptimeCheckConfig>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+        params?: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$UptimeCheckConfig>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+        params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    patch(
+        params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    patch(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Patch|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UptimeCheckConfig>,
         callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
         void|AxiosPromise<Schema$UptimeCheckConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Uptimecheckconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Uptimecheckconfigs$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4740,6 +5949,99 @@ export namespace monitoring_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which to create the uptime check. The format  is
+     * projects/[PROJECT_ID].
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UptimeCheckConfig;
+  }
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The uptime check configuration to delete. The format  is
+     * projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The uptime check configuration to retrieve. The format  is
+     * projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Uptimecheckconfigs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results to return in a single response. The server
+     * may further constrain the maximum number of results returned in a single
+     * page. If the page_size is <=0, the server will decide the number of
+     * results to be returned.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return more results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * The project whose uptime check configurations are listed. The format  is
+     * projects/[PROJECT_ID].
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A unique resource name for this UptimeCheckConfig. The format
+     * is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field
+     * should be omitted when creating the uptime check configuration; on
+     * create, the resource name is assigned by the server and included in the
+     * response.
+     */
+    name?: string;
+    /**
+     * Optional. If present, only the listed fields in the current uptime check
+     * configuration are updated with values from the new configuration. If this
+     * field is empty, then the current configuration is completely replaced
+     * with the new configuration.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UptimeCheckConfig;
+  }
+
 
 
   export class Resource$Uptimecheckips {
@@ -4767,29 +6069,42 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Uptimecheckips$List, options?: MethodOptions):
         AxiosPromise<Schema$ListUptimeCheckIpsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Uptimecheckips$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
+        callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Uptimecheckips$List,
+        callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Uptimecheckips$List|
+        BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
         callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
         void|AxiosPromise<Schema$ListUptimeCheckIpsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Uptimecheckips$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Uptimecheckips$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4811,5 +6126,27 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Uptimecheckips$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results to return in a single response. The server
+     * may further constrain the maximum number of results returned in a single
+     * page. If the page_size is <=0, the server will decide the number of
+     * results to be returned. NOTE: this field is not yet implemented
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return more results from the previous method call. NOTE: this
+     * field is not yet implemented
+     */
+    pageToken?: string;
   }
 }

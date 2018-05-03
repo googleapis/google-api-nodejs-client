@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudtrace_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Stackdriver Trace API
    *
@@ -75,12 +78,12 @@ export namespace cloudtrace_v2 {
      * A set of attributes on the annotation. You can have up to 4 attributes
      * per Annotation.
      */
-    attributes: Schema$Attributes;
+    attributes?: Schema$Attributes;
     /**
      * A user-supplied message describing the event. The maximum length for the
      * description is 256 bytes.
      */
-    description: Schema$TruncatableString;
+    description?: Schema$TruncatableString;
   }
   /**
    * A set of attributes, each in the format `[KEY]:[VALUE]`.
@@ -94,13 +97,13 @@ export namespace cloudtrace_v2 {
      * &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;:
      * true
      */
-    attributeMap: any;
+    attributeMap?: any;
     /**
      * The number of attributes that were discarded. Attributes can be discarded
      * because their keys are too long or because there are too many attributes.
      * If this value is 0 then all attributes are valid.
      */
-    droppedAttributesCount: number;
+    droppedAttributesCount?: number;
   }
   /**
    * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
@@ -109,15 +112,15 @@ export namespace cloudtrace_v2 {
     /**
      * A Boolean value represented by `true` or `false`.
      */
-    boolValue: boolean;
+    boolValue?: boolean;
     /**
      * A 64-bit signed integer.
      */
-    intValue: string;
+    intValue?: string;
     /**
      * A string up to 256 bytes long.
      */
-    stringValue: Schema$TruncatableString;
+    stringValue?: Schema$TruncatableString;
   }
   /**
    * The request message for the `BatchWriteSpans` method.
@@ -127,7 +130,7 @@ export namespace cloudtrace_v2 {
      * A list of new spans. The span names must not match existing spans, or the
      * results are undefined.
      */
-    spans: Schema$Span[];
+    spans?: Schema$Span[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -148,19 +151,19 @@ export namespace cloudtrace_v2 {
      * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      */
-    attributes: Schema$Attributes;
+    attributes?: Schema$Attributes;
     /**
      * The [SPAN_ID] for a span within a trace.
      */
-    spanId: string;
+    spanId?: string;
     /**
      * The [TRACE_ID] for a trace within a project.
      */
-    traceId: string;
+    traceId?: string;
     /**
      * The relationship of the current span relative to the linked span.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A collection of links, which are references from this span to a span in the
@@ -171,11 +174,11 @@ export namespace cloudtrace_v2 {
      * The number of dropped links after the maximum size was enforced. If this
      * value is 0, then no links were dropped.
      */
-    droppedLinksCount: number;
+    droppedLinksCount?: number;
     /**
      * A collection of links.
      */
-    link: Schema$Link[];
+    link?: Schema$Link[];
   }
   /**
    * An event describing a message sent/received between Spans.
@@ -185,21 +188,21 @@ export namespace cloudtrace_v2 {
      * The number of compressed bytes sent or received. If missing assumed to be
      * the same size as uncompressed.
      */
-    compressedSizeBytes: string;
+    compressedSizeBytes?: string;
     /**
      * An identifier for the MessageEvent&#39;s message that can be used to
      * match SENT and RECEIVED MessageEvents. It is recommended to be unique
      * within a Span.
      */
-    id: string;
+    id?: string;
     /**
      * Type of MessageEvent. Indicates whether the message was sent or received.
      */
-    type: string;
+    type?: string;
     /**
      * The number of uncompressed bytes sent or received.
      */
-    uncompressedSizeBytes: string;
+    uncompressedSizeBytes?: string;
   }
   /**
    * Binary module.
@@ -209,12 +212,12 @@ export namespace cloudtrace_v2 {
      * A unique identifier for the module, usually a hash of its contents (up to
      * 128 bytes).
      */
-    buildId: Schema$TruncatableString;
+    buildId?: Schema$TruncatableString;
     /**
      * For example: main binary, kernel modules, and dynamic libraries such as
      * libc.so, sharedlib.so (up to 256 bytes).
      */
-    module: Schema$TruncatableString;
+    module?: Schema$TruncatableString;
   }
   /**
    * A span represents a single operation within a trace. Spans can be nested to
@@ -229,12 +232,12 @@ export namespace cloudtrace_v2 {
      * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      */
-    attributes: Schema$Attributes;
+    attributes?: Schema$Attributes;
     /**
      * An optional number of child spans that were generated while this span was
      * active. If set, allows implementation to detect missing child spans.
      */
-    childSpanCount: number;
+    childSpanCount?: number;
     /**
      * A description of the span&#39;s operation (up to 128 bytes). Stackdriver
      * Trace displays the description in the {% dynamic print
@@ -244,17 +247,17 @@ export namespace cloudtrace_v2 {
      * within an application and at the same call point. This makes it easier to
      * correlate spans in different traces.
      */
-    displayName: Schema$TruncatableString;
+    displayName?: Schema$TruncatableString;
     /**
      * The end time of the span. On the client side, this is the time kept by
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Links associated with the span. You can have up to 128 links per Span.
      */
-    links: Schema$Links;
+    links?: Schema$Links;
     /**
      * The resource name of the span in the following format:
      * projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique
@@ -263,42 +266,42 @@ export namespace cloudtrace_v2 {
      * within a trace; it is a 16-character hexadecimal encoding of an 8-byte
      * array.
      */
-    name: string;
+    name?: string;
     /**
      * The [SPAN_ID] of this span&#39;s parent span. If this is a root span,
      * then this field must be empty.
      */
-    parentSpanId: string;
+    parentSpanId?: string;
     /**
      * (Optional) Set this parameter to indicate whether this span is in the
      * same process as its parent. If you do not set this parameter, Stackdriver
      * Trace is unable to take advantage of this helpful information.
      */
-    sameProcessAsParentSpan: boolean;
+    sameProcessAsParentSpan?: boolean;
     /**
      * The [SPAN_ID] portion of the span&#39;s resource name.
      */
-    spanId: string;
+    spanId?: string;
     /**
      * Stack trace captured at the start of the span.
      */
-    stackTrace: Schema$StackTrace;
+    stackTrace?: Schema$StackTrace;
     /**
      * The start time of the span. On the client side, this is the time kept by
      * the local machine where the span execution starts. On the server side,
      * this is the time when the server&#39;s application handler starts
      * running.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * An optional final status for this span.
      */
-    status: Schema$Status;
+    status?: Schema$Status;
     /**
      * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      */
-    timeEvents: Schema$TimeEvents;
+    timeEvents?: Schema$TimeEvents;
   }
   /**
    * Represents a single stack frame in a stack trace.
@@ -308,35 +311,35 @@ export namespace cloudtrace_v2 {
      * The column number where the function call appears, if available. This is
      * important in JavaScript because of its anonymous functions.
      */
-    columnNumber: string;
+    columnNumber?: string;
     /**
      * The name of the source file where the function call appears (up to 256
      * bytes).
      */
-    fileName: Schema$TruncatableString;
+    fileName?: Schema$TruncatableString;
     /**
      * The fully-qualified name that uniquely identifies the function or method
      * that is active in this frame (up to 1024 bytes).
      */
-    functionName: Schema$TruncatableString;
+    functionName?: Schema$TruncatableString;
     /**
      * The line number in `file_name` where the function call appears.
      */
-    lineNumber: string;
+    lineNumber?: string;
     /**
      * The binary module from where the code was loaded.
      */
-    loadModule: Schema$Module;
+    loadModule?: Schema$Module;
     /**
      * An un-mangled function name, if `function_name` is
      * [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
      * be fully-qualified (up to 1024 bytes).
      */
-    originalFunctionName: Schema$TruncatableString;
+    originalFunctionName?: Schema$TruncatableString;
     /**
      * The version of the deployed source code (up to 128 bytes).
      */
-    sourceVersion: Schema$TruncatableString;
+    sourceVersion?: Schema$TruncatableString;
   }
   /**
    * A collection of stack frames, which can be truncated.
@@ -346,11 +349,11 @@ export namespace cloudtrace_v2 {
      * The number of stack frames that were dropped because there were too many
      * stack frames. If this value is 0, then no stack frames were dropped.
      */
-    droppedFramesCount: number;
+    droppedFramesCount?: number;
     /**
      * Stack frames in this call stack.
      */
-    frame: Schema$StackFrame[];
+    frame?: Schema$StackFrame[];
   }
   /**
    * A call stack appearing in a trace.
@@ -359,7 +362,7 @@ export namespace cloudtrace_v2 {
     /**
      * Stack frames in this stack trace. A maximum of 128 frames are allowed.
      */
-    stackFrames: Schema$StackFrames;
+    stackFrames?: Schema$StackFrames;
     /**
      * The hash ID is used to conserve network bandwidth for duplicate stack
      * traces within a single trace.  Often multiple spans will have identical
@@ -368,7 +371,7 @@ export namespace cloudtrace_v2 {
      * spans within the same request can refer to that stack trace by only
      * setting `stackTraceHashId`.
      */
-    stackTraceHashId: string;
+    stackTraceHashId?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -410,18 +413,18 @@ export namespace cloudtrace_v2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A time-stamped annotation or message event in the Span.
@@ -430,15 +433,15 @@ export namespace cloudtrace_v2 {
     /**
      * Text annotation with a set of attributes.
      */
-    annotation: Schema$Annotation;
+    annotation?: Schema$Annotation;
     /**
      * An event describing a message sent/received between Spans.
      */
-    messageEvent: Schema$MessageEvent;
+    messageEvent?: Schema$MessageEvent;
     /**
      * The timestamp indicating the time the event occurred.
      */
-    time: string;
+    time?: string;
   }
   /**
    * A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation on
@@ -450,16 +453,16 @@ export namespace cloudtrace_v2 {
      * The number of dropped annotations in all the included time events. If the
      * value is 0, then no annotations were dropped.
      */
-    droppedAnnotationsCount: number;
+    droppedAnnotationsCount?: number;
     /**
      * The number of dropped message events in all the included time events. If
      * the value is 0, then no message events were dropped.
      */
-    droppedMessageEventsCount: number;
+    droppedMessageEventsCount?: number;
     /**
      * A collection of `TimeEvent`s.
      */
-    timeEvent: Schema$TimeEvent[];
+    timeEvent?: Schema$TimeEvent[];
   }
   /**
    * Represents a string that might be shortened to a specified length.
@@ -469,7 +472,7 @@ export namespace cloudtrace_v2 {
      * The number of bytes removed from the original string. If this value is 0,
      * then the string was not shortened.
      */
-    truncatedByteCount: number;
+    truncatedByteCount?: number;
     /**
      * The shortened string. For example, if the original string is 500 bytes
      * long and the limit of the string is 128 bytes, then `value` contains the
@@ -478,8 +481,9 @@ export namespace cloudtrace_v2 {
      * string, then the length of the shortened string might be less than the
      * size limit.
      */
-    value: string;
+    value?: string;
   }
+
 
   export class Resource$Projects {
     root: Cloudtrace;
@@ -494,6 +498,8 @@ export namespace cloudtrace_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Traces {
     root: Cloudtrace;
     spans: Resource$Projects$Traces$Spans;
@@ -522,26 +528,38 @@ export namespace cloudtrace_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchWrite(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     batchWrite(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Traces$Batchwrite,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     batchWrite(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Traces$Batchwrite,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    batchWrite(
+        params: Params$Resource$Projects$Traces$Batchwrite,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    batchWrite(callback: BodyResponseCallback<Schema$Empty>): void;
+    batchWrite(
+        paramsOrCallback?: Params$Resource$Projects$Traces$Batchwrite|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Traces$Batchwrite;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Traces$Batchwrite;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -563,6 +581,24 @@ export namespace cloudtrace_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Traces$Batchwrite {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchWriteSpansRequest;
+  }
+
   export class Resource$Projects$Traces$Spans {
     root: Cloudtrace;
     constructor(root: Cloudtrace) {
@@ -588,24 +624,38 @@ export namespace cloudtrace_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createSpan(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Span>;
     createSpan(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
-        callback?: BodyResponseCallback<Schema$Span>): void;
+        params?: Params$Resource$Projects$Traces$Spans$Createspan,
+        options?: MethodOptions): AxiosPromise<Schema$Span>;
     createSpan(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
+        params: Params$Resource$Projects$Traces$Spans$Createspan,
+        options: MethodOptions|BodyResponseCallback<Schema$Span>,
+        callback: BodyResponseCallback<Schema$Span>): void;
+    createSpan(
+        params: Params$Resource$Projects$Traces$Spans$Createspan,
+        callback: BodyResponseCallback<Schema$Span>): void;
+    createSpan(callback: BodyResponseCallback<Schema$Span>): void;
+    createSpan(
+        paramsOrCallback?: Params$Resource$Projects$Traces$Spans$Createspan|
+        BodyResponseCallback<Schema$Span>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Span>,
         callback?: BodyResponseCallback<Schema$Span>):
         void|AxiosPromise<Schema$Span> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Traces$Spans$Createspan;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Traces$Spans$Createspan;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -625,5 +675,26 @@ export namespace cloudtrace_v2 {
         return createAPIRequest<Schema$Span>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Traces$Spans$Createspan {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the span in the following format:
+     * projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique
+     * identifier for a trace within a project; it is a 32-character hexadecimal
+     * encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span
+     * within a trace; it is a 16-character hexadecimal encoding of an 8-byte
+     * array.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Span;
   }
 }

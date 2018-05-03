@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace logging_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Stackdriver Logging API
    *
@@ -102,15 +105,15 @@ export namespace logging_v2 {
     /**
      * The explicit buckets.
      */
-    explicitBuckets: Schema$Explicit;
+    explicitBuckets?: Schema$Explicit;
     /**
      * The exponential buckets.
      */
-    exponentialBuckets: Schema$Exponential;
+    exponentialBuckets?: Schema$Exponential;
     /**
      * The linear bucket.
      */
-    linearBuckets: Schema$Linear;
+    linearBuckets?: Schema$Linear;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -132,7 +135,7 @@ export namespace logging_v2 {
     /**
      * The values must be monotonically increasing.
      */
-    bounds: number[];
+    bounds?: number[];
   }
   /**
    * Specifies an exponential sequence of buckets that have a width that is
@@ -146,15 +149,15 @@ export namespace logging_v2 {
     /**
      * Must be greater than 1.
      */
-    growthFactor: number;
+    growthFactor?: number;
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets: number;
+    numFiniteBuckets?: number;
     /**
      * Must be greater than 0.
      */
-    scale: number;
+    scale?: number;
   }
   /**
    * A common proto for logging HTTP requests. Only contains semantics defined
@@ -166,77 +169,77 @@ export namespace logging_v2 {
      * The number of HTTP response bytes inserted into cache. Set only when a
      * cache fill was attempted.
      */
-    cacheFillBytes: string;
+    cacheFillBytes?: string;
     /**
      * Whether or not an entity was served from cache (with or without
      * validation).
      */
-    cacheHit: boolean;
+    cacheHit?: boolean;
     /**
      * Whether or not a cache lookup was attempted.
      */
-    cacheLookup: boolean;
+    cacheLookup?: boolean;
     /**
      * Whether or not the response was validated with the origin server before
      * being served from cache. This field is only meaningful if cache_hit is
      * True.
      */
-    cacheValidatedWithOriginServer: boolean;
+    cacheValidatedWithOriginServer?: boolean;
     /**
      * The request processing latency on the server, from the time the request
      * was received until the response was sent.
      */
-    latency: string;
+    latency?: string;
     /**
      * Protocol used for the request. Examples: &quot;HTTP/1.1&quot;,
      * &quot;HTTP/2&quot;, &quot;websocket&quot;
      */
-    protocol: string;
+    protocol?: string;
     /**
      * The referer URL of the request, as defined in HTTP/1.1 Header Field
      * Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      */
-    referer: string;
+    referer?: string;
     /**
      * The IP address (IPv4 or IPv6) of the client that issued the HTTP request.
      * Examples: &quot;192.168.1.1&quot;, &quot;FE80::0202:B3FF:FE1E:8329&quot;.
      */
-    remoteIp: string;
+    remoteIp?: string;
     /**
      * The request method. Examples: &quot;GET&quot;, &quot;HEAD&quot;,
      * &quot;PUT&quot;, &quot;POST&quot;.
      */
-    requestMethod: string;
+    requestMethod?: string;
     /**
      * The size of the HTTP request message in bytes, including the request
      * headers and the request body.
      */
-    requestSize: string;
+    requestSize?: string;
     /**
      * The scheme (http, https), the host name, the path and the query portion
      * of the URL that was requested. Example:
      * &quot;http://example.com/some/info?color=red&quot;.
      */
-    requestUrl: string;
+    requestUrl?: string;
     /**
      * The size of the HTTP response message sent back to the client, in bytes,
      * including the response headers and the response body.
      */
-    responseSize: string;
+    responseSize?: string;
     /**
      * The IP address (IPv4 or IPv6) of the origin server that the request was
      * sent to.
      */
-    serverIp: string;
+    serverIp?: string;
     /**
      * The response code indicating the status of response. Examples: 200, 404.
      */
-    status: number;
+    status?: number;
     /**
      * The user agent sent by the client. Example: &quot;Mozilla/4.0
      * (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)&quot;.
      */
-    userAgent: string;
+    userAgent?: string;
   }
   /**
    * A description of a label.
@@ -245,15 +248,15 @@ export namespace logging_v2 {
     /**
      * A human-readable description for the label.
      */
-    description: string;
+    description?: string;
     /**
      * The label key.
      */
-    key: string;
+    key?: string;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * Specifies a linear sequence of buckets that all have the same width (except
@@ -267,15 +270,15 @@ export namespace logging_v2 {
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets: number;
+    numFiniteBuckets?: number;
     /**
      * Lower bound of the first bucket.
      */
-    offset: number;
+    offset?: number;
     /**
      * Must be greater than 0.
      */
-    width: number;
+    width?: number;
   }
   /**
    * Result returned from ListExclusions.
@@ -284,13 +287,13 @@ export namespace logging_v2 {
     /**
      * A list of exclusions.
      */
-    exclusions: Schema$LogExclusion[];
+    exclusions?: Schema$LogExclusion[];
     /**
      * If there might be more results than appear in this response, then
      * nextPageToken is included. To get the next set of results, call the same
      * method again using the value of nextPageToken as pageToken.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The parameters to ListLogEntries.
@@ -304,7 +307,7 @@ export namespace logging_v2 {
      * resource_names will cause the filter to return no results. The maximum
      * length of the filter is 20000 characters.
      */
-    filter: string;
+    filter?: string;
     /**
      * Optional. How the results should be sorted. Presently, the only permitted
      * values are &quot;timestamp asc&quot; (default) and &quot;timestamp
@@ -313,20 +316,20 @@ export namespace logging_v2 {
      * returns entries in order of decreasing timestamps (newest first). Entries
      * with equal timestamps are returned in order of their insert_id values.
      */
-    orderBy: string;
+    orderBy?: string;
     /**
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored. The presence of next_page_token in the
      * response indicates that more results might be available.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method. page_token must be the value of
      * next_page_token from the previous response. The values of other method
      * parameters should be identical to those in the previous call.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * Deprecated. Use resource_names instead. One or more project identifiers
      * or project numbers from which to retrieve log entries. Example:
@@ -334,7 +337,7 @@ export namespace logging_v2 {
      * converted to resource name format and added to the list of resources in
      * resource_names.
      */
-    projectIds: string[];
+    projectIds?: string[];
     /**
      * Required. Names of one or more parent resources from which to retrieve
      * log entries: &quot;projects/[PROJECT_ID]&quot;
@@ -343,7 +346,7 @@ export namespace logging_v2 {
      * &quot;folders/[FOLDER_ID]&quot; Projects listed in the project_ids field
      * are added to this list.
      */
-    resourceNames: string[];
+    resourceNames?: string[];
   }
   /**
    * Result returned from ListLogEntries.
@@ -354,7 +357,7 @@ export namespace logging_v2 {
      * returned, indicating that more entries may exist. See nextPageToken for
      * more information.
      */
-    entries: Schema$LogEntry[];
+    entries?: Schema$LogEntry[];
     /**
      * If there might be more results than those appearing in this response,
      * then nextPageToken is included. To get the next set of results, call this
@@ -366,7 +369,7 @@ export namespace logging_v2 {
      * changing your filter to specify a single log name or resource type, or to
      * narrow the time range of the search.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Result returned from ListLogMetrics.
@@ -375,13 +378,13 @@ export namespace logging_v2 {
     /**
      * A list of logs-based metrics.
      */
-    metrics: Schema$LogMetric[];
+    metrics?: Schema$LogMetric[];
     /**
      * If there might be more results than appear in this response, then
      * nextPageToken is included. To get the next set of results, call this
      * method again using the value of nextPageToken as pageToken.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Result returned from ListLogs.
@@ -392,13 +395,13 @@ export namespace logging_v2 {
      * or
      * &quot;organizations/123/cloudresourcemanager.googleapis.com%2Factivity&quot;.
      */
-    logNames: string[];
+    logNames?: string[];
     /**
      * If there might be more results than those appearing in this response,
      * then nextPageToken is included. To get the next set of results, call this
      * method again using the value of nextPageToken as pageToken.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Result returned from ListMonitoredResourceDescriptors.
@@ -409,11 +412,11 @@ export namespace logging_v2 {
      * then nextPageToken is included. To get the next set of results, call this
      * method again using the value of nextPageToken as pageToken.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of resource descriptors.
      */
-    resourceDescriptors: Schema$MonitoredResourceDescriptor[];
+    resourceDescriptors?: Schema$MonitoredResourceDescriptor[];
   }
   /**
    * Result returned from ListSinks.
@@ -424,11 +427,11 @@ export namespace logging_v2 {
      * nextPageToken is included. To get the next set of results, call the same
      * method again using the value of nextPageToken as pageToken.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of sinks.
      */
-    sinks: Schema$LogSink[];
+    sinks?: Schema$LogSink[];
   }
   /**
    * An individual entry in a log.
@@ -438,7 +441,7 @@ export namespace logging_v2 {
      * Optional. Information about the HTTP request associated with this log
      * entry, if applicable.
      */
-    httpRequest: Schema$HttpRequest;
+    httpRequest?: Schema$HttpRequest;
     /**
      * Optional. A unique identifier for the log entry. If you provide a value,
      * then Stackdriver Logging considers other log entries in the same project,
@@ -447,17 +450,17 @@ export namespace logging_v2 {
      * Logging assigns its own unique identifier. The insert_id is also used to
      * order log entries that have the same timestamp value.
      */
-    insertId: string;
+    insertId?: string;
     /**
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload: any;
+    jsonPayload?: any;
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels: any;
+    labels?: any;
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -477,67 +480,75 @@ export namespace logging_v2 {
      * the log entry will not show the leading slash and filtering for a log
      * name with a leading slash will never return any results.
      */
-    logName: string;
+    logName?: string;
+    /**
+     * Output only. Additional metadata about the monitored resource. Only
+     * k8s_container, k8s_pod, and k8s_node MonitoredResources have this field
+     * populated.
+     */
+    metadata?: Schema$MonitoredResourceMetadata;
     /**
      * Optional. Information about an operation associated with the log entry,
      * if applicable.
      */
-    operation: Schema$LogEntryOperation;
+    operation?: Schema$LogEntryOperation;
     /**
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload: any;
+    protoPayload?: any;
     /**
      * Output only. The time the log entry was received by Stackdriver Logging.
      */
-    receiveTimestamp: string;
+    receiveTimestamp?: string;
     /**
      * Required. The primary monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be associated
      * with the monitored resource designating the particular database that
      * reported the error.
      */
-    resource: Schema$MonitoredResource;
+    resource?: Schema$MonitoredResource;
     /**
      * Optional. The severity of the log entry. The default value is
      * LogSeverity.DEFAULT.
      */
-    severity: string;
+    severity?: string;
     /**
      * Optional. Source code location information associated with the log entry,
      * if any.
      */
-    sourceLocation: Schema$LogEntrySourceLocation;
+    sourceLocation?: Schema$LogEntrySourceLocation;
     /**
      * Optional. The span ID within the trace associated with the log entry. For
      * Stackdriver Trace spans, this is the same format that the Stackdriver
      * Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte
      * array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
      */
-    spanId: string;
+    spanId?: string;
     /**
      * The log entry payload, represented as a Unicode string (UTF-8).
      */
-    textPayload: string;
+    textPayload?: string;
     /**
      * Optional. The time the event described by the log entry occurred. This
      * time is used to compute the log entry&#39;s age and to enforce the logs
      * retention period. If this field is omitted in a new log entry, then
-     * Stackdriver Logging assigns it the current time.Incoming log entries
-     * should have timestamps that are no more than the logs retention period in
-     * the past, and no more than 24 hours in the future. Log entries outside
-     * those time boundaries will not be available when calling entries.list,
-     * but those log entries can still be exported with LogSinks.
+     * Stackdriver Logging assigns it the current time. Timestamps have
+     * nanosecond accuracy, but trailing zeros in the fractional seconds might
+     * be omitted when the timestamp is displayed.Incoming log entries should
+     * have timestamps that are no more than the logs retention period in the
+     * past, and no more than 24 hours in the future. Log entries outside those
+     * time boundaries will not be available when calling entries.list, but
+     * those log entries can still be exported with LogSinks.
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * Optional. Resource name of the trace associated with the log entry, if
      * any. If it contains a relative resource name, the name is assumed to be
      * relative to //tracing.googleapis.com. Example:
      * projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
      */
-    trace: string;
+    trace?: string;
   }
   /**
    * Additional information about a potentially long-running operation with
@@ -548,24 +559,24 @@ export namespace logging_v2 {
      * Optional. Set this to True if this is the first log entry in the
      * operation.
      */
-    first: boolean;
+    first?: boolean;
     /**
      * Optional. An arbitrary operation identifier. Log entries with the same
      * identifier are assumed to be part of the same operation.
      */
-    id: string;
+    id?: string;
     /**
      * Optional. Set this to True if this is the last log entry in the
      * operation.
      */
-    last: boolean;
+    last?: boolean;
     /**
      * Optional. An arbitrary producer identifier. The combination of id and
      * producer must be globally unique. Examples for producer:
      * &quot;MyDivision.MyBigCompany.com&quot;,
      * &quot;github.com/MyProject/MyApplication&quot;.
      */
-    producer: string;
+    producer?: string;
   }
   /**
    * Additional information about the source code location that produced the log
@@ -576,7 +587,7 @@ export namespace logging_v2 {
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
      */
-    file: string;
+    file?: string;
     /**
      * Optional. Human-readable name of the function or method being invoked,
      * with optional context such as the class or package name. This information
@@ -585,12 +596,12 @@ export namespace logging_v2 {
      * qual.if.ied.Class.method (Java), dir/package.func (Go), function
      * (Python).
      */
-    function: string;
+    function?: string;
     /**
      * Optional. Line within the source file. 1-based; 0 indicates no line
      * number available.
      */
-    line: string;
+    line?: string;
   }
   /**
    * Specifies a set of log entries that are not to be stored in Stackdriver
@@ -604,13 +615,13 @@ export namespace logging_v2 {
     /**
      * Optional. A description of this exclusion.
      */
-    description: string;
+    description?: string;
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
      * exclude any log entries. You can use exclusions.patch to change the value
      * of this field.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Required. An advanced logs filter that matches the log entries to be
      * excluded. By using the sample function, you can exclude less than 100% of
@@ -619,14 +630,14 @@ export namespace logging_v2 {
      * &quot;resource.type=http_load_balancer severity&lt;ERROR sample(insertId,
      * 0.99)&quot;
      */
-    filter: string;
+    filter?: string;
     /**
      * Required. A client-assigned identifier, such as
      * &quot;load-balancer-exclusion&quot;. Identifiers are limited to 100
      * characters and can include only letters, digits, underscores, hyphens,
      * and periods.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Application log line emitted while processing a request.
@@ -635,19 +646,19 @@ export namespace logging_v2 {
     /**
      * App-provided log message.
      */
-    logMessage: string;
+    logMessage?: string;
     /**
      * Severity of this log entry.
      */
-    severity: string;
+    severity?: string;
     /**
      * Where in the source code this log message was written.
      */
-    sourceLocation: Schema$SourceLocation;
+    sourceLocation?: Schema$SourceLocation;
     /**
      * Approximate time when this log entry was made.
      */
-    time: string;
+    time?: string;
   }
   /**
    * Describes a logs-based metric. The value of the metric is the number of log
@@ -663,17 +674,17 @@ export namespace logging_v2 {
      * using a DISTRIBUTION value type and it describes the bucket boundaries
      * used to create a histogram of the extracted values.
      */
-    bucketOptions: Schema$BucketOptions;
+    bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * Required. An advanced logs filter which is used to match log entries.
      * Example: &quot;resource.type=gae_app AND severity&gt;=ERROR&quot; The
      * maximum length of the filter is 20000 characters.
      */
-    filter: string;
+    filter?: string;
     /**
      * Optional. A map from a label key string to an extractor expression which
      * is used to extract data from a log entry field and assign as the label
@@ -687,7 +698,7 @@ export namespace logging_v2 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors: any;
+    labelExtractors?: any;
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -705,7 +716,7 @@ export namespace logging_v2 {
      * can be added in the metric_descriptor, but existing labels cannot be
      * modified except for their description.
      */
-    metricDescriptor: Schema$MetricDescriptor;
+    metricDescriptor?: Schema$MetricDescriptor;
     /**
      * Required. The client-assigned metric identifier. Examples:
      * &quot;error_count&quot;, &quot;nginx/requests&quot;.Metric identifiers
@@ -719,7 +730,7 @@ export namespace logging_v2 {
      * parameter, then the metric identifier must be URL-encoded. Example:
      * &quot;projects/my-project/metrics/nginx%2Frequests&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. A value_extractor is required when using a distribution
      * logs-based metric to extract the values to record from a log entry. Two
@@ -737,12 +748,12 @@ export namespace logging_v2 {
      * distribution.Example: REGEXP_EXTRACT(jsonPayload.request,
      * &quot;.*quantity=(\d+).*&quot;)
      */
-    valueExtractor: string;
+    valueExtractor?: string;
     /**
      * Deprecated. The API version that created or updated this metric. The v2
      * format is used by default and cannot be changed.
      */
-    version: string;
+    version?: string;
   }
   /**
    * Describes a sink used to export log entries to one of the following
@@ -761,18 +772,18 @@ export namespace logging_v2 {
      * permission to write to the destination or else the log entries are not
      * exported. For more information, see Exporting Logs With Sinks.
      */
-    destination: string;
+    destination?: string;
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
      * severity&gt;=ERROR
      */
-    filter: string;
+    filter?: string;
     /**
      * Optional. This field applies only to sinks owned by organizations and
      * folders. If the field is false, the default, only the logs owned by the
@@ -788,7 +799,7 @@ export namespace logging_v2 {
      * logName:(&quot;projects/test-project1/&quot; OR
      * &quot;projects/test-project2/&quot;) AND resource.type=gce_instance
      */
-    includeChildren: boolean;
+    includeChildren?: boolean;
     /**
      * Required. The client-assigned sink identifier, unique within the project.
      * Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are
@@ -796,16 +807,16 @@ export namespace logging_v2 {
      * upper and lower-case alphanumeric characters, underscores, hyphens, and
      * periods.
      */
-    name: string;
+    name?: string;
     /**
      * Deprecated. The log entry format to use for this sink&#39;s exported log
      * entries. The v2 format is used by default and cannot be changed.
      */
-    outputVersionFormat: string;
+    outputVersionFormat?: string;
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Output only. An IAM identity&amp;mdash;a service account or
      * group&amp;mdash;under which Stackdriver Logging writes the exported log
@@ -817,7 +828,7 @@ export namespace logging_v2 {
      * documentation to determine the appropriate IAM roles to assign to the
      * identity.
      */
-    writerIdentity: string;
+    writerIdentity?: string;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created,
@@ -828,14 +839,14 @@ export namespace logging_v2 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * A concise name for the metric, which can be displayed in user interfaces.
      * Use sentence case without an ending period, for example &quot;Request
      * count&quot;. This field is optional but it is recommended to be set for
      * any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The set of labels that can be used to describe a specific instance of
      * this metric type. For example, the
@@ -843,16 +854,16 @@ export namespace logging_v2 {
      * label for the HTTP response code, response_code, so you can look at
      * latencies for successful responses or just for responses that failed.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
-    metricKind: string;
+    metricKind?: string;
     /**
      * The resource name of the metric descriptor.
      */
-    name: string;
+    name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
      * URL-encoded. All user-defined custom metric types have the DNS name
@@ -861,7 +872,7 @@ export namespace logging_v2 {
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type: string;
+    type?: string;
     /**
      * The unit in which the metric value is reported. It is only applicable if
      * the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are
@@ -886,12 +897,12 @@ export namespace logging_v2 {
      * dimensionless value 1, such as in 1/s. % represents dimensionless value
      * 1/100, and annotates values giving  a percentage.
      */
-    unit: string;
+    unit?: string;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some
      * combinations of metric_kind and value_type might not be supported.
      */
-    valueType: string;
+    valueType?: string;
   }
   /**
    * An object representing a resource that can be used for monitoring, logging,
@@ -914,13 +925,13 @@ export namespace logging_v2 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels: any;
+    labels?: any;
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
      * Compute Engine VM instance is gce_instance.
      */
-    type: string;
+    type?: string;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a
@@ -937,21 +948,21 @@ export namespace logging_v2 {
      * Optional. A detailed description of the monitored resource type that
      * might be used in documentation.
      */
-    description: string;
+    description?: string;
     /**
      * Optional. A concise name for the monitored resource type that might be
      * displayed in user interfaces. It should be a Title Cased Noun Phrase,
      * without any article or other determiners. For example, &quot;Google Cloud
      * SQL Database&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Required. A set of labels used to describe instances of this monitored
      * resource type. For example, an individual Google Cloud SQL database is
      * identified by values for the labels &quot;database_id&quot; and
      * &quot;zone&quot;.
      */
-    labels: Schema$LabelDescriptor[];
+    labels?: Schema$LabelDescriptor[];
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;
@@ -960,13 +971,39 @@ export namespace logging_v2 {
      * accessing the type. APIs that do not use project information can use the
      * resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The monitored resource type. For example, the type
      * &quot;cloudsql_database&quot; represents databases in Google Cloud SQL.
      * The maximum length of this value is 256 characters.
      */
-    type: string;
+    type?: string;
+  }
+  /**
+   * Auxiliary metadata for a MonitoredResource object. MonitoredResource
+   * objects contain the minimum set of information to uniquely identify a
+   * monitored resource instance. There is some other useful auxiliary metadata.
+   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
+   * extract metadata for cloud resources of all types , and stores the metadata
+   * in this message.
+   */
+  export interface Schema$MonitoredResourceMetadata {
+    /**
+     * Output only. Values for predefined system metadata labels. System labels
+     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
+     * determines what system labels are useful and how to obtain their values.
+     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
+     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
+     * System label values can be only strings, Boolean values, or a list of
+     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
+     * &quot;c&quot;],   &quot;spot_instance&quot;: false }
+     */
+    systemLabels?: any;
+    /**
+     * Output only. A map of user-defined metadata labels.
+     */
+    userLabels?: any;
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -976,73 +1013,73 @@ export namespace logging_v2 {
     /**
      * App Engine release version.
      */
-    appEngineRelease: string;
+    appEngineRelease?: string;
     /**
      * Application that handled this request.
      */
-    appId: string;
+    appId?: string;
     /**
      * An indication of the relative cost of serving this request.
      */
-    cost: number;
+    cost?: number;
     /**
      * Time when the request finished.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Whether this request is finished or active.
      */
-    finished: boolean;
+    finished?: boolean;
     /**
      * Whether this is the first RequestLog entry for this request. If an active
      * request has several RequestLog entries written to Stackdriver Logging,
      * then this field will be set for one of them.
      */
-    first: boolean;
+    first?: boolean;
     /**
      * Internet host and port number of the resource being requested.
      */
-    host: string;
+    host?: string;
     /**
      * HTTP version of request. Example: &quot;HTTP/1.1&quot;.
      */
-    httpVersion: string;
+    httpVersion?: string;
     /**
      * An identifier for the instance that handled the request.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * If the instance processing this request belongs to a manually scaled
      * module, then this is the 0-based index of the instance. Otherwise, this
      * value is -1.
      */
-    instanceIndex: number;
+    instanceIndex?: number;
     /**
      * Origin IP address.
      */
-    ip: string;
+    ip?: string;
     /**
      * Latency of the request.
      */
-    latency: string;
+    latency?: string;
     /**
      * A list of log lines emitted by the application while serving this
      * request.
      */
-    line: Schema$LogLine[];
+    line?: Schema$LogLine[];
     /**
      * Number of CPU megacycles used to process request.
      */
-    megaCycles: string;
+    megaCycles?: string;
     /**
      * Request method. Example: &quot;GET&quot;, &quot;HEAD&quot;,
      * &quot;PUT&quot;, &quot;POST&quot;, &quot;DELETE&quot;.
      */
-    method: string;
+    method?: string;
     /**
      * Module of the application that handled this request.
      */
-    moduleId: string;
+    moduleId?: string;
     /**
      * The logged-in user who made the request.Most likely, this is the part of
      * the user&#39;s email before the @ sign. The field value is the same for
@@ -1051,74 +1088,74 @@ export namespace logging_v2 {
      * the App Engine Users API.This field will be populated starting with App
      * Engine 1.9.21.
      */
-    nickname: string;
+    nickname?: string;
     /**
      * Time this request spent in the pending request queue.
      */
-    pendingTime: string;
+    pendingTime?: string;
     /**
      * Referrer URL of request.
      */
-    referrer: string;
+    referrer?: string;
     /**
      * Globally unique identifier for a request, which is based on the request
      * start time. Request IDs for requests which started later will compare
      * greater as strings than those for requests which started earlier.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * Contains the path and query portion of the URL that was requested. For
      * example, if the URL was &quot;http://example.com/app?name=val&quot;, the
      * resource would be &quot;/app?name=val&quot;. The fragment identifier,
      * which is identified by the # character, is not included.
      */
-    resource: string;
+    resource?: string;
     /**
      * Size in bytes sent back to client by request.
      */
-    responseSize: string;
+    responseSize?: string;
     /**
      * Source code for the application that handled this request. There can be
      * more than one source reference per deployed application if source code is
      * distributed among multiple repositories.
      */
-    sourceReference: Schema$SourceReference[];
+    sourceReference?: Schema$SourceReference[];
     /**
      * Time when the request started.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * HTTP response status code. Example: 200, 404.
      */
-    status: number;
+    status?: number;
     /**
      * Task name of the request, in the case of an offline request.
      */
-    taskName: string;
+    taskName?: string;
     /**
      * Queue name of the request, in the case of an offline request.
      */
-    taskQueueName: string;
+    taskQueueName?: string;
     /**
      * Stackdriver Trace identifier for this request.
      */
-    traceId: string;
+    traceId?: string;
     /**
      * File or class that handled the request.
      */
-    urlMapEntry: string;
+    urlMapEntry?: string;
     /**
      * User agent that made the request.
      */
-    userAgent: string;
+    userAgent?: string;
     /**
      * Version of the application that handled this request.
      */
-    versionId: string;
+    versionId?: string;
     /**
      * Whether this was a loading request for the instance.
      */
-    wasLoadingRequest: boolean;
+    wasLoadingRequest?: boolean;
   }
   /**
    * Specifies a location in a source code file.
@@ -1128,7 +1165,7 @@ export namespace logging_v2 {
      * Source file name. Depending on the runtime environment, this might be a
      * simple name or a fully-qualified name.
      */
-    file: string;
+    file?: string;
     /**
      * Human-readable name of the function or method being invoked, with
      * optional context such as the class or package name. This information is
@@ -1137,11 +1174,11 @@ export namespace logging_v2 {
      * qual.if.ied.Class.method (Java), dir/package.func (Go), function
      * (Python).
      */
-    functionName: string;
+    functionName?: string;
     /**
      * Line within the source file.
      */
-    line: string;
+    line?: string;
   }
   /**
    * A reference to a particular snapshot of the source tree used to build and
@@ -1152,12 +1189,12 @@ export namespace logging_v2 {
      * Optional. A URI string identifying the repository. Example:
      * &quot;https://github.com/GoogleCloudPlatform/kubernetes.git&quot;
      */
-    repository: string;
+    repository?: string;
     /**
      * The canonical and persistent identifier of the deployed revision. Example
      * (git): &quot;0035781c50ec7aa23385dc841529ce8a4b70db1b&quot;
      */
-    revisionId: string;
+    revisionId?: string;
   }
   /**
    * The parameters to WriteLogEntries.
@@ -1169,7 +1206,7 @@ export namespace logging_v2 {
      * the logging API endpoints are working properly before sending valuable
      * data.
      */
-    dryRun: boolean;
+    dryRun?: boolean;
     /**
      * Required. The log entries to send to Stackdriver Logging. The order of
      * log entries in this list does not matter. Values supplied in this
@@ -1189,14 +1226,14 @@ export namespace logging_v2 {
      * entries in this list, rather than calling this method for each individual
      * log entry.
      */
-    entries: Schema$LogEntry[];
+    entries?: Schema$LogEntry[];
     /**
      * Optional. Default labels that are added to the labels field of all log
      * entries in entries. If a log entry already has a label with the same key
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels: any;
+    labels?: any;
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:
@@ -1209,7 +1246,7 @@ export namespace logging_v2 {
      * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
     /**
      * Optional. Whether valid entries should be written even if some other
      * entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
@@ -1217,7 +1254,7 @@ export namespace logging_v2 {
      * with one of the failed entries and the response includes error details
      * keyed by the entries&#39; zero-based index in the entries.write method.
      */
-    partialSuccess: boolean;
+    partialSuccess?: boolean;
     /**
      * Optional. A default monitored resource object that is assigned to all log
      * entries in entries that do not specify a value for resource. Example: {
@@ -1225,12 +1262,13 @@ export namespace logging_v2 {
      * &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;:
      * &quot;00000000000000000000&quot; }} See LogEntry.
      */
-    resource: Schema$MonitoredResource;
+    resource?: Schema$MonitoredResource;
   }
   /**
    * Result returned from WriteLogEntries. empty
    */
   export interface Schema$WriteLogEntriesResponse {}
+
 
   export class Resource$Billingaccounts {
     root: Logging;
@@ -1249,6 +1287,8 @@ export namespace logging_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Billingaccounts$Exclusions {
     root: Logging;
     constructor(root: Logging) {
@@ -1276,26 +1316,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Billingaccounts$Exclusions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Billingaccounts$Exclusions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        params: Params$Resource$Billingaccounts$Exclusions$Create,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Create|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Exclusions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Exclusions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1330,25 +1383,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Billingaccounts$Exclusions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Billingaccounts$Exclusions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Billingaccounts$Exclusions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Exclusions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Exclusions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1382,24 +1448,35 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Billingaccounts$Exclusions$Get,
         options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+    get(params: Params$Resource$Billingaccounts$Exclusions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(params: Params$Resource$Billingaccounts$Exclusions$Get,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Get|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Exclusions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Exclusions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1435,28 +1512,40 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Billingaccounts$Exclusions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+        params: Params$Resource$Billingaccounts$Exclusions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Billingaccounts$Exclusions$List,
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$List|
+        BodyResponseCallback<Schema$ListExclusionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
         void|AxiosPromise<Schema$ListExclusionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Exclusions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Exclusions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1493,26 +1582,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Billingaccounts$Exclusions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Billingaccounts$Exclusions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        params: Params$Resource$Billingaccounts$Exclusions$Patch,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Patch|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Exclusions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Exclusions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1533,6 +1635,113 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Billingaccounts$Exclusions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The parent resource in which to create the exclusion:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion to delete:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Exclusions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Exclusions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose exclusions are to be listed.
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the exclusion to update:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+    /**
+     * Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * LogExclusion included in this request. Fields not mentioned in
+     * update_mask are not changed and are ignored in the request.For example,
+     * to change the filter and description of an exclusion, specify an
+     * update_mask of "filter,description".
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+
 
   export class Resource$Billingaccounts$Logs {
     root: Logging;
@@ -1560,25 +1769,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Billingaccounts$Logs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Billingaccounts$Logs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Billingaccounts$Logs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Logs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Logs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1615,26 +1837,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+        params?: Params$Resource$Billingaccounts$Logs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        params: Params$Resource$Billingaccounts$Logs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        params: Params$Resource$Billingaccounts$Logs$List,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$List|
+        BodyResponseCallback<Schema$ListLogsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
         void|AxiosPromise<Schema$ListLogsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Logs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1656,6 +1891,52 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Billingaccounts$Logs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the log to delete:
+     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     * example, "projects/my-project-id/logs/syslog",
+     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     * For more information about log names, see LogEntry.
+     */
+    logName?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Logs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
+     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
+     * "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Billingaccounts$Sinks {
     root: Logging;
@@ -1686,25 +1967,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Billingaccounts$Sinks$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Billingaccounts$Sinks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        params: Params$Resource$Billingaccounts$Sinks$Create,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Create|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Sinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1740,25 +2034,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Billingaccounts$Sinks$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Billingaccounts$Sinks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Billingaccounts$Sinks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Sinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1792,23 +2099,34 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+    get(params?: Params$Resource$Billingaccounts$Sinks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    get(params: Params$Resource$Billingaccounts$Sinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(params: Params$Resource$Billingaccounts$Sinks$Get,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Get|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Sinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1844,26 +2162,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+        params?: Params$Resource$Billingaccounts$Sinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        params: Params$Resource$Billingaccounts$Sinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        params: Params$Resource$Billingaccounts$Sinks$List,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$List|
+        BodyResponseCallback<Schema$ListSinksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
         void|AxiosPromise<Schema$ListSinksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Sinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1904,25 +2235,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Billingaccounts$Sinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Billingaccounts$Sinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        params: Params$Resource$Billingaccounts$Sinks$Patch,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Patch|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Sinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1962,25 +2306,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Billingaccounts$Sinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Billingaccounts$Sinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        params: Params$Resource$Billingaccounts$Sinks$Update,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Update|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Billingaccounts$Sinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Sinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2001,6 +2358,188 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Billingaccounts$Sinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource in which to create the sink:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the kind of IAM identity returned as writer_identity
+     * in the new sink. If this value is omitted or set to false, and if the
+     * sink's parent is a project, then the value returned as writer_identity is
+     * the same group or service account used by Stackdriver Logging before the
+     * addition of writer identities to this API. The sink's destination must be
+     * in the same project as the sink itself.If this field is set to true, or
+     * if the sink is owned by a non-project resource such as an organization,
+     * then the value of writer_identity will be a unique service account used
+     * only for exports from the new sink. For more information, see
+     * writer_identity in LogSink.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Billingaccounts$Sinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Sinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the sink:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Sinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose sinks are to be listed:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Sinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Billingaccounts$Sinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+
 
 
   export class Resource$Entries {
@@ -2028,28 +2567,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Entries$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLogEntriesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Entries$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLogEntriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Entries$List,
+        callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Entries$List|
+        BodyResponseCallback<Schema$ListLogEntriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogEntriesResponse>,
         callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>):
         void|AxiosPromise<Schema$ListLogEntriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Entries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2088,28 +2637,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write(params?: any, options?: MethodOptions):
+    write(params?: Params$Resource$Entries$Write, options?: MethodOptions):
         AxiosPromise<Schema$WriteLogEntriesResponse>;
     write(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Entries$Write,
+        options: MethodOptions|
         BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-        callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+        callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
     write(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Entries$Write,
+        callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+    write(callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+    write(
+        paramsOrCallback?: Params$Resource$Entries$Write|
+        BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WriteLogEntriesResponse>,
         callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>):
         void|AxiosPromise<Schema$WriteLogEntriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Entries$Write;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2131,6 +2690,30 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Entries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ListLogEntriesRequest;
+  }
+  export interface Params$Resource$Entries$Write {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WriteLogEntriesRequest;
+  }
+
 
   export class Resource$Exclusions {
     root: Logging;
@@ -2159,26 +2742,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Exclusions$Create, options?: MethodOptions):
         AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params: Params$Resource$Exclusions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Exclusions$Create,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Exclusions$Create|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Exclusions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Exclusions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2213,25 +2808,37 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Exclusions$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Exclusions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Exclusions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Exclusions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Exclusions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Exclusions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2265,24 +2872,34 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Exclusions$Get,
         options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+    get(params: Params$Resource$Exclusions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(params: Params$Resource$Exclusions$Get,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(paramsOrCallback?: Params$Resource$Exclusions$Get|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Exclusions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2318,28 +2935,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Exclusions$List, options?: MethodOptions):
         AxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Exclusions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Exclusions$List,
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Exclusions$List|
+        BodyResponseCallback<Schema$ListExclusionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
         void|AxiosPromise<Schema$ListExclusionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Exclusions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2376,26 +3003,37 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Exclusions$Patch, options?: MethodOptions):
         AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params: Params$Resource$Exclusions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Exclusions$Patch,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Exclusions$Patch|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Exclusions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2417,6 +3055,113 @@ export namespace logging_v2 {
     }
   }
 
+  export interface Params$Resource$Exclusions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The parent resource in which to create the exclusion:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+  export interface Params$Resource$Exclusions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion to delete:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Exclusions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Exclusions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose exclusions are to be listed.
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Exclusions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the exclusion to update:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+    /**
+     * Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * LogExclusion included in this request. Fields not mentioned in
+     * update_mask are not changed and are ignored in the request.For example,
+     * to change the filter and description of an exclusion, specify an
+     * update_mask of "filter,description".
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+
+
   export class Resource$Folders {
     root: Logging;
     exclusions: Resource$Folders$Exclusions;
@@ -2434,6 +3179,8 @@ export namespace logging_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Folders$Exclusions {
     root: Logging;
     constructor(root: Logging) {
@@ -2461,26 +3208,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Folders$Exclusions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Folders$Exclusions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        params: Params$Resource$Folders$Exclusions$Create,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Folders$Exclusions$Create|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exclusions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2515,25 +3275,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Folders$Exclusions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Folders$Exclusions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Folders$Exclusions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Folders$Exclusions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exclusions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2567,24 +3340,35 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Folders$Exclusions$Get,
         options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+    get(params: Params$Resource$Folders$Exclusions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(params: Params$Resource$Folders$Exclusions$Get,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(paramsOrCallback?: Params$Resource$Folders$Exclusions$Get|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exclusions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2620,28 +3404,40 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Folders$Exclusions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+        params: Params$Resource$Folders$Exclusions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Folders$Exclusions$List,
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Folders$Exclusions$List|
+        BodyResponseCallback<Schema$ListExclusionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
         void|AxiosPromise<Schema$ListExclusionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exclusions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2678,26 +3474,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Folders$Exclusions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Folders$Exclusions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        params: Params$Resource$Folders$Exclusions$Patch,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Folders$Exclusions$Patch|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exclusions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2718,6 +3527,113 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Folders$Exclusions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The parent resource in which to create the exclusion:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+  export interface Params$Resource$Folders$Exclusions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion to delete:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Exclusions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Exclusions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose exclusions are to be listed.
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Exclusions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the exclusion to update:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+    /**
+     * Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * LogExclusion included in this request. Fields not mentioned in
+     * update_mask are not changed and are ignored in the request.For example,
+     * to change the filter and description of an exclusion, specify an
+     * update_mask of "filter,description".
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+
 
   export class Resource$Folders$Logs {
     root: Logging;
@@ -2745,25 +3661,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Folders$Logs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Folders$Logs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Folders$Logs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Folders$Logs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Logs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Logs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2800,26 +3729,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Folders$Logs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+        params: Params$Resource$Folders$Logs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        params: Params$Resource$Folders$Logs$List,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Folders$Logs$List|
+        BodyResponseCallback<Schema$ListLogsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
         void|AxiosPromise<Schema$ListLogsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Logs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2841,6 +3782,52 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Folders$Logs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the log to delete:
+     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     * example, "projects/my-project-id/logs/syslog",
+     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     * For more information about log names, see LogEntry.
+     */
+    logName?: string;
+  }
+  export interface Params$Resource$Folders$Logs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
+     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
+     * "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Folders$Sinks {
     root: Logging;
@@ -2871,25 +3858,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Folders$Sinks$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Folders$Sinks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        params: Params$Resource$Folders$Sinks$Create,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Folders$Sinks$Create|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2925,25 +3925,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Folders$Sinks$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Folders$Sinks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Folders$Sinks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Folders$Sinks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2977,23 +3990,34 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+    get(params?: Params$Resource$Folders$Sinks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    get(params: Params$Resource$Folders$Sinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(params: Params$Resource$Folders$Sinks$Get,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(paramsOrCallback?: Params$Resource$Folders$Sinks$Get|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3029,26 +4053,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Folders$Sinks$List, options?: MethodOptions):
         AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+        params: Params$Resource$Folders$Sinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        params: Params$Resource$Folders$Sinks$List,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Folders$Sinks$List|
+        BodyResponseCallback<Schema$ListSinksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
         void|AxiosPromise<Schema$ListSinksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3089,25 +4125,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Folders$Sinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Folders$Sinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        params: Params$Resource$Folders$Sinks$Patch,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Folders$Sinks$Patch|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3147,25 +4196,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Folders$Sinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Folders$Sinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        params: Params$Resource$Folders$Sinks$Update,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Folders$Sinks$Update|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3186,6 +4248,188 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Folders$Sinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource in which to create the sink:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the kind of IAM identity returned as writer_identity
+     * in the new sink. If this value is omitted or set to false, and if the
+     * sink's parent is a project, then the value returned as writer_identity is
+     * the same group or service account used by Stackdriver Logging before the
+     * addition of writer identities to this API. The sink's destination must be
+     * in the same project as the sink itself.If this field is set to true, or
+     * if the sink is owned by a non-project resource such as an organization,
+     * then the value of writer_identity will be a unique service account used
+     * only for exports from the new sink. For more information, see
+     * writer_identity in LogSink.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Folders$Sinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Folders$Sinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the sink:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Folders$Sinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose sinks are to be listed:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Sinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Folders$Sinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+
 
 
   export class Resource$Logs {
@@ -3214,25 +4458,36 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Logs$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Logs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Logs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Logs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Logs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3269,26 +4524,37 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Logs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+        params: Params$Resource$Logs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        params: Params$Resource$Logs$List,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Logs$List|
+        BodyResponseCallback<Schema$ListLogsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
         void|AxiosPromise<Schema$ListLogsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Logs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3310,6 +4576,52 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Logs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the log to delete:
+     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     * example, "projects/my-project-id/logs/syslog",
+     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     * For more information about log names, see LogEntry.
+     */
+    logName?: string;
+  }
+  export interface Params$Resource$Logs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
+     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
+     * "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Monitoredresourcedescriptors {
     root: Logging;
@@ -3337,30 +4649,45 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Monitoredresourcedescriptors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Monitoredresourcedescriptors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListMonitoredResourceDescriptorsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Monitoredresourcedescriptors$List,
+        callback: BodyResponseCallback<
+            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Monitoredresourcedescriptors$List|
+        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListMonitoredResourceDescriptorsResponse>):
         void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Monitoredresourcedescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monitoredresourcedescriptors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3385,6 +4712,28 @@ export namespace logging_v2 {
     }
   }
 
+  export interface Params$Resource$Monitoredresourcedescriptors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Organizations {
     root: Logging;
     exclusions: Resource$Organizations$Exclusions;
@@ -3402,6 +4751,8 @@ export namespace logging_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Organizations$Exclusions {
     root: Logging;
     constructor(root: Logging) {
@@ -3429,26 +4780,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Organizations$Exclusions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Organizations$Exclusions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        params: Params$Resource$Organizations$Exclusions$Create,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Create|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Exclusions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Exclusions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3483,25 +4847,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Organizations$Exclusions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Organizations$Exclusions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Organizations$Exclusions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Exclusions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Exclusions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3535,24 +4912,35 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Organizations$Exclusions$Get,
         options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+    get(params: Params$Resource$Organizations$Exclusions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(params: Params$Resource$Organizations$Exclusions$Get,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Exclusions$Get|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Exclusions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Exclusions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3588,28 +4976,40 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Organizations$Exclusions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+        params: Params$Resource$Organizations$Exclusions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Organizations$Exclusions$List,
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Exclusions$List|
+        BodyResponseCallback<Schema$ListExclusionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
         void|AxiosPromise<Schema$ListExclusionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Exclusions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Exclusions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3646,26 +5046,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Organizations$Exclusions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Organizations$Exclusions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        params: Params$Resource$Organizations$Exclusions$Patch,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Patch|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Exclusions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Exclusions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3686,6 +5099,113 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Organizations$Exclusions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The parent resource in which to create the exclusion:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+  export interface Params$Resource$Organizations$Exclusions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion to delete:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Exclusions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Exclusions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose exclusions are to be listed.
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Exclusions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the exclusion to update:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+    /**
+     * Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * LogExclusion included in this request. Fields not mentioned in
+     * update_mask are not changed and are ignored in the request.For example,
+     * to change the filter and description of an exclusion, specify an
+     * update_mask of "filter,description".
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+
 
   export class Resource$Organizations$Logs {
     root: Logging;
@@ -3713,25 +5233,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Organizations$Logs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Organizations$Logs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Organizations$Logs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Logs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Logs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3768,26 +5301,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+        params?: Params$Resource$Organizations$Logs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        params: Params$Resource$Organizations$Logs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        params: Params$Resource$Organizations$Logs$List,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Logs$List|
+        BodyResponseCallback<Schema$ListLogsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
         void|AxiosPromise<Schema$ListLogsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Logs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3809,6 +5355,52 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Organizations$Logs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the log to delete:
+     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     * example, "projects/my-project-id/logs/syslog",
+     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     * For more information about log names, see LogEntry.
+     */
+    logName?: string;
+  }
+  export interface Params$Resource$Organizations$Logs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
+     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
+     * "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Organizations$Sinks {
     root: Logging;
@@ -3839,25 +5431,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Organizations$Sinks$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Organizations$Sinks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        params: Params$Resource$Organizations$Sinks$Create,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Organizations$Sinks$Create|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Sinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3893,25 +5498,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Organizations$Sinks$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Organizations$Sinks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Organizations$Sinks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Sinks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Sinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3945,23 +5563,34 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+    get(params?: Params$Resource$Organizations$Sinks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    get(params: Params$Resource$Organizations$Sinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(params: Params$Resource$Organizations$Sinks$Get,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Sinks$Get|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3997,26 +5626,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+        params?: Params$Resource$Organizations$Sinks$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        params: Params$Resource$Organizations$Sinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        params: Params$Resource$Organizations$Sinks$List,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Sinks$List|
+        BodyResponseCallback<Schema$ListSinksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
         void|AxiosPromise<Schema$ListSinksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4057,25 +5699,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Organizations$Sinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Organizations$Sinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        params: Params$Resource$Organizations$Sinks$Patch,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Organizations$Sinks$Patch|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4115,25 +5770,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Organizations$Sinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Organizations$Sinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        params: Params$Resource$Organizations$Sinks$Update,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Organizations$Sinks$Update|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Sinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4155,6 +5823,188 @@ export namespace logging_v2 {
     }
   }
 
+  export interface Params$Resource$Organizations$Sinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource in which to create the sink:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the kind of IAM identity returned as writer_identity
+     * in the new sink. If this value is omitted or set to false, and if the
+     * sink's parent is a project, then the value returned as writer_identity is
+     * the same group or service account used by Stackdriver Logging before the
+     * addition of writer identities to this API. The sink's destination must be
+     * in the same project as the sink itself.If this field is set to true, or
+     * if the sink is owned by a non-project resource such as an organization,
+     * then the value of writer_identity will be a unique service account used
+     * only for exports from the new sink. For more information, see
+     * writer_identity in LogSink.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Organizations$Sinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Organizations$Sinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the sink:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Organizations$Sinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose sinks are to be listed:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Sinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Organizations$Sinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+
+
 
   export class Resource$Projects {
     root: Logging;
@@ -4175,6 +6025,8 @@ export namespace logging_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Exclusions {
     root: Logging;
     constructor(root: Logging) {
@@ -4202,26 +6054,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Projects$Exclusions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Projects$Exclusions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        params: Params$Resource$Projects$Exclusions$Create,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Exclusions$Create|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Exclusions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Exclusions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4256,25 +6121,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Exclusions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Exclusions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Exclusions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Exclusions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Exclusions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Exclusions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4308,24 +6186,35 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Exclusions$Get,
         options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+    get(params: Params$Resource$Projects$Exclusions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(params: Params$Resource$Projects$Exclusions$Get,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Exclusions$Get|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Exclusions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4361,28 +6250,40 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Exclusions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+        params: Params$Resource$Projects$Exclusions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Exclusions$List,
+        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Exclusions$List|
+        BodyResponseCallback<Schema$ListExclusionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
         void|AxiosPromise<Schema$ListExclusionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Exclusions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4419,26 +6320,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>): void;
+        params?: Params$Resource$Projects$Exclusions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        params: Params$Resource$Projects$Exclusions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        params: Params$Resource$Projects$Exclusions$Patch,
+        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Exclusions$Patch|
+        BodyResponseCallback<Schema$LogExclusion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
         void|AxiosPromise<Schema$LogExclusion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Exclusions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4459,6 +6373,113 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Exclusions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The parent resource in which to create the exclusion:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+  export interface Params$Resource$Projects$Exclusions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion to delete:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Exclusions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of an existing exclusion:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Exclusions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose exclusions are to be listed.
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Exclusions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the exclusion to update:
+     * "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     * "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     * "projects/my-project-id/exclusions/my-exclusion-id".
+     */
+    name?: string;
+    /**
+     * Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * LogExclusion included in this request. Fields not mentioned in
+     * update_mask are not changed and are ignored in the request.For example,
+     * to change the filter and description of an exclusion, specify an
+     * update_mask of "filter,description".
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogExclusion;
+  }
+
 
   export class Resource$Projects$Logs {
     root: Logging;
@@ -4486,25 +6507,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Logs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Logs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Logs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Logs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Logs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4541,26 +6575,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Logs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLogsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+        params: Params$Resource$Projects$Logs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+        params: Params$Resource$Projects$Logs$List,
+        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Logs$List|
+        BodyResponseCallback<Schema$ListLogsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
         void|AxiosPromise<Schema$ListLogsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Logs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4582,6 +6628,52 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Logs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the log to delete:
+     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     * example, "projects/my-project-id/logs/syslog",
+     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     * For more information about log names, see LogEntry.
+     */
+    logName?: string;
+  }
+  export interface Params$Resource$Projects$Logs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
+     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
+     * "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Projects$Metrics {
     root: Logging;
@@ -4608,26 +6700,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogMetric>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>): void;
+        params?: Params$Resource$Projects$Metrics$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+        params: Params$Resource$Projects$Metrics$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    create(
+        params: Params$Resource$Projects$Metrics$Create,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    create(callback: BodyResponseCallback<Schema$LogMetric>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Metrics$Create|
+        BodyResponseCallback<Schema$LogMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
         void|AxiosPromise<Schema$LogMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metrics$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4662,25 +6767,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Metrics$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Metrics$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Metrics$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Metrics$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metrics$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4715,23 +6833,35 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+    get(params?: Params$Resource$Projects$Metrics$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+    get(params: Params$Resource$Projects$Metrics$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    get(params: Params$Resource$Projects$Metrics$Get,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    get(callback: BodyResponseCallback<Schema$LogMetric>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Metrics$Get|
+        BodyResponseCallback<Schema$LogMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
         void|AxiosPromise<Schema$LogMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metrics$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4768,28 +6898,40 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogMetricsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Metrics$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLogMetricsResponse>;
+    list(
+        params: Params$Resource$Projects$Metrics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLogMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Metrics$List,
+        callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Metrics$List|
+        BodyResponseCallback<Schema$ListLogMetricsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>):
         void|AxiosPromise<Schema$ListLogMetricsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4825,26 +6967,39 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LogMetric>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>): void;
+        params?: Params$Resource$Projects$Metrics$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+        params: Params$Resource$Projects$Metrics$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    update(
+        params: Params$Resource$Projects$Metrics$Update,
+        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    update(callback: BodyResponseCallback<Schema$LogMetric>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Metrics$Update|
+        BodyResponseCallback<Schema$LogMetric>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
         void|AxiosPromise<Schema$LogMetric> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Metrics$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4866,6 +7021,92 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Metrics$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the project in which to create the metric:
+     * "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogMetric;
+  }
+  export interface Params$Resource$Projects$Metrics$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the metric to delete:
+     * "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     */
+    metricName?: string;
+  }
+  export interface Params$Resource$Projects$Metrics$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the desired metric:
+     * "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     */
+    metricName?: string;
+  }
+  export interface Params$Resource$Projects$Metrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project containing the metrics:
+     * "projects/[PROJECT_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Metrics$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the metric to update:
+     * "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be
+     * provided in the request and it's name field must be the same as
+     * [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new
+     * metric is created.
+     */
+    metricName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogMetric;
+  }
+
 
   export class Resource$Projects$Sinks {
     root: Logging;
@@ -4896,25 +7137,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Projects$Sinks$Create,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Projects$Sinks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        params: Params$Resource$Projects$Sinks$Create,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Sinks$Create|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4950,25 +7204,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Sinks$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Sinks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Sinks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Sinks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5002,23 +7269,34 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+    get(params?: Params$Resource$Projects$Sinks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    get(params: Params$Resource$Projects$Sinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(params: Params$Resource$Projects$Sinks$Get,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Sinks$Get|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5054,26 +7332,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Sinks$List, options?: MethodOptions):
         AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+        params: Params$Resource$Projects$Sinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        params: Params$Resource$Projects$Sinks$List,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Sinks$List|
+        BodyResponseCallback<Schema$ListSinksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
         void|AxiosPromise<Schema$ListSinksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5114,25 +7404,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Projects$Sinks$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Projects$Sinks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        params: Params$Resource$Projects$Sinks$Patch,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(callback: BodyResponseCallback<Schema$LogSink>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Sinks$Patch|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5172,25 +7475,38 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params?: Params$Resource$Projects$Sinks$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Projects$Sinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        params: Params$Resource$Projects$Sinks$Update,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Sinks$Update|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5211,6 +7527,188 @@ export namespace logging_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Sinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource in which to create the sink:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the kind of IAM identity returned as writer_identity
+     * in the new sink. If this value is omitted or set to false, and if the
+     * sink's parent is a project, then the value returned as writer_identity is
+     * the same group or service account used by Stackdriver Logging before the
+     * addition of writer identities to this API. The sink's destination must be
+     * in the same project as the sink itself.If this field is set to true, or
+     * if the sink is owned by a non-project resource such as an organization,
+     * then the value of writer_identity will be a unique service account used
+     * only for exports from the new sink. For more information, see
+     * writer_identity in LogSink.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Projects$Sinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Projects$Sinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the sink:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Projects$Sinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose sinks are to be listed:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Sinks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Projects$Sinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+
 
 
   export class Resource$Sinks {
@@ -5242,25 +7740,36 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    create(params?: Params$Resource$Sinks$Create, options?: MethodOptions):
+        AxiosPromise<Schema$LogSink>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params: Params$Resource$Sinks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Sinks$Create,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(callback: BodyResponseCallback<Schema$LogSink>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Sinks$Create|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5296,25 +7805,36 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Sinks$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Sinks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Sinks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Sinks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sinks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5348,23 +7868,33 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+    get(params?: Params$Resource$Sinks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    get(params: Params$Resource$Sinks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(params: Params$Resource$Sinks$Get,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(paramsOrCallback?: Params$Resource$Sinks$Get|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sinks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5400,26 +7930,37 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Sinks$List, options?: MethodOptions):
         AxiosPromise<Schema$ListSinksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+        params: Params$Resource$Sinks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+        params: Params$Resource$Sinks$List,
+        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Sinks$List|
+        BodyResponseCallback<Schema$ListSinksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
         void|AxiosPromise<Schema$ListSinksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sinks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5460,25 +8001,36 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+    update(params?: Params$Resource$Sinks$Update, options?: MethodOptions):
+        AxiosPromise<Schema$LogSink>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>): void;
+        params: Params$Resource$Sinks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+        params: Params$Resource$Sinks$Update,
+        callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(callback: BodyResponseCallback<Schema$LogSink>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Sinks$Update|
+        BodyResponseCallback<Schema$LogSink>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
         void|AxiosPromise<Schema$LogSink> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sinks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5498,5 +8050,141 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Sinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource in which to create the sink:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
+     * "projects/my-logging-project", "organizations/123456789".
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the kind of IAM identity returned as writer_identity
+     * in the new sink. If this value is omitted or set to false, and if the
+     * sink's parent is a project, then the value returned as writer_identity is
+     * the same group or service account used by Stackdriver Logging before the
+     * addition of writer identities to this API. The sink's destination must be
+     * in the same project as the sink itself.If this field is set to true, or
+     * if the sink is owned by a non-project resource such as an organization,
+     * then the value of writer_identity will be a unique service account used
+     * only for exports from the new sink. For more information, see
+     * writer_identity in LogSink.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
+  }
+  export interface Params$Resource$Sinks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Sinks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the sink:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+  }
+  export interface Params$Resource$Sinks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. The presence of nextPageToken in the
+     * response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. pageToken must be the value of
+     * nextPageToken from the previous response. The values of other method
+     * parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose sinks are to be listed:
+     * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Sinks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
+     * "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     * "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     * "projects/my-project-id/sinks/my-sink-id".
+     */
+    sinkName?: string;
+    /**
+     * Optional. See sinks.create for a description of this field. When updating
+     * a sink, the effect of this field on the value of writer_identity in the
+     * updated sink depends on both the old and new values of this field: If the
+     * old and new values of this field are both false or both true, then there
+     * is no change to the sink's writer_identity. If the old value is false and
+     * the new value is true, then writer_identity is changed to a unique
+     * service account. It is an error if the old value is true and the new
+     * value is set to false or defaulted to false.
+     */
+    uniqueWriterIdentity?: boolean;
+    /**
+     * Optional. Field mask that specifies the fields in sink that need an
+     * update. A sink field will be overwritten if, and only if, it is in the
+     * update mask. name and output only fields cannot be updated.An empty
+     * updateMask is temporarily treated as using the following mask for
+     * backwards compatibility purposes:  destination,filter,includeChildren At
+     * some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.For a detailed FieldMask definition,
+     * see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * updateMask=filter.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LogSink;
   }
 }

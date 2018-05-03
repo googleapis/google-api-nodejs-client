@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dfareporting_v2_8 {
+  export interface Options extends GlobalOptions { version: 'v2_8'; }
+
   /**
    * DCM/DFA Reporting And Trafficking API
    *
@@ -196,33 +199,33 @@ export namespace dfareporting_v2_8 {
     /**
      * Account permissions assigned to this account.
      */
-    accountPermissionIds: string[];
+    accountPermissionIds?: string[];
     /**
      * Profile for this account. This is a read-only field that can be left
      * blank.
      */
-    accountProfile: string;
+    accountProfile?: string;
     /**
      * Whether this account is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Maximum number of active ads allowed for this account.
      */
-    activeAdsLimitTier: string;
+    activeAdsLimitTier?: string;
     /**
      * Whether to serve creatives with Active View tags. If disabled,
      * viewability data will not be available for any impressions.
      */
-    activeViewOptOut: boolean;
+    activeViewOptOut?: boolean;
     /**
      * User role permissions available to the user roles of this account.
      */
-    availablePermissionIds: string[];
+    availablePermissionIds?: string[];
     /**
      * ID of the country associated with this account.
      */
-    countryId: string;
+    countryId?: string;
     /**
      * ID of currency associated with this account. This is a required field.
      * Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP
@@ -245,24 +248,24 @@ export namespace dfareporting_v2_8 {
      * for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  -
      * &quot;50&quot; for NGN
      */
-    currencyId: string;
+    currencyId?: string;
     /**
      * Default placement dimensions for this account.
      */
-    defaultCreativeSizeId: string;
+    defaultCreativeSizeId?: string;
     /**
      * Description of this account.
      */
-    description: string;
+    description?: string;
     /**
      * ID of this account. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#account&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)
      * - &quot;de&quot; (German)  - &quot;en&quot; (English)  -
@@ -273,35 +276,35 @@ export namespace dfareporting_v2_8 {
      * &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot;
      * (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
      */
-    locale: string;
+    locale?: string;
     /**
      * Maximum image size allowed for this account, in kilobytes. Value must be
      * greater than or equal to 1.
      */
-    maximumImageSize: string;
+    maximumImageSize?: string;
     /**
      * Name of this account. This is a required field, and must be less than 128
      * characters long and be globally unique.
      */
-    name: string;
+    name?: string;
     /**
      * Whether campaigns created in this account will be enabled for Nielsen OCR
      * reach ratings by default.
      */
-    nielsenOcrEnabled: boolean;
+    nielsenOcrEnabled?: boolean;
     /**
      * Reporting configuration of this account.
      */
-    reportsConfiguration: Schema$ReportsConfiguration;
+    reportsConfiguration?: Schema$ReportsConfiguration;
     /**
      * Share Path to Conversion reports with Twitter.
      */
-    shareReportsWithTwitter: boolean;
+    shareReportsWithTwitter?: boolean;
     /**
      * File size limit in kilobytes of Rich Media teaser creatives. Acceptable
      * values are 1 to 10240, inclusive.
      */
-    teaserSizeLimit: string;
+    teaserSizeLimit?: string;
   }
   /**
    * Gets a summary of active ads in an account.
@@ -310,24 +313,24 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ads that have been activated for the account
      */
-    activeAds: string;
+    activeAds?: string;
     /**
      * Maximum number of active ads allowed for the account.
      */
-    activeAdsLimitTier: string;
+    activeAdsLimitTier?: string;
     /**
      * Ads that can be activated for the account.
      */
-    availableAds: string;
+    availableAds?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountActiveAdSummary&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * AccountPermissions contains information about a particular account
@@ -340,28 +343,28 @@ export namespace dfareporting_v2_8 {
      * values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; -
      * &quot;ACCOUNT_PROFILE_STANDARD&quot;
      */
-    accountProfiles: string[];
+    accountProfiles?: string[];
     /**
      * ID of this account permission.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountPermission&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Administrative level required to enable this account permission.
      */
-    level: string;
+    level?: string;
     /**
      * Name of this account permission.
      */
-    name: string;
+    name?: string;
     /**
      * Permission group of this account permission.
      */
-    permissionGroupId: string;
+    permissionGroupId?: string;
   }
   /**
    * AccountPermissionGroups contains a mapping of permission group IDs to
@@ -371,16 +374,16 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this account permission group.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountPermissionGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this account permission group.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Account Permission Group List Response
@@ -389,12 +392,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Account permission group collection.
      */
-    accountPermissionGroups: Schema$AccountPermissionGroup[];
+    accountPermissionGroups?: Schema$AccountPermissionGroup[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Account Permission List Response
@@ -403,12 +406,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Account permission collection.
      */
-    accountPermissions: Schema$AccountPermission[];
+    accountPermissions?: Schema$AccountPermission[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountPermissionsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Account List Response
@@ -417,16 +420,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Account collection.
      */
-    accounts: Schema$Account[];
+    accounts?: Schema$Account[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * AccountUserProfiles contains properties of a DCM user profile. This
@@ -438,39 +441,39 @@ export namespace dfareporting_v2_8 {
      * Account ID of the user profile. This is a read-only field that can be
      * left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this user profile is active. This defaults to false, and must be
      * set true on insert for the user profile to be usable.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Filter that describes which advertisers are visible to the user profile.
      */
-    advertiserFilter: Schema$ObjectFilter;
+    advertiserFilter?: Schema$ObjectFilter;
     /**
      * Filter that describes which campaigns are visible to the user profile.
      */
-    campaignFilter: Schema$ObjectFilter;
+    campaignFilter?: Schema$ObjectFilter;
     /**
      * Comments for this user profile.
      */
-    comments: string;
+    comments?: string;
     /**
      * Email of the user profile. The email addresss must be linked to a Google
      * Account. This field is required on insertion and is read-only after
      * insertion.
      */
-    email: string;
+    email?: string;
     /**
      * ID of the user profile. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountUserProfile&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Locale of the user profile. This is a required field. Acceptable values
      * are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  -
@@ -482,39 +485,39 @@ export namespace dfareporting_v2_8 {
      * (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot;
      * (Chinese Traditional)
      */
-    locale: string;
+    locale?: string;
     /**
      * Name of the user profile. This is a required field. Must be less than 64
      * characters long, must be globally unique, and cannot contain whitespace
      * or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * Filter that describes which sites are visible to the user profile.
      */
-    siteFilter: Schema$ObjectFilter;
+    siteFilter?: Schema$ObjectFilter;
     /**
      * Subaccount ID of the user profile. This is a read-only field that can be
      * left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Trafficker type of this user profile.
      */
-    traffickerType: string;
+    traffickerType?: string;
     /**
      * User type of the user profile. This is a read-only field that can be left
      * blank.
      */
-    userAccessType: string;
+    userAccessType?: string;
     /**
      * Filter that describes which user roles are visible to the user profile.
      */
-    userRoleFilter: Schema$ObjectFilter;
+    userRoleFilter?: Schema$ObjectFilter;
     /**
      * User role ID of the user profile. This is a required field.
      */
-    userRoleId: string;
+    userRoleId?: string;
   }
   /**
    * Account User Profile List Response
@@ -523,16 +526,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Account user profile collection.
      */
-    accountUserProfiles: Schema$AccountUserProfile[];
+    accountUserProfiles?: Schema$AccountUserProfile[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#accountUserProfilesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Represents an activity group.
@@ -542,15 +545,15 @@ export namespace dfareporting_v2_8 {
      * List of activity filters. The dimension values need to be all either of
      * type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
      */
-    filters: Schema$DimensionValue[];
+    filters?: Schema$DimensionValue[];
     /**
      * The kind of resource this is, in this case dfareporting#activities.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of names of floodlight activity metrics.
      */
-    metricNames: string[];
+    metricNames?: string[];
   }
   /**
    * Contains properties of a DCM ad.
@@ -559,52 +562,52 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this ad. This is a read-only field that can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this ad is active. When true, archived must be false.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Advertiser ID of this ad. This is a required field on insertion.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this ad is archived. When true, active must be false.
      */
-    archived: boolean;
+    archived?: boolean;
     /**
      * Audience segment ID that is being targeted for this ad. Applicable when
      * type is AD_SERVING_STANDARD_AD.
      */
-    audienceSegmentId: string;
+    audienceSegmentId?: string;
     /**
      * Campaign ID of this ad. This is a required field on insertion.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Dimension value for the ID of the campaign. This is a read-only,
      * auto-generated field.
      */
-    campaignIdDimensionValue: Schema$DimensionValue;
+    campaignIdDimensionValue?: Schema$DimensionValue;
     /**
      * Click-through URL for this ad. This is a required field on insertion.
      * Applicable when type is AD_SERVING_CLICK_TRACKER.
      */
-    clickThroughUrl: Schema$ClickThroughUrl;
+    clickThroughUrl?: Schema$ClickThroughUrl;
     /**
      * Click-through URL suffix properties for this ad. Applies to the URL in
      * the ad or (if overriding ad properties) the URL in the creative.
      */
-    clickThroughUrlSuffixProperties: Schema$ClickThroughUrlSuffixProperties;
+    clickThroughUrlSuffixProperties?: Schema$ClickThroughUrlSuffixProperties;
     /**
      * Comments for this ad.
      */
-    comments: string;
+    comments?: string;
     /**
      * Compatibility of this ad. Applicable when type is AD_SERVING_DEFAULT_AD.
      * DISPLAY and DISPLAY_INTERSTITIAL refer to either rendering on desktop or
@@ -615,34 +618,34 @@ export namespace dfareporting_v2_8 {
      * limited to those compatibility types. IN_STREAM_VIDEO refers to rendering
      * in-stream video ads developed with the VAST standard.
      */
-    compatibility: string;
+    compatibility?: string;
     /**
      * Information about the creation of this ad. This is a read-only field.
      */
-    createInfo: Schema$LastModifiedInfo;
+    createInfo?: Schema$LastModifiedInfo;
     /**
      * Creative group assignments for this ad. Applicable when type is
      * AD_SERVING_CLICK_TRACKER. Only one assignment per creative group number
      * is allowed for a maximum of two assignments.
      */
-    creativeGroupAssignments: Schema$CreativeGroupAssignment[];
+    creativeGroupAssignments?: Schema$CreativeGroupAssignment[];
     /**
      * Creative rotation for this ad. Applicable when type is
      * AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING.
      * When type is AD_SERVING_DEFAULT_AD, this field should have exactly one
      * creativeAssignment.
      */
-    creativeRotation: Schema$CreativeRotation;
+    creativeRotation?: Schema$CreativeRotation;
     /**
      * Time and day targeting information for this ad. This field must be left
      * blank if the ad is using a targeting template. Applicable when type is
      * AD_SERVING_STANDARD_AD.
      */
-    dayPartTargeting: Schema$DayPartTargeting;
+    dayPartTargeting?: Schema$DayPartTargeting;
     /**
      * Default click-through event tag properties for this ad.
      */
-    defaultClickThroughEventTagProperties:
+    defaultClickThroughEventTagProperties?:
         Schema$DefaultClickThroughEventTagProperties;
     /**
      * Delivery schedule information for this ad. Applicable when type is
@@ -650,99 +653,99 @@ export namespace dfareporting_v2_8 {
      * subfields priority and impressionRatio are required on insertion when
      * type is AD_SERVING_STANDARD_AD.
      */
-    deliverySchedule: Schema$DeliverySchedule;
+    deliverySchedule?: Schema$DeliverySchedule;
     /**
      * Whether this ad is a dynamic click tracker. Applicable when type is
      * AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is
      * read-only after insert.
      */
-    dynamicClickTracker: boolean;
+    dynamicClickTracker?: boolean;
     /**
      * Date and time that this ad should stop serving. Must be later than the
      * start time. This is a required field on insertion.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Event tag overrides for this ad.
      */
-    eventTagOverrides: Schema$EventTagOverride[];
+    eventTagOverrides?: Schema$EventTagOverride[];
     /**
      * Geographical targeting information for this ad. This field must be left
      * blank if the ad is using a targeting template. Applicable when type is
      * AD_SERVING_STANDARD_AD.
      */
-    geoTargeting: Schema$GeoTargeting;
+    geoTargeting?: Schema$GeoTargeting;
     /**
      * ID of this ad. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this ad. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Key-value targeting information for this ad. This field must be left
      * blank if the ad is using a targeting template. Applicable when type is
      * AD_SERVING_STANDARD_AD.
      */
-    keyValueTargetingExpression: Schema$KeyValueTargetingExpression;
+    keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#ad&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Language targeting information for this ad. This field must be left blank
      * if the ad is using a targeting template. Applicable when type is
      * AD_SERVING_STANDARD_AD.
      */
-    languageTargeting: Schema$LanguageTargeting;
+    languageTargeting?: Schema$LanguageTargeting;
     /**
      * Information about the most recent modification of this ad. This is a
      * read-only field.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Name of this ad. This is a required field and must be less than 256
      * characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Placement assignments for this ad.
      */
-    placementAssignments: Schema$PlacementAssignment[];
+    placementAssignments?: Schema$PlacementAssignment[];
     /**
      * Remarketing list targeting expression for this ad. This field must be
      * left blank if the ad is using a targeting template. Applicable when type
      * is AD_SERVING_STANDARD_AD.
      */
-    remarketingListExpression: Schema$ListTargetingExpression;
+    remarketingListExpression?: Schema$ListTargetingExpression;
     /**
      * Size of this ad. Applicable when type is AD_SERVING_DEFAULT_AD.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * Whether this ad is ssl compliant. This is a read-only field that is
      * auto-generated when the ad is inserted or updated.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Whether this ad requires ssl. This is a read-only field that is
      * auto-generated when the ad is inserted or updated.
      */
-    sslRequired: boolean;
+    sslRequired?: boolean;
     /**
      * Date and time that this ad should start serving. If creating an ad, this
      * field must be a time in the future. This is a required field on
      * insertion.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Subaccount ID of this ad. This is a read-only field that can be left
      * blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Targeting template ID, used to apply preconfigured targeting information
      * to this ad. This cannot be set while any of dayPartTargeting,
@@ -750,19 +753,19 @@ export namespace dfareporting_v2_8 {
      * remarketingListExpression, or technologyTargeting are set. Applicable
      * when type is AD_SERVING_STANDARD_AD.
      */
-    targetingTemplateId: string;
+    targetingTemplateId?: string;
     /**
      * Technology platform targeting information for this ad. This field must be
      * left blank if the ad is using a targeting template. Applicable when type
      * is AD_SERVING_STANDARD_AD.
      */
-    technologyTargeting: Schema$TechnologyTargeting;
+    technologyTargeting?: Schema$TechnologyTargeting;
     /**
      * Type of ad. This is a required field on insertion. Note that default ads
      * (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative
      * resource).
      */
-    type: string;
+    type?: string;
   }
   /**
    * Campaign ad blocking settings.
@@ -772,26 +775,26 @@ export namespace dfareporting_v2_8 {
      * Click-through URL used by brand-neutral ads. This is a required field
      * when overrideClickThroughUrl is set to true.
      */
-    clickThroughUrl: string;
+    clickThroughUrl?: string;
     /**
      * ID of a creative bundle to use for this campaign. If set, brand-neutral
      * ads will select creatives from this bundle. Otherwise, a default
      * transparent pixel will be used.
      */
-    creativeBundleId: string;
+    creativeBundleId?: string;
     /**
      * Whether this campaign has enabled ad blocking. When true, ad blocking is
      * enabled for placements in the campaign, but this may be overridden by
      * site and placement settings. When false, ad blocking is disabled for all
      * placements under the campaign, regardless of site and placement settings.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Whether the brand-neutral ad&#39;s click-through URL comes from the
      * campaign&#39;s creative bundle or the override URL. Must be set to true
      * if ad blocking is enabled and no creative bundle is configured.
      */
-    overrideClickThroughUrl: boolean;
+    overrideClickThroughUrl?: boolean;
   }
   /**
    * Ad List Response
@@ -800,16 +803,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Ad collection.
      */
-    ads: Schema$Ad[];
+    ads?: Schema$Ad[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#adsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Ad Slot
@@ -818,7 +821,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Comment for this ad slot.
      */
-    comment: string;
+    comment?: string;
     /**
      * Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to
      * rendering either on desktop, mobile devices or in mobile apps for regular
@@ -826,32 +829,32 @@ export namespace dfareporting_v2_8 {
      * rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in
      * in-stream video ads developed with the VAST standard.
      */
-    compatibility: string;
+    compatibility?: string;
     /**
      * Height of this ad slot.
      */
-    height: string;
+    height?: string;
     /**
      * ID of the placement from an external platform that is linked to this ad
      * slot.
      */
-    linkedPlacementId: string;
+    linkedPlacementId?: string;
     /**
      * Name of this ad slot.
      */
-    name: string;
+    name?: string;
     /**
      * Payment source type of this ad slot.
      */
-    paymentSourceType: string;
+    paymentSourceType?: string;
     /**
      * Primary ad slot of a roadblock inventory item.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Width of this ad slot.
      */
-    width: string;
+    width?: string;
   }
   /**
    * Contains properties of a DCM advertiser.
@@ -861,27 +864,27 @@ export namespace dfareporting_v2_8 {
      * Account ID of this advertiser.This is a read-only field that can be left
      * blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the advertiser group this advertiser belongs to. You can group
      * advertisers for reporting purposes, allowing you to see aggregated
      * information for all advertisers in each group.
      */
-    advertiserGroupId: string;
+    advertiserGroupId?: string;
     /**
      * Suffix added to click-through URL of ad creative associations under this
      * advertiser. Must be less than 129 characters long.
      */
-    clickThroughUrlSuffix: string;
+    clickThroughUrlSuffix?: string;
     /**
      * ID of the click-through event tag to apply by default to the landing
      * pages of this advertiser&#39;s campaigns.
      */
-    defaultClickThroughEventTagId: string;
+    defaultClickThroughEventTagId?: string;
     /**
      * Default email address used in sender field for tag emails.
      */
-    defaultEmail: string;
+    defaultEmail?: string;
     /**
      * Floodlight configuration ID of this advertiser. The floodlight
      * configuration ID will be created automatically, so on insert this field
@@ -893,31 +896,31 @@ export namespace dfareporting_v2_8 {
      * This advertiser&#39;s original floodlight configuration is not already
      * shared with another advertiser.
      */
-    floodlightConfigurationId: string;
+    floodlightConfigurationId?: string;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a
      * read-only, auto-generated field.
      */
-    floodlightConfigurationIdDimensionValue: Schema$DimensionValue;
+    floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
      * ID of this advertiser. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this advertiser. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#advertiser&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this advertiser. This is a required field and must be less than
      * 256 characters long and unique among advertisers of the same account.
      */
-    name: string;
+    name?: string;
     /**
      * Original floodlight configuration before any sharing occurred. Set the
      * floodlightConfigurationId of this advertiser to
@@ -926,20 +929,20 @@ export namespace dfareporting_v2_8 {
      * floodlight configuration if the shared configuration has activities
      * associated with any campaign or placement.
      */
-    originalFloodlightConfigurationId: string;
+    originalFloodlightConfigurationId?: string;
     /**
      * Status of this advertiser.
      */
-    status: string;
+    status?: string;
     /**
      * Subaccount ID of this advertiser.This is a read-only field that can be
      * left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Suspension status of this advertiser.
      */
-    suspended: boolean;
+    suspended?: boolean;
   }
   /**
    * Groups advertisers together so that reports can be generated for the entire
@@ -950,22 +953,22 @@ export namespace dfareporting_v2_8 {
      * Account ID of this advertiser group. This is a read-only field that can
      * be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of this advertiser group. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#advertiserGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this advertiser group. This is a required field and must be less
      * than 256 characters long and unique among advertiser groups of the same
      * account.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Advertiser Group List Response
@@ -974,16 +977,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser group collection.
      */
-    advertiserGroups: Schema$AdvertiserGroup[];
+    advertiserGroups?: Schema$AdvertiserGroup[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#advertiserGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Advertiser List Response
@@ -992,16 +995,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser collection.
      */
-    advertisers: Schema$Advertiser[];
+    advertisers?: Schema$Advertiser[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#advertisersListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Audience Segment.
@@ -1012,16 +1015,16 @@ export namespace dfareporting_v2_8 {
      * in proportion to the weights assigned to other segments in the same
      * segment group. Acceptable values are 1 to 1000, inclusive.
      */
-    allocation: number;
+    allocation?: number;
     /**
      * ID of this audience segment. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Name of this audience segment. This is a required field and must be less
      * than 65 characters long.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Audience Segment Group.
@@ -1031,17 +1034,17 @@ export namespace dfareporting_v2_8 {
      * Audience segments assigned to this group. The number of segments must be
      * between 2 and 100.
      */
-    audienceSegments: Schema$AudienceSegment[];
+    audienceSegments?: Schema$AudienceSegment[];
     /**
      * ID of this audience segment group. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Name of this audience segment group. This is a required field and must be
      * less than 65 characters long.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Contains information about a browser that can be targeted by ads.
@@ -1051,16 +1054,16 @@ export namespace dfareporting_v2_8 {
      * ID referring to this grouping of browser and version numbers. This is the
      * ID used for targeting.
      */
-    browserVersionId: string;
+    browserVersionId?: string;
     /**
      * DART ID of this browser. This is the ID used when generating reports.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#browser&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Major version number (leftmost number) of this browser. For example, for
      * Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*)
@@ -1071,7 +1074,7 @@ export namespace dfareporting_v2_8 {
      * cases where the ad server knows the browser is Firefox but can&#39;t tell
      * which version it is.
      */
-    majorVersion: string;
+    majorVersion?: string;
     /**
      * Minor version number (number after first dot on left) of this browser.
      * For example, for Chrome 5.0.375.86 beta, this field should be set to 0.
@@ -1082,11 +1085,11 @@ export namespace dfareporting_v2_8 {
      * not 4.0. Firefox ?.? targets cases where the ad server knows the browser
      * is Firefox but can&#39;t tell which version it is.
      */
-    minorVersion: string;
+    minorVersion?: string;
     /**
      * Name of this browser.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Browser List Response
@@ -1095,12 +1098,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Browser collection.
      */
-    browsers: Schema$Browser[];
+    browsers?: Schema$Browser[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#browsersListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains properties of a DCM campaign.
@@ -1110,69 +1113,70 @@ export namespace dfareporting_v2_8 {
      * Account ID of this campaign. This is a read-only field that can be left
      * blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad blocking settings for this campaign.
      */
-    adBlockingConfiguration: Schema$AdBlockingConfiguration;
+    adBlockingConfiguration?: Schema$AdBlockingConfiguration;
     /**
      * Additional creative optimization configurations for the campaign.
      */
-    additionalCreativeOptimizationConfigurations:
+    additionalCreativeOptimizationConfigurations?:
         Schema$CreativeOptimizationConfiguration[];
     /**
      * Advertiser group ID of the associated advertiser.
      */
-    advertiserGroupId: string;
+    advertiserGroupId?: string;
     /**
      * Advertiser ID of this campaign. This is a required field.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the advertiser ID of this campaign. This is a
      * read-only, auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this campaign has been archived.
      */
-    archived: boolean;
+    archived?: boolean;
     /**
      * Audience segment groups assigned to this campaign. Cannot have more than
      * 300 segment groups.
      */
-    audienceSegmentGroups: Schema$AudienceSegmentGroup[];
+    audienceSegmentGroups?: Schema$AudienceSegmentGroup[];
     /**
      * Billing invoice code included in the DCM client billing invoices
      * associated with the campaign.
      */
-    billingInvoiceCode: string;
+    billingInvoiceCode?: string;
     /**
      * Click-through URL suffix override properties for this campaign.
      */
-    clickThroughUrlSuffixProperties: Schema$ClickThroughUrlSuffixProperties;
+    clickThroughUrlSuffixProperties?: Schema$ClickThroughUrlSuffixProperties;
     /**
      * Arbitrary comments about this campaign. Must be less than 256 characters
      * long.
      */
-    comment: string;
+    comment?: string;
     /**
      * Information about the creation of this campaign. This is a read-only
      * field.
      */
-    createInfo: Schema$LastModifiedInfo;
+    createInfo?: Schema$LastModifiedInfo;
     /**
      * List of creative group IDs that are assigned to the campaign.
      */
-    creativeGroupIds: string[];
+    creativeGroupIds?: string[];
     /**
      * Creative optimization configuration for the campaign.
      */
-    creativeOptimizationConfiguration: Schema$CreativeOptimizationConfiguration;
+    creativeOptimizationConfiguration?:
+        Schema$CreativeOptimizationConfiguration;
     /**
      * Click-through event tag ID override properties for this campaign.
      */
-    defaultClickThroughEventTagProperties:
+    defaultClickThroughEventTagProperties?:
         Schema$DefaultClickThroughEventTagProperties;
     /**
      * Date on which the campaign will stop running. On insert, the end date
@@ -1183,63 +1187,63 @@ export namespace dfareporting_v2_8 {
      * not be set, as doing so will result in an error. This is a required
      * field.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Overrides that can be used to activate or deactivate advertiser event
      * tags.
      */
-    eventTagOverrides: Schema$EventTagOverride[];
+    eventTagOverrides?: Schema$EventTagOverride[];
     /**
      * External ID for this campaign.
      */
-    externalId: string;
+    externalId?: string;
     /**
      * ID of this campaign. This is a read-only auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this campaign. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#campaign&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this campaign. This is
      * a read-only field.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Lookback window settings for the campaign.
      */
-    lookbackConfiguration: Schema$LookbackConfiguration;
+    lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
      * Name of this campaign. This is a required field and must be less than 256
      * characters long and unique among campaigns of the same advertiser.
      */
-    name: string;
+    name?: string;
     /**
      * Whether Nielsen reports are enabled for this campaign.
      */
-    nielsenOcrEnabled: boolean;
+    nielsenOcrEnabled?: boolean;
     /**
      * Date on which the campaign starts running. The start date can be any
      * date. The hours, minutes, and seconds of the start date should not be
      * set, as doing so will result in an error. This is a required field.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Subaccount ID of this campaign. This is a read-only field that can be
      * left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Campaign trafficker contact emails.
      */
-    traffickerEmails: string[];
+    traffickerEmails?: string[];
   }
   /**
    * Identifies a creative which has been associated with a given campaign.
@@ -1249,12 +1253,12 @@ export namespace dfareporting_v2_8 {
      * ID of the creative associated with the campaign. This is a required
      * field.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#campaignCreativeAssociation&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Campaign Creative Association List Response
@@ -1263,16 +1267,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign creative association collection
      */
-    campaignCreativeAssociations: Schema$CampaignCreativeAssociation[];
+    campaignCreativeAssociations?: Schema$CampaignCreativeAssociation[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Campaign List Response
@@ -1281,16 +1285,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign collection.
      */
-    campaigns: Schema$Campaign[];
+    campaigns?: Schema$Campaign[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#campaignsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Describes a change that a user has made to a resource.
@@ -1299,63 +1303,63 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of the modified object.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Action which caused the change.
      */
-    action: string;
+    action?: string;
     /**
      * Time when the object was modified.
      */
-    changeTime: string;
+    changeTime?: string;
     /**
      * Field name of the object which changed.
      */
-    fieldName: string;
+    fieldName?: string;
     /**
      * ID of this change log.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#changeLog&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * New value of the object field.
      */
-    newValue: string;
+    newValue?: string;
     /**
      * ID of the object of this change log. The object could be a campaign,
      * placement, ad, or other type.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * Object type of the change log.
      */
-    objectType: string;
+    objectType?: string;
     /**
      * Old value of the object field.
      */
-    oldValue: string;
+    oldValue?: string;
     /**
      * Subaccount ID of the modified object.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Transaction ID of this change log. When a single API call results in many
      * changes, each change will have a separate ID in the change log but will
      * share the same transactionId.
      */
-    transactionId: string;
+    transactionId?: string;
     /**
      * ID of the user who modified the object.
      */
-    userProfileId: string;
+    userProfileId?: string;
     /**
      * User profile name of the user who modified the object.
      */
-    userProfileName: string;
+    userProfileName?: string;
   }
   /**
    * Change Log List Response
@@ -1364,16 +1368,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Change log collection.
      */
-    changeLogs: Schema$ChangeLog[];
+    changeLogs?: Schema$ChangeLog[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#changeLogsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * City List Response
@@ -1382,12 +1386,12 @@ export namespace dfareporting_v2_8 {
     /**
      * City collection.
      */
-    cities: Schema$City[];
+    cities?: Schema$City[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#citiesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains information about a city that can be targeted by ads.
@@ -1396,41 +1400,41 @@ export namespace dfareporting_v2_8 {
     /**
      * Country code of the country to which this city belongs.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of the country to which this city belongs.
      */
-    countryDartId: string;
+    countryDartId?: string;
     /**
      * DART ID of this city. This is the ID used for targeting and generating
      * reports.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#city&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metro region code of the metro region (DMA) to which this city belongs.
      */
-    metroCode: string;
+    metroCode?: string;
     /**
      * ID of the metro region (DMA) to which this city belongs.
      */
-    metroDmaId: string;
+    metroDmaId?: string;
     /**
      * Name of this city.
      */
-    name: string;
+    name?: string;
     /**
      * Region code of the region to which this city belongs.
      */
-    regionCode: string;
+    regionCode?: string;
     /**
      * DART ID of the region to which this city belongs.
      */
-    regionDartId: string;
+    regionDartId?: string;
   }
   /**
    * Creative Click Tag.
@@ -1441,18 +1445,18 @@ export namespace dfareporting_v2_8 {
      * by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to
      * DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    eventName: string;
+    eventName?: string;
     /**
      * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY
      * creative assets, this field must match the value of the creative
      * asset&#39;s creativeAssetId.name field.
      */
-    name: string;
+    name?: string;
     /**
      * Parameter value for the specified click tag. This field contains a
      * click-through url.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Click-through URL
@@ -1467,21 +1471,21 @@ export namespace dfareporting_v2_8 {
      * is assigned to this field. - If neither of the above cases apply, then
      * the customClickThroughUrl is assigned to this field.
      */
-    computedClickThroughUrl: string;
+    computedClickThroughUrl?: string;
     /**
      * Custom click-through URL. Applicable if the defaultLandingPage field is
      * set to false and the landingPageId field is left unset.
      */
-    customClickThroughUrl: string;
+    customClickThroughUrl?: string;
     /**
      * Whether the campaign default landing page is used.
      */
-    defaultLandingPage: boolean;
+    defaultLandingPage?: boolean;
     /**
      * ID of the landing page for the click-through URL. Applicable if the
      * defaultLandingPage field is set to false.
      */
-    landingPageId: string;
+    landingPageId?: string;
   }
   /**
    * Click Through URL Suffix settings.
@@ -1491,12 +1495,12 @@ export namespace dfareporting_v2_8 {
      * Click-through URL suffix to apply to all ads in this entity&#39;s scope.
      * Must be less than 128 characters long.
      */
-    clickThroughUrlSuffix: string;
+    clickThroughUrlSuffix?: string;
     /**
      * Whether this entity should override the inherited click-through URL
      * suffix with its own defined value.
      */
-    overrideInheritedSuffix: boolean;
+    overrideInheritedSuffix?: boolean;
   }
   /**
    * Companion Click-through override.
@@ -1505,11 +1509,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Click-through URL of this companion click-through override.
      */
-    clickThroughUrl: Schema$ClickThroughUrl;
+    clickThroughUrl?: Schema$ClickThroughUrl;
     /**
      * ID of the creative for this companion click-through override.
      */
-    creativeId: string;
+    creativeId?: string;
   }
   /**
    * Companion Settings
@@ -1518,21 +1522,21 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether companions are disabled for this placement.
      */
-    companionsDisabled: boolean;
+    companionsDisabled?: boolean;
     /**
      * Whitelist of companion sizes to be served to this placement. Set this
      * list to null or empty to serve all companion sizes.
      */
-    enabledSizes: Schema$Size[];
+    enabledSizes?: Schema$Size[];
     /**
      * Whether to serve only static images as companions.
      */
-    imageOnly: boolean;
+    imageOnly?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#companionSetting&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Represents a response to the queryCompatibleFields method.
@@ -1542,33 +1546,33 @@ export namespace dfareporting_v2_8 {
      * Contains items that are compatible to be selected for a report of type
      * &quot;CROSS_DIMENSION_REACH&quot;.
      */
-    crossDimensionReachReportCompatibleFields:
+    crossDimensionReachReportCompatibleFields?:
         Schema$CrossDimensionReachReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;FLOODLIGHT&quot;.
      */
-    floodlightReportCompatibleFields: Schema$FloodlightReportCompatibleFields;
+    floodlightReportCompatibleFields?: Schema$FloodlightReportCompatibleFields;
     /**
      * The kind of resource this is, in this case dfareporting#compatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;PATH_TO_CONVERSION&quot;.
      */
-    pathToConversionReportCompatibleFields:
+    pathToConversionReportCompatibleFields?:
         Schema$PathToConversionReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;REACH&quot;.
      */
-    reachReportCompatibleFields: Schema$ReachReportCompatibleFields;
+    reachReportCompatibleFields?: Schema$ReachReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;STANDARD&quot;.
      */
-    reportCompatibleFields: Schema$ReportCompatibleFields;
+    reportCompatibleFields?: Schema$ReportCompatibleFields;
   }
   /**
    * Contains information about an internet connection type that can be targeted
@@ -1579,16 +1583,16 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this connection type.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#connectionType&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this connection type.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Connection Type List Response
@@ -1597,12 +1601,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Collection of connection types such as broadband and mobile.
      */
-    connectionTypes: Schema$ConnectionType[];
+    connectionTypes?: Schema$ConnectionType[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#connectionTypesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Content Category List Response
@@ -1611,16 +1615,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Content category collection.
      */
-    contentCategories: Schema$ContentCategory[];
+    contentCategories?: Schema$ContentCategory[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#contentCategoriesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Organizes placements according to the contents of their associated
@@ -1631,22 +1635,22 @@ export namespace dfareporting_v2_8 {
      * Account ID of this content category. This is a read-only field that can
      * be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of this content category. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#contentCategory&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this content category. This is a required field and must be less
      * than 256 characters long and unique among content categories of the same
      * account.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A Conversion represents when a user successfully performs a desired action
@@ -1656,11 +1660,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether the conversion was directed toward children.
      */
-    childDirectedTreatment: boolean;
+    childDirectedTreatment?: boolean;
     /**
      * Custom floodlight variables.
      */
-    customVariables: Schema$CustomFloodlightVariable[];
+    customVariables?: Schema$CustomFloodlightVariable[];
     /**
      * The alphanumeric encrypted user ID. When set, encryptionInfo should also
      * be specified. This field is mutually exclusive with
@@ -1668,7 +1672,7 @@ export namespace dfareporting_v2_8 {
      * encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required
      * field.
      */
-    encryptedUserId: string;
+    encryptedUserId?: string;
     /**
      * A list of the alphanumeric encrypted user IDs. Any user ID with exposure
      * prior to the conversion timestamp will be used in the inserted
@@ -1679,58 +1683,58 @@ export namespace dfareporting_v2_8 {
      * exclusive with encryptedUserId, mobileDeviceId and gclid. This or
      * encryptedUserId or mobileDeviceId or gclid is a required field.
      */
-    encryptedUserIdCandidates: string[];
+    encryptedUserIdCandidates?: string[];
     /**
      * Floodlight Activity ID of this conversion. This is a required field.
      */
-    floodlightActivityId: string;
+    floodlightActivityId?: string;
     /**
      * Floodlight Configuration ID of this conversion. This is a required field.
      */
-    floodlightConfigurationId: string;
+    floodlightConfigurationId?: string;
     /**
      * The Google click ID. This field is mutually exclusive with
      * encryptedUserId, encryptedUserIdCandidates[] and mobileDeviceId. This or
      * encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId is a
      * required field.
      */
-    gclid: string;
+    gclid?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversion&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether Limit Ad Tracking is enabled. When set to true, the conversion
      * will be used for reporting but not targeting. This will prevent
      * remarketing.
      */
-    limitAdTracking: boolean;
+    limitAdTracking?: boolean;
     /**
      * The mobile device ID. This field is mutually exclusive with
      * encryptedUserId, encryptedUserIdCandidates[] and gclid. This or
      * encryptedUserId or encryptedUserIdCandidates[] or gclid is a required
      * field.
      */
-    mobileDeviceId: string;
+    mobileDeviceId?: string;
     /**
      * The ordinal of the conversion. Use this field to control how conversions
      * of the same user and day are de-duplicated. This is a required field.
      */
-    ordinal: string;
+    ordinal?: string;
     /**
      * The quantity of the conversion.
      */
-    quantity: string;
+    quantity?: string;
     /**
      * The timestamp of conversion, in Unix epoch micros. This is a required
      * field.
      */
-    timestampMicros: string;
+    timestampMicros?: string;
     /**
      * The value of the conversion.
      */
-    value: number;
+    value?: number;
   }
   /**
    * The error code and description for a conversion that failed to insert or
@@ -1740,16 +1744,16 @@ export namespace dfareporting_v2_8 {
     /**
      * The error code.
      */
-    code: string;
+    code?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionError&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * A description of the error.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Insert Conversions Request.
@@ -1758,18 +1762,18 @@ export namespace dfareporting_v2_8 {
     /**
      * The set of conversions to insert.
      */
-    conversions: Schema$Conversion[];
+    conversions?: Schema$Conversion[];
     /**
      * Describes how encryptedUserId or encryptedUserIdCandidates[] is
      * encrypted. This is a required field if encryptedUserId or
      * encryptedUserIdCandidates[] is used.
      */
-    encryptionInfo: Schema$EncryptionInfo;
+    encryptionInfo?: Schema$EncryptionInfo;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionsBatchInsertRequest&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Insert Conversions Response.
@@ -1778,17 +1782,17 @@ export namespace dfareporting_v2_8 {
     /**
      * Indicates that some or all conversions failed to insert.
      */
-    hasFailures: boolean;
+    hasFailures?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionsBatchInsertResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The insert status of each conversion. Statuses are returned in the same
      * order that conversions are inserted.
      */
-    status: Schema$ConversionStatus[];
+    status?: Schema$ConversionStatus[];
   }
   /**
    * Update Conversions Request.
@@ -1797,17 +1801,17 @@ export namespace dfareporting_v2_8 {
     /**
      * The set of conversions to update.
      */
-    conversions: Schema$Conversion[];
+    conversions?: Schema$Conversion[];
     /**
      * Describes how encryptedUserId is encrypted. This is a required field if
      * encryptedUserId is used.
      */
-    encryptionInfo: Schema$EncryptionInfo;
+    encryptionInfo?: Schema$EncryptionInfo;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionsBatchUpdateRequest&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Update Conversions Response.
@@ -1816,17 +1820,17 @@ export namespace dfareporting_v2_8 {
     /**
      * Indicates that some or all conversions failed to update.
      */
-    hasFailures: boolean;
+    hasFailures?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionsBatchUpdateResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The update status of each conversion. Statuses are returned in the same
      * order that conversions are updated.
      */
-    status: Schema$ConversionStatus[];
+    status?: Schema$ConversionStatus[];
   }
   /**
    * The original conversion that was inserted or updated and whether there were
@@ -1836,16 +1840,16 @@ export namespace dfareporting_v2_8 {
     /**
      * The original conversion that was inserted or updated.
      */
-    conversion: Schema$Conversion;
+    conversion?: Schema$Conversion;
     /**
      * A list of errors related to this conversion.
      */
-    errors: Schema$ConversionError[];
+    errors?: Schema$ConversionError[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#conversionStatus&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Country List Response
@@ -1854,12 +1858,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Country collection.
      */
-    countries: Schema$Country[];
+    countries?: Schema$Country[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#countriesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains information about a country that can be targeted by ads.
@@ -1868,25 +1872,25 @@ export namespace dfareporting_v2_8 {
     /**
      * Country code.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of this country. This is the ID used for targeting and generating
      * reports.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#country&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this country.
      */
-    name: string;
+    name?: string;
     /**
      * Whether ad serving supports secure servers in this country.
      */
-    sslEnabled: boolean;
+    sslEnabled?: boolean;
   }
   /**
    * Contains properties of a Creative.
@@ -1897,16 +1901,16 @@ export namespace dfareporting_v2_8 {
      * auto-generated for both insert and update operations. Applicable to all
      * creative types.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether the creative is active. Applicable to all creative types.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Ad parameters user for VPAID creative. This is a read-only field.
      * Applicable to the following creative types: all VPAID.
      */
-    adParameters: string;
+    adParameters?: string;
     /**
      * Keywords for a Rich Media creative. Keywords let you customize the
      * creative settings of a Rich Media ad running on your site without having
@@ -1914,56 +1918,56 @@ export namespace dfareporting_v2_8 {
      * look or functionality of a creative. Applicable to the following creative
      * types: all RICH_MEDIA, and all VPAID.
      */
-    adTagKeys: string[];
+    adTagKeys?: string[];
     /**
      * Advertiser ID of this creative. This is a required field. Applicable to
      * all creative types.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Whether script access is allowed for this creative. This is a read-only
      * and deprecated field which will automatically be set to true on update.
      * Applicable to the following creative types: FLASH_INPAGE.
      */
-    allowScriptAccess: boolean;
+    allowScriptAccess?: boolean;
     /**
      * Whether the creative is archived. Applicable to all creative types.
      */
-    archived: boolean;
+    archived?: boolean;
     /**
      * Type of artwork used for the creative. This is a read-only field.
      * Applicable to the following creative types: all RICH_MEDIA, and all
      * VPAID.
      */
-    artworkType: string;
+    artworkType?: string;
     /**
      * Source application where creative was authored. Presently, only DBM
      * authored creatives will have this field set. Applicable to all creative
      * types.
      */
-    authoringSource: string;
+    authoringSource?: string;
     /**
      * Authoring tool for HTML5 banner creatives. This is a read-only field.
      * Applicable to the following creative types: HTML5_BANNER.
      */
-    authoringTool: string;
+    authoringTool?: string;
     /**
      * Whether images are automatically advanced for image gallery creatives.
      * Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
      */
-    autoAdvanceImages: boolean;
+    autoAdvanceImages?: boolean;
     /**
      * The 6-character HTML color code, beginning with #, for the background of
      * the window area where the Flash file is displayed. Default is white.
      * Applicable to the following creative types: FLASH_INPAGE.
      */
-    backgroundColor: string;
+    backgroundColor?: string;
     /**
      * Click-through URL for backup image. Applicable to the following creative
      * types: FLASH_INPAGE, and HTML5_BANNER. Applicable to DISPLAY when the
      * primary asset type is not HTML_IMAGE.
      */
-    backupImageClickThroughUrl: string;
+    backupImageClickThroughUrl?: string;
     /**
      * List of feature dependencies that will cause a backup image to be served
      * if the browser that serves the ad does not support them. Feature
@@ -1975,19 +1979,19 @@ export namespace dfareporting_v2_8 {
      * Applicable to the following creative types: HTML5_BANNER. Applicable to
      * DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    backupImageFeatures: string[];
+    backupImageFeatures?: string[];
     /**
      * Reporting label used for HTML5 banner backup image. Applicable to the
      * following creative types: DISPLAY when the primary asset type is not
      * HTML_IMAGE.
      */
-    backupImageReportingLabel: string;
+    backupImageReportingLabel?: string;
     /**
      * Target window for backup image. Applicable to the following creative
      * types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the
      * primary asset type is not HTML_IMAGE.
      */
-    backupImageTargetWindow: Schema$TargetWindow;
+    backupImageTargetWindow?: Schema$TargetWindow;
     /**
      * Click tags of the creative. For DISPLAY, FLASH_INPAGE, and HTML5_BANNER
      * creatives, this is a subset of detected click tags for the assets
@@ -2002,19 +2006,19 @@ export namespace dfareporting_v2_8 {
      * creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER.
      * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    clickTags: Schema$ClickTag[];
+    clickTags?: Schema$ClickTag[];
     /**
      * Industry standard ID assigned to creative for reach and frequency.
      * Applicable to INSTREAM_VIDEO_REDIRECT creatives.
      */
-    commercialId: string;
+    commercialId?: string;
     /**
      * List of companion creatives assigned to an in-Stream videocreative.
      * Acceptable values include IDs of existing flash and image creatives.
      * Applicable to the following creative types: all VPAID and all
      * INSTREAM_VIDEO with dynamicAssetSelection set to false.
      */
-    companionCreatives: string[];
+    companionCreatives?: string[];
     /**
      * Compatibilities associated with this creative. This is a read-only field.
      * DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or
@@ -2028,7 +2032,7 @@ export namespace dfareporting_v2_8 {
      * &quot;IN_STREAM_VIDEO&quot; - &quot;DISPLAY&quot; -
      * &quot;DISPLAY_INTERSTITIAL&quot;
      */
-    compatibility: string[];
+    compatibility?: string[];
     /**
      * Whether Flash assets associated with the creative need to be
      * automatically converted to HTML5. This flag is enabled by default and
@@ -2037,29 +2041,29 @@ export namespace dfareporting_v2_8 {
      * following creative type: FLASH_INPAGE. Applicable to DISPLAY when the
      * primary asset type is not HTML_IMAGE.
      */
-    convertFlashToHtml5: boolean;
+    convertFlashToHtml5?: boolean;
     /**
      * List of counter events configured for the creative. For
      * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
      * from clickTags. Applicable to the following creative types:
      * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
      */
-    counterCustomEvents: Schema$CreativeCustomEvent[];
+    counterCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * Assets associated with a creative. Applicable to all but the following
      * creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and
      * REDIRECT
      */
-    creativeAssets: Schema$CreativeAsset[];
+    creativeAssets?: Schema$CreativeAsset[];
     /**
      * Required if dynamicAssetSelection is true.
      */
-    creativeAssetSelection: Schema$CreativeAssetSelection;
+    creativeAssetSelection?: Schema$CreativeAssetSelection;
     /**
      * Creative field assignments for this creative. Applicable to all creative
      * types.
      */
-    creativeFieldAssignments: Schema$CreativeFieldAssignment[];
+    creativeFieldAssignments?: Schema$CreativeFieldAssignment[];
     /**
      * Custom key-values for a Rich Media creative. Key-values let you customize
      * the creative settings of a Rich Media ad running on your site without
@@ -2067,7 +2071,7 @@ export namespace dfareporting_v2_8 {
      * change the look or functionality of a creative. Applicable to the
      * following creative types: all RICH_MEDIA, and all VPAID.
      */
-    customKeyValues: string[];
+    customKeyValues?: string[];
     /**
      * Set this to true to enable the use of rules to target individual assets
      * in this creative. When set to true creativeAssetSelection must be set.
@@ -2075,7 +2079,7 @@ export namespace dfareporting_v2_8 {
      * creatives should be assigned to creative assets. Learn more. Applicable
      * to INSTREAM_VIDEO creatives.
      */
-    dynamicAssetSelection: boolean;
+    dynamicAssetSelection?: boolean;
     /**
      * List of exit events configured for the creative. For DISPLAY and
      * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
@@ -2084,68 +2088,68 @@ export namespace dfareporting_v2_8 {
      * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to
      * DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    exitCustomEvents: Schema$CreativeCustomEvent[];
+    exitCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * OpenWindow FSCommand of this creative. This lets the SWF file communicate
      * with either Flash Player or the program hosting Flash Player, such as a
      * web browser. This is only triggered if allowScriptAccess field is true.
      * Applicable to the following creative types: FLASH_INPAGE.
      */
-    fsCommand: Schema$FsCommand;
+    fsCommand?: Schema$FsCommand;
     /**
      * HTML code for the creative. This is a required field when applicable.
      * This field is ignored if htmlCodeLocked is true. Applicable to the
      * following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and
      * all RICH_MEDIA.
      */
-    htmlCode: string;
+    htmlCode?: string;
     /**
      * Whether HTML code is DCM-generated or manually entered. Set to true to
      * ignore changes to htmlCode. Applicable to the following creative types:
      * FLASH_INPAGE and HTML5_BANNER.
      */
-    htmlCodeLocked: boolean;
+    htmlCodeLocked?: boolean;
     /**
      * ID of this creative. This is a read-only, auto-generated field.
      * Applicable to all creative types.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this creative. This is a read-only field.
      * Applicable to all creative types.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creative&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Creative last modification information. This is a read-only field.
      * Applicable to all creative types.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Latest Studio trafficked creative ID associated with rich media and VPAID
      * creatives. This is a read-only field. Applicable to the following
      * creative types: all RICH_MEDIA, and all VPAID.
      */
-    latestTraffickedCreativeId: string;
+    latestTraffickedCreativeId?: string;
     /**
      * Name of the creative. This is a required field and must be less than 256
      * characters long. Applicable to all creative types.
      */
-    name: string;
+    name?: string;
     /**
      * Override CSS value for rich media creatives. Applicable to the following
      * creative types: all RICH_MEDIA.
      */
-    overrideCss: string;
+    overrideCss?: string;
     /**
      * Amount of time to play the video before counting a view. Applicable to
      * the following creative types: all INSTREAM_VIDEO.
      */
-    progressOffset: Schema$VideoOffset;
+    progressOffset?: Schema$VideoOffset;
     /**
      * URL of hosted image or hosted video or another ad tag. For
      * INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect
@@ -2155,30 +2159,30 @@ export namespace dfareporting_v2_8 {
      * types: DISPLAY_REDIRECT, INTERNAL_REDIRECT,
      * INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO_REDIRECT
      */
-    redirectUrl: string;
+    redirectUrl?: string;
     /**
      * ID of current rendering version. This is a read-only field. Applicable to
      * all creative types.
      */
-    renderingId: string;
+    renderingId?: string;
     /**
      * Dimension value for the rendering ID of this creative. This is a
      * read-only field. Applicable to all creative types.
      */
-    renderingIdDimensionValue: Schema$DimensionValue;
+    renderingIdDimensionValue?: Schema$DimensionValue;
     /**
      * The minimum required Flash plugin version for this creative. For
      * example, 11.2.202.235. This is a read-only field. Applicable to the
      * following creative types: all RICH_MEDIA, and all VPAID.
      */
-    requiredFlashPluginVersion: string;
+    requiredFlashPluginVersion?: string;
     /**
      * The internal Flash version for this creative as calculated by DoubleClick
      * Studio. This is a read-only field. Applicable to the following creative
      * types: FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY
      * when the primary asset type is not HTML_IMAGE.
      */
-    requiredFlashVersion: number;
+    requiredFlashVersion?: number;
     /**
      * Size associated with this creative. When inserting or updating a creative
      * either the size ID field or size width and height fields can be used.
@@ -2189,66 +2193,66 @@ export namespace dfareporting_v2_8 {
      * creative types: DISPLAY, DISPLAY_IMAGE_GALLERY, FLASH_INPAGE,
      * HTML5_BANNER, IMAGE, and all RICH_MEDIA.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * Amount of time to play the video before the skip button appears.
      * Applicable to the following creative types: all INSTREAM_VIDEO.
      */
-    skipOffset: Schema$VideoOffset;
+    skipOffset?: Schema$VideoOffset;
     /**
      * Whether the user can choose to skip the creative. Applicable to the
      * following creative types: all INSTREAM_VIDEO and all VPAID.
      */
-    skippable: boolean;
+    skippable?: boolean;
     /**
      * Whether the creative is SSL-compliant. This is a read-only field.
      * Applicable to all creative types.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Whether creative should be treated as SSL compliant even if the system
      * scan shows it&#39;s not. Applicable to all creative types.
      */
-    sslOverride: boolean;
+    sslOverride?: boolean;
     /**
      * Studio advertiser ID associated with rich media and VPAID creatives. This
      * is a read-only field. Applicable to the following creative types: all
      * RICH_MEDIA, and all VPAID.
      */
-    studioAdvertiserId: string;
+    studioAdvertiserId?: string;
     /**
      * Studio creative ID associated with rich media and VPAID creatives. This
      * is a read-only field. Applicable to the following creative types: all
      * RICH_MEDIA, and all VPAID.
      */
-    studioCreativeId: string;
+    studioCreativeId?: string;
     /**
      * Studio trafficked creative ID associated with rich media and VPAID
      * creatives. This is a read-only field. Applicable to the following
      * creative types: all RICH_MEDIA, and all VPAID.
      */
-    studioTraffickedCreativeId: string;
+    studioTraffickedCreativeId?: string;
     /**
      * Subaccount ID of this creative. This field, if left unset, will be
      * auto-generated for both insert and update operations. Applicable to all
      * creative types.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Third-party URL used to record backup image impressions. Applicable to
      * the following creative types: all RICH_MEDIA.
      */
-    thirdPartyBackupImageImpressionsUrl: string;
+    thirdPartyBackupImageImpressionsUrl?: string;
     /**
      * Third-party URL used to record rich media impressions. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    thirdPartyRichMediaImpressionsUrl: string;
+    thirdPartyRichMediaImpressionsUrl?: string;
     /**
      * Third-party URLs for tracking in-stream video creative events. Applicable
      * to the following creative types: all INSTREAM_VIDEO and all VPAID.
      */
-    thirdPartyUrls: Schema$ThirdPartyTrackingUrl[];
+    thirdPartyUrls?: Schema$ThirdPartyTrackingUrl[];
     /**
      * List of timer events configured for the creative. For
      * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
@@ -2256,25 +2260,25 @@ export namespace dfareporting_v2_8 {
      * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to
      * DISPLAY when the primary asset is not HTML_IMAGE.
      */
-    timerCustomEvents: Schema$CreativeCustomEvent[];
+    timerCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * Combined size of all creative assets. This is a read-only field.
      * Applicable to the following creative types: all RICH_MEDIA, and all
      * VPAID.
      */
-    totalFileSize: string;
+    totalFileSize?: string;
     /**
      * Type of this creative. This is a required field. Applicable to all
      * creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only
      * used for existing creatives. New creatives should use DISPLAY as a
      * replacement for these types.
      */
-    type: string;
+    type?: string;
     /**
      * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
      * creative types: INSTREAM_VIDEO and VPAID.
      */
-    universalAdId: Schema$UniversalAdId;
+    universalAdId?: Schema$UniversalAdId;
     /**
      * The version number helps you keep track of multiple versions of your
      * creative in your reports. The version number will always be
@@ -2285,18 +2289,18 @@ export namespace dfareporting_v2_8 {
      * incremented by 1 when undergoing Rich Media creative merging. Applicable
      * to all creative types.
      */
-    version: number;
+    version?: number;
     /**
      * Description of the video ad. Applicable to the following creative types:
      * all INSTREAM_VIDEO and all VPAID.
      */
-    videoDescription: string;
+    videoDescription?: string;
     /**
      * Creative video duration in seconds. This is a read-only field. Applicable
      * to the following creative types: INSTREAM_VIDEO, all RICH_MEDIA, and all
      * VPAID.
      */
-    videoDuration: number;
+    videoDuration?: number;
   }
   /**
    * Creative Asset.
@@ -2307,65 +2311,65 @@ export namespace dfareporting_v2_8 {
      * field. Applicable to the following creative type: FLASH_INPAGE.
      * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    actionScript3: boolean;
+    actionScript3?: boolean;
     /**
      * Whether the video asset is active. This is a read-only field for
      * VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative
      * types: INSTREAM_VIDEO and all VPAID.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Possible alignments for an asset. This is a read-only field. Applicable
      * to the following creative types:
      * RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
      */
-    alignment: string;
+    alignment?: string;
     /**
      * Artwork type of rich media creative. This is a read-only field.
      * Applicable to the following creative types: all RICH_MEDIA.
      */
-    artworkType: string;
+    artworkType?: string;
     /**
      * Identifier of this asset. This is the same identifier returned during
      * creative asset insert operation. This is a required field. Applicable to
      * all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
-    assetIdentifier: Schema$CreativeAssetId;
+    assetIdentifier?: Schema$CreativeAssetId;
     /**
      * Exit event configured for the backup image. Applicable to the following
      * creative types: all RICH_MEDIA.
      */
-    backupImageExit: Schema$CreativeCustomEvent;
+    backupImageExit?: Schema$CreativeCustomEvent;
     /**
      * Detected bit-rate for video asset. This is a read-only field. Applicable
      * to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    bitRate: number;
+    bitRate?: number;
     /**
      * Rich media child asset type. This is a read-only field. Applicable to the
      * following creative types: all VPAID.
      */
-    childAssetType: string;
+    childAssetType?: string;
     /**
      * Size of an asset when collapsed. This is a read-only field. Applicable to
      * the following creative types: all RICH_MEDIA and all VPAID. Additionally,
      * applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or
      * ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
-    collapsedSize: Schema$Size;
+    collapsedSize?: Schema$Size;
     /**
      * List of companion creatives assigned to an in-stream video creative
      * asset. Acceptable values include IDs of existing flash and image
      * creatives. Applicable to INSTREAM_VIDEO creative type with
      * dynamicAssetSelection set to true.
      */
-    companionCreativeIds: string[];
+    companionCreativeIds?: string[];
     /**
      * Custom start time in seconds for making the asset visible. Applicable to
      * the following creative types: all RICH_MEDIA. Value must be greater than
      * or equal to 0.
      */
-    customStartTimeValue: number;
+    customStartTimeValue?: number;
     /**
      * List of feature dependencies for the creative asset that are detected by
      * DCM. Feature dependencies are features that a browser must be able to
@@ -2374,111 +2378,111 @@ export namespace dfareporting_v2_8 {
      * types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is
      * not HTML_IMAGE.
      */
-    detectedFeatures: string[];
+    detectedFeatures?: string[];
     /**
      * Type of rich media asset. This is a read-only field. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    displayType: string;
+    displayType?: string;
     /**
      * Duration in seconds for which an asset will be displayed. Applicable to
      * the following creative types: INSTREAM_VIDEO and VPAID_LINEAR_VIDEO.
      * Value must be greater than or equal to 1.
      */
-    duration: number;
+    duration?: number;
     /**
      * Duration type for which an asset will be displayed. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    durationType: string;
+    durationType?: string;
     /**
      * Detected expanded dimension for video asset. This is a read-only field.
      * Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    expandedDimension: Schema$Size;
+    expandedDimension?: Schema$Size;
     /**
      * File size associated with this creative asset. This is a read-only field.
      * Applicable to all but the following creative types: all REDIRECT and
      * TRACKING_TEXT.
      */
-    fileSize: string;
+    fileSize?: string;
     /**
      * Flash version of the asset. This is a read-only field. Applicable to the
      * following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID.
      * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    flashVersion: number;
+    flashVersion?: number;
     /**
      * Whether to hide Flash objects flag for an asset. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    hideFlashObjects: boolean;
+    hideFlashObjects?: boolean;
     /**
      * Whether to hide selection boxes flag for an asset. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    hideSelectionBoxes: boolean;
+    hideSelectionBoxes?: boolean;
     /**
      * Whether the asset is horizontally locked. This is a read-only field.
      * Applicable to the following creative types: all RICH_MEDIA.
      */
-    horizontallyLocked: boolean;
+    horizontallyLocked?: boolean;
     /**
      * Numeric ID of this creative asset. This is a required field and should
      * not be modified. Applicable to all but the following creative types: all
      * REDIRECT and TRACKING_TEXT.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of the asset. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Detected MIME type for video asset. This is a read-only field. Applicable
      * to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Offset position for an asset in collapsed mode. This is a read-only
      * field. Applicable to the following creative types: all RICH_MEDIA and all
      * VPAID. Additionally, only applicable to assets whose displayType is
      * ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
-    offset: Schema$OffsetPosition;
+    offset?: Schema$OffsetPosition;
     /**
      * Whether the backup asset is original or changed by the user in DCM.
      * Applicable to the following creative types: all RICH_MEDIA.
      */
-    originalBackup: boolean;
+    originalBackup?: boolean;
     /**
      * Offset position for an asset. Applicable to the following creative types:
      * all RICH_MEDIA.
      */
-    position: Schema$OffsetPosition;
+    position?: Schema$OffsetPosition;
     /**
      * Offset left unit for an asset. This is a read-only field. Applicable to
      * the following creative types: all RICH_MEDIA.
      */
-    positionLeftUnit: string;
+    positionLeftUnit?: string;
     /**
      * Offset top unit for an asset. This is a read-only field if the asset
      * displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following
      * creative types: all RICH_MEDIA.
      */
-    positionTopUnit: string;
+    positionTopUnit?: string;
     /**
      * Progressive URL for video asset. This is a read-only field. Applicable to
      * the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    progressiveServingUrl: string;
+    progressiveServingUrl?: string;
     /**
      * Whether the asset pushes down other content. Applicable to the following
      * creative types: all RICH_MEDIA. Additionally, only applicable when the
      * asset offsets are 0, the collapsedSize.width matches size.width, and the
      * collapsedSize.height is less than size.height.
      */
-    pushdown: boolean;
+    pushdown?: boolean;
     /**
      * Pushdown duration in seconds for an asset. Applicable to the following
      * creative types: all RICH_MEDIA.Additionally, only applicable when the
@@ -2486,7 +2490,7 @@ export namespace dfareporting_v2_8 {
      * matches size.width, and the collapsedSize.height is less than
      * size.height. Acceptable values are 0 to 9.99, inclusive.
      */
-    pushdownDuration: number;
+    pushdownDuration?: number;
     /**
      * Role of the asset in relation to creative. Applicable to all but the
      * following creative types: all REDIRECT and TRACKING_TEXT. This is a
@@ -2510,7 +2514,7 @@ export namespace dfareporting_v2_8 {
      * VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or
      * removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
      */
-    role: string;
+    role?: string;
     /**
      * Size associated with this creative asset. This is a required field when
      * applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank,
@@ -2520,44 +2524,44 @@ export namespace dfareporting_v2_8 {
      * RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not
      * HTML_IMAGE.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * Whether the asset is SSL-compliant. This is a read-only field. Applicable
      * to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Initial wait time type before making the asset visible. Applicable to the
      * following creative types: all RICH_MEDIA.
      */
-    startTimeType: string;
+    startTimeType?: string;
     /**
      * Streaming URL for video asset. This is a read-only field. Applicable to
      * the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    streamingServingUrl: string;
+    streamingServingUrl?: string;
     /**
      * Whether the asset is transparent. Applicable to the following creative
      * types: all RICH_MEDIA. Additionally, only applicable to HTML5 assets.
      */
-    transparency: boolean;
+    transparency?: boolean;
     /**
      * Whether the asset is vertically locked. This is a read-only field.
      * Applicable to the following creative types: all RICH_MEDIA.
      */
-    verticallyLocked: boolean;
+    verticallyLocked?: boolean;
     /**
      * Detected video duration for video asset. This is a read-only field.
      * Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    videoDuration: number;
+    videoDuration?: number;
     /**
      * Window mode options for flash assets. Applicable to the following
      * creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING,
      * RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and
      * RICH_MEDIA_INPAGE_FLOATING.
      */
-    windowMode: string;
+    windowMode?: string;
     /**
      * zIndex value of an asset. Applicable to the following creative types: all
      * RICH_MEDIA.Additionally, only applicable to assets whose displayType is
@@ -2565,17 +2569,17 @@ export namespace dfareporting_v2_8 {
      * ASSET_DISPLAY_TYPE_OVERLAY. Acceptable values are -999999999 to
      * 999999999, inclusive.
      */
-    zIndex: number;
+    zIndex?: number;
     /**
      * File name of zip file. This is a read-only field. Applicable to the
      * following creative types: HTML5_BANNER.
      */
-    zipFilename: string;
+    zipFilename?: string;
     /**
      * Size of zip file. This is a read-only field. Applicable to the following
      * creative types: HTML5_BANNER.
      */
-    zipFilesize: string;
+    zipFilesize?: string;
   }
   /**
    * Creative Asset ID.
@@ -2587,12 +2591,12 @@ export namespace dfareporting_v2_8 {
      * uploaded asset. Characters in the name must be alphanumeric or one of the
      * following: &quot;.-_ &quot;. Spaces are allowed.
      */
-    name: string;
+    name?: string;
     /**
      * Type of asset to upload. This is a required field. FLASH and IMAGE are no
      * longer supported for new uploads. All image assets should use HTML_IMAGE.
      */
-    type: string;
+    type?: string;
   }
   /**
    * CreativeAssets contains properties of a creative asset file which will be
@@ -2603,33 +2607,33 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of the creative asset. This is a required field.
      */
-    assetIdentifier: Schema$CreativeAssetId;
+    assetIdentifier?: Schema$CreativeAssetId;
     /**
      * List of detected click tags for assets. This is a read-only
      * auto-generated field.
      */
-    clickTags: Schema$ClickTag[];
+    clickTags?: Schema$ClickTag[];
     /**
      * List of feature dependencies for the creative asset that are detected by
      * DCM. Feature dependencies are features that a browser must be able to
      * support in order to render your HTML5 creative correctly. This is a
      * read-only, auto-generated field.
      */
-    detectedFeatures: string[];
+    detectedFeatures?: string[];
     /**
      * Numeric ID of the asset. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the numeric ID of the asset. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeAssetMetadata&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Rules validated during code generation that generated a warning. This is
      * a read-only, auto-generated field.  Possible values are: -
@@ -2648,7 +2652,7 @@ export namespace dfareporting_v2_8 {
      * &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; -
      * &quot;ZIP_INVALID&quot;
      */
-    warnedValidationRules: string[];
+    warnedValidationRules?: string[];
   }
   /**
    * Encapsulates the list of rules for asset selection and a default asset in
@@ -2660,13 +2664,13 @@ export namespace dfareporting_v2_8 {
      * this creative, and will be served if none of the rules match. This is a
      * required field.
      */
-    defaultAssetId: string;
+    defaultAssetId?: string;
     /**
      * Rules determine which asset will be served to a viewer. Rules will be
      * evaluated in the order in which they are stored in this list. This list
      * must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
      */
-    rules: Schema$Rule[];
+    rules?: Schema$Rule[];
   }
   /**
    * Creative Assignment.
@@ -2676,43 +2680,43 @@ export namespace dfareporting_v2_8 {
      * Whether this creative assignment is active. When true, the creative will
      * be included in the ad&#39;s rotation.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Whether applicable event tags should fire when this creative assignment
      * is rendered. If this value is unset when the ad is inserted or updated,
      * it will default to true for all creative types EXCEPT for
      * INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO.
      */
-    applyEventTags: boolean;
+    applyEventTags?: boolean;
     /**
      * Click-through URL of the creative assignment.
      */
-    clickThroughUrl: Schema$ClickThroughUrl;
+    clickThroughUrl?: Schema$ClickThroughUrl;
     /**
      * Companion creative overrides for this creative assignment. Applicable to
      * video ads.
      */
-    companionCreativeOverrides: Schema$CompanionClickThroughOverride[];
+    companionCreativeOverrides?: Schema$CompanionClickThroughOverride[];
     /**
      * Creative group assignments for this creative assignment. Only one
      * assignment per creative group number is allowed for a maximum of two
      * assignments.
      */
-    creativeGroupAssignments: Schema$CreativeGroupAssignment[];
+    creativeGroupAssignments?: Schema$CreativeGroupAssignment[];
     /**
      * ID of the creative to be assigned. This is a required field.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Dimension value for the ID of the creative. This is a read-only,
      * auto-generated field.
      */
-    creativeIdDimensionValue: Schema$DimensionValue;
+    creativeIdDimensionValue?: Schema$DimensionValue;
     /**
      * Date and time that the assigned creative should stop serving. Must be
      * later than the start time.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Rich media exit overrides for this creative assignment. Applicable when
      * the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE
@@ -2721,27 +2725,27 @@ export namespace dfareporting_v2_8 {
      * RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING -
      * RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
      */
-    richMediaExitOverrides: Schema$RichMediaExitOverride[];
+    richMediaExitOverrides?: Schema$RichMediaExitOverride[];
     /**
      * Sequence number of the creative assignment, applicable when the rotation
      * type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to
      * 65535, inclusive.
      */
-    sequence: number;
+    sequence?: number;
     /**
      * Whether the creative to be assigned is SSL-compliant. This is a read-only
      * field that is auto-generated when the ad is inserted or updated.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Date and time that the assigned creative should start serving.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Weight of the creative assignment, applicable when the rotation type is
      * CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
      */
-    weight: number;
+    weight?: number;
   }
   /**
    * Creative Custom Event.
@@ -2751,48 +2755,48 @@ export namespace dfareporting_v2_8 {
      * Unique ID of this event used by DDM Reporting and Data Transfer. This is
      * a read-only field.
      */
-    advertiserCustomEventId: string;
+    advertiserCustomEventId?: string;
     /**
      * User-entered name for the event.
      */
-    advertiserCustomEventName: string;
+    advertiserCustomEventName?: string;
     /**
      * Type of the event. This is a read-only field.
      */
-    advertiserCustomEventType: string;
+    advertiserCustomEventType?: string;
     /**
      * Artwork label column, used to link events in DCM back to events in
      * Studio. This is a required field and should not be modified after
      * insertion.
      */
-    artworkLabel: string;
+    artworkLabel?: string;
     /**
      * Artwork type used by the creative.This is a read-only field.
      */
-    artworkType: string;
+    artworkType?: string;
     /**
      * Exit URL of the event. This field is used only for exit events.
      */
-    exitUrl: string;
+    exitUrl?: string;
     /**
      * ID of this event. This is a required field and should not be modified
      * after insertion.
      */
-    id: string;
+    id?: string;
     /**
      * Properties for rich media popup windows. This field is used only for exit
      * events.
      */
-    popupWindowProperties: Schema$PopupWindowProperties;
+    popupWindowProperties?: Schema$PopupWindowProperties;
     /**
      * Target type used by the event.
      */
-    targetType: string;
+    targetType?: string;
     /**
      * Video reporting ID, used to differentiate multiple videos in a single
      * creative. This is a read-only field.
      */
-    videoReportingId: string;
+    videoReportingId?: string;
   }
   /**
    * Contains properties of a creative field.
@@ -2802,37 +2806,37 @@ export namespace dfareporting_v2_8 {
      * Account ID of this creative field. This is a read-only field that can be
      * left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this creative field. This is a required field on
      * insertion.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * ID of this creative field. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeField&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this creative field. This is a required field and must be less
      * than 256 characters long and unique among creative fields of the same
      * advertiser.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this creative field. This is a read-only field that can
      * be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Creative Field Assignment.
@@ -2841,11 +2845,11 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of the creative field.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * ID of the creative field value.
      */
-    creativeFieldValueId: string;
+    creativeFieldValueId?: string;
   }
   /**
    * Creative Field List Response
@@ -2854,16 +2858,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field collection.
      */
-    creativeFields: Schema$CreativeField[];
+    creativeFields?: Schema$CreativeField[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeFieldsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Contains properties of a creative field value.
@@ -2873,17 +2877,17 @@ export namespace dfareporting_v2_8 {
      * ID of this creative field value. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeFieldValue&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Value of this creative field value. It needs to be less than 256
      * characters in length and unique per creative field.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Creative Field Value List Response
@@ -2892,16 +2896,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field value collection.
      */
-    creativeFieldValues: Schema$CreativeFieldValue[];
+    creativeFieldValues?: Schema$CreativeFieldValue[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeFieldValuesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Contains properties of a creative group.
@@ -2911,44 +2915,44 @@ export namespace dfareporting_v2_8 {
      * Account ID of this creative group. This is a read-only field that can be
      * left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this creative group. This is a required field on
      * insertion.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Subgroup of the creative group. Assign your creative groups to a subgroup
      * in order to filter or manage them more easily. This field is required on
      * insertion and is read-only after insertion. Acceptable values are 1 to 2,
      * inclusive.
      */
-    groupNumber: number;
+    groupNumber?: number;
     /**
      * ID of this creative group. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this creative group. This is a required field and must be less
      * than 256 characters long and unique among creative groups of the same
      * advertiser.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this creative group. This is a read-only field that can
      * be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Creative Group Assignment.
@@ -2957,11 +2961,11 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of the creative group to be assigned.
      */
-    creativeGroupId: string;
+    creativeGroupId?: string;
     /**
      * Creative group number of the creative group assignment.
      */
-    creativeGroupNumber: string;
+    creativeGroupNumber?: string;
   }
   /**
    * Creative Group List Response
@@ -2970,16 +2974,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative group collection.
      */
-    creativeGroups: Schema$CreativeGroup[];
+    creativeGroups?: Schema$CreativeGroup[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativeGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Creative optimization settings.
@@ -2990,20 +2994,20 @@ export namespace dfareporting_v2_8 {
      * when the campaign is inserted or updated. It can be null for existing
      * campaigns.
      */
-    id: string;
+    id?: string;
     /**
      * Name of this creative optimization config. This is a required field and
      * must be less than 129 characters long.
      */
-    name: string;
+    name?: string;
     /**
      * List of optimization activities associated with this configuration.
      */
-    optimizationActivitys: Schema$OptimizationActivity[];
+    optimizationActivitys?: Schema$OptimizationActivity[];
     /**
      * Optimization model for this configuration.
      */
-    optimizationModel: string;
+    optimizationModel?: string;
   }
   /**
    * Creative Rotation.
@@ -3012,24 +3016,24 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative assignments in this creative rotation.
      */
-    creativeAssignments: Schema$CreativeAssignment[];
+    creativeAssignments?: Schema$CreativeAssignment[];
     /**
      * Creative optimization configuration that is used by this ad. It should
      * refer to one of the existing optimization configurations in the ad&#39;s
      * campaign. If it is unset or set to 0, then the campaign&#39;s default
      * optimization configuration will be used for this ad.
      */
-    creativeOptimizationConfigurationId: string;
+    creativeOptimizationConfigurationId?: string;
     /**
      * Type of creative rotation. Can be used to specify whether to use
      * sequential or random rotation.
      */
-    type: string;
+    type?: string;
     /**
      * Strategy for calculating weights. Used with
      * CREATIVE_ROTATION_TYPE_RANDOM.
      */
-    weightCalculationStrategy: string;
+    weightCalculationStrategy?: string;
   }
   /**
    * Creative Settings
@@ -3039,12 +3043,12 @@ export namespace dfareporting_v2_8 {
      * Header text for iFrames for this site. Must be less than or equal to 2000
      * characters long.
      */
-    iFrameFooter: string;
+    iFrameFooter?: string;
     /**
      * Header text for iFrames for this site. Must be less than or equal to 2000
      * characters long.
      */
-    iFrameHeader: string;
+    iFrameHeader?: string;
   }
   /**
    * Creative List Response
@@ -3053,16 +3057,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative collection.
      */
-    creatives: Schema$Creative[];
+    creatives?: Schema$Creative[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#creativesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type
@@ -3073,27 +3077,27 @@ export namespace dfareporting_v2_8 {
      * Dimensions which are compatible to be selected in the
      * &quot;breakdown&quot; section of the report.
      */
-    breakdown: Schema$Dimension[];
+    breakdown?: Schema$Dimension[];
     /**
      * Dimensions which are compatible to be selected in the
      * &quot;dimensionFilters&quot; section of the report.
      */
-    dimensionFilters: Schema$Dimension[];
+    dimensionFilters?: Schema$Dimension[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#crossDimensionReachReportCompatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metrics which are compatible to be selected in the
      * &quot;metricNames&quot; section of the report.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * Metrics which are compatible to be selected in the
      * &quot;overlapMetricNames&quot; section of the report.
      */
-    overlapMetrics: Schema$Metric[];
+    overlapMetrics?: Schema$Metric[];
   }
   /**
    * A custom floodlight variable.
@@ -3103,17 +3107,17 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#customFloodlightVariable&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The type of custom floodlight variable to supply a value for. These map
      * to the &quot;u[1-20]=&quot; in the tags.
      */
-    type: string;
+    type?: string;
     /**
      * The value of the custom floodlight variable. The length of string must
      * not exceed 50 characters.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Represents a Custom Rich Media Events group.
@@ -3123,12 +3127,12 @@ export namespace dfareporting_v2_8 {
      * List of custom rich media event IDs. Dimension values must be all of type
      * dfa:richMediaEventTypeIdAndName.
      */
-    filteredEventIds: Schema$DimensionValue[];
+    filteredEventIds?: Schema$DimensionValue[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#customRichMediaEvents.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Represents a date range.
@@ -3138,20 +3142,20 @@ export namespace dfareporting_v2_8 {
      * The end date of the date range, inclusive. A string of the format:
      * &quot;yyyy-MM-dd&quot;.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * The kind of resource this is, in this case dfareporting#dateRange.
      */
-    kind: string;
+    kind?: string;
     /**
      * The date range relative to the date of when the report is run.
      */
-    relativeDateRange: string;
+    relativeDateRange?: string;
     /**
      * The start date of the date range, inclusive. A string of the format:
      * &quot;yyyy-MM-dd&quot;.
      */
-    startDate: string;
+    startDate?: string;
   }
   /**
    * Day Part Targeting.
@@ -3163,7 +3167,7 @@ export namespace dfareporting_v2_8 {
      * &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; -
      * &quot;SATURDAY&quot;
      */
-    daysOfWeek: string[];
+    daysOfWeek?: string[];
     /**
      * Hours of the day when the ad will serve, where 0 is midnight to 1 AM and
      * 23 is 11 PM to midnight. Can be specified with days of week, in which
@@ -3173,12 +3177,12 @@ export namespace dfareporting_v2_8 {
      * Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values
      * are 0 to 23, inclusive.
      */
-    hoursOfDay: number[];
+    hoursOfDay?: number[];
     /**
      * Whether or not to use the user&#39;s local time. If false, the
      * America/New York time zone applies.
      */
-    userLocalTime: boolean;
+    userLocalTime?: boolean;
   }
   /**
    * Properties of inheriting and overriding the default click-through event
@@ -3190,12 +3194,12 @@ export namespace dfareporting_v2_8 {
      * ID of the click-through event tag to apply to all ads in this
      * entity&#39;s scope.
      */
-    defaultClickThroughEventTagId: string;
+    defaultClickThroughEventTagId?: string;
     /**
      * Whether this entity should override the inherited default click-through
      * event tag with its own defined value.
      */
-    overrideInheritedEventTag: boolean;
+    overrideInheritedEventTag?: boolean;
   }
   /**
    * Delivery Schedule.
@@ -3205,25 +3209,25 @@ export namespace dfareporting_v2_8 {
      * Limit on the number of times an individual user can be served the ad
      * within a specified period of time.
      */
-    frequencyCap: Schema$FrequencyCap;
+    frequencyCap?: Schema$FrequencyCap;
     /**
      * Whether or not hard cutoff is enabled. If true, the ad will not serve
      * after the end date and time. Otherwise the ad will continue to be served
      * until it has reached its delivery goals.
      */
-    hardCutoff: boolean;
+    hardCutoff?: boolean;
     /**
      * Impression ratio for this ad. This ratio determines how often each ad is
      * served relative to the others. For example, if ad A has an impression
      * ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad
      * B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
      */
-    impressionRatio: string;
+    impressionRatio?: string;
     /**
      * Serving priority of an ad, with respect to other ads. The lower the
      * priority number, the greater the priority with which it is served.
      */
-    priority: string;
+    priority?: string;
   }
   /**
    * DFP Settings
@@ -3232,24 +3236,24 @@ export namespace dfareporting_v2_8 {
     /**
      * DFP network code for this directory site.
      */
-    dfpNetworkCode: string;
+    dfpNetworkCode?: string;
     /**
      * DFP network name for this directory site.
      */
-    dfpNetworkName: string;
+    dfpNetworkName?: string;
     /**
      * Whether this directory site accepts programmatic placements.
      */
-    programmaticPlacementAccepted: boolean;
+    programmaticPlacementAccepted?: boolean;
     /**
      * Whether this directory site is available only via DoubleClick Publisher
      * Portal.
      */
-    publisherPortalOnly: boolean;
+    publisherPortalOnly?: boolean;
     /**
      * Whether this directory site accepts publisher-paid tags.
      */
-    pubPaidPlacementAccepted: boolean;
+    pubPaidPlacementAccepted?: boolean;
   }
   /**
    * Represents a dimension.
@@ -3258,11 +3262,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The kind of resource this is, in this case dfareporting#dimension.
      */
-    kind: string;
+    kind?: string;
     /**
      * The dimension name, e.g. dfa:advertiser
      */
-    name: string;
+    name?: string;
   }
   /**
    * Represents a dimension filter.
@@ -3271,15 +3275,15 @@ export namespace dfareporting_v2_8 {
     /**
      * The name of the dimension to filter.
      */
-    dimensionName: string;
+    dimensionName?: string;
     /**
      * The kind of resource this is, in this case dfareporting#dimensionFilter.
      */
-    kind: string;
+    kind?: string;
     /**
      * The value of the dimension to filter.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Represents a DimensionValue resource.
@@ -3288,19 +3292,19 @@ export namespace dfareporting_v2_8 {
     /**
      * The name of the dimension.
      */
-    dimensionName: string;
+    dimensionName?: string;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The ID associated with the value if available.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of resource this is, in this case dfareporting#dimensionValue.
      */
-    kind: string;
+    kind?: string;
     /**
      * Determines how the &#39;value&#39; field is matched when filtering. If
      * not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION,
@@ -3309,11 +3313,11 @@ export namespace dfareporting_v2_8 {
      * dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than
      * EXACT.
      */
-    matchType: string;
+    matchType?: string;
     /**
      * The value of the dimension.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Represents the list of DimensionValue resources.
@@ -3322,22 +3326,22 @@ export namespace dfareporting_v2_8 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The dimension values returned in this response.
      */
-    items: Schema$DimensionValue[];
+    items?: Schema$DimensionValue[];
     /**
      * The kind of list this is, in this case dfareporting#dimensionValueList.
      */
-    kind: string;
+    kind?: string;
     /**
      * Continuation token used to page through dimension values. To retrieve the
      * next page of results, set the next request&#39;s &quot;pageToken&quot; to
      * the value of this field. The page token is only valid for a limited
      * amount of time and should not be persisted.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Represents a DimensionValuesRequest.
@@ -3346,26 +3350,26 @@ export namespace dfareporting_v2_8 {
     /**
      * The name of the dimension for which values should be requested.
      */
-    dimensionName: string;
+    dimensionName?: string;
     /**
      * The end date of the date range for which to retrieve dimension values. A
      * string of the format &quot;yyyy-MM-dd&quot;.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * The list of filters by which to filter values. The filters are ANDed.
      */
-    filters: Schema$DimensionFilter[];
+    filters?: Schema$DimensionFilter[];
     /**
      * The kind of request this is, in this case
      * dfareporting#dimensionValueRequest.
      */
-    kind: string;
+    kind?: string;
     /**
      * The start date of the date range for which to retrieve dimension values.
      * A string of the format &quot;yyyy-MM-dd&quot;.
      */
-    startDate: string;
+    startDate?: string;
   }
   /**
    * DirectorySites contains properties of a website from the Site Directory.
@@ -3376,15 +3380,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether this directory site is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Directory site contacts.
      */
-    contactAssignments: Schema$DirectorySiteContactAssignment[];
+    contactAssignments?: Schema$DirectorySiteContactAssignment[];
     /**
      * Country ID of this directory site. This is a read-only field.
      */
-    countryId: string;
+    countryId?: string;
     /**
      * Currency ID of this directory site. This is a read-only field. Possible
      * values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  -
@@ -3407,54 +3411,54 @@ export namespace dfareporting_v2_8 {
      * for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  -
      * &quot;50&quot; for NGN
      */
-    currencyId: string;
+    currencyId?: string;
     /**
      * Description of this directory site. This is a read-only field.
      */
-    description: string;
+    description?: string;
     /**
      * ID of this directory site. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this directory site. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Tag types for regular placements.  Acceptable values are: -
      * &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; -
      * &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
      */
-    inpageTagFormats: string[];
+    inpageTagFormats?: string[];
     /**
      * Tag types for interstitial placements.  Acceptable values are: -
      * &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; -
      * &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; -
      * &quot;JAVASCRIPT_INTERSTITIAL&quot;
      */
-    interstitialTagFormats: string[];
+    interstitialTagFormats?: string[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#directorySite&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this directory site.
      */
-    name: string;
+    name?: string;
     /**
      * Parent directory site ID.
      */
-    parentId: string;
+    parentId?: string;
     /**
      * Directory site settings.
      */
-    settings: Schema$DirectorySiteSettings;
+    settings?: Schema$DirectorySiteSettings;
     /**
      * URL of this directory site.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Contains properties of a Site Directory contact.
@@ -3463,45 +3467,45 @@ export namespace dfareporting_v2_8 {
     /**
      * Address of this directory site contact.
      */
-    address: string;
+    address?: string;
     /**
      * Email address of this directory site contact.
      */
-    email: string;
+    email?: string;
     /**
      * First name of this directory site contact.
      */
-    firstName: string;
+    firstName?: string;
     /**
      * ID of this directory site contact. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#directorySiteContact&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Last name of this directory site contact.
      */
-    lastName: string;
+    lastName?: string;
     /**
      * Phone number of this directory site contact.
      */
-    phone: string;
+    phone?: string;
     /**
      * Directory site contact role.
      */
-    role: string;
+    role?: string;
     /**
      * Title or designation of this directory site contact.
      */
-    title: string;
+    title?: string;
     /**
      * Directory site contact type.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Directory Site Contact Assignment
@@ -3511,13 +3515,13 @@ export namespace dfareporting_v2_8 {
      * ID of this directory site contact. This is a read-only, auto-generated
      * field.
      */
-    contactId: string;
+    contactId?: string;
     /**
      * Visibility of this directory site contact assignment. When set to PUBLIC
      * this contact assignment is visible to all account and agency users; when
      * set to PRIVATE it is visible only to the site.
      */
-    visibility: string;
+    visibility?: string;
   }
   /**
    * Directory Site Contact List Response
@@ -3526,16 +3530,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Directory site contact collection
      */
-    directorySiteContacts: Schema$DirectorySiteContact[];
+    directorySiteContacts?: Schema$DirectorySiteContact[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#directorySiteContactsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Directory Site Settings
@@ -3544,33 +3548,33 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether this directory site has disabled active view creatives.
      */
-    activeViewOptOut: boolean;
+    activeViewOptOut?: boolean;
     /**
      * Directory site DFP settings.
      */
-    dfpSettings: Schema$DfpSettings;
+    dfpSettings?: Schema$DfpSettings;
     /**
      * Whether this site accepts in-stream video ads.
      */
-    instreamVideoPlacementAccepted: boolean;
+    instreamVideoPlacementAccepted?: boolean;
     /**
      * Whether this site accepts interstitial ads.
      */
-    interstitialPlacementAccepted: boolean;
+    interstitialPlacementAccepted?: boolean;
     /**
      * Whether this directory site has disabled Nielsen OCR reach ratings.
      */
-    nielsenOcrOptOut: boolean;
+    nielsenOcrOptOut?: boolean;
     /**
      * Whether this directory site has disabled generation of Verification ins
      * tags.
      */
-    verificationTagOptOut: boolean;
+    verificationTagOptOut?: boolean;
     /**
      * Whether this directory site has disabled active view for in-stream video
      * creatives. This is a read-only field.
      */
-    videoActiveViewOptOut: boolean;
+    videoActiveViewOptOut?: boolean;
   }
   /**
    * Directory Site List Response
@@ -3579,16 +3583,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Directory site collection.
      */
-    directorySites: Schema$DirectorySite[];
+    directorySites?: Schema$DirectorySite[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#directorySitesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are
@@ -3603,22 +3607,22 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#dynamicTargetingKey&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this dynamic targeting key. This is a required field. Must be
      * less than 256 characters long and cannot contain commas. All characters
      * are converted to lowercase.
      */
-    name: string;
+    name?: string;
     /**
      * ID of the object of this dynamic targeting key. This is a required field.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * Type of the object of this dynamic targeting key. This is a required
      * field.
      */
-    objectType: string;
+    objectType?: string;
   }
   /**
    * Dynamic Targeting Key List Response
@@ -3627,12 +3631,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Dynamic targeting key collection.
      */
-    dynamicTargetingKeys: Schema$DynamicTargetingKey[];
+    dynamicTargetingKeys?: Schema$DynamicTargetingKey[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A description of how user IDs are encrypted.
@@ -3642,22 +3646,22 @@ export namespace dfareporting_v2_8 {
      * The encryption entity ID. This should match the encryption configuration
      * for ad serving or Data Transfer.
      */
-    encryptionEntityId: string;
+    encryptionEntityId?: string;
     /**
      * The encryption entity type. This should match the encryption
      * configuration for ad serving or Data Transfer.
      */
-    encryptionEntityType: string;
+    encryptionEntityType?: string;
     /**
      * Describes whether the encrypted cookie was received from ad serving (the
      * %m macro) or from Data Transfer.
      */
-    encryptionSource: string;
+    encryptionSource?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#encryptionInfo&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains properties of an event tag.
@@ -3667,96 +3671,96 @@ export namespace dfareporting_v2_8 {
      * Account ID of this event tag. This is a read-only field that can be left
      * blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this event tag. This field or the campaignId field is
      * required on insertion.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Campaign ID of this event tag. This field or the advertiserId field is
      * required on insertion.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Dimension value for the ID of the campaign. This is a read-only,
      * auto-generated field.
      */
-    campaignIdDimensionValue: Schema$DimensionValue;
+    campaignIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this event tag should be automatically enabled for all of the
      * advertiser&#39;s campaigns and ads.
      */
-    enabledByDefault: boolean;
+    enabledByDefault?: boolean;
     /**
      * Whether to remove this event tag from ads that are trafficked through
      * DoubleClick Bid Manager to Ad Exchange. This may be useful if the event
      * tag uses a pixel that is unapproved for Ad Exchange bids on one or more
      * networks, such as the Google Display Network.
      */
-    excludeFromAdxRequests: boolean;
+    excludeFromAdxRequests?: boolean;
     /**
      * ID of this event tag. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#eventTag&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this event tag. This is a required field and must be less than
      * 256 characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Site filter type for this event tag. If no type is specified then the
      * event tag will be applied to all sites.
      */
-    siteFilterType: string;
+    siteFilterType?: string;
     /**
      * Filter list of site IDs associated with this event tag. The
      * siteFilterType determines whether this is a whitelist or blacklist
      * filter.
      */
-    siteIds: string[];
+    siteIds?: string[];
     /**
      * Whether this tag is SSL-compliant or not. This is a read-only field.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Status of this event tag. Must be ENABLED for this event tag to fire.
      * This is a required field.
      */
-    status: string;
+    status?: string;
     /**
      * Subaccount ID of this event tag. This is a read-only field that can be
      * left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Event tag type. Can be used to specify whether to use a third-party
      * pixel, a third-party JavaScript URL, or a third-party click-through URL
      * for either impression or click tracking. This is a required field.
      */
-    type: string;
+    type?: string;
     /**
      * Payload URL for this event tag. The URL on a click-through event tag
      * should have a landing page URL appended to the end of it. This field is
      * required on insertion.
      */
-    url: string;
+    url?: string;
     /**
      * Number of times the landing page URL should be URL-escaped before being
      * appended to the click-through event tag URL. Only applies to
      * click-through event tags as specified by the event tag type.
      */
-    urlEscapeLevels: number;
+    urlEscapeLevels?: number;
   }
   /**
    * Event tag override information.
@@ -3765,11 +3769,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether this override is enabled.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * ID of this event tag override. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
   }
   /**
    * Event Tag List Response
@@ -3778,12 +3782,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Event tag collection.
      */
-    eventTags: Schema$EventTag[];
+    eventTags?: Schema$EventTag[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#eventTagsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Represents a File resource. A file contains the metadata for a report run.
@@ -3795,45 +3799,45 @@ export namespace dfareporting_v2_8 {
      * The date range for which the file has report data. The date range will
      * always be the absolute date range for which the report is run.
      */
-    dateRange: Schema$DateRange;
+    dateRange?: Schema$DateRange;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The filename of the file.
      */
-    fileName: string;
+    fileName?: string;
     /**
      * The output format of the report. Only available once the file is
      * available.
      */
-    format: string;
+    format?: string;
     /**
      * The unique ID of this report file.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of resource this is, in this case dfareporting#file.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp in milliseconds since epoch when this file was last
      * modified.
      */
-    lastModifiedTime: string;
+    lastModifiedTime?: string;
     /**
      * The ID of the report this file was generated from.
      */
-    reportId: string;
+    reportId?: string;
     /**
      * The status of the report file.
      */
-    status: string;
+    status?: string;
     /**
      * The URLs where the completed report file can be downloaded.
      */
-    urls: any;
+    urls?: any;
   }
   /**
    * Represents the list of File resources.
@@ -3842,22 +3846,22 @@ export namespace dfareporting_v2_8 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The files returned in this response.
      */
-    items: Schema$File[];
+    items?: Schema$File[];
     /**
      * The kind of list this is, in this case dfareporting#fileList.
      */
-    kind: string;
+    kind?: string;
     /**
      * Continuation token used to page through files. To retrieve the next page
      * of results, set the next request&#39;s &quot;pageToken&quot; to the value
      * of this field. The page token is only valid for a limited amount of time
      * and should not be persisted.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Flight
@@ -3866,19 +3870,19 @@ export namespace dfareporting_v2_8 {
     /**
      * Inventory item flight end date.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Rate or cost of this flight.
      */
-    rateOrCost: string;
+    rateOrCost?: string;
     /**
      * Inventory item flight start date.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Units of this flight.
      */
-    units: string;
+    units?: string;
   }
   /**
    * Floodlight Activity GenerateTag Response
@@ -3888,12 +3892,12 @@ export namespace dfareporting_v2_8 {
      * Generated tag for this Floodlight activity. For global site tags, this is
      * the event snippet.
      */
-    floodlightActivityTag: string;
+    floodlightActivityTag?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Floodlight Activity List Response
@@ -3902,16 +3906,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity collection.
      */
-    floodlightActivities: Schema$FloodlightActivity[];
+    floodlightActivities?: Schema$FloodlightActivity[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivitiesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Contains properties of a Floodlight activity.
@@ -3921,129 +3925,129 @@ export namespace dfareporting_v2_8 {
      * Account ID of this floodlight activity. This is a read-only field that
      * can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this floodlight activity. If this field is left blank,
      * the value will be copied over either from the activity group&#39;s
      * advertiser or the existing activity&#39;s advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Code type used for cache busting in the generated tag. Applicable only
      * when floodlightActivityGroupType is COUNTER and countingMethod is
      * STANDARD_COUNTING or UNIQUE_COUNTING.
      */
-    cacheBustingType: string;
+    cacheBustingType?: string;
     /**
      * Counting method for conversions for this floodlight activity. This is a
      * required field.
      */
-    countingMethod: string;
+    countingMethod?: string;
     /**
      * Dynamic floodlight tags.
      */
-    defaultTags: Schema$FloodlightActivityDynamicTag[];
+    defaultTags?: Schema$FloodlightActivityDynamicTag[];
     /**
      * URL where this tag will be deployed. If specified, must be less than 256
      * characters long.
      */
-    expectedUrl: string;
+    expectedUrl?: string;
     /**
      * Floodlight activity group ID of this floodlight activity. This is a
      * required field.
      */
-    floodlightActivityGroupId: string;
+    floodlightActivityGroupId?: string;
     /**
      * Name of the associated floodlight activity group. This is a read-only
      * field.
      */
-    floodlightActivityGroupName: string;
+    floodlightActivityGroupName?: string;
     /**
      * Tag string of the associated floodlight activity group. This is a
      * read-only field.
      */
-    floodlightActivityGroupTagString: string;
+    floodlightActivityGroupTagString?: string;
     /**
      * Type of the associated floodlight activity group. This is a read-only
      * field.
      */
-    floodlightActivityGroupType: string;
+    floodlightActivityGroupType?: string;
     /**
      * Floodlight configuration ID of this floodlight activity. If this field is
      * left blank, the value will be copied over either from the activity
      * group&#39;s floodlight configuration or from the existing activity&#39;s
      * floodlight configuration.
      */
-    floodlightConfigurationId: string;
+    floodlightConfigurationId?: string;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a
      * read-only, auto-generated field.
      */
-    floodlightConfigurationIdDimensionValue: Schema$DimensionValue;
+    floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this activity is archived.
      */
-    hidden: boolean;
+    hidden?: boolean;
     /**
      * ID of this floodlight activity. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this floodlight activity. This is a
      * read-only, auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Whether the image tag is enabled for this activity.
      */
-    imageTagEnabled: boolean;
+    imageTagEnabled?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivity&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this floodlight activity. This is a required field. Must be less
      * than 129 characters long and cannot contain quotes.
      */
-    name: string;
+    name?: string;
     /**
      * General notes or implementation instructions for the tag.
      */
-    notes: string;
+    notes?: string;
     /**
      * Publisher dynamic floodlight tags.
      */
-    publisherTags: Schema$FloodlightActivityPublisherDynamicTag[];
+    publisherTags?: Schema$FloodlightActivityPublisherDynamicTag[];
     /**
      * Whether this tag should use SSL.
      */
-    secure: boolean;
+    secure?: boolean;
     /**
      * Whether the floodlight activity is SSL-compliant. This is a read-only
      * field, its value detected by the system from the floodlight tags.
      */
-    sslCompliant: boolean;
+    sslCompliant?: boolean;
     /**
      * Whether this floodlight activity must be SSL-compliant.
      */
-    sslRequired: boolean;
+    sslRequired?: boolean;
     /**
      * Subaccount ID of this floodlight activity. This is a read-only field that
      * can be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Tag format type for the floodlight activity. If left blank, the tag
      * format will default to HTML.
      */
-    tagFormat: string;
+    tagFormat?: string;
     /**
      * Value of the cat= parameter in the floodlight tag, which the ad servers
      * use to identify the activity. This is optional: if empty, a new tag
@@ -4052,13 +4056,13 @@ export namespace dfareporting_v2_8 {
      * string must also be unique among activities of the same activity group.
      * This field is read-only after insertion.
      */
-    tagString: string;
+    tagString?: string;
     /**
      * List of the user-defined variables used by this conversion tag. These map
      * to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user
      * defined type. Acceptable values are U1 to U100, inclusive.
      */
-    userDefinedVariableTypes: string[];
+    userDefinedVariableTypes?: string[];
   }
   /**
    * Dynamic Tag
@@ -4067,15 +4071,15 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this dynamic tag. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Name of this tag.
      */
-    name: string;
+    name?: string;
     /**
      * Tag code.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Contains properties of a Floodlight activity group.
@@ -4085,54 +4089,54 @@ export namespace dfareporting_v2_8 {
      * Account ID of this floodlight activity group. This is a read-only field
      * that can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this floodlight activity group. If this field is left
      * blank, the value will be copied over either from the floodlight
      * configuration&#39;s advertiser or from the existing activity group&#39;s
      * advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Floodlight configuration ID of this floodlight activity group. This is a
      * required field.
      */
-    floodlightConfigurationId: string;
+    floodlightConfigurationId?: string;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a
      * read-only, auto-generated field.
      */
-    floodlightConfigurationIdDimensionValue: Schema$DimensionValue;
+    floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
      * ID of this floodlight activity group. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this floodlight activity group. This is a
      * read-only, auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivityGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this floodlight activity group. This is a required field. Must be
      * less than 65 characters long and cannot contain quotes.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this floodlight activity group. This is a read-only
      * field that can be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Value of the type= parameter in the floodlight tag, which the ad servers
      * use to identify the activity group that the activity belongs to. This is
@@ -4142,12 +4146,12 @@ export namespace dfareporting_v2_8 {
      * activity groups of the same floodlight configuration. This field is
      * read-only after insertion.
      */
-    tagString: string;
+    tagString?: string;
     /**
      * Type of the floodlight activity group. This is a required field that is
      * read-only after insertion.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Floodlight Activity Group List Response
@@ -4156,16 +4160,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity group collection.
      */
-    floodlightActivityGroups: Schema$FloodlightActivityGroup[];
+    floodlightActivityGroups?: Schema$FloodlightActivityGroup[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Publisher Dynamic Tag
@@ -4174,30 +4178,30 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether this tag is applicable only for click-throughs.
      */
-    clickThrough: boolean;
+    clickThrough?: boolean;
     /**
      * Directory site ID of this dynamic tag. This is a write-only field that
      * can be used as an alternative to the siteId field. When this resource is
      * retrieved, only the siteId field will be populated.
      */
-    directorySiteId: string;
+    directorySiteId?: string;
     /**
      * Dynamic floodlight tag.
      */
-    dynamicTag: Schema$FloodlightActivityDynamicTag;
+    dynamicTag?: Schema$FloodlightActivityDynamicTag;
     /**
      * Site ID of this dynamic tag.
      */
-    siteId: string;
+    siteId?: string;
     /**
      * Dimension value for the ID of the site. This is a read-only,
      * auto-generated field.
      */
-    siteIdDimensionValue: Schema$DimensionValue;
+    siteIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this tag is applicable only for view-throughs.
      */
-    viewThrough: boolean;
+    viewThrough?: boolean;
   }
   /**
    * Contains properties of a Floodlight configuration.
@@ -4207,79 +4211,79 @@ export namespace dfareporting_v2_8 {
      * Account ID of this floodlight configuration. This is a read-only field
      * that can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of the parent advertiser of this floodlight configuration.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether advertiser data is shared with Google Analytics.
      */
-    analyticsDataSharingEnabled: boolean;
+    analyticsDataSharingEnabled?: boolean;
     /**
      * Whether the exposure-to-conversion report is enabled. This report shows
      * detailed pathway information on up to 10 of the most recent ad exposures
      * seen by a user before converting.
      */
-    exposureToConversionEnabled: boolean;
+    exposureToConversionEnabled?: boolean;
     /**
      * Day that will be counted as the first day of the week in reports. This is
      * a required field.
      */
-    firstDayOfWeek: string;
+    firstDayOfWeek?: string;
     /**
      * ID of this floodlight configuration. This is a read-only, auto-generated
      * field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this floodlight configuration. This is a
      * read-only, auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Whether in-app attribution tracking is enabled.
      */
-    inAppAttributionTrackingEnabled: boolean;
+    inAppAttributionTrackingEnabled?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightConfiguration&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Lookback window settings for this floodlight configuration.
      */
-    lookbackConfiguration: Schema$LookbackConfiguration;
+    lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
      * Types of attribution options for natural search conversions.
      */
-    naturalSearchConversionAttributionOption: string;
+    naturalSearchConversionAttributionOption?: string;
     /**
      * Settings for DCM Omniture integration.
      */
-    omnitureSettings: Schema$OmnitureSettings;
+    omnitureSettings?: Schema$OmnitureSettings;
     /**
      * Subaccount ID of this floodlight configuration. This is a read-only field
      * that can be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Configuration settings for dynamic and image floodlight tags.
      */
-    tagSettings: Schema$TagSettings;
+    tagSettings?: Schema$TagSettings;
     /**
      * List of third-party authentication tokens enabled for this configuration.
      */
-    thirdPartyAuthenticationTokens: Schema$ThirdPartyAuthenticationToken[];
+    thirdPartyAuthenticationTokens?: Schema$ThirdPartyAuthenticationToken[];
     /**
      * List of user defined variables enabled for this configuration.
      */
-    userDefinedVariableConfigurations:
+    userDefinedVariableConfigurations?:
         Schema$UserDefinedVariableConfiguration[];
   }
   /**
@@ -4289,12 +4293,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight configuration collection.
      */
-    floodlightConfigurations: Schema$FloodlightConfiguration[];
+    floodlightConfigurations?: Schema$FloodlightConfiguration[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type
@@ -4305,22 +4309,22 @@ export namespace dfareporting_v2_8 {
      * Dimensions which are compatible to be selected in the
      * &quot;dimensionFilters&quot; section of the report.
      */
-    dimensionFilters: Schema$Dimension[];
+    dimensionFilters?: Schema$Dimension[];
     /**
      * Dimensions which are compatible to be selected in the
      * &quot;dimensions&quot; section of the report.
      */
-    dimensions: Schema$Dimension[];
+    dimensions?: Schema$Dimension[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#floodlightReportCompatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metrics which are compatible to be selected in the
      * &quot;metricNames&quot; section of the report.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
   }
   /**
    * Frequency Cap.
@@ -4330,12 +4334,12 @@ export namespace dfareporting_v2_8 {
      * Duration of time, in seconds, for this frequency cap. The maximum
      * duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
      */
-    duration: string;
+    duration?: string;
     /**
      * Number of times an individual user can be served the ad within the
      * specified duration. Acceptable values are 1 to 15, inclusive.
      */
-    impressions: string;
+    impressions?: string;
   }
   /**
    * FsCommand.
@@ -4345,24 +4349,24 @@ export namespace dfareporting_v2_8 {
      * Distance from the left of the browser.Applicable when positionOption is
      * DISTANCE_FROM_TOP_LEFT_CORNER.
      */
-    left: number;
+    left?: number;
     /**
      * Position in the browser where the window will open.
      */
-    positionOption: string;
+    positionOption?: string;
     /**
      * Distance from the top of the browser. Applicable when positionOption is
      * DISTANCE_FROM_TOP_LEFT_CORNER.
      */
-    top: number;
+    top?: number;
     /**
      * Height of the window.
      */
-    windowHeight: number;
+    windowHeight?: number;
     /**
      * Width of the window.
      */
-    windowWidth: number;
+    windowWidth?: number;
   }
   /**
    * Geographical Targeting.
@@ -4374,7 +4378,7 @@ export namespace dfareporting_v2_8 {
      * targeting a city, do not target or exclude the country of the city, and
      * do not target the metro or region of the city.
      */
-    cities: Schema$City[];
+    cities?: Schema$City[];
     /**
      * Countries to be targeted or excluded from targeting, depending on the
      * setting of the excludeCountries field. For each country only dartId is
@@ -4382,33 +4386,33 @@ export namespace dfareporting_v2_8 {
      * inserted or updated. If targeting or excluding a country, do not target
      * regions, cities, metros, or postal codes in the same country.
      */
-    countries: Schema$Country[];
+    countries?: Schema$Country[];
     /**
      * Whether or not to exclude the countries in the countries field from
      * targeting. If false, the countries field refers to countries which will
      * be targeted by the ad.
      */
-    excludeCountries: boolean;
+    excludeCountries?: boolean;
     /**
      * Metros to be targeted. For each metro only dmaId is required. The other
      * fields are populated automatically when the ad is inserted or updated. If
      * targeting a metro, do not target or exclude the country of the metro.
      */
-    metros: Schema$Metro[];
+    metros?: Schema$Metro[];
     /**
      * Postal codes to be targeted. For each postal code only id is required.
      * The other fields are populated automatically when the ad is inserted or
      * updated. If targeting a postal code, do not target or exclude the country
      * of the postal code.
      */
-    postalCodes: Schema$PostalCode[];
+    postalCodes?: Schema$PostalCode[];
     /**
      * Regions to be targeted. For each region only dartId is required. The
      * other fields are populated automatically when the ad is inserted or
      * updated. If targeting a region, do not target or exclude the country of
      * the region.
      */
-    regions: Schema$Region[];
+    regions?: Schema$Region[];
   }
   /**
    * Represents a buy from the DoubleClick Planning inventory store.
@@ -4417,89 +4421,89 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this inventory item.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad slots of this inventory item. If this inventory item represents a
      * standalone placement, there will be exactly one ad slot. If this
      * inventory item represents a placement group, there will be more than one
      * ad slot, each representing one child placement in that placement group.
      */
-    adSlots: Schema$AdSlot[];
+    adSlots?: Schema$AdSlot[];
     /**
      * Advertiser ID of this inventory item.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Content category ID of this inventory item.
      */
-    contentCategoryId: string;
+    contentCategoryId?: string;
     /**
      * Estimated click-through rate of this inventory item.
      */
-    estimatedClickThroughRate: string;
+    estimatedClickThroughRate?: string;
     /**
      * Estimated conversion rate of this inventory item.
      */
-    estimatedConversionRate: string;
+    estimatedConversionRate?: string;
     /**
      * ID of this inventory item.
      */
-    id: string;
+    id?: string;
     /**
      * Whether this inventory item is in plan.
      */
-    inPlan: boolean;
+    inPlan?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#inventoryItem&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this inventory item.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Name of this inventory item. For standalone inventory items, this is the
      * same name as that of its only ad slot. For group inventory items, this
      * can differ from the name of any of its ad slots.
      */
-    name: string;
+    name?: string;
     /**
      * Negotiation channel ID of this inventory item.
      */
-    negotiationChannelId: string;
+    negotiationChannelId?: string;
     /**
      * Order ID of this inventory item.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Placement strategy ID of this inventory item.
      */
-    placementStrategyId: string;
+    placementStrategyId?: string;
     /**
      * Pricing of this inventory item.
      */
-    pricing: Schema$Pricing;
+    pricing?: Schema$Pricing;
     /**
      * Project ID of this inventory item.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * RFP ID of this inventory item.
      */
-    rfpId: string;
+    rfpId?: string;
     /**
      * ID of the site this inventory item is associated with.
      */
-    siteId: string;
+    siteId?: string;
     /**
      * Subaccount ID of this inventory item.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Type of inventory item.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Inventory item List Response
@@ -4508,16 +4512,16 @@ export namespace dfareporting_v2_8 {
     /**
      * Inventory item collection
      */
-    inventoryItems: Schema$InventoryItem[];
+    inventoryItems?: Schema$InventoryItem[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#inventoryItemsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Key Value Targeting Expression.
@@ -4526,7 +4530,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Keyword expression being targeted by the ad.
      */
-    expression: string;
+    expression?: string;
   }
   /**
    * Contains information about where a user&#39;s browser is taken after the
@@ -4538,26 +4542,26 @@ export namespace dfareporting_v2_8 {
      * that do not have a landing page assigned explicitly. Only one default
      * landing page is allowed per campaign.
      */
-    default: boolean;
+    default?: boolean;
     /**
      * ID of this landing page. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#landingPage&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this landing page. This is a required field. It must be less than
      * 256 characters long, and must be unique among landing pages of the same
      * campaign.
      */
-    name: string;
+    name?: string;
     /**
      * URL of this landing page. This is a required field.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Landing Page List Response
@@ -4567,11 +4571,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#landingPagesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Landing page collection
      */
-    landingPages: Schema$LandingPage[];
+    landingPages?: Schema$LandingPage[];
   }
   /**
    * Contains information about a language that can be targeted by ads.
@@ -4581,22 +4585,22 @@ export namespace dfareporting_v2_8 {
      * Language ID of this language. This is the ID used for targeting and
      * generating reports.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#language&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Format of language code is an ISO 639 two-letter language code optionally
      * followed by an underscore followed by an ISO 3166 code. Examples are
      * &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * Name of this language.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Language List Response
@@ -4606,11 +4610,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#languagesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Language collection.
      */
-    languages: Schema$Language[];
+    languages?: Schema$Language[];
   }
   /**
    * Language Targeting.
@@ -4621,7 +4625,7 @@ export namespace dfareporting_v2_8 {
      * required. The other fields are populated automatically when the ad is
      * inserted or updated.
      */
-    languages: Schema$Language[];
+    languages?: Schema$Language[];
   }
   /**
    * Modification timestamp.
@@ -4630,7 +4634,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Timestamp of the last change in milliseconds since epoch.
      */
-    time: string;
+    time?: string;
   }
   /**
    * A group clause made up of list population terms representing constraints
@@ -4641,7 +4645,7 @@ export namespace dfareporting_v2_8 {
      * Terms of this list population clause. Each clause is made up of list
      * population terms representing constraints and are joined by ORs.
      */
-    terms: Schema$ListPopulationTerm[];
+    terms?: Schema$ListPopulationTerm[];
   }
   /**
    * Remarketing List Population Rule.
@@ -4651,18 +4655,18 @@ export namespace dfareporting_v2_8 {
      * Floodlight activity ID associated with this rule. This field can be left
      * blank.
      */
-    floodlightActivityId: string;
+    floodlightActivityId?: string;
     /**
      * Name of floodlight activity associated with this rule. This is a
      * read-only, auto-generated field.
      */
-    floodlightActivityName: string;
+    floodlightActivityName?: string;
     /**
      * Clauses that make up this list population rule. Clauses are joined by
      * ANDs, and the clauses themselves are made up of list population terms
      * which are joined by ORs.
      */
-    listPopulationClauses: Schema$ListPopulationClause[];
+    listPopulationClauses?: Schema$ListPopulationClause[];
   }
   /**
    * Remarketing List Population Rule Term.
@@ -4674,23 +4678,23 @@ export namespace dfareporting_v2_8 {
      * is only relevant when type is set to LIST_MEMBERSHIP_TERM. False by
      * default.
      */
-    contains: boolean;
+    contains?: boolean;
     /**
      * Whether to negate the comparison result of this term during rule
      * evaluation. This field is only relevant when type is left unset or set to
      * CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    negation: boolean;
+    negation?: boolean;
     /**
      * Comparison operator of this term. This field is only relevant when type
      * is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    operator: string;
+    operator?: string;
     /**
      * ID of the list in question. This field is only relevant when type is set
      * to LIST_MEMBERSHIP_TERM.
      */
-    remarketingListId: string;
+    remarketingListId?: string;
     /**
      * List population term type determines the applicable fields in this
      * object. If left unset or set to CUSTOM_VARIABLE_TERM, then variableName,
@@ -4699,24 +4703,24 @@ export namespace dfareporting_v2_8 {
      * applicable. If set to REFERRER_TERM then operator, value, and negation
      * are applicable.
      */
-    type: string;
+    type?: string;
     /**
      * Literal to compare the variable to. This field is only relevant when type
      * is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    value: string;
+    value?: string;
     /**
      * Friendly name of this term&#39;s variable. This is a read-only,
      * auto-generated field. This field is only relevant when type is left unset
      * or set to CUSTOM_VARIABLE_TERM.
      */
-    variableFriendlyName: string;
+    variableFriendlyName?: string;
     /**
      * Name of the variable (U1, U2, etc.) being compared in this term. This
      * field is only relevant when type is set to null, CUSTOM_VARIABLE_TERM or
      * REFERRER_TERM.
      */
-    variableName: string;
+    variableName?: string;
   }
   /**
    * Remarketing List Targeting Expression.
@@ -4725,7 +4729,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Expression describing which lists are being targeted by the ad.
      */
-    expression: string;
+    expression?: string;
   }
   /**
    * Lookback configuration settings.
@@ -4738,7 +4742,7 @@ export namespace dfareporting_v2_8 {
      * default value for your account will be used. Acceptable values are 0 to
      * 90, inclusive.
      */
-    clickDuration: number;
+    clickDuration?: number;
     /**
      * Lookback window, in days, from the last time a given user viewed one of
      * your ads. If you enter 0, impressions will not be considered as
@@ -4746,7 +4750,7 @@ export namespace dfareporting_v2_8 {
      * the default value for your account will be used. Acceptable values are 0
      * to 90, inclusive.
      */
-    postImpressionActivitiesDuration: number;
+    postImpressionActivitiesDuration?: number;
   }
   /**
    * Represents a metric.
@@ -4755,11 +4759,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The kind of resource this is, in this case dfareporting#metric.
      */
-    kind: string;
+    kind?: string;
     /**
      * The metric name, e.g. dfa:impressions
      */
-    name: string;
+    name?: string;
   }
   /**
    * Contains information about a metro region that can be targeted by ads.
@@ -4768,33 +4772,33 @@ export namespace dfareporting_v2_8 {
     /**
      * Country code of the country to which this metro region belongs.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of the country to which this metro region belongs.
      */
-    countryDartId: string;
+    countryDartId?: string;
     /**
      * DART ID of this metro region.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * DMA ID of this metro region. This is the ID used for targeting and
      * generating reports, and is equivalent to metro_code.
      */
-    dmaId: string;
+    dmaId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#metro&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metro code of this metro region. This is equivalent to dma_id.
      */
-    metroCode: string;
+    metroCode?: string;
     /**
      * Name of this metro region.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Metro List Response
@@ -4804,11 +4808,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#metrosListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metro collection.
      */
-    metros: Schema$Metro[];
+    metros?: Schema$Metro[];
   }
   /**
    * Contains information about a mobile carrier that can be targeted by ads.
@@ -4817,24 +4821,24 @@ export namespace dfareporting_v2_8 {
     /**
      * Country code of the country to which this mobile carrier belongs.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of the country to which this mobile carrier belongs.
      */
-    countryDartId: string;
+    countryDartId?: string;
     /**
      * ID of this mobile carrier.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#mobileCarrier&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this mobile carrier.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Mobile Carrier List Response
@@ -4844,11 +4848,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#mobileCarriersListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Mobile carrier collection.
      */
-    mobileCarriers: Schema$MobileCarrier[];
+    mobileCarriers?: Schema$MobileCarrier[];
   }
   /**
    * Object Filter.
@@ -4858,18 +4862,18 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#objectFilter&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Applicable when status is ASSIGNED. The user has access to objects with
      * these object IDs.
      */
-    objectIds: string[];
+    objectIds?: string[];
     /**
      * Status of the filter. NONE means the user has access to none of the
      * objects. ALL means the user has access to all objects. ASSIGNED means the
      * user has access to the objects with IDs in the objectIds list.
      */
-    status: string;
+    status?: string;
   }
   /**
    * Offset Position.
@@ -4878,11 +4882,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Offset distance from left side of an asset or a window.
      */
-    left: number;
+    left?: number;
     /**
      * Offset distance from top side of an asset or a window.
      */
-    top: number;
+    top?: number;
   }
   /**
    * Omniture Integration Settings.
@@ -4892,12 +4896,12 @@ export namespace dfareporting_v2_8 {
      * Whether placement cost data will be sent to Omniture. This property can
      * be enabled only if omnitureIntegrationEnabled is true.
      */
-    omnitureCostDataEnabled: boolean;
+    omnitureCostDataEnabled?: boolean;
     /**
      * Whether Omniture integration is enabled. This property can be enabled
      * only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
      */
-    omnitureIntegrationEnabled: boolean;
+    omnitureIntegrationEnabled?: boolean;
   }
   /**
    * Contains information about an operating system that can be targeted by ads.
@@ -4906,24 +4910,24 @@ export namespace dfareporting_v2_8 {
     /**
      * DART ID of this operating system. This is the ID used for targeting.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * Whether this operating system is for desktop.
      */
-    desktop: boolean;
+    desktop?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#operatingSystem&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether this operating system is for mobile.
      */
-    mobile: boolean;
+    mobile?: boolean;
     /**
      * Name of this operating system.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Operating System List Response
@@ -4933,11 +4937,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#operatingSystemsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Operating system collection.
      */
-    operatingSystems: Schema$OperatingSystem[];
+    operatingSystems?: Schema$OperatingSystem[];
   }
   /**
    * Contains information about a particular version of an operating system that
@@ -4947,29 +4951,29 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this operating system version.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#operatingSystemVersion&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Major version (leftmost number) of this operating system version.
      */
-    majorVersion: string;
+    majorVersion?: string;
     /**
      * Minor version (number after the first dot) of this operating system
      * version.
      */
-    minorVersion: string;
+    minorVersion?: string;
     /**
      * Name of this operating system version.
      */
-    name: string;
+    name?: string;
     /**
      * Operating system of this operating system version.
      */
-    operatingSystem: Schema$OperatingSystem;
+    operatingSystem?: Schema$OperatingSystem;
   }
   /**
    * Operating System Version List Response
@@ -4979,11 +4983,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Operating system version collection.
      */
-    operatingSystemVersions: Schema$OperatingSystemVersion[];
+    operatingSystemVersions?: Schema$OperatingSystemVersion[];
   }
   /**
    * Creative optimization activity.
@@ -4993,18 +4997,18 @@ export namespace dfareporting_v2_8 {
      * Floodlight activity ID of this optimization activity. This is a required
      * field.
      */
-    floodlightActivityId: string;
+    floodlightActivityId?: string;
     /**
      * Dimension value for the ID of the floodlight activity. This is a
      * read-only, auto-generated field.
      */
-    floodlightActivityIdDimensionValue: Schema$DimensionValue;
+    floodlightActivityIdDimensionValue?: Schema$DimensionValue;
     /**
      * Weight associated with this optimization. The weight assigned will be
      * understood in proportion to the weights assigned to the other
      * optimization activities. Value must be greater than or equal to 1.
      */
-    weight: number;
+    weight?: number;
   }
   /**
    * Describes properties of a DoubleClick Planning order.
@@ -5013,84 +5017,84 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this order.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this order.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * IDs for users that have to approve documents created for this order.
      */
-    approverUserProfileIds: string[];
+    approverUserProfileIds?: string[];
     /**
      * Buyer invoice ID associated with this order.
      */
-    buyerInvoiceId: string;
+    buyerInvoiceId?: string;
     /**
      * Name of the buyer organization.
      */
-    buyerOrganizationName: string;
+    buyerOrganizationName?: string;
     /**
      * Comments in this order.
      */
-    comments: string;
+    comments?: string;
     /**
      * Contacts for this order.
      */
-    contacts: Schema$OrderContact[];
+    contacts?: Schema$OrderContact[];
     /**
      * ID of this order. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#order&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this order.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Name of this order.
      */
-    name: string;
+    name?: string;
     /**
      * Notes of this order.
      */
-    notes: string;
+    notes?: string;
     /**
      * ID of the terms and conditions template used in this order.
      */
-    planningTermId: string;
+    planningTermId?: string;
     /**
      * Project ID of this order.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Seller order ID associated with this order.
      */
-    sellerOrderId: string;
+    sellerOrderId?: string;
     /**
      * Name of the seller organization.
      */
-    sellerOrganizationName: string;
+    sellerOrganizationName?: string;
     /**
      * Site IDs this order is associated with.
      */
-    siteId: string[];
+    siteId?: string[];
     /**
      * Free-form site names this order is associated with.
      */
-    siteNames: string[];
+    siteNames?: string[];
     /**
      * Subaccount ID of this order.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Terms and conditions of this order.
      */
-    termsAndConditions: string;
+    termsAndConditions?: string;
   }
   /**
    * Contact of an order.
@@ -5101,24 +5105,24 @@ export namespace dfareporting_v2_8 {
      * related to this contact in addition to type, title, name, and signature
      * user profile ID.
      */
-    contactInfo: string;
+    contactInfo?: string;
     /**
      * Name of this contact.
      */
-    contactName: string;
+    contactName?: string;
     /**
      * Title of this contact.
      */
-    contactTitle: string;
+    contactTitle?: string;
     /**
      * Type of this contact.
      */
-    contactType: string;
+    contactType?: string;
     /**
      * ID of the user profile containing the signature that will be embedded
      * into order documents.
      */
-    signatureUserProfileId: string;
+    signatureUserProfileId?: string;
   }
   /**
    * Contains properties of a DoubleClick Planning order document.
@@ -5127,74 +5131,74 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this order document.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this order document.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * The amended order document ID of this order document. An order document
      * can be created by optionally amending another order document so that the
      * change history can be preserved.
      */
-    amendedOrderDocumentId: string;
+    amendedOrderDocumentId?: string;
     /**
      * IDs of users who have approved this order document.
      */
-    approvedByUserProfileIds: string[];
+    approvedByUserProfileIds?: string[];
     /**
      * Whether this order document is cancelled.
      */
-    cancelled: boolean;
+    cancelled?: boolean;
     /**
      * Information about the creation of this order document.
      */
-    createdInfo: Schema$LastModifiedInfo;
+    createdInfo?: Schema$LastModifiedInfo;
     /**
      * Effective date of this order document.
      */
-    effectiveDate: string;
+    effectiveDate?: string;
     /**
      * ID of this order document.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#orderDocument&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of email addresses that received the last sent document.
      */
-    lastSentRecipients: string[];
+    lastSentRecipients?: string[];
     /**
      * Timestamp of the last email sent with this order document.
      */
-    lastSentTime: string;
+    lastSentTime?: string;
     /**
      * ID of the order from which this order document is created.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Project ID of this order document.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Whether this order document has been signed.
      */
-    signed: boolean;
+    signed?: boolean;
     /**
      * Subaccount ID of this order document.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Title of this order document.
      */
-    title: string;
+    title?: string;
     /**
      * Type of this order document
      */
-    type: string;
+    type?: string;
   }
   /**
    * Order document List Response
@@ -5204,15 +5208,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#orderDocumentsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Order document collection
      */
-    orderDocuments: Schema$OrderDocument[];
+    orderDocuments?: Schema$OrderDocument[];
   }
   /**
    * Order List Response
@@ -5222,15 +5226,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#ordersListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Order collection.
      */
-    orders: Schema$Order[];
+    orders?: Schema$Order[];
   }
   /**
    * Represents fields that are compatible to be selected for a report of type
@@ -5241,27 +5245,27 @@ export namespace dfareporting_v2_8 {
      * Conversion dimensions which are compatible to be selected in the
      * &quot;conversionDimensions&quot; section of the report.
      */
-    conversionDimensions: Schema$Dimension[];
+    conversionDimensions?: Schema$Dimension[];
     /**
      * Custom floodlight variables which are compatible to be selected in the
      * &quot;customFloodlightVariables&quot; section of the report.
      */
-    customFloodlightVariables: Schema$Dimension[];
+    customFloodlightVariables?: Schema$Dimension[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#pathToConversionReportCompatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metrics which are compatible to be selected in the
      * &quot;metricNames&quot; section of the report.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * Per-interaction dimensions which are compatible to be selected in the
      * &quot;perInteractionDimensions&quot; section of the report.
      */
-    perInteractionDimensions: Schema$Dimension[];
+    perInteractionDimensions?: Schema$Dimension[];
   }
   /**
    * Contains properties of a placement.
@@ -5270,40 +5274,40 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this placement. This field can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this placement opts out of ad blocking. When true, ad blocking is
      * disabled for this placement. When false, the campaign and site settings
      * take effect.
      */
-    adBlockingOptOut: boolean;
+    adBlockingOptOut?: boolean;
     /**
      * Advertiser ID of this placement. This field can be left blank.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this placement is archived.
      */
-    archived: boolean;
+    archived?: boolean;
     /**
      * Campaign ID of this placement. This field is a required field on
      * insertion.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Dimension value for the ID of the campaign. This is a read-only,
      * auto-generated field.
      */
-    campaignIdDimensionValue: Schema$DimensionValue;
+    campaignIdDimensionValue?: Schema$DimensionValue;
     /**
      * Comments for this placement.
      */
-    comment: string;
+    comment?: string;
     /**
      * Placement compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to
      * rendering on desktop, on mobile devices or in mobile apps for regular or
@@ -5313,91 +5317,91 @@ export namespace dfareporting_v2_8 {
      * video ads developed with the VAST standard. This field is required on
      * insertion.
      */
-    compatibility: string;
+    compatibility?: string;
     /**
      * ID of the content category assigned to this placement.
      */
-    contentCategoryId: string;
+    contentCategoryId?: string;
     /**
      * Information about the creation of this placement. This is a read-only
      * field.
      */
-    createInfo: Schema$LastModifiedInfo;
+    createInfo?: Schema$LastModifiedInfo;
     /**
      * Directory site ID of this placement. On insert, you must set either this
      * field or the siteId field to specify the site associated with this
      * placement. This is a required field that is read-only after insertion.
      */
-    directorySiteId: string;
+    directorySiteId?: string;
     /**
      * Dimension value for the ID of the directory site. This is a read-only,
      * auto-generated field.
      */
-    directorySiteIdDimensionValue: Schema$DimensionValue;
+    directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
      * External ID for this placement.
      */
-    externalId: string;
+    externalId?: string;
     /**
      * ID of this placement. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this placement. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Key name of this placement. This is a read-only, auto-generated field.
      */
-    keyName: string;
+    keyName?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placement&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this placement. This is
      * a read-only field.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Lookback window settings for this placement.
      */
-    lookbackConfiguration: Schema$LookbackConfiguration;
+    lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
      * Name of this placement.This is a required field and must be less than 256
      * characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Whether payment was approved for this placement. This is a read-only
      * field relevant only to publisher-paid placements.
      */
-    paymentApproved: boolean;
+    paymentApproved?: boolean;
     /**
      * Payment source for this placement. This is a required field that is
      * read-only after insertion.
      */
-    paymentSource: string;
+    paymentSource?: string;
     /**
      * ID of this placement&#39;s group, if applicable.
      */
-    placementGroupId: string;
+    placementGroupId?: string;
     /**
      * Dimension value for the ID of the placement group. This is a read-only,
      * auto-generated field.
      */
-    placementGroupIdDimensionValue: Schema$DimensionValue;
+    placementGroupIdDimensionValue?: Schema$DimensionValue;
     /**
      * ID of the placement strategy assigned to this placement.
      */
-    placementStrategyId: string;
+    placementStrategyId?: string;
     /**
      * Pricing schedule of this placement. This field is required on insertion,
      * specifically subfields startDate, endDate and pricingType.
      */
-    pricingSchedule: Schema$PricingSchedule;
+    pricingSchedule?: Schema$PricingSchedule;
     /**
      * Whether this placement is the primary placement of a roadblock (placement
      * group). You cannot change this field from true to false. Setting this
@@ -5406,41 +5410,41 @@ export namespace dfareporting_v2_8 {
      * set the roadblock&#39;s primaryPlacementId field to the ID of this
      * placement.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Information about the last publisher update. This is a read-only field.
      */
-    publisherUpdateInfo: Schema$LastModifiedInfo;
+    publisherUpdateInfo?: Schema$LastModifiedInfo;
     /**
      * Site ID associated with this placement. On insert, you must set either
      * this field or the directorySiteId field to specify the site associated
      * with this placement. This is a required field that is read-only after
      * insertion.
      */
-    siteId: string;
+    siteId?: string;
     /**
      * Dimension value for the ID of the site. This is a read-only,
      * auto-generated field.
      */
-    siteIdDimensionValue: Schema$DimensionValue;
+    siteIdDimensionValue?: Schema$DimensionValue;
     /**
      * Size associated with this placement. When inserting or updating a
      * placement, only the size ID field is used. This field is required on
      * insertion.
      */
-    size: Schema$Size;
+    size?: Schema$Size;
     /**
      * Whether creatives assigned to this placement must be SSL-compliant.
      */
-    sslRequired: boolean;
+    sslRequired?: boolean;
     /**
      * Third-party placement status.
      */
-    status: string;
+    status?: string;
     /**
      * Subaccount ID of this placement. This field can be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Tag formats to generate for this placement. This field is required on
      * insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; -
@@ -5459,11 +5463,11 @@ export namespace dfareporting_v2_8 {
      * &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; -
      * &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
      */
-    tagFormats: string[];
+    tagFormats?: string[];
     /**
      * Tag settings for this placement.
      */
-    tagSetting: Schema$TagSetting;
+    tagSetting?: Schema$TagSetting;
     /**
      * Whether Verification and ActiveView are disabled for in-stream video
      * creatives for this placement. The same setting videoActiveViewOptOut
@@ -5474,19 +5478,19 @@ export namespace dfareporting_v2_8 {
      * However, Accounts.activeViewOptOut opts out both video traffic, as well
      * as display ads, from Verification and ActiveView.
      */
-    videoActiveViewOptOut: boolean;
+    videoActiveViewOptOut?: boolean;
     /**
      * A collection of settings which affect video creatives served through this
      * placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
      */
-    videoSettings: Schema$VideoSettings;
+    videoSettings?: Schema$VideoSettings;
     /**
      * VPAID adapter setting for this placement. Controls which VPAID format the
      * measurement adapter will use for in-stream video creatives assigned to
      * this placement.  Note: Flash is no longer supported. This field now
      * defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
-    vpaidAdapterChoice: string;
+    vpaidAdapterChoice?: string;
   }
   /**
    * Placement Assignment.
@@ -5496,21 +5500,21 @@ export namespace dfareporting_v2_8 {
      * Whether this placement assignment is active. When true, the placement
      * will be included in the ad&#39;s rotation.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * ID of the placement to be assigned. This is a required field.
      */
-    placementId: string;
+    placementId?: string;
     /**
      * Dimension value for the ID of the placement. This is a read-only,
      * auto-generated field.
      */
-    placementIdDimensionValue: Schema$DimensionValue;
+    placementIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether the placement to be assigned requires SSL. This is a read-only
      * field that is auto-generated when the ad is inserted or updated.
      */
-    sslRequired: boolean;
+    sslRequired?: boolean;
   }
   /**
    * Contains properties of a package or roadblock.
@@ -5520,88 +5524,88 @@ export namespace dfareporting_v2_8 {
      * Account ID of this placement group. This is a read-only field that can be
      * left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this placement group. This is a required field on
      * insertion.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Whether this placement group is archived.
      */
-    archived: boolean;
+    archived?: boolean;
     /**
      * Campaign ID of this placement group. This field is required on insertion.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Dimension value for the ID of the campaign. This is a read-only,
      * auto-generated field.
      */
-    campaignIdDimensionValue: Schema$DimensionValue;
+    campaignIdDimensionValue?: Schema$DimensionValue;
     /**
      * IDs of placements which are assigned to this placement group. This is a
      * read-only, auto-generated field.
      */
-    childPlacementIds: string[];
+    childPlacementIds?: string[];
     /**
      * Comments for this placement group.
      */
-    comment: string;
+    comment?: string;
     /**
      * ID of the content category assigned to this placement group.
      */
-    contentCategoryId: string;
+    contentCategoryId?: string;
     /**
      * Information about the creation of this placement group. This is a
      * read-only field.
      */
-    createInfo: Schema$LastModifiedInfo;
+    createInfo?: Schema$LastModifiedInfo;
     /**
      * Directory site ID associated with this placement group. On insert, you
      * must set either this field or the site_id field to specify the site
      * associated with this placement group. This is a required field that is
      * read-only after insertion.
      */
-    directorySiteId: string;
+    directorySiteId?: string;
     /**
      * Dimension value for the ID of the directory site. This is a read-only,
      * auto-generated field.
      */
-    directorySiteIdDimensionValue: Schema$DimensionValue;
+    directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
      * External ID for this placement.
      */
-    externalId: string;
+    externalId?: string;
     /**
      * ID of this placement group. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this placement group. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this placement group.
      * This is a read-only field.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Name of this placement group. This is a required field and must be less
      * than 256 characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Type of this placement group. A package is a simple group of placements
      * that acts as a single pricing point for a group of tags. A roadblock is a
@@ -5610,44 +5614,44 @@ export namespace dfareporting_v2_8 {
      * roadblock requires one of its assigned placements to be marked as primary
      * for reporting. This field is required on insertion.
      */
-    placementGroupType: string;
+    placementGroupType?: string;
     /**
      * ID of the placement strategy assigned to this placement group.
      */
-    placementStrategyId: string;
+    placementStrategyId?: string;
     /**
      * Pricing schedule of this placement group. This field is required on
      * insertion.
      */
-    pricingSchedule: Schema$PricingSchedule;
+    pricingSchedule?: Schema$PricingSchedule;
     /**
      * ID of the primary placement, used to calculate the media cost of a
      * roadblock (placement group). Modifying this field will automatically
      * modify the primary field on all affected roadblock child placements.
      */
-    primaryPlacementId: string;
+    primaryPlacementId?: string;
     /**
      * Dimension value for the ID of the primary placement. This is a read-only,
      * auto-generated field.
      */
-    primaryPlacementIdDimensionValue: Schema$DimensionValue;
+    primaryPlacementIdDimensionValue?: Schema$DimensionValue;
     /**
      * Site ID associated with this placement group. On insert, you must set
      * either this field or the directorySiteId field to specify the site
      * associated with this placement group. This is a required field that is
      * read-only after insertion.
      */
-    siteId: string;
+    siteId?: string;
     /**
      * Dimension value for the ID of the site. This is a read-only,
      * auto-generated field.
      */
-    siteIdDimensionValue: Schema$DimensionValue;
+    siteIdDimensionValue?: Schema$DimensionValue;
     /**
      * Subaccount ID of this placement group. This is a read-only field that can
      * be left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Placement Group List Response
@@ -5657,15 +5661,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Placement group collection.
      */
-    placementGroups: Schema$PlacementGroup[];
+    placementGroups?: Schema$PlacementGroup[];
   }
   /**
    * Placement GenerateTags Response
@@ -5675,11 +5679,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementsGenerateTagsResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Set of generated tags for the specified placements.
      */
-    placementTags: Schema$PlacementTag[];
+    placementTags?: Schema$PlacementTag[];
   }
   /**
    * Placement List Response
@@ -5689,15 +5693,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Placement collection.
      */
-    placements: Schema$Placement[];
+    placements?: Schema$Placement[];
   }
   /**
    * Placement Strategy List Response
@@ -5707,15 +5711,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementStrategiesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Placement strategy collection.
      */
-    placementStrategies: Schema$PlacementStrategy[];
+    placementStrategies?: Schema$PlacementStrategy[];
   }
   /**
    * Contains properties of a placement strategy.
@@ -5725,22 +5729,22 @@ export namespace dfareporting_v2_8 {
      * Account ID of this placement strategy.This is a read-only field that can
      * be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of this placement strategy. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#placementStrategy&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this placement strategy. This is a required field. It must be
      * less than 256 characters long and unique among placement strategies of
      * the same account.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Placement Tag
@@ -5749,11 +5753,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement ID
      */
-    placementId: string;
+    placementId?: string;
     /**
      * Tags generated for this placement.
      */
-    tagDatas: Schema$TagData[];
+    tagDatas?: Schema$TagData[];
   }
   /**
    * Contains information about a platform type that can be targeted by ads.
@@ -5762,16 +5766,16 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this platform type.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#platformType&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this platform type.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Platform Type List Response
@@ -5781,11 +5785,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#platformTypesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Platform type collection.
      */
-    platformTypes: Schema$PlatformType[];
+    platformTypes?: Schema$PlatformType[];
   }
   /**
    * Popup Window Properties.
@@ -5795,40 +5799,40 @@ export namespace dfareporting_v2_8 {
      * Popup dimension for a creative. This is a read-only field. Applicable to
      * the following creative types: all RICH_MEDIA and all VPAID
      */
-    dimension: Schema$Size;
+    dimension?: Schema$Size;
     /**
      * Upper-left corner coordinates of the popup window. Applicable if
      * positionType is COORDINATES.
      */
-    offset: Schema$OffsetPosition;
+    offset?: Schema$OffsetPosition;
     /**
      * Popup window position either centered or at specific coordinate.
      */
-    positionType: string;
+    positionType?: string;
     /**
      * Whether to display the browser address bar.
      */
-    showAddressBar: boolean;
+    showAddressBar?: boolean;
     /**
      * Whether to display the browser menu bar.
      */
-    showMenuBar: boolean;
+    showMenuBar?: boolean;
     /**
      * Whether to display the browser scroll bar.
      */
-    showScrollBar: boolean;
+    showScrollBar?: boolean;
     /**
      * Whether to display the browser status bar.
      */
-    showStatusBar: boolean;
+    showStatusBar?: boolean;
     /**
      * Whether to display the browser tool bar.
      */
-    showToolBar: boolean;
+    showToolBar?: boolean;
     /**
      * Title of popup window.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Contains information about a postal code that can be targeted by ads.
@@ -5837,24 +5841,24 @@ export namespace dfareporting_v2_8 {
     /**
      * Postal code. This is equivalent to the id field.
      */
-    code: string;
+    code?: string;
     /**
      * Country code of the country to which this postal code belongs.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of the country to which this postal code belongs.
      */
-    countryDartId: string;
+    countryDartId?: string;
     /**
      * ID of this postal code.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#postalCode&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Postal Code List Response
@@ -5864,11 +5868,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#postalCodesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Postal code collection.
      */
-    postalCodes: Schema$PostalCode[];
+    postalCodes?: Schema$PostalCode[];
   }
   /**
    * Pricing Information
@@ -5877,17 +5881,17 @@ export namespace dfareporting_v2_8 {
     /**
      * Cap cost type of this inventory item.
      */
-    capCostType: string;
+    capCostType?: string;
     /**
      * End date of this inventory item.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Flights of this inventory item. A flight (a.k.a. pricing period)
      * represents the inventory item pricing information for a specific period
      * of time.
      */
-    flights: Schema$Flight[];
+    flights?: Schema$Flight[];
     /**
      * Group type of this inventory item if it represents a placement group. Is
      * null otherwise. There are two type of placement groups:
@@ -5898,15 +5902,15 @@ export namespace dfareporting_v2_8 {
      * the tags in it will be served at the same time. A roadblock requires one
      * of its assigned inventory items to be marked as primary.
      */
-    groupType: string;
+    groupType?: string;
     /**
      * Pricing type of this inventory item.
      */
-    pricingType: string;
+    pricingType?: string;
     /**
      * Start date of this inventory item.
      */
-    startDate: string;
+    startDate?: string;
   }
   /**
    * Pricing Schedule
@@ -5915,11 +5919,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement cap cost option.
      */
-    capCostOption: string;
+    capCostOption?: string;
     /**
      * Whether cap costs are ignored by ad serving.
      */
-    disregardOverdelivery: boolean;
+    disregardOverdelivery?: boolean;
     /**
      * Placement end date. This date must be later than, or the same day as, the
      * placement start date, but not later than the campaign end date. If, for
@@ -5928,37 +5932,37 @@ export namespace dfareporting_v2_8 {
      * seconds of the end date should not be set, as doing so will result in an
      * error. This field is required on insertion.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Whether this placement is flighted. If true, pricing periods will be
      * computed automatically.
      */
-    flighted: boolean;
+    flighted?: boolean;
     /**
      * Floodlight activity ID associated with this placement. This field should
      * be set when placement pricing type is set to PRICING_TYPE_CPA.
      */
-    floodlightActivityId: string;
+    floodlightActivityId?: string;
     /**
      * Pricing periods for this placement.
      */
-    pricingPeriods: Schema$PricingSchedulePricingPeriod[];
+    pricingPeriods?: Schema$PricingSchedulePricingPeriod[];
     /**
      * Placement pricing type. This field is required on insertion.
      */
-    pricingType: string;
+    pricingType?: string;
     /**
      * Placement start date. This date must be later than, or the same day as,
      * the campaign start date. The hours, minutes, and seconds of the start
      * date should not be set, as doing so will result in an error. This field
      * is required on insertion.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Testing start date of this placement. The hours, minutes, and seconds of
      * the start date should not be set, as doing so will result in an error.
      */
-    testingStartDate: string;
+    testingStartDate?: string;
   }
   /**
    * Pricing Period
@@ -5973,27 +5977,27 @@ export namespace dfareporting_v2_8 {
      * hours, minutes, and seconds of the end date should not be set, as doing
      * so will result in an error.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Comments for this pricing period.
      */
-    pricingComment: string;
+    pricingComment?: string;
     /**
      * Rate or cost of this pricing period in nanos (i.e., multipled by
      * 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
      */
-    rateOrCostNanos: string;
+    rateOrCostNanos?: string;
     /**
      * Pricing period start date. This date must be later than, or the same day
      * as, the placement start date. The hours, minutes, and seconds of the
      * start date should not be set, as doing so will result in an error.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Units of this pricing period. Acceptable values are 0 to 10000000000,
      * inclusive.
      */
-    units: string;
+    units?: string;
   }
   /**
    * Contains properties of a DoubleClick Planning project.
@@ -6002,95 +6006,95 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID of this project.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this project.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Audience age group of this project.
      */
-    audienceAgeGroup: string;
+    audienceAgeGroup?: string;
     /**
      * Audience gender of this project.
      */
-    audienceGender: string;
+    audienceGender?: string;
     /**
      * Budget of this project in the currency specified by the current account.
      * The value stored in this field represents only the non-fractional amount.
      * For example, for USD, the smallest value that can be represented by this
      * field is 1 US dollar.
      */
-    budget: string;
+    budget?: string;
     /**
      * Client billing code of this project.
      */
-    clientBillingCode: string;
+    clientBillingCode?: string;
     /**
      * Name of the project client.
      */
-    clientName: string;
+    clientName?: string;
     /**
      * End date of the project.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * ID of this project. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#project&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Information about the most recent modification of this project.
      */
-    lastModifiedInfo: Schema$LastModifiedInfo;
+    lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
      * Name of this project.
      */
-    name: string;
+    name?: string;
     /**
      * Overview of this project.
      */
-    overview: string;
+    overview?: string;
     /**
      * Start date of the project.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Subaccount ID of this project.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Number of clicks that the advertiser is targeting.
      */
-    targetClicks: string;
+    targetClicks?: string;
     /**
      * Number of conversions that the advertiser is targeting.
      */
-    targetConversions: string;
+    targetConversions?: string;
     /**
      * CPA that the advertiser is targeting.
      */
-    targetCpaNanos: string;
+    targetCpaNanos?: string;
     /**
      * CPC that the advertiser is targeting.
      */
-    targetCpcNanos: string;
+    targetCpcNanos?: string;
     /**
      * vCPM from Active View that the advertiser is targeting.
      */
-    targetCpmActiveViewNanos: string;
+    targetCpmActiveViewNanos?: string;
     /**
      * CPM that the advertiser is targeting.
      */
-    targetCpmNanos: string;
+    targetCpmNanos?: string;
     /**
      * Number of impressions that the advertiser is targeting.
      */
-    targetImpressions: string;
+    targetImpressions?: string;
   }
   /**
    * Project List Response
@@ -6100,15 +6104,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#projectsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Project collection.
      */
-    projects: Schema$Project[];
+    projects?: Schema$Project[];
   }
   /**
    * Represents fields that are compatible to be selected for a report of type
@@ -6119,32 +6123,32 @@ export namespace dfareporting_v2_8 {
      * Dimensions which are compatible to be selected in the
      * &quot;dimensionFilters&quot; section of the report.
      */
-    dimensionFilters: Schema$Dimension[];
+    dimensionFilters?: Schema$Dimension[];
     /**
      * Dimensions which are compatible to be selected in the
      * &quot;dimensions&quot; section of the report.
      */
-    dimensions: Schema$Dimension[];
+    dimensions?: Schema$Dimension[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#reachReportCompatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metrics which are compatible to be selected in the
      * &quot;metricNames&quot; section of the report.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * Metrics which are compatible to be selected as activity metrics to pivot
      * on in the &quot;activities&quot; section of the report.
      */
-    pivotedActivityMetrics: Schema$Metric[];
+    pivotedActivityMetrics?: Schema$Metric[];
     /**
      * Metrics which are compatible to be selected in the
      * &quot;reachByFrequencyMetricNames&quot; section of the report.
      */
-    reachByFrequencyMetrics: Schema$Metric[];
+    reachByFrequencyMetrics?: Schema$Metric[];
   }
   /**
    * Represents a recipient.
@@ -6153,15 +6157,15 @@ export namespace dfareporting_v2_8 {
     /**
      * The delivery type for the recipient.
      */
-    deliveryType: string;
+    deliveryType?: string;
     /**
      * The email address of the recipient.
      */
-    email: string;
+    email?: string;
     /**
      * The kind of resource this is, in this case dfareporting#recipient.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains information about a region that can be targeted by ads.
@@ -6170,28 +6174,28 @@ export namespace dfareporting_v2_8 {
     /**
      * Country code of the country to which this region belongs.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * DART ID of the country to which this region belongs.
      */
-    countryDartId: string;
+    countryDartId?: string;
     /**
      * DART ID of this region.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#region&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this region.
      */
-    name: string;
+    name?: string;
     /**
      * Region code.
      */
-    regionCode: string;
+    regionCode?: string;
   }
   /**
    * Region List Response
@@ -6201,11 +6205,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#regionsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Region collection.
      */
-    regions: Schema$Region[];
+    regions?: Schema$Region[];
   }
   /**
    * Contains properties of a remarketing list. Remarketing enables you to
@@ -6221,61 +6225,61 @@ export namespace dfareporting_v2_8 {
      * Account ID of this remarketing list. This is a read-only, auto-generated
      * field that is only returned in GET requests.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this remarketing list is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Dimension value for the advertiser ID that owns this remarketing list.
      * This is a required field.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Remarketing list description.
      */
-    description: string;
+    description?: string;
     /**
      * Remarketing list ID. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#remarketingList&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Number of days that a user should remain in the remarketing list without
      * an impression. Acceptable values are 1 to 540, inclusive.
      */
-    lifeSpan: string;
+    lifeSpan?: string;
     /**
      * Rule used to populate the remarketing list with users.
      */
-    listPopulationRule: Schema$ListPopulationRule;
+    listPopulationRule?: Schema$ListPopulationRule;
     /**
      * Number of users currently in the list. This is a read-only field.
      */
-    listSize: string;
+    listSize?: string;
     /**
      * Product from which this remarketing list was originated.
      */
-    listSource: string;
+    listSource?: string;
     /**
      * Name of the remarketing list. This is a required field. Must be no
      * greater than 128 characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this remarketing list. This is a read-only,
      * auto-generated field that is only returned in GET requests.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Contains properties of a remarketing list&#39;s sharing information.
@@ -6288,19 +6292,19 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#remarketingListShare&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Remarketing list ID. This is a read-only, auto-generated field.
      */
-    remarketingListId: string;
+    remarketingListId?: string;
     /**
      * Accounts that the remarketing list is shared with.
      */
-    sharedAccountIds: string[];
+    sharedAccountIds?: string[];
     /**
      * Advertisers that the remarketing list is shared with.
      */
-    sharedAdvertiserIds: string[];
+    sharedAdvertiserIds?: string[];
   }
   /**
    * Remarketing list response
@@ -6310,15 +6314,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#remarketingListsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Remarketing list collection.
      */
-    remarketingLists: Schema$RemarketingList[];
+    remarketingLists?: Schema$RemarketingList[];
   }
   /**
    * Represents a Report resource.
@@ -6327,32 +6331,32 @@ export namespace dfareporting_v2_8 {
     /**
      * The account ID to which this report belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The report criteria for a report of type &quot;STANDARD&quot;.
      */
-    criteria: any;
+    criteria?: any;
     /**
      * The report criteria for a report of type
      * &quot;CROSS_DIMENSION_REACH&quot;.
      */
-    crossDimensionReachCriteria: any;
+    crossDimensionReachCriteria?: any;
     /**
      * The report&#39;s email delivery settings.
      */
-    delivery: any;
+    delivery?: any;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The filename used when generating report files for this report.
      */
-    fileName: string;
+    fileName?: string;
     /**
      * The report criteria for a report of type &quot;FLOODLIGHT&quot;.
      */
-    floodlightCriteria: any;
+    floodlightCriteria?: any;
     /**
      * The output format of the report. If not specified, default format is
      * &quot;CSV&quot;. Note that the actual format in the completed report file
@@ -6360,50 +6364,50 @@ export namespace dfareporting_v2_8 {
      * format&#39;s capabilities. &quot;CSV&quot; will then be the fallback
      * format.
      */
-    format: string;
+    format?: string;
     /**
      * The unique ID identifying this report resource.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of resource this is, in this case dfareporting#report.
      */
-    kind: string;
+    kind?: string;
     /**
      * The timestamp (in milliseconds since epoch) of when this report was last
      * modified.
      */
-    lastModifiedTime: string;
+    lastModifiedTime?: string;
     /**
      * The name of the report.
      */
-    name: string;
+    name?: string;
     /**
      * The user profile id of the owner of this report.
      */
-    ownerProfileId: string;
+    ownerProfileId?: string;
     /**
      * The report criteria for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
-    pathToConversionCriteria: any;
+    pathToConversionCriteria?: any;
     /**
      * The report criteria for a report of type &quot;REACH&quot;.
      */
-    reachCriteria: any;
+    reachCriteria?: any;
     /**
      * The report&#39;s schedule. Can only be set if the report&#39;s
      * &#39;dateRange&#39; is a relative date range and the relative date range
      * is not &quot;TODAY&quot;.
      */
-    schedule: any;
+    schedule?: any;
     /**
      * The subaccount ID to which this report belongs if applicable.
      */
-    subAccountId: string;
+    subAccountId?: string;
     /**
      * The type of the report.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type
@@ -6414,27 +6418,27 @@ export namespace dfareporting_v2_8 {
      * Dimensions which are compatible to be selected in the
      * &quot;dimensionFilters&quot; section of the report.
      */
-    dimensionFilters: Schema$Dimension[];
+    dimensionFilters?: Schema$Dimension[];
     /**
      * Dimensions which are compatible to be selected in the
      * &quot;dimensions&quot; section of the report.
      */
-    dimensions: Schema$Dimension[];
+    dimensions?: Schema$Dimension[];
     /**
      * The kind of resource this is, in this case
      * dfareporting#reportCompatibleFields.
      */
-    kind: string;
+    kind?: string;
     /**
      * Metrics which are compatible to be selected in the
      * &quot;metricNames&quot; section of the report.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * Metrics which are compatible to be selected as activity metrics to pivot
      * on in the &quot;activities&quot; section of the report.
      */
-    pivotedActivityMetrics: Schema$Metric[];
+    pivotedActivityMetrics?: Schema$Metric[];
   }
   /**
    * Represents the list of reports.
@@ -6443,22 +6447,22 @@ export namespace dfareporting_v2_8 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The reports returned in this response.
      */
-    items: Schema$Report[];
+    items?: Schema$Report[];
     /**
      * The kind of list this is, in this case dfareporting#reportList.
      */
-    kind: string;
+    kind?: string;
     /**
      * Continuation token used to page through reports. To retrieve the next
      * page of results, set the next request&#39;s &quot;pageToken&quot; to the
      * value of this field. The page token is only valid for a limited amount of
      * time and should not be persisted.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Reporting Configuration
@@ -6469,11 +6473,11 @@ export namespace dfareporting_v2_8 {
      * detailed pathway information on up to 10 of the most recent ad exposures
      * seen by a user before converting.
      */
-    exposureToConversionEnabled: boolean;
+    exposureToConversionEnabled?: boolean;
     /**
      * Default lookback windows for new advertisers in this account.
      */
-    lookbackConfiguration: Schema$LookbackConfiguration;
+    lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
      * Report generation time zone ID of this account. This is a required field
      * that can only be changed by a superuser. Acceptable values are:  -
@@ -6488,7 +6492,7 @@ export namespace dfareporting_v2_8 {
      * &quot;Pacific/Auckland&quot;  - &quot;13&quot; for
      * &quot;America/Sao_Paulo&quot;
      */
-    reportGenerationTimeZoneId: string;
+    reportGenerationTimeZoneId?: string;
   }
   /**
    * Rich Media Exit Override.
@@ -6498,16 +6502,16 @@ export namespace dfareporting_v2_8 {
      * Click-through URL of this rich media exit override. Applicable if the
      * enabled field is set to true.
      */
-    clickThroughUrl: Schema$ClickThroughUrl;
+    clickThroughUrl?: Schema$ClickThroughUrl;
     /**
      * Whether to use the clickThroughUrl. If false, the creative-level exit
      * will be used.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * ID for the override to refer to a specific exit in the creative.
      */
-    exitId: string;
+    exitId?: string;
   }
   /**
    * A rule associates an asset with a targeting template for asset-level
@@ -6518,17 +6522,17 @@ export namespace dfareporting_v2_8 {
      * A creativeAssets[].id. This should refer to one of the parent assets in
      * this creative. This is a required field.
      */
-    assetId: string;
+    assetId?: string;
     /**
      * A user-friendly name for this rule. This is a required field.
      */
-    name: string;
+    name?: string;
     /**
      * A targeting template ID. The targeting from the targeting template will
      * be used to determine whether this asset should be served. This is a
      * required field.
      */
-    targetingTemplateId: string;
+    targetingTemplateId?: string;
   }
   /**
    * Contains properties of a site.
@@ -6538,39 +6542,39 @@ export namespace dfareporting_v2_8 {
      * Account ID of this site. This is a read-only field that can be left
      * blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this site is approved.
      */
-    approved: boolean;
+    approved?: boolean;
     /**
      * Directory site associated with this site. This is a required field that
      * is read-only after insertion.
      */
-    directorySiteId: string;
+    directorySiteId?: string;
     /**
      * Dimension value for the ID of the directory site. This is a read-only,
      * auto-generated field.
      */
-    directorySiteIdDimensionValue: Schema$DimensionValue;
+    directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
      * ID of this site. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Dimension value for the ID of this site. This is a read-only,
      * auto-generated field.
      */
-    idDimensionValue: Schema$DimensionValue;
+    idDimensionValue?: Schema$DimensionValue;
     /**
      * Key name of this site. This is a read-only, auto-generated field.
      */
-    keyName: string;
+    keyName?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#site&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this site.This is a required field. Must be less than 128
      * characters long. If this site is under a subaccount, the name must be
@@ -6578,20 +6582,20 @@ export namespace dfareporting_v2_8 {
      * top-level site, and the name must be unique among top-level sites of the
      * same account.
      */
-    name: string;
+    name?: string;
     /**
      * Site contacts.
      */
-    siteContacts: Schema$SiteContact[];
+    siteContacts?: Schema$SiteContact[];
     /**
      * Site-wide settings.
      */
-    siteSettings: Schema$SiteSettings;
+    siteSettings?: Schema$SiteSettings;
     /**
      * Subaccount ID of this site. This is a read-only field that can be left
      * blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Site Contact
@@ -6600,35 +6604,35 @@ export namespace dfareporting_v2_8 {
     /**
      * Address of this site contact.
      */
-    address: string;
+    address?: string;
     /**
      * Site contact type.
      */
-    contactType: string;
+    contactType?: string;
     /**
      * Email address of this site contact. This is a required field.
      */
-    email: string;
+    email?: string;
     /**
      * First name of this site contact.
      */
-    firstName: string;
+    firstName?: string;
     /**
      * ID of this site contact. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Last name of this site contact.
      */
-    lastName: string;
+    lastName?: string;
     /**
      * Primary phone number of this site contact.
      */
-    phone: string;
+    phone?: string;
     /**
      * Title or designation of this site contact.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Site Settings
@@ -6637,37 +6641,37 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether active view creatives are disabled for this site.
      */
-    activeViewOptOut: boolean;
+    activeViewOptOut?: boolean;
     /**
      * Whether this site opts out of ad blocking. When true, ad blocking is
      * disabled for all placements under the site, regardless of the individual
      * placement settings. When false, the campaign and placement settings take
      * effect.
      */
-    adBlockingOptOut: boolean;
+    adBlockingOptOut?: boolean;
     /**
      * Site-wide creative settings.
      */
-    creativeSettings: Schema$CreativeSettings;
+    creativeSettings?: Schema$CreativeSettings;
     /**
      * Whether new cookies are disabled for this site.
      */
-    disableNewCookie: boolean;
+    disableNewCookie?: boolean;
     /**
      * Lookback window settings for this site.
      */
-    lookbackConfiguration: Schema$LookbackConfiguration;
+    lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
      * Configuration settings for dynamic and image floodlight tags.
      */
-    tagSetting: Schema$TagSetting;
+    tagSetting?: Schema$TagSetting;
     /**
      * Whether Verification and ActiveView for in-stream video creatives are
      * disabled by default for new placements created under this site. This
      * value will be used to populate the placement.videoActiveViewOptOut field,
      * when no value is specified for the new placement.
      */
-    videoActiveViewOptOutTemplate: boolean;
+    videoActiveViewOptOutTemplate?: boolean;
     /**
      * Default VPAID adapter setting for new placements created under this site.
      * This value will be used to populate the placements.vpaidAdapterChoice
@@ -6679,7 +6683,7 @@ export namespace dfareporting_v2_8 {
      * adapter).  Note: Flash is no longer supported. This field now defaults to
      * HTML5 when the following values are provided: FLASH, BOTH.
      */
-    vpaidAdapterChoiceTemplate: string;
+    vpaidAdapterChoiceTemplate?: string;
   }
   /**
    * Site List Response
@@ -6689,15 +6693,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#sitesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Site collection.
      */
-    sites: Schema$Site[];
+    sites?: Schema$Site[];
   }
   /**
    * Represents the dimensions of ads, placements, creatives, or creative
@@ -6707,24 +6711,24 @@ export namespace dfareporting_v2_8 {
     /**
      * Height of this size. Acceptable values are 0 to 32767, inclusive.
      */
-    height: number;
+    height?: number;
     /**
      * IAB standard size. This is a read-only, auto-generated field.
      */
-    iab: boolean;
+    iab?: boolean;
     /**
      * ID of this size. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#size&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Width of this size. Acceptable values are 0 to 32767, inclusive.
      */
-    width: number;
+    width?: number;
   }
   /**
    * Size List Response
@@ -6734,11 +6738,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#sizesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Size collection.
      */
-    sizes: Schema$Size[];
+    sizes?: Schema$Size[];
   }
   /**
    * Skippable Settings
@@ -6748,21 +6752,21 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#skippableSetting&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Amount of time to play videos served to this placement before counting a
      * view. Applicable when skippable is true.
      */
-    progressOffset: Schema$VideoOffset;
+    progressOffset?: Schema$VideoOffset;
     /**
      * Amount of time to play videos served to this placement before the skip
      * button should appear. Applicable when skippable is true.
      */
-    skipOffset: Schema$VideoOffset;
+    skipOffset?: Schema$VideoOffset;
     /**
      * Whether the user can skip creatives served to this placement.
      */
-    skippable: boolean;
+    skippable?: boolean;
   }
   /**
    * Represents a sorted dimension.
@@ -6771,15 +6775,15 @@ export namespace dfareporting_v2_8 {
     /**
      * The kind of resource this is, in this case dfareporting#sortedDimension.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the dimension.
      */
-    name: string;
+    name?: string;
     /**
      * An optional sort order for the dimension column.
      */
-    sortOrder: string;
+    sortOrder?: string;
   }
   /**
    * Contains properties of a DCM subaccount.
@@ -6789,25 +6793,25 @@ export namespace dfareporting_v2_8 {
      * ID of the account that contains this subaccount. This is a read-only
      * field that can be left blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * IDs of the available user role permissions for this subaccount.
      */
-    availablePermissionIds: string[];
+    availablePermissionIds?: string[];
     /**
      * ID of this subaccount. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#subaccount&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this subaccount. This is a required field. Must be less than 128
      * characters long and be unique among subaccounts of the same account.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Subaccount List Response
@@ -6817,15 +6821,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#subaccountsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Subaccount collection.
      */
-    subaccounts: Schema$Subaccount[];
+    subaccounts?: Schema$Subaccount[];
   }
   /**
    * Placement Tag Data
@@ -6835,24 +6839,24 @@ export namespace dfareporting_v2_8 {
      * Ad associated with this placement tag. Applicable only when format is
      * PLACEMENT_TAG_TRACKING.
      */
-    adId: string;
+    adId?: string;
     /**
      * Tag string to record a click.
      */
-    clickTag: string;
+    clickTag?: string;
     /**
      * Creative associated with this placement tag. Applicable only when format
      * is PLACEMENT_TAG_TRACKING.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * TagData tag format of this tag.
      */
-    format: string;
+    format?: string;
     /**
      * Tag string for serving an ad.
      */
-    impressionTag: string;
+    impressionTag?: string;
   }
   /**
    * Tag Settings
@@ -6864,23 +6868,23 @@ export namespace dfareporting_v2_8 {
      * Keys and values must not contain commas. For example, id=2;color=red is a
      * valid value for this field.
      */
-    additionalKeyValues: string;
+    additionalKeyValues?: string;
     /**
      * Whether static landing page URLs should be included in the tags. This
      * setting applies only to placements.
      */
-    includeClickThroughUrls: boolean;
+    includeClickThroughUrls?: boolean;
     /**
      * Whether click-tracking string should be included in the tags.
      */
-    includeClickTracking: boolean;
+    includeClickTracking?: boolean;
     /**
      * Option specifying how keywords are embedded in ad tags. This setting can
      * be used to specify whether keyword placeholders are inserted in placement
      * tags for this site. Publishers can then add keywords to those
      * placeholders.
      */
-    keywordOption: string;
+    keywordOption?: string;
   }
   /**
    * Dynamic and Image Tag Settings.
@@ -6889,11 +6893,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Whether dynamic floodlight tags are enabled.
      */
-    dynamicTagEnabled: boolean;
+    dynamicTagEnabled?: boolean;
     /**
      * Whether image tags are enabled.
      */
-    imageTagEnabled: boolean;
+    imageTagEnabled?: boolean;
   }
   /**
    * Contains properties of a targetable remarketing list. Remarketing enables
@@ -6910,56 +6914,56 @@ export namespace dfareporting_v2_8 {
      * Account ID of this remarketing list. This is a read-only, auto-generated
      * field that is only returned in GET requests.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this targetable remarketing list is active.
      */
-    active: boolean;
+    active?: boolean;
     /**
      * Dimension value for the advertiser ID that owns this targetable
      * remarketing list.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Targetable remarketing list description.
      */
-    description: string;
+    description?: string;
     /**
      * Targetable remarketing list ID.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#targetableRemarketingList&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Number of days that a user should remain in the targetable remarketing
      * list without an impression.
      */
-    lifeSpan: string;
+    lifeSpan?: string;
     /**
      * Number of users currently in the list. This is a read-only field.
      */
-    listSize: string;
+    listSize?: string;
     /**
      * Product from which this targetable remarketing list was originated.
      */
-    listSource: string;
+    listSource?: string;
     /**
      * Name of the targetable remarketing list. Is no greater than 128
      * characters long.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this remarketing list. This is a read-only,
      * auto-generated field that is only returned in GET requests.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Targetable remarketing list response
@@ -6969,15 +6973,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Targetable remarketing list collection.
      */
-    targetableRemarketingLists: Schema$TargetableRemarketingList[];
+    targetableRemarketingLists?: Schema$TargetableRemarketingList[];
   }
   /**
    * Contains properties of a targeting template. A targeting template
@@ -6988,60 +6992,60 @@ export namespace dfareporting_v2_8 {
      * Account ID of this targeting template. This field, if left unset, will be
      * auto-generated on insert and is read-only after insert.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Advertiser ID of this targeting template. This is a required field on
      * insert and is read-only after insert.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only,
      * auto-generated field.
      */
-    advertiserIdDimensionValue: Schema$DimensionValue;
+    advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
      * Time and day targeting criteria.
      */
-    dayPartTargeting: Schema$DayPartTargeting;
+    dayPartTargeting?: Schema$DayPartTargeting;
     /**
      * Geographical targeting criteria.
      */
-    geoTargeting: Schema$GeoTargeting;
+    geoTargeting?: Schema$GeoTargeting;
     /**
      * ID of this targeting template. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Key-value targeting criteria.
      */
-    keyValueTargetingExpression: Schema$KeyValueTargetingExpression;
+    keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#targetingTemplate&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Language targeting criteria.
      */
-    languageTargeting: Schema$LanguageTargeting;
+    languageTargeting?: Schema$LanguageTargeting;
     /**
      * Remarketing list targeting criteria.
      */
-    listTargetingExpression: Schema$ListTargetingExpression;
+    listTargetingExpression?: Schema$ListTargetingExpression;
     /**
      * Name of this targeting template. This field is required. It must be less
      * than 256 characters long and unique within an advertiser.
      */
-    name: string;
+    name?: string;
     /**
      * Subaccount ID of this targeting template. This field, if left unset, will
      * be auto-generated on insert and is read-only after insert.
      */
-    subaccountId: string;
+    subaccountId?: string;
     /**
      * Technology platform targeting criteria.
      */
-    technologyTargeting: Schema$TechnologyTargeting;
+    technologyTargeting?: Schema$TechnologyTargeting;
   }
   /**
    * Targeting Template List Response
@@ -7051,15 +7055,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#targetingTemplatesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Targeting template collection.
      */
-    targetingTemplates: Schema$TargetingTemplate[];
+    targetingTemplates?: Schema$TargetingTemplate[];
   }
   /**
    * Target Window.
@@ -7068,12 +7072,12 @@ export namespace dfareporting_v2_8 {
     /**
      * User-entered value.
      */
-    customHtml: string;
+    customHtml?: string;
     /**
      * Type of browser window for which the backup image of the flash creative
      * can be displayed.
      */
-    targetWindowOption: string;
+    targetWindowOption?: string;
   }
   /**
    * Technology Targeting.
@@ -7085,20 +7089,20 @@ export namespace dfareporting_v2_8 {
      * specified, only browserVersionId will be used. The other fields are
      * populated automatically when the ad is inserted or updated.
      */
-    browsers: Schema$Browser[];
+    browsers?: Schema$Browser[];
     /**
      * Connection types that this ad targets. For each connection type only id
      * is required. The other fields are populated automatically when the ad is
      * inserted or updated.
      */
-    connectionTypes: Schema$ConnectionType[];
+    connectionTypes?: Schema$ConnectionType[];
     /**
      * Mobile carriers that this ad targets. For each mobile carrier only id is
      * required, and the other fields are populated automatically when the ad is
      * inserted or updated. If targeting a mobile carrier, do not set targeting
      * for any zip codes.
      */
-    mobileCarriers: Schema$MobileCarrier[];
+    mobileCarriers?: Schema$MobileCarrier[];
     /**
      * Operating systems that this ad targets. To target specific versions, use
      * operatingSystemVersions. For each operating system only dartId is
@@ -7106,7 +7110,7 @@ export namespace dfareporting_v2_8 {
      * inserted or updated. If targeting an operating system, do not set
      * targeting for operating system versions for the same operating system.
      */
-    operatingSystems: Schema$OperatingSystem[];
+    operatingSystems?: Schema$OperatingSystem[];
     /**
      * Operating system versions that this ad targets. To target all versions,
      * use operatingSystems. For each operating system version, only id is
@@ -7114,13 +7118,13 @@ export namespace dfareporting_v2_8 {
      * inserted or updated. If targeting an operating system version, do not set
      * targeting for the corresponding operating system in operatingSystems.
      */
-    operatingSystemVersions: Schema$OperatingSystemVersion[];
+    operatingSystemVersions?: Schema$OperatingSystemVersion[];
     /**
      * Platform types that this ad targets. For example, desktop, mobile, or
      * tablet. For each platform type, only id is required, and the other fields
      * are populated automatically when the ad is inserted or updated.
      */
-    platformTypes: Schema$PlatformType[];
+    platformTypes?: Schema$PlatformType[];
   }
   /**
    * Third Party Authentication Token
@@ -7129,12 +7133,12 @@ export namespace dfareporting_v2_8 {
     /**
      * Name of the third-party authentication token.
      */
-    name: string;
+    name?: string;
     /**
      * Value of the third-party authentication token. This is a read-only,
      * auto-generated field.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Third-party Tracking URL.
@@ -7143,11 +7147,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Third-party URL type for in-stream video creatives.
      */
-    thirdPartyUrlType: string;
+    thirdPartyUrlType?: string;
     /**
      * URL for the specified third-party URL type.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Transcode Settings
@@ -7157,12 +7161,12 @@ export namespace dfareporting_v2_8 {
      * Whitelist of video formats to be served to this placement. Set this list
      * to null or empty to serve all video formats.
      */
-    enabledVideoFormats: number[];
+    enabledVideoFormats?: number[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#transcodeSetting&quot;.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
@@ -7172,13 +7176,13 @@ export namespace dfareporting_v2_8 {
     /**
      * Registry used for the Ad ID value.
      */
-    registry: string;
+    registry?: string;
     /**
      * ID value for this creative. Only alphanumeric characters and the
      * following symbols are valid: &quot;_/\-&quot;. Maximum length is 64
      * characters. Read only when registry is DCM.
      */
-    value: string;
+    value?: string;
   }
   /**
    * User Defined Variable configuration.
@@ -7187,17 +7191,17 @@ export namespace dfareporting_v2_8 {
     /**
      * Data type for the variable. This is a required field.
      */
-    dataType: string;
+    dataType?: string;
     /**
      * User-friendly name for the variable which will appear in reports. This is
      * a required field, must be less than 64 characters long, and cannot
      * contain the following characters: &quot;&quot;&lt;&gt;&quot;.
      */
-    reportName: string;
+    reportName?: string;
     /**
      * Variable name in the tag. This is a required field.
      */
-    variableType: string;
+    variableType?: string;
   }
   /**
    * Represents a UserProfile resource.
@@ -7206,35 +7210,35 @@ export namespace dfareporting_v2_8 {
     /**
      * The account ID to which this profile belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The account name this profile belongs to.
      */
-    accountName: string;
+    accountName?: string;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The kind of resource this is, in this case dfareporting#userProfile.
      */
-    kind: string;
+    kind?: string;
     /**
      * The unique ID of the user profile.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The sub account ID this profile belongs to if applicable.
      */
-    subAccountId: string;
+    subAccountId?: string;
     /**
      * The sub account name this profile belongs to if applicable.
      */
-    subAccountName: string;
+    subAccountName?: string;
     /**
      * The user name.
      */
-    userName: string;
+    userName?: string;
   }
   /**
    * Represents the list of user profiles.
@@ -7243,15 +7247,15 @@ export namespace dfareporting_v2_8 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag: string;
+    etag?: string;
     /**
      * The user profiles returned in this response.
      */
-    items: Schema$UserProfile[];
+    items?: Schema$UserProfile[];
     /**
      * The kind of list this is, in this case dfareporting#userProfileList.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * Contains properties of auser role, which is used to manage user access.
@@ -7261,22 +7265,22 @@ export namespace dfareporting_v2_8 {
      * Account ID of this user role. This is a read-only field that can be left
      * blank.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether this is a default user role. Default user roles are created by
      * the system for the account/subaccount and cannot be modified or deleted.
      * Each default user role comes with a basic set of preassigned permissions.
      */
-    defaultUserRole: boolean;
+    defaultUserRole?: boolean;
     /**
      * ID of this user role. This is a read-only, auto-generated field.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRole&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this user role. This is a required field. Must be less than 256
      * characters long. If this user role is under a subaccount, the name must
@@ -7284,21 +7288,21 @@ export namespace dfareporting_v2_8 {
      * is a top-level user role, and the name must be unique among top-level
      * user roles of the same account.
      */
-    name: string;
+    name?: string;
     /**
      * ID of the user role that this user role is based on or copied from. This
      * is a required field.
      */
-    parentUserRoleId: string;
+    parentUserRoleId?: string;
     /**
      * List of permissions associated with this user role.
      */
-    permissions: Schema$UserRolePermission[];
+    permissions?: Schema$UserRolePermission[];
     /**
      * Subaccount ID of this user role. This is a read-only field that can be
      * left blank.
      */
-    subaccountId: string;
+    subaccountId?: string;
   }
   /**
    * Contains properties of a user role permission.
@@ -7307,24 +7311,24 @@ export namespace dfareporting_v2_8 {
     /**
      * Levels of availability for a user role permission.
      */
-    availability: string;
+    availability?: string;
     /**
      * ID of this user role permission.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRolePermission&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this user role permission.
      */
-    name: string;
+    name?: string;
     /**
      * ID of the permission group that this user role permission belongs to.
      */
-    permissionGroupId: string;
+    permissionGroupId?: string;
   }
   /**
    * Represents a grouping of related user role permissions.
@@ -7333,16 +7337,16 @@ export namespace dfareporting_v2_8 {
     /**
      * ID of this user role permission.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRolePermissionGroup&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of this user role permission group.
      */
-    name: string;
+    name?: string;
   }
   /**
    * User Role Permission Group List Response
@@ -7352,11 +7356,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * User role permission group collection.
      */
-    userRolePermissionGroups: Schema$UserRolePermissionGroup[];
+    userRolePermissionGroups?: Schema$UserRolePermissionGroup[];
   }
   /**
    * User Role Permission List Response
@@ -7366,11 +7370,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRolePermissionsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * User role permission collection.
      */
-    userRolePermissions: Schema$UserRolePermission[];
+    userRolePermissions?: Schema$UserRolePermission[];
   }
   /**
    * User Role List Response
@@ -7380,15 +7384,15 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#userRolesListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * User role collection.
      */
-    userRoles: Schema$UserRole[];
+    userRoles?: Schema$UserRole[];
   }
   /**
    * Contains information about supported video formats.
@@ -7397,24 +7401,24 @@ export namespace dfareporting_v2_8 {
     /**
      * File type of the video format.
      */
-    fileType: string;
+    fileType?: string;
     /**
      * ID of the video format.
      */
-    id: number;
+    id?: number;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#videoFormat&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The resolution of this video format.
      */
-    resolution: Schema$Size;
+    resolution?: Schema$Size;
     /**
      * The target bit rate of this video format.
      */
-    targetBitRate: number;
+    targetBitRate?: number;
   }
   /**
    * Video Format List Response
@@ -7424,11 +7428,11 @@ export namespace dfareporting_v2_8 {
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#videoFormatsListResponse&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Video format collection.
      */
-    videoFormats: Schema$VideoFormat[];
+    videoFormats?: Schema$VideoFormat[];
   }
   /**
    * Video Offset
@@ -7438,12 +7442,12 @@ export namespace dfareporting_v2_8 {
      * Duration, as a percentage of video duration. Do not set when
      * offsetSeconds is set. Acceptable values are 0 to 100, inclusive.
      */
-    offsetPercentage: number;
+    offsetPercentage?: number;
     /**
      * Duration, in seconds. Do not set when offsetPercentage is set. Acceptable
      * values are 0 to 86399, inclusive.
      */
-    offsetSeconds: number;
+    offsetSeconds?: number;
   }
   /**
    * Video Settings
@@ -7453,25 +7457,26 @@ export namespace dfareporting_v2_8 {
      * Settings for the companion creatives of video creatives served to this
      * placement.
      */
-    companionSettings: Schema$CompanionSetting;
+    companionSettings?: Schema$CompanionSetting;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#videoSettings&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Settings for the skippability of video creatives served to this
      * placement. If this object is provided, the creative-level skippable
      * settings will be overridden.
      */
-    skippableSettings: Schema$SkippableSetting;
+    skippableSettings?: Schema$SkippableSetting;
     /**
      * Settings for the transcodes of video creatives served to this placement.
      * If this object is provided, the creative-level transcode settings will be
      * overridden.
      */
-    transcodeSettings: Schema$TranscodeSetting;
+    transcodeSettings?: Schema$TranscodeSetting;
   }
+
 
   export class Resource$Accountactiveadsummaries {
     root: Dfareporting;
@@ -7547,26 +7552,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accountactiveadsummaries$Get,
         options?: MethodOptions): AxiosPromise<Schema$AccountActiveAdSummary>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Accountactiveadsummaries$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountActiveAdSummary>,
-        callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
+    get(params: Params$Resource$Accountactiveadsummaries$Get,
+        callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
+    get(callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
+    get(paramsOrCallback?: Params$Resource$Accountactiveadsummaries$Get|
+        BodyResponseCallback<Schema$AccountActiveAdSummary>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountActiveAdSummary>,
         callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>):
         void|AxiosPromise<Schema$AccountActiveAdSummary> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accountactiveadsummaries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountactiveadsummaries$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7590,6 +7605,23 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Accountactiveadsummaries$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Account ID.
+     */
+    summaryAccountId?: string;
+  }
+
 
   export class Resource$Accountpermissiongroups {
     root: Dfareporting;
@@ -7665,26 +7697,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accountpermissiongroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$AccountPermissionGroup>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Accountpermissiongroups$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroup>,
-        callback?: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
+    get(params: Params$Resource$Accountpermissiongroups$Get,
+        callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
+    get(callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Accountpermissiongroups$Get|
+        BodyResponseCallback<Schema$AccountPermissionGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroup>,
         callback?: BodyResponseCallback<Schema$AccountPermissionGroup>):
         void|AxiosPromise<Schema$AccountPermissionGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accountpermissiongroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountpermissiongroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7767,31 +7809,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accountpermissiongroups$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AccountPermissionGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountpermissiongroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountpermissiongroups$List,
+        callback:
+            BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Accountpermissiongroups$List|
+        BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
         void|AxiosPromise<Schema$AccountPermissionGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accountpermissiongroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountpermissiongroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7817,6 +7876,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Accountpermissiongroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account permission group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Accountpermissiongroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Accountpermissions {
     root: Dfareporting;
@@ -7894,24 +7981,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accountpermissions$Get,
         options?: MethodOptions): AxiosPromise<Schema$AccountPermission>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
-        callback?: BodyResponseCallback<Schema$AccountPermission>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
+    get(params: Params$Resource$Accountpermissions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
+        callback: BodyResponseCallback<Schema$AccountPermission>): void;
+    get(params: Params$Resource$Accountpermissions$Get,
+        callback: BodyResponseCallback<Schema$AccountPermission>): void;
+    get(callback: BodyResponseCallback<Schema$AccountPermission>): void;
+    get(paramsOrCallback?: Params$Resource$Accountpermissions$Get|
+        BodyResponseCallback<Schema$AccountPermission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountPermission>,
         callback?: BodyResponseCallback<Schema$AccountPermission>):
         void|AxiosPromise<Schema$AccountPermission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accountpermissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountpermissions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7996,29 +8094,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accountpermissions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AccountPermissionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountpermissions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionsListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
+        callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountpermissions$List,
+        callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Accountpermissions$List|
+        BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionsListResponse>,
         callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
         void|AxiosPromise<Schema$AccountPermissionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accountpermissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountpermissions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8044,6 +8157,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Accountpermissions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account permission ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Accountpermissions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Accounts {
     root: Dfareporting;
@@ -8121,23 +8262,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+    get(params?: Params$Resource$Accounts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Account>;
+    get(params: Params$Resource$Accounts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(params: Params$Resource$Accounts$Get,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(callback: BodyResponseCallback<Schema$Account>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Get|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8242,28 +8393,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
         AxiosPromise<Schema$AccountsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountsListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsListResponse>): void;
+        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$List,
+        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$List|
+        BodyResponseCallback<Schema$AccountsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsListResponse>,
         callback?: BodyResponseCallback<Schema$AccountsListResponse>):
         void|AxiosPromise<Schema$AccountsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8358,25 +8519,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+    patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Account>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
+        params: Params$Resource$Accounts$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+        params: Params$Resource$Accounts$Patch,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    patch(callback: BodyResponseCallback<Schema$Account>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Accounts$Patch|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8467,25 +8639,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Account>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
+        params: Params$Resource$Accounts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+        params: Params$Resource$Accounts$Update,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    update(callback: BodyResponseCallback<Schema$Account>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Update|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8508,6 +8691,102 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Accounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active accounts. Don't set this field to select both active
+     * and non-active accounts.
+     */
+    active?: boolean;
+    /**
+     * Select only accounts with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "account*2015" will return objects with names like "account
+     * June 2015", "account April 2015", or simply "account 2015". Most of the
+     * searches also add wildcards implicitly at the start and the end of the
+     * search string. For example, a search string of "account" will match
+     * objects with name "my account", "account 2015", or simply "account".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Accounts$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Account;
+  }
+  export interface Params$Resource$Accounts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Account;
+  }
+
 
   export class Resource$Accountuserprofiles {
     root: Dfareporting;
@@ -8585,24 +8864,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accountuserprofiles$Get,
         options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+    get(params: Params$Resource$Accountuserprofiles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    get(params: Params$Resource$Accountuserprofiles$Get,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    get(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    get(paramsOrCallback?: Params$Resource$Accountuserprofiles$Get|
+        BodyResponseCallback<Schema$AccountUserProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
         void|AxiosPromise<Schema$AccountUserProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountuserprofiles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8690,26 +8980,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountUserProfile>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+        params?: Params$Resource$Accountuserprofiles$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        params: Params$Resource$Accountuserprofiles$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    insert(
+        params: Params$Resource$Accountuserprofiles$Insert,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    insert(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Accountuserprofiles$Insert|
+        BodyResponseCallback<Schema$AccountUserProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
         void|AxiosPromise<Schema$AccountUserProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accountuserprofiles$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountuserprofiles$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8818,30 +9121,46 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accountuserprofiles$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AccountUserProfilesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountuserprofiles$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AccountUserProfilesListResponse>): void;
+        callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accountuserprofiles$List,
+        callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Accountuserprofiles$List|
+        BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
         callback?:
             BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
         void|AxiosPromise<Schema$AccountUserProfilesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountuserprofiles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8938,26 +9257,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountUserProfile>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+        params?: Params$Resource$Accountuserprofiles$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        params: Params$Resource$Accountuserprofiles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    patch(
+        params: Params$Resource$Accountuserprofiles$Patch,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    patch(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Accountuserprofiles$Patch|
+        BodyResponseCallback<Schema$AccountUserProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
         void|AxiosPromise<Schema$AccountUserProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountuserprofiles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9047,26 +9379,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AccountUserProfile>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+        params?: Params$Resource$Accountuserprofiles$Update,
+        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        params: Params$Resource$Accountuserprofiles$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    update(
+        params: Params$Resource$Accountuserprofiles$Update,
+        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    update(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accountuserprofiles$Update|
+        BodyResponseCallback<Schema$AccountUserProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
         void|AxiosPromise<Schema$AccountUserProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accountuserprofiles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountuserprofiles$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9090,6 +9435,125 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Accountuserprofiles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Accountuserprofiles$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AccountUserProfile;
+  }
+  export interface Params$Resource$Accountuserprofiles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active user profiles.
+     */
+    active?: boolean;
+    /**
+     * Select only user profiles with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name, ID or email. Wildcards (*) are
+     * allowed. For example, "user profile*2015" will return objects with names
+     * like "user profile June 2015", "user profile April 2015", or simply "user
+     * profile 2015". Most of the searches also add wildcards implicitly at the
+     * start and the end of the search string. For example, a search string of
+     * "user profile" will match objects with name "my user profile", "user
+     * profile 2015", or simply "user profile".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only user profiles with the specified subaccount ID.
+     */
+    subaccountId?: string;
+    /**
+     * Select only user profiles with the specified user role ID.
+     */
+    userRoleId?: string;
+  }
+  export interface Params$Resource$Accountuserprofiles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AccountUserProfile;
+  }
+  export interface Params$Resource$Accountuserprofiles$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AccountUserProfile;
+  }
+
 
   export class Resource$Ads {
     root: Dfareporting;
@@ -9167,21 +9631,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+    get(params?: Params$Resource$Ads$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Ad>;
+    get(params: Params$Resource$Ads$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        callback: BodyResponseCallback<Schema$Ad>): void;
+    get(params: Params$Resource$Ads$Get,
+        callback: BodyResponseCallback<Schema$Ad>): void;
+    get(callback: BodyResponseCallback<Schema$Ad>): void;
+    get(paramsOrCallback?: Params$Resource$Ads$Get|
+        BodyResponseCallback<Schema$Ad>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
         void|AxiosPromise<Schema$Ad> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Ads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Ads$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9270,23 +9746,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+    insert(params?: Params$Resource$Ads$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Ad>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>): void;
+        params: Params$Resource$Ads$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        callback: BodyResponseCallback<Schema$Ad>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        params: Params$Resource$Ads$Insert,
+        callback: BodyResponseCallback<Schema$Ad>): void;
+    insert(callback: BodyResponseCallback<Schema$Ad>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Ads$Insert|
+        BodyResponseCallback<Schema$Ad>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
         void|AxiosPromise<Schema$Ad> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Ads$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Ads$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9406,26 +9895,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Ads$List, options?: MethodOptions):
         AxiosPromise<Schema$AdsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
-        callback?: BodyResponseCallback<Schema$AdsListResponse>): void;
+        params: Params$Resource$Ads$List,
+        options: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
+        callback: BodyResponseCallback<Schema$AdsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
+        params: Params$Resource$Ads$List,
+        callback: BodyResponseCallback<Schema$AdsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$AdsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Ads$List|
+        BodyResponseCallback<Schema$AdsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdsListResponse>,
         callback?: BodyResponseCallback<Schema$AdsListResponse>):
         void|AxiosPromise<Schema$AdsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Ads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Ads$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9519,23 +10019,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+    patch(params?: Params$Resource$Ads$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Ad>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>): void;
+        params: Params$Resource$Ads$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        callback: BodyResponseCallback<Schema$Ad>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        params: Params$Resource$Ads$Patch,
+        callback: BodyResponseCallback<Schema$Ad>): void;
+    patch(callback: BodyResponseCallback<Schema$Ad>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Ads$Patch|
+        BodyResponseCallback<Schema$Ad>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
         void|AxiosPromise<Schema$Ad> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Ads$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Ads$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9625,23 +10138,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+    update(params?: Params$Resource$Ads$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Ad>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>): void;
+        params: Params$Resource$Ads$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        callback: BodyResponseCallback<Schema$Ad>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+        params: Params$Resource$Ads$Update,
+        callback: BodyResponseCallback<Schema$Ad>): void;
+    update(callback: BodyResponseCallback<Schema$Ad>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Ads$Update|
+        BodyResponseCallback<Schema$Ad>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
         void|AxiosPromise<Schema$Ad> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Ads$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Ads$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9663,6 +10189,188 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Ads$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Ad ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Ads$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Ad;
+  }
+  export interface Params$Resource$Ads$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active ads.
+     */
+    active?: boolean;
+    /**
+     * Select only ads with this advertiser ID.
+     */
+    advertiserId?: string;
+    /**
+     * Select only archived ads.
+     */
+    archived?: boolean;
+    /**
+     * Select only ads with these audience segment IDs.
+     */
+    audienceSegmentIds?: string;
+    /**
+     * Select only ads with these campaign IDs.
+     */
+    campaignIds?: string;
+    /**
+     * Select default ads with the specified compatibility. Applicable when type
+     * is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to
+     * rendering either on desktop or on mobile devices for regular or
+     * interstitial ads, respectively. APP and APP_INTERSTITIAL are for
+     * rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an
+     * in-stream video ads developed with the VAST standard.
+     */
+    compatibility?: string;
+    /**
+     * Select only ads with these creative IDs assigned.
+     */
+    creativeIds?: string;
+    /**
+     * Select only ads with these creative optimization configuration IDs.
+     */
+    creativeOptimizationConfigurationIds?: string;
+    /**
+     * Select only dynamic click trackers. Applicable when type is
+     * AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If
+     * false, select static click trackers. Leave unset to select both.
+     */
+    dynamicClickTracker?: boolean;
+    /**
+     * Select only ads with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only ads with these landing page IDs.
+     */
+    landingPageIds?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only ads with this event tag override ID.
+     */
+    overriddenEventTagId?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * Select only ads with these placement IDs assigned.
+     */
+    placementIds?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Select only ads whose list targeting expression use these remarketing
+     * list IDs.
+     */
+    remarketingListIds?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "ad*2015" will return objects with names like "ad June
+     * 2015", "ad April 2015", or simply "ad 2015". Most of the searches also
+     * add wildcards implicitly at the start and the end of the search string.
+     * For example, a search string of "ad" will match objects with name "my
+     * ad", "ad 2015", or simply "ad".
+     */
+    searchString?: string;
+    /**
+     * Select only ads with these size IDs.
+     */
+    sizeIds?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only ads that are SSL-compliant.
+     */
+    sslCompliant?: boolean;
+    /**
+     * Select only ads that require SSL.
+     */
+    sslRequired?: boolean;
+    /**
+     * Select only ads with these types.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Ads$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Ad ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Ad;
+  }
+  export interface Params$Resource$Ads$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Ad;
+  }
+
 
   export class Resource$Advertisergroups {
     root: Dfareporting;
@@ -9737,22 +10445,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Advertisergroups$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Advertisergroups$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Advertisergroups$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Advertisergroups$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9841,24 +10564,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Advertisergroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+    get(params: Params$Resource$Advertisergroups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    get(params: Params$Resource$Advertisergroups$Get,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    get(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Advertisergroups$Get|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
         void|AxiosPromise<Schema$AdvertiserGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -9948,26 +10682,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AdvertiserGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+        params?: Params$Resource$Advertisergroups$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        params: Params$Resource$Advertisergroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    insert(
+        params: Params$Resource$Advertisergroups$Insert,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    insert(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Advertisergroups$Insert|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
         void|AxiosPromise<Schema$AdvertiserGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10073,29 +10820,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Advertisergroups$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$AdvertiserGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Advertisergroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
+        callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Advertisergroups$List,
+        callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Advertisergroups$List|
+        BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
         void|AxiosPromise<Schema$AdvertiserGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10194,26 +10956,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AdvertiserGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+        params?: Params$Resource$Advertisergroups$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        params: Params$Resource$Advertisergroups$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    patch(
+        params: Params$Resource$Advertisergroups$Patch,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    patch(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Advertisergroups$Patch|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
         void|AxiosPromise<Schema$AdvertiserGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10305,26 +11080,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AdvertiserGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+        params?: Params$Resource$Advertisergroups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        params: Params$Resource$Advertisergroups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    update(
+        params: Params$Resource$Advertisergroups$Update,
+        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    update(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Advertisergroups$Update|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
         void|AxiosPromise<Schema$AdvertiserGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisergroups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10348,6 +11136,128 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Advertisergroups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Advertisergroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Advertisergroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AdvertiserGroup;
+  }
+  export interface Params$Resource$Advertisergroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only advertiser groups with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "advertiser*2015" will return objects with names like
+     * "advertiser group June 2015", "advertiser group April 2015", or simply
+     * "advertiser group 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "advertisergroup" will match objects with name "my
+     * advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Advertisergroups$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AdvertiserGroup;
+  }
+  export interface Params$Resource$Advertisergroups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AdvertiserGroup;
+  }
+
 
   export class Resource$Advertisers {
     root: Dfareporting;
@@ -10425,23 +11335,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+    get(params?: Params$Resource$Advertisers$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+    get(params: Params$Resource$Advertisers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    get(params: Params$Resource$Advertisers$Get,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    get(callback: BodyResponseCallback<Schema$Advertiser>): void;
+    get(paramsOrCallback?: Params$Resource$Advertisers$Get|
+        BodyResponseCallback<Schema$Advertiser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
         void|AxiosPromise<Schema$Advertiser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10531,26 +11452,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Advertiser>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>): void;
+        params?: Params$Resource$Advertisers$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        params: Params$Resource$Advertisers$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    insert(
+        params: Params$Resource$Advertisers$Insert,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    insert(callback: BodyResponseCallback<Schema$Advertiser>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Advertisers$Insert|
+        BodyResponseCallback<Schema$Advertiser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
         void|AxiosPromise<Schema$Advertiser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisers$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10661,28 +11595,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Advertisers$List, options?: MethodOptions):
         AxiosPromise<Schema$AdvertisersListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Advertisers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AdvertisersListResponse>,
-        callback?: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+        callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Advertisers$List,
+        callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Advertisers$List|
+        BodyResponseCallback<Schema$AdvertisersListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertisersListResponse>,
         callback?: BodyResponseCallback<Schema$AdvertisersListResponse>):
         void|AxiosPromise<Schema$AdvertisersListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10778,26 +11722,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Advertisers$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Advertiser>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>): void;
+        params: Params$Resource$Advertisers$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        params: Params$Resource$Advertisers$Patch,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    patch(callback: BodyResponseCallback<Schema$Advertiser>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Advertisers$Patch|
+        BodyResponseCallback<Schema$Advertiser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
         void|AxiosPromise<Schema$Advertiser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10888,26 +11844,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Advertiser>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>): void;
+        params?: Params$Resource$Advertisers$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        params: Params$Resource$Advertisers$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    update(
+        params: Params$Resource$Advertisers$Update,
+        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    update(callback: BodyResponseCallback<Schema$Advertiser>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Advertisers$Update|
+        BodyResponseCallback<Schema$Advertiser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
         void|AxiosPromise<Schema$Advertiser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Advertisers$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -10930,6 +11899,138 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Advertisers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Advertisers$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Advertiser;
+  }
+  export interface Params$Resource$Advertisers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only advertisers with these advertiser group IDs.
+     */
+    advertiserGroupIds?: string;
+    /**
+     * Select only advertisers with these floodlight configuration IDs.
+     */
+    floodlightConfigurationIds?: string;
+    /**
+     * Select only advertisers with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only advertisers which do not belong to any advertiser group.
+     */
+    includeAdvertisersWithoutGroupsOnly?: boolean;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only advertisers which use another advertiser's floodlight
+     * configuration.
+     */
+    onlyParent?: boolean;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "advertiser*2015" will return objects with names like
+     * "advertiser June 2015", "advertiser April 2015", or simply "advertiser
+     * 2015". Most of the searches also add wildcards implicitly at the start
+     * and the end of the search string. For example, a search string of
+     * "advertiser" will match objects with name "my advertiser", "advertiser
+     * 2015", or simply "advertiser".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only advertisers with the specified status.
+     */
+    status?: string;
+    /**
+     * Select only advertisers with these subaccount IDs.
+     */
+    subaccountId?: string;
+  }
+  export interface Params$Resource$Advertisers$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Advertiser;
+  }
+  export interface Params$Resource$Advertisers$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Advertiser;
+  }
+
 
   export class Resource$Browsers {
     root: Dfareporting;
@@ -11003,28 +12104,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Browsers$List, options?: MethodOptions):
         AxiosPromise<Schema$BrowsersListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Browsers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BrowsersListResponse>,
-        callback?: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+        callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Browsers$List,
+        callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Browsers$List|
+        BodyResponseCallback<Schema$BrowsersListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BrowsersListResponse>,
         callback?: BodyResponseCallback<Schema$BrowsersListResponse>):
         void|AxiosPromise<Schema$BrowsersListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Browsers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Browsers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11047,6 +12158,19 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Browsers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Campaigncreativeassociations {
     root: Dfareporting;
@@ -11129,29 +12253,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(
+        params?: Params$Resource$Campaigncreativeassociations$Insert,
+        options?: MethodOptions):
         AxiosPromise<Schema$CampaignCreativeAssociation>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigncreativeassociations$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CampaignCreativeAssociation>,
-        callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
+        callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
         void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigncreativeassociations$Insert,
+        callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
+        void;
+    insert(callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
+        void;
+    insert(
+        paramsOrCallback?: Params$Resource$Campaigncreativeassociations$Insert|
+        BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CampaignCreativeAssociation>,
         callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
         void|AxiosPromise<Schema$CampaignCreativeAssociation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Campaigncreativeassociations$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigncreativeassociations$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11261,30 +12400,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Campaigncreativeassociations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigncreativeassociations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$CampaignCreativeAssociationsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigncreativeassociations$List,
+        callback: BodyResponseCallback<
+            Schema$CampaignCreativeAssociationsListResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$CampaignCreativeAssociationsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Campaigncreativeassociations$List|
+        BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
         callback?: BodyResponseCallback<
             Schema$CampaignCreativeAssociationsListResponse>):
         void|AxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Campaigncreativeassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigncreativeassociations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11310,6 +12464,54 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Campaigncreativeassociations$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Campaign ID in this association.
+     */
+    campaignId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CampaignCreativeAssociation;
+  }
+  export interface Params$Resource$Campaigncreativeassociations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Campaign ID in this association.
+     */
+    campaignId?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Campaigns {
     root: Dfareporting;
@@ -11387,23 +12589,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+    get(params?: Params$Resource$Campaigns$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+    get(params: Params$Resource$Campaigns$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
+    get(params: Params$Resource$Campaigns$Get,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
+    get(callback: BodyResponseCallback<Schema$Campaign>): void;
+    get(paramsOrCallback?: Params$Resource$Campaigns$Get|
+        BodyResponseCallback<Schema$Campaign>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
         void|AxiosPromise<Schema$Campaign> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigns$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11502,26 +12714,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Campaigns$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Campaign>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>): void;
+        params: Params$Resource$Campaigns$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        params: Params$Resource$Campaigns$Insert,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
+    insert(callback: BodyResponseCallback<Schema$Campaign>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Campaigns$Insert|
+        BodyResponseCallback<Schema$Campaign>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
         void|AxiosPromise<Schema$Campaign> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigns$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11633,28 +12855,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Campaigns$List, options?: MethodOptions):
         AxiosPromise<Schema$CampaignsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigns$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CampaignsListResponse>,
-        callback?: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+        callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Campaigns$List,
+        callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Campaigns$List|
+        BodyResponseCallback<Schema$CampaignsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CampaignsListResponse>,
         callback?: BodyResponseCallback<Schema$CampaignsListResponse>):
         void|AxiosPromise<Schema$CampaignsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigns$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11749,25 +12981,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+    patch(params?: Params$Resource$Campaigns$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Campaign>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>): void;
+        params: Params$Resource$Campaigns$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        params: Params$Resource$Campaigns$Patch,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
+    patch(callback: BodyResponseCallback<Schema$Campaign>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Campaigns$Patch|
+        BodyResponseCallback<Schema$Campaign>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
         void|AxiosPromise<Schema$Campaign> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigns$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11858,26 +13101,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Campaigns$Update, options?: MethodOptions):
         AxiosPromise<Schema$Campaign>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>): void;
+        params: Params$Resource$Campaigns$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+        params: Params$Resource$Campaigns$Update,
+        callback: BodyResponseCallback<Schema$Campaign>): void;
+    update(callback: BodyResponseCallback<Schema$Campaign>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Campaigns$Update|
+        BodyResponseCallback<Schema$Campaign>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
         void|AxiosPromise<Schema$Campaign> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Campaigns$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -11900,6 +13153,152 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Campaigns$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Campaign ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Campaigns$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Default landing page name for this new campaign. Must be less than 256
+     * characters long.
+     */
+    defaultLandingPageName?: string;
+    /**
+     * Default landing page URL for this new campaign.
+     */
+    defaultLandingPageUrl?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Campaign;
+  }
+  export interface Params$Resource$Campaigns$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only campaigns whose advertisers belong to these advertiser
+     * groups.
+     */
+    advertiserGroupIds?: string;
+    /**
+     * Select only campaigns that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only archived campaigns. Don't set this field to select both
+     * archived and non-archived campaigns.
+     */
+    archived?: boolean;
+    /**
+     * Select only campaigns that have at least one optimization activity.
+     */
+    atLeastOneOptimizationActivity?: boolean;
+    /**
+     * Exclude campaigns with these IDs.
+     */
+    excludedIds?: string;
+    /**
+     * Select only campaigns with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only campaigns that have overridden this event tag ID.
+     */
+    overriddenEventTagId?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for campaigns by name or ID. Wildcards (*) are allowed.
+     * For example, "campaign*2015" will return campaigns with names like
+     * "campaign June 2015", "campaign April 2015", or simply "campaign 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "campaign" will
+     * match campaigns with name "my campaign", "campaign 2015", or simply
+     * "campaign".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only campaigns that belong to this subaccount.
+     */
+    subaccountId?: string;
+  }
+  export interface Params$Resource$Campaigns$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Campaign ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Campaign;
+  }
+  export interface Params$Resource$Campaigns$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Campaign;
+  }
+
 
   export class Resource$Changelogs {
     root: Dfareporting;
@@ -11977,23 +13376,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$ChangeLog>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
-        callback?: BodyResponseCallback<Schema$ChangeLog>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
+    get(params?: Params$Resource$Changelogs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ChangeLog>;
+    get(params: Params$Resource$Changelogs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
+        callback: BodyResponseCallback<Schema$ChangeLog>): void;
+    get(params: Params$Resource$Changelogs$Get,
+        callback: BodyResponseCallback<Schema$ChangeLog>): void;
+    get(callback: BodyResponseCallback<Schema$ChangeLog>): void;
+    get(paramsOrCallback?: Params$Resource$Changelogs$Get|
+        BodyResponseCallback<Schema$ChangeLog>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChangeLog>,
         callback?: BodyResponseCallback<Schema$ChangeLog>):
         void|AxiosPromise<Schema$ChangeLog> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changelogs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12102,28 +13512,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Changelogs$List, options?: MethodOptions):
         AxiosPromise<Schema$ChangeLogsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Changelogs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ChangeLogsListResponse>,
-        callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+        callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Changelogs$List,
+        callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Changelogs$List|
+        BodyResponseCallback<Schema$ChangeLogsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangeLogsListResponse>,
         callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>):
         void|AxiosPromise<Schema$ChangeLogsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changelogs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12146,6 +13566,85 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Changelogs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Change log ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Changelogs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only change logs with the specified action.
+     */
+    action?: string;
+    /**
+     * Select only change logs with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only change logs whose change time is before the specified
+     * maxChangeTime.The time should be formatted as an RFC3339 date/time
+     * string. For example, for 10:54 PM on July 18th, 2015, in the America/New
+     * York time zone, the format is "2015-07-18T22:54:00-04:00". In other
+     * words, the year, month, day, the letter T, the hour (24-hour clock
+     * system), minute, second, and then the time zone offset.
+     */
+    maxChangeTime?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only change logs whose change time is before the specified
+     * minChangeTime.The time should be formatted as an RFC3339 date/time
+     * string. For example, for 10:54 PM on July 18th, 2015, in the America/New
+     * York time zone, the format is "2015-07-18T22:54:00-04:00". In other
+     * words, the year, month, day, the letter T, the hour (24-hour clock
+     * system), minute, second, and then the time zone offset.
+     */
+    minChangeTime?: string;
+    /**
+     * Select only change logs with these object IDs.
+     */
+    objectIds?: string;
+    /**
+     * Select only change logs with the specified object type.
+     */
+    objectType?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Select only change logs whose object ID, user name, old or new values
+     * match the search string.
+     */
+    searchString?: string;
+    /**
+     * Select only change logs with these user profile IDs.
+     */
+    userProfileIds?: string;
+  }
+
 
   export class Resource$Cities {
     root: Dfareporting;
@@ -12223,26 +13722,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Cities$List, options?: MethodOptions):
         AxiosPromise<Schema$CitiesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
-        callback?: BodyResponseCallback<Schema$CitiesListResponse>): void;
+        params: Params$Resource$Cities$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
+        callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
+        params: Params$Resource$Cities$List,
+        callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Cities$List|
+        BodyResponseCallback<Schema$CitiesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CitiesListResponse>,
         callback?: BodyResponseCallback<Schema$CitiesListResponse>):
         void|AxiosPromise<Schema$CitiesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Cities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Cities$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12265,6 +13775,35 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Cities$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only cities from these countries.
+     */
+    countryDartIds?: string;
+    /**
+     * Select only cities with these DART IDs.
+     */
+    dartIds?: string;
+    /**
+     * Select only cities with names starting with this prefix.
+     */
+    namePrefix?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Select only cities from these regions.
+     */
+    regionDartIds?: string;
+  }
+
 
   export class Resource$Connectiontypes {
     root: Dfareporting;
@@ -12342,24 +13881,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Connectiontypes$Get,
         options?: MethodOptions): AxiosPromise<Schema$ConnectionType>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
-        callback?: BodyResponseCallback<Schema$ConnectionType>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
+    get(params: Params$Resource$Connectiontypes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
+        callback: BodyResponseCallback<Schema$ConnectionType>): void;
+    get(params: Params$Resource$Connectiontypes$Get,
+        callback: BodyResponseCallback<Schema$ConnectionType>): void;
+    get(callback: BodyResponseCallback<Schema$ConnectionType>): void;
+    get(paramsOrCallback?: Params$Resource$Connectiontypes$Get|
+        BodyResponseCallback<Schema$ConnectionType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ConnectionType>,
         callback?: BodyResponseCallback<Schema$ConnectionType>):
         void|AxiosPromise<Schema$ConnectionType> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Connectiontypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Connectiontypes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12444,29 +13994,43 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Connectiontypes$List, options?: MethodOptions):
         AxiosPromise<Schema$ConnectionTypesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Connectiontypes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ConnectionTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
+        callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Connectiontypes$List,
+        callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Connectiontypes$List|
+        BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConnectionTypesListResponse>,
         callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
         void|AxiosPromise<Schema$ConnectionTypesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Connectiontypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Connectiontypes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12491,6 +14055,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Connectiontypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Connection type ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Connectiontypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Contentcategories {
     root: Dfareporting;
@@ -12565,22 +14157,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Contentcategories$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Contentcategories$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Contentcategories$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Contentcategories$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12669,24 +14276,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Contentcategories$Get,
         options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+    get(params: Params$Resource$Contentcategories$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    get(params: Params$Resource$Contentcategories$Get,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    get(callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    get(paramsOrCallback?: Params$Resource$Contentcategories$Get|
+        BodyResponseCallback<Schema$ContentCategory>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
         void|AxiosPromise<Schema$ContentCategory> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12774,26 +14392,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContentCategory>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+        params?: Params$Resource$Contentcategories$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        params: Params$Resource$Contentcategories$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    insert(
+        params: Params$Resource$Contentcategories$Insert,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    insert(callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Contentcategories$Insert|
+        BodyResponseCallback<Schema$ContentCategory>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
         void|AxiosPromise<Schema$ContentCategory> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -12899,29 +14530,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Contentcategories$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ContentCategoriesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contentcategories$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ContentCategoriesListResponse>,
-        callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
+        callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Contentcategories$List,
+        callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Contentcategories$List|
+        BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategoriesListResponse>,
         callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
         void|AxiosPromise<Schema$ContentCategoriesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13020,26 +14666,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContentCategory>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+        params?: Params$Resource$Contentcategories$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        params: Params$Resource$Contentcategories$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    patch(
+        params: Params$Resource$Contentcategories$Patch,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    patch(callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Contentcategories$Patch|
+        BodyResponseCallback<Schema$ContentCategory>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
         void|AxiosPromise<Schema$ContentCategory> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13129,26 +14788,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ContentCategory>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+        params?: Params$Resource$Contentcategories$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        params: Params$Resource$Contentcategories$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    update(
+        params: Params$Resource$Contentcategories$Update,
+        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    update(callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Contentcategories$Update|
+        BodyResponseCallback<Schema$ContentCategory>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
         void|AxiosPromise<Schema$ContentCategory> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Contentcategories$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13172,6 +14844,128 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Contentcategories$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Content category ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Contentcategories$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Content category ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Contentcategories$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ContentCategory;
+  }
+  export interface Params$Resource$Contentcategories$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only content categories with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "contentcategory*2015" will return objects with names like
+     * "contentcategory June 2015", "contentcategory April 2015", or simply
+     * "contentcategory 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "contentcategory" will match objects with name "my
+     * contentcategory", "contentcategory 2015", or simply "contentcategory".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Contentcategories$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Content category ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ContentCategory;
+  }
+  export interface Params$Resource$Contentcategories$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ContentCategory;
+  }
+
 
   export class Resource$Conversions {
     root: Dfareporting;
@@ -13250,29 +15044,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchinsert(params?: any, options?: MethodOptions):
+    batchinsert(
+        params?: Params$Resource$Conversions$Batchinsert,
+        options?: MethodOptions):
         AxiosPromise<Schema$ConversionsBatchInsertResponse>;
     batchinsert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Conversions$Batchinsert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
-        callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
+        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
         void;
     batchinsert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Conversions$Batchinsert,
+        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
+        void;
+    batchinsert(
+        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
+        void;
+    batchinsert(
+        paramsOrCallback?: Params$Resource$Conversions$Batchinsert|
+        BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
         callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
         void|AxiosPromise<Schema$ConversionsBatchInsertResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Conversions$Batchinsert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Conversions$Batchinsert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13364,29 +15174,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchupdate(params?: any, options?: MethodOptions):
+    batchupdate(
+        params?: Params$Resource$Conversions$Batchupdate,
+        options?: MethodOptions):
         AxiosPromise<Schema$ConversionsBatchUpdateResponse>;
     batchupdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Conversions$Batchupdate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
-        callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
+        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
         void;
     batchupdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Conversions$Batchupdate,
+        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
+        void;
+    batchupdate(
+        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
+        void;
+    batchupdate(
+        paramsOrCallback?: Params$Resource$Conversions$Batchupdate|
+        BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
         callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
         void|AxiosPromise<Schema$ConversionsBatchUpdateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Conversions$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Conversions$Batchupdate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13412,6 +15238,38 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Conversions$Batchinsert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ConversionsBatchInsertRequest;
+  }
+  export interface Params$Resource$Conversions$Batchupdate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ConversionsBatchUpdateRequest;
+  }
+
 
   export class Resource$Countries {
     root: Dfareporting;
@@ -13489,23 +15347,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Country>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Country>,
-        callback?: BodyResponseCallback<Schema$Country>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Country>,
+    get(params?: Params$Resource$Countries$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Country>;
+    get(params: Params$Resource$Countries$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Country>,
+        callback: BodyResponseCallback<Schema$Country>): void;
+    get(params: Params$Resource$Countries$Get,
+        callback: BodyResponseCallback<Schema$Country>): void;
+    get(callback: BodyResponseCallback<Schema$Country>): void;
+    get(paramsOrCallback?: Params$Resource$Countries$Get|
+        BodyResponseCallback<Schema$Country>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Country>,
         callback?: BodyResponseCallback<Schema$Country>):
         void|AxiosPromise<Schema$Country> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Countries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Countries$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13590,28 +15458,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Countries$List, options?: MethodOptions):
         AxiosPromise<Schema$CountriesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Countries$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CountriesListResponse>,
-        callback?: BodyResponseCallback<Schema$CountriesListResponse>): void;
+        callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Countries$List,
+        callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Countries$List|
+        BodyResponseCallback<Schema$CountriesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CountriesListResponse>,
         callback?: BodyResponseCallback<Schema$CountriesListResponse>):
         void|AxiosPromise<Schema$CountriesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Countries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Countries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13634,6 +15512,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Countries$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Country DART ID.
+     */
+    dartId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Countries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Creativeassets {
     root: Dfareporting;
@@ -13726,28 +15632,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeAssetMetadata>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Creativeassets$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeAssetMetadata>;
+    insert(
+        params: Params$Resource$Creativeassets$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreativeAssetMetadata>,
-        callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+        callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativeassets$Insert,
+        callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+    insert(callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creativeassets$Insert|
+        BodyResponseCallback<Schema$CreativeAssetMetadata>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeAssetMetadata>,
         callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>):
         void|AxiosPromise<Schema$CreativeAssetMetadata> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativeassets$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativeassets$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13775,6 +15693,41 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Creativeassets$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Advertiser ID of this creative. This is a required field.
+     */
+    advertiserId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeAssetMetadata;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+
 
   export class Resource$Creativefields {
     root: Dfareporting;
@@ -13849,22 +15802,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Creativefields$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Creativefields$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Creativefields$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Creativefields$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -13953,24 +15921,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Creativefields$Get,
         options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+    get(params: Params$Resource$Creativefields$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    get(params: Params$Resource$Creativefields$Get,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    get(callback: BodyResponseCallback<Schema$CreativeField>): void;
+    get(paramsOrCallback?: Params$Resource$Creativefields$Get|
+        BodyResponseCallback<Schema$CreativeField>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
         void|AxiosPromise<Schema$CreativeField> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14060,26 +16039,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeField>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>): void;
+        params?: Params$Resource$Creativefields$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        params: Params$Resource$Creativefields$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    insert(
+        params: Params$Resource$Creativefields$Insert,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    insert(callback: BodyResponseCallback<Schema$CreativeField>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creativefields$Insert|
+        BodyResponseCallback<Schema$CreativeField>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
         void|AxiosPromise<Schema$CreativeField> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14186,29 +16178,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Creativefields$List, options?: MethodOptions):
         AxiosPromise<Schema$CreativeFieldsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativefields$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldsListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
+        callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativefields$List,
+        callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Creativefields$List|
+        BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldsListResponse>,
         callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
         void|AxiosPromise<Schema$CreativeFieldsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14306,26 +16311,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeField>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>): void;
+        params?: Params$Resource$Creativefields$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        params: Params$Resource$Creativefields$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    patch(
+        params: Params$Resource$Creativefields$Patch,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    patch(callback: BodyResponseCallback<Schema$CreativeField>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Creativefields$Patch|
+        BodyResponseCallback<Schema$CreativeField>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
         void|AxiosPromise<Schema$CreativeField> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14417,26 +16435,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeField>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>): void;
+        params?: Params$Resource$Creativefields$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        params: Params$Resource$Creativefields$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    update(
+        params: Params$Resource$Creativefields$Update,
+        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    update(callback: BodyResponseCallback<Schema$CreativeField>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Creativefields$Update|
+        BodyResponseCallback<Schema$CreativeField>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
         void|AxiosPromise<Schema$CreativeField> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefields$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefields$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14460,6 +16491,132 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Creativefields$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative Field ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creativefields$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative Field ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creativefields$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeField;
+  }
+  export interface Params$Resource$Creativefields$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only creative fields that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only creative fields with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for creative fields by name or ID. Wildcards (*) are
+     * allowed. For example, "creativefield*2015" will return creative fields
+     * with names like "creativefield June 2015", "creativefield April 2015", or
+     * simply "creativefield 2015". Most of the searches also add wild-cards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "creativefield" will match creative fields with the name
+     * "my creativefield", "creativefield 2015", or simply "creativefield".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Creativefields$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative Field ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeField;
+  }
+  export interface Params$Resource$Creativefields$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeField;
+  }
+
 
   export class Resource$Creativefieldvalues {
     root: Dfareporting;
@@ -14538,22 +16695,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Creativefieldvalues$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Creativefieldvalues$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Creativefieldvalues$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Creativefieldvalues$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Creativefieldvalues$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14646,24 +16818,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Creativefieldvalues$Get,
         options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+    get(params: Params$Resource$Creativefieldvalues$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    get(params: Params$Resource$Creativefieldvalues$Get,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    get(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    get(paramsOrCallback?: Params$Resource$Creativefieldvalues$Get|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
         void|AxiosPromise<Schema$CreativeFieldValue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14755,26 +16938,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeFieldValue>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+        params?: Params$Resource$Creativefieldvalues$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        params: Params$Resource$Creativefieldvalues$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    insert(
+        params: Params$Resource$Creativefieldvalues$Insert,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    insert(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creativefieldvalues$Insert|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
         void|AxiosPromise<Schema$CreativeFieldValue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Creativefieldvalues$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -14884,30 +17080,46 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Creativefieldvalues$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$CreativeFieldValuesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativefieldvalues$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$CreativeFieldValuesListResponse>): void;
+        callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativefieldvalues$List,
+        callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Creativefieldvalues$List|
+        BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
         callback?:
             BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
         void|AxiosPromise<Schema$CreativeFieldValuesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15008,26 +17220,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeFieldValue>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+        params?: Params$Resource$Creativefieldvalues$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        params: Params$Resource$Creativefieldvalues$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    patch(
+        params: Params$Resource$Creativefieldvalues$Patch,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    patch(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Creativefieldvalues$Patch|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
         void|AxiosPromise<Schema$CreativeFieldValue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15121,26 +17346,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeFieldValue>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+        params?: Params$Resource$Creativefieldvalues$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        params: Params$Resource$Creativefieldvalues$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    update(
+        params: Params$Resource$Creativefieldvalues$Update,
+        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    update(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Creativefieldvalues$Update|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
         void|AxiosPromise<Schema$CreativeFieldValue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Creativefieldvalues$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativefieldvalues$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15164,6 +17402,147 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Creativefieldvalues$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * Creative Field Value ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creativefieldvalues$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * Creative Field Value ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creativefieldvalues$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeFieldValue;
+  }
+  export interface Params$Resource$Creativefieldvalues$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * Select only creative field values with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for creative field values by their values. Wildcards
+     * (e.g. *) are not allowed.
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Creativefieldvalues$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * Creative Field Value ID
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeFieldValue;
+  }
+  export interface Params$Resource$Creativefieldvalues$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative field ID for this creative field value.
+     */
+    creativeFieldId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeFieldValue;
+  }
+
 
   export class Resource$Creativegroups {
     root: Dfareporting;
@@ -15241,24 +17620,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Creativegroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+    get(params: Params$Resource$Creativegroups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    get(params: Params$Resource$Creativegroups$Get,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    get(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Creativegroups$Get|
+        BodyResponseCallback<Schema$CreativeGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
         void|AxiosPromise<Schema$CreativeGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativegroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15348,26 +17738,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+        params?: Params$Resource$Creativegroups$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        params: Params$Resource$Creativegroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    insert(
+        params: Params$Resource$Creativegroups$Insert,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    insert(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creativegroups$Insert|
+        BodyResponseCallback<Schema$CreativeGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
         void|AxiosPromise<Schema$CreativeGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativegroups$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15475,29 +17878,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Creativegroups$List, options?: MethodOptions):
         AxiosPromise<Schema$CreativeGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativegroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
+        callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creativegroups$List,
+        callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Creativegroups$List|
+        BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
         void|AxiosPromise<Schema$CreativeGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativegroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativegroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15595,26 +18011,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+        params?: Params$Resource$Creativegroups$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        params: Params$Resource$Creativegroups$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    patch(
+        params: Params$Resource$Creativegroups$Patch,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    patch(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Creativegroups$Patch|
+        BodyResponseCallback<Schema$CreativeGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
         void|AxiosPromise<Schema$CreativeGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativegroups$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15706,26 +18135,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+        params?: Params$Resource$Creativegroups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        params: Params$Resource$Creativegroups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    update(
+        params: Params$Resource$Creativegroups$Update,
+        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    update(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Creativegroups$Update|
+        BodyResponseCallback<Schema$CreativeGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
         void|AxiosPromise<Schema$CreativeGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creativegroups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15749,6 +18191,121 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Creativegroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creativegroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeGroup;
+  }
+  export interface Params$Resource$Creativegroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only creative groups that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only creative groups that belong to this subgroup.
+     */
+    groupNumber?: number;
+    /**
+     * Select only creative groups with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for creative groups by name or ID. Wildcards (*) are
+     * allowed. For example, "creativegroup*2015" will return creative groups
+     * with names like "creativegroup June 2015", "creativegroup April 2015", or
+     * simply "creativegroup 2015". Most of the searches also add wild-cards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "creativegroup" will match creative groups with the name
+     * "my creativegroup", "creativegroup 2015", or simply "creativegroup".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Creativegroups$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeGroup;
+  }
+  export interface Params$Resource$Creativegroups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreativeGroup;
+  }
+
 
   export class Resource$Creatives {
     root: Dfareporting;
@@ -15826,23 +18383,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+    get(params?: Params$Resource$Creatives$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Creative>;
+    get(params: Params$Resource$Creatives$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(params: Params$Resource$Creatives$Get,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(callback: BodyResponseCallback<Schema$Creative>): void;
+    get(paramsOrCallback?: Params$Resource$Creatives$Get|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -15932,26 +18499,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Creative>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params: Params$Resource$Creatives$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Creatives$Insert,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    insert(callback: BodyResponseCallback<Schema$Creative>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creatives$Insert|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16065,28 +18642,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
         AxiosPromise<Schema$CreativesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creatives$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreativesListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativesListResponse>): void;
+        callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Creatives$List,
+        callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Creatives$List|
+        BodyResponseCallback<Schema$CreativesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativesListResponse>,
         callback?: BodyResponseCallback<Schema$CreativesListResponse>):
         void|AxiosPromise<Schema$CreativesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16181,25 +18768,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
+    patch(params?: Params$Resource$Creatives$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Creative>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params: Params$Resource$Creatives$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Creatives$Patch,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    patch(callback: BodyResponseCallback<Schema$Creative>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Creatives$Patch|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16290,26 +18888,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Creatives$Update, options?: MethodOptions):
         AxiosPromise<Schema$Creative>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params: Params$Resource$Creatives$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Creatives$Update,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    update(callback: BodyResponseCallback<Schema$Creative>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Creatives$Update|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16332,6 +18940,155 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Creatives$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Creatives$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Creative;
+  }
+  export interface Params$Resource$Creatives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active creatives. Leave blank to select active and inactive
+     * creatives.
+     */
+    active?: boolean;
+    /**
+     * Select only creatives with this advertiser ID.
+     */
+    advertiserId?: string;
+    /**
+     * Select only archived creatives. Leave blank to select archived and
+     * unarchived creatives.
+     */
+    archived?: boolean;
+    /**
+     * Select only creatives with this campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * Select only in-stream video creatives with these companion IDs.
+     */
+    companionCreativeIds?: string;
+    /**
+     * Select only creatives with these creative field IDs.
+     */
+    creativeFieldIds?: string;
+    /**
+     * Select only creatives with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Select only creatives with these rendering IDs.
+     */
+    renderingIds?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "creative*2015" will return objects with names like
+     * "creative June 2015", "creative April 2015", or simply "creative 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "creative" will
+     * match objects with name "my creative", "creative 2015", or simply
+     * "creative".
+     */
+    searchString?: string;
+    /**
+     * Select only creatives with these size IDs.
+     */
+    sizeIds?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only creatives corresponding to this Studio creative ID.
+     */
+    studioCreativeId?: string;
+    /**
+     * Select only creatives with these creative types.
+     */
+    types?: string;
+  }
+  export interface Params$Resource$Creatives$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Creative ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Creative;
+  }
+  export interface Params$Resource$Creatives$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Creative;
+  }
+
 
   export class Resource$Dimensionvalues {
     root: Dfareporting;
@@ -16425,26 +19182,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DimensionValueList>;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
-        callback?: BodyResponseCallback<Schema$DimensionValueList>): void;
+        params?: Params$Resource$Dimensionvalues$Query,
+        options?: MethodOptions): AxiosPromise<Schema$DimensionValueList>;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
+        params: Params$Resource$Dimensionvalues$Query,
+        options: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
+        callback: BodyResponseCallback<Schema$DimensionValueList>): void;
+    query(
+        params: Params$Resource$Dimensionvalues$Query,
+        callback: BodyResponseCallback<Schema$DimensionValueList>): void;
+    query(callback: BodyResponseCallback<Schema$DimensionValueList>): void;
+    query(
+        paramsOrCallback?: Params$Resource$Dimensionvalues$Query|
+        BodyResponseCallback<Schema$DimensionValueList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DimensionValueList>,
         callback?: BodyResponseCallback<Schema$DimensionValueList>):
         void|AxiosPromise<Schema$DimensionValueList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Dimensionvalues$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dimensionvalues$Query;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16468,6 +19238,31 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Dimensionvalues$Query {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * The value of the nextToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DimensionValueRequest;
+  }
+
 
   export class Resource$Directorysitecontacts {
     root: Dfareporting;
@@ -16543,26 +19338,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Directorysitecontacts$Get,
         options?: MethodOptions): AxiosPromise<Schema$DirectorySiteContact>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Directorysitecontacts$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContact>,
-        callback?: BodyResponseCallback<Schema$DirectorySiteContact>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
+    get(params: Params$Resource$Directorysitecontacts$Get,
+        callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
+    get(callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
+    get(paramsOrCallback?: Params$Resource$Directorysitecontacts$Get|
+        BodyResponseCallback<Schema$DirectorySiteContact>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContact>,
         callback?: BodyResponseCallback<Schema$DirectorySiteContact>):
         void|AxiosPromise<Schema$DirectorySiteContact> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Directorysitecontacts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Directorysitecontacts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16669,31 +19474,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Directorysitecontacts$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$DirectorySiteContactsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Directorysitecontacts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Directorysitecontacts$List,
+        callback:
+            BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Directorysitecontacts$List|
+        BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
         callback?:
             BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
         void|AxiosPromise<Schema$DirectorySiteContactsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Directorysitecontacts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Directorysitecontacts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16719,6 +19541,70 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Directorysitecontacts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Directory site contact ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Directorysitecontacts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only directory site contacts with these directory site IDs. This
+     * is a required field.
+     */
+    directorySiteIds?: string;
+    /**
+     * Select only directory site contacts with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name, ID or email. Wildcards (*) are
+     * allowed. For example, "directory site contact*2015" will return objects
+     * with names like "directory site contact June 2015", "directory site
+     * contact April 2015", or simply "directory site contact 2015". Most of the
+     * searches also add wildcards implicitly at the start and the end of the
+     * search string. For example, a search string of "directory site contact"
+     * will match objects with name "my directory site contact", "directory site
+     * contact 2015", or simply "directory site contact".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Directorysites {
     root: Dfareporting;
@@ -16796,24 +19682,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Directorysites$Get,
         options?: MethodOptions): AxiosPromise<Schema$DirectorySite>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-        callback?: BodyResponseCallback<Schema$DirectorySite>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+    get(params: Params$Resource$Directorysites$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    get(params: Params$Resource$Directorysites$Get,
+        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    get(callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    get(paramsOrCallback?: Params$Resource$Directorysites$Get|
+        BodyResponseCallback<Schema$DirectorySite>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DirectorySite>,
         callback?: BodyResponseCallback<Schema$DirectorySite>):
         void|AxiosPromise<Schema$DirectorySite> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Directorysites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Directorysites$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -16903,26 +19800,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DirectorySite>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-        callback?: BodyResponseCallback<Schema$DirectorySite>): void;
+        params?: Params$Resource$Directorysites$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$DirectorySite>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+        params: Params$Resource$Directorysites$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    insert(
+        params: Params$Resource$Directorysites$Insert,
+        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    insert(callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Directorysites$Insert|
+        BodyResponseCallback<Schema$DirectorySite>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DirectorySite>,
         callback?: BodyResponseCallback<Schema$DirectorySite>):
         void|AxiosPromise<Schema$DirectorySite> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Directorysites$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Directorysites$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17035,29 +19945,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Directorysites$List, options?: MethodOptions):
         AxiosPromise<Schema$DirectorySitesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Directorysites$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DirectorySitesListResponse>,
-        callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>):
+        callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Directorysites$List,
+        callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Directorysites$List|
+        BodyResponseCallback<Schema$DirectorySitesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySitesListResponse>,
         callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>):
         void|AxiosPromise<Schema$DirectorySitesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Directorysites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Directorysites$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17082,6 +20005,111 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Directorysites$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Directory site ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Directorysites$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DirectorySite;
+  }
+  export interface Params$Resource$Directorysites$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * This search filter is no longer supported and will have no effect on the
+     * results returned.
+     */
+    acceptsInStreamVideoPlacements?: boolean;
+    /**
+     * This search filter is no longer supported and will have no effect on the
+     * results returned.
+     */
+    acceptsInterstitialPlacements?: boolean;
+    /**
+     * Select only directory sites that accept publisher paid placements. This
+     * field can be left blank.
+     */
+    acceptsPublisherPaidPlacements?: boolean;
+    /**
+     * Select only active directory sites. Leave blank to retrieve both active
+     * and inactive directory sites.
+     */
+    active?: boolean;
+    /**
+     * Select only directory sites with this country ID.
+     */
+    countryId?: string;
+    /**
+     * Select only directory sites with this DFP network code.
+     */
+    dfpNetworkCode?: string;
+    /**
+     * Select only directory sites with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * Select only directory sites with this parent ID.
+     */
+    parentId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name, ID or URL. Wildcards (*) are
+     * allowed. For example, "directory site*2015" will return objects with
+     * names like "directory site June 2015", "directory site April 2015", or
+     * simply "directory site 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "directory site" will match objects with name "my
+     * directory site", "directory site 2015" or simply, "directory site".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Dynamictargetingkeys {
     root: Dfareporting;
@@ -17166,22 +20194,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Dynamictargetingkeys$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Dynamictargetingkeys$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Dynamictargetingkeys$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Dynamictargetingkeys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamictargetingkeys$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17273,28 +20316,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DynamicTargetingKey>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Dynamictargetingkeys$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$DynamicTargetingKey>;
+    insert(
+        params: Params$Resource$Dynamictargetingkeys$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
+        callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+    insert(
+        params: Params$Resource$Dynamictargetingkeys$Insert,
+        callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+    insert(callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$Insert|
         BodyResponseCallback<Schema$DynamicTargetingKey>,
-        callback?: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
-    insert(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DynamicTargetingKey>,
         callback?: BodyResponseCallback<Schema$DynamicTargetingKey>):
         void|AxiosPromise<Schema$DynamicTargetingKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Dynamictargetingkeys$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamictargetingkeys$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17381,31 +20435,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Dynamictargetingkeys$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$DynamicTargetingKeysListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Dynamictargetingkeys$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Dynamictargetingkeys$List,
+        callback:
+            BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$List|
+        BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
         callback?:
             BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
         void|AxiosPromise<Schema$DynamicTargetingKeysListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Dynamictargetingkeys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamictargetingkeys$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17431,6 +20502,76 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Dynamictargetingkeys$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of this dynamic targeting key. This is a required field. Must be
+     * less than 256 characters long and cannot contain commas. All characters
+     * are converted to lowercase.
+     */
+    name?: string;
+    /**
+     * ID of the object of this dynamic targeting key. This is a required field.
+     */
+    objectId?: string;
+    /**
+     * Type of the object of this dynamic targeting key. This is a required
+     * field.
+     */
+    objectType?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Dynamictargetingkeys$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DynamicTargetingKey;
+  }
+  export interface Params$Resource$Dynamictargetingkeys$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only dynamic targeting keys whose object has this advertiser ID.
+     */
+    advertiserId?: string;
+    /**
+     * Select only dynamic targeting keys exactly matching these names.
+     */
+    names?: string;
+    /**
+     * Select only dynamic targeting keys with this object ID.
+     */
+    objectId?: string;
+    /**
+     * Select only dynamic targeting keys with this object type.
+     */
+    objectType?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Eventtags {
     root: Dfareporting;
@@ -17505,22 +20646,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Eventtags$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Eventtags$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Eventtags$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Eventtags$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17609,23 +20763,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+    get(params?: Params$Resource$Eventtags$Get,
+        options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+    get(params: Params$Resource$Eventtags$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
+    get(params: Params$Resource$Eventtags$Get,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
+    get(callback: BodyResponseCallback<Schema$EventTag>): void;
+    get(paramsOrCallback?: Params$Resource$Eventtags$Get|
+        BodyResponseCallback<Schema$EventTag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
         void|AxiosPromise<Schema$EventTag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17715,26 +20879,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Eventtags$Insert, options?: MethodOptions):
         AxiosPromise<Schema$EventTag>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>): void;
+        params: Params$Resource$Eventtags$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        params: Params$Resource$Eventtags$Insert,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
+    insert(callback: BodyResponseCallback<Schema$EventTag>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Eventtags$Insert|
+        BodyResponseCallback<Schema$EventTag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
         void|AxiosPromise<Schema$EventTag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17828,28 +21002,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Eventtags$List, options?: MethodOptions):
         AxiosPromise<Schema$EventTagsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Eventtags$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$EventTagsListResponse>,
-        callback?: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+        callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Eventtags$List,
+        callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Eventtags$List|
+        BodyResponseCallback<Schema$EventTagsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventTagsListResponse>,
         callback?: BodyResponseCallback<Schema$EventTagsListResponse>):
         void|AxiosPromise<Schema$EventTagsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -17945,25 +21129,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+    patch(params?: Params$Resource$Eventtags$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$EventTag>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>): void;
+        params: Params$Resource$Eventtags$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        params: Params$Resource$Eventtags$Patch,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
+    patch(callback: BodyResponseCallback<Schema$EventTag>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Eventtags$Patch|
+        BodyResponseCallback<Schema$EventTag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
         void|AxiosPromise<Schema$EventTag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18054,26 +21249,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Eventtags$Update, options?: MethodOptions):
         AxiosPromise<Schema$EventTag>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>): void;
+        params: Params$Resource$Eventtags$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+        params: Params$Resource$Eventtags$Update,
+        callback: BodyResponseCallback<Schema$EventTag>): void;
+    update(callback: BodyResponseCallback<Schema$EventTag>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Eventtags$Update|
+        BodyResponseCallback<Schema$EventTag>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
         void|AxiosPromise<Schema$EventTag> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Eventtags$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18096,6 +21301,158 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Eventtags$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Event tag ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Eventtags$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Event tag ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Eventtags$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EventTag;
+  }
+  export interface Params$Resource$Eventtags$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only event tags that belong to this ad.
+     */
+    adId?: string;
+    /**
+     * Select only event tags that belong to this advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Select only event tags that belong to this campaign.
+     */
+    campaignId?: string;
+    /**
+     * Examine only the specified campaign or advertiser's event tags for
+     * matching selector criteria. When set to false, the parent advertiser and
+     * parent campaign of the specified ad or campaign is examined as well. In
+     * addition, when set to false, the status field is examined as well, along
+     * with the enabledByDefault field. This parameter can not be set to true
+     * when adId is specified as ads do not define their own even tags.
+     */
+    definitionsOnly?: boolean;
+    /**
+     * Select only enabled event tags. What is considered enabled or disabled
+     * depends on the definitionsOnly parameter. When definitionsOnly is set to
+     * true, only the specified advertiser or campaign's event tags'
+     * enabledByDefault field is examined. When definitionsOnly is set to false,
+     * the specified ad or specified campaign's parent advertiser's or parent
+     * campaign's event tags' enabledByDefault and status fields are examined as
+     * well.
+     */
+    enabled?: boolean;
+    /**
+     * Select only event tags with the specified event tag types. Event tag
+     * types can be used to specify whether to use a third-party pixel, a
+     * third-party JavaScript URL, or a third-party click-through URL for either
+     * impression or click tracking.
+     */
+    eventTagTypes?: string;
+    /**
+     * Select only event tags with these IDs.
+     */
+    ids?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "eventtag*2015" will return objects with names like
+     * "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "eventtag" will
+     * match objects with name "my eventtag", "eventtag 2015", or simply
+     * "eventtag".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Eventtags$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Event tag ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EventTag;
+  }
+  export interface Params$Resource$Eventtags$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EventTag;
+  }
+
 
   export class Resource$Files {
     root: Dfareporting;
@@ -18178,21 +21535,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+    get(params?: Params$Resource$Files$Get,
+        options?: MethodOptions): AxiosPromise<Schema$File>;
+    get(params: Params$Resource$Files$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(params: Params$Resource$Files$Get,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(callback: BodyResponseCallback<Schema$File>): void;
+    get(paramsOrCallback?: Params$Resource$Files$Get|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18294,25 +21663,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+    list(params?: Params$Resource$Files$List, options?: MethodOptions):
+        AxiosPromise<Schema$FileList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>): void;
+        params: Params$Resource$Files$List,
+        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        params: Params$Resource$Files$List,
+        callback: BodyResponseCallback<Schema$FileList>): void;
+    list(callback: BodyResponseCallback<Schema$FileList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Files$List|
+        BodyResponseCallback<Schema$FileList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
         void|AxiosPromise<Schema$FileList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18335,6 +21715,54 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Files$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the report file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+  }
+  export interface Params$Resource$Files$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * The value of the nextToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * The DFA profile ID.
+     */
+    profileId?: string;
+    /**
+     * The scope that defines which results are returned.
+     */
+    scope?: string;
+    /**
+     * The field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Floodlightactivities {
     root: Dfareporting;
@@ -18409,22 +21837,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Floodlightactivities$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Floodlightactivities$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Floodlightactivities$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivities$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18508,30 +21951,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetag(params?: any, options?: MethodOptions):
+    generatetag(
+        params?: Params$Resource$Floodlightactivities$Generatetag,
+        options?: MethodOptions):
         AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
     generatetag(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivities$Generatetag,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$FloodlightActivitiesGenerateTagResponse>): void;
     generatetag(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivities$Generatetag,
+        callback: BodyResponseCallback<
+            Schema$FloodlightActivitiesGenerateTagResponse>): void;
+    generatetag(callback: BodyResponseCallback<
+                Schema$FloodlightActivitiesGenerateTagResponse>): void;
+    generatetag(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$Generatetag|
+        BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
         callback?: BodyResponseCallback<
             Schema$FloodlightActivitiesGenerateTagResponse>):
         void|AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivities$Generatetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Generatetag;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18620,24 +22078,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Floodlightactivities$Get,
         options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+    get(params: Params$Resource$Floodlightactivities$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    get(params: Params$Resource$Floodlightactivities$Get,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    get(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    get(paramsOrCallback?: Params$Resource$Floodlightactivities$Get|
+        BodyResponseCallback<Schema$FloodlightActivity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
         void|AxiosPromise<Schema$FloodlightActivity> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18725,26 +22194,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivity>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+        params?: Params$Resource$Floodlightactivities$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        params: Params$Resource$Floodlightactivities$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    insert(
+        params: Params$Resource$Floodlightactivities$Insert,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    insert(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$Insert|
+        BodyResponseCallback<Schema$FloodlightActivity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
         void|AxiosPromise<Schema$FloodlightActivity> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivities$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18857,31 +22339,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Floodlightactivities$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$FloodlightActivitiesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivities$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivities$List,
+        callback:
+            BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$List|
+        BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
         void|AxiosPromise<Schema$FloodlightActivitiesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -18978,26 +22477,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivity>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+        params?: Params$Resource$Floodlightactivities$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        params: Params$Resource$Floodlightactivities$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    patch(
+        params: Params$Resource$Floodlightactivities$Patch,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    patch(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$Patch|
+        BodyResponseCallback<Schema$FloodlightActivity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
         void|AxiosPromise<Schema$FloodlightActivity> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivities$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19087,26 +22599,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivity>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+        params?: Params$Resource$Floodlightactivities$Update,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        params: Params$Resource$Floodlightactivities$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    update(
+        params: Params$Resource$Floodlightactivities$Update,
+        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    update(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Floodlightactivities$Update|
+        BodyResponseCallback<Schema$FloodlightActivity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
         void|AxiosPromise<Schema$FloodlightActivity> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivities$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivities$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19130,6 +22655,182 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Floodlightactivities$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightactivities$Generatetag {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity ID for which we want to generate a tag.
+     */
+    floodlightActivityId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightactivities$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightactivities$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivity;
+  }
+  export interface Params$Resource$Floodlightactivities$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only floodlight activities for the specified advertiser ID. Must
+     * specify either ids, advertiserId, or floodlightConfigurationId for a
+     * non-empty result.
+     */
+    advertiserId?: string;
+    /**
+     * Select only floodlight activities with the specified floodlight activity
+     * group IDs.
+     */
+    floodlightActivityGroupIds?: string;
+    /**
+     * Select only floodlight activities with the specified floodlight activity
+     * group name.
+     */
+    floodlightActivityGroupName?: string;
+    /**
+     * Select only floodlight activities with the specified floodlight activity
+     * group tag string.
+     */
+    floodlightActivityGroupTagString?: string;
+    /**
+     * Select only floodlight activities with the specified floodlight activity
+     * group type.
+     */
+    floodlightActivityGroupType?: string;
+    /**
+     * Select only floodlight activities for the specified floodlight
+     * configuration ID. Must specify either ids, advertiserId, or
+     * floodlightConfigurationId for a non-empty result.
+     */
+    floodlightConfigurationId?: string;
+    /**
+     * Select only floodlight activities with the specified IDs. Must specify
+     * either ids, advertiserId, or floodlightConfigurationId for a non-empty
+     * result.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "floodlightactivity*2015" will return objects with names
+     * like "floodlightactivity June 2015", "floodlightactivity April 2015", or
+     * simply "floodlightactivity 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "floodlightactivity" will match objects with name "my
+     * floodlightactivity activity", "floodlightactivity 2015", or simply
+     * "floodlightactivity".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only floodlight activities with the specified tag string.
+     */
+    tagString?: string;
+  }
+  export interface Params$Resource$Floodlightactivities$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivity;
+  }
+  export interface Params$Resource$Floodlightactivities$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivity;
+  }
+
 
   export class Resource$Floodlightactivitygroups {
     root: Dfareporting;
@@ -19205,26 +22906,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Floodlightactivitygroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Floodlightactivitygroups$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    get(params: Params$Resource$Floodlightactivitygroups$Get,
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    get(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Get|
+        BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
         void|AxiosPromise<Schema$FloodlightActivityGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivitygroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivitygroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19312,28 +23023,41 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivityGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Floodlightactivitygroups$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+    insert(
+        params: Params$Resource$Floodlightactivitygroups$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivitygroups$Insert,
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    insert(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+        void;
+    insert(
+        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Insert|
+        BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
         void|AxiosPromise<Schema$FloodlightActivityGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivitygroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivitygroups$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19443,31 +23167,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Floodlightactivitygroups$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivitygroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivitygroups$List,
+        callback:
+            BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$List|
+        BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
         void|AxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivitygroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivitygroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19564,28 +23305,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivityGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Floodlightactivitygroups$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+    patch(
+        params: Params$Resource$Floodlightactivitygroups$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivitygroups$Patch,
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    patch(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Patch|
+        BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
         void|AxiosPromise<Schema$FloodlightActivityGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivitygroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivitygroups$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19675,28 +23428,41 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivityGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Floodlightactivitygroups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+    update(
+        params: Params$Resource$Floodlightactivitygroups$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightactivitygroups$Update,
+        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    update(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+        void;
+    update(
+        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Update|
+        BodyResponseCallback<Schema$FloodlightActivityGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
         void|AxiosPromise<Schema$FloodlightActivityGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightactivitygroups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightactivitygroups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19720,6 +23486,133 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Floodlightactivitygroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity Group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightactivitygroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivityGroup;
+  }
+  export interface Params$Resource$Floodlightactivitygroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only floodlight activity groups with the specified advertiser ID.
+     * Must specify either advertiserId or floodlightConfigurationId for a
+     * non-empty result.
+     */
+    advertiserId?: string;
+    /**
+     * Select only floodlight activity groups with the specified floodlight
+     * configuration ID. Must specify either advertiserId, or
+     * floodlightConfigurationId for a non-empty result.
+     */
+    floodlightConfigurationId?: string;
+    /**
+     * Select only floodlight activity groups with the specified IDs. Must
+     * specify either advertiserId or floodlightConfigurationId for a non-empty
+     * result.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "floodlightactivitygroup*2015" will return objects with
+     * names like "floodlightactivitygroup June 2015", "floodlightactivitygroup
+     * April 2015", or simply "floodlightactivitygroup 2015". Most of the
+     * searches also add wildcards implicitly at the start and the end of the
+     * search string. For example, a search string of "floodlightactivitygroup"
+     * will match objects with name "my floodlightactivitygroup activity",
+     * "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only floodlight activity groups with the specified floodlight
+     * activity group type.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Floodlightactivitygroups$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight activity Group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivityGroup;
+  }
+  export interface Params$Resource$Floodlightactivitygroups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightActivityGroup;
+  }
+
 
   export class Resource$Floodlightconfigurations {
     root: Dfareporting;
@@ -19795,26 +23688,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Floodlightconfigurations$Get,
         options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Floodlightconfigurations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    get(params: Params$Resource$Floodlightconfigurations$Get,
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    get(callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    get(paramsOrCallback?: Params$Resource$Floodlightconfigurations$Get|
+        BodyResponseCallback<Schema$FloodlightConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
         void|AxiosPromise<Schema$FloodlightConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightconfigurations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightconfigurations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -19898,31 +23801,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Floodlightconfigurations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$FloodlightConfigurationsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightconfigurations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightconfigurations$List,
+        callback:
+            BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Floodlightconfigurations$List|
+        BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
         void|AxiosPromise<Schema$FloodlightConfigurationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightconfigurations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightconfigurations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20019,28 +23939,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightConfiguration>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Floodlightconfigurations$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+    patch(
+        params: Params$Resource$Floodlightconfigurations$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightconfigurations$Patch,
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    patch(callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Floodlightconfigurations$Patch|
+        BodyResponseCallback<Schema$FloodlightConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
         void|AxiosPromise<Schema$FloodlightConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightconfigurations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightconfigurations$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20130,28 +24062,41 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightConfiguration>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Floodlightconfigurations$Update,
+        options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+    update(
+        params: Params$Resource$Floodlightconfigurations$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Floodlightconfigurations$Update,
+        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    update(callback: BodyResponseCallback<Schema$FloodlightConfiguration>):
+        void;
+    update(
+        paramsOrCallback?: Params$Resource$Floodlightconfigurations$Update|
+        BodyResponseCallback<Schema$FloodlightConfiguration>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
         void|AxiosPromise<Schema$FloodlightConfiguration> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Floodlightconfigurations$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Floodlightconfigurations$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20175,6 +24120,73 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Floodlightconfigurations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight configuration ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightconfigurations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Set of IDs of floodlight configurations to retrieve. Required field;
+     * otherwise an empty list will be returned.
+     */
+    ids?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Floodlightconfigurations$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Floodlight configuration ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightConfiguration;
+  }
+  export interface Params$Resource$Floodlightconfigurations$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FloodlightConfiguration;
+  }
+
 
   export class Resource$Inventoryitems {
     root: Dfareporting;
@@ -20256,24 +24268,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Inventoryitems$Get,
         options?: MethodOptions): AxiosPromise<Schema$InventoryItem>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
-        callback?: BodyResponseCallback<Schema$InventoryItem>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
+    get(params: Params$Resource$Inventoryitems$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
+        callback: BodyResponseCallback<Schema$InventoryItem>): void;
+    get(params: Params$Resource$Inventoryitems$Get,
+        callback: BodyResponseCallback<Schema$InventoryItem>): void;
+    get(callback: BodyResponseCallback<Schema$InventoryItem>): void;
+    get(paramsOrCallback?: Params$Resource$Inventoryitems$Get|
+        BodyResponseCallback<Schema$InventoryItem>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InventoryItem>,
         callback?: BodyResponseCallback<Schema$InventoryItem>):
         void|AxiosPromise<Schema$InventoryItem> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Inventoryitems$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventoryitems$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20386,29 +24409,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Inventoryitems$List, options?: MethodOptions):
         AxiosPromise<Schema$InventoryItemsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Inventoryitems$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$InventoryItemsListResponse>,
-        callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>):
+        callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Inventoryitems$List,
+        callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Inventoryitems$List|
+        BodyResponseCallback<Schema$InventoryItemsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InventoryItemsListResponse>,
         callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>):
         void|AxiosPromise<Schema$InventoryItemsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Inventoryitems$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventoryitems$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20433,6 +24469,78 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Inventoryitems$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Inventory item ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for order documents.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Inventoryitems$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only inventory items with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only inventory items that are in plan.
+     */
+    inPlan?: boolean;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only inventory items that belong to specified orders.
+     */
+    orderId?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for order documents.
+     */
+    projectId?: string;
+    /**
+     * Select only inventory items that are associated with these sites.
+     */
+    siteId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only inventory items with this type.
+     */
+    type?: string;
+  }
+
 
   export class Resource$Landingpages {
     root: Dfareporting;
@@ -20511,22 +24619,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Landingpages$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Landingpages$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Landingpages$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Landingpages$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Landingpages$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20619,24 +24742,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Landingpages$Get,
         options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+    get(params: Params$Resource$Landingpages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(params: Params$Resource$Landingpages$Get,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(paramsOrCallback?: Params$Resource$Landingpages$Get|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
         void|AxiosPromise<Schema$LandingPage> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Landingpages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20730,26 +24863,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LandingPage>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>): void;
+        params?: Params$Resource$Landingpages$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        params: Params$Resource$Landingpages$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(
+        params: Params$Resource$Landingpages$Insert,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Landingpages$Insert|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
         void|AxiosPromise<Schema$LandingPage> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Landingpages$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20838,28 +24984,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Landingpages$List, options?: MethodOptions):
         AxiosPromise<Schema$LandingPagesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Landingpages$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LandingPagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
+        callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Landingpages$List,
+        callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Landingpages$List|
+        BodyResponseCallback<Schema$LandingPagesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LandingPagesListResponse>,
         callback?: BodyResponseCallback<Schema$LandingPagesListResponse>):
         void|AxiosPromise<Schema$LandingPagesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Landingpages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -20960,26 +25117,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Landingpages$Patch, options?: MethodOptions):
         AxiosPromise<Schema$LandingPage>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>): void;
+        params: Params$Resource$Landingpages$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        params: Params$Resource$Landingpages$Patch,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    patch(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Landingpages$Patch|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
         void|AxiosPromise<Schema$LandingPage> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Landingpages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21075,26 +25244,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LandingPage>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>): void;
+        params?: Params$Resource$Landingpages$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        params: Params$Resource$Landingpages$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(
+        params: Params$Resource$Landingpages$Update,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Landingpages$Update|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
         void|AxiosPromise<Schema$LandingPage> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Landingpages$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Landingpages$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21118,6 +25300,122 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Landingpages$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * Landing page ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Landingpages$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * Landing page ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Landingpages$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LandingPage;
+  }
+  export interface Params$Resource$Landingpages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Landingpages$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * Landing page ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LandingPage;
+  }
+  export interface Params$Resource$Landingpages$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page campaign ID.
+     */
+    campaignId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LandingPage;
+  }
+
 
   export class Resource$Languages {
     root: Dfareporting;
@@ -21191,28 +25489,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Languages$List, options?: MethodOptions):
         AxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Languages$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Languages$List,
+        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Languages$List|
+        BodyResponseCallback<Schema$LanguagesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
         callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
         void|AxiosPromise<Schema$LanguagesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Languages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21235,6 +25543,19 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Languages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Metros {
     root: Dfareporting;
@@ -21308,26 +25629,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Metros$List, options?: MethodOptions):
         AxiosPromise<Schema$MetrosListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
-        callback?: BodyResponseCallback<Schema$MetrosListResponse>): void;
+        params: Params$Resource$Metros$List,
+        options: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
+        callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
+        params: Params$Resource$Metros$List,
+        callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Metros$List|
+        BodyResponseCallback<Schema$MetrosListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetrosListResponse>,
         callback?: BodyResponseCallback<Schema$MetrosListResponse>):
         void|AxiosPromise<Schema$MetrosListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Metros$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metros$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21350,6 +25682,19 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Metros$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Mobilecarriers {
     root: Dfareporting;
@@ -21427,24 +25772,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Mobilecarriers$Get,
         options?: MethodOptions): AxiosPromise<Schema$MobileCarrier>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
-        callback?: BodyResponseCallback<Schema$MobileCarrier>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
+    get(params: Params$Resource$Mobilecarriers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
+        callback: BodyResponseCallback<Schema$MobileCarrier>): void;
+    get(params: Params$Resource$Mobilecarriers$Get,
+        callback: BodyResponseCallback<Schema$MobileCarrier>): void;
+    get(callback: BodyResponseCallback<Schema$MobileCarrier>): void;
+    get(paramsOrCallback?: Params$Resource$Mobilecarriers$Get|
+        BodyResponseCallback<Schema$MobileCarrier>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileCarrier>,
         callback?: BodyResponseCallback<Schema$MobileCarrier>):
         void|AxiosPromise<Schema$MobileCarrier> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobilecarriers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21529,29 +25885,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Mobilecarriers$List, options?: MethodOptions):
         AxiosPromise<Schema$MobileCarriersListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Mobilecarriers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$MobileCarriersListResponse>,
-        callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>):
+        callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Mobilecarriers$List,
+        callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Mobilecarriers$List|
+        BodyResponseCallback<Schema$MobileCarriersListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileCarriersListResponse>,
         callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>):
         void|AxiosPromise<Schema$MobileCarriersListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobilecarriers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21576,6 +25945,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Mobilecarriers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Mobile carrier ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Mobilecarriers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Operatingsystems {
     root: Dfareporting;
@@ -21653,24 +26050,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Operatingsystems$Get,
         options?: MethodOptions): AxiosPromise<Schema$OperatingSystem>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
-        callback?: BodyResponseCallback<Schema$OperatingSystem>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
+    get(params: Params$Resource$Operatingsystems$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
+        callback: BodyResponseCallback<Schema$OperatingSystem>): void;
+    get(params: Params$Resource$Operatingsystems$Get,
+        callback: BodyResponseCallback<Schema$OperatingSystem>): void;
+    get(callback: BodyResponseCallback<Schema$OperatingSystem>): void;
+    get(paramsOrCallback?: Params$Resource$Operatingsystems$Get|
+        BodyResponseCallback<Schema$OperatingSystem>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OperatingSystem>,
         callback?: BodyResponseCallback<Schema$OperatingSystem>):
         void|AxiosPromise<Schema$OperatingSystem> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operatingsystems$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operatingsystems$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21755,29 +26163,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Operatingsystems$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$OperatingSystemsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operatingsystems$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
+        callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operatingsystems$List,
+        callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Operatingsystems$List|
+        BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemsListResponse>,
         callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
         void|AxiosPromise<Schema$OperatingSystemsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operatingsystems$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operatingsystems$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21803,6 +26226,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Operatingsystems$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Operating system DART ID.
+     */
+    dartId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Operatingsystems$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Operatingsystemversions {
     root: Dfareporting;
@@ -21878,26 +26329,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Operatingsystemversions$Get,
         options?: MethodOptions): AxiosPromise<Schema$OperatingSystemVersion>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Operatingsystemversions$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersion>,
-        callback?: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
+    get(params: Params$Resource$Operatingsystemversions$Get,
+        callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
+    get(callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
+    get(paramsOrCallback?: Params$Resource$Operatingsystemversions$Get|
+        BodyResponseCallback<Schema$OperatingSystemVersion>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersion>,
         callback?: BodyResponseCallback<Schema$OperatingSystemVersion>):
         void|AxiosPromise<Schema$OperatingSystemVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Operatingsystemversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operatingsystemversions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -21980,31 +26441,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Operatingsystemversions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$OperatingSystemVersionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operatingsystemversions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operatingsystemversions$List,
+        callback:
+            BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Operatingsystemversions$List|
+        BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
         void|AxiosPromise<Schema$OperatingSystemVersionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Operatingsystemversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operatingsystemversions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22030,6 +26508,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Operatingsystemversions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Operating system version ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Operatingsystemversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Orderdocuments {
     root: Dfareporting;
@@ -22111,24 +26617,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Orderdocuments$Get,
         options?: MethodOptions): AxiosPromise<Schema$OrderDocument>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
-        callback?: BodyResponseCallback<Schema$OrderDocument>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
+    get(params: Params$Resource$Orderdocuments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
+        callback: BodyResponseCallback<Schema$OrderDocument>): void;
+    get(params: Params$Resource$Orderdocuments$Get,
+        callback: BodyResponseCallback<Schema$OrderDocument>): void;
+    get(callback: BodyResponseCallback<Schema$OrderDocument>): void;
+    get(paramsOrCallback?: Params$Resource$Orderdocuments$Get|
+        BodyResponseCallback<Schema$OrderDocument>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderDocument>,
         callback?: BodyResponseCallback<Schema$OrderDocument>):
         void|AxiosPromise<Schema$OrderDocument> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orderdocuments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderdocuments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22241,29 +26758,42 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Orderdocuments$List, options?: MethodOptions):
         AxiosPromise<Schema$OrderDocumentsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Orderdocuments$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-        callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
+        callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Orderdocuments$List,
+        callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Orderdocuments$List|
+        BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrderDocumentsListResponse>,
         callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
         void|AxiosPromise<Schema$OrderDocumentsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orderdocuments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderdocuments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22288,6 +26818,84 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Orderdocuments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Order document ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for order documents.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Orderdocuments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only order documents that have been approved by at least one user.
+     */
+    approved?: boolean;
+    /**
+     * Select only order documents with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only order documents for specified orders.
+     */
+    orderId?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for order documents.
+     */
+    projectId?: string;
+    /**
+     * Allows searching for order documents by name or ID. Wildcards (*) are
+     * allowed. For example, "orderdocument*2015" will return order documents
+     * with names like "orderdocument June 2015", "orderdocument April 2015", or
+     * simply "orderdocument 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "orderdocument" will match order documents with name "my
+     * orderdocument", "orderdocument 2015", or simply "orderdocument".
+     */
+    searchString?: string;
+    /**
+     * Select only order documents that are associated with these sites.
+     */
+    siteId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Orders {
     root: Dfareporting;
@@ -22369,23 +26977,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Order>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Order>,
-        callback?: BodyResponseCallback<Schema$Order>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Order>,
+    get(params?: Params$Resource$Orders$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Order>;
+    get(params: Params$Resource$Orders$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Order>,
+        callback: BodyResponseCallback<Schema$Order>): void;
+    get(params: Params$Resource$Orders$Get,
+        callback: BodyResponseCallback<Schema$Order>): void;
+    get(callback: BodyResponseCallback<Schema$Order>): void;
+    get(paramsOrCallback?: Params$Resource$Orders$Get|
+        BodyResponseCallback<Schema$Order>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Order>,
         callback?: BodyResponseCallback<Schema$Order>):
         void|AxiosPromise<Schema$Order> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22495,26 +27113,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Orders$List, options?: MethodOptions):
         AxiosPromise<Schema$OrdersListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersListResponse>): void;
+        params: Params$Resource$Orders$List,
+        options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+        params: Params$Resource$Orders$List,
+        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Orders$List|
+        BodyResponseCallback<Schema$OrdersListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersListResponse>,
         callback?: BodyResponseCallback<Schema$OrdersListResponse>):
         void|AxiosPromise<Schema$OrdersListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22538,6 +27167,75 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Orders$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Order ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for orders.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Orders$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only orders with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Project ID for orders.
+     */
+    projectId?: string;
+    /**
+     * Allows searching for orders by name or ID. Wildcards (*) are allowed. For
+     * example, "order*2015" will return orders with names like "order June
+     * 2015", "order April 2015", or simply "order 2015". Most of the searches
+     * also add wildcards implicitly at the start and the end of the search
+     * string. For example, a search string of "order" will match orders with
+     * name "my order", "order 2015", or simply "order".
+     */
+    searchString?: string;
+    /**
+     * Select only orders that are associated with these site IDs.
+     */
+    siteId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Placementgroups {
     root: Dfareporting;
@@ -22615,24 +27313,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Placementgroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+    get(params: Params$Resource$Placementgroups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    get(params: Params$Resource$Placementgroups$Get,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    get(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Placementgroups$Get|
+        BodyResponseCallback<Schema$PlacementGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
         void|AxiosPromise<Schema$PlacementGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementgroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22722,26 +27431,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+        params?: Params$Resource$Placementgroups$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        params: Params$Resource$Placementgroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    insert(
+        params: Params$Resource$Placementgroups$Insert,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    insert(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Placementgroups$Insert|
+        BodyResponseCallback<Schema$PlacementGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
         void|AxiosPromise<Schema$PlacementGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementgroups$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22860,29 +27582,43 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Placementgroups$List, options?: MethodOptions):
         AxiosPromise<Schema$PlacementGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placementgroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
+        callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placementgroups$List,
+        callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Placementgroups$List|
+        BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
         void|AxiosPromise<Schema$PlacementGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementgroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -22980,26 +27716,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+        params?: Params$Resource$Placementgroups$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        params: Params$Resource$Placementgroups$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    patch(
+        params: Params$Resource$Placementgroups$Patch,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    patch(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Placementgroups$Patch|
+        BodyResponseCallback<Schema$PlacementGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
         void|AxiosPromise<Schema$PlacementGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementgroups$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23091,26 +27840,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+        params?: Params$Resource$Placementgroups$Update,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        params: Params$Resource$Placementgroups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    update(
+        params: Params$Resource$Placementgroups$Update,
+        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    update(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Placementgroups$Update|
+        BodyResponseCallback<Schema$PlacementGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
         void|AxiosPromise<Schema$PlacementGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementgroups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23134,6 +27896,180 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Placementgroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Placementgroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementGroup;
+  }
+  export interface Params$Resource$Placementgroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only placement groups that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only archived placements. Don't set this field to select both
+     * archived and non-archived placements.
+     */
+    archived?: boolean;
+    /**
+     * Select only placement groups that belong to these campaigns.
+     */
+    campaignIds?: string;
+    /**
+     * Select only placement groups that are associated with these content
+     * categories.
+     */
+    contentCategoryIds?: string;
+    /**
+     * Select only placement groups that are associated with these directory
+     * sites.
+     */
+    directorySiteIds?: string;
+    /**
+     * Select only placement groups with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only placements or placement groups whose end date is on or before
+     * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     */
+    maxEndDate?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only placements or placement groups whose start date is on or
+     * before the specified maxStartDate. The date should be formatted as
+     * "yyyy-MM-dd".
+     */
+    maxStartDate?: string;
+    /**
+     * Select only placements or placement groups whose end date is on or after
+     * the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     */
+    minEndDate?: string;
+    /**
+     * Select only placements or placement groups whose start date is on or
+     * after the specified minStartDate. The date should be formatted as
+     * "yyyy-MM-dd".
+     */
+    minStartDate?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * Select only placement groups belonging with this group type. A package is
+     * a simple group of placements that acts as a single pricing point for a
+     * group of tags. A roadblock is a group of placements that not only acts as
+     * a single pricing point but also assumes that all the tags in it will be
+     * served at the same time. A roadblock requires one of its assigned
+     * placements to be marked as primary for reporting.
+     */
+    placementGroupType?: string;
+    /**
+     * Select only placement groups that are associated with these placement
+     * strategies.
+     */
+    placementStrategyIds?: string;
+    /**
+     * Select only placement groups with these pricing types.
+     */
+    pricingTypes?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for placement groups by name or ID. Wildcards (*) are
+     * allowed. For example, "placement*2015" will return placement groups with
+     * names like "placement group June 2015", "placement group May 2015", or
+     * simply "placements 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "placementgroup" will match placement groups with name
+     * "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+     */
+    searchString?: string;
+    /**
+     * Select only placement groups that are associated with these sites.
+     */
+    siteIds?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Placementgroups$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementGroup;
+  }
+  export interface Params$Resource$Placementgroups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementGroup;
+  }
+
 
   export class Resource$Placements {
     root: Dfareporting;
@@ -23210,29 +28146,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetags(params?: any, options?: MethodOptions):
+    generatetags(
+        params?: Params$Resource$Placements$Generatetags,
+        options?: MethodOptions):
         AxiosPromise<Schema$PlacementsGenerateTagsResponse>;
     generatetags(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placements$Generatetags,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
+        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
         void;
     generatetags(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placements$Generatetags,
+        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
+        void;
+    generatetags(
+        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
+        void;
+    generatetags(
+        paramsOrCallback?: Params$Resource$Placements$Generatetags|
+        BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
         callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
         void|AxiosPromise<Schema$PlacementsGenerateTagsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placements$Generatetags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$Generatetags;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23323,23 +28275,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Placement>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+    get(params?: Params$Resource$Placements$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Placement>;
+    get(params: Params$Resource$Placements$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        callback: BodyResponseCallback<Schema$Placement>): void;
+    get(params: Params$Resource$Placements$Get,
+        callback: BodyResponseCallback<Schema$Placement>): void;
+    get(callback: BodyResponseCallback<Schema$Placement>): void;
+    get(paramsOrCallback?: Params$Resource$Placements$Get|
+        BodyResponseCallback<Schema$Placement>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
         void|AxiosPromise<Schema$Placement> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Placements$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23429,26 +28392,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Placements$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Placement>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>): void;
+        params: Params$Resource$Placements$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        callback: BodyResponseCallback<Schema$Placement>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        params: Params$Resource$Placements$Insert,
+        callback: BodyResponseCallback<Schema$Placement>): void;
+    insert(callback: BodyResponseCallback<Schema$Placement>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Placements$Insert|
+        BodyResponseCallback<Schema$Placement>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
         void|AxiosPromise<Schema$Placement> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placements$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23569,28 +28544,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Placements$List, options?: MethodOptions):
         AxiosPromise<Schema$PlacementsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placements$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlacementsListResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+        callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placements$List,
+        callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Placements$List|
+        BodyResponseCallback<Schema$PlacementsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementsListResponse>,
         callback?: BodyResponseCallback<Schema$PlacementsListResponse>):
         void|AxiosPromise<Schema$PlacementsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Placements$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23686,26 +28671,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Placements$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Placement>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>): void;
+        params: Params$Resource$Placements$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        callback: BodyResponseCallback<Schema$Placement>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        params: Params$Resource$Placements$Patch,
+        callback: BodyResponseCallback<Schema$Placement>): void;
+    patch(callback: BodyResponseCallback<Schema$Placement>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Placements$Patch|
+        BodyResponseCallback<Schema$Placement>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
         void|AxiosPromise<Schema$Placement> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Placements$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23796,26 +28792,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Placements$Update, options?: MethodOptions):
         AxiosPromise<Schema$Placement>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>): void;
+        params: Params$Resource$Placements$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        callback: BodyResponseCallback<Schema$Placement>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+        params: Params$Resource$Placements$Update,
+        callback: BodyResponseCallback<Schema$Placement>): void;
+    update(callback: BodyResponseCallback<Schema$Placement>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Placements$Update|
+        BodyResponseCallback<Schema$Placement>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
         void|AxiosPromise<Schema$Placement> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placements$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placements$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -23838,6 +28846,213 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Placements$Generatetags {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Generate placements belonging to this campaign. This is a required field.
+     */
+    campaignId?: string;
+    /**
+     * Generate tags for these placements.
+     */
+    placementIds?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Tag formats to generate for these placements.  Note:
+     * PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     */
+    tagFormats?: string;
+  }
+  export interface Params$Resource$Placements$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Placements$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Placement;
+  }
+  export interface Params$Resource$Placements$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only placements that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only archived placements. Don't set this field to select both
+     * archived and non-archived placements.
+     */
+    archived?: boolean;
+    /**
+     * Select only placements that belong to these campaigns.
+     */
+    campaignIds?: string;
+    /**
+     * Select only placements that are associated with these compatibilities.
+     * DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or
+     * on mobile devices for regular or interstitial ads respectively. APP and
+     * APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers
+     * to rendering in in-stream video ads developed with the VAST standard.
+     */
+    compatibilities?: string;
+    /**
+     * Select only placements that are associated with these content categories.
+     */
+    contentCategoryIds?: string;
+    /**
+     * Select only placements that are associated with these directory sites.
+     */
+    directorySiteIds?: string;
+    /**
+     * Select only placements that belong to these placement groups.
+     */
+    groupIds?: string;
+    /**
+     * Select only placements with these IDs.
+     */
+    ids?: string;
+    /**
+     * Select only placements or placement groups whose end date is on or before
+     * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     */
+    maxEndDate?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Select only placements or placement groups whose start date is on or
+     * before the specified maxStartDate. The date should be formatted as
+     * "yyyy-MM-dd".
+     */
+    maxStartDate?: string;
+    /**
+     * Select only placements or placement groups whose end date is on or after
+     * the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     */
+    minEndDate?: string;
+    /**
+     * Select only placements or placement groups whose start date is on or
+     * after the specified minStartDate. The date should be formatted as
+     * "yyyy-MM-dd".
+     */
+    minStartDate?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * Select only placements with this payment source.
+     */
+    paymentSource?: string;
+    /**
+     * Select only placements that are associated with these placement
+     * strategies.
+     */
+    placementStrategyIds?: string;
+    /**
+     * Select only placements with these pricing types.
+     */
+    pricingTypes?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for placements by name or ID. Wildcards (*) are allowed.
+     * For example, "placement*2015" will return placements with names like
+     * "placement June 2015", "placement May 2015", or simply "placements 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "placement"
+     * will match placements with name "my placement", "placement 2015", or
+     * simply "placement".
+     */
+    searchString?: string;
+    /**
+     * Select only placements that are associated with these sites.
+     */
+    siteIds?: string;
+    /**
+     * Select only placements that are associated with these sizes.
+     */
+    sizeIds?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Placements$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Placement;
+  }
+  export interface Params$Resource$Placements$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Placement;
+  }
+
 
   export class Resource$Placementstrategies {
     root: Dfareporting;
@@ -23912,22 +29127,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Placementstrategies$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Placementstrategies$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Placementstrategies$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Placementstrategies$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Placementstrategies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24016,24 +29246,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Placementstrategies$Get,
         options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+    get(params: Params$Resource$Placementstrategies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    get(params: Params$Resource$Placementstrategies$Get,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    get(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    get(paramsOrCallback?: Params$Resource$Placementstrategies$Get|
+        BodyResponseCallback<Schema$PlacementStrategy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
         void|AxiosPromise<Schema$PlacementStrategy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24121,26 +29362,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementStrategy>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+        params?: Params$Resource$Placementstrategies$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        params: Params$Resource$Placementstrategies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    insert(
+        params: Params$Resource$Placementstrategies$Insert,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    insert(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Placementstrategies$Insert|
+        BodyResponseCallback<Schema$PlacementStrategy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
         void|AxiosPromise<Schema$PlacementStrategy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Placementstrategies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24246,30 +29500,46 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Placementstrategies$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$PlacementStrategiesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placementstrategies$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$PlacementStrategiesListResponse>): void;
+        callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Placementstrategies$List,
+        callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Placementstrategies$List|
+        BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
         callback?:
             BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
         void|AxiosPromise<Schema$PlacementStrategiesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24366,26 +29636,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementStrategy>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+        params?: Params$Resource$Placementstrategies$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        params: Params$Resource$Placementstrategies$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    patch(
+        params: Params$Resource$Placementstrategies$Patch,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    patch(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Placementstrategies$Patch|
+        BodyResponseCallback<Schema$PlacementStrategy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
         void|AxiosPromise<Schema$PlacementStrategy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24475,26 +29758,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementStrategy>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+        params?: Params$Resource$Placementstrategies$Update,
+        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        params: Params$Resource$Placementstrategies$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    update(
+        params: Params$Resource$Placementstrategies$Update,
+        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    update(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Placementstrategies$Update|
+        BodyResponseCallback<Schema$PlacementStrategy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
         void|AxiosPromise<Schema$PlacementStrategy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Placementstrategies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Placementstrategies$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24518,6 +29814,129 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Placementstrategies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement strategy ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Placementstrategies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement strategy ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Placementstrategies$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementStrategy;
+  }
+  export interface Params$Resource$Placementstrategies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only placement strategies with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "placementstrategy*2015" will return objects with names like
+     * "placementstrategy June 2015", "placementstrategy April 2015", or simply
+     * "placementstrategy 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "placementstrategy" will match objects with name "my
+     * placementstrategy", "placementstrategy 2015", or simply
+     * "placementstrategy".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Placementstrategies$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Placement strategy ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementStrategy;
+  }
+  export interface Params$Resource$Placementstrategies$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PlacementStrategy;
+  }
+
 
   export class Resource$Platformtypes {
     root: Dfareporting;
@@ -24595,24 +30014,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Platformtypes$Get,
         options?: MethodOptions): AxiosPromise<Schema$PlatformType>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
-        callback?: BodyResponseCallback<Schema$PlatformType>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
+    get(params: Params$Resource$Platformtypes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
+        callback: BodyResponseCallback<Schema$PlatformType>): void;
+    get(params: Params$Resource$Platformtypes$Get,
+        callback: BodyResponseCallback<Schema$PlatformType>): void;
+    get(callback: BodyResponseCallback<Schema$PlatformType>): void;
+    get(paramsOrCallback?: Params$Resource$Platformtypes$Get|
+        BodyResponseCallback<Schema$PlatformType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PlatformType>,
         callback?: BodyResponseCallback<Schema$PlatformType>):
         void|AxiosPromise<Schema$PlatformType> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Platformtypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Platformtypes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24697,29 +30127,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Platformtypes$List, options?: MethodOptions):
         AxiosPromise<Schema$PlatformTypesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Platformtypes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PlatformTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>):
+        callback: BodyResponseCallback<Schema$PlatformTypesListResponse>): void;
+    list(
+        params: Params$Resource$Platformtypes$List,
+        callback: BodyResponseCallback<Schema$PlatformTypesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PlatformTypesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Platformtypes$List|
+        BodyResponseCallback<Schema$PlatformTypesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlatformTypesListResponse>,
         callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>):
         void|AxiosPromise<Schema$PlatformTypesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Platformtypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Platformtypes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24743,6 +30184,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Platformtypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Platform type ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Platformtypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Postalcodes {
     root: Dfareporting;
@@ -24820,23 +30289,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$PostalCode>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
-        callback?: BodyResponseCallback<Schema$PostalCode>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
+    get(params?: Params$Resource$Postalcodes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$PostalCode>;
+    get(params: Params$Resource$Postalcodes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
+        callback: BodyResponseCallback<Schema$PostalCode>): void;
+    get(params: Params$Resource$Postalcodes$Get,
+        callback: BodyResponseCallback<Schema$PostalCode>): void;
+    get(callback: BodyResponseCallback<Schema$PostalCode>): void;
+    get(paramsOrCallback?: Params$Resource$Postalcodes$Get|
+        BodyResponseCallback<Schema$PostalCode>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PostalCode>,
         callback?: BodyResponseCallback<Schema$PostalCode>):
         void|AxiosPromise<Schema$PostalCode> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Postalcodes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24921,28 +30401,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Postalcodes$List, options?: MethodOptions):
         AxiosPromise<Schema$PostalCodesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Postalcodes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$PostalCodesListResponse>,
-        callback?: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+        callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Postalcodes$List,
+        callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Postalcodes$List|
+        BodyResponseCallback<Schema$PostalCodesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PostalCodesListResponse>,
         callback?: BodyResponseCallback<Schema$PostalCodesListResponse>):
         void|AxiosPromise<Schema$PostalCodesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Postalcodes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -24965,6 +30455,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Postalcodes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Postal code ID.
+     */
+    code?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Postalcodes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Projects {
     root: Dfareporting;
@@ -25042,23 +30560,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+    get(params?: Params$Resource$Projects$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Project>;
+    get(params: Params$Resource$Projects$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Project>,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(params: Params$Resource$Projects$Get,
+        callback: BodyResponseCallback<Schema$Project>): void;
+    get(callback: BodyResponseCallback<Schema$Project>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Get|
+        BodyResponseCallback<Schema$Project>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
         void|AxiosPromise<Schema$Project> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25163,28 +30691,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
         AxiosPromise<Schema$ProjectsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ProjectsListResponse>,
-        callback?: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+        callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$List,
+        callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$List|
+        BodyResponseCallback<Schema$ProjectsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectsListResponse>,
         callback?: BodyResponseCallback<Schema$ProjectsListResponse>):
         void|AxiosPromise<Schema$ProjectsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25207,6 +30745,67 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Projects$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only projects with these advertiser IDs.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only projects with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for projects by name or ID. Wildcards (*) are allowed.
+     * For example, "project*2015" will return projects with names like "project
+     * June 2015", "project April 2015", or simply "project 2015". Most of the
+     * searches also add wildcards implicitly at the start and the end of the
+     * search string. For example, a search string of "project" will match
+     * projects with name "my project", "project 2015", or simply "project".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Regions {
     root: Dfareporting;
@@ -25280,28 +30879,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Regions$List, options?: MethodOptions):
         AxiosPromise<Schema$RegionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$RegionsListResponse>,
-        callback?: BodyResponseCallback<Schema$RegionsListResponse>): void;
+        params: Params$Resource$Regions$List,
+        options: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
+        callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regions$List,
+        callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regions$List|
+        BodyResponseCallback<Schema$RegionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionsListResponse>,
         callback?: BodyResponseCallback<Schema$RegionsListResponse>):
         void|AxiosPromise<Schema$RegionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25324,6 +30932,19 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Regions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Remarketinglists {
     root: Dfareporting;
@@ -25401,24 +31022,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Remarketinglists$Get,
         options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+    get(params: Params$Resource$Remarketinglists$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    get(params: Params$Resource$Remarketinglists$Get,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    get(callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    get(paramsOrCallback?: Params$Resource$Remarketinglists$Get|
+        BodyResponseCallback<Schema$RemarketingList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
         void|AxiosPromise<Schema$RemarketingList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglists$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25508,26 +31140,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingList>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+        params?: Params$Resource$Remarketinglists$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        params: Params$Resource$Remarketinglists$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    insert(
+        params: Params$Resource$Remarketinglists$Insert,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    insert(callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Remarketinglists$Insert|
+        BodyResponseCallback<Schema$RemarketingList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
         void|AxiosPromise<Schema$RemarketingList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglists$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25638,29 +31283,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Remarketinglists$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$RemarketingListsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Remarketinglists$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListsListResponse>,
-        callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
+        callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Remarketinglists$List,
+        callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Remarketinglists$List|
+        BodyResponseCallback<Schema$RemarketingListsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListsListResponse>,
         callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
         void|AxiosPromise<Schema$RemarketingListsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglists$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25759,26 +31419,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingList>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+        params?: Params$Resource$Remarketinglists$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        params: Params$Resource$Remarketinglists$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    patch(
+        params: Params$Resource$Remarketinglists$Patch,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    patch(callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Remarketinglists$Patch|
+        BodyResponseCallback<Schema$RemarketingList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
         void|AxiosPromise<Schema$RemarketingList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglists$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25870,26 +31543,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingList>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+        params?: Params$Resource$Remarketinglists$Update,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        params: Params$Resource$Remarketinglists$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    update(
+        params: Params$Resource$Remarketinglists$Update,
+        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    update(callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Remarketinglists$Update|
+        BodyResponseCallback<Schema$RemarketingList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
         void|AxiosPromise<Schema$RemarketingList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglists$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -25913,6 +31599,121 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Remarketinglists$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Remarketing list ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Remarketinglists$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingList;
+  }
+  export interface Params$Resource$Remarketinglists$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active or only inactive remarketing lists.
+     */
+    active?: boolean;
+    /**
+     * Select only remarketing lists owned by this advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Select only remarketing lists that have this floodlight activity ID.
+     */
+    floodlightActivityId?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "remarketing list*2015" will return objects with names like
+     * "remarketing list June 2015", "remarketing list April 2015", or simply
+     * "remarketing list 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "remarketing list" will match objects with name "my
+     * remarketing list", "remarketing list 2015", or simply "remarketing list".
+     */
+    name?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Remarketinglists$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Remarketing list ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingList;
+  }
+  export interface Params$Resource$Remarketinglists$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingList;
+  }
+
 
   export class Resource$Remarketinglistshares {
     root: Dfareporting;
@@ -25988,26 +31789,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Remarketinglistshares$Get,
         options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Remarketinglistshares$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    get(params: Params$Resource$Remarketinglistshares$Get,
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    get(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    get(paramsOrCallback?: Params$Resource$Remarketinglistshares$Get|
+        BodyResponseCallback<Schema$RemarketingListShare>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
         void|AxiosPromise<Schema$RemarketingListShare> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Remarketinglistshares$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglistshares$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26102,28 +31913,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingListShare>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Remarketinglistshares$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+    patch(
+        params: Params$Resource$Remarketinglistshares$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Remarketinglistshares$Patch,
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    patch(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Remarketinglistshares$Patch|
+        BodyResponseCallback<Schema$RemarketingListShare>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
         void|AxiosPromise<Schema$RemarketingListShare> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Remarketinglistshares$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglistshares$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26213,28 +32036,40 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingListShare>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Remarketinglistshares$Update,
+        options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+    update(
+        params: Params$Resource$Remarketinglistshares$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Remarketinglistshares$Update,
+        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    update(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Remarketinglistshares$Update|
+        BodyResponseCallback<Schema$RemarketingListShare>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
         void|AxiosPromise<Schema$RemarketingListShare> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Remarketinglistshares$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Remarketinglistshares$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26258,6 +32093,57 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Remarketinglistshares$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Remarketing list ID.
+     */
+    remarketingListId?: string;
+  }
+  export interface Params$Resource$Remarketinglistshares$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Remarketing list ID.
+     */
+    remarketingListId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingListShare;
+  }
+  export interface Params$Resource$Remarketinglistshares$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemarketingListShare;
+  }
+
 
   export class Resource$Reports {
     root: Dfareporting;
@@ -26336,22 +32222,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Reports$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Reports$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Reports$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Reports$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26440,23 +32339,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+    get(params?: Params$Resource$Reports$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Report>;
+    get(params: Params$Resource$Reports$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Report>,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    get(params: Params$Resource$Reports$Get,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    get(callback: BodyResponseCallback<Schema$Report>): void;
+    get(paramsOrCallback?: Params$Resource$Reports$Get|
+        BodyResponseCallback<Schema$Report>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
         void|AxiosPromise<Schema$Report> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26546,25 +32455,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+    insert(params?: Params$Resource$Reports$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Report>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>): void;
+        params: Params$Resource$Reports$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Report>,
+        callback: BodyResponseCallback<Schema$Report>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+        params: Params$Resource$Reports$Insert,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    insert(callback: BodyResponseCallback<Schema$Report>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Reports$Insert|
+        BodyResponseCallback<Schema$Report>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
         void|AxiosPromise<Schema$Report> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26666,26 +32586,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Reports$List, options?: MethodOptions):
         AxiosPromise<Schema$ReportList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReportList>,
-        callback?: BodyResponseCallback<Schema$ReportList>): void;
+        params: Params$Resource$Reports$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ReportList>,
+        callback: BodyResponseCallback<Schema$ReportList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReportList>,
+        params: Params$Resource$Reports$List,
+        callback: BodyResponseCallback<Schema$ReportList>): void;
+    list(callback: BodyResponseCallback<Schema$ReportList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Reports$List|
+        BodyResponseCallback<Schema$ReportList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReportList>,
         callback?: BodyResponseCallback<Schema$ReportList>):
         void|AxiosPromise<Schema$ReportList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26780,25 +32711,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+    patch(params?: Params$Resource$Reports$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Report>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>): void;
+        params: Params$Resource$Reports$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Report>,
+        callback: BodyResponseCallback<Schema$Report>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+        params: Params$Resource$Reports$Patch,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    patch(callback: BodyResponseCallback<Schema$Report>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Reports$Patch|
+        BodyResponseCallback<Schema$Report>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
         void|AxiosPromise<Schema$Report> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26888,21 +32830,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
-    run(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
-    run(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+    run(params?: Params$Resource$Reports$Run,
+        options?: MethodOptions): AxiosPromise<Schema$File>;
+    run(params: Params$Resource$Reports$Run,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
+    run(params: Params$Resource$Reports$Run,
+        callback: BodyResponseCallback<Schema$File>): void;
+    run(callback: BodyResponseCallback<Schema$File>): void;
+    run(paramsOrCallback?: Params$Resource$Reports$Run|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -26998,25 +32952,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+    update(params?: Params$Resource$Reports$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Report>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>): void;
+        params: Params$Resource$Reports$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Report>,
+        callback: BodyResponseCallback<Schema$Report>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+        params: Params$Resource$Reports$Update,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    update(callback: BodyResponseCallback<Schema$Report>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Reports$Update|
+        BodyResponseCallback<Schema$Report>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
         void|AxiosPromise<Schema$Report> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27040,6 +33005,141 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Reports$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+  }
+  export interface Params$Resource$Reports$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+  }
+  export interface Params$Resource$Reports$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Report;
+  }
+  export interface Params$Resource$Reports$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * The value of the nextToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The scope that defines which results are returned.
+     */
+    scope?: string;
+    /**
+     * The field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Reports$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Report;
+  }
+  export interface Params$Resource$Reports$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+    /**
+     * If set and true, tries to run the report synchronously.
+     */
+    synchronous?: boolean;
+  }
+  export interface Params$Resource$Reports$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Report;
+  }
+
   export class Resource$Reports$Compatiblefields {
     root: Dfareporting;
     constructor(root: Dfareporting) {
@@ -27117,26 +33217,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CompatibleFields>;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
-        callback?: BodyResponseCallback<Schema$CompatibleFields>): void;
+        params?: Params$Resource$Reports$Compatiblefields$Query,
+        options?: MethodOptions): AxiosPromise<Schema$CompatibleFields>;
     query(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
+        params: Params$Resource$Reports$Compatiblefields$Query,
+        options: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
+        callback: BodyResponseCallback<Schema$CompatibleFields>): void;
+    query(
+        params: Params$Resource$Reports$Compatiblefields$Query,
+        callback: BodyResponseCallback<Schema$CompatibleFields>): void;
+    query(callback: BodyResponseCallback<Schema$CompatibleFields>): void;
+    query(
+        paramsOrCallback?: Params$Resource$Reports$Compatiblefields$Query|
+        BodyResponseCallback<Schema$CompatibleFields>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CompatibleFields>,
         callback?: BodyResponseCallback<Schema$CompatibleFields>):
         void|AxiosPromise<Schema$CompatibleFields> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Reports$Compatiblefields$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Compatiblefields$Query;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27160,6 +33273,23 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Reports$Compatiblefields$Query {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Report;
+  }
+
 
   export class Resource$Reports$Files {
     root: Dfareporting;
@@ -27245,21 +33375,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+    get(params?: Params$Resource$Reports$Files$Get,
+        options?: MethodOptions): AxiosPromise<Schema$File>;
+    get(params: Params$Resource$Reports$Files$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(params: Params$Resource$Reports$Files$Get,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(callback: BodyResponseCallback<Schema$File>): void;
+    get(paramsOrCallback?: Params$Resource$Reports$Files$Get|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reports$Files$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Files$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27365,25 +33508,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+    list(params?: Params$Resource$Reports$Files$List, options?: MethodOptions):
+        AxiosPromise<Schema$FileList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>): void;
+        params: Params$Resource$Reports$Files$List,
+        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        params: Params$Resource$Reports$Files$List,
+        callback: BodyResponseCallback<Schema$FileList>): void;
+    list(callback: BodyResponseCallback<Schema$FileList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Reports$Files$List|
+        BodyResponseCallback<Schema$FileList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
         void|AxiosPromise<Schema$FileList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reports$Files$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Files$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27407,6 +33562,58 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Reports$Files$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the report file.
+     */
+    fileId?: string;
+    /**
+     * The DFA profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+  }
+  export interface Params$Resource$Reports$Files$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * The value of the nextToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * The DFA profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the parent report.
+     */
+    reportId?: string;
+    /**
+     * The field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
 
   export class Resource$Sites {
@@ -27485,21 +33692,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+    get(params?: Params$Resource$Sites$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Site>;
+    get(params: Params$Resource$Sites$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Site>,
+        callback: BodyResponseCallback<Schema$Site>): void;
+    get(params: Params$Resource$Sites$Get,
+        callback: BodyResponseCallback<Schema$Site>): void;
+    get(callback: BodyResponseCallback<Schema$Site>): void;
+    get(paramsOrCallback?: Params$Resource$Sites$Get|
+        BodyResponseCallback<Schema$Site>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
         void|AxiosPromise<Schema$Site> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27588,23 +33807,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+    insert(params?: Params$Resource$Sites$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Site>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>): void;
+        params: Params$Resource$Sites$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Site>,
+        callback: BodyResponseCallback<Schema$Site>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+        params: Params$Resource$Sites$Insert,
+        callback: BodyResponseCallback<Schema$Site>): void;
+    insert(callback: BodyResponseCallback<Schema$Site>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Sites$Insert|
+        BodyResponseCallback<Schema$Site>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
         void|AxiosPromise<Schema$Site> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27717,26 +33949,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Sites$List, options?: MethodOptions):
         AxiosPromise<Schema$SitesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-        callback?: BodyResponseCallback<Schema$SitesListResponse>): void;
+        params: Params$Resource$Sites$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+        params: Params$Resource$Sites$List,
+        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Sites$List|
+        BodyResponseCallback<Schema$SitesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SitesListResponse>,
         callback?: BodyResponseCallback<Schema$SitesListResponse>):
         void|AxiosPromise<Schema$SitesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27831,23 +34074,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+    patch(params?: Params$Resource$Sites$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Site>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>): void;
+        params: Params$Resource$Sites$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Site>,
+        callback: BodyResponseCallback<Schema$Site>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+        params: Params$Resource$Sites$Patch,
+        callback: BodyResponseCallback<Schema$Site>): void;
+    patch(callback: BodyResponseCallback<Schema$Site>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Sites$Patch|
+        BodyResponseCallback<Schema$Site>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
         void|AxiosPromise<Schema$Site> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27938,23 +34194,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+    update(params?: Params$Resource$Sites$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Site>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>): void;
+        params: Params$Resource$Sites$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Site>,
+        callback: BodyResponseCallback<Schema$Site>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+        params: Params$Resource$Sites$Update,
+        callback: BodyResponseCallback<Schema$Site>): void;
+    update(callback: BodyResponseCallback<Schema$Site>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Sites$Update|
+        BodyResponseCallback<Schema$Site>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
         void|AxiosPromise<Schema$Site> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -27977,6 +34246,150 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Sites$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Site ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Sites$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Site;
+  }
+  export interface Params$Resource$Sites$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * This search filter is no longer supported and will have no effect on the
+     * results returned.
+     */
+    acceptsInStreamVideoPlacements?: boolean;
+    /**
+     * This search filter is no longer supported and will have no effect on the
+     * results returned.
+     */
+    acceptsInterstitialPlacements?: boolean;
+    /**
+     * Select only sites that accept publisher paid placements.
+     */
+    acceptsPublisherPaidPlacements?: boolean;
+    /**
+     * Select only AdWords sites.
+     */
+    adWordsSite?: boolean;
+    /**
+     * Select only approved sites.
+     */
+    approved?: boolean;
+    /**
+     * Select only sites with these campaign IDs.
+     */
+    campaignIds?: string;
+    /**
+     * Select only sites with these directory site IDs.
+     */
+    directorySiteIds?: string;
+    /**
+     * Select only sites with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name, ID or keyName. Wildcards (*) are
+     * allowed. For example, "site*2015" will return objects with names like
+     * "site June 2015", "site April 2015", or simply "site 2015". Most of the
+     * searches also add wildcards implicitly at the start and the end of the
+     * search string. For example, a search string of "site" will match objects
+     * with name "my site", "site 2015", or simply "site".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only sites with this subaccount ID.
+     */
+    subaccountId?: string;
+    /**
+     * Select only sites that have not been mapped to a directory site.
+     */
+    unmappedSite?: boolean;
+  }
+  export interface Params$Resource$Sites$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Site ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Site;
+  }
+  export interface Params$Resource$Sites$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Site;
+  }
+
 
   export class Resource$Sizes {
     root: Dfareporting;
@@ -28054,21 +34467,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Size>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback?: BodyResponseCallback<Schema$Size>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
+    get(params?: Params$Resource$Sizes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Size>;
+    get(params: Params$Resource$Sizes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Size>,
+        callback: BodyResponseCallback<Schema$Size>): void;
+    get(params: Params$Resource$Sizes$Get,
+        callback: BodyResponseCallback<Schema$Size>): void;
+    get(callback: BodyResponseCallback<Schema$Size>): void;
+    get(paramsOrCallback?: Params$Resource$Sizes$Get|
+        BodyResponseCallback<Schema$Size>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
         callback?: BodyResponseCallback<Schema$Size>):
         void|AxiosPromise<Schema$Size> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sizes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28157,23 +34582,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Size>;
+    insert(params?: Params$Resource$Sizes$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Size>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback?: BodyResponseCallback<Schema$Size>): void;
+        params: Params$Resource$Sizes$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Size>,
+        callback: BodyResponseCallback<Schema$Size>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
+        params: Params$Resource$Sizes$Insert,
+        callback: BodyResponseCallback<Schema$Size>): void;
+    insert(callback: BodyResponseCallback<Schema$Size>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Sizes$Insert|
+        BodyResponseCallback<Schema$Size>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
         callback?: BodyResponseCallback<Schema$Size>):
         void|AxiosPromise<Schema$Size> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sizes$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28261,26 +34699,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Sizes$List, options?: MethodOptions):
         AxiosPromise<Schema$SizesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
-        callback?: BodyResponseCallback<Schema$SizesListResponse>): void;
+        params: Params$Resource$Sizes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
+        callback: BodyResponseCallback<Schema$SizesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
+        params: Params$Resource$Sizes$List,
+        callback: BodyResponseCallback<Schema$SizesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SizesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Sizes$List|
+        BodyResponseCallback<Schema$SizesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SizesListResponse>,
         callback?: BodyResponseCallback<Schema$SizesListResponse>):
         void|AxiosPromise<Schema$SizesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sizes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sizes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28303,6 +34752,65 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Sizes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Size ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Sizes$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Size;
+  }
+  export interface Params$Resource$Sizes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only sizes with this height.
+     */
+    height?: number;
+    /**
+     * Select only IAB standard sizes.
+     */
+    iabStandard?: boolean;
+    /**
+     * Select only sizes with these IDs.
+     */
+    ids?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Select only sizes with this width.
+     */
+    width?: number;
+  }
+
 
   export class Resource$Subaccounts {
     root: Dfareporting;
@@ -28380,23 +34888,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+    get(params?: Params$Resource$Subaccounts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+    get(params: Params$Resource$Subaccounts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    get(params: Params$Resource$Subaccounts$Get,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    get(callback: BodyResponseCallback<Schema$Subaccount>): void;
+    get(paramsOrCallback?: Params$Resource$Subaccounts$Get|
+        BodyResponseCallback<Schema$Subaccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
         void|AxiosPromise<Schema$Subaccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subaccounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28486,26 +35005,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Subaccount>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>): void;
+        params?: Params$Resource$Subaccounts$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        params: Params$Resource$Subaccounts$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    insert(
+        params: Params$Resource$Subaccounts$Insert,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    insert(callback: BodyResponseCallback<Schema$Subaccount>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Subaccounts$Insert|
+        BodyResponseCallback<Schema$Subaccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
         void|AxiosPromise<Schema$Subaccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subaccounts$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28610,28 +35142,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Subaccounts$List, options?: MethodOptions):
         AxiosPromise<Schema$SubaccountsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Subaccounts$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SubaccountsListResponse>,
-        callback?: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+        callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Subaccounts$List,
+        callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Subaccounts$List|
+        BodyResponseCallback<Schema$SubaccountsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubaccountsListResponse>,
         callback?: BodyResponseCallback<Schema$SubaccountsListResponse>):
         void|AxiosPromise<Schema$SubaccountsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subaccounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28727,26 +35269,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Subaccounts$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Subaccount>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>): void;
+        params: Params$Resource$Subaccounts$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        params: Params$Resource$Subaccounts$Patch,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    patch(callback: BodyResponseCallback<Schema$Subaccount>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Subaccounts$Patch|
+        BodyResponseCallback<Schema$Subaccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
         void|AxiosPromise<Schema$Subaccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subaccounts$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28837,26 +35391,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Subaccount>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>): void;
+        params?: Params$Resource$Subaccounts$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        params: Params$Resource$Subaccounts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    update(
+        params: Params$Resource$Subaccounts$Update,
+        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    update(callback: BodyResponseCallback<Schema$Subaccount>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Subaccounts$Update|
+        BodyResponseCallback<Schema$Subaccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
         void|AxiosPromise<Schema$Subaccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subaccounts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -28879,6 +35446,113 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Subaccounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Subaccount ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Subaccounts$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Subaccount;
+  }
+  export interface Params$Resource$Subaccounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only subaccounts with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "subaccount*2015" will return objects with names like
+     * "subaccount June 2015", "subaccount April 2015", or simply "subaccount
+     * 2015". Most of the searches also add wildcards implicitly at the start
+     * and the end of the search string. For example, a search string of
+     * "subaccount" will match objects with name "my subaccount", "subaccount
+     * 2015", or simply "subaccount".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Subaccounts$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Subaccount ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Subaccount;
+  }
+  export interface Params$Resource$Subaccounts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Subaccount;
+  }
+
 
   export class Resource$Targetableremarketinglists {
     root: Dfareporting;
@@ -28954,27 +35628,37 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Targetableremarketinglists$Get,
+        options?: MethodOptions):
         AxiosPromise<Schema$TargetableRemarketingList>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Targetableremarketinglists$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingList>,
-        callback?: BodyResponseCallback<Schema$TargetableRemarketingList>):
-        void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
+    get(params: Params$Resource$Targetableremarketinglists$Get,
+        callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
+    get(callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
+    get(paramsOrCallback?: Params$Resource$Targetableremarketinglists$Get|
+        BodyResponseCallback<Schema$TargetableRemarketingList>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingList>,
         callback?: BodyResponseCallback<Schema$TargetableRemarketingList>):
         void|AxiosPromise<Schema$TargetableRemarketingList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Targetableremarketinglists$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetableremarketinglists$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29086,30 +35770,45 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Targetableremarketinglists$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$TargetableRemarketingListsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Targetableremarketinglists$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$TargetableRemarketingListsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Targetableremarketinglists$List,
+        callback: BodyResponseCallback<
+            Schema$TargetableRemarketingListsListResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$TargetableRemarketingListsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Targetableremarketinglists$List|
+        BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
         callback?: BodyResponseCallback<
             Schema$TargetableRemarketingListsListResponse>):
         void|AxiosPromise<Schema$TargetableRemarketingListsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Targetableremarketinglists$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetableremarketinglists$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29135,6 +35834,68 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Targetableremarketinglists$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Remarketing list ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Targetableremarketinglists$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only active or only inactive targetable remarketing lists.
+     */
+    active?: boolean;
+    /**
+     * Select only targetable remarketing lists targetable by these advertisers.
+     */
+    advertiserId?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "remarketing list*2015" will return objects with names like
+     * "remarketing list June 2015", "remarketing list April 2015", or simply
+     * "remarketing list 2015". Most of the searches also add wildcards
+     * implicitly at the start and the end of the search string. For example, a
+     * search string of "remarketing list" will match objects with name "my
+     * remarketing list", "remarketing list 2015", or simply "remarketing list".
+     */
+    name?: string;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Targetingtemplates {
     root: Dfareporting;
@@ -29212,24 +35973,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Targetingtemplates$Get,
         options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+    get(params: Params$Resource$Targetingtemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    get(params: Params$Resource$Targetingtemplates$Get,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    get(paramsOrCallback?: Params$Resource$Targetingtemplates$Get|
+        BodyResponseCallback<Schema$TargetingTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
         void|AxiosPromise<Schema$TargetingTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtemplates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29317,26 +36089,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TargetingTemplate>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+        params?: Params$Resource$Targetingtemplates$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        params: Params$Resource$Targetingtemplates$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    insert(
+        params: Params$Resource$Targetingtemplates$Insert,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    insert(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Targetingtemplates$Insert|
+        BodyResponseCallback<Schema$TargetingTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
         void|AxiosPromise<Schema$TargetingTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtemplates$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29443,29 +36228,44 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Targetingtemplates$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$TargetingTemplatesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Targetingtemplates$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
+        callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Targetingtemplates$List,
+        callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Targetingtemplates$List|
+        BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
         callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
         void|AxiosPromise<Schema$TargetingTemplatesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtemplates$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29562,26 +36362,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TargetingTemplate>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+        params?: Params$Resource$Targetingtemplates$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        params: Params$Resource$Targetingtemplates$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    patch(
+        params: Params$Resource$Targetingtemplates$Patch,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    patch(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Targetingtemplates$Patch|
+        BodyResponseCallback<Schema$TargetingTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
         void|AxiosPromise<Schema$TargetingTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtemplates$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29671,26 +36484,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TargetingTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+        params?: Params$Resource$Targetingtemplates$Update,
+        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        params: Params$Resource$Targetingtemplates$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    update(
+        params: Params$Resource$Targetingtemplates$Update,
+        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    update(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Targetingtemplates$Update|
+        BodyResponseCallback<Schema$TargetingTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
         void|AxiosPromise<Schema$TargetingTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtemplates$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29714,6 +36540,117 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Targetingtemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Targeting template ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Targetingtemplates$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TargetingTemplate;
+  }
+  export interface Params$Resource$Targetingtemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only targeting templates with this advertiser ID.
+     */
+    advertiserId?: string;
+    /**
+     * Select only targeting templates with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "template*2015" will return objects with names like
+     * "template June 2015", "template April 2015", or simply "template 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "template" will
+     * match objects with name "my template", "template 2015", or simply
+     * "template".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Targetingtemplates$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Targeting template ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TargetingTemplate;
+  }
+  export interface Params$Resource$Targetingtemplates$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TargetingTemplate;
+  }
+
 
   export class Resource$Userprofiles {
     root: Dfareporting;
@@ -29788,24 +36725,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Userprofiles$Get,
         options?: MethodOptions): AxiosPromise<Schema$UserProfile>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
-        callback?: BodyResponseCallback<Schema$UserProfile>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+    get(params: Params$Resource$Userprofiles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+        callback: BodyResponseCallback<Schema$UserProfile>): void;
+    get(params: Params$Resource$Userprofiles$Get,
+        callback: BodyResponseCallback<Schema$UserProfile>): void;
+    get(callback: BodyResponseCallback<Schema$UserProfile>): void;
+    get(paramsOrCallback?: Params$Resource$Userprofiles$Get|
+        BodyResponseCallback<Schema$UserProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserProfile>,
         callback?: BodyResponseCallback<Schema$UserProfile>):
         void|AxiosPromise<Schema$UserProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userprofiles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29885,26 +36832,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Userprofiles$List, options?: MethodOptions):
         AxiosPromise<Schema$UserProfileList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
-        callback?: BodyResponseCallback<Schema$UserProfileList>): void;
+        params: Params$Resource$Userprofiles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
+        callback: BodyResponseCallback<Schema$UserProfileList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
+        params: Params$Resource$Userprofiles$List,
+        callback: BodyResponseCallback<Schema$UserProfileList>): void;
+    list(callback: BodyResponseCallback<Schema$UserProfileList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Userprofiles$List|
+        BodyResponseCallback<Schema$UserProfileList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserProfileList>,
         callback?: BodyResponseCallback<Schema$UserProfileList>):
         void|AxiosPromise<Schema$UserProfileList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Userprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userprofiles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -29926,6 +36885,25 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Userprofiles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The user profile ID.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Userprofiles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Userrolepermissiongroups {
     root: Dfareporting;
@@ -30001,26 +36979,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Userrolepermissiongroups$Get,
         options?: MethodOptions): AxiosPromise<Schema$UserRolePermissionGroup>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Userrolepermissiongroups$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroup>,
-        callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
+    get(params: Params$Resource$Userrolepermissiongroups$Get,
+        callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
+    get(callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Userrolepermissiongroups$Get|
+        BodyResponseCallback<Schema$UserRolePermissionGroup>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroup>,
         callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>):
         void|AxiosPromise<Schema$UserRolePermissionGroup> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Userrolepermissiongroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userrolepermissiongroups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30103,31 +37091,48 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Userrolepermissiongroups$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userrolepermissiongroups$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userrolepermissiongroups$List,
+        callback:
+            BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Userrolepermissiongroups$List|
+        BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
         void|AxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Userrolepermissiongroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userrolepermissiongroups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30153,6 +37158,34 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Userrolepermissiongroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User role permission group ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Userrolepermissiongroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Userrolepermissions {
     root: Dfareporting;
@@ -30230,24 +37263,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Userrolepermissions$Get,
         options?: MethodOptions): AxiosPromise<Schema$UserRolePermission>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
-        callback?: BodyResponseCallback<Schema$UserRolePermission>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
+    get(params: Params$Resource$Userrolepermissions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
+        callback: BodyResponseCallback<Schema$UserRolePermission>): void;
+    get(params: Params$Resource$Userrolepermissions$Get,
+        callback: BodyResponseCallback<Schema$UserRolePermission>): void;
+    get(callback: BodyResponseCallback<Schema$UserRolePermission>): void;
+    get(paramsOrCallback?: Params$Resource$Userrolepermissions$Get|
+        BodyResponseCallback<Schema$UserRolePermission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserRolePermission>,
         callback?: BodyResponseCallback<Schema$UserRolePermission>):
         void|AxiosPromise<Schema$UserRolePermission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userrolepermissions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30331,30 +37375,46 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Userrolepermissions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$UserRolePermissionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userrolepermissions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$UserRolePermissionsListResponse>): void;
+        callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userrolepermissions$List,
+        callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Userrolepermissions$List|
+        BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
         void|AxiosPromise<Schema$UserRolePermissionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userrolepermissions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30380,6 +37440,38 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Userrolepermissions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User role permission ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Userrolepermissions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only user role permissions with these IDs.
+     */
+    ids?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
 
   export class Resource$Userroles {
     root: Dfareporting;
@@ -30454,22 +37546,35 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Userroles$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Userroles$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Userroles$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Userroles$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30558,23 +37663,33 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+    get(params?: Params$Resource$Userroles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+    get(params: Params$Resource$Userroles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
+    get(params: Params$Resource$Userroles$Get,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
+    get(callback: BodyResponseCallback<Schema$UserRole>): void;
+    get(paramsOrCallback?: Params$Resource$Userroles$Get|
+        BodyResponseCallback<Schema$UserRole>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
         void|AxiosPromise<Schema$UserRole> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30664,26 +37779,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Userroles$Insert, options?: MethodOptions):
         AxiosPromise<Schema$UserRole>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>): void;
+        params: Params$Resource$Userroles$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        params: Params$Resource$Userroles$Insert,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
+    insert(callback: BodyResponseCallback<Schema$UserRole>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Userroles$Insert|
+        BodyResponseCallback<Schema$UserRole>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
         void|AxiosPromise<Schema$UserRole> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30789,28 +37914,38 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Userroles$List, options?: MethodOptions):
         AxiosPromise<Schema$UserRolesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userroles$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UserRolesListResponse>,
-        callback?: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+        callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Userroles$List,
+        callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Userroles$List|
+        BodyResponseCallback<Schema$UserRolesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolesListResponse>,
         callback?: BodyResponseCallback<Schema$UserRolesListResponse>):
         void|AxiosPromise<Schema$UserRolesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -30906,25 +38041,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+    patch(params?: Params$Resource$Userroles$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$UserRole>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>): void;
+        params: Params$Resource$Userroles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        params: Params$Resource$Userroles$Patch,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
+    patch(callback: BodyResponseCallback<Schema$UserRole>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Userroles$Patch|
+        BodyResponseCallback<Schema$UserRole>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
         void|AxiosPromise<Schema$UserRole> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31015,26 +38161,36 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Userroles$Update, options?: MethodOptions):
         AxiosPromise<Schema$UserRole>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>): void;
+        params: Params$Resource$Userroles$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+        params: Params$Resource$Userroles$Update,
+        callback: BodyResponseCallback<Schema$UserRole>): void;
+    update(callback: BodyResponseCallback<Schema$UserRole>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Userroles$Update|
+        BodyResponseCallback<Schema$UserRole>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
         void|AxiosPromise<Schema$UserRole> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userroles$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31057,6 +38213,137 @@ export namespace dfareporting_v2_8 {
       }
     }
   }
+
+  export interface Params$Resource$Userroles$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User role ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Userroles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User role ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Userroles$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserRole;
+  }
+  export interface Params$Resource$Userroles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only account level user roles not associated with any specific
+     * subaccount.
+     */
+    accountUserRoleOnly?: boolean;
+    /**
+     * Select only user roles with the specified IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "userrole*2015" will return objects with names like
+     * "userrole June 2015", "userrole April 2015", or simply "userrole 2015".
+     * Most of the searches also add wildcards implicitly at the start and the
+     * end of the search string. For example, a search string of "userrole" will
+     * match objects with name "my userrole", "userrole 2015", or simply
+     * "userrole".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only user roles that belong to this subaccount.
+     */
+    subaccountId?: string;
+  }
+  export interface Params$Resource$Userroles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User role ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserRole;
+  }
+  export interface Params$Resource$Userroles$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserRole;
+  }
+
 
   export class Resource$Videoformats {
     root: Dfareporting;
@@ -31134,24 +38421,34 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Videoformats$Get,
         options?: MethodOptions): AxiosPromise<Schema$VideoFormat>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
-        callback?: BodyResponseCallback<Schema$VideoFormat>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
+    get(params: Params$Resource$Videoformats$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
+        callback: BodyResponseCallback<Schema$VideoFormat>): void;
+    get(params: Params$Resource$Videoformats$Get,
+        callback: BodyResponseCallback<Schema$VideoFormat>): void;
+    get(callback: BodyResponseCallback<Schema$VideoFormat>): void;
+    get(paramsOrCallback?: Params$Resource$Videoformats$Get|
+        BodyResponseCallback<Schema$VideoFormat>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VideoFormat>,
         callback?: BodyResponseCallback<Schema$VideoFormat>):
         void|AxiosPromise<Schema$VideoFormat> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Videoformats$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Videoformats$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31236,28 +38533,39 @@ export namespace dfareporting_v2_8 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Videoformats$List, options?: MethodOptions):
         AxiosPromise<Schema$VideoFormatsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Videoformats$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$VideoFormatsListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+        callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Videoformats$List,
+        callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Videoformats$List|
+        BodyResponseCallback<Schema$VideoFormatsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoFormatsListResponse>,
         callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>):
         void|AxiosPromise<Schema$VideoFormatsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Videoformats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Videoformats$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -31279,5 +38587,32 @@ export namespace dfareporting_v2_8 {
         return createAPIRequest<Schema$VideoFormatsListResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Videoformats$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Video format ID.
+     */
+    id?: number;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Videoformats$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
   }
 }

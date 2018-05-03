@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace replicapool_v1beta2 {
+  export interface Options extends GlobalOptions { version: 'v1beta2'; }
+
   /**
    * Google Compute Engine Instance Group Manager API
    *
@@ -76,99 +79,99 @@ export namespace replicapool_v1beta2 {
      * The autohealing policy for this managed instance group. You can specify
      * only one value.
      */
-    autoHealingPolicies: Schema$ReplicaPoolAutoHealingPolicy[];
+    autoHealingPolicies?: Schema$ReplicaPoolAutoHealingPolicy[];
     /**
      * The base instance name to use for instances in this group. The value must
      * be a valid RFC1035 name. Supported characters are lowercase letters,
      * numbers, and hyphens (-). Instances are named by appending a hyphen and a
      * random four-character string to the base instance name.
      */
-    baseInstanceName: string;
+    baseInstanceName?: string;
     /**
      * [Output only] The time the instance group manager was created, in RFC3339
      * text format.
      */
-    creationTimestamp: string;
+    creationTimestamp?: string;
     /**
      * [Output only] The number of instances that currently exist and are a part
      * of this group. This includes instances that are starting but are not yet
      * RUNNING, and instances that are in the process of being deleted or
      * abandoned.
      */
-    currentSize: number;
+    currentSize?: number;
     /**
      * An optional textual description of the instance group manager.
      */
-    description: string;
+    description?: string;
     /**
      * [Output only] Fingerprint of the instance group manager. This field is
      * used for optimistic locking. An up-to-date fingerprint must be provided
      * in order to modify the Instance Group Manager resource.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * [Output only] The full URL of the instance group created by the manager.
      * This group contains all of the instances being managed, and cannot
      * contain non-managed instances.
      */
-    group: string;
+    group?: string;
     /**
      * [Output only] A server-assigned unique identifier for the resource.
      */
-    id: string;
+    id?: string;
     /**
      * The full URL to an instance template from which all new instances will be
      * created.
      */
-    instanceTemplate: string;
+    instanceTemplate?: string;
     /**
      * [Output only] The resource type. Always replicapool#instanceGroupManager.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the instance group manager. Must be 1-63 characters long and
      * comply with RFC1035. Supported characters include lowercase letters,
      * numbers, and hyphens.
      */
-    name: string;
+    name?: string;
     /**
      * [Output only] The fully qualified URL for this resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The full URL of all target pools to which new instances in the group are
      * added. Updating the target pool values does not affect existing
      * instances.
      */
-    targetPools: string[];
+    targetPools?: string[];
     /**
      * [Output only] The number of instances that the manager is attempting to
      * maintain. Deleting or abandoning instances affects this number, as does
      * resizing the group.
      */
-    targetSize: number;
+    targetSize?: number;
   }
   export interface Schema$InstanceGroupManagerList {
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id: string;
+    id?: string;
     /**
      * A list of instance resources.
      */
-    items: Schema$InstanceGroupManager[];
+    items?: Schema$InstanceGroupManager[];
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token used to continue a truncated list request (output only).
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Server defined URL for this resource (output only).
      */
-    selfLink: string;
+    selfLink?: string;
   }
   export interface Schema$InstanceGroupManagersAbandonInstancesRequest {
     /**
@@ -176,14 +179,14 @@ export namespace replicapool_v1beta2 {
      * &#39;instances&#39;: [ &#39;instance-c3po&#39;, &#39;instance-r2d2&#39; ]
      * }
      */
-    instances: string[];
+    instances?: string[];
   }
   export interface Schema$InstanceGroupManagersDeleteInstancesRequest {
     /**
      * Names of instances to delete.  Example: &#39;instance-foo&#39;,
      * &#39;instance-bar&#39;
      */
-    instances: string[];
+    instances?: string[];
   }
   export interface Schema$InstanceGroupManagersRecreateInstancesRequest {
     /**
@@ -191,14 +194,14 @@ export namespace replicapool_v1beta2 {
      * &#39;instances&#39;: [ &#39;instance-c3po&#39;, &#39;instance-r2d2&#39; ]
      * }
      */
-    instances: string[];
+    instances?: string[];
   }
   export interface Schema$InstanceGroupManagersSetInstanceTemplateRequest {
     /**
      * The full URL to an Instance Template from which all new instances will be
      * created.
      */
-    instanceTemplate: string;
+    instanceTemplate?: string;
   }
   export interface Schema$InstanceGroupManagersSetTargetPoolsRequest {
     /**
@@ -206,13 +209,13 @@ export namespace replicapool_v1beta2 {
      * does not match the server-side fingerprint of the resource, then the
      * request will be rejected.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * A list of fully-qualified URLs to existing Target Pool resources. New
      * instances in the Instance Group Manager will be added to the specified
      * target pools; existing instances are not affected.
      */
-    targetPools: string[];
+    targetPools?: string[];
   }
   /**
    * An operation resource, used to manage asynchronous API requests.
@@ -223,53 +226,53 @@ export namespace replicapool_v1beta2 {
      * mutation was initiated. Must be unique for all operation resources in the
      * project.
      */
-    clientOperationId: string;
+    clientOperationId?: string;
     /**
      * [Output Only] The time that this operation was requested, in RFC3339 text
      * format.
      */
-    creationTimestamp: string;
+    creationTimestamp?: string;
     /**
      * [Output Only] The time that this operation was completed, in RFC3339 text
      * format.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * [Output Only] If errors occurred during processing of this operation,
      * this field will be populated.
      */
-    error: any;
+    error?: any;
     /**
      * [Output only] If operation fails, the HTTP error message returned.
      */
-    httpErrorMessage: string;
+    httpErrorMessage?: string;
     /**
      * [Output only] If operation fails, the HTTP error status code returned.
      */
-    httpErrorStatusCode: number;
+    httpErrorStatusCode?: number;
     /**
      * [Output Only] Unique identifier for the resource, generated by the
      * server.
      */
-    id: string;
+    id?: string;
     /**
      * [Output Only] The time that this operation was requested, in RFC3339 text
      * format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * [Output only] Type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output Only] Name of the resource.
      */
-    name: string;
+    name?: string;
     /**
      * [Output only] Type of the operation. Operations include insert, update,
      * and delete.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * [Output only] An optional progress indicator that ranges from 0 to 100.
      * There is no requirement that this be linear or support any granularity of
@@ -277,76 +280,76 @@ export namespace replicapool_v1beta2 {
      * be complete. This number should be monotonically increasing as the
      * operation progresses.
      */
-    progress: number;
+    progress?: number;
     /**
      * [Output Only] URL of the region where the operation resides. Only
      * available when performing regional operations.
      */
-    region: string;
+    region?: string;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output Only] The time that this operation was started by the server, in
      * RFC3339 text format.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * [Output Only] Status of the operation.
      */
-    status: string;
+    status?: string;
     /**
      * [Output Only] An optional textual description of the current status of
      * the operation.
      */
-    statusMessage: string;
+    statusMessage?: string;
     /**
      * [Output Only] Unique target ID which identifies a particular incarnation
      * of the target.
      */
-    targetId: string;
+    targetId?: string;
     /**
      * [Output only] URL of the resource the operation is mutating.
      */
-    targetLink: string;
+    targetLink?: string;
     /**
      * [Output Only] User who requested the operation, for example:
      * user@example.com.
      */
-    user: string;
+    user?: string;
     /**
      * [Output Only] If there are issues with this operation, a warning is
      * returned.
      */
-    warnings: any[];
+    warnings?: any[];
     /**
      * [Output Only] URL of the zone where the operation resides. Only available
      * when performing per-zone operations.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Schema$OperationList {
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id: string;
+    id?: string;
     /**
      * The operation resources.
      */
-    items: Schema$Operation[];
+    items?: Schema$Operation[];
     /**
      * Type of resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token used to continue a truncated list request (output only).
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Server defined URL for this resource (output only).
      */
-    selfLink: string;
+    selfLink?: string;
   }
   export interface Schema$ReplicaPoolAutoHealingPolicy {
     /**
@@ -356,12 +359,13 @@ export namespace replicapool_v1beta2 {
      * instance group. REBOOT performs a soft reboot on an instance. If the
      * instance cannot reboot, the instance performs a hard restart.
      */
-    actionType: string;
+    actionType?: string;
     /**
      * The URL for the HealthCheck that signals autohealing.
      */
-    healthCheck: string;
+    healthCheck?: string;
   }
+
 
   export class Resource$Instancegroupmanagers {
     root: Replicapool;
@@ -392,26 +396,40 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     abandonInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Abandoninstances,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     abandonInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Abandoninstances,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    abandonInstances(
+        params: Params$Resource$Instancegroupmanagers$Abandoninstances,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    abandonInstances(callback: BodyResponseCallback<Schema$Operation>): void;
+    abandonInstances(
+        paramsOrCallback?:
+            Params$Resource$Instancegroupmanagers$Abandoninstances|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Abandoninstances;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Abandoninstances;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -453,26 +471,39 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Instancegroupmanagers$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -515,26 +546,40 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     deleteInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Deleteinstances,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     deleteInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Deleteinstances,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteInstances(
+        params: Params$Resource$Instancegroupmanagers$Deleteinstances,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteInstances(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteInstances(
+        paramsOrCallback?:
+            Params$Resource$Instancegroupmanagers$Deleteinstances|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Deleteinstances;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Deleteinstances;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -573,26 +618,36 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Instancegroupmanagers$Get,
         options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManager>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Instancegroupmanagers$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
-        callback?: BodyResponseCallback<Schema$InstanceGroupManager>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$InstanceGroupManager>): void;
+    get(params: Params$Resource$Instancegroupmanagers$Get,
+        callback: BodyResponseCallback<Schema$InstanceGroupManager>): void;
+    get(callback: BodyResponseCallback<Schema$InstanceGroupManager>): void;
+    get(paramsOrCallback?: Params$Resource$Instancegroupmanagers$Get|
+        BodyResponseCallback<Schema$InstanceGroupManager>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
         callback?: BodyResponseCallback<Schema$InstanceGroupManager>):
         void|AxiosPromise<Schema$InstanceGroupManager> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instancegroupmanagers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -633,26 +688,39 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Instancegroupmanagers$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -694,28 +762,40 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupManagerList>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Instancegroupmanagers$List,
+        options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManagerList>;
+    list(
+        params: Params$Resource$Instancegroupmanagers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManagerList>,
-        callback?: BodyResponseCallback<Schema$InstanceGroupManagerList>): void;
+        callback: BodyResponseCallback<Schema$InstanceGroupManagerList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Instancegroupmanagers$List,
+        callback: BodyResponseCallback<Schema$InstanceGroupManagerList>): void;
+    list(callback: BodyResponseCallback<Schema$InstanceGroupManagerList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$List|
+        BodyResponseCallback<Schema$InstanceGroupManagerList>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManagerList>,
         callback?: BodyResponseCallback<Schema$InstanceGroupManagerList>):
         void|AxiosPromise<Schema$InstanceGroupManagerList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -756,26 +836,40 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     recreateInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Recreateinstances,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     recreateInstances(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Recreateinstances,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    recreateInstances(
+        params: Params$Resource$Instancegroupmanagers$Recreateinstances,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    recreateInstances(callback: BodyResponseCallback<Schema$Operation>): void;
+    recreateInstances(
+        paramsOrCallback?:
+            Params$Resource$Instancegroupmanagers$Recreateinstances|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Recreateinstances;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Recreateinstances;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -818,26 +912,39 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     resize(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Resize,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     resize(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        params: Params$Resource$Instancegroupmanagers$Resize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$Resize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Resize;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -878,26 +985,41 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     setInstanceTemplate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Setinstancetemplate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     setInstanceTemplate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Setinstancetemplate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setInstanceTemplate(
+        params: Params$Resource$Instancegroupmanagers$Setinstancetemplate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setInstanceTemplate(callback: BodyResponseCallback<Schema$Operation>): void;
+    setInstanceTemplate(
+        paramsOrCallback?:
+            Params$Resource$Instancegroupmanagers$Setinstancetemplate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Setinstancetemplate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instancegroupmanagers$Setinstancetemplate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -938,26 +1060,39 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     setTargetPools(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Instancegroupmanagers$Settargetpools,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     setTargetPools(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Instancegroupmanagers$Settargetpools,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setTargetPools(
+        params: Params$Resource$Instancegroupmanagers$Settargetpools,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setTargetPools(callback: BodyResponseCallback<Schema$Operation>): void;
+    setTargetPools(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$Settargetpools|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Settargetpools;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Settargetpools;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -981,6 +1116,236 @@ export namespace replicapool_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Instancegroupmanagers$Abandoninstances {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManagersAbandonInstancesRequest;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the Instance Group Manager resource to delete.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManagersDeleteInstancesRequest;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance resource to return.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * Number of instances that should exist.
+     */
+    size?: number;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManager;
+  }
+  export interface Params$Resource$Instancegroupmanagers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Filter expression for filtering listed resources.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum count of results to be returned. Maximum value is 500
+     * and default value is 500.
+     */
+    maxResults?: number;
+    /**
+     * Optional. Tag returned by a previous list request truncated by
+     * maxResults. Used to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Recreateinstances {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManagersRecreateInstancesRequest;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Resize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * Number of instances that should exist in this Instance Group Manager.
+     */
+    size?: number;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Settargetpools {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the instance group manager resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
+  }
+
 
   export class Resource$Zoneoperations {
     root: Replicapool;
@@ -1008,23 +1373,35 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Zoneoperations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Zoneoperations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Zoneoperations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Zoneoperations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneoperations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1066,26 +1443,38 @@ export namespace replicapool_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Zoneoperations$List, options?: MethodOptions):
         AxiosPromise<Schema$OperationList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
-        callback?: BodyResponseCallback<Schema$OperationList>): void;
+        params: Params$Resource$Zoneoperations$List,
+        options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+        params: Params$Resource$Zoneoperations$List,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Zoneoperations$List|
+        BodyResponseCallback<Schema$OperationList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OperationList>,
         callback?: BodyResponseCallback<Schema$OperationList>):
         void|AxiosPromise<Schema$OperationList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneoperations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1108,5 +1497,54 @@ export namespace replicapool_v1beta2 {
         return createAPIRequest<Schema$OperationList>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Zoneoperations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the operation resource to return.
+     */
+    operation?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone scoping this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneoperations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Filter expression for filtering listed resources.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum count of results to be returned. Maximum value is 500
+     * and default value is 500.
+     */
+    maxResults?: number;
+    /**
+     * Optional. Tag returned by a previous list request truncated by
+     * maxResults. Used to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone scoping this request.
+     */
+    zone?: string;
   }
 }
