@@ -1050,10 +1050,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AddMatterPermissionsRequest;
+    requestBody?: Schema$AddMatterPermissionsRequest;
   }
   export interface Params$Resource$Matters$Close {
     /**
@@ -1065,10 +1066,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CloseMatterRequest;
+    requestBody?: Schema$CloseMatterRequest;
   }
   export interface Params$Resource$Matters$Create {
     /**
@@ -1076,10 +1078,11 @@ export namespace vault_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Matter;
+    requestBody?: Schema$Matter;
   }
   export interface Params$Resource$Matters$Delete {
     /**
@@ -1142,10 +1145,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemoveMatterPermissionsRequest;
+    requestBody?: Schema$RemoveMatterPermissionsRequest;
   }
   export interface Params$Resource$Matters$Reopen {
     /**
@@ -1157,10 +1161,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReopenMatterRequest;
+    requestBody?: Schema$ReopenMatterRequest;
   }
   export interface Params$Resource$Matters$Undelete {
     /**
@@ -1172,10 +1177,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteMatterRequest;
+    requestBody?: Schema$UndeleteMatterRequest;
   }
   export interface Params$Resource$Matters$Update {
     /**
@@ -1187,10 +1193,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Matter;
+    requestBody?: Schema$Matter;
   }
 
   export class Resource$Matters$Holds {
@@ -1556,10 +1563,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Hold;
+    requestBody?: Schema$Hold;
   }
   export interface Params$Resource$Matters$Holds$Delete {
     /**
@@ -1634,10 +1642,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Hold;
+    requestBody?: Schema$Hold;
   }
 
   export class Resource$Matters$Holds$Accounts {
@@ -1880,10 +1889,11 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HeldAccount;
+    requestBody?: Schema$HeldAccount;
   }
   export interface Params$Resource$Matters$Holds$Accounts$Delete {
     /**

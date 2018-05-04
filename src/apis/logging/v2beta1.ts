@@ -1832,10 +1832,11 @@ export namespace logging_v2beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ListLogEntriesRequest;
+    requestBody?: Schema$ListLogEntriesRequest;
   }
   export interface Params$Resource$Entries$Write {
     /**
@@ -1843,10 +1844,11 @@ export namespace logging_v2beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WriteLogEntriesRequest;
+    requestBody?: Schema$WriteLogEntriesRequest;
   }
 
 
@@ -3370,10 +3372,11 @@ export namespace logging_v2beta1 {
      * "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogMetric;
+    requestBody?: Schema$LogMetric;
   }
   export interface Params$Resource$Projects$Metrics$Delete {
     /**
@@ -3438,10 +3441,11 @@ export namespace logging_v2beta1 {
      * metric is created.
      */
     metricName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogMetric;
+    requestBody?: Schema$LogMetric;
   }
 
 
@@ -4140,10 +4144,11 @@ export namespace logging_v2beta1 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Projects$Sinks$Delete {
     /**
@@ -4244,9 +4249,10 @@ export namespace logging_v2beta1 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 }

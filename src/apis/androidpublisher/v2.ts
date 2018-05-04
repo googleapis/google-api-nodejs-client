@@ -1316,10 +1316,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AppEdit;
+    requestBody?: Schema$AppEdit;
   }
   export interface Params$Resource$Edits$Validate {
     /**
@@ -1902,10 +1903,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ApkListing;
+    requestBody?: Schema$ApkListing;
   }
   export interface Params$Resource$Edits$Apklistings$Update {
     /**
@@ -1933,10 +1935,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ApkListing;
+    requestBody?: Schema$ApkListing;
   }
 
 
@@ -2191,10 +2194,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ApksAddExternallyHostedRequest;
+    requestBody?: Schema$ApksAddExternallyHostedRequest;
   }
   export interface Params$Resource$Edits$Apks$List {
     /**
@@ -2227,10 +2231,12 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2239,7 +2245,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -2374,10 +2380,12 @@ export namespace androidpublisher_v2 {
      * are being uploaded; for example, "com.spiffygame".
      */
     packageName?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2386,7 +2394,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -2644,10 +2652,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AppDetails;
+    requestBody?: Schema$AppDetails;
   }
   export interface Params$Resource$Edits$Details$Update {
     /**
@@ -2664,10 +2673,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AppDetails;
+    requestBody?: Schema$AppDetails;
   }
 
 
@@ -3043,10 +3053,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExpansionFile;
+    requestBody?: Schema$ExpansionFile;
   }
   export interface Params$Resource$Edits$Expansionfiles$Update {
     /**
@@ -3072,10 +3083,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExpansionFile;
+    requestBody?: Schema$ExpansionFile;
   }
   export interface Params$Resource$Edits$Expansionfiles$Upload {
     /**
@@ -3101,10 +3113,12 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3113,7 +3127,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -3537,10 +3551,12 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3549,7 +3565,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -4076,10 +4092,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Listing;
+    requestBody?: Schema$Listing;
   }
   export interface Params$Resource$Edits$Listings$Update {
     /**
@@ -4101,10 +4118,11 @@ export namespace androidpublisher_v2 {
      * "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Listing;
+    requestBody?: Schema$Listing;
   }
 
 
@@ -4366,10 +4384,11 @@ export namespace androidpublisher_v2 {
      * "production", "rollout" or "internal".
      */
     track?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Testers;
+    requestBody?: Schema$Testers;
   }
   export interface Params$Resource$Edits$Testers$Update {
     /**
@@ -4391,10 +4410,11 @@ export namespace androidpublisher_v2 {
      * "production", "rollout" or "internal".
      */
     track?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Testers;
+    requestBody?: Schema$Testers;
   }
 
 
@@ -4746,10 +4766,11 @@ export namespace androidpublisher_v2 {
      * The track to read or modify.
      */
     track?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Track;
+    requestBody?: Schema$Track;
   }
   export interface Params$Resource$Edits$Tracks$Update {
     /**
@@ -4770,10 +4791,11 @@ export namespace androidpublisher_v2 {
      * The track to read or modify.
      */
     track?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Track;
+    requestBody?: Schema$Track;
   }
 
 
@@ -5262,10 +5284,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
     packageName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InAppProduct;
+    requestBody?: Schema$InAppProduct;
   }
   export interface Params$Resource$Inappproducts$List {
     /**
@@ -5312,10 +5335,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the in-app product.
      */
     sku?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InAppProduct;
+    requestBody?: Schema$InAppProduct;
   }
   export interface Params$Resource$Inappproducts$Update {
     /**
@@ -5338,10 +5362,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the in-app product.
      */
     sku?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InAppProduct;
+    requestBody?: Schema$InAppProduct;
   }
 
 
@@ -5883,10 +5908,11 @@ export namespace androidpublisher_v2 {
      * purchased.
      */
     token?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubscriptionPurchasesDeferRequest;
+    requestBody?: Schema$SubscriptionPurchasesDeferRequest;
   }
   export interface Params$Resource$Purchases$Subscriptions$Get {
     /**
@@ -6371,9 +6397,10 @@ export namespace androidpublisher_v2 {
      *
      */
     reviewId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReviewsReplyRequest;
+    requestBody?: Schema$ReviewsReplyRequest;
   }
 }

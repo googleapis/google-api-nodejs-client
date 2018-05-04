@@ -49,28 +49,30 @@
                */
               {{ pname|cleanPropertyName|safe }}?: {{ p|getType }};
             {% endfor %}
-            {% if m.request %}
-              /**
-               * Request body metadata
-               */
-              resource{{'_' if m|hasResourceParam}}?: Schema${{ m.request.$ref }};
-            {% endif %}
-            {% if m.supportsMediaUpload %}
-              /**
-               * Media metadata
-               */
-              media: {
-                /**
-                 * Media mime-type
-                 */
-                mediaType?: string;
+          {% endif %}
 
-                /**
-                 * Media body contents
-                 */
-                body: any;
-              };
-            {% endif %}
+           {% if m.request %}
+            /**
+              * Request body metadata
+              */
+            requestBody?: Schema${{ m.request.$ref }};
+          {% endif %}
+
+          {% if m.supportsMediaUpload %}
+            /**
+              * Media metadata
+              */
+            media?: {
+              /**
+                * Media mime-type
+                */
+              mediaType?: string;
+
+              /**
+                * Media body contents
+                */
+              body?: any;
+            };
           {% endif %}
         }
       {% endfor %}

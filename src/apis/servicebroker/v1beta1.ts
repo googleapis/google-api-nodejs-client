@@ -924,10 +924,11 @@ export namespace servicebroker_v1beta1 {
      * The project in which to create broker.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1beta1__Broker;
+    requestBody?: Schema$GoogleCloudServicebrokerV1beta1__Broker;
   }
   export interface Params$Resource$Projects$Brokers$Delete {
     /**
@@ -2143,10 +2144,11 @@ export namespace servicebroker_v1beta1 {
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance;
+    requestBody?: Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Delete {
     /**
@@ -2227,10 +2229,11 @@ export namespace servicebroker_v1beta1 {
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance;
+    requestBody?: Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance;
   }
 
   export class Resource$Projects$Brokers$V2$Service_instances$Service_bindings {
@@ -2624,10 +2627,11 @@ export namespace servicebroker_v1beta1 {
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1beta1__Binding;
+    requestBody?: Schema$GoogleCloudServicebrokerV1beta1__Binding;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete {
     /**
@@ -2960,10 +2964,11 @@ export namespace servicebroker_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+    requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
   export interface Params$Resource$V1beta1$Testiampermissions {
     /**
@@ -2976,9 +2981,10 @@ export namespace servicebroker_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+    requestBody?: Schema$GoogleIamV1__TestIamPermissionsRequest;
   }
 }

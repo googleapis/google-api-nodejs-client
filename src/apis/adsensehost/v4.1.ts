@@ -1342,10 +1342,11 @@ export namespace adsensehost_v4_1 {
      * Ad client into which to insert the ad unit.
      */
     adClientId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdUnit;
+    requestBody?: Schema$AdUnit;
   }
   export interface Params$Resource$Accounts$Adunits$List {
     /**
@@ -1395,10 +1396,11 @@ export namespace adsensehost_v4_1 {
      * Ad unit to get.
      */
     adUnitId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdUnit;
+    requestBody?: Schema$AdUnit;
   }
   export interface Params$Resource$Accounts$Adunits$Update {
     /**
@@ -1414,10 +1416,11 @@ export namespace adsensehost_v4_1 {
      * Ad client which contains the ad unit.
      */
     adClientId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdUnit;
+    requestBody?: Schema$AdUnit;
   }
 
 
@@ -2387,10 +2390,11 @@ export namespace adsensehost_v4_1 {
      * Ad client to which the new custom channel will be added.
      */
     adClientId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomChannel;
+    requestBody?: Schema$CustomChannel;
   }
   export interface Params$Resource$Customchannels$List {
     /**
@@ -2428,10 +2432,11 @@ export namespace adsensehost_v4_1 {
      * Custom channel to get.
      */
     customChannelId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomChannel;
+    requestBody?: Schema$CustomChannel;
   }
   export interface Params$Resource$Customchannels$Update {
     /**
@@ -2443,10 +2448,11 @@ export namespace adsensehost_v4_1 {
      * Ad client in which the custom channel will be updated.
      */
     adClientId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomChannel;
+    requestBody?: Schema$CustomChannel;
   }
 
 
@@ -2829,10 +2835,11 @@ export namespace adsensehost_v4_1 {
      * Ad client to which the new URL channel will be added.
      */
     adClientId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlChannel;
+    requestBody?: Schema$UrlChannel;
   }
   export interface Params$Resource$Urlchannels$List {
     /**

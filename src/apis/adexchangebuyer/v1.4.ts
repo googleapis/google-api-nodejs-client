@@ -2053,10 +2053,11 @@ export namespace adexchangebuyer_v1_4 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update {
     /**
@@ -2072,10 +2073,11 @@ export namespace adexchangebuyer_v1_4 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -2480,10 +2482,11 @@ export namespace adexchangebuyer_v1_4 {
      * The billing id associated with the budget being updated.
      */
     billingId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Budget;
+    requestBody?: Schema$Budget;
   }
   export interface Params$Resource$Budget$Update {
     /**
@@ -2499,10 +2502,11 @@ export namespace adexchangebuyer_v1_4 {
      * The billing id associated with the budget being updated.
      */
     billingId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Budget;
+    requestBody?: Schema$Budget;
   }
 
 
@@ -2965,6 +2969,12 @@ export namespace adexchangebuyer_v1_4 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List {
     /**
@@ -3345,10 +3355,11 @@ export namespace adexchangebuyer_v1_4 {
      * The proposalId to delete deals from.
      */
     proposalId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeleteOrderDealsRequest;
+    requestBody?: Schema$DeleteOrderDealsRequest;
   }
   export interface Params$Resource$Marketplacedeals$Insert {
     /**
@@ -3360,10 +3371,11 @@ export namespace adexchangebuyer_v1_4 {
      * proposalId for which deals need to be added.
      */
     proposalId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AddOrderDealsRequest;
+    requestBody?: Schema$AddOrderDealsRequest;
   }
   export interface Params$Resource$Marketplacedeals$List {
     /**
@@ -3391,10 +3403,11 @@ export namespace adexchangebuyer_v1_4 {
      * The proposalId to edit deals on.
      */
     proposalId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EditAllOrderDealsRequest;
+    requestBody?: Schema$EditAllOrderDealsRequest;
   }
 
 
@@ -3560,10 +3573,11 @@ export namespace adexchangebuyer_v1_4 {
      * The proposalId to add notes for.
      */
     proposalId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AddOrderNotesRequest;
+    requestBody?: Schema$AddOrderNotesRequest;
   }
   export interface Params$Resource$Marketplacenotes$List {
     /**
@@ -3676,10 +3690,11 @@ export namespace adexchangebuyer_v1_4 {
      * The private auction id to be updated.
      */
     privateAuctionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdatePrivateAuctionProposalRequest;
+    requestBody?: Schema$UpdatePrivateAuctionProposalRequest;
   }
 
 
@@ -4267,10 +4282,11 @@ export namespace adexchangebuyer_v1_4 {
      * The account id to insert the pretargeting config for.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
   export interface Params$Resource$Pretargetingconfig$List {
     /**
@@ -4297,10 +4313,11 @@ export namespace adexchangebuyer_v1_4 {
      * The specific id of the configuration to update.
      */
     configId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
   export interface Params$Resource$Pretargetingconfig$Update {
     /**
@@ -4316,10 +4333,11 @@ export namespace adexchangebuyer_v1_4 {
      * The specific id of the configuration to update.
      */
     configId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
 
 
@@ -4911,6 +4929,12 @@ export namespace adexchangebuyer_v1_4 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateOrdersRequest;
   }
   export interface Params$Resource$Proposals$Patch {
     /**
@@ -4934,10 +4958,11 @@ export namespace adexchangebuyer_v1_4 {
      * it must be set when updating a proposal.
      */
     updateAction?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Proposal;
+    requestBody?: Schema$Proposal;
   }
   export interface Params$Resource$Proposals$Search {
     /**
@@ -4983,10 +5008,11 @@ export namespace adexchangebuyer_v1_4 {
      * it must be set when updating a proposal.
      */
     updateAction?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Proposal;
+    requestBody?: Schema$Proposal;
   }
 
 

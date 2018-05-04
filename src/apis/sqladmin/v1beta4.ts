@@ -1777,10 +1777,11 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackupRun;
+    requestBody?: Schema$BackupRun;
   }
   export interface Params$Resource$Backupruns$List {
     /**
@@ -2288,10 +2289,11 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Database;
+    requestBody?: Schema$Database;
   }
   export interface Params$Resource$Databases$List {
     /**
@@ -2326,10 +2328,11 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Database;
+    requestBody?: Schema$Database;
   }
   export interface Params$Resource$Databases$Update {
     /**
@@ -2349,10 +2352,11 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Database;
+    requestBody?: Schema$Database;
   }
 
 
@@ -3699,10 +3703,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the source as well as the clone Cloud SQL instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesCloneRequest;
+    requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete {
     /**
@@ -3733,10 +3738,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesDemoteMasterRequest;
+    requestBody?: Schema$InstancesDemoteMasterRequest;
   }
   export interface Params$Resource$Instances$Export {
     /**
@@ -3752,10 +3758,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance to be exported.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesExportRequest;
+    requestBody?: Schema$InstancesExportRequest;
   }
   export interface Params$Resource$Instances$Failover {
     /**
@@ -3771,10 +3778,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * ID of the project that contains the read replica.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesFailoverRequest;
+    requestBody?: Schema$InstancesFailoverRequest;
   }
   export interface Params$Resource$Instances$Get {
     /**
@@ -3805,10 +3813,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesImportRequest;
+    requestBody?: Schema$InstancesImportRequest;
   }
   export interface Params$Resource$Instances$Insert {
     /**
@@ -3821,10 +3830,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * should belong.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
   export interface Params$Resource$Instances$List {
     /**
@@ -3865,10 +3875,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
   export interface Params$Resource$Instances$Promotereplica {
     /**
@@ -3929,10 +3940,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesRestoreBackupRequest;
+    requestBody?: Schema$InstancesRestoreBackupRequest;
   }
   export interface Params$Resource$Instances$Startreplica {
     /**
@@ -3978,10 +3990,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the Cloud SQL project.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesTruncateLogRequest;
+    requestBody?: Schema$InstancesTruncateLogRequest;
   }
   export interface Params$Resource$Instances$Update {
     /**
@@ -3997,10 +4010,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
 
 
@@ -4569,10 +4583,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the Cloud SQL project.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslCertsCreateEphemeralRequest;
+    requestBody?: Schema$SslCertsCreateEphemeralRequest;
   }
   export interface Params$Resource$Sslcerts$Delete {
     /**
@@ -4627,10 +4642,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * should belong.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslCertsInsertRequest;
+    requestBody?: Schema$SslCertsInsertRequest;
   }
   export interface Params$Resource$Sslcerts$List {
     /**
@@ -5067,10 +5083,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$List {
     /**
@@ -5109,9 +5126,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
 }

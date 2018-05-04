@@ -1305,11 +1305,10 @@ export namespace dialogflow_v2beta1 {
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  You should not rely on this field as it
-     * isn&#39;t guaranteed to be accurate, or even set. In particular this
-     * field isn&#39;t set in Webhook calls and for StreamingDetectIntent since
-     * the streaming endpoint has separate confidence estimates per portion of
-     * the audio in StreamingRecognitionResult.
+     * confidence was not set.  This field is not guaranteed to be accurate or
+     * set. In particular this field isn&#39;t set for StreamingDetectIntent
+     * since the streaming endpoint has separate confidence estimates per
+     * portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
@@ -2218,11 +2217,10 @@ export namespace dialogflow_v2beta1 {
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  You should not rely on this field as it
-     * isn&#39;t guaranteed to be accurate, or even set. In particular this
-     * field isn&#39;t set in Webhook calls and for StreamingDetectIntent since
-     * the streaming endpoint has separate confidence estimates per portion of
-     * the audio in StreamingRecognitionResult.
+     * confidence was not set.  This field is not guaranteed to be accurate or
+     * set. In particular this field isn&#39;t set for StreamingDetectIntent
+     * since the streaming endpoint has separate confidence estimates per
+     * portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
@@ -2908,10 +2906,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1ExportAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ExportAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Import {
     /**
@@ -2924,10 +2923,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Restore {
     /**
@@ -2940,10 +2940,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Search {
     /**
@@ -2978,10 +2979,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1TrainAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1TrainAgentRequest;
   }
 
   export class Resource$Projects$Agent$Entitytypes {
@@ -3538,10 +3540,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest;
+    requestBody?:
+        Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate {
     /**
@@ -3554,10 +3558,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest;
+    requestBody?:
+        Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Create {
     /**
@@ -3577,10 +3583,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1EntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1EntityType;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Delete {
     /**
@@ -3665,10 +3672,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1EntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1EntityType;
   }
 
   export class Resource$Projects$Agent$Entitytypes$Entities {
@@ -3934,10 +3942,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete {
     /**
@@ -3950,10 +3959,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate {
     /**
@@ -3966,10 +3976,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest;
   }
 
 
@@ -4224,10 +4235,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * of the <Session ID> and <User ID> must not exceed 36 characters.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest;
   }
 
   export class Resource$Projects$Agent$Environments$Users$Sessions$Contexts {
@@ -4665,10 +4677,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * user.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Context;
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete {
     /**
@@ -4752,10 +4765,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Context;
   }
 
 
@@ -5194,10 +5208,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * specified, we assume default '-' user.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete {
     /**
@@ -5282,10 +5297,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
 
 
@@ -5849,10 +5865,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest;
   }
   export interface Params$Resource$Projects$Agent$Intents$Batchupdate {
     /**
@@ -5865,10 +5882,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest;
   }
   export interface Params$Resource$Projects$Agent$Intents$Create {
     /**
@@ -5893,10 +5911,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Intent;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Intent;
   }
   export interface Params$Resource$Projects$Agent$Intents$Delete {
     /**
@@ -5996,10 +6015,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Intent;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Intent;
   }
 
 
@@ -6207,10 +6227,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * of the <Session ID> and <User ID> must not exceed 36 characters.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest;
   }
 
   export class Resource$Projects$Agent$Sessions$Contexts {
@@ -6623,10 +6644,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * user.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Context;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete {
     /**
@@ -6710,10 +6732,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Context;
   }
 
 
@@ -7130,10 +7153,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * specified, we assume default '-' user.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete {
     /**
@@ -7218,10 +7242,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
 
 

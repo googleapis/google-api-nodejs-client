@@ -654,11 +654,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                * Project ID against which to make the request.
                */
               projectId?: string;
-                                      /**
-               * Request body metadata
-               */
-              resource?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
-                                          }
+                      
+                       /**
+              * Request body metadata
+              */
+            requestBody?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
+          
+                  }
               export interface Params$Resource$Projects$Import {
           /**
            * Auth client or API Key for the request
@@ -669,11 +671,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                * Project ID against which to make the request.
                */
               projectId?: string;
-                                      /**
-               * Request body metadata
-               */
-              resource?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
-                                          }
+                      
+                       /**
+              * Request body metadata
+              */
+            requestBody?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
+          
+                  }
           
     
   

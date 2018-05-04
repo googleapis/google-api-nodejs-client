@@ -2182,10 +2182,11 @@ export namespace blogger_v3 {
      * Whether to create the page as a draft (default: false).
      */
     isDraft?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Page;
+    requestBody?: Schema$Page;
   }
   export interface Params$Resource$Pages$List {
     /**
@@ -2243,10 +2244,11 @@ export namespace blogger_v3 {
      * (default: false).
      */
     revert?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Page;
+    requestBody?: Schema$Page;
   }
   export interface Params$Resource$Pages$Publish {
     /**
@@ -2302,10 +2304,11 @@ export namespace blogger_v3 {
      * (default: false).
      */
     revert?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Page;
+    requestBody?: Schema$Page;
   }
 
 
@@ -3193,10 +3196,11 @@ export namespace blogger_v3 {
      * Whether to create the post as a draft (default: false).
      */
     isDraft?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Post;
+    requestBody?: Schema$Post;
   }
   export interface Params$Resource$Posts$List {
     /**
@@ -3290,10 +3294,11 @@ export namespace blogger_v3 {
      * (default: false).
      */
     revert?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Post;
+    requestBody?: Schema$Post;
   }
   export interface Params$Resource$Posts$Publish {
     /**
@@ -3395,10 +3400,11 @@ export namespace blogger_v3 {
      * (default: false).
      */
     revert?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Post;
+    requestBody?: Schema$Post;
   }
 
 

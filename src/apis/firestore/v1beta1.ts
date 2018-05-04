@@ -2118,10 +2118,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchGetDocumentsRequest;
+    requestBody?: Schema$BatchGetDocumentsRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Begintransaction {
     /**
@@ -2134,10 +2135,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BeginTransactionRequest;
+    requestBody?: Schema$BeginTransactionRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Commit {
     /**
@@ -2150,10 +2152,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommitRequest;
+    requestBody?: Schema$CommitRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Createdocument {
     /**
@@ -2182,10 +2185,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Document;
+    requestBody?: Schema$Document;
   }
   export interface Params$Resource$Projects$Databases$Documents$Delete {
     /**
@@ -2303,10 +2307,11 @@ export namespace firestore_v1beta1 {
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ListCollectionIdsRequest;
+    requestBody?: Schema$ListCollectionIdsRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Listen {
     /**
@@ -2319,10 +2324,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ListenRequest;
+    requestBody?: Schema$ListenRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Patch {
     /**
@@ -2355,10 +2361,11 @@ export namespace firestore_v1beta1 {
      * syntax reference.
      */
     'updateMask.fieldPaths'?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Document;
+    requestBody?: Schema$Document;
   }
   export interface Params$Resource$Projects$Databases$Documents$Rollback {
     /**
@@ -2371,10 +2378,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollbackRequest;
+    requestBody?: Schema$RollbackRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Runquery {
     /**
@@ -2390,10 +2398,11 @@ export namespace firestore_v1beta1 {
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunQueryRequest;
+    requestBody?: Schema$RunQueryRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Write {
     /**
@@ -2407,10 +2416,11 @@ export namespace firestore_v1beta1 {
      * the first message.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WriteRequest;
+    requestBody?: Schema$WriteRequest;
   }
 
 
@@ -2709,10 +2719,11 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Index;
+    requestBody?: Schema$Index;
   }
   export interface Params$Resource$Projects$Databases$Indexes$Delete {
     /**

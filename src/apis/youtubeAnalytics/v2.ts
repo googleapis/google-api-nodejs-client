@@ -625,10 +625,11 @@ export namespace youtubeAnalytics_v2 {
      * linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GroupItem;
+    requestBody?: Schema$GroupItem;
   }
   export interface Params$Resource$Groupitems$List {
     /**
@@ -980,10 +981,11 @@ export namespace youtubeAnalytics_v2 {
      * linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$List {
     /**
@@ -1045,10 +1047,11 @@ export namespace youtubeAnalytics_v2 {
      * linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
 
 

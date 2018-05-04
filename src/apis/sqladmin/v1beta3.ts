@@ -2339,10 +2339,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the source as well as the clone Cloud SQL instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesCloneRequest;
+    requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete {
     /**
@@ -2373,10 +2374,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance to be exported.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesExportRequest;
+    requestBody?: Schema$InstancesExportRequest;
   }
   export interface Params$Resource$Instances$Get {
     /**
@@ -2407,10 +2409,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesImportRequest;
+    requestBody?: Schema$InstancesImportRequest;
   }
   export interface Params$Resource$Instances$Insert {
     /**
@@ -2423,10 +2426,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * should belong.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
   export interface Params$Resource$Instances$List {
     /**
@@ -2462,10 +2466,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
   export interface Params$Resource$Instances$Promotereplica {
     /**
@@ -2552,10 +2557,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceSetRootPasswordRequest;
+    requestBody?: Schema$InstanceSetRootPasswordRequest;
   }
   export interface Params$Resource$Instances$Update {
     /**
@@ -2571,10 +2577,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project that contains the instance.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatabaseInstance;
+    requestBody?: Schema$DatabaseInstance;
   }
 
 
@@ -3115,10 +3122,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * should belong.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslCertsInsertRequest;
+    requestBody?: Schema$SslCertsInsertRequest;
   }
   export interface Params$Resource$Sslcerts$List {
     /**

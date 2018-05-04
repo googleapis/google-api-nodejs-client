@@ -1122,10 +1122,11 @@ export namespace runtimeconfig_v1beta1 {
      * strings.  `request_id` strings are limited to 64 characters.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RuntimeConfig;
+    requestBody?: Schema$RuntimeConfig;
   }
   export interface Params$Resource$Projects$Configs$Delete {
     /**
@@ -1197,10 +1198,11 @@ export namespace runtimeconfig_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Configs$Testiampermissions {
     /**
@@ -1213,10 +1215,11 @@ export namespace runtimeconfig_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Configs$Update {
     /**
@@ -1229,10 +1232,11 @@ export namespace runtimeconfig_v1beta1 {
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RuntimeConfig;
+    requestBody?: Schema$RuntimeConfig;
   }
 
   export class Resource$Projects$Configs$Operations {
@@ -1416,10 +1420,11 @@ export namespace runtimeconfig_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -1964,10 +1969,11 @@ export namespace runtimeconfig_v1beta1 {
      * strings.  `request_id` strings are limited to 64 characters.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
   export interface Params$Resource$Projects$Configs$Variables$Delete {
     /**
@@ -2043,10 +2049,11 @@ export namespace runtimeconfig_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Configs$Variables$Update {
     /**
@@ -2059,10 +2066,11 @@ export namespace runtimeconfig_v1beta1 {
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
   export interface Params$Resource$Projects$Configs$Variables$Watch {
     /**
@@ -2075,10 +2083,11 @@ export namespace runtimeconfig_v1beta1 {
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WatchVariableRequest;
+    requestBody?: Schema$WatchVariableRequest;
   }
 
 
@@ -2470,10 +2479,11 @@ export namespace runtimeconfig_v1beta1 {
      * strings.  `request_id` strings are limited to 64 characters.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Waiter;
+    requestBody?: Schema$Waiter;
   }
   export interface Params$Resource$Projects$Configs$Waiters$Delete {
     /**
@@ -2534,9 +2544,10 @@ export namespace runtimeconfig_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }

@@ -721,10 +721,11 @@ export namespace surveys_v2 {
      * External URL ID for the panel.
      */
     panelId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$MobileAppPanel;
+    requestBody?: Schema$MobileAppPanel;
   }
 
 
@@ -815,10 +816,11 @@ export namespace surveys_v2 {
      * External URL ID for the survey.
      */
     surveyUrlId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResultsGetRequest;
+    requestBody?: Schema$ResultsGetRequest;
   }
 
 
@@ -1317,6 +1319,12 @@ export namespace surveys_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Survey;
   }
   export interface Params$Resource$Surveys$List {
     /**
@@ -1347,10 +1355,11 @@ export namespace surveys_v2 {
      *
      */
     resourceId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SurveysStartRequest;
+    requestBody?: Schema$SurveysStartRequest;
   }
   export interface Params$Resource$Surveys$Stop {
     /**
@@ -1373,9 +1382,10 @@ export namespace surveys_v2 {
      * External URL ID for the survey.
      */
     surveyUrlId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Survey;
+    requestBody?: Schema$Survey;
   }
 }

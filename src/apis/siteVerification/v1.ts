@@ -677,6 +677,12 @@ export namespace siteVerification_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SiteVerificationWebResourceGettokenRequest;
   }
   export interface Params$Resource$Webresource$Insert {
     /**
@@ -688,10 +694,11 @@ export namespace siteVerification_v1 {
      * The method to use for verifying a site or domain.
      */
     verificationMethod?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SiteVerificationWebResourceResource;
+    requestBody?: Schema$SiteVerificationWebResourceResource;
   }
   export interface Params$Resource$Webresource$List {
     /**
@@ -709,10 +716,11 @@ export namespace siteVerification_v1 {
      * The id of a verified site or domain.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SiteVerificationWebResourceResource;
+    requestBody?: Schema$SiteVerificationWebResourceResource;
   }
   export interface Params$Resource$Webresource$Update {
     /**
@@ -724,9 +732,10 @@ export namespace siteVerification_v1 {
      * The id of a verified site or domain.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SiteVerificationWebResourceResource;
+    requestBody?: Schema$SiteVerificationWebResourceResource;
   }
 }

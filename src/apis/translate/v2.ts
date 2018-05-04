@@ -341,10 +341,11 @@ export namespace translate_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DetectLanguageRequest;
+    requestBody?: Schema$DetectLanguageRequest;
   }
   export interface Params$Resource$Detections$List {
     /**
@@ -655,9 +656,10 @@ export namespace translate_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TranslateTextRequest;
+    requestBody?: Schema$TranslateTextRequest;
   }
 }

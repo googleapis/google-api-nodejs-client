@@ -1039,9 +1039,10 @@ export namespace analyticsreporting_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetReportsRequest;
+    requestBody?: Schema$GetReportsRequest;
   }
 }

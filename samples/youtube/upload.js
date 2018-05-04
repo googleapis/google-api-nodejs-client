@@ -33,7 +33,7 @@ async function runSample (fileName, callback) {
   const res = await youtube.videos.insert({
     part: 'id,snippet,status',
     notifySubscribers: false,
-    resource: {
+    requestBody: {
       snippet: {
         title: 'Node.js YouTube Upload Test',
         description: 'Testing YouTube upload via Google APIs Node.js Client'

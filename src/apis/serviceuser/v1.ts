@@ -2312,10 +2312,11 @@ export namespace serviceuser_v1 {
      * /v1/projects/my-project/services/servicemanagement.googleapis.com:disable
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DisableServiceRequest;
+    requestBody?: Schema$DisableServiceRequest;
   }
   export interface Params$Resource$Projects$Services$Enable {
     /**
@@ -2329,10 +2330,11 @@ export namespace serviceuser_v1 {
      * /v1/projects/my-project/services/servicemanagement.googleapis.com:enable
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EnableServiceRequest;
+    requestBody?: Schema$EnableServiceRequest;
   }
   export interface Params$Resource$Projects$Services$List {
     /**

@@ -975,10 +975,11 @@ export namespace replicapoolupdater_v1beta1 {
      * The name of the zone in which the update's target resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollingUpdate;
+    requestBody?: Schema$RollingUpdate;
   }
   export interface Params$Resource$Rollingupdates$List {
     /**

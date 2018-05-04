@@ -225,9 +225,10 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchGetAmpUrlsRequest;
+    requestBody?: Schema$BatchGetAmpUrlsRequest;
   }
 }

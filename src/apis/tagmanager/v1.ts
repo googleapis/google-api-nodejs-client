@@ -1255,10 +1255,11 @@ export namespace tagmanager_v1 {
      * in storage.
      */
     fingerprint?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
   export class Resource$Accounts$Containers {
@@ -1643,10 +1644,11 @@ export namespace tagmanager_v1 {
      * The GTM Account ID.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Container;
+    requestBody?: Schema$Container;
   }
   export interface Params$Resource$Accounts$Containers$Delete {
     /**
@@ -1708,10 +1710,11 @@ export namespace tagmanager_v1 {
      * container in storage.
      */
     fingerprint?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Container;
+    requestBody?: Schema$Container;
   }
 
   export class Resource$Accounts$Containers$Environments {
@@ -2169,10 +2172,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Delete {
     /**
@@ -2250,10 +2254,11 @@ export namespace tagmanager_v1 {
      * environment in storage.
      */
     fingerprint?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update {
     /**
@@ -2278,10 +2283,11 @@ export namespace tagmanager_v1 {
      * environment in storage.
      */
     fingerprint?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
 
 
@@ -2660,10 +2666,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Accounts$Containers$Folders$Delete {
     /**
@@ -2741,10 +2748,11 @@ export namespace tagmanager_v1 {
      * The GTM Folder ID.
      */
     folderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
 
   export class Resource$Accounts$Containers$Folders$Entities {
@@ -2970,10 +2978,11 @@ export namespace tagmanager_v1 {
      * The variables to be moved to the folder.
      */
     variableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
 
 
@@ -3084,10 +3093,11 @@ export namespace tagmanager_v1 {
      * The GTM Environment ID.
      */
     environmentId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
 
 
@@ -3464,10 +3474,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Tag;
+    requestBody?: Schema$Tag;
   }
   export interface Params$Resource$Accounts$Containers$Tags$Delete {
     /**
@@ -3545,10 +3556,11 @@ export namespace tagmanager_v1 {
      * The GTM Tag ID.
      */
     tagId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Tag;
+    requestBody?: Schema$Tag;
   }
 
 
@@ -3926,10 +3938,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Trigger;
+    requestBody?: Schema$Trigger;
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Delete {
     /**
@@ -4007,10 +4020,11 @@ export namespace tagmanager_v1 {
      * The GTM Trigger ID.
      */
     triggerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Trigger;
+    requestBody?: Schema$Trigger;
   }
 
 
@@ -4388,10 +4402,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
   export interface Params$Resource$Accounts$Containers$Variables$Delete {
     /**
@@ -4469,10 +4484,11 @@ export namespace tagmanager_v1 {
      * The GTM Variable ID.
      */
     variableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
 
 
@@ -5096,10 +5112,11 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateContainerVersionRequestVersionOptions;
+    requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Delete {
     /**
@@ -5248,10 +5265,11 @@ export namespace tagmanager_v1 {
      * container version in storage.
      */
     fingerprint?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ContainerVersion;
+    requestBody?: Schema$ContainerVersion;
   }
 
 
@@ -5621,10 +5639,11 @@ export namespace tagmanager_v1 {
      * The GTM Account ID.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserAccess;
+    requestBody?: Schema$UserAccess;
   }
   export interface Params$Resource$Accounts$Permissions$Delete {
     /**
@@ -5681,9 +5700,10 @@ export namespace tagmanager_v1 {
      * The GTM User ID.
      */
     permissionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserAccess;
+    requestBody?: Schema$UserAccess;
   }
 }

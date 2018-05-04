@@ -845,10 +845,11 @@ export namespace gamesConfiguration_v1configuration {
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AchievementConfiguration;
+    requestBody?: Schema$AchievementConfiguration;
   }
   export interface Params$Resource$Achievementconfigurations$List {
     /**
@@ -881,10 +882,11 @@ export namespace gamesConfiguration_v1configuration {
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AchievementConfiguration;
+    requestBody?: Schema$AchievementConfiguration;
   }
   export interface Params$Resource$Achievementconfigurations$Update {
     /**
@@ -896,10 +898,11 @@ export namespace gamesConfiguration_v1configuration {
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AchievementConfiguration;
+    requestBody?: Schema$AchievementConfiguration;
   }
 
 
@@ -1006,10 +1009,12 @@ export namespace gamesConfiguration_v1configuration {
      * The ID of the resource used by this method.
      */
     resourceId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -1018,7 +1023,7 @@ export namespace gamesConfiguration_v1configuration {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -1498,10 +1503,11 @@ export namespace gamesConfiguration_v1configuration {
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaderboardConfiguration;
+    requestBody?: Schema$LeaderboardConfiguration;
   }
   export interface Params$Resource$Leaderboardconfigurations$List {
     /**
@@ -1534,10 +1540,11 @@ export namespace gamesConfiguration_v1configuration {
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaderboardConfiguration;
+    requestBody?: Schema$LeaderboardConfiguration;
   }
   export interface Params$Resource$Leaderboardconfigurations$Update {
     /**
@@ -1549,9 +1556,10 @@ export namespace gamesConfiguration_v1configuration {
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaderboardConfiguration;
+    requestBody?: Schema$LeaderboardConfiguration;
   }
 }

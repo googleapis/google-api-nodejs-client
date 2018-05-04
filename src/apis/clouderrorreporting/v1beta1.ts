@@ -755,10 +755,11 @@ export namespace clouderrorreporting_v1beta1 {
      * `projects/my-project-123`.
      */
     projectName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReportedErrorEvent;
+    requestBody?: Schema$ReportedErrorEvent;
   }
 
 
@@ -935,10 +936,11 @@ export namespace clouderrorreporting_v1beta1 {
      * <code>projects/my-project-123/groups/my-groupid</code>
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ErrorGroup;
+    requestBody?: Schema$ErrorGroup;
   }
 
 

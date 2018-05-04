@@ -2016,9 +2016,10 @@ export namespace vision_v1p1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
+    requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
   }
 }

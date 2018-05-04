@@ -1156,10 +1156,11 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WatchRequest;
+    requestBody?: Schema$WatchRequest;
   }
 
   export class Resource$Users$Drafts {
@@ -1602,14 +1603,16 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Draft;
+    requestBody?: Schema$Draft;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -1618,7 +1621,7 @@ export namespace gmail_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Users$Drafts$Delete {
@@ -1698,14 +1701,16 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Draft;
+    requestBody?: Schema$Draft;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -1714,7 +1719,7 @@ export namespace gmail_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Users$Drafts$Update {
@@ -1732,14 +1737,16 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Draft;
+    requestBody?: Schema$Draft;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -1748,7 +1755,7 @@ export namespace gmail_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -2301,10 +2308,11 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Label;
+    requestBody?: Schema$Label;
   }
   export interface Params$Resource$Users$Labels$Delete {
     /**
@@ -2365,10 +2373,11 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Label;
+    requestBody?: Schema$Label;
   }
   export interface Params$Resource$Users$Labels$Update {
     /**
@@ -2385,10 +2394,11 @@ export namespace gmail_v1 {
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Label;
+    requestBody?: Schema$Label;
   }
 
 
@@ -3146,10 +3156,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchDeleteMessagesRequest;
+    requestBody?: Schema$BatchDeleteMessagesRequest;
   }
   export interface Params$Resource$Users$Messages$Batchmodify {
     /**
@@ -3162,10 +3173,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchModifyMessagesRequest;
+    requestBody?: Schema$BatchModifyMessagesRequest;
   }
   export interface Params$Resource$Users$Messages$Delete {
     /**
@@ -3237,14 +3249,16 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Message;
+    requestBody?: Schema$Message;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3253,7 +3267,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Users$Messages$Insert {
@@ -3276,14 +3290,16 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Message;
+    requestBody?: Schema$Message;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3292,7 +3308,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Users$Messages$List {
@@ -3347,10 +3363,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyMessageRequest;
+    requestBody?: Schema$ModifyMessageRequest;
   }
   export interface Params$Resource$Users$Messages$Send {
     /**
@@ -3363,14 +3380,16 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Message;
+    requestBody?: Schema$Message;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3379,7 +3398,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Users$Messages$Trash {
@@ -4143,10 +4162,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AutoForwarding;
+    requestBody?: Schema$AutoForwarding;
   }
   export interface Params$Resource$Users$Settings$Updateimap {
     /**
@@ -4159,10 +4179,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ImapSettings;
+    requestBody?: Schema$ImapSettings;
   }
   export interface Params$Resource$Users$Settings$Updatepop {
     /**
@@ -4175,10 +4196,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PopSettings;
+    requestBody?: Schema$PopSettings;
   }
   export interface Params$Resource$Users$Settings$Updatevacation {
     /**
@@ -4191,10 +4213,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VacationSettings;
+    requestBody?: Schema$VacationSettings;
   }
 
   export class Resource$Users$Settings$Filters {
@@ -4483,10 +4506,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Filter;
+    requestBody?: Schema$Filter;
   }
   export interface Params$Resource$Users$Settings$Filters$Delete {
     /**
@@ -4851,10 +4875,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ForwardingAddress;
+    requestBody?: Schema$ForwardingAddress;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete {
     /**
@@ -5421,10 +5446,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendAs;
+    requestBody?: Schema$SendAs;
   }
   export interface Params$Resource$Users$Settings$Sendas$Delete {
     /**
@@ -5485,10 +5511,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendAs;
+    requestBody?: Schema$SendAs;
   }
   export interface Params$Resource$Users$Settings$Sendas$Update {
     /**
@@ -5505,10 +5532,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendAs;
+    requestBody?: Schema$SendAs;
   }
   export interface Params$Resource$Users$Settings$Sendas$Verify {
     /**
@@ -5950,10 +5978,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SmimeInfo;
+    requestBody?: Schema$SmimeInfo;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List {
     /**
@@ -6505,10 +6534,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyThreadRequest;
+    requestBody?: Schema$ModifyThreadRequest;
   }
   export interface Params$Resource$Users$Threads$Trash {
     /**

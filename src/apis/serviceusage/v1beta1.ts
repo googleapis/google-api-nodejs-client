@@ -2737,10 +2737,11 @@ export namespace serviceusage_v1beta1 {
      * `BatchEnableServices` method currently only supports projects.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchEnableServicesRequest;
+    requestBody?: Schema$BatchEnableServicesRequest;
   }
   export interface Params$Resource$Services$Disable {
     /**
@@ -2755,10 +2756,11 @@ export namespace serviceusage_v1beta1 {
      * is the project number (not project ID).
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DisableServiceRequest;
+    requestBody?: Schema$DisableServiceRequest;
   }
   export interface Params$Resource$Services$Enable {
     /**
@@ -2775,10 +2777,11 @@ export namespace serviceusage_v1beta1 {
      * project number (not project ID).
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EnableServiceRequest;
+    requestBody?: Schema$EnableServiceRequest;
   }
   export interface Params$Resource$Services$Get {
     /**

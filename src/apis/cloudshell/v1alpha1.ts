@@ -544,10 +544,11 @@ export namespace cloudshell_v1alpha1 {
      * Mask specifying which fields in the environment should be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Users$Environments$Start {
     /**
@@ -561,10 +562,11 @@ export namespace cloudshell_v1alpha1 {
      * `users/someone@example.com/environments/default`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartEnvironmentRequest;
+    requestBody?: Schema$StartEnvironmentRequest;
   }
 
   export class Resource$Users$Environments$Publickeys {
@@ -728,10 +730,11 @@ export namespace cloudshell_v1alpha1 {
      * Parent resource name, e.g. `users/me/environments/default`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreatePublicKeyRequest;
+    requestBody?: Schema$CreatePublicKeyRequest;
   }
   export interface Params$Resource$Users$Environments$Publickeys$Delete {
     /**

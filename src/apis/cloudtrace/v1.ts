@@ -89,7 +89,7 @@ export namespace cloudtrace_v1 {
      */
     nextPageToken?: string;
     /**
-     * List of trace records returned.
+     * List of trace records as specified by the view parameter.
      */
     traces?: Schema$Trace[];
   }
@@ -334,10 +334,11 @@ export namespace cloudtrace_v1 {
      * ID of the Cloud project where the trace data is stored.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Traces;
+    requestBody?: Schema$Traces;
   }
 
   export class Resource$Projects$Traces {

@@ -557,10 +557,11 @@ export namespace adexchangebuyer_v1_2 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update {
     /**
@@ -572,10 +573,11 @@ export namespace adexchangebuyer_v1_2 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -808,6 +810,12 @@ export namespace adexchangebuyer_v1_2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List {
     /**

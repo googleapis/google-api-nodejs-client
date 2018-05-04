@@ -1442,6 +1442,12 @@ export namespace books_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BooksCloudloadingResource;
   }
 
 
@@ -3022,6 +3028,12 @@ export namespace books_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Usersettings;
   }
 
 
@@ -3444,10 +3456,11 @@ export namespace books_v1 {
      * String to identify the originator of this request.
      */
     source?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Annotation;
+    requestBody?: Schema$Annotation;
   }
   export interface Params$Resource$Mylibrary$Annotations$List {
     /**
@@ -3528,10 +3541,11 @@ export namespace books_v1 {
      * String to identify the originator of this request.
      */
     source?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Annotation;
+    requestBody?: Schema$Annotation;
   }
 
 

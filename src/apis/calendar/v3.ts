@@ -1681,10 +1681,11 @@ export namespace calendar_v3 {
      * Optional. The default is True.
      */
     sendNotifications?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AclRule;
+    requestBody?: Schema$AclRule;
   }
   export interface Params$Resource$Acl$List {
     /**
@@ -1749,10 +1750,11 @@ export namespace calendar_v3 {
      * is True.
      */
     sendNotifications?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AclRule;
+    requestBody?: Schema$AclRule;
   }
   export interface Params$Resource$Acl$Update {
     /**
@@ -1776,10 +1778,11 @@ export namespace calendar_v3 {
      * is True.
      */
     sendNotifications?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AclRule;
+    requestBody?: Schema$AclRule;
   }
   export interface Params$Resource$Acl$Watch {
     /**
@@ -1821,10 +1824,11 @@ export namespace calendar_v3 {
      * Optional. The default is to return all entries.
      */
     syncToken?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -2354,10 +2358,11 @@ export namespace calendar_v3 {
      * Optional. The default is False.
      */
     colorRgbFormat?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarListEntry;
+    requestBody?: Schema$CalendarListEntry;
   }
   export interface Params$Resource$Calendarlist$List {
     /**
@@ -2425,10 +2430,11 @@ export namespace calendar_v3 {
      * Optional. The default is False.
      */
     colorRgbFormat?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarListEntry;
+    requestBody?: Schema$CalendarListEntry;
   }
   export interface Params$Resource$Calendarlist$Update {
     /**
@@ -2449,10 +2455,11 @@ export namespace calendar_v3 {
      * Optional. The default is False.
      */
     colorRgbFormat?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarListEntry;
+    requestBody?: Schema$CalendarListEntry;
   }
   export interface Params$Resource$Calendarlist$Watch {
     /**
@@ -2500,10 +2507,11 @@ export namespace calendar_v3 {
      * return all entries.
      */
     syncToken?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -2947,6 +2955,12 @@ export namespace calendar_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Calendar;
   }
   export interface Params$Resource$Calendars$Patch {
     /**
@@ -2960,10 +2974,11 @@ export namespace calendar_v3 {
      * logged in user, use the "primary" keyword.
      */
     calendarId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Calendar;
+    requestBody?: Schema$Calendar;
   }
   export interface Params$Resource$Calendars$Update {
     /**
@@ -2977,10 +2992,11 @@ export namespace calendar_v3 {
      * logged in user, use the "primary" keyword.
      */
     calendarId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Calendar;
+    requestBody?: Schema$Calendar;
   }
 
 
@@ -3064,6 +3080,12 @@ export namespace calendar_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -4004,10 +4026,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Optional. The default is False.
      */
     supportsAttachments?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Event;
+    requestBody?: Schema$Event;
   }
   export interface Params$Resource$Events$Insert {
     /**
@@ -4045,10 +4068,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Optional. The default is False.
      */
     supportsAttachments?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Event;
+    requestBody?: Schema$Event;
   }
   export interface Params$Resource$Events$Instances {
     /**
@@ -4326,10 +4350,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Optional. The default is False.
      */
     supportsAttachments?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Event;
+    requestBody?: Schema$Event;
   }
   export interface Params$Resource$Events$Quickadd {
     /**
@@ -4402,10 +4427,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Optional. The default is False.
      */
     supportsAttachments?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Event;
+    requestBody?: Schema$Event;
   }
   export interface Params$Resource$Events$Watch {
     /**
@@ -4538,10 +4564,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * is not to filter by last modification time.
      */
     updatedMin?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -4627,6 +4654,12 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FreeBusyRequest;
   }
 
 
@@ -4900,9 +4933,10 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * synchronization. Optional. The default is to return all entries.
      */
     syncToken?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 }

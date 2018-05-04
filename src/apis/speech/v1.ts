@@ -614,10 +614,11 @@ export namespace speech_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LongRunningRecognizeRequest;
+    requestBody?: Schema$LongRunningRecognizeRequest;
   }
   export interface Params$Resource$Speech$Recognize {
     /**
@@ -625,9 +626,10 @@ export namespace speech_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RecognizeRequest;
+    requestBody?: Schema$RecognizeRequest;
   }
 }

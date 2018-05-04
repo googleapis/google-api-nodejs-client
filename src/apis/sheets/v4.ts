@@ -4796,10 +4796,11 @@ export namespace sheets_v4 {
      * The spreadsheet to apply the updates to.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdateSpreadsheetRequest;
+    requestBody?: Schema$BatchUpdateSpreadsheetRequest;
   }
   export interface Params$Resource$Spreadsheets$Create {
     /**
@@ -4807,10 +4808,11 @@ export namespace sheets_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Spreadsheet;
+    requestBody?: Schema$Spreadsheet;
   }
   export interface Params$Resource$Spreadsheets$Get {
     /**
@@ -4842,10 +4844,11 @@ export namespace sheets_v4 {
      * The spreadsheet to request.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetSpreadsheetByDataFilterRequest;
+    requestBody?: Schema$GetSpreadsheetByDataFilterRequest;
   }
 
   export class Resource$Spreadsheets$Developermetadata {
@@ -5139,10 +5142,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to retrieve metadata from.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchDeveloperMetadataRequest;
+    requestBody?: Schema$SearchDeveloperMetadataRequest;
   }
 
 
@@ -5303,10 +5307,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet containing the sheet to copy.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CopySheetToAnotherSpreadsheetRequest;
+    requestBody?: Schema$CopySheetToAnotherSpreadsheetRequest;
   }
 
 
@@ -6764,10 +6769,11 @@ export namespace sheets_v4 {
      * How the input data should be interpreted.
      */
     valueInputOption?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ValueRange;
+    requestBody?: Schema$ValueRange;
   }
   export interface Params$Resource$Spreadsheets$Values$Batchclear {
     /**
@@ -6779,10 +6785,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchClearValuesRequest;
+    requestBody?: Schema$BatchClearValuesRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter {
     /**
@@ -6794,10 +6801,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchClearValuesByDataFilterRequest;
+    requestBody?: Schema$BatchClearValuesByDataFilterRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Batchget {
     /**
@@ -6843,10 +6851,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to retrieve data from.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchGetValuesByDataFilterRequest;
+    requestBody?: Schema$BatchGetValuesByDataFilterRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Batchupdate {
     /**
@@ -6858,10 +6867,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdateValuesRequest;
+    requestBody?: Schema$BatchUpdateValuesRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter {
     /**
@@ -6873,10 +6883,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdateValuesByDataFilterRequest;
+    requestBody?: Schema$BatchUpdateValuesByDataFilterRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Clear {
     /**
@@ -6892,10 +6903,11 @@ export namespace sheets_v4 {
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ClearValuesRequest;
+    requestBody?: Schema$ClearValuesRequest;
   }
   export interface Params$Resource$Spreadsheets$Values$Get {
     /**
@@ -6969,9 +6981,10 @@ export namespace sheets_v4 {
      * How the input data should be interpreted.
      */
     valueInputOption?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ValueRange;
+    requestBody?: Schema$ValueRange;
   }
 }

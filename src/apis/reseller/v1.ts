@@ -741,10 +741,11 @@ export namespace reseller_v1 {
      * center.
      */
     customerAuthToken?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Customer;
+    requestBody?: Schema$Customer;
   }
   export interface Params$Resource$Customers$Patch {
     /**
@@ -759,10 +760,11 @@ export namespace reseller_v1 {
      * customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Customer;
+    requestBody?: Schema$Customer;
   }
   export interface Params$Resource$Customers$Update {
     /**
@@ -777,10 +779,11 @@ export namespace reseller_v1 {
      * customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Customer;
+    requestBody?: Schema$Customer;
   }
 
 
@@ -1803,10 +1806,11 @@ export namespace reseller_v1 {
      * the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChangePlanRequest;
+    requestBody?: Schema$ChangePlanRequest;
   }
   export interface Params$Resource$Subscriptions$Changerenewalsettings {
     /**
@@ -1829,10 +1833,11 @@ export namespace reseller_v1 {
      * the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RenewalSettings;
+    requestBody?: Schema$RenewalSettings;
   }
   export interface Params$Resource$Subscriptions$Changeseats {
     /**
@@ -1855,10 +1860,11 @@ export namespace reseller_v1 {
      * the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Seats;
+    requestBody?: Schema$Seats;
   }
   export interface Params$Resource$Subscriptions$Delete {
     /**
@@ -1931,10 +1937,11 @@ export namespace reseller_v1 {
      * customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Subscriptions$List {
     /**

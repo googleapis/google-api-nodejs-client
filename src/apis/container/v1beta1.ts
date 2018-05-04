@@ -3376,10 +3376,11 @@ export namespace container_v1beta1 {
      * rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompleteIPRotationRequest;
+    requestBody?: Schema$CompleteIPRotationRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Create {
     /**
@@ -3392,10 +3393,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x'.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateClusterRequest;
+    requestBody?: Schema$CreateClusterRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Delete {
     /**
@@ -3492,10 +3494,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetAddonsConfigRequest;
+    requestBody?: Schema$SetAddonsConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac {
     /**
@@ -3508,10 +3511,11 @@ export namespace container_v1beta1 {
      * abac. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLegacyAbacRequest;
+    requestBody?: Schema$SetLegacyAbacRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setlocations {
     /**
@@ -3524,10 +3528,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLocationsRequest;
+    requestBody?: Schema$SetLocationsRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setlogging {
     /**
@@ -3540,10 +3545,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLoggingServiceRequest;
+    requestBody?: Schema$SetLoggingServiceRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy {
     /**
@@ -3557,10 +3563,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMaintenancePolicyRequest;
+    requestBody?: Schema$SetMaintenancePolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth {
     /**
@@ -3573,10 +3580,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMasterAuthRequest;
+    requestBody?: Schema$SetMasterAuthRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring {
     /**
@@ -3589,10 +3597,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMonitoringServiceRequest;
+    requestBody?: Schema$SetMonitoringServiceRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy {
     /**
@@ -3605,10 +3614,11 @@ export namespace container_v1beta1 {
      * policy. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNetworkPolicyRequest;
+    requestBody?: Schema$SetNetworkPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels {
     /**
@@ -3621,10 +3631,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLabelsRequest;
+    requestBody?: Schema$SetLabelsRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Startiprotation {
     /**
@@ -3637,10 +3648,11 @@ export namespace container_v1beta1 {
      * rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartIPRotationRequest;
+    requestBody?: Schema$StartIPRotationRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Update {
     /**
@@ -3653,10 +3665,11 @@ export namespace container_v1beta1 {
      * in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateClusterRequest;
+    requestBody?: Schema$UpdateClusterRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Updatemaster {
     /**
@@ -3669,10 +3682,11 @@ export namespace container_v1beta1 {
      * in the format 'projects/x/locations/x/clusters/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateMasterRequest;
+    requestBody?: Schema$UpdateMasterRequest;
   }
 
   export class Resource$Projects$Locations$Clusters$Nodepools {
@@ -4337,10 +4351,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateNodePoolRequest;
+    requestBody?: Schema$CreateNodePoolRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete {
     /**
@@ -4453,10 +4468,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollbackNodePoolUpgradeRequest;
+    requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling {
     /**
@@ -4470,10 +4486,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolAutoscalingRequest;
+    requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement {
     /**
@@ -4487,10 +4504,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolManagementRequest;
+    requestBody?: Schema$SetNodePoolManagementRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize {
     /**
@@ -4504,10 +4522,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolSizeRequest;
+    requestBody?: Schema$SetNodePoolSizeRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update {
     /**
@@ -4521,10 +4540,11 @@ export namespace container_v1beta1 {
      * 'projects/x/locations/x/clusters/x/nodePools/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateNodePoolRequest;
+    requestBody?: Schema$UpdateNodePoolRequest;
   }
 
 
@@ -4754,10 +4774,11 @@ export namespace container_v1beta1 {
      * Specified in the format 'projects/x/locations/x/operations/x'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get {
     /**
@@ -6206,10 +6227,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetAddonsConfigRequest;
+    requestBody?: Schema$SetAddonsConfigRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation {
     /**
@@ -6234,10 +6256,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompleteIPRotationRequest;
+    requestBody?: Schema$CompleteIPRotationRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Create {
     /**
@@ -6257,10 +6280,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the parent field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateClusterRequest;
+    requestBody?: Schema$CreateClusterRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Delete {
     /**
@@ -6343,10 +6367,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLegacyAbacRequest;
+    requestBody?: Schema$SetLegacyAbacRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$List {
     /**
@@ -6397,10 +6422,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLocationsRequest;
+    requestBody?: Schema$SetLocationsRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Logging {
     /**
@@ -6425,10 +6451,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLoggingServiceRequest;
+    requestBody?: Schema$SetLoggingServiceRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Master {
     /**
@@ -6453,10 +6480,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateMasterRequest;
+    requestBody?: Schema$UpdateMasterRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Monitoring {
     /**
@@ -6481,10 +6509,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMonitoringServiceRequest;
+    requestBody?: Schema$SetMonitoringServiceRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels {
     /**
@@ -6509,10 +6538,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetLabelsRequest;
+    requestBody?: Schema$SetLabelsRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy {
     /**
@@ -6534,10 +6564,11 @@ export namespace container_v1beta1 {
      * [zone](/compute/docs/zones#available) in which the cluster resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMaintenancePolicyRequest;
+    requestBody?: Schema$SetMaintenancePolicyRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth {
     /**
@@ -6562,10 +6593,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetMasterAuthRequest;
+    requestBody?: Schema$SetMasterAuthRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy {
     /**
@@ -6590,10 +6622,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNetworkPolicyRequest;
+    requestBody?: Schema$SetNetworkPolicyRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Startiprotation {
     /**
@@ -6618,10 +6651,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartIPRotationRequest;
+    requestBody?: Schema$StartIPRotationRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Update {
     /**
@@ -6646,10 +6680,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateClusterRequest;
+    requestBody?: Schema$UpdateClusterRequest;
   }
 
   export class Resource$Projects$Zones$Clusters$Nodepools {
@@ -7358,10 +7393,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolAutoscalingRequest;
+    requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create {
     /**
@@ -7386,10 +7422,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the parent field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateNodePoolRequest;
+    requestBody?: Schema$CreateNodePoolRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete {
     /**
@@ -7518,10 +7555,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollbackNodePoolUpgradeRequest;
+    requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement {
     /**
@@ -7551,10 +7589,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolManagementRequest;
+    requestBody?: Schema$SetNodePoolManagementRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize {
     /**
@@ -7584,10 +7623,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetNodePoolSizeRequest;
+    requestBody?: Schema$SetNodePoolSizeRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update {
     /**
@@ -7617,10 +7657,11 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateNodePoolRequest;
+    requestBody?: Schema$UpdateNodePoolRequest;
   }
 
 
@@ -7870,10 +7911,11 @@ export namespace container_v1beta1 {
      * This field has been deprecated and replaced by the name field.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Projects$Zones$Operations$Get {
     /**

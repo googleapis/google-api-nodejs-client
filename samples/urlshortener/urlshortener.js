@@ -30,7 +30,7 @@ urlshortener.url.get({
 });
 
 urlshortener.url.insert({
-  resource: {
+  requestBody: {
     longUrl: 'http://somelongurl.com'
   }
 }, (err, res) => {

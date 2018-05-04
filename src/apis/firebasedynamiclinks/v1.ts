@@ -723,10 +723,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateManagedShortLinkRequest;
+    requestBody?: Schema$CreateManagedShortLinkRequest;
   }
 
 
@@ -826,10 +827,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateShortDynamicLinkRequest;
+    requestBody?: Schema$CreateShortDynamicLinkRequest;
   }
 
 
@@ -1016,9 +1018,10 @@ export namespace firebasedynamiclinks_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetIosPostInstallAttributionRequest;
+    requestBody?: Schema$GetIosPostInstallAttributionRequest;
   }
 }

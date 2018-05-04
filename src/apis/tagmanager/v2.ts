@@ -1846,10 +1846,11 @@ export namespace tagmanager_v2 {
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
   export class Resource$Accounts$Containers {
@@ -2217,10 +2218,11 @@ export namespace tagmanager_v2 {
      * GTM Account's API relative path. Example: accounts/{account_id}.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Container;
+    requestBody?: Schema$Container;
   }
   export interface Params$Resource$Accounts$Containers$Delete {
     /**
@@ -2277,10 +2279,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Container;
+    requestBody?: Schema$Container;
   }
 
   export class Resource$Accounts$Containers$Environments {
@@ -2784,10 +2787,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Delete {
     /**
@@ -2845,10 +2849,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize {
     /**
@@ -2861,10 +2866,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update {
     /**
@@ -2882,10 +2888,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
 
 
@@ -3478,10 +3485,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ContainerVersion;
+    requestBody?: Schema$ContainerVersion;
   }
 
 
@@ -4563,10 +4571,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Workspace;
+    requestBody?: Schema$Workspace;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Create_version {
     /**
@@ -4579,10 +4588,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateContainerVersionRequestVersionOptions;
+    requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Delete {
     /**
@@ -4676,10 +4686,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Entity;
+    requestBody?: Schema$Entity;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Sync {
     /**
@@ -4709,10 +4720,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Workspace;
+    requestBody?: Schema$Workspace;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Updateproposal {
     /**
@@ -4725,10 +4737,11 @@ export namespace tagmanager_v2 {
      * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateWorkspaceProposalRequest;
+    requestBody?: Schema$UpdateWorkspaceProposalRequest;
   }
 
   export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
@@ -5710,10 +5723,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete {
     /**
@@ -5794,10 +5808,11 @@ export namespace tagmanager_v2 {
      * The variables to be moved to the folder.
      */
     variableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert {
     /**
@@ -5832,10 +5847,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
 
 
@@ -5999,10 +6015,11 @@ export namespace tagmanager_v2 {
      * accounts/{aid}/containers/{cid}/workspace/{wid}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateWorkspaceProposalRequest;
+    requestBody?: Schema$CreateWorkspaceProposalRequest;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete {
     /**
@@ -6449,10 +6466,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Tag;
+    requestBody?: Schema$Tag;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete {
     /**
@@ -6527,10 +6545,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Tag;
+    requestBody?: Schema$Tag;
   }
 
 
@@ -6969,10 +6988,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Trigger;
+    requestBody?: Schema$Trigger;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete {
     /**
@@ -7047,10 +7067,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Trigger;
+    requestBody?: Schema$Trigger;
   }
 
 
@@ -7493,10 +7514,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete {
     /**
@@ -7571,10 +7593,11 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variable;
+    requestBody?: Schema$Variable;
   }
 
 
@@ -7941,10 +7964,11 @@ export namespace tagmanager_v2 {
      * GTM Account's API relative path. Example: accounts/{account_id}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserPermission;
+    requestBody?: Schema$UserPermission;
   }
   export interface Params$Resource$Accounts$User_permissions$Delete {
     /**
@@ -7996,9 +8020,10 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserPermission;
+    requestBody?: Schema$UserPermission;
   }
 }

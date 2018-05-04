@@ -2120,10 +2120,11 @@ export namespace vision_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchAnnotateImagesRequest;
+    requestBody?: Schema$BatchAnnotateImagesRequest;
   }
 
 
@@ -2534,10 +2535,11 @@ export namespace vision_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Delete {
     /**

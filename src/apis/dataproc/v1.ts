@@ -2000,10 +2000,11 @@ export namespace dataproc_v1 {
      * hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Cluster;
+    requestBody?: Schema$Cluster;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Delete {
     /**
@@ -2060,10 +2061,11 @@ export namespace dataproc_v1 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DiagnoseClusterRequest;
+    requestBody?: Schema$DiagnoseClusterRequest;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Get {
     /**
@@ -2185,10 +2187,11 @@ export namespace dataproc_v1 {
      * <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Cluster;
+    requestBody?: Schema$Cluster;
   }
 
 
@@ -3018,10 +3021,11 @@ export namespace dataproc_v1 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelJobRequest;
+    requestBody?: Schema$CancelJobRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Delete {
     /**
@@ -3137,10 +3141,11 @@ export namespace dataproc_v1 {
      * field that can be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Submit {
     /**
@@ -3157,10 +3162,11 @@ export namespace dataproc_v1 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubmitJobRequest;
+    requestBody?: Schema$SubmitJobRequest;
   }
 
 

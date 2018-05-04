@@ -43,7 +43,7 @@ jwt.authorize((err, data) => {
   // Insert member in Google group
   admin.members.insert({
     groupKey: 'my_group@example.com',
-    resource: { email: 'me@example.com' },
+    requestBody: { email: 'me@example.com' },
     auth: jwt
   }, (err, data) => {
     console.log(err || data);

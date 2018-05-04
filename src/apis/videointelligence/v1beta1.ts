@@ -435,21 +435,21 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
     /**
-     * Approximate percentage processed thus far. Guaranteed to be 100 when
-     * fully processed.
+     * Output only. Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      */
     progressPercent?: number;
     /**
-     * Time when the request was received.
+     * Output only. Time when the request was received.
      */
     startTime?: string;
     /**
-     * Time of the most recent update.
+     * Output only. Time of the most recent update.
      */
     updateTime?: string;
   }
@@ -458,8 +458,9 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults {
     /**
-     * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-     * some videos may succeed and some may fail.
+     * Output only. Non-streaming error only. If set, indicates an error. Note
+     * that for a single `AnnotateVideoRequest` some videos may succeed and some
+     * may fail.
      */
     error?: Schema$GoogleRpc_Status;
     /**
@@ -474,7 +475,7 @@ export namespace videointelligence_v1beta1 {
     frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -758,21 +759,21 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
     /**
-     * Approximate percentage processed thus far. Guaranteed to be 100 when
-     * fully processed.
+     * Output only. Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      */
     progressPercent?: number;
     /**
-     * Time when the request was received.
+     * Output only. Time when the request was received.
      */
     startTime?: string;
     /**
-     * Time of the most recent update.
+     * Output only. Time of the most recent update.
      */
     updateTime?: string;
   }
@@ -781,8 +782,9 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults {
     /**
-     * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-     * some videos may succeed and some may fail.
+     * Output only. Non-streaming error only. If set, indicates an error. Note
+     * that for a single `AnnotateVideoRequest` some videos may succeed and some
+     * may fail.
      */
     error?: Schema$GoogleRpc_Status;
     /**
@@ -802,7 +804,7 @@ export namespace videointelligence_v1beta1 {
     frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -991,21 +993,21 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
     /**
-     * Approximate percentage processed thus far. Guaranteed to be 100 when
-     * fully processed.
+     * Output only. Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      */
     progressPercent?: number;
     /**
-     * Time when the request was received.
+     * Output only. Time when the request was received.
      */
     startTime?: string;
     /**
-     * Time of the most recent update.
+     * Output only. Time of the most recent update.
      */
     updateTime?: string;
   }
@@ -1014,8 +1016,9 @@ export namespace videointelligence_v1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults {
     /**
-     * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-     * some videos may succeed and some may fail.
+     * Output only. Non-streaming error only. If set, indicates an error. Note
+     * that for a single `AnnotateVideoRequest` some videos may succeed and some
+     * may fail.
      */
     error?: Schema$GoogleRpc_Status;
     /**
@@ -1030,7 +1033,7 @@ export namespace videointelligence_v1beta1 {
     frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud
+     * Output only. Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -1253,9 +1256,11 @@ export namespace videointelligence_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest;
+    requestBody?:
+        Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest;
   }
 }

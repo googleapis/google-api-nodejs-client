@@ -1623,10 +1623,11 @@ export namespace partners_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogMessageRequest;
+    requestBody?: Schema$LogMessageRequest;
   }
 
 
@@ -2099,10 +2100,11 @@ export namespace partners_v2 {
      * The ID of the company to contact.
      */
     companyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateLeadRequest;
+    requestBody?: Schema$CreateLeadRequest;
   }
 
 
@@ -2605,10 +2607,11 @@ export namespace partners_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogUserEventRequest;
+    requestBody?: Schema$LogUserEventRequest;
   }
 
 
@@ -2961,10 +2964,11 @@ export namespace partners_v2 {
      * authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompanyRelation;
+    requestBody?: Schema$CompanyRelation;
   }
   export interface Params$Resource$Users$Deletecompanyrelation {
     /**
@@ -3093,10 +3097,11 @@ export namespace partners_v2 {
      * Logged-in user ID to impersonate instead of the user's ID.
      */
     'requestMetadata.userOverrides.userId'?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserProfile;
+    requestBody?: Schema$UserProfile;
   }
 
 
@@ -3538,10 +3543,11 @@ export namespace partners_v2 {
      * least 1 value in FieldMask's paths.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Company;
+    requestBody?: Schema$Company;
   }
   export interface Params$Resource$V2$Updateleads {
     /**
@@ -3586,9 +3592,10 @@ export namespace partners_v2 {
      * `adwords_customer_id` are currently supported.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Lead;
+    requestBody?: Schema$Lead;
   }
 }

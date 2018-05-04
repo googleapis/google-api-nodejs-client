@@ -831,10 +831,11 @@ export namespace streetviewpublish_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Photo;
+    requestBody?: Schema$Photo;
   }
   export interface Params$Resource$Photo$Delete {
     /**
@@ -869,10 +870,11 @@ export namespace streetviewpublish_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Empty;
+    requestBody?: Schema$Empty;
   }
   export interface Params$Resource$Photo$Update {
     /**
@@ -898,10 +900,11 @@ export namespace streetviewpublish_v1 {
      * connections will be removed.</aside>
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Photo;
+    requestBody?: Schema$Photo;
   }
 
 
@@ -1226,10 +1229,11 @@ export namespace streetviewpublish_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchDeletePhotosRequest;
+    requestBody?: Schema$BatchDeletePhotosRequest;
   }
   export interface Params$Resource$Photos$Batchget {
     /**
@@ -1254,10 +1258,11 @@ export namespace streetviewpublish_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdatePhotosRequest;
+    requestBody?: Schema$BatchUpdatePhotosRequest;
   }
   export interface Params$Resource$Photos$List {
     /**

@@ -42,7 +42,7 @@ jwt.authorize((err, data) => {
 
   // Insert group
   admin.groups.insert({
-    resource: { email: 'some_group@example.com' },
+    requestBody: { email: 'some_group@example.com' },
     auth: jwt
   }, (err, data) => {
     console.log(err || data);

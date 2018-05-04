@@ -5495,10 +5495,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountsCustomBatchRequest;
+    requestBody?: Schema$AccountsCustomBatchRequest;
   }
   export interface Params$Resource$Accounts$Delete {
     /**
@@ -5555,10 +5556,11 @@ export namespace content_v2 {
      * The ID of the managing account. This must be a multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -5600,10 +5602,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update {
     /**
@@ -5625,10 +5628,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -5869,6 +5873,12 @@ export namespace content_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Accountstatuses$Get {
     /**
@@ -6288,10 +6298,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccounttaxCustomBatchRequest;
+    requestBody?: Schema$AccounttaxCustomBatchRequest;
   }
   export interface Params$Resource$Accounttax$Get {
     /**
@@ -6350,10 +6361,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountTax;
+    requestBody?: Schema$AccountTax;
   }
   export interface Params$Resource$Accounttax$Update {
     /**
@@ -6375,10 +6387,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountTax;
+    requestBody?: Schema$AccountTax;
   }
 
 
@@ -6951,10 +6964,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DatafeedsCustomBatchRequest;
+    requestBody?: Schema$DatafeedsCustomBatchRequest;
   }
   export interface Params$Resource$Datafeeds$Delete {
     /**
@@ -7027,10 +7041,11 @@ export namespace content_v2 {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Datafeed;
+    requestBody?: Schema$Datafeed;
   }
   export interface Params$Resource$Datafeeds$List {
     /**
@@ -7072,10 +7087,11 @@ export namespace content_v2 {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Datafeed;
+    requestBody?: Schema$Datafeed;
   }
   export interface Params$Resource$Datafeeds$Update {
     /**
@@ -7096,10 +7112,11 @@ export namespace content_v2 {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Datafeed;
+    requestBody?: Schema$Datafeed;
   }
 
 
@@ -7343,6 +7360,12 @@ export namespace content_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Datafeedstatuses$Get {
     /**
@@ -7567,10 +7590,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InventoryCustomBatchRequest;
+    requestBody?: Schema$InventoryCustomBatchRequest;
   }
   export interface Params$Resource$Inventory$Set {
     /**
@@ -7596,10 +7620,11 @@ export namespace content_v2 {
      * online to update price and availability of an online product.
      */
     storeCode?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InventorySetRequest;
+    requestBody?: Schema$InventorySetRequest;
   }
 
 
@@ -8312,10 +8337,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiasettingsCustomBatchRequest;
+    requestBody?: Schema$LiasettingsCustomBatchRequest;
   }
   export interface Params$Resource$Liasettings$Get {
     /**
@@ -8392,10 +8418,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiaSettings;
+    requestBody?: Schema$LiaSettings;
   }
   export interface Params$Resource$Liasettings$Requestgmbaccess {
     /**
@@ -8494,10 +8521,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiaSettings;
+    requestBody?: Schema$LiaSettings;
   }
 
 
@@ -10069,10 +10097,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersAcknowledgeRequest;
+    requestBody?: Schema$OrdersAcknowledgeRequest;
   }
   export interface Params$Resource$Orders$Advancetestorder {
     /**
@@ -10105,10 +10134,11 @@ export namespace content_v2 {
      * The ID of the order to cancel.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCancelRequest;
+    requestBody?: Schema$OrdersCancelRequest;
   }
   export interface Params$Resource$Orders$Cancellineitem {
     /**
@@ -10125,10 +10155,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCancelLineItemRequest;
+    requestBody?: Schema$OrdersCancelLineItemRequest;
   }
   export interface Params$Resource$Orders$Createtestorder {
     /**
@@ -10141,16 +10172,23 @@ export namespace content_v2 {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCreateTestOrderRequest;
+    requestBody?: Schema$OrdersCreateTestOrderRequest;
   }
   export interface Params$Resource$Orders$Custombatch {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCustomBatchRequest;
   }
   export interface Params$Resource$Orders$Get {
     /**
@@ -10215,10 +10253,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersInStoreRefundLineItemRequest;
+    requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$List {
     /**
@@ -10291,10 +10330,11 @@ export namespace content_v2 {
      * The ID of the order to refund.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersRefundRequest;
+    requestBody?: Schema$OrdersRefundRequest;
   }
   export interface Params$Resource$Orders$Rejectreturnlineitem {
     /**
@@ -10311,10 +10351,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersRejectReturnLineItemRequest;
+    requestBody?: Schema$OrdersRejectReturnLineItemRequest;
   }
   export interface Params$Resource$Orders$Returnlineitem {
     /**
@@ -10331,10 +10372,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersReturnLineItemRequest;
+    requestBody?: Schema$OrdersReturnLineItemRequest;
   }
   export interface Params$Resource$Orders$Returnrefundlineitem {
     /**
@@ -10351,10 +10393,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersReturnRefundLineItemRequest;
+    requestBody?: Schema$OrdersReturnRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$Setlineitemmetadata {
     /**
@@ -10371,10 +10414,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersSetLineItemMetadataRequest;
+    requestBody?: Schema$OrdersSetLineItemMetadataRequest;
   }
   export interface Params$Resource$Orders$Shiplineitems {
     /**
@@ -10391,10 +10435,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersShipLineItemsRequest;
+    requestBody?: Schema$OrdersShipLineItemsRequest;
   }
   export interface Params$Resource$Orders$Updatelineitemshippingdetails {
     /**
@@ -10411,10 +10456,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
+    requestBody?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
   }
   export interface Params$Resource$Orders$Updatemerchantorderid {
     /**
@@ -10431,10 +10477,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateMerchantOrderIdRequest;
+    requestBody?: Schema$OrdersUpdateMerchantOrderIdRequest;
   }
   export interface Params$Resource$Orders$Updateshipment {
     /**
@@ -10451,10 +10498,11 @@ export namespace content_v2 {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateShipmentRequest;
+    requestBody?: Schema$OrdersUpdateShipmentRequest;
   }
 
 
@@ -10957,10 +11005,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PosCustomBatchRequest;
+    requestBody?: Schema$PosCustomBatchRequest;
   }
   export interface Params$Resource$Pos$Delete {
     /**
@@ -11022,10 +11071,11 @@ export namespace content_v2 {
      * The ID of the target merchant.
      */
     targetMerchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PosStore;
+    requestBody?: Schema$PosStore;
   }
   export interface Params$Resource$Pos$Inventory {
     /**
@@ -11045,10 +11095,11 @@ export namespace content_v2 {
      * The ID of the target merchant.
      */
     targetMerchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PosInventoryRequest;
+    requestBody?: Schema$PosInventoryRequest;
   }
   export interface Params$Resource$Pos$List {
     /**
@@ -11083,10 +11134,11 @@ export namespace content_v2 {
      * The ID of the target merchant.
      */
     targetMerchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PosSaleRequest;
+    requestBody?: Schema$PosSaleRequest;
   }
 
 
@@ -11451,10 +11503,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProductsCustomBatchRequest;
+    requestBody?: Schema$ProductsCustomBatchRequest;
   }
   export interface Params$Resource$Products$Delete {
     /**
@@ -11507,10 +11560,11 @@ export namespace content_v2 {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Product;
+    requestBody?: Schema$Product;
   }
   export interface Params$Resource$Products$List {
     /**
@@ -11788,10 +11842,11 @@ export namespace content_v2 {
      * default value is false.
      */
     includeAttributes?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProductstatusesCustomBatchRequest;
+    requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Productstatuses$Get {
     /**
@@ -12402,10 +12457,11 @@ export namespace content_v2 {
      * Flag to run the request in dry-run mode.
      */
     dryRun?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ShippingsettingsCustomBatchRequest;
+    requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
   export interface Params$Resource$Shippingsettings$Get {
     /**
@@ -12486,10 +12542,11 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ShippingSettings;
+    requestBody?: Schema$ShippingSettings;
   }
   export interface Params$Resource$Shippingsettings$Update {
     /**
@@ -12511,9 +12568,10 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ShippingSettings;
+    requestBody?: Schema$ShippingSettings;
   }
 }

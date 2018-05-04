@@ -866,10 +866,11 @@ export namespace safebrowsing_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FindFullHashesRequest;
+    requestBody?: Schema$FindFullHashesRequest;
   }
 
 
@@ -956,10 +957,11 @@ export namespace safebrowsing_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ThreatHit;
+    requestBody?: Schema$ThreatHit;
   }
 
 
@@ -1141,10 +1143,11 @@ export namespace safebrowsing_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FetchThreatListUpdatesRequest;
+    requestBody?: Schema$FetchThreatListUpdatesRequest;
   }
 
 
@@ -1235,9 +1238,10 @@ export namespace safebrowsing_v4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FindThreatMatchesRequest;
+    requestBody?: Schema$FindThreatMatchesRequest;
   }
 }

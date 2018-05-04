@@ -1015,16 +1015,6 @@ export namespace adexchangebuyer2_v2beta1 {
     nonBillableWinningBidStatusRows?: Schema$NonBillableWinningBidStatusRow[];
   }
   /**
-   * Response message for listing publishers that had recent inventory matches
-   * with the requesting buyer.
-   */
-  export interface Schema$ListPublishersResponse {
-    /**
-     * List of publishers.
-     */
-    publisher?: Schema$Publisher[];
-  }
-  /**
    * @OutputOnly The Geo criteria the restriction applies to.
    */
   export interface Schema$LocationContext {
@@ -1138,26 +1128,6 @@ export namespace adexchangebuyer2_v2beta1 {
      * The platforms this restriction applies to.
      */
     platforms?: string[];
-  }
-  /**
-   * The publisher ID and name contain values relevant to the requesting buyer
-   * depending on whether it is an Ad Exchange buyer or Exchange Bidding buyer.
-   */
-  export interface Schema$Publisher {
-    /**
-     * Publisher name contains: - Seller network name when the requesting buyer
-     * is an Ad Exchange buyer. - DFP network name or AdMob publisher code when
-     * the requesting buyer is an   Exchange Bidding buyer.
-     */
-    publisherDisplayName?: string;
-    /**
-     * Publisher ID contains: - Seller network ID when the requesting buyer is
-     * an Ad Exchange buyer.   See
-     * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
-     * - DFP network code or AdMob publisher code when the requesting buyer is
-     * an   Exchange Bidding buyer.
-     */
-    publisherId?: string;
   }
   /**
    * An open-ended realtime time range specified by the start timestamp. For
@@ -1336,13 +1306,11 @@ export namespace adexchangebuyer2_v2beta1 {
     root: Adexchangebuyer2;
     clients: Resource$Accounts$Clients;
     creatives: Resource$Accounts$Creatives;
-    publishers: Resource$Accounts$Publishers;
     constructor(root: Adexchangebuyer2) {
       this.root = root;
       this.getRoot.bind(this);
       this.clients = new Resource$Accounts$Clients(root);
       this.creatives = new Resource$Accounts$Creatives(root);
-      this.publishers = new Resource$Accounts$Publishers(root);
     }
 
     getRoot() {
@@ -1652,10 +1620,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * customer; the sponsor buyer to create a client for. (required)
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Client;
+    requestBody?: Schema$Client;
   }
   export interface Params$Resource$Accounts$Clients$Get {
     /**
@@ -1715,10 +1684,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * Unique numerical account ID of the client to update. (required)
      */
     clientAccountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Client;
+    requestBody?: Schema$Client;
   }
 
   export class Resource$Accounts$Clients$Invitations {
@@ -1976,10 +1946,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * associated with. (required)
      */
     clientAccountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ClientUserInvitation;
+    requestBody?: Schema$ClientUserInvitation;
   }
   export interface Params$Resource$Accounts$Clients$Invitations$Get {
     /**
@@ -2332,10 +2303,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * Numerical identifier of the user to retrieve. (required)
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ClientUser;
+    requestBody?: Schema$ClientUser;
   }
 
 
@@ -2791,10 +2763,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * NO_DUPLICATES (one ID per creative).
      */
     duplicateIdMode?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Creative;
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Accounts$Creatives$Get {
     /**
@@ -2864,10 +2837,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * specify stopping account level notifications.
      */
     creativeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StopWatchingCreativeRequest;
+    requestBody?: Schema$StopWatchingCreativeRequest;
   }
   export interface Params$Resource$Accounts$Creatives$Update {
     /**
@@ -2885,10 +2859,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * response of the creatives.list method.
      */
     creativeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Creative;
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Accounts$Creatives$Watch {
     /**
@@ -2907,10 +2882,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * sent to the creative-level notification topic.
      */
     creativeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WatchCreativeRequest;
+    requestBody?: Schema$WatchCreativeRequest;
   }
 
   export class Resource$Accounts$Creatives$Dealassociations {
@@ -3162,10 +3138,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * The ID of the creative associated with the deal.
      */
     creativeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AddDealAssociationRequest;
+    requestBody?: Schema$AddDealAssociationRequest;
   }
   export interface Params$Resource$Accounts$Creatives$Dealassociations$List {
     /**
@@ -3221,113 +3198,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * The ID of the creative associated with the deal.
      */
     creativeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemoveDealAssociationRequest;
-  }
-
-
-
-  export class Resource$Accounts$Publishers {
-    root: Adexchangebuyer2;
-    constructor(root: Adexchangebuyer2) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * adexchangebuyer2.accounts.publishers.list
-     * @desc Lists publishers that had recent inventory matches with the
-     * requesting buyer.
-     * @alias adexchangebuyer2.accounts.publishers.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID of the requesting buyer.
-     * @param {string=} params.environment Optional environment (WEB, APP) for which to return publishers. If specified, response will only include publishers that had recent inventory matches with the requesting buyer on the specified platform.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Accounts$Publishers$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListPublishersResponse>;
-    list(
-        params: Params$Resource$Accounts$Publishers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListPublishersResponse>,
-        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
-    list(
-        params: Params$Resource$Accounts$Publishers$List,
-        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Accounts$Publishers$List|
-        BodyResponseCallback<Schema$ListPublishersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListPublishersResponse>,
-        callback?: BodyResponseCallback<Schema$ListPublishersResponse>):
-        void|AxiosPromise<Schema$ListPublishersResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Publishers$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Publishers$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-          options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/publishers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['accountId'],
-        pathParams: ['accountId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListPublishersResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListPublishersResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Publishers$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Account ID of the requesting buyer.
-     */
-    accountId?: string;
-    /**
-     * Optional environment (WEB, APP) for which to return publishers. If
-     * specified, response will only include publishers that had recent
-     * inventory matches with the requesting buyer on the specified platform.
-     */
-    environment?: string;
+    requestBody?: Schema$RemoveDealAssociationRequest;
   }
 
 
@@ -3698,10 +3573,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FilterSet;
+    requestBody?: Schema$FilterSet;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$Delete {
     /**
@@ -5371,10 +5247,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FilterSet;
+    requestBody?: Schema$FilterSet;
   }
   export interface Params$Resource$Bidders$Filtersets$Delete {
     /**

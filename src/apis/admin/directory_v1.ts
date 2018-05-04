@@ -36,9 +36,8 @@ export namespace admin_directory_v1 {
   /**
    * Admin Directory API
    *
-   * The Admin SDK Directory API lets you view and manage enterprise resources
-   * such as users and groups, administrative notifications, security features,
-   * and more.
+   * Manages enterprise resources such as users and groups, administrative
+   * notifications, security features, and more.
    *
    * @example
    * const google = require('googleapis');
@@ -1476,6 +1475,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Schema {
     /**
+     * Display name for the schema.
+     */
+    displayName?: string;
+    /**
      * ETag of the resource.
      */
     etag?: string;
@@ -1500,6 +1503,10 @@ export namespace admin_directory_v1 {
    * JSON template for FieldSpec resource for Schemas in Directory API.
    */
   export interface Schema$SchemaFieldSpec {
+    /**
+     * Display Name of the field.
+     */
+    displayName?: string;
     /**
      * ETag of the resource.
      */
@@ -2207,6 +2214,10 @@ export namespace admin_directory_v1 {
      */
     homeDirectory?: string;
     /**
+     * The operating system type for this account.
+     */
+    operatingSystemType?: string;
+    /**
      * If this is user&#39;s primary account within the SystemId.
      */
     primary?: boolean;
@@ -2696,6 +2707,12 @@ export namespace admin_directory_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -3150,10 +3167,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of Chrome OS Device
      */
     resourceId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChromeOsDeviceAction;
+    requestBody?: Schema$ChromeOsDeviceAction;
   }
   export interface Params$Resource$Chromeosdevices$Get {
     /**
@@ -3229,10 +3247,11 @@ export namespace admin_directory_v1 {
      * Full path of the target organizational unit or its ID
      */
     orgUnitPath?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChromeOsMoveDevicesToOu;
+    requestBody?: Schema$ChromeOsMoveDevicesToOu;
   }
   export interface Params$Resource$Chromeosdevices$Patch {
     /**
@@ -3252,10 +3271,11 @@ export namespace admin_directory_v1 {
      * Restrict information returned to a set of selected fields.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChromeOsDevice;
+    requestBody?: Schema$ChromeOsDevice;
   }
   export interface Params$Resource$Chromeosdevices$Update {
     /**
@@ -3275,10 +3295,11 @@ export namespace admin_directory_v1 {
      * Restrict information returned to a set of selected fields.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChromeOsDevice;
+    requestBody?: Schema$ChromeOsDevice;
   }
 
 
@@ -3506,10 +3527,11 @@ export namespace admin_directory_v1 {
      * Id of the customer to be updated
      */
     customerKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Customer;
+    requestBody?: Schema$Customer;
   }
   export interface Params$Resource$Customers$Update {
     /**
@@ -3521,10 +3543,11 @@ export namespace admin_directory_v1 {
      * Id of the customer to be updated
      */
     customerKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Customer;
+    requestBody?: Schema$Customer;
   }
 
 
@@ -3851,10 +3874,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DomainAlias;
+    requestBody?: Schema$DomainAlias;
   }
   export interface Params$Resource$Domainaliases$List {
     /**
@@ -4184,10 +4208,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Domains;
+    requestBody?: Schema$Domains;
   }
   export interface Params$Resource$Domains$List {
     /**
@@ -4406,7 +4431,8 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.groups.list
-     * @desc Retrieve all groups in a domain (paginated)
+     * @desc Retrieve all groups of a domain or of a user given a userKey
+     * (paginated)
      * @alias directory.groups.list
      * @memberOf! ()
      *
@@ -4414,8 +4440,11 @@ export namespace admin_directory_v1 {
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+     * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If ID, it should match with id of user object
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4629,6 +4658,12 @@ export namespace admin_directory_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$List {
     /**
@@ -4651,12 +4686,27 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
      * Token to specify next page in the list
      */
     pageToken?: string;
     /**
-     * Email or immutable ID of the user if only those groups are to be listed,
-     * the given user is a member of. If ID, it should match with id of user
+     * Query string search. Should be of the form "". Complete documentation is
+     * at
+     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     */
+    query?: string;
+    /**
+     * Whether to return results in ascending or descending order. Only of use
+     * when orderBy is also used
+     */
+    sortOrder?: string;
+    /**
+     * Email or immutable Id of the user if only those groups are to be listed,
+     * the given user is a member of. If Id, it should match with id of user
      * object
      */
     userKey?: string;
@@ -4672,10 +4722,11 @@ export namespace admin_directory_v1 {
      * group object
      */
     groupKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$Update {
     /**
@@ -4688,10 +4739,11 @@ export namespace admin_directory_v1 {
      * group object
      */
     groupKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
 
   export class Resource$Groups$Aliases {
@@ -4930,10 +4982,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group
      */
     groupKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Alias;
+    requestBody?: Schema$Alias;
   }
   export interface Params$Resource$Groups$Aliases$List {
     /**
@@ -5233,6 +5286,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group
+     * @param {boolean=} params.includeDerivedMembership Whether to list indirect memberships. Default: false.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.roles Comma separated role values to filter list results on.
@@ -5484,10 +5538,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group
      */
     groupKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Member;
+    requestBody?: Schema$Member;
   }
   export interface Params$Resource$Members$List {
     /**
@@ -5499,6 +5554,10 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group
      */
     groupKey?: string;
+    /**
+     * Whether to list indirect memberships. Default: false.
+     */
+    includeDerivedMembership?: boolean;
     /**
      * Maximum number of results to return. Default is 200
      */
@@ -5528,10 +5587,11 @@ export namespace admin_directory_v1 {
      * member object
      */
     memberKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Member;
+    requestBody?: Schema$Member;
   }
   export interface Params$Resource$Members$Update {
     /**
@@ -5549,10 +5609,11 @@ export namespace admin_directory_v1 {
      * member object
      */
     memberKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Member;
+    requestBody?: Schema$Member;
   }
 
 
@@ -5859,10 +5920,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of Mobile Device
      */
     resourceId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$MobileDeviceAction;
+    requestBody?: Schema$MobileDeviceAction;
   }
   export interface Params$Resource$Mobiledevices$Delete {
     /**
@@ -6365,10 +6427,11 @@ export namespace admin_directory_v1 {
      * The unique ID of the notification.
      */
     notificationId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Notification;
+    requestBody?: Schema$Notification;
   }
   export interface Params$Resource$Notifications$Update {
     /**
@@ -6384,10 +6447,11 @@ export namespace admin_directory_v1 {
      * The unique ID of the notification.
      */
     notificationId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Notification;
+    requestBody?: Schema$Notification;
   }
 
 
@@ -6842,10 +6906,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account
      */
     customerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrgUnit;
+    requestBody?: Schema$OrgUnit;
   }
   export interface Params$Resource$Orgunits$List {
     /**
@@ -6880,10 +6945,11 @@ export namespace admin_directory_v1 {
      * Full path of the organizational unit or its ID
      */
     orgUnitPath?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrgUnit;
+    requestBody?: Schema$OrgUnit;
   }
   export interface Params$Resource$Orgunits$Update {
     /**
@@ -6899,10 +6965,11 @@ export namespace admin_directory_v1 {
      * Full path of the organizational unit or its ID
      */
     orgUnitPath?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrgUnit;
+    requestBody?: Schema$OrgUnit;
   }
 
 
@@ -7652,10 +7719,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Building;
+    requestBody?: Schema$Building;
   }
   export interface Params$Resource$Resources$Buildings$List {
     /**
@@ -7694,10 +7762,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Building;
+    requestBody?: Schema$Building;
   }
   export interface Params$Resource$Resources$Buildings$Update {
     /**
@@ -7715,10 +7784,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Building;
+    requestBody?: Schema$Building;
   }
 
 
@@ -8204,10 +8274,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarResource;
+    requestBody?: Schema$CalendarResource;
   }
   export interface Params$Resource$Resources$Calendars$List {
     /**
@@ -8266,10 +8337,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarResource;
+    requestBody?: Schema$CalendarResource;
   }
   export interface Params$Resource$Resources$Calendars$Update {
     /**
@@ -8287,10 +8359,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CalendarResource;
+    requestBody?: Schema$CalendarResource;
   }
 
 
@@ -8833,10 +8906,11 @@ export namespace admin_directory_v1 {
      * account's customer ID.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Feature;
+    requestBody?: Schema$Feature;
   }
   export interface Params$Resource$Resources$Features$List {
     /**
@@ -8875,10 +8949,11 @@ export namespace admin_directory_v1 {
      * The unique ID of the feature to update.
      */
     featureKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Feature;
+    requestBody?: Schema$Feature;
   }
   export interface Params$Resource$Resources$Features$Rename {
     /**
@@ -8896,10 +8971,11 @@ export namespace admin_directory_v1 {
      * The unique ID of the feature to rename.
      */
     oldName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FeatureRename;
+    requestBody?: Schema$FeatureRename;
   }
   export interface Params$Resource$Resources$Features$Update {
     /**
@@ -8917,10 +8993,11 @@ export namespace admin_directory_v1 {
      * The unique ID of the feature to update.
      */
     featureKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Feature;
+    requestBody?: Schema$Feature;
   }
 
 
@@ -9252,10 +9329,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RoleAssignment;
+    requestBody?: Schema$RoleAssignment;
   }
   export interface Params$Resource$Roleassignments$List {
     /**
@@ -9733,10 +9811,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account.
      */
     customer?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Role;
+    requestBody?: Schema$Role;
   }
   export interface Params$Resource$Roles$List {
     /**
@@ -9771,10 +9850,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the role.
      */
     roleId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Role;
+    requestBody?: Schema$Role;
   }
   export interface Params$Resource$Roles$Update {
     /**
@@ -9790,10 +9870,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the role.
      */
     roleId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Role;
+    requestBody?: Schema$Role;
   }
 
 
@@ -10246,10 +10327,11 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account
      */
     customerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Schema;
+    requestBody?: Schema$Schema;
   }
   export interface Params$Resource$Schemas$List {
     /**
@@ -10276,10 +10358,11 @@ export namespace admin_directory_v1 {
      * Name or immutable ID of the schema.
      */
     schemaKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Schema;
+    requestBody?: Schema$Schema;
   }
   export interface Params$Resource$Schemas$Update {
     /**
@@ -10295,10 +10378,11 @@ export namespace admin_directory_v1 {
      * Name or immutable ID of the schema.
      */
     schemaKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Schema;
+    requestBody?: Schema$Schema;
   }
 
 
@@ -11210,6 +11294,12 @@ export namespace admin_directory_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$List {
     /**
@@ -11281,10 +11371,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user as admin
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserMakeAdmin;
+    requestBody?: Schema$UserMakeAdmin;
   }
   export interface Params$Resource$Users$Patch {
     /**
@@ -11297,10 +11388,11 @@ export namespace admin_directory_v1 {
      * object
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$Undelete {
     /**
@@ -11312,10 +11404,11 @@ export namespace admin_directory_v1 {
      * The immutable id of the user
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserUndelete;
+    requestBody?: Schema$UserUndelete;
   }
   export interface Params$Resource$Users$Update {
     /**
@@ -11328,10 +11421,11 @@ export namespace admin_directory_v1 {
      * object
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$Watch {
     /**
@@ -11392,10 +11486,11 @@ export namespace admin_directory_v1 {
      * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      */
     viewType?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
   export class Resource$Users$Aliases {
@@ -11704,10 +11799,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Alias;
+    requestBody?: Schema$Alias;
   }
   export interface Params$Resource$Users$Aliases$List {
     /**
@@ -11738,10 +11834,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -12055,10 +12152,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserPhoto;
+    requestBody?: Schema$UserPhoto;
   }
   export interface Params$Resource$Users$Photos$Update {
     /**
@@ -12070,10 +12168,11 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user
      */
     userKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserPhoto;
+    requestBody?: Schema$UserPhoto;
   }
 
 

@@ -9812,10 +9812,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Address;
+    requestBody?: Schema$Address;
   }
   export interface Params$Resource$Addresses$List {
     /**
@@ -10962,10 +10963,11 @@ export namespace compute_v1 {
      * Name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
   export interface Params$Resource$Autoscalers$List {
     /**
@@ -11056,10 +11058,11 @@ export namespace compute_v1 {
      * Name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
   export interface Params$Resource$Autoscalers$Update {
     /**
@@ -11092,10 +11095,11 @@ export namespace compute_v1 {
      * Name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
 
 
@@ -11968,10 +11972,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendBucket;
+    requestBody?: Schema$BackendBucket;
   }
   export interface Params$Resource$Backendbuckets$List {
     /**
@@ -12054,10 +12059,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendBucket;
+    requestBody?: Schema$BackendBucket;
   }
   export interface Params$Resource$Backendbuckets$Update {
     /**
@@ -12086,10 +12092,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendBucket;
+    requestBody?: Schema$BackendBucket;
   }
 
 
@@ -13298,10 +13305,11 @@ export namespace compute_v1 {
      *
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResourceGroupReference;
+    requestBody?: Schema$ResourceGroupReference;
   }
   export interface Params$Resource$Backendservices$Insert {
     /**
@@ -13326,10 +13334,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
   export interface Params$Resource$Backendservices$List {
     /**
@@ -13412,10 +13421,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
   export interface Params$Resource$Backendservices$Update {
     /**
@@ -13444,10 +13454,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
 
 
@@ -14628,10 +14639,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Snapshot;
+    requestBody?: Schema$Snapshot;
   }
   export interface Params$Resource$Disks$Delete {
     /**
@@ -14715,10 +14727,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Disk;
+    requestBody?: Schema$Disk;
   }
   export interface Params$Resource$Disks$List {
     /**
@@ -14809,10 +14822,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DisksResizeRequest;
+    requestBody?: Schema$DisksResizeRequest;
   }
   export interface Params$Resource$Disks$Setlabels {
     /**
@@ -14845,10 +14859,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ZoneSetLabelsRequest;
+    requestBody?: Schema$ZoneSetLabelsRequest;
   }
 
 
@@ -16255,10 +16270,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Firewall;
+    requestBody?: Schema$Firewall;
   }
   export interface Params$Resource$Firewalls$List {
     /**
@@ -16341,10 +16357,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Firewall;
+    requestBody?: Schema$Firewall;
   }
   export interface Params$Resource$Firewalls$Update {
     /**
@@ -16373,10 +16390,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Firewall;
+    requestBody?: Schema$Firewall;
   }
 
 
@@ -17345,10 +17363,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ForwardingRule;
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Forwardingrules$List {
     /**
@@ -17439,10 +17458,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetReference;
+    requestBody?: Schema$TargetReference;
   }
 
 
@@ -18035,10 +18055,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Address;
+    requestBody?: Schema$Address;
   }
   export interface Params$Resource$Globaladdresses$List {
     /**
@@ -18825,10 +18846,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ForwardingRule;
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Globalforwardingrules$List {
     /**
@@ -18911,10 +18933,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetReference;
+    requestBody?: Schema$TargetReference;
   }
 
 
@@ -20457,10 +20480,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HealthCheck;
+    requestBody?: Schema$HealthCheck;
   }
   export interface Params$Resource$Healthchecks$List {
     /**
@@ -20543,10 +20567,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HealthCheck;
+    requestBody?: Schema$HealthCheck;
   }
   export interface Params$Resource$Healthchecks$Update {
     /**
@@ -20575,10 +20600,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HealthCheck;
+    requestBody?: Schema$HealthCheck;
   }
 
 
@@ -21452,10 +21478,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpHealthCheck;
+    requestBody?: Schema$HttpHealthCheck;
   }
   export interface Params$Resource$Httphealthchecks$List {
     /**
@@ -21538,10 +21565,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpHealthCheck;
+    requestBody?: Schema$HttpHealthCheck;
   }
   export interface Params$Resource$Httphealthchecks$Update {
     /**
@@ -21570,10 +21598,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpHealthCheck;
+    requestBody?: Schema$HttpHealthCheck;
   }
 
 
@@ -22448,10 +22477,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpsHealthCheck;
+    requestBody?: Schema$HttpsHealthCheck;
   }
   export interface Params$Resource$Httpshealthchecks$List {
     /**
@@ -22534,10 +22564,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpsHealthCheck;
+    requestBody?: Schema$HttpsHealthCheck;
   }
   export interface Params$Resource$Httpshealthchecks$Update {
     /**
@@ -22566,10 +22597,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$HttpsHealthCheck;
+    requestBody?: Schema$HttpsHealthCheck;
   }
 
 
@@ -23539,10 +23571,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeprecationStatus;
+    requestBody?: Schema$DeprecationStatus;
   }
   export interface Params$Resource$Images$Get {
     /**
@@ -23601,10 +23634,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Image;
+    requestBody?: Schema$Image;
   }
   export interface Params$Resource$Images$List {
     /**
@@ -23674,10 +23708,11 @@ export namespace compute_v1 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GlobalSetLabelsRequest;
+    requestBody?: Schema$GlobalSetLabelsRequest;
   }
 
 
@@ -25445,10 +25480,11 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersAbandonInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersAbandonInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Aggregatedlist {
     /**
@@ -25567,10 +25603,11 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersDeleteInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersDeleteInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Get {
     /**
@@ -25618,10 +25655,11 @@ export namespace compute_v1 {
      * The name of the zone where you want to create the managed instance group.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManager;
+    requestBody?: Schema$InstanceGroupManager;
   }
   export interface Params$Resource$Instancegroupmanagers$List {
     /**
@@ -25747,10 +25785,11 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersRecreateInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersRecreateInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Resize {
     /**
@@ -25822,10 +25861,11 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
+    requestBody?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Settargetpools {
     /**
@@ -25858,10 +25898,11 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
+    requestBody?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
   }
 
 
@@ -27167,10 +27208,11 @@ export namespace compute_v1 {
      * The name of the zone where the instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupsAddInstancesRequest;
+    requestBody?: Schema$InstanceGroupsAddInstancesRequest;
   }
   export interface Params$Resource$Instancegroups$Aggregatedlist {
     /**
@@ -27304,10 +27346,11 @@ export namespace compute_v1 {
      * The name of the zone where you want to create the instance group.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroup;
+    requestBody?: Schema$InstanceGroup;
   }
   export interface Params$Resource$Instancegroups$List {
     /**
@@ -27429,10 +27472,11 @@ export namespace compute_v1 {
      * The name of the zone where the instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupsListInstancesRequest;
+    requestBody?: Schema$InstanceGroupsListInstancesRequest;
   }
   export interface Params$Resource$Instancegroups$Removeinstances {
     /**
@@ -27466,10 +27510,11 @@ export namespace compute_v1 {
      * The name of the zone where the instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupsRemoveInstancesRequest;
+    requestBody?: Schema$InstanceGroupsRemoveInstancesRequest;
   }
   export interface Params$Resource$Instancegroups$Setnamedports {
     /**
@@ -27502,10 +27547,11 @@ export namespace compute_v1 {
      * The name of the zone where the instance group is located.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupsSetNamedPortsRequest;
+    requestBody?: Schema$InstanceGroupsSetNamedPortsRequest;
   }
 
 
@@ -31035,10 +31081,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccessConfig;
+    requestBody?: Schema$AccessConfig;
   }
   export interface Params$Resource$Instances$Aggregatedlist {
     /**
@@ -31125,10 +31172,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AttachedDisk;
+    requestBody?: Schema$AttachedDisk;
   }
   export interface Params$Resource$Instances$Delete {
     /**
@@ -31324,10 +31372,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Instance;
+    requestBody?: Schema$Instance;
   }
   export interface Params$Resource$Instances$List {
     /**
@@ -31589,10 +31638,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesSetLabelsRequest;
+    requestBody?: Schema$InstancesSetLabelsRequest;
   }
   export interface Params$Resource$Instances$Setmachineresources {
     /**
@@ -31625,10 +31675,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesSetMachineResourcesRequest;
+    requestBody?: Schema$InstancesSetMachineResourcesRequest;
   }
   export interface Params$Resource$Instances$Setmachinetype {
     /**
@@ -31661,10 +31712,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesSetMachineTypeRequest;
+    requestBody?: Schema$InstancesSetMachineTypeRequest;
   }
   export interface Params$Resource$Instances$Setmetadata {
     /**
@@ -31697,10 +31749,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Metadata;
+    requestBody?: Schema$Metadata;
   }
   export interface Params$Resource$Instances$Setmincpuplatform {
     /**
@@ -31733,10 +31786,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesSetMinCpuPlatformRequest;
+    requestBody?: Schema$InstancesSetMinCpuPlatformRequest;
   }
   export interface Params$Resource$Instances$Setscheduling {
     /**
@@ -31769,10 +31823,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Scheduling;
+    requestBody?: Schema$Scheduling;
   }
   export interface Params$Resource$Instances$Setserviceaccount {
     /**
@@ -31805,10 +31860,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesSetServiceAccountRequest;
+    requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
   export interface Params$Resource$Instances$Settags {
     /**
@@ -31841,10 +31897,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Tags;
+    requestBody?: Schema$Tags;
   }
   export interface Params$Resource$Instances$Start {
     /**
@@ -31909,10 +31966,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstancesStartWithEncryptionKeyRequest;
+    requestBody?: Schema$InstancesStartWithEncryptionKeyRequest;
   }
   export interface Params$Resource$Instances$Stop {
     /**
@@ -31981,10 +32039,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccessConfig;
+    requestBody?: Schema$AccessConfig;
   }
   export interface Params$Resource$Instances$Updatenetworkinterface {
     /**
@@ -32021,10 +32080,11 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$NetworkInterface;
+    requestBody?: Schema$NetworkInterface;
   }
 
 
@@ -32631,10 +32691,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceTemplate;
+    requestBody?: Schema$InstanceTemplate;
   }
   export interface Params$Resource$Instancetemplates$List {
     /**
@@ -33529,10 +33590,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InterconnectAttachment;
+    requestBody?: Schema$InterconnectAttachment;
   }
   export interface Params$Resource$Interconnectattachments$List {
     /**
@@ -34673,10 +34735,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Interconnect;
+    requestBody?: Schema$Interconnect;
   }
   export interface Params$Resource$Interconnects$List {
     /**
@@ -34759,10 +34822,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Interconnect;
+    requestBody?: Schema$Interconnect;
   }
 
 
@@ -34946,10 +35010,11 @@ export namespace compute_v1 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestPermissionsRequest;
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -35433,10 +35498,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$License;
+    requestBody?: Schema$License;
   }
   export interface Params$Resource$Licenses$List {
     /**
@@ -35506,10 +35572,11 @@ export namespace compute_v1 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestPermissionsRequest;
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -37137,10 +37204,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$NetworksAddPeeringRequest;
+    requestBody?: Schema$NetworksAddPeeringRequest;
   }
   export interface Params$Resource$Networks$Delete {
     /**
@@ -37208,10 +37276,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Network;
+    requestBody?: Schema$Network;
   }
   export interface Params$Resource$Networks$List {
     /**
@@ -37294,10 +37363,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Network;
+    requestBody?: Schema$Network;
   }
   export interface Params$Resource$Networks$Removepeering {
     /**
@@ -37326,10 +37396,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$NetworksRemovePeeringRequest;
+    requestBody?: Schema$NetworksRemovePeeringRequest;
   }
   export interface Params$Resource$Networks$Switchtocustommode {
     /**
@@ -38944,10 +39015,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProjectsDisableXpnResourceRequest;
+    requestBody?: Schema$ProjectsDisableXpnResourceRequest;
   }
   export interface Params$Resource$Projects$Enablexpnhost {
     /**
@@ -38996,10 +39068,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProjectsEnableXpnResourceRequest;
+    requestBody?: Schema$ProjectsEnableXpnResourceRequest;
   }
   export interface Params$Resource$Projects$Get {
     /**
@@ -39076,10 +39149,11 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProjectsListXpnHostsRequest;
+    requestBody?: Schema$ProjectsListXpnHostsRequest;
   }
   export interface Params$Resource$Projects$Movedisk {
     /**
@@ -39104,10 +39178,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DiskMoveRequest;
+    requestBody?: Schema$DiskMoveRequest;
   }
   export interface Params$Resource$Projects$Moveinstance {
     /**
@@ -39132,10 +39207,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceMoveRequest;
+    requestBody?: Schema$InstanceMoveRequest;
   }
   export interface Params$Resource$Projects$Setcommoninstancemetadata {
     /**
@@ -39160,10 +39236,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Metadata;
+    requestBody?: Schema$Metadata;
   }
   export interface Params$Resource$Projects$Setusageexportbucket {
     /**
@@ -39188,10 +39265,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UsageExportLocation;
+    requestBody?: Schema$UsageExportLocation;
   }
 
 
@@ -40093,10 +40171,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
   export interface Params$Resource$Regionautoscalers$List {
     /**
@@ -40187,10 +40266,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
   export interface Params$Resource$Regionautoscalers$Update {
     /**
@@ -40223,10 +40303,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Autoscaler;
+    requestBody?: Schema$Autoscaler;
   }
 
 
@@ -41273,10 +41354,11 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResourceGroupReference;
+    requestBody?: Schema$ResourceGroupReference;
   }
   export interface Params$Resource$Regionbackendservices$Insert {
     /**
@@ -41305,10 +41387,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
   export interface Params$Resource$Regionbackendservices$List {
     /**
@@ -41399,10 +41482,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
   export interface Params$Resource$Regionbackendservices$Update {
     /**
@@ -41435,10 +41519,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BackendService;
+    requestBody?: Schema$BackendService;
   }
 
 
@@ -42099,10 +42184,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Commitment;
+    requestBody?: Schema$Commitment;
   }
   export interface Params$Resource$Regioncommitments$List {
     /**
@@ -43768,10 +43854,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
+    requestBody?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Delete {
     /**
@@ -43836,10 +43923,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupManagersDeleteInstancesRequest;
+    requestBody?: Schema$RegionInstanceGroupManagersDeleteInstancesRequest;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Get {
     /**
@@ -43887,10 +43975,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManager;
+    requestBody?: Schema$InstanceGroupManager;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$List {
     /**
@@ -44016,10 +44105,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupManagersRecreateRequest;
+    requestBody?: Schema$RegionInstanceGroupManagersRecreateRequest;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Resize {
     /**
@@ -44088,10 +44178,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupManagersSetTemplateRequest;
+    requestBody?: Schema$RegionInstanceGroupManagersSetTemplateRequest;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools {
     /**
@@ -44124,10 +44215,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupManagersSetTargetPoolsRequest;
+    requestBody?: Schema$RegionInstanceGroupManagersSetTargetPoolsRequest;
   }
 
 
@@ -44857,10 +44949,11 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupsListInstancesRequest;
+    requestBody?: Schema$RegionInstanceGroupsListInstancesRequest;
   }
   export interface Params$Resource$Regioninstancegroups$Setnamedports {
     /**
@@ -44894,10 +44987,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionInstanceGroupsSetNamedPortsRequest;
+    requestBody?: Schema$RegionInstanceGroupsSetNamedPortsRequest;
   }
 
 
@@ -47116,10 +47210,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Router;
+    requestBody?: Schema$Router;
   }
   export interface Params$Resource$Routers$List {
     /**
@@ -47210,10 +47305,11 @@ export namespace compute_v1 {
      * Name of the Router resource to patch.
      */
     router?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Router;
+    requestBody?: Schema$Router;
   }
   export interface Params$Resource$Routers$Preview {
     /**
@@ -47233,10 +47329,11 @@ export namespace compute_v1 {
      * Name of the Router resource to query.
      */
     router?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Router;
+    requestBody?: Schema$Router;
   }
   export interface Params$Resource$Routers$Update {
     /**
@@ -47269,10 +47366,11 @@ export namespace compute_v1 {
      * Name of the Router resource to update.
      */
     router?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Router;
+    requestBody?: Schema$Router;
   }
 
 
@@ -47859,10 +47957,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Route;
+    requestBody?: Schema$Route;
   }
   export interface Params$Resource$Routes$List {
     /**
@@ -48561,10 +48660,11 @@ export namespace compute_v1 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GlobalSetLabelsRequest;
+    requestBody?: Schema$GlobalSetLabelsRequest;
   }
 
 
@@ -49165,10 +49265,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslCertificate;
+    requestBody?: Schema$SslCertificate;
   }
   export interface Params$Resource$Sslcertificates$List {
     /**
@@ -49742,10 +49843,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslPolicy;
+    requestBody?: Schema$SslPolicy;
   }
   export interface Params$Resource$Sslpolicies$List {
     /**
@@ -49883,10 +49985,11 @@ export namespace compute_v1 {
      * and comply with RFC1035.
      */
     sslPolicy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslPolicy;
+    requestBody?: Schema$SslPolicy;
   }
 
 
@@ -51037,10 +51140,11 @@ export namespace compute_v1 {
      * Name of the Subnetwork resource to update.
      */
     subnetwork?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubnetworksExpandIpCidrRangeRequest;
+    requestBody?: Schema$SubnetworksExpandIpCidrRangeRequest;
   }
   export interface Params$Resource$Subnetworks$Get {
     /**
@@ -51088,10 +51192,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subnetwork;
+    requestBody?: Schema$Subnetwork;
   }
   export interface Params$Resource$Subnetworks$List {
     /**
@@ -51182,10 +51287,11 @@ export namespace compute_v1 {
      * Name of the Subnetwork resource to patch.
      */
     subnetwork?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subnetwork;
+    requestBody?: Schema$Subnetwork;
   }
   export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess {
     /**
@@ -51218,10 +51324,11 @@ export namespace compute_v1 {
      * Name of the Subnetwork resource.
      */
     subnetwork?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubnetworksSetPrivateIpGoogleAccessRequest;
+    requestBody?: Schema$SubnetworksSetPrivateIpGoogleAccessRequest;
   }
 
 
@@ -51955,10 +52062,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetHttpProxy;
+    requestBody?: Schema$TargetHttpProxy;
   }
   export interface Params$Resource$Targethttpproxies$List {
     /**
@@ -52041,10 +52149,11 @@ export namespace compute_v1 {
      * Name of the TargetHttpProxy to set a URL map for.
      */
     targetHttpProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMapReference;
+    requestBody?: Schema$UrlMapReference;
   }
 
 
@@ -52986,10 +53095,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetHttpsProxy;
+    requestBody?: Schema$TargetHttpsProxy;
   }
   export interface Params$Resource$Targethttpsproxies$List {
     /**
@@ -53073,10 +53183,11 @@ export namespace compute_v1 {
      * for.
      */
     targetHttpsProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetHttpsProxiesSetSslCertificatesRequest;
+    requestBody?: Schema$TargetHttpsProxiesSetSslCertificatesRequest;
   }
   export interface Params$Resource$Targethttpsproxies$Setsslpolicy {
     /**
@@ -53106,10 +53217,11 @@ export namespace compute_v1 {
      * name must be 1-63 characters long, and comply with RFC1035.
      */
     targetHttpsProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslPolicyReference;
+    requestBody?: Schema$SslPolicyReference;
   }
   export interface Params$Resource$Targethttpsproxies$Seturlmap {
     /**
@@ -53138,10 +53250,11 @@ export namespace compute_v1 {
      * Name of the TargetHttpsProxy resource whose URL map is to be set.
      */
     targetHttpsProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMapReference;
+    requestBody?: Schema$UrlMapReference;
   }
 
 
@@ -53973,10 +54086,11 @@ export namespace compute_v1 {
      * Name of the zone scoping this request.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetInstance;
+    requestBody?: Schema$TargetInstance;
   }
   export interface Params$Resource$Targetinstances$List {
     /**
@@ -55572,10 +55686,11 @@ export namespace compute_v1 {
      * Name of the target pool to add a health check to.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetPoolsAddHealthCheckRequest;
+    requestBody?: Schema$TargetPoolsAddHealthCheckRequest;
   }
   export interface Params$Resource$Targetpools$Addinstance {
     /**
@@ -55608,10 +55723,11 @@ export namespace compute_v1 {
      * Name of the TargetPool resource to add instances to.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetPoolsAddInstanceRequest;
+    requestBody?: Schema$TargetPoolsAddInstanceRequest;
   }
   export interface Params$Resource$Targetpools$Aggregatedlist {
     /**
@@ -55736,10 +55852,11 @@ export namespace compute_v1 {
      * Name of the TargetPool resource to which the queried instance belongs.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceReference;
+    requestBody?: Schema$InstanceReference;
   }
   export interface Params$Resource$Targetpools$Insert {
     /**
@@ -55768,10 +55885,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetPool;
+    requestBody?: Schema$TargetPool;
   }
   export interface Params$Resource$Targetpools$List {
     /**
@@ -55862,10 +55980,11 @@ export namespace compute_v1 {
      * Name of the target pool to remove health checks from.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetPoolsRemoveHealthCheckRequest;
+    requestBody?: Schema$TargetPoolsRemoveHealthCheckRequest;
   }
   export interface Params$Resource$Targetpools$Removeinstance {
     /**
@@ -55898,10 +56017,11 @@ export namespace compute_v1 {
      * Name of the TargetPool resource to remove instances from.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetPoolsRemoveInstanceRequest;
+    requestBody?: Schema$TargetPoolsRemoveInstanceRequest;
   }
   export interface Params$Resource$Targetpools$Setbackup {
     /**
@@ -55938,10 +56058,11 @@ export namespace compute_v1 {
      * Name of the TargetPool resource to set a backup pool for.
      */
     targetPool?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetReference;
+    requestBody?: Schema$TargetReference;
   }
 
 
@@ -57010,10 +57131,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetSslProxy;
+    requestBody?: Schema$TargetSslProxy;
   }
   export interface Params$Resource$Targetsslproxies$List {
     /**
@@ -57097,10 +57219,11 @@ export namespace compute_v1 {
      * be set.
      */
     targetSslProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetSslProxiesSetBackendServiceRequest;
+    requestBody?: Schema$TargetSslProxiesSetBackendServiceRequest;
   }
   export interface Params$Resource$Targetsslproxies$Setproxyheader {
     /**
@@ -57129,10 +57252,11 @@ export namespace compute_v1 {
      * Name of the TargetSslProxy resource whose ProxyHeader is to be set.
      */
     targetSslProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetSslProxiesSetProxyHeaderRequest;
+    requestBody?: Schema$TargetSslProxiesSetProxyHeaderRequest;
   }
   export interface Params$Resource$Targetsslproxies$Setsslcertificates {
     /**
@@ -57162,10 +57286,11 @@ export namespace compute_v1 {
      * be set.
      */
     targetSslProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetSslProxiesSetSslCertificatesRequest;
+    requestBody?: Schema$TargetSslProxiesSetSslCertificatesRequest;
   }
   export interface Params$Resource$Targetsslproxies$Setsslpolicy {
     /**
@@ -57195,10 +57320,11 @@ export namespace compute_v1 {
      * name must be 1-63 characters long, and comply with RFC1035.
      */
     targetSslProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SslPolicyReference;
+    requestBody?: Schema$SslPolicyReference;
   }
 
 
@@ -58061,10 +58187,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetTcpProxy;
+    requestBody?: Schema$TargetTcpProxy;
   }
   export interface Params$Resource$Targettcpproxies$List {
     /**
@@ -58148,10 +58275,11 @@ export namespace compute_v1 {
      * be set.
      */
     targetTcpProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetTcpProxiesSetBackendServiceRequest;
+    requestBody?: Schema$TargetTcpProxiesSetBackendServiceRequest;
   }
   export interface Params$Resource$Targettcpproxies$Setproxyheader {
     /**
@@ -58180,10 +58308,11 @@ export namespace compute_v1 {
      * Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
      */
     targetTcpProxy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetTcpProxiesSetProxyHeaderRequest;
+    requestBody?: Schema$TargetTcpProxiesSetProxyHeaderRequest;
   }
 
 
@@ -59017,10 +59146,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetVpnGateway;
+    requestBody?: Schema$TargetVpnGateway;
   }
   export interface Params$Resource$Targetvpngateways$List {
     /**
@@ -60197,10 +60327,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMap;
+    requestBody?: Schema$UrlMap;
   }
   export interface Params$Resource$Urlmaps$Invalidatecache {
     /**
@@ -60229,10 +60360,11 @@ export namespace compute_v1 {
      * Name of the UrlMap scoping this request.
      */
     urlMap?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CacheInvalidationRule;
+    requestBody?: Schema$CacheInvalidationRule;
   }
   export interface Params$Resource$Urlmaps$List {
     /**
@@ -60315,10 +60447,11 @@ export namespace compute_v1 {
      * Name of the UrlMap resource to patch.
      */
     urlMap?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMap;
+    requestBody?: Schema$UrlMap;
   }
   export interface Params$Resource$Urlmaps$Update {
     /**
@@ -60347,10 +60480,11 @@ export namespace compute_v1 {
      * Name of the UrlMap resource to update.
      */
     urlMap?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMap;
+    requestBody?: Schema$UrlMap;
   }
   export interface Params$Resource$Urlmaps$Validate {
     /**
@@ -60366,10 +60500,11 @@ export namespace compute_v1 {
      * Name of the UrlMap resource to be validated as.
      */
     urlMap?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UrlMapsValidateRequest;
+    requestBody?: Schema$UrlMapsValidateRequest;
   }
 
 
@@ -61188,10 +61323,11 @@ export namespace compute_v1 {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VpnTunnel;
+    requestBody?: Schema$VpnTunnel;
   }
   export interface Params$Resource$Vpntunnels$List {
     /**

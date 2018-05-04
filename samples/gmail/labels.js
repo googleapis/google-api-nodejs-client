@@ -26,7 +26,7 @@ async function runSample (action, messageId, labelId) {
     const res = await gmail.users.messages.modify({
       userId: 'me',
       id: messageId,
-      resource: {
+      requestBody: {
         'addLabelIds': [labelId]
       }
     });
@@ -36,7 +36,7 @@ async function runSample (action, messageId, labelId) {
     const res = await gmail.users.messages.modify({
       userId: 'me',
       id: messageId,
-      resource: {
+      requestBody: {
         'removeLabelIds': [labelId]
       }
     });

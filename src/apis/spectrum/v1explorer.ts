@@ -1578,35 +1578,71 @@ export namespace spectrum_v1explorer {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsGetSpectrumRequest;
   }
   export interface Params$Resource$Paws$Getspectrumbatch {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsGetSpectrumBatchRequest;
   }
   export interface Params$Resource$Paws$Init {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsInitRequest;
   }
   export interface Params$Resource$Paws$Notifyspectrumuse {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsNotifySpectrumUseRequest;
   }
   export interface Params$Resource$Paws$Register {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsRegisterRequest;
   }
   export interface Params$Resource$Paws$Verifydevice {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PawsVerifyDeviceRequest;
   }
 }

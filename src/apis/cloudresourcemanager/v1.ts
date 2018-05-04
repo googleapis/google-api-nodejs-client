@@ -1859,10 +1859,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ClearOrgPolicyRequest;
+    requestBody?: Schema$ClearOrgPolicyRequest;
   }
   export interface Params$Resource$Folders$Geteffectiveorgpolicy {
     /**
@@ -1874,10 +1875,11 @@ export namespace cloudresourcemanager_v1 {
      * The name of the resource to start computing the effective `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+    requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
   export interface Params$Resource$Folders$Getorgpolicy {
     /**
@@ -1889,10 +1891,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetOrgPolicyRequest;
+    requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Folders$Listavailableorgpolicyconstraints {
     /**
@@ -1904,10 +1907,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+    requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
   export interface Params$Resource$Folders$Listorgpolicies {
     /**
@@ -1919,10 +1923,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list Policies for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListOrgPoliciesRequest;
+    requestBody?: Schema$ListOrgPoliciesRequest;
   }
   export interface Params$Resource$Folders$Setorgpolicy {
     /**
@@ -1934,10 +1939,11 @@ export namespace cloudresourcemanager_v1 {
      * Resource name of the resource to attach the `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetOrgPolicyRequest;
+    requestBody?: Schema$SetOrgPolicyRequest;
   }
 
 
@@ -2331,10 +2337,11 @@ export namespace cloudresourcemanager_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Lien;
+    requestBody?: Schema$Lien;
   }
   export interface Params$Resource$Liens$Delete {
     /**
@@ -4002,10 +4009,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ClearOrgPolicyRequest;
+    requestBody?: Schema$ClearOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Get {
     /**
@@ -4029,10 +4037,11 @@ export namespace cloudresourcemanager_v1 {
      * The name of the resource to start computing the effective `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+    requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Getiampolicy {
     /**
@@ -4045,10 +4054,11 @@ export namespace cloudresourcemanager_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Organizations$Getorgpolicy {
     /**
@@ -4060,10 +4070,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetOrgPolicyRequest;
+    requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints {
     /**
@@ -4075,10 +4086,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+    requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
   export interface Params$Resource$Organizations$Listorgpolicies {
     /**
@@ -4090,10 +4102,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list Policies for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListOrgPoliciesRequest;
+    requestBody?: Schema$ListOrgPoliciesRequest;
   }
   export interface Params$Resource$Organizations$Search {
     /**
@@ -4101,10 +4114,11 @@ export namespace cloudresourcemanager_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchOrganizationsRequest;
+    requestBody?: Schema$SearchOrganizationsRequest;
   }
   export interface Params$Resource$Organizations$Setiampolicy {
     /**
@@ -4117,10 +4131,11 @@ export namespace cloudresourcemanager_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Organizations$Setorgpolicy {
     /**
@@ -4132,10 +4147,11 @@ export namespace cloudresourcemanager_v1 {
      * Resource name of the resource to attach the `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetOrgPolicyRequest;
+    requestBody?: Schema$SetOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Testiampermissions {
     /**
@@ -4148,10 +4164,11 @@ export namespace cloudresourcemanager_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -6286,10 +6303,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ClearOrgPolicyRequest;
+    requestBody?: Schema$ClearOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$Create {
     /**
@@ -6297,10 +6315,11 @@ export namespace cloudresourcemanager_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Project;
+    requestBody?: Schema$Project;
   }
   export interface Params$Resource$Projects$Delete {
     /**
@@ -6334,10 +6353,11 @@ export namespace cloudresourcemanager_v1 {
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetAncestryRequest;
+    requestBody?: Schema$GetAncestryRequest;
   }
   export interface Params$Resource$Projects$Geteffectiveorgpolicy {
     /**
@@ -6349,10 +6369,11 @@ export namespace cloudresourcemanager_v1 {
      * The name of the resource to start computing the effective `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetEffectiveOrgPolicyRequest;
+    requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$Getiampolicy {
     /**
@@ -6365,10 +6386,11 @@ export namespace cloudresourcemanager_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Getorgpolicy {
     /**
@@ -6380,10 +6402,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetOrgPolicyRequest;
+    requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$List {
     /**
@@ -6435,10 +6458,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListAvailableOrgPolicyConstraintsRequest;
+    requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
   export interface Params$Resource$Projects$Listorgpolicies {
     /**
@@ -6450,10 +6474,11 @@ export namespace cloudresourcemanager_v1 {
      * Name of the resource to list Policies for.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$ListOrgPoliciesRequest;
+    requestBody?: Schema$ListOrgPoliciesRequest;
   }
   export interface Params$Resource$Projects$Setiampolicy {
     /**
@@ -6466,10 +6491,11 @@ export namespace cloudresourcemanager_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Setorgpolicy {
     /**
@@ -6481,10 +6507,11 @@ export namespace cloudresourcemanager_v1 {
      * Resource name of the resource to attach the `Policy`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetOrgPolicyRequest;
+    requestBody?: Schema$SetOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$Testiampermissions {
     /**
@@ -6497,10 +6524,11 @@ export namespace cloudresourcemanager_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Undelete {
     /**
@@ -6512,10 +6540,11 @@ export namespace cloudresourcemanager_v1 {
      * The project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteProjectRequest;
+    requestBody?: Schema$UndeleteProjectRequest;
   }
   export interface Params$Resource$Projects$Update {
     /**
@@ -6527,9 +6556,10 @@ export namespace cloudresourcemanager_v1 {
      * The project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Project;
+    requestBody?: Schema$Project;
   }
 }

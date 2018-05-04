@@ -672,10 +672,11 @@ export namespace proximitybeacon_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetInfoForObservedBeaconsRequest;
+    requestBody?: Schema$GetInfoForObservedBeaconsRequest;
   }
 
 
@@ -1477,10 +1478,11 @@ export namespace proximitybeacon_v1beta1 {
      * Optional.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Beacon;
+    requestBody?: Schema$Beacon;
   }
   export interface Params$Resource$Beacons$Update {
     /**
@@ -1503,10 +1505,11 @@ export namespace proximitybeacon_v1beta1 {
      * must match the project that owns the beacon. Optional.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Beacon;
+    requestBody?: Schema$Beacon;
   }
 
   export class Resource$Beacons$Attachments {
@@ -1894,10 +1897,11 @@ export namespace proximitybeacon_v1beta1 {
      * Optional.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BeaconAttachment;
+    requestBody?: Schema$BeaconAttachment;
   }
   export interface Params$Resource$Beacons$Attachments$Delete {
     /**
@@ -2260,10 +2264,11 @@ export namespace proximitybeacon_v1beta1 {
      * must match the project that owns the beacon. Optional.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Namespace;
+    requestBody?: Schema$Namespace;
   }
 
 

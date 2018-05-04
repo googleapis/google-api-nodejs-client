@@ -3353,10 +3353,11 @@ export namespace dataflow_v1b3 {
      * The project to send the WorkerMessages to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendWorkerMessagesRequest;
+    requestBody?: Schema$SendWorkerMessagesRequest;
   }
 
   export class Resource$Projects$Jobs {
@@ -3851,10 +3852,11 @@ export namespace dataflow_v1b3 {
      * The level of information requested in response.
      */
     view?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
   export interface Params$Resource$Projects$Jobs$Get {
     /**
@@ -3956,10 +3958,11 @@ export namespace dataflow_v1b3 {
      * The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
 
   export class Resource$Projects$Jobs$Debug {
@@ -4132,10 +4135,11 @@ export namespace dataflow_v1b3 {
      * The project id.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetDebugConfigRequest;
+    requestBody?: Schema$GetDebugConfigRequest;
   }
   export interface Params$Resource$Projects$Jobs$Debug$Sendcapture {
     /**
@@ -4151,10 +4155,11 @@ export namespace dataflow_v1b3 {
      * The project id.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendDebugCaptureRequest;
+    requestBody?: Schema$SendDebugCaptureRequest;
   }
 
 
@@ -4468,10 +4473,11 @@ export namespace dataflow_v1b3 {
      * Identifies the project this worker belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaseWorkItemRequest;
+    requestBody?: Schema$LeaseWorkItemRequest;
   }
   export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus {
     /**
@@ -4487,10 +4493,11 @@ export namespace dataflow_v1b3 {
      * The project which owns the WorkItem's job.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReportWorkItemStatusRequest;
+    requestBody?: Schema$ReportWorkItemStatusRequest;
   }
 
 
@@ -4603,10 +4610,11 @@ export namespace dataflow_v1b3 {
      * The project to send the WorkerMessages to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendWorkerMessagesRequest;
+    requestBody?: Schema$SendWorkerMessagesRequest;
   }
 
   export class Resource$Projects$Locations$Jobs {
@@ -5003,10 +5011,11 @@ export namespace dataflow_v1b3 {
      * The level of information requested in response.
      */
     view?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Get {
     /**
@@ -5108,10 +5117,11 @@ export namespace dataflow_v1b3 {
      * The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
 
   export class Resource$Projects$Locations$Jobs$Debug {
@@ -5295,10 +5305,11 @@ export namespace dataflow_v1b3 {
      * The project id.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetDebugConfigRequest;
+    requestBody?: Schema$GetDebugConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture {
     /**
@@ -5318,10 +5329,11 @@ export namespace dataflow_v1b3 {
      * The project id.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendDebugCaptureRequest;
+    requestBody?: Schema$SendDebugCaptureRequest;
   }
 
 
@@ -5647,10 +5659,11 @@ export namespace dataflow_v1b3 {
      * Identifies the project this worker belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaseWorkItemRequest;
+    requestBody?: Schema$LeaseWorkItemRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus {
     /**
@@ -5670,10 +5683,11 @@ export namespace dataflow_v1b3 {
      * The project which owns the WorkItem's job.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReportWorkItemStatusRequest;
+    requestBody?: Schema$ReportWorkItemStatusRequest;
   }
 
 
@@ -5915,10 +5929,11 @@ export namespace dataflow_v1b3 {
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateJobFromTemplateRequest;
+    requestBody?: Schema$CreateJobFromTemplateRequest;
   }
   export interface Params$Resource$Projects$Locations$Templates$Get {
     /**
@@ -5968,10 +5983,11 @@ export namespace dataflow_v1b3 {
      * false.
      */
     validateOnly?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LaunchTemplateParameters;
+    requestBody?: Schema$LaunchTemplateParameters;
   }
 
 
@@ -6203,10 +6219,11 @@ export namespace dataflow_v1b3 {
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateJobFromTemplateRequest;
+    requestBody?: Schema$CreateJobFromTemplateRequest;
   }
   export interface Params$Resource$Projects$Templates$Get {
     /**
@@ -6256,9 +6273,10 @@ export namespace dataflow_v1b3 {
      * false.
      */
     validateOnly?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LaunchTemplateParameters;
+    requestBody?: Schema$LaunchTemplateParameters;
   }
 }

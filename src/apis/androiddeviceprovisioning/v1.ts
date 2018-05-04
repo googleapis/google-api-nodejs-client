@@ -1282,10 +1282,11 @@ export namespace androiddeviceprovisioning_v1 {
      * name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Configuration;
+    requestBody?: Schema$Configuration;
   }
   export interface Params$Resource$Customers$Configurations$Delete {
     /**
@@ -1343,10 +1344,11 @@ export namespace androiddeviceprovisioning_v1 {
      * in the Protocol Buffers documentation.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Configuration;
+    requestBody?: Schema$Configuration;
   }
 
 
@@ -1721,10 +1723,11 @@ export namespace androiddeviceprovisioning_v1 {
      * format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomerApplyConfigurationRequest;
+    requestBody?: Schema$CustomerApplyConfigurationRequest;
   }
   export interface Params$Resource$Customers$Devices$Get {
     /**
@@ -1770,10 +1773,11 @@ export namespace androiddeviceprovisioning_v1 {
      * `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomerRemoveConfigurationRequest;
+    requestBody?: Schema$CustomerRemoveConfigurationRequest;
   }
   export interface Params$Resource$Customers$Devices$Unclaim {
     /**
@@ -1786,10 +1790,11 @@ export namespace androiddeviceprovisioning_v1 {
      * format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomerUnclaimDeviceRequest;
+    requestBody?: Schema$CustomerUnclaimDeviceRequest;
   }
 
 
@@ -2160,10 +2165,11 @@ export namespace androiddeviceprovisioning_v1 {
      * that identifies the reseller.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateCustomerRequest;
+    requestBody?: Schema$CreateCustomerRequest;
   }
   export interface Params$Resource$Partners$Customers$List {
     /**
@@ -2850,10 +2856,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ClaimDeviceRequest;
+    requestBody?: Schema$ClaimDeviceRequest;
   }
   export interface Params$Resource$Partners$Devices$Claimasync {
     /**
@@ -2865,10 +2872,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ClaimDevicesRequest;
+    requestBody?: Schema$ClaimDevicesRequest;
   }
   export interface Params$Resource$Partners$Devices$Findbyidentifier {
     /**
@@ -2880,10 +2888,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FindDevicesByDeviceIdentifierRequest;
+    requestBody?: Schema$FindDevicesByDeviceIdentifierRequest;
   }
   export interface Params$Resource$Partners$Devices$Findbyowner {
     /**
@@ -2895,10 +2904,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FindDevicesByOwnerRequest;
+    requestBody?: Schema$FindDevicesByOwnerRequest;
   }
   export interface Params$Resource$Partners$Devices$Get {
     /**
@@ -2927,10 +2937,11 @@ export namespace androiddeviceprovisioning_v1 {
      * ID.
      */
     metadataOwnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateDeviceMetadataRequest;
+    requestBody?: Schema$UpdateDeviceMetadataRequest;
   }
   export interface Params$Resource$Partners$Devices$Unclaim {
     /**
@@ -2942,10 +2953,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UnclaimDeviceRequest;
+    requestBody?: Schema$UnclaimDeviceRequest;
   }
   export interface Params$Resource$Partners$Devices$Unclaimasync {
     /**
@@ -2957,10 +2969,11 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The reseller partner ID.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UnclaimDevicesRequest;
+    requestBody?: Schema$UnclaimDevicesRequest;
   }
   export interface Params$Resource$Partners$Devices$Updatemetadataasync {
     /**
@@ -2972,9 +2985,10 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The reseller partner ID.
      */
     partnerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateDeviceMetadataInBatchRequest;
+    requestBody?: Schema$UpdateDeviceMetadataInBatchRequest;
   }
 }

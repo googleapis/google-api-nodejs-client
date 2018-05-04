@@ -908,9 +908,10 @@ export namespace manufacturers_v1 {
      * of the Manufacturer Center account.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Attributes;
+    requestBody?: Schema$Attributes;
   }
 }

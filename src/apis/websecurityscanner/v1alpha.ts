@@ -922,10 +922,11 @@ export namespace websecurityscanner_v1alpha {
      * should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ScanConfig;
+    requestBody?: Schema$ScanConfig;
   }
   export interface Params$Resource$Projects$Scanconfigs$Delete {
     /**
@@ -993,10 +994,11 @@ export namespace websecurityscanner_v1alpha {
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ScanConfig;
+    requestBody?: Schema$ScanConfig;
   }
   export interface Params$Resource$Projects$Scanconfigs$Start {
     /**
@@ -1009,10 +1011,11 @@ export namespace websecurityscanner_v1alpha {
      * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartScanRunRequest;
+    requestBody?: Schema$StartScanRunRequest;
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns {
@@ -1286,10 +1289,11 @@ export namespace websecurityscanner_v1alpha {
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StopScanRunRequest;
+    requestBody?: Schema$StopScanRunRequest;
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns$Crawledurls {

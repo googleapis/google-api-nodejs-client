@@ -1025,10 +1025,11 @@ export namespace cloudbuild_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Get {
     /**
@@ -1470,10 +1471,11 @@ export namespace cloudbuild_v1 {
      * ID of the project.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelBuildRequest;
+    requestBody?: Schema$CancelBuildRequest;
   }
   export interface Params$Resource$Projects$Builds$Create {
     /**
@@ -1485,10 +1487,11 @@ export namespace cloudbuild_v1 {
      * ID of the project.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Build;
+    requestBody?: Schema$Build;
   }
   export interface Params$Resource$Projects$Builds$Get {
     /**
@@ -1542,10 +1545,11 @@ export namespace cloudbuild_v1 {
      * ID of the project.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RetryBuildRequest;
+    requestBody?: Schema$RetryBuildRequest;
   }
 
 
@@ -1979,10 +1983,11 @@ export namespace cloudbuild_v1 {
      * ID of the project for which to configure automatic builds.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BuildTrigger;
+    requestBody?: Schema$BuildTrigger;
   }
   export interface Params$Resource$Projects$Triggers$Delete {
     /**
@@ -2039,10 +2044,11 @@ export namespace cloudbuild_v1 {
      * ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BuildTrigger;
+    requestBody?: Schema$BuildTrigger;
   }
   export interface Params$Resource$Projects$Triggers$Run {
     /**
@@ -2058,9 +2064,10 @@ export namespace cloudbuild_v1 {
      * ID of the trigger.
      */
     triggerId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RepoSource;
+    requestBody?: Schema$RepoSource;
   }
 }

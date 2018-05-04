@@ -822,10 +822,11 @@ export namespace sourcerepo_v1 {
      * `projects/<project>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Repo;
+    requestBody?: Schema$Repo;
   }
   export interface Params$Resource$Projects$Repos$Delete {
     /**
@@ -897,10 +898,11 @@ export namespace sourcerepo_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Repos$Testiampermissions {
     /**
@@ -913,9 +915,10 @@ export namespace sourcerepo_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }

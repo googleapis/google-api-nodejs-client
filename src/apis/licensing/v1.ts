@@ -699,10 +699,11 @@ export namespace licensing_v1 {
      * Name for sku
      */
     skuId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LicenseAssignmentInsert;
+    requestBody?: Schema$LicenseAssignmentInsert;
   }
   export interface Params$Resource$Licenseassignments$Listforproduct {
     /**
@@ -778,10 +779,11 @@ export namespace licensing_v1 {
      * email id or unique Id of the user
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LicenseAssignment;
+    requestBody?: Schema$LicenseAssignment;
   }
   export interface Params$Resource$Licenseassignments$Update {
     /**
@@ -801,9 +803,10 @@ export namespace licensing_v1 {
      * email id or unique Id of the user
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LicenseAssignment;
+    requestBody?: Schema$LicenseAssignment;
   }
 }

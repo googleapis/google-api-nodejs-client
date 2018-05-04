@@ -1633,10 +1633,11 @@ export namespace servicecontrol_v1 {
      * definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AllocateQuotaRequest;
+    requestBody?: Schema$AllocateQuotaRequest;
   }
   export interface Params$Resource$Services$Check {
     /**
@@ -1651,10 +1652,11 @@ export namespace servicecontrol_v1 {
      * for the definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CheckRequest;
+    requestBody?: Schema$CheckRequest;
   }
   export interface Params$Resource$Services$Endreconciliation {
     /**
@@ -1668,10 +1670,11 @@ export namespace servicecontrol_v1 {
      * definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EndReconciliationRequest;
+    requestBody?: Schema$EndReconciliationRequest;
   }
   export interface Params$Resource$Services$Releasequota {
     /**
@@ -1685,10 +1688,11 @@ export namespace servicecontrol_v1 {
      * definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReleaseQuotaRequest;
+    requestBody?: Schema$ReleaseQuotaRequest;
   }
   export interface Params$Resource$Services$Report {
     /**
@@ -1703,10 +1707,11 @@ export namespace servicecontrol_v1 {
      * for the definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReportRequest;
+    requestBody?: Schema$ReportRequest;
   }
   export interface Params$Resource$Services$Startreconciliation {
     /**
@@ -1720,9 +1725,10 @@ export namespace servicecontrol_v1 {
      * definition of a service name.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartReconciliationRequest;
+    requestBody?: Schema$StartReconciliationRequest;
   }
 }

@@ -24,7 +24,7 @@ const plus = google.plusDomains({
 async function runSample () {
   const res = await plus.activities.insert({
     userId: 'me',
-    resource: {
+    requestBody: {
       object: {
         originalContent: 'Hello from the Node.js Google API Client!'
       },

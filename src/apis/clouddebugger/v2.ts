@@ -863,10 +863,11 @@ export namespace clouddebugger_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegisterDebuggeeRequest;
+    requestBody?: Schema$RegisterDebuggeeRequest;
   }
 
   export class Resource$Controller$Debuggees$Breakpoints {
@@ -1206,10 +1207,11 @@ export namespace clouddebugger_v2 {
      * Breakpoint identifier, unique in the scope of the debuggee.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateActiveBreakpointRequest;
+    requestBody?: Schema$UpdateActiveBreakpointRequest;
   }
 
 
@@ -1989,9 +1991,10 @@ export namespace clouddebugger_v2 {
      * ID of the debuggee where the breakpoint is to be set.
      */
     debuggeeId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Breakpoint;
+    requestBody?: Schema$Breakpoint;
   }
 }

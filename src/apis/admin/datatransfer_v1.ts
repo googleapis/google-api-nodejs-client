@@ -623,6 +623,12 @@ export namespace admin_datatransfer_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DataTransfer;
   }
   export interface Params$Resource$Transfers$List {
     /**

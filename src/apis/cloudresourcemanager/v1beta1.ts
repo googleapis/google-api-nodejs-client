@@ -1318,10 +1318,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Organizations$List {
     /**
@@ -1363,10 +1364,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Organizations$Testiampermissions {
     /**
@@ -1379,10 +1381,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Organizations$Update {
     /**
@@ -1396,10 +1399,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * "organizations/[organization_id]". For example, "organizations/1234".
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Organization;
+    requestBody?: Schema$Organization;
   }
 
 
@@ -2722,10 +2726,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * A safety hatch to opt out of the new reliable project creation process.
      */
     useLegacyStack?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Project;
+    requestBody?: Schema$Project;
   }
   export interface Params$Resource$Projects$Delete {
     /**
@@ -2759,10 +2764,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetAncestryRequest;
+    requestBody?: Schema$GetAncestryRequest;
   }
   export interface Params$Resource$Projects$Getiampolicy {
     /**
@@ -2775,10 +2781,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$List {
     /**
@@ -2831,10 +2838,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Testiampermissions {
     /**
@@ -2847,10 +2855,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Undelete {
     /**
@@ -2862,10 +2871,11 @@ export namespace cloudresourcemanager_v1beta1 {
      * The project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteProjectRequest;
+    requestBody?: Schema$UndeleteProjectRequest;
   }
   export interface Params$Resource$Projects$Update {
     /**
@@ -2877,9 +2887,10 @@ export namespace cloudresourcemanager_v1beta1 {
      * The project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Project;
+    requestBody?: Schema$Project;
   }
 }

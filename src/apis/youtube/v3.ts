@@ -5118,10 +5118,11 @@ export namespace youtube_v3 {
      * properties that the API response will include.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Activity;
+    requestBody?: Schema$Activity;
   }
   export interface Params$Resource$Activities$List {
     /**
@@ -5677,14 +5678,16 @@ export namespace youtube_v3 {
      * your file are incorrect and want YouTube to try to fix them.
      */
     sync?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Caption;
+    requestBody?: Schema$Caption;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -5693,7 +5696,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Captions$List {
@@ -5777,14 +5780,16 @@ export namespace youtube_v3 {
      * automatically synchronize the caption track with the audio track.
      */
     sync?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Caption;
+    requestBody?: Schema$Caption;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -5793,7 +5798,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -5923,14 +5928,16 @@ export namespace youtube_v3 {
      * to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChannelBannerResource;
+    requestBody?: Schema$ChannelBannerResource;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -5939,7 +5946,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -6209,10 +6216,11 @@ export namespace youtube_v3 {
      * value specifies.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -6582,10 +6590,11 @@ export namespace youtube_v3 {
      * can include in the parameter value are snippet and contentDetails.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChannelSection;
+    requestBody?: Schema$ChannelSection;
   }
   export interface Params$Resource$Channelsections$List {
     /**
@@ -6672,10 +6681,11 @@ export namespace youtube_v3 {
      * can include in the parameter value are snippet and contentDetails.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChannelSection;
+    requestBody?: Schema$ChannelSection;
   }
 
 
@@ -7114,10 +7124,11 @@ export namespace youtube_v3 {
      * cost of 2 units.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$List {
     /**
@@ -7210,10 +7221,11 @@ export namespace youtube_v3 {
      * can update.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
 
 
@@ -7458,10 +7470,11 @@ export namespace youtube_v3 {
      * cost of 2 units.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommentThread;
+    requestBody?: Schema$CommentThread;
   }
   export interface Params$Resource$Commentthreads$List {
     /**
@@ -7549,10 +7562,11 @@ export namespace youtube_v3 {
      * all of the properties that the API request can update.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommentThread;
+    requestBody?: Schema$CommentThread;
   }
 
 
@@ -8616,10 +8630,11 @@ export namespace youtube_v3 {
      * and status.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveBroadcast;
+    requestBody?: Schema$LiveBroadcast;
   }
   export interface Params$Resource$Livebroadcasts$List {
     /**
@@ -8813,10 +8828,11 @@ export namespace youtube_v3 {
      * broadcast will revert to the default privacy setting.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveBroadcast;
+    requestBody?: Schema$LiveBroadcast;
   }
 
 
@@ -8990,10 +9006,11 @@ export namespace youtube_v3 {
      * snippet.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveChatBan;
+    requestBody?: Schema$LiveChatBan;
   }
 
 
@@ -9244,10 +9261,11 @@ export namespace youtube_v3 {
      * response will include. Set the parameter value to snippet.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveChatMessage;
+    requestBody?: Schema$LiveChatMessage;
   }
   export interface Params$Resource$Livechatmessages$List {
     /**
@@ -9542,10 +9560,11 @@ export namespace youtube_v3 {
      * snippet.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveChatModerator;
+    requestBody?: Schema$LiveChatModerator;
   }
   export interface Params$Resource$Livechatmoderators$List {
     /**
@@ -9961,10 +9980,11 @@ export namespace youtube_v3 {
      * you can include in the parameter value are id, snippet, cdn, and status.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveStream;
+    requestBody?: Schema$LiveStream;
   }
   export interface Params$Resource$Livestreams$List {
     /**
@@ -10084,10 +10104,11 @@ export namespace youtube_v3 {
      * mutable property, the existing value for that property will be removed.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LiveStream;
+    requestBody?: Schema$LiveStream;
   }
 
 
@@ -10434,10 +10455,11 @@ export namespace youtube_v3 {
      * properties that the API response will include.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlaylistItem;
+    requestBody?: Schema$PlaylistItem;
   }
   export interface Params$Resource$Playlistitems$List {
     /**
@@ -10533,10 +10555,11 @@ export namespace youtube_v3 {
      * and replaced with the default settings.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlaylistItem;
+    requestBody?: Schema$PlaylistItem;
   }
 
 
@@ -10897,10 +10920,11 @@ export namespace youtube_v3 {
      * properties that the API response will include.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Playlist;
+    requestBody?: Schema$Playlist;
   }
   export interface Params$Resource$Playlists$List {
     /**
@@ -11014,10 +11038,11 @@ export namespace youtube_v3 {
      * will be deleted.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Playlist;
+    requestBody?: Schema$Playlist;
   }
 
 
@@ -11717,10 +11742,11 @@ export namespace youtube_v3 {
      * properties that the API response will include.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Subscriptions$List {
     /**
@@ -12051,10 +12077,12 @@ export namespace youtube_v3 {
      * video thumbnail is being provided.
      */
     videoId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -12063,7 +12091,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -12911,14 +12939,16 @@ export namespace youtube_v3 {
      * to remove shaky camera motions.
      */
     stabilize?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Video;
+    requestBody?: Schema$Video;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -12927,7 +12957,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Videos$List {
@@ -13067,10 +13097,11 @@ export namespace youtube_v3 {
      * to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VideoAbuseReport;
+    requestBody?: Schema$VideoAbuseReport;
   }
   export interface Params$Resource$Videos$Update {
     /**
@@ -13111,10 +13142,11 @@ export namespace youtube_v3 {
      * included in the API response.
      */
     part?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Video;
+    requestBody?: Schema$Video;
   }
 
 
@@ -13285,14 +13317,16 @@ export namespace youtube_v3 {
      * to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InvideoBranding;
+    requestBody?: Schema$InvideoBranding;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -13301,7 +13335,7 @@ export namespace youtube_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Watermarks$Unset {

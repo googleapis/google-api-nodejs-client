@@ -33,7 +33,7 @@ const gmail = google.gmail({
 async function runSample () {
   const res = await gmail.users.watch({
     userId: 'me',
-    resource: {
+    requestBody: {
       // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
       topicName: `projects/el-gato/topics/gmail`
     }

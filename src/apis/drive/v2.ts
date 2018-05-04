@@ -2297,10 +2297,11 @@ export namespace drive_v2 {
      * Drive ID and change ID as an identifier.
      */
     teamDriveId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -2384,6 +2385,12 @@ export namespace drive_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -2706,10 +2713,11 @@ export namespace drive_v2 {
      * Whether the requesting application supports Team Drives.
      */
     supportsTeamDrives?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ChildReference;
+    requestBody?: Schema$ChildReference;
   }
   export interface Params$Resource$Children$List {
     /**
@@ -3196,10 +3204,11 @@ export namespace drive_v2 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$List {
     /**
@@ -3247,10 +3256,11 @@ export namespace drive_v2 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$Update {
     /**
@@ -3266,10 +3276,11 @@ export namespace drive_v2 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
 
 
@@ -4313,10 +4324,11 @@ export namespace drive_v2 {
      * source is not a native Google Doc and convert=false.
      */
     visibility?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
   }
   export interface Params$Resource$Files$Delete {
     /**
@@ -4449,14 +4461,16 @@ export namespace drive_v2 {
      * convert=false.
      */
     visibility?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -4465,7 +4479,7 @@ export namespace drive_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Files$List {
@@ -4613,10 +4627,11 @@ export namespace drive_v2 {
      * Whether to use the content as indexable text.
      */
     useContentAsIndexableText?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
   }
   export interface Params$Resource$Files$Touch {
     /**
@@ -4742,14 +4757,16 @@ export namespace drive_v2 {
      * Whether to use the content as indexable text.
      */
     useContentAsIndexableText?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -4758,7 +4775,7 @@ export namespace drive_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Files$Watch {
@@ -4794,10 +4811,11 @@ export namespace drive_v2 {
      * updateViewedDate=true and an empty request body.
      */
     updateViewedDate?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -5116,10 +5134,11 @@ export namespace drive_v2 {
      * Whether the requesting application supports Team Drives.
      */
     supportsTeamDrives?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ParentReference;
+    requestBody?: Schema$ParentReference;
   }
   export interface Params$Resource$Parents$List {
     /**
@@ -5726,10 +5745,11 @@ export namespace drive_v2 {
      * if they are an administrator of the domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Permission;
+    requestBody?: Schema$Permission;
   }
   export interface Params$Resource$Permissions$List {
     /**
@@ -5796,10 +5816,11 @@ export namespace drive_v2 {
      * if they are an administrator of the domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Permission;
+    requestBody?: Schema$Permission;
   }
   export interface Params$Resource$Permissions$Update {
     /**
@@ -5834,10 +5855,11 @@ export namespace drive_v2 {
      * if they are an administrator of the domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Permission;
+    requestBody?: Schema$Permission;
   }
 
 
@@ -6300,10 +6322,11 @@ export namespace drive_v2 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Property;
+    requestBody?: Schema$Property;
   }
   export interface Params$Resource$Properties$List {
     /**
@@ -6335,10 +6358,11 @@ export namespace drive_v2 {
      * (Default: PRIVATE)
      */
     visibility?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Property;
+    requestBody?: Schema$Property;
   }
   export interface Params$Resource$Properties$Update {
     /**
@@ -6359,10 +6383,11 @@ export namespace drive_v2 {
      * (Default: PRIVATE)
      */
     visibility?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Property;
+    requestBody?: Schema$Property;
   }
 
 
@@ -6545,10 +6570,12 @@ export namespace drive_v2 {
      * The ID of the file that the Realtime API data model is associated with.
      */
     fileId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -6557,7 +6584,7 @@ export namespace drive_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -7042,10 +7069,11 @@ export namespace drive_v2 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommentReply;
+    requestBody?: Schema$CommentReply;
   }
   export interface Params$Resource$Replies$List {
     /**
@@ -7096,10 +7124,11 @@ export namespace drive_v2 {
      * The ID of the reply.
      */
     replyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommentReply;
+    requestBody?: Schema$CommentReply;
   }
   export interface Params$Resource$Replies$Update {
     /**
@@ -7119,10 +7148,11 @@ export namespace drive_v2 {
      * The ID of the reply.
      */
     replyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommentReply;
+    requestBody?: Schema$CommentReply;
   }
 
 
@@ -7527,10 +7557,11 @@ export namespace drive_v2 {
      * The ID for the revision.
      */
     revisionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Revision;
+    requestBody?: Schema$Revision;
   }
   export interface Params$Resource$Revisions$Update {
     /**
@@ -7546,10 +7577,11 @@ export namespace drive_v2 {
      * The ID for the revision.
      */
     revisionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Revision;
+    requestBody?: Schema$Revision;
   }
 
 
@@ -7938,10 +7970,11 @@ export namespace drive_v2 {
      * exists a 409 error will be returned.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TeamDrive;
+    requestBody?: Schema$TeamDrive;
   }
   export interface Params$Resource$Teamdrives$List {
     /**
@@ -7978,9 +8011,10 @@ export namespace drive_v2 {
      * The ID of the Team Drive
      */
     teamDriveId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TeamDrive;
+    requestBody?: Schema$TeamDrive;
   }
 }

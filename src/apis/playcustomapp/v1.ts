@@ -194,14 +194,16 @@ export namespace playcustomapp_v1 {
      * Developer account ID.
      */
     account?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomApp;
+    requestBody?: Schema$CustomApp;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -210,7 +212,7 @@ export namespace playcustomapp_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 }

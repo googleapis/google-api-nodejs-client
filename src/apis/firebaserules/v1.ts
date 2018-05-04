@@ -553,10 +553,11 @@ export namespace firebaserules_v1 {
      * `projects/{project_id}/rulesets/{ruleset_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TestRulesetRequest;
+    requestBody?: Schema$TestRulesetRequest;
   }
 
   export class Resource$Projects$Releases {
@@ -1012,10 +1013,11 @@ export namespace firebaserules_v1 {
      * `projects/{project_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Release;
+    requestBody?: Schema$Release;
   }
   export interface Params$Resource$Projects$Releases$Delete {
     /**
@@ -1113,10 +1115,11 @@ export namespace firebaserules_v1 {
      * `projects/{project_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateReleaseRequest;
+    requestBody?: Schema$UpdateReleaseRequest;
   }
 
 
@@ -1418,10 +1421,11 @@ export namespace firebaserules_v1 {
      * `projects/{project_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Ruleset;
+    requestBody?: Schema$Ruleset;
   }
   export interface Params$Resource$Projects$Rulesets$Delete {
     /**

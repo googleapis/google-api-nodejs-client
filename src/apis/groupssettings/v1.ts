@@ -441,10 +441,11 @@ export namespace groupssettings_v1 {
      * The resource ID
      */
     groupUniqueId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Groups;
+    requestBody?: Schema$Groups;
   }
   export interface Params$Resource$Groups$Update {
     /**
@@ -456,9 +457,10 @@ export namespace groupssettings_v1 {
      * The resource ID
      */
     groupUniqueId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Groups;
+    requestBody?: Schema$Groups;
   }
 }

@@ -417,6 +417,12 @@ export namespace urlshortener_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Url;
   }
   export interface Params$Resource$Url$List {
     /**

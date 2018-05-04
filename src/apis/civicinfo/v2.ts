@@ -936,10 +936,11 @@ export namespace civicinfo_v2 {
      * http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      */
     query?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DivisionSearchRequest;
+    requestBody?: Schema$DivisionSearchRequest;
   }
 
 
@@ -1102,6 +1103,12 @@ export namespace civicinfo_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ElectionsQueryRequest;
   }
   export interface Params$Resource$Elections$Voterinfoquery {
     /**
@@ -1128,10 +1135,11 @@ export namespace civicinfo_v2 {
      * unable to determine the election for electionId=0 queries.
      */
     returnAllAvailableData?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VoterInfoRequest;
+    requestBody?: Schema$VoterInfoRequest;
   }
 
 
@@ -1332,10 +1340,11 @@ export namespace civicinfo_v2 {
      * will not be returned.
      */
     roles?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RepresentativeInfoRequest;
+    requestBody?: Schema$RepresentativeInfoRequest;
   }
   export interface Params$Resource$Representatives$Representativeinfobydivision {
     /**
@@ -1366,9 +1375,10 @@ export namespace civicinfo_v2 {
      * will not be returned.
      */
     roles?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DivisionRepresentativeInfoRequest;
+    requestBody?: Schema$DivisionRepresentativeInfoRequest;
   }
 }

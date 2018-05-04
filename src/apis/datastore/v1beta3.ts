@@ -1554,10 +1554,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AllocateIdsRequest;
+    requestBody?: Schema$AllocateIdsRequest;
   }
   export interface Params$Resource$Projects$Begintransaction {
     /**
@@ -1569,10 +1570,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BeginTransactionRequest;
+    requestBody?: Schema$BeginTransactionRequest;
   }
   export interface Params$Resource$Projects$Commit {
     /**
@@ -1584,10 +1586,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommitRequest;
+    requestBody?: Schema$CommitRequest;
   }
   export interface Params$Resource$Projects$Lookup {
     /**
@@ -1599,10 +1602,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LookupRequest;
+    requestBody?: Schema$LookupRequest;
   }
   export interface Params$Resource$Projects$Reserveids {
     /**
@@ -1614,10 +1618,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReserveIdsRequest;
+    requestBody?: Schema$ReserveIdsRequest;
   }
   export interface Params$Resource$Projects$Rollback {
     /**
@@ -1629,10 +1634,11 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollbackRequest;
+    requestBody?: Schema$RollbackRequest;
   }
   export interface Params$Resource$Projects$Runquery {
     /**
@@ -1644,9 +1650,10 @@ export namespace datastore_v1beta3 {
      * The ID of the project against which to make the request.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunQueryRequest;
+    requestBody?: Schema$RunQueryRequest;
   }
 }

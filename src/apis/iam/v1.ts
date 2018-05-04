@@ -803,10 +803,11 @@ export namespace iam_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$QueryAuditableServicesRequest;
+    requestBody?: Schema$QueryAuditableServicesRequest;
   }
 
 
@@ -1252,10 +1253,11 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateRoleRequest;
+    requestBody?: Schema$CreateRoleRequest;
   }
   export interface Params$Resource$Organizations$Roles$Delete {
     /**
@@ -1332,10 +1334,11 @@ export namespace iam_v1 {
      * A mask describing which fields in the Role have changed.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Role;
+    requestBody?: Schema$Role;
   }
   export interface Params$Resource$Organizations$Roles$Undelete {
     /**
@@ -1349,10 +1352,11 @@ export namespace iam_v1 {
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteRoleRequest;
+    requestBody?: Schema$UndeleteRoleRequest;
   }
 
 
@@ -1455,10 +1459,11 @@ export namespace iam_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$QueryTestablePermissionsRequest;
+    requestBody?: Schema$QueryTestablePermissionsRequest;
   }
 
 
@@ -1905,10 +1910,11 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateRoleRequest;
+    requestBody?: Schema$CreateRoleRequest;
   }
   export interface Params$Resource$Projects$Roles$Delete {
     /**
@@ -1985,10 +1991,11 @@ export namespace iam_v1 {
      * A mask describing which fields in the Role have changed.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Role;
+    requestBody?: Schema$Role;
   }
   export interface Params$Resource$Projects$Roles$Undelete {
     /**
@@ -2002,10 +2009,11 @@ export namespace iam_v1 {
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteRoleRequest;
+    requestBody?: Schema$UndeleteRoleRequest;
   }
 
 
@@ -2724,10 +2732,11 @@ export namespace iam_v1 {
      * accounts, such as `projects/my-project-123`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateServiceAccountRequest;
+    requestBody?: Schema$CreateServiceAccountRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Delete {
     /**
@@ -2805,10 +2814,11 @@ export namespace iam_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Signblob {
     /**
@@ -2824,10 +2834,11 @@ export namespace iam_v1 {
      * service account.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SignBlobRequest;
+    requestBody?: Schema$SignBlobRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt {
     /**
@@ -2843,10 +2854,11 @@ export namespace iam_v1 {
      * service account.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SignJwtRequest;
+    requestBody?: Schema$SignJwtRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions {
     /**
@@ -2859,10 +2871,11 @@ export namespace iam_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Update {
     /**
@@ -2879,10 +2892,11 @@ export namespace iam_v1 {
      * the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ServiceAccount;
+    requestBody?: Schema$ServiceAccount;
   }
 
   export class Resource$Projects$Serviceaccounts$Keys {
@@ -3180,10 +3194,11 @@ export namespace iam_v1 {
      * service account.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateServiceAccountKeyRequest;
+    requestBody?: Schema$CreateServiceAccountKeyRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete {
     /**
@@ -3508,9 +3523,10 @@ export namespace iam_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$QueryGrantableRolesRequest;
+    requestBody?: Schema$QueryGrantableRolesRequest;
   }
 }

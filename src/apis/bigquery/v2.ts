@@ -2813,10 +2813,11 @@ export namespace bigquery_v2 {
      * Project ID of the new dataset
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$List {
     /**
@@ -2864,10 +2865,11 @@ export namespace bigquery_v2 {
      * Project ID of the dataset being updated
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$Update {
     /**
@@ -2883,10 +2885,11 @@ export namespace bigquery_v2 {
      * Project ID of the dataset being updated
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
 
 
@@ -3783,14 +3786,16 @@ export namespace bigquery_v2 {
      * Project ID of the project that will be billed for the job
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3799,7 +3804,7 @@ export namespace bigquery_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Jobs$List {
@@ -3854,10 +3859,11 @@ export namespace bigquery_v2 {
      * Project ID of the project billed for the query
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$QueryRequest;
+    requestBody?: Schema$QueryRequest;
   }
 
 
@@ -4475,10 +4481,11 @@ export namespace bigquery_v2 {
      * Table ID of the destination table.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TableDataInsertAllRequest;
+    requestBody?: Schema$TableDataInsertAllRequest;
   }
   export interface Params$Resource$Tabledata$List {
     /**
@@ -5379,10 +5386,11 @@ export namespace bigquery_v2 {
      * Project ID of the new table
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Table;
+    requestBody?: Schema$Table;
   }
   export interface Params$Resource$Tables$List {
     /**
@@ -5426,10 +5434,11 @@ export namespace bigquery_v2 {
      * Table ID of the table to update
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Table;
+    requestBody?: Schema$Table;
   }
   export interface Params$Resource$Tables$Update {
     /**
@@ -5449,9 +5458,10 @@ export namespace bigquery_v2 {
      * Table ID of the table to update
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Table;
+    requestBody?: Schema$Table;
   }
 }

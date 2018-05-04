@@ -3379,10 +3379,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersAcknowledgeRequest;
+    requestBody?: Schema$OrdersAcknowledgeRequest;
   }
   export interface Params$Resource$Orders$Advancetestorder {
     /**
@@ -3415,10 +3416,11 @@ export namespace content_v2sandbox {
      * The ID of the order to cancel.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCancelRequest;
+    requestBody?: Schema$OrdersCancelRequest;
   }
   export interface Params$Resource$Orders$Cancellineitem {
     /**
@@ -3435,10 +3437,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCancelLineItemRequest;
+    requestBody?: Schema$OrdersCancelLineItemRequest;
   }
   export interface Params$Resource$Orders$Createtestorder {
     /**
@@ -3451,16 +3454,23 @@ export namespace content_v2sandbox {
      * multi-client account.
      */
     merchantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersCreateTestOrderRequest;
+    requestBody?: Schema$OrdersCreateTestOrderRequest;
   }
   export interface Params$Resource$Orders$Custombatch {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCustomBatchRequest;
   }
   export interface Params$Resource$Orders$Get {
     /**
@@ -3525,10 +3535,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersInStoreRefundLineItemRequest;
+    requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$List {
     /**
@@ -3601,10 +3612,11 @@ export namespace content_v2sandbox {
      * The ID of the order to refund.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersRefundRequest;
+    requestBody?: Schema$OrdersRefundRequest;
   }
   export interface Params$Resource$Orders$Rejectreturnlineitem {
     /**
@@ -3621,10 +3633,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersRejectReturnLineItemRequest;
+    requestBody?: Schema$OrdersRejectReturnLineItemRequest;
   }
   export interface Params$Resource$Orders$Returnlineitem {
     /**
@@ -3641,10 +3654,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersReturnLineItemRequest;
+    requestBody?: Schema$OrdersReturnLineItemRequest;
   }
   export interface Params$Resource$Orders$Returnrefundlineitem {
     /**
@@ -3661,10 +3675,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersReturnRefundLineItemRequest;
+    requestBody?: Schema$OrdersReturnRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$Setlineitemmetadata {
     /**
@@ -3681,10 +3696,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersSetLineItemMetadataRequest;
+    requestBody?: Schema$OrdersSetLineItemMetadataRequest;
   }
   export interface Params$Resource$Orders$Shiplineitems {
     /**
@@ -3701,10 +3717,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersShipLineItemsRequest;
+    requestBody?: Schema$OrdersShipLineItemsRequest;
   }
   export interface Params$Resource$Orders$Updatelineitemshippingdetails {
     /**
@@ -3721,10 +3738,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
+    requestBody?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
   }
   export interface Params$Resource$Orders$Updatemerchantorderid {
     /**
@@ -3741,10 +3759,11 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateMerchantOrderIdRequest;
+    requestBody?: Schema$OrdersUpdateMerchantOrderIdRequest;
   }
   export interface Params$Resource$Orders$Updateshipment {
     /**
@@ -3761,9 +3780,10 @@ export namespace content_v2sandbox {
      * The ID of the order.
      */
     orderId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$OrdersUpdateShipmentRequest;
+    requestBody?: Schema$OrdersUpdateShipmentRequest;
   }
 }

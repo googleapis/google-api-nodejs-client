@@ -785,6 +785,12 @@ export namespace gamesManagement_v1management {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AchievementResetMultipleForAllRequest;
   }
 
 
@@ -1281,6 +1287,12 @@ export namespace gamesManagement_v1management {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventsResetMultipleForAllRequest;
   }
 
 
@@ -1848,6 +1860,12 @@ export namespace gamesManagement_v1management {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuestsResetMultipleForAllRequest;
   }
 
 
@@ -2404,6 +2422,12 @@ export namespace gamesManagement_v1management {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ScoresResetMultipleForAllRequest;
   }
 
 

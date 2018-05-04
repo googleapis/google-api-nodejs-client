@@ -20,7 +20,7 @@ const sampleClient = require('./sampleclient');
 async function runSamples () {
   // insertion example
   let res = await drive.files.insert({
-    resource: {
+    requestBody: {
       title: 'Test',
       mimeType: 'text/plain'
     },
@@ -46,7 +46,7 @@ async function runSamples () {
   // update example with metadata update
   res = await drive.files.update({
     fileId: '0B-skmV2...',
-    resource: {
+    requestBody: {
       title: 'Updated title'
     },
     media: {
