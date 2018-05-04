@@ -487,6 +487,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 * Ask your development related questions on [Stackoverflow][stackoverflow].
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
+
 [snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
 [snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
 [david-image]: https://david-dm.org/google/google-api-nodejs-client.svg
