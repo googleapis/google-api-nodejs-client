@@ -1444,10 +1444,11 @@ export namespace drive_v3 {
      * Drive ID and change ID as an identifier.
      */
     teamDriveId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -1531,6 +1532,12 @@ export namespace drive_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -1883,10 +1890,11 @@ export namespace drive_v3 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$Delete {
     /**
@@ -1967,10 +1975,11 @@ export namespace drive_v3 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
 
 
@@ -2702,10 +2711,11 @@ export namespace drive_v3 {
      * Whether the requesting application supports Team Drives.
      */
     supportsTeamDrives?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
   }
   export interface Params$Resource$Files$Create {
     /**
@@ -2737,14 +2747,16 @@ export namespace drive_v3 {
      * Whether to use the uploaded content as indexable text.
      */
     useContentAsIndexableText?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2753,7 +2765,7 @@ export namespace drive_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Files$Delete {
@@ -2926,14 +2938,16 @@ export namespace drive_v3 {
      * Whether to use the uploaded content as indexable text.
      */
     useContentAsIndexableText?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$File;
+    requestBody?: Schema$File;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2942,7 +2956,7 @@ export namespace drive_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Files$Watch {
@@ -2964,10 +2978,11 @@ export namespace drive_v3 {
      * Whether the requesting application supports Team Drives.
      */
     supportsTeamDrives?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 
@@ -3370,10 +3385,11 @@ export namespace drive_v3 {
      * if they are an administrator of the domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Permission;
+    requestBody?: Schema$Permission;
   }
   export interface Params$Resource$Permissions$Delete {
     /**
@@ -3491,10 +3507,11 @@ export namespace drive_v3 {
      * if they are an administrator of the domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Permission;
+    requestBody?: Schema$Permission;
   }
 
 
@@ -3863,10 +3880,11 @@ export namespace drive_v3 {
      * The ID of the file.
      */
     fileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Reply;
+    requestBody?: Schema$Reply;
   }
   export interface Params$Resource$Replies$Delete {
     /**
@@ -3958,10 +3976,11 @@ export namespace drive_v3 {
      * The ID of the reply.
      */
     replyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Reply;
+    requestBody?: Schema$Reply;
   }
 
 
@@ -4307,10 +4326,11 @@ export namespace drive_v3 {
      * The ID of the revision.
      */
     revisionId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Revision;
+    requestBody?: Schema$Revision;
   }
 
 
@@ -4670,10 +4690,11 @@ export namespace drive_v3 {
      * exists a 409 error will be returned.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TeamDrive;
+    requestBody?: Schema$TeamDrive;
   }
   export interface Params$Resource$Teamdrives$Delete {
     /**
@@ -4739,9 +4760,10 @@ export namespace drive_v3 {
      * The ID of the Team Drive
      */
     teamDriveId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TeamDrive;
+    requestBody?: Schema$TeamDrive;
   }
 }

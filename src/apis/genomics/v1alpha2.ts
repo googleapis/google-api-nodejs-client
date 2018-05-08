@@ -1305,10 +1305,11 @@ export namespace genomics_v1alpha2 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Get {
     /**
@@ -2229,10 +2230,11 @@ export namespace genomics_v1alpha2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Pipeline;
+    requestBody?: Schema$Pipeline;
   }
   export interface Params$Resource$Pipelines$Delete {
     /**
@@ -2306,10 +2308,11 @@ export namespace genomics_v1alpha2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunPipelineRequest;
+    requestBody?: Schema$RunPipelineRequest;
   }
   export interface Params$Resource$Pipelines$Setoperationstatus {
     /**
@@ -2317,9 +2320,10 @@ export namespace genomics_v1alpha2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SetOperationStatusRequest;
+    requestBody?: Schema$SetOperationStatusRequest;
   }
 }

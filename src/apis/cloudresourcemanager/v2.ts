@@ -1331,10 +1331,11 @@ export namespace cloudresourcemanager_v2 {
      * `folders/{folder_id}` or `organizations/{org_id}`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Folders$Delete {
     /**
@@ -1371,10 +1372,11 @@ export namespace cloudresourcemanager_v2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Folders$List {
     /**
@@ -1417,10 +1419,11 @@ export namespace cloudresourcemanager_v2 {
      * folders/{folder_id}
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$MoveFolderRequest;
+    requestBody?: Schema$MoveFolderRequest;
   }
   export interface Params$Resource$Folders$Patch {
     /**
@@ -1437,10 +1440,11 @@ export namespace cloudresourcemanager_v2 {
      * Fields to be updated. Only the `display_name` can be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Folder;
+    requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Folders$Search {
     /**
@@ -1448,10 +1452,11 @@ export namespace cloudresourcemanager_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchFoldersRequest;
+    requestBody?: Schema$SearchFoldersRequest;
   }
   export interface Params$Resource$Folders$Setiampolicy {
     /**
@@ -1464,10 +1469,11 @@ export namespace cloudresourcemanager_v2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Folders$Testiampermissions {
     /**
@@ -1480,10 +1486,11 @@ export namespace cloudresourcemanager_v2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Folders$Undelete {
     /**
@@ -1496,9 +1503,10 @@ export namespace cloudresourcemanager_v2 {
      * `folders/{folder_id}`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteFolderRequest;
+    requestBody?: Schema$UndeleteFolderRequest;
   }
 }

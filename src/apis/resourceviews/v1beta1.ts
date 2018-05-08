@@ -772,10 +772,11 @@ export namespace resourceviews_v1beta1 {
      * The name of the resource view.
      */
     resourceViewName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionViewsAddResourcesRequest;
+    requestBody?: Schema$RegionViewsAddResourcesRequest;
   }
   export interface Params$Resource$Regionviews$Delete {
     /**
@@ -829,10 +830,11 @@ export namespace resourceviews_v1beta1 {
      * The region name of the resource view.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResourceView;
+    requestBody?: Schema$ResourceView;
   }
   export interface Params$Resource$Regionviews$List {
     /**
@@ -908,10 +910,11 @@ export namespace resourceviews_v1beta1 {
      * The name of the resource view.
      */
     resourceViewName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RegionViewsRemoveResourcesRequest;
+    requestBody?: Schema$RegionViewsRemoveResourcesRequest;
   }
 
 
@@ -1441,10 +1444,11 @@ export namespace resourceviews_v1beta1 {
      * The zone name of the resource view.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ZoneViewsAddResourcesRequest;
+    requestBody?: Schema$ZoneViewsAddResourcesRequest;
   }
   export interface Params$Resource$Zoneviews$Delete {
     /**
@@ -1498,10 +1502,11 @@ export namespace resourceviews_v1beta1 {
      * The zone name of the resource view.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResourceView;
+    requestBody?: Schema$ResourceView;
   }
   export interface Params$Resource$Zoneviews$List {
     /**
@@ -1577,9 +1582,10 @@ export namespace resourceviews_v1beta1 {
      * The zone name of the resource view.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ZoneViewsRemoveResourcesRequest;
+    requestBody?: Schema$ZoneViewsRemoveResourcesRequest;
   }
 }

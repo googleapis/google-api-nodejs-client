@@ -2276,10 +2276,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
   export interface Params$Resource$Devices$Setstate {
     /**
@@ -2299,10 +2300,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeviceState;
+    requestBody?: Schema$DeviceState;
   }
   export interface Params$Resource$Devices$Update {
     /**
@@ -2328,10 +2330,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
 
 
@@ -3682,10 +3685,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdministratorWebTokenSpec;
+    requestBody?: Schema$AdministratorWebTokenSpec;
   }
   export interface Params$Resource$Enterprises$Delete {
     /**
@@ -3708,10 +3712,11 @@ export namespace androidenterprise_v1 {
      * The token provided by the enterprise to register the EMM.
      */
     token?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Enterprise;
+    requestBody?: Schema$Enterprise;
   }
   export interface Params$Resource$Enterprises$Generatesignupurl {
     /**
@@ -3788,10 +3793,11 @@ export namespace androidenterprise_v1 {
      * The token provided by the enterprise to register the EMM.
      */
     token?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Enterprise;
+    requestBody?: Schema$Enterprise;
   }
   export interface Params$Resource$Enterprises$List {
     /**
@@ -3842,10 +3848,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EnterpriseAccount;
+    requestBody?: Schema$EnterpriseAccount;
   }
   export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig {
     /**
@@ -3857,10 +3864,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AndroidDevicePolicyConfig;
+    requestBody?: Schema$AndroidDevicePolicyConfig;
   }
   export interface Params$Resource$Enterprises$Setstorelayout {
     /**
@@ -3872,10 +3880,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StoreLayout;
+    requestBody?: Schema$StoreLayout;
   }
   export interface Params$Resource$Enterprises$Unenroll {
     /**
@@ -4334,10 +4343,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Entitlement;
+    requestBody?: Schema$Entitlement;
   }
   export interface Params$Resource$Entitlements$Update {
     /**
@@ -4365,10 +4375,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Entitlement;
+    requestBody?: Schema$Entitlement;
   }
 
 
@@ -5112,10 +5123,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Install;
+    requestBody?: Schema$Install;
   }
   export interface Params$Resource$Installs$Update {
     /**
@@ -5140,10 +5152,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Install;
+    requestBody?: Schema$Install;
   }
 
 
@@ -5645,10 +5658,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedConfiguration;
+    requestBody?: Schema$ManagedConfiguration;
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Update {
     /**
@@ -5673,10 +5687,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedConfiguration;
+    requestBody?: Schema$ManagedConfiguration;
   }
 
 
@@ -6144,10 +6159,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedConfiguration;
+    requestBody?: Schema$ManagedConfiguration;
   }
   export interface Params$Resource$Managedconfigurationsforuser$Update {
     /**
@@ -6168,10 +6184,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedConfiguration;
+    requestBody?: Schema$ManagedConfiguration;
   }
 
 
@@ -6921,10 +6938,11 @@ export namespace androidenterprise_v1 {
      * The ID of the product.
      */
     productId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProductsApproveRequest;
+    requestBody?: Schema$ProductsApproveRequest;
   }
   export interface Params$Resource$Products$Generateapprovalurl {
     /**
@@ -7322,10 +7340,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ServiceAccountKey;
+    requestBody?: Schema$ServiceAccountKey;
   }
   export interface Params$Resource$Serviceaccountkeys$List {
     /**
@@ -7834,10 +7853,11 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StoreCluster;
+    requestBody?: Schema$StoreCluster;
   }
   export interface Params$Resource$Storelayoutclusters$List {
     /**
@@ -7872,10 +7892,11 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StoreCluster;
+    requestBody?: Schema$StoreCluster;
   }
   export interface Params$Resource$Storelayoutclusters$Update {
     /**
@@ -7895,10 +7916,11 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StoreCluster;
+    requestBody?: Schema$StoreCluster;
   }
 
 
@@ -8377,10 +8399,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StorePage;
+    requestBody?: Schema$StorePage;
   }
   export interface Params$Resource$Storelayoutpages$List {
     /**
@@ -8407,10 +8430,11 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StorePage;
+    requestBody?: Schema$StorePage;
   }
   export interface Params$Resource$Storelayoutpages$Update {
     /**
@@ -8426,10 +8450,11 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StorePage;
+    requestBody?: Schema$StorePage;
   }
 
 
@@ -9375,10 +9400,11 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$List {
     /**
@@ -9409,10 +9435,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$Revokedeviceaccess {
     /**
@@ -9458,10 +9485,11 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProductSet;
+    requestBody?: Schema$ProductSet;
   }
   export interface Params$Resource$Users$Update {
     /**
@@ -9477,9 +9505,10 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$User;
+    requestBody?: Schema$User;
   }
 }

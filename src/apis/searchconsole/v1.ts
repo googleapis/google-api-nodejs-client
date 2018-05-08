@@ -270,9 +270,10 @@ export namespace searchconsole_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunMobileFriendlyTestRequest;
+    requestBody?: Schema$RunMobileFriendlyTestRequest;
   }
 }

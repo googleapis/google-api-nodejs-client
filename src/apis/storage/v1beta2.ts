@@ -979,10 +979,11 @@ export namespace storage_v1beta2 {
      * Name of a bucket.
      */
     bucket?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
   export interface Params$Resource$Bucketaccesscontrols$List {
     /**
@@ -1010,10 +1011,11 @@ export namespace storage_v1beta2 {
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
   export interface Params$Resource$Bucketaccesscontrols$Update {
     /**
@@ -1030,10 +1032,11 @@ export namespace storage_v1beta2 {
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
 
 
@@ -1509,10 +1512,11 @@ export namespace storage_v1beta2 {
      * to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$List {
     /**
@@ -1562,10 +1566,11 @@ export namespace storage_v1beta2 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$Update {
     /**
@@ -1591,10 +1596,11 @@ export namespace storage_v1beta2 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
 
 
@@ -1678,6 +1684,12 @@ export namespace storage_v1beta2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -2148,10 +2160,11 @@ export namespace storage_v1beta2 {
      * Name of a bucket.
      */
     bucket?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$List {
     /**
@@ -2189,10 +2202,11 @@ export namespace storage_v1beta2 {
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Update {
     /**
@@ -2209,10 +2223,11 @@ export namespace storage_v1beta2 {
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
 
 
@@ -2720,10 +2735,11 @@ export namespace storage_v1beta2 {
      * Name of the object.
      */
     object?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Objectaccesscontrols$List {
     /**
@@ -2769,10 +2785,11 @@ export namespace storage_v1beta2 {
      * Name of the object.
      */
     object?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Objectaccesscontrols$Update {
     /**
@@ -2798,10 +2815,11 @@ export namespace storage_v1beta2 {
      * Name of the object.
      */
     object?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
 
 
@@ -3501,10 +3519,11 @@ export namespace storage_v1beta2 {
      * metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ComposeRequest;
+    requestBody?: Schema$ComposeRequest;
   }
   export interface Params$Resource$Objects$Copy {
     /**
@@ -3580,10 +3599,11 @@ export namespace storage_v1beta2 {
      * Name of the source object.
      */
     sourceObject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Delete {
     /**
@@ -3710,14 +3730,16 @@ export namespace storage_v1beta2 {
      * resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -3726,7 +3748,7 @@ export namespace storage_v1beta2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Objects$List {
@@ -3813,10 +3835,11 @@ export namespace storage_v1beta2 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Update {
     /**
@@ -3861,10 +3884,11 @@ export namespace storage_v1beta2 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Watchall {
     /**
@@ -3906,9 +3930,10 @@ export namespace storage_v1beta2 {
      * If true, lists all versions of a file as distinct results.
      */
     versions?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 }

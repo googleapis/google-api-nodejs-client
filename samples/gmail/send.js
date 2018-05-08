@@ -47,7 +47,7 @@ async function runSample () {
 
   const res = await gmail.users.messages.send({
     userId: 'me',
-    resource: {
+    requestBody: {
       raw: encodedMessage
     }
   });

@@ -2469,10 +2469,11 @@ export namespace spanner_v1 {
      * are of the form `projects/<project>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateInstanceRequest;
+    requestBody?: Schema$CreateInstanceRequest;
   }
   export interface Params$Resource$Projects$Instances$Delete {
     /**
@@ -2511,10 +2512,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$List {
     /**
@@ -2565,10 +2567,11 @@ export namespace spanner_v1 {
      * name must be between 6 and 30 characters in length.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateInstanceRequest;
+    requestBody?: Schema$UpdateInstanceRequest;
   }
   export interface Params$Resource$Projects$Instances$Setiampolicy {
     /**
@@ -2583,10 +2586,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for databases resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$Testiampermissions {
     /**
@@ -2601,10 +2605,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Instances$Databases {
@@ -3275,10 +3280,11 @@ export namespace spanner_v1 {
      * Values are of the form `projects/<project>/instances/<instance>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateDatabaseRequest;
+    requestBody?: Schema$CreateDatabaseRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Dropdatabase {
     /**
@@ -3327,10 +3333,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$List {
     /**
@@ -3367,10 +3374,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for databases resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Testiampermissions {
     /**
@@ -3385,10 +3393,11 @@ export namespace spanner_v1 {
      * ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Updateddl {
     /**
@@ -3400,10 +3409,11 @@ export namespace spanner_v1 {
      * Required. The database to update.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateDatabaseDdlRequest;
+    requestBody?: Schema$UpdateDatabaseDdlRequest;
   }
 
   export class Resource$Projects$Instances$Databases$Operations {
@@ -4771,10 +4781,11 @@ export namespace spanner_v1 {
      * Required. The session in which the transaction runs.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BeginTransactionRequest;
+    requestBody?: Schema$BeginTransactionRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit {
     /**
@@ -4787,10 +4798,11 @@ export namespace spanner_v1 {
      * running.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CommitRequest;
+    requestBody?: Schema$CommitRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Create {
     /**
@@ -4802,10 +4814,11 @@ export namespace spanner_v1 {
      * Required. The database in which the new session is created.
      */
     database?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateSessionRequest;
+    requestBody?: Schema$CreateSessionRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete {
     /**
@@ -4828,10 +4841,11 @@ export namespace spanner_v1 {
      * Required. The session in which the SQL query should be performed.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExecuteSqlRequest;
+    requestBody?: Schema$ExecuteSqlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql {
     /**
@@ -4843,10 +4857,11 @@ export namespace spanner_v1 {
      * Required. The session in which the SQL query should be performed.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExecuteSqlRequest;
+    requestBody?: Schema$ExecuteSqlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Get {
     /**
@@ -4899,10 +4914,11 @@ export namespace spanner_v1 {
      * Required. The session used to create the partitions.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PartitionQueryRequest;
+    requestBody?: Schema$PartitionQueryRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread {
     /**
@@ -4914,10 +4930,11 @@ export namespace spanner_v1 {
      * Required. The session used to create the partitions.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PartitionReadRequest;
+    requestBody?: Schema$PartitionReadRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Read {
     /**
@@ -4929,10 +4946,11 @@ export namespace spanner_v1 {
      * Required. The session in which the read should be performed.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReadRequest;
+    requestBody?: Schema$ReadRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback {
     /**
@@ -4944,10 +4962,11 @@ export namespace spanner_v1 {
      * Required. The session in which the transaction to roll back is running.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RollbackRequest;
+    requestBody?: Schema$RollbackRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread {
     /**
@@ -4959,10 +4978,11 @@ export namespace spanner_v1 {
      * Required. The session in which the read should be performed.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReadRequest;
+    requestBody?: Schema$ReadRequest;
   }
 
 

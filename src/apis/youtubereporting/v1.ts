@@ -835,10 +835,11 @@ export namespace youtubereporting_v1 {
      * not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
   export interface Params$Resource$Jobs$Delete {
     /**

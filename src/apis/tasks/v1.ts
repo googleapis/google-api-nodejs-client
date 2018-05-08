@@ -634,6 +634,12 @@ export namespace tasks_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$List {
     /**
@@ -661,10 +667,11 @@ export namespace tasks_v1 {
      * Task list identifier.
      */
     tasklist?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TaskList;
+    requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$Update {
     /**
@@ -676,10 +683,11 @@ export namespace tasks_v1 {
      * Task list identifier.
      */
     tasklist?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TaskList;
+    requestBody?: Schema$TaskList;
   }
 
 
@@ -1289,10 +1297,11 @@ export namespace tasks_v1 {
      * Task list identifier.
      */
     tasklist?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Task;
+    requestBody?: Schema$Task;
   }
   export interface Params$Resource$Tasks$List {
     /**
@@ -1394,10 +1403,11 @@ export namespace tasks_v1 {
      * Task list identifier.
      */
     tasklist?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Task;
+    requestBody?: Schema$Task;
   }
   export interface Params$Resource$Tasks$Update {
     /**
@@ -1413,9 +1423,10 @@ export namespace tasks_v1 {
      * Task list identifier.
      */
     tasklist?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Task;
+    requestBody?: Schema$Task;
   }
 }

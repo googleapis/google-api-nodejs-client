@@ -1066,11 +1066,10 @@ export namespace dialogflow_v2 {
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  You should not rely on this field as it
-     * isn&#39;t guaranteed to be accurate, or even set. In particular this
-     * field isn&#39;t set in Webhook calls and for StreamingDetectIntent since
-     * the streaming endpoint has separate confidence estimates per portion of
-     * the audio in StreamingRecognitionResult.
+     * confidence was not set.  This field is not guaranteed to be accurate or
+     * set. In particular this field isn&#39;t set for StreamingDetectIntent
+     * since the streaming endpoint has separate confidence estimates per
+     * portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
@@ -2130,11 +2129,10 @@ export namespace dialogflow_v2 {
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  You should not rely on this field as it
-     * isn&#39;t guaranteed to be accurate, or even set. In particular this
-     * field isn&#39;t set in Webhook calls and for StreamingDetectIntent since
-     * the streaming endpoint has separate confidence estimates per portion of
-     * the audio in StreamingRecognitionResult.
+     * confidence was not set.  This field is not guaranteed to be accurate or
+     * set. In particular this field isn&#39;t set for StreamingDetectIntent
+     * since the streaming endpoint has separate confidence estimates per
+     * portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
@@ -2893,10 +2891,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2ExportAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2ExportAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Import {
     /**
@@ -2909,10 +2908,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2ImportAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2ImportAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Restore {
     /**
@@ -2925,10 +2925,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2RestoreAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2RestoreAgentRequest;
   }
   export interface Params$Resource$Projects$Agent$Search {
     /**
@@ -2963,10 +2964,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2TrainAgentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2TrainAgentRequest;
   }
 
   export class Resource$Projects$Agent$Entitytypes {
@@ -3528,10 +3530,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate {
     /**
@@ -3544,10 +3547,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Create {
     /**
@@ -3567,10 +3571,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2EntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2EntityType;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Delete {
     /**
@@ -3655,10 +3660,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2EntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2EntityType;
   }
 
   export class Resource$Projects$Agent$Entitytypes$Entities {
@@ -3924,10 +3930,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete {
     /**
@@ -3940,10 +3947,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate {
     /**
@@ -3956,10 +3964,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchUpdateEntitiesRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntitiesRequest;
   }
 
 
@@ -4510,10 +4519,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest;
   }
   export interface Params$Resource$Projects$Agent$Intents$Batchupdate {
     /**
@@ -4526,10 +4536,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest;
   }
   export interface Params$Resource$Projects$Agent$Intents$Create {
     /**
@@ -4554,10 +4565,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * ID>/agent`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2Intent;
+    requestBody?: Schema$GoogleCloudDialogflowV2Intent;
   }
   export interface Params$Resource$Projects$Agent$Intents$Delete {
     /**
@@ -4657,10 +4669,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2Intent;
+    requestBody?: Schema$GoogleCloudDialogflowV2Intent;
   }
 
 
@@ -4855,10 +4868,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * session ID must not exceed 36 bytes.
      */
     session?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2DetectIntentRequest;
+    requestBody?: Schema$GoogleCloudDialogflowV2DetectIntentRequest;
   }
 
   export class Resource$Projects$Agent$Sessions$Contexts {
@@ -5253,10 +5267,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * ID>/agent/sessions/<Session ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete {
     /**
@@ -5320,10 +5335,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2Context;
+    requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
 
 
@@ -5731,10 +5747,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete {
     /**
@@ -5799,10 +5816,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Optional. The mask to control which fields get updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudDialogflowV2SessionEntityType;
+    requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
 
 

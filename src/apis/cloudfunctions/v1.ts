@@ -1442,10 +1442,11 @@ export namespace cloudfunctions_v1 {
      * The name of the function to be called.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CallFunctionRequest;
+    requestBody?: Schema$CallFunctionRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Create {
     /**
@@ -1458,10 +1459,11 @@ export namespace cloudfunctions_v1 {
      * specified in the format `projects/x/locations/x`
      */
     location?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CloudFunction;
+    requestBody?: Schema$CloudFunction;
   }
   export interface Params$Resource$Projects$Locations$Functions$Delete {
     /**
@@ -1485,10 +1487,11 @@ export namespace cloudfunctions_v1 {
      * URL should be generated.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GenerateDownloadUrlRequest;
+    requestBody?: Schema$GenerateDownloadUrlRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl {
     /**
@@ -1501,10 +1504,11 @@ export namespace cloudfunctions_v1 {
      * should be generated, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GenerateUploadUrlRequest;
+    requestBody?: Schema$GenerateUploadUrlRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Get {
     /**
@@ -1555,9 +1559,10 @@ export namespace cloudfunctions_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CloudFunction;
+    requestBody?: Schema$CloudFunction;
   }
 }

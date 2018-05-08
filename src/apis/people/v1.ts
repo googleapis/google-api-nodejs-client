@@ -1739,10 +1739,11 @@ export namespace people_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateContactGroupRequest;
+    requestBody?: Schema$CreateContactGroupRequest;
   }
   export interface Params$Resource$Contactgroups$Delete {
     /**
@@ -1807,10 +1808,11 @@ export namespace people_v1 {
      * string, in the form of `contactGroups/`<var>contact_group_id</var>.
      */
     resourceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateContactGroupRequest;
+    requestBody?: Schema$UpdateContactGroupRequest;
   }
 
   export class Resource$Contactgroups$Members {
@@ -1915,10 +1917,11 @@ export namespace people_v1 {
      * The resource name of the contact group to modify.
      */
     resourceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyContactGroupMembersRequest;
+    requestBody?: Schema$ModifyContactGroupMembersRequest;
   }
 
 
@@ -2294,10 +2297,11 @@ export namespace people_v1 {
      * The resource name of the owning person resource.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Person;
+    requestBody?: Schema$Person;
   }
   export interface Params$Resource$People$Deletecontact {
     /**
@@ -2398,10 +2402,11 @@ export namespace people_v1 {
      * phoneNumbers * relations * residences * urls
      */
     updatePersonFields?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Person;
+    requestBody?: Schema$Person;
   }
 
   export class Resource$People$Connections {

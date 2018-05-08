@@ -688,12 +688,24 @@ export namespace doubleclickbidmanager_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DownloadLineItemsRequest;
   }
   export interface Params$Resource$Lineitems$Uploadlineitems {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadLineItemsRequest;
   }
 
 
@@ -1042,6 +1054,12 @@ export namespace doubleclickbidmanager_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Query;
   }
   export interface Params$Resource$Queries$Deletequery {
     /**
@@ -1081,10 +1099,11 @@ export namespace doubleclickbidmanager_v1 {
      * Query ID to run.
      */
     queryId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunQueryRequest;
+    requestBody?: Schema$RunQueryRequest;
   }
 
 
@@ -1264,5 +1283,11 @@ export namespace doubleclickbidmanager_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DownloadRequest;
   }
 }

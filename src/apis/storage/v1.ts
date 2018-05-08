@@ -1638,10 +1638,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
   export interface Params$Resource$Bucketaccesscontrols$List {
     /**
@@ -1679,10 +1680,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
   export interface Params$Resource$Bucketaccesscontrols$Update {
     /**
@@ -1704,10 +1706,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BucketAccessControl;
+    requestBody?: Schema$BucketAccessControl;
   }
 
 
@@ -3027,10 +3030,11 @@ export namespace storage_v1 {
      * The project to be billed for this request.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$List {
     /**
@@ -3123,10 +3127,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$Setiampolicy {
     /**
@@ -3143,10 +3148,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Policy;
+    requestBody?: Schema$Policy;
   }
   export interface Params$Resource$Buckets$Testiampermissions {
     /**
@@ -3205,10 +3211,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Bucket;
+    requestBody?: Schema$Bucket;
   }
 
 
@@ -3343,6 +3350,12 @@ export namespace storage_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
   }
 
 
@@ -4174,10 +4187,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$List {
     /**
@@ -4225,10 +4239,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Update {
     /**
@@ -4250,10 +4265,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
 
 
@@ -4813,10 +4829,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Notification;
+    requestBody?: Schema$Notification;
   }
   export interface Params$Resource$Notifications$List {
     /**
@@ -5740,10 +5757,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Objectaccesscontrols$List {
     /**
@@ -5801,10 +5819,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
   export interface Params$Resource$Objectaccesscontrols$Update {
     /**
@@ -5836,10 +5855,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ObjectAccessControl;
+    requestBody?: Schema$ObjectAccessControl;
   }
 
 
@@ -7718,10 +7738,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ComposeRequest;
+    requestBody?: Schema$ComposeRequest;
   }
   export interface Params$Resource$Objects$Copy {
     /**
@@ -7811,10 +7832,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Delete {
     /**
@@ -8015,14 +8037,16 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -8031,7 +8055,7 @@ export namespace storage_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Objects$List {
@@ -8138,10 +8162,11 @@ export namespace storage_v1 {
      * The project to be billed for this request, for Requester Pays buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Rewrite {
     /**
@@ -8257,10 +8282,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Setiampolicy {
     /**
@@ -8287,10 +8313,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Policy;
+    requestBody?: Schema$Policy;
   }
   export interface Params$Resource$Objects$Testiampermissions {
     /**
@@ -8378,10 +8405,11 @@ export namespace storage_v1 {
      * buckets.
      */
     userProject?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Object;
+    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Watchall {
     /**
@@ -8431,10 +8459,11 @@ export namespace storage_v1 {
      * is false. For more information, see Object Versioning.
      */
     versions?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Channel;
+    requestBody?: Schema$Channel;
   }
 
 

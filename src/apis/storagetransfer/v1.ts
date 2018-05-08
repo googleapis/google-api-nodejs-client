@@ -1382,10 +1382,11 @@ export namespace storagetransfer_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TransferJob;
+    requestBody?: Schema$TransferJob;
   }
   export interface Params$Resource$Transferjobs$Get {
     /**
@@ -1438,10 +1439,11 @@ export namespace storagetransfer_v1 {
      * The name of job to update. Required.
      */
     jobName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateTransferJobRequest;
+    requestBody?: Schema$UpdateTransferJobRequest;
   }
 
 
@@ -2278,10 +2280,11 @@ export namespace storagetransfer_v1 {
      * The name of the transfer operation. Required.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PauseTransferOperationRequest;
+    requestBody?: Schema$PauseTransferOperationRequest;
   }
   export interface Params$Resource$Transferoperations$Resume {
     /**
@@ -2293,9 +2296,10 @@ export namespace storagetransfer_v1 {
      * The name of the transfer operation. Required.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResumeTransferOperationRequest;
+    requestBody?: Schema$ResumeTransferOperationRequest;
   }
 }

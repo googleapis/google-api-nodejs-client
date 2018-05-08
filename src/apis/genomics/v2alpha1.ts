@@ -936,10 +936,11 @@ export namespace genomics_v2alpha1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunPipelineRequest;
+    requestBody?: Schema$RunPipelineRequest;
   }
 
 
@@ -1187,10 +1188,11 @@ export namespace genomics_v2alpha1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Projects$Operations$Get {
     /**
@@ -1336,9 +1338,10 @@ export namespace genomics_v2alpha1 {
      * The worker id, assigned when it was created.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CheckInRequest;
+    requestBody?: Schema$CheckInRequest;
   }
 }

@@ -1620,10 +1620,11 @@ export namespace servicebroker_v1alpha1 {
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1alpha1__ServiceInstance;
+    requestBody?: Schema$GoogleCloudServicebrokerV1alpha1__ServiceInstance;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Delete {
     /**
@@ -1710,10 +1711,11 @@ export namespace servicebroker_v1alpha1 {
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1alpha1__ServiceInstance;
+    requestBody?: Schema$GoogleCloudServicebrokerV1alpha1__ServiceInstance;
   }
 
   export class Resource$Projects$Brokers$V2$Service_instances$Service_bindings {
@@ -2129,10 +2131,11 @@ export namespace servicebroker_v1alpha1 {
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudServicebrokerV1alpha1__Binding;
+    requestBody?: Schema$GoogleCloudServicebrokerV1alpha1__Binding;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete {
     /**
@@ -2484,10 +2487,11 @@ export namespace servicebroker_v1alpha1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+    requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
   export interface Params$Resource$V1alpha1$Testiampermissions {
     /**
@@ -2500,9 +2504,10 @@ export namespace servicebroker_v1alpha1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+    requestBody?: Schema$GoogleIamV1__TestIamPermissionsRequest;
   }
 }

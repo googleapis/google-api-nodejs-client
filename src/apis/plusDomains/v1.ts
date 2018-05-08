@@ -1000,10 +1000,11 @@ export namespace plusDomains_v1 {
      * be "me", to indicate the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Activity;
+    requestBody?: Schema$Activity;
   }
   export interface Params$Resource$Activities$List {
     /**
@@ -1716,10 +1717,11 @@ export namespace plusDomains_v1 {
      * be used to indicate the authenticated user.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Circle;
+    requestBody?: Schema$Circle;
   }
   export interface Params$Resource$Circles$List {
     /**
@@ -1755,10 +1757,11 @@ export namespace plusDomains_v1 {
      * The ID of the circle to update.
      */
     circleId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Circle;
+    requestBody?: Schema$Circle;
   }
   export interface Params$Resource$Circles$Remove {
     /**
@@ -1800,10 +1803,11 @@ export namespace plusDomains_v1 {
      * The ID of the circle to update.
      */
     circleId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Circle;
+    requestBody?: Schema$Circle;
   }
 
 
@@ -2036,10 +2040,11 @@ export namespace plusDomains_v1 {
      * The ID of the activity to reply to.
      */
     activityId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Comment;
+    requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$List {
     /**
@@ -2172,14 +2177,16 @@ export namespace plusDomains_v1 {
      * The ID of the user to create the activity on behalf of.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Media;
+    requestBody?: Schema$Media;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2188,7 +2195,7 @@ export namespace plusDomains_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 

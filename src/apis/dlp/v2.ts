@@ -3173,10 +3173,11 @@ export namespace dlp_v2 {
      * organizations/my-org-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
   export interface Params$Resource$Organizations$Deidentifytemplates$Delete {
     /**
@@ -3238,10 +3239,11 @@ export namespace dlp_v2 {
      * projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
   }
 
 
@@ -3645,10 +3647,11 @@ export namespace dlp_v2 {
      * organizations/my-org-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
   export interface Params$Resource$Organizations$Inspecttemplates$Delete {
     /**
@@ -3710,10 +3713,11 @@ export namespace dlp_v2 {
      * projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest;
   }
 
 
@@ -4001,10 +4005,11 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
   export interface Params$Resource$Projects$Content$Inspect {
     /**
@@ -4016,10 +4021,11 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2InspectContentRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
   export interface Params$Resource$Projects$Content$Reidentify {
     /**
@@ -4031,10 +4037,11 @@ export namespace dlp_v2 {
      * The parent resource name.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2ReidentifyContentRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2ReidentifyContentRequest;
   }
 
 
@@ -4440,10 +4447,11 @@ export namespace dlp_v2 {
      * organizations/my-org-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
   export interface Params$Resource$Projects$Deidentifytemplates$Delete {
     /**
@@ -4505,10 +4513,11 @@ export namespace dlp_v2 {
      * projects/project-id/deidentifyTemplates/432452342.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
   }
 
 
@@ -4889,10 +4898,11 @@ export namespace dlp_v2 {
      * The name of the DlpJob resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
   export interface Params$Resource$Projects$Dlpjobs$Create {
     /**
@@ -4904,10 +4914,11 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
   export interface Params$Resource$Projects$Dlpjobs$Delete {
     /**
@@ -5077,10 +5088,11 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2RedactImageRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2RedactImageRequest;
   }
 
 
@@ -5482,10 +5494,11 @@ export namespace dlp_v2 {
      * organizations/my-org-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
   export interface Params$Resource$Projects$Inspecttemplates$Delete {
     /**
@@ -5547,10 +5560,11 @@ export namespace dlp_v2 {
      * projects/project-id/inspectTemplates/432452342.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest;
   }
 
 
@@ -5939,10 +5953,11 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
   export interface Params$Resource$Projects$Jobtriggers$Delete {
     /**
@@ -6011,9 +6026,10 @@ export namespace dlp_v2 {
      * `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
   }
 }

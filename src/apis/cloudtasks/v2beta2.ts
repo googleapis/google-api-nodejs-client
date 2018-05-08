@@ -675,7 +675,8 @@ export namespace cloudtasks_v2beta2 {
   /**
    * Rate limits.  This message determines the maximum rate that tasks can be
    * dispatched by a queue, regardless of whether the dispatch is a first task
-   * attempt or a retry.
+   * attempt or a retry.  Note: The debugging command, RunTask, will run a task
+   * even if the queue has reached its RateLimits.
    */
   export interface Schema$RateLimits {
     /**
@@ -706,10 +707,11 @@ export namespace cloudtasks_v2beta2 {
      * dispatched for this queue. After this threshold has been reached, Cloud
      * Tasks stops dispatching tasks until the number of concurrent requests
      * decreases.  If unspecified when the queue is created, Cloud Tasks will
-     * pick the default.   The maximum allowed value is 5,000. -1 indicates no
-     * limit.  This field is output only for [pull
-     * queues](google.cloud.tasks.v2beta2.PullTarget).   This field has the same
-     * meaning as [max_concurrent_requests in
+     * pick the default.   The maximum allowed value is 5,000.  This field is
+     * output only for [pull queues](google.cloud.tasks.v2beta2.PullTarget) and
+     * always -1, which indicates no limit. No other queue types can have
+     * `max_concurrent_tasks` set to -1.   This field has the same meaning as
+     * [max_concurrent_requests in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
      */
     maxConcurrentTasks?: number;
@@ -2800,10 +2802,11 @@ export namespace cloudtasks_v2beta2 {
      * ListLocations.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Queue;
+    requestBody?: Schema$Queue;
   }
   export interface Params$Resource$Projects$Locations$Queues$Delete {
     /**
@@ -2840,10 +2843,11 @@ export namespace cloudtasks_v2beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$List {
     /**
@@ -2908,10 +2912,11 @@ export namespace cloudtasks_v2beta2 {
      * empty, then all fields will be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Queue;
+    requestBody?: Schema$Queue;
   }
   export interface Params$Resource$Projects$Locations$Queues$Pause {
     /**
@@ -2924,10 +2929,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PauseQueueRequest;
+    requestBody?: Schema$PauseQueueRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Purge {
     /**
@@ -2940,10 +2946,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PurgeQueueRequest;
+    requestBody?: Schema$PurgeQueueRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Resume {
     /**
@@ -2956,10 +2963,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResumeQueueRequest;
+    requestBody?: Schema$ResumeQueueRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Setiampolicy {
     /**
@@ -2972,10 +2980,11 @@ export namespace cloudtasks_v2beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Testiampermissions {
     /**
@@ -2988,10 +2997,11 @@ export namespace cloudtasks_v2beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Queues$Tasks {
@@ -4001,20 +4011,19 @@ export namespace cloudtasks_v2beta2 {
 
     /**
      * cloudtasks.projects.locations.queues.tasks.run
-     * @desc Forces a task to run now.  This command is meant to be used for
-     * manual debugging. For example, RunTask can be used to retry a failed task
-     * after a fix has been made or to manually force a task to be dispatched
-     * now.  When this method is called, Cloud Tasks will dispatch the task to
-     * its target, even if the queue is PAUSED.  The dispatched task is
-     * returned. That is, the task that is returned contains the status after
-     * the task is dispatched but before the task is received by its target.  If
-     * Cloud Tasks receives a successful response from the task's handler, then
-     * the task will be deleted; otherwise the task's schedule_time will be
-     * reset to the time that RunTask was called plus the retry delay specified
-     * in the queue and task's RetryConfig.  RunTask returns NOT_FOUND when it
-     * is called on a task that has already succeeded or permanently failed.
-     * FAILED_PRECONDITION is returned when RunTask is called on task that is
-     * dispatched or already running.  RunTask cannot be called on pull tasks.
+     * @desc Forces a task to run now.  When this method is called, Cloud Tasks
+     * will dispatch the task, even if the task is already running, the queue
+     * has reached its RateLimits or is PAUSED.  This command is meant to be
+     * used for manual debugging. For example, RunTask can be used to retry a
+     * failed task after a fix has been made or to manually force a task to be
+     * dispatched now.  The dispatched task is returned. That is, the task that
+     * is returned contains the status after the task is dispatched but before
+     * the task is received by its target.  If Cloud Tasks receives a successful
+     * response from the task's target, then the task will be deleted; otherwise
+     * the task's schedule_time will be reset to the time that RunTask was
+     * called plus the retry delay specified in the queue's RetryConfig. RunTask
+     * returns NOT_FOUND when it is called on a task that has already succeeded
+     * or permanently failed.  RunTask cannot be called on a pull task.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4146,10 +4155,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AcknowledgeTaskRequest;
+    requestBody?: Schema$AcknowledgeTaskRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Cancellease {
     /**
@@ -4162,10 +4172,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelLeaseRequest;
+    requestBody?: Schema$CancelLeaseRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Create {
     /**
@@ -4179,10 +4190,11 @@ export namespace cloudtasks_v2beta2 {
      * must already exist.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateTaskRequest;
+    requestBody?: Schema$CreateTaskRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete {
     /**
@@ -4229,10 +4241,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LeaseTasksRequest;
+    requestBody?: Schema$LeaseTasksRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$List {
     /**
@@ -4290,10 +4303,11 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RenewLeaseRequest;
+    requestBody?: Schema$RenewLeaseRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Run {
     /**
@@ -4306,9 +4320,10 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RunTaskRequest;
+    requestBody?: Schema$RunTaskRequest;
   }
 }

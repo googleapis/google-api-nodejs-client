@@ -1104,10 +1104,11 @@ export namespace fusiontables_v2 {
      * Table for which a new column is being added.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Column;
+    requestBody?: Schema$Column;
   }
   export interface Params$Resource$Column$List {
     /**
@@ -1142,10 +1143,11 @@ export namespace fusiontables_v2 {
      * Table for which the column is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Column;
+    requestBody?: Schema$Column;
   }
   export interface Params$Resource$Column$Update {
     /**
@@ -1161,10 +1163,11 @@ export namespace fusiontables_v2 {
      * Table for which the column is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Column;
+    requestBody?: Schema$Column;
   }
 
 
@@ -1806,10 +1809,11 @@ export namespace fusiontables_v2 {
      * Table for which a new style is being added
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StyleSetting;
+    requestBody?: Schema$StyleSetting;
   }
   export interface Params$Resource$Style$List {
     /**
@@ -1844,10 +1848,11 @@ export namespace fusiontables_v2 {
      * Table whose style is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StyleSetting;
+    requestBody?: Schema$StyleSetting;
   }
   export interface Params$Resource$Style$Update {
     /**
@@ -1863,10 +1868,11 @@ export namespace fusiontables_v2 {
      * Table whose style is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StyleSetting;
+    requestBody?: Schema$StyleSetting;
   }
 
 
@@ -2704,10 +2710,12 @@ export namespace fusiontables_v2 {
      * The table into which new rows are being imported.
      */
     tableId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2716,7 +2724,7 @@ export namespace fusiontables_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Table$Importtable {
@@ -2739,10 +2747,12 @@ export namespace fusiontables_v2 {
      * The name to be assigned to the new table.
      */
     name?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2751,7 +2761,7 @@ export namespace fusiontables_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Table$Insert {
@@ -2759,6 +2769,12 @@ export namespace fusiontables_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Table;
   }
   export interface Params$Resource$Table$List {
     /**
@@ -2791,10 +2807,11 @@ export namespace fusiontables_v2 {
      * ID of the table that is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Table;
+    requestBody?: Schema$Table;
   }
   export interface Params$Resource$Table$Refetchsheet {
     /**
@@ -2846,10 +2863,12 @@ export namespace fusiontables_v2 {
      * Table whose rows will be replaced.
      */
     tableId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2858,7 +2877,7 @@ export namespace fusiontables_v2 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Table$Update {
@@ -2877,10 +2896,11 @@ export namespace fusiontables_v2 {
      * ID of the table that is being updated.
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Table;
+    requestBody?: Schema$Table;
   }
 
 
@@ -3593,10 +3613,11 @@ export namespace fusiontables_v2 {
      * Table for which a new template is being created
      */
     tableId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Template;
+    requestBody?: Schema$Template;
   }
   export interface Params$Resource$Template$List {
     /**
@@ -3631,10 +3652,11 @@ export namespace fusiontables_v2 {
      * Identifier for the template that is being updated
      */
     templateId?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Template;
+    requestBody?: Schema$Template;
   }
   export interface Params$Resource$Template$Update {
     /**
@@ -3650,9 +3672,10 @@ export namespace fusiontables_v2 {
      * Identifier for the template that is being updated
      */
     templateId?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Template;
+    requestBody?: Schema$Template;
   }
 }

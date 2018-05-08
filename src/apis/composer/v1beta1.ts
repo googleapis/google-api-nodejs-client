@@ -841,10 +841,11 @@ export namespace composer_v1beta1 {
      * `projects/{projectId}/locations/{locationId}`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Projects$Locations$Environments$Delete {
     /**
@@ -977,10 +978,11 @@ export namespace composer_v1beta1 {
      * individual environment variables.</td>  </tr>  </tbody>  </table>
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Environment;
+    requestBody?: Schema$Environment;
   }
 
 

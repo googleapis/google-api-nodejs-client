@@ -3059,10 +3059,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchCreateAnnotationsRequest;
+    requestBody?: Schema$BatchCreateAnnotationsRequest;
   }
   export interface Params$Resource$Annotations$Create {
     /**
@@ -3070,10 +3071,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Annotation;
+    requestBody?: Schema$Annotation;
   }
   export interface Params$Resource$Annotations$Delete {
     /**
@@ -3103,10 +3105,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchAnnotationsRequest;
+    requestBody?: Schema$SearchAnnotationsRequest;
   }
   export interface Params$Resource$Annotations$Update {
     /**
@@ -3124,10 +3127,11 @@ export namespace genomics_v1 {
      * will be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Annotation;
+    requestBody?: Schema$Annotation;
   }
 
 
@@ -3788,10 +3792,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnnotationSet;
+    requestBody?: Schema$AnnotationSet;
   }
   export interface Params$Resource$Annotationsets$Delete {
     /**
@@ -3821,10 +3826,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchAnnotationSetsRequest;
+    requestBody?: Schema$SearchAnnotationSetsRequest;
   }
   export interface Params$Resource$Annotationsets$Update {
     /**
@@ -3842,10 +3848,11 @@ export namespace genomics_v1 {
      * updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnnotationSet;
+    requestBody?: Schema$AnnotationSet;
   }
 
 
@@ -4471,10 +4478,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CallSet;
+    requestBody?: Schema$CallSet;
   }
   export interface Params$Resource$Callsets$Delete {
     /**
@@ -4514,10 +4522,11 @@ export namespace genomics_v1 {
      * unspecified, all mutable fields will be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CallSet;
+    requestBody?: Schema$CallSet;
   }
   export interface Params$Resource$Callsets$Search {
     /**
@@ -4525,10 +4534,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchCallSetsRequest;
+    requestBody?: Schema$SearchCallSetsRequest;
   }
 
 
@@ -5673,10 +5683,11 @@ export namespace genomics_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$Delete {
     /**
@@ -5711,10 +5722,11 @@ export namespace genomics_v1 {
      * `datasets/<dataset ID>`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Datasets$List {
     /**
@@ -5754,10 +5766,11 @@ export namespace genomics_v1 {
      * unspecified, all mutable fields will be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$Setiampolicy {
     /**
@@ -5770,10 +5783,11 @@ export namespace genomics_v1 {
      * `datasets/<dataset ID>`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Datasets$Testiampermissions {
     /**
@@ -5786,10 +5800,11 @@ export namespace genomics_v1 {
      * `datasets/<dataset ID>`.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Datasets$Undelete {
     /**
@@ -5801,10 +5816,11 @@ export namespace genomics_v1 {
      * The ID of the dataset to be undeleted.
      */
     datasetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UndeleteDatasetRequest;
+    requestBody?: Schema$UndeleteDatasetRequest;
   }
 
 
@@ -6205,10 +6221,11 @@ export namespace genomics_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Get {
     /**
@@ -7031,10 +7048,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * READ access to this read group set.
      */
     readGroupSetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExportReadGroupSetRequest;
+    requestBody?: Schema$ExportReadGroupSetRequest;
   }
   export interface Params$Resource$Readgroupsets$Get {
     /**
@@ -7053,10 +7071,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ImportReadGroupSetsRequest;
+    requestBody?: Schema$ImportReadGroupSetsRequest;
   }
   export interface Params$Resource$Readgroupsets$Patch {
     /**
@@ -7075,10 +7094,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * specifying all mutable fields.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReadGroupSet;
+    requestBody?: Schema$ReadGroupSet;
   }
   export interface Params$Resource$Readgroupsets$Search {
     /**
@@ -7086,10 +7106,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchReadGroupSetsRequest;
+    requestBody?: Schema$SearchReadGroupSetsRequest;
   }
 
   export class Resource$Readgroupsets$Coveragebuckets {
@@ -7472,10 +7493,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchReadsRequest;
+    requestBody?: Schema$SearchReadsRequest;
   }
 
 
@@ -7763,10 +7785,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchReferencesRequest;
+    requestBody?: Schema$SearchReferencesRequest;
   }
 
   export class Resource$References$Bases {
@@ -8242,10 +8265,11 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchReferenceSetsRequest;
+    requestBody?: Schema$SearchReferenceSetsRequest;
   }
 
 
@@ -9083,10 +9107,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variant;
+    requestBody?: Schema$Variant;
   }
   export interface Params$Resource$Variants$Delete {
     /**
@@ -9116,10 +9141,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ImportVariantsRequest;
+    requestBody?: Schema$ImportVariantsRequest;
   }
   export interface Params$Resource$Variants$Merge {
     /**
@@ -9127,10 +9153,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$MergeVariantsRequest;
+    requestBody?: Schema$MergeVariantsRequest;
   }
   export interface Params$Resource$Variants$Patch {
     /**
@@ -9148,10 +9175,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * The ID of the variant to be updated.
      */
     variantId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Variant;
+    requestBody?: Schema$Variant;
   }
   export interface Params$Resource$Variants$Search {
     /**
@@ -9159,10 +9187,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchVariantsRequest;
+    requestBody?: Schema$SearchVariantsRequest;
   }
 
 
@@ -9936,10 +9965,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VariantSet;
+    requestBody?: Schema$VariantSet;
   }
   export interface Params$Resource$Variantsets$Delete {
     /**
@@ -9963,10 +9993,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * should be exported. The caller must have READ access to this variant set.
      */
     variantSetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExportVariantSetRequest;
+    requestBody?: Schema$ExportVariantSetRequest;
   }
   export interface Params$Resource$Variantsets$Get {
     /**
@@ -9995,10 +10026,11 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * The ID of the variant to be updated (must already exist).
      */
     variantSetId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VariantSet;
+    requestBody?: Schema$VariantSet;
   }
   export interface Params$Resource$Variantsets$Search {
     /**
@@ -10006,9 +10038,10 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchVariantSetsRequest;
+    requestBody?: Schema$SearchVariantSetsRequest;
   }
 }

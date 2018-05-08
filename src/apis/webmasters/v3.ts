@@ -455,10 +455,11 @@ export namespace webmasters_v3 {
      * The site's URL, including protocol. For example: http://www.example.com/
      */
     siteUrl?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SearchAnalyticsQueryRequest;
+    requestBody?: Schema$SearchAnalyticsQueryRequest;
   }
 
 

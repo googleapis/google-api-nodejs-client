@@ -845,10 +845,11 @@ export namespace dns_v1beta2 {
      * Identifies the project addressed by this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Change;
+    requestBody?: Schema$Change;
   }
   export interface Params$Resource$Changes$Get {
     /**
@@ -1794,10 +1795,11 @@ export namespace dns_v1beta2 {
      * Identifies the project addressed by this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedZone;
+    requestBody?: Schema$ManagedZone;
   }
   export interface Params$Resource$Managedzones$Delete {
     /**
@@ -1889,10 +1891,11 @@ export namespace dns_v1beta2 {
      * Identifies the project addressed by this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedZone;
+    requestBody?: Schema$ManagedZone;
   }
   export interface Params$Resource$Managedzones$Update {
     /**
@@ -1915,10 +1918,11 @@ export namespace dns_v1beta2 {
      * Identifies the project addressed by this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedZone;
+    requestBody?: Schema$ManagedZone;
   }
 
 

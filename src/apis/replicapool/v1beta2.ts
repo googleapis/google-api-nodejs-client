@@ -1135,10 +1135,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersAbandonInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersAbandonInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Delete {
     /**
@@ -1177,10 +1178,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersDeleteInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersDeleteInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Get {
     /**
@@ -1219,10 +1221,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManager;
+    requestBody?: Schema$InstanceGroupManager;
   }
   export interface Params$Resource$Instancegroupmanagers$List {
     /**
@@ -1271,10 +1274,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersRecreateInstancesRequest;
+    requestBody?: Schema$InstanceGroupManagersRecreateInstancesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Resize {
     /**
@@ -1317,10 +1321,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
+    requestBody?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Settargetpools {
     /**
@@ -1340,10 +1345,11 @@ export namespace replicapool_v1beta2 {
      * The name of the zone in which the instance group manager resides.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
+    requestBody?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
   }
 
 

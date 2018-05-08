@@ -1377,10 +1377,11 @@ export namespace script_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateProjectRequest;
+    requestBody?: Schema$CreateProjectRequest;
   }
   export interface Params$Resource$Projects$Get {
     /**
@@ -1438,10 +1439,11 @@ export namespace script_v1 {
      * The script project's Drive ID.
      */
     scriptId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Content;
+    requestBody?: Schema$Content;
   }
 
   export class Resource$Projects$Deployments {
@@ -1807,10 +1809,11 @@ export namespace script_v1 {
      * The script project's Drive ID.
      */
     scriptId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeploymentConfig;
+    requestBody?: Schema$DeploymentConfig;
   }
   export interface Params$Resource$Projects$Deployments$Delete {
     /**
@@ -1876,10 +1879,11 @@ export namespace script_v1 {
      * The script project's Drive ID.
      */
     scriptId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateDeploymentRequest;
+    requestBody?: Schema$UpdateDeploymentRequest;
   }
 
 
@@ -2107,10 +2111,11 @@ export namespace script_v1 {
      * The script project's Drive ID.
      */
     scriptId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Version;
+    requestBody?: Schema$Version;
   }
   export interface Params$Resource$Projects$Versions$Get {
     /**
@@ -2244,9 +2249,10 @@ export namespace script_v1 {
      * properties**.
      */
     scriptId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ExecutionRequest;
+    requestBody?: Schema$ExecutionRequest;
   }
 }

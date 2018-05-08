@@ -1673,10 +1673,11 @@ export namespace appengine_v1beta4 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Application;
+    requestBody?: Schema$Application;
   }
   export interface Params$Resource$Apps$Get {
     /**
@@ -1712,10 +1713,11 @@ export namespace appengine_v1beta4 {
      * Standard field mask for the set of fields to be updated.
      */
     mask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Application;
+    requestBody?: Schema$Application;
   }
 
   export class Resource$Apps$Locations {
@@ -2272,10 +2274,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. See documentation of `appsId`.
      */
     modulesId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Module;
+    requestBody?: Schema$Module;
   }
 
   export class Resource$Apps$Modules$Versions {
@@ -2677,10 +2680,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. See documentation of `appsId`.
      */
     modulesId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Version;
+    requestBody?: Schema$Version;
   }
   export interface Params$Resource$Apps$Modules$Versions$Delete {
     /**
@@ -2777,10 +2781,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. See documentation of `appsId`.
      */
     versionsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Version;
+    requestBody?: Schema$Version;
   }
 
   export class Resource$Apps$Modules$Versions$Instances {
@@ -3113,10 +3118,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. See documentation of `appsId`.
      */
     versionsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DebugInstanceRequest;
+    requestBody?: Schema$DebugInstanceRequest;
   }
   export interface Params$Resource$Apps$Modules$Versions$Instances$Delete {
     /**

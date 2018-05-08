@@ -3604,6 +3604,12 @@ export namespace games_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AchievementUpdateMultipleRequest;
   }
 
 
@@ -4137,10 +4143,11 @@ export namespace games_v1 {
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EventRecordRequest;
+    requestBody?: Schema$EventRecordRequest;
   }
 
 
@@ -4850,12 +4857,24 @@ export namespace games_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PushTokenId;
   }
   export interface Params$Resource$Pushtokens$Update {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PushToken;
   }
 
 
@@ -5798,10 +5817,11 @@ export namespace games_v1 {
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RoomCreateRequest;
+    requestBody?: Schema$RoomCreateRequest;
   }
   export interface Params$Resource$Rooms$Decline {
     /**
@@ -5858,10 +5878,11 @@ export namespace games_v1 {
      * The ID of the room.
      */
     roomId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RoomJoinRequest;
+    requestBody?: Schema$RoomJoinRequest;
   }
   export interface Params$Resource$Rooms$Leave {
     /**
@@ -5877,10 +5898,11 @@ export namespace games_v1 {
      * The ID of the room.
      */
     roomId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RoomLeaveRequest;
+    requestBody?: Schema$RoomLeaveRequest;
   }
   export interface Params$Resource$Rooms$List {
     /**
@@ -5917,10 +5939,11 @@ export namespace games_v1 {
      * The ID of the room.
      */
     roomId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RoomP2PStatuses;
+    requestBody?: Schema$RoomP2PStatuses;
   }
 
 
@@ -6465,10 +6488,11 @@ export namespace games_v1 {
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlayerScoreSubmissionList;
+    requestBody?: Schema$PlayerScoreSubmissionList;
   }
 
 
@@ -7590,10 +7614,11 @@ export namespace games_v1 {
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TurnBasedMatchCreateRequest;
+    requestBody?: Schema$TurnBasedMatchCreateRequest;
   }
   export interface Params$Resource$Turnbasedmatches$Decline {
     /**
@@ -7635,10 +7660,11 @@ export namespace games_v1 {
      * The ID of the match.
      */
     matchId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TurnBasedMatchResults;
+    requestBody?: Schema$TurnBasedMatchResults;
   }
   export interface Params$Resource$Turnbasedmatches$Get {
     /**
@@ -7820,9 +7846,10 @@ export namespace games_v1 {
      * The ID of the match.
      */
     matchId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TurnBasedMatchTurn;
+    requestBody?: Schema$TurnBasedMatchTurn;
   }
 }

@@ -588,9 +588,8 @@ export namespace dataproc_v1beta2 {
      */
     imageUri?: string;
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names
-     * from cluster_name, num_instances, and the instance group if not set by
-     * user (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from cluster_name, num_instances, and the instance group.
      */
     instanceNames?: string[];
     /**
@@ -2362,10 +2361,11 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete {
     /**
@@ -2429,10 +2429,11 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstantiateWorkflowTemplateRequest;
+    requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline {
     /**
@@ -2455,10 +2456,11 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$List {
     /**
@@ -2493,10 +2495,11 @@ export namespace dataproc_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions {
     /**
@@ -2509,10 +2512,11 @@ export namespace dataproc_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Update {
     /**
@@ -2526,10 +2530,11 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
 
 
@@ -3243,10 +3248,11 @@ export namespace dataproc_v1beta2 {
      * hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Cluster;
+    requestBody?: Schema$Cluster;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Delete {
     /**
@@ -3303,10 +3309,11 @@ export namespace dataproc_v1beta2 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DiagnoseClusterRequest;
+    requestBody?: Schema$DiagnoseClusterRequest;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Get {
     /**
@@ -3445,10 +3452,11 @@ export namespace dataproc_v1beta2 {
      * duration</td> </tr> </table>
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Cluster;
+    requestBody?: Schema$Cluster;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy {
     /**
@@ -3461,10 +3469,11 @@ export namespace dataproc_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions {
     /**
@@ -3477,10 +3486,11 @@ export namespace dataproc_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -4156,10 +4166,11 @@ export namespace dataproc_v1beta2 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelJobRequest;
+    requestBody?: Schema$CancelJobRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Delete {
     /**
@@ -4287,10 +4298,11 @@ export namespace dataproc_v1beta2 {
      * field that can be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Job;
+    requestBody?: Schema$Job;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy {
     /**
@@ -4303,10 +4315,11 @@ export namespace dataproc_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Submit {
     /**
@@ -4323,10 +4336,11 @@ export namespace dataproc_v1beta2 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubmitJobRequest;
+    requestBody?: Schema$SubmitJobRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions {
     /**
@@ -4339,10 +4353,11 @@ export namespace dataproc_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -4939,10 +4954,11 @@ export namespace dataproc_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Operations$Testiampermissions {
     /**
@@ -4955,10 +4971,11 @@ export namespace dataproc_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -5721,10 +5738,11 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete {
     /**
@@ -5788,10 +5806,11 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$InstantiateWorkflowTemplateRequest;
+    requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline {
     /**
@@ -5814,10 +5833,11 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$List {
     /**
@@ -5852,10 +5872,11 @@ export namespace dataproc_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions {
     /**
@@ -5868,10 +5889,11 @@ export namespace dataproc_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Update {
     /**
@@ -5885,9 +5907,10 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WorkflowTemplate;
+    requestBody?: Schema$WorkflowTemplate;
   }
 }

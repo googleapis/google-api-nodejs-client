@@ -2393,10 +2393,11 @@ export namespace deploymentmanager_v2 {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeploymentsCancelPreviewRequest;
+    requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
   export interface Params$Resource$Deployments$Delete {
     /**
@@ -2471,10 +2472,11 @@ export namespace deploymentmanager_v2 {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
   export interface Params$Resource$Deployments$List {
     /**
@@ -2565,10 +2567,11 @@ export namespace deploymentmanager_v2 {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
   export interface Params$Resource$Deployments$Setiampolicy {
     /**
@@ -2584,10 +2587,11 @@ export namespace deploymentmanager_v2 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$Policy;
+    requestBody?: Schema$Policy;
   }
   export interface Params$Resource$Deployments$Stop {
     /**
@@ -2603,10 +2607,11 @@ export namespace deploymentmanager_v2 {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeploymentsStopRequest;
+    requestBody?: Schema$DeploymentsStopRequest;
   }
   export interface Params$Resource$Deployments$Testiampermissions {
     /**
@@ -2622,10 +2627,11 @@ export namespace deploymentmanager_v2 {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestPermissionsRequest;
+    requestBody?: Schema$TestPermissionsRequest;
   }
   export interface Params$Resource$Deployments$Update {
     /**
@@ -2662,10 +2668,11 @@ export namespace deploymentmanager_v2 {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
 
 

@@ -1194,10 +1194,11 @@ export namespace testing_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FileReference;
+    requestBody?: Schema$FileReference;
   }
 
 
@@ -1479,10 +1480,11 @@ export namespace testing_v1 {
      * A UUID is recommended.  Optional, but strongly recommended.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TestMatrix;
+    requestBody?: Schema$TestMatrix;
   }
   export interface Params$Resource$Projects$Testmatrices$Get {
     /**

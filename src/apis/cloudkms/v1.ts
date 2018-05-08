@@ -1144,10 +1144,11 @@ export namespace cloudkms_v1 {
      * in the format `projects/x/locations/x`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$KeyRing;
+    requestBody?: Schema$KeyRing;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Get {
     /**
@@ -1207,10 +1208,11 @@ export namespace cloudkms_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions {
     /**
@@ -1223,10 +1225,11 @@ export namespace cloudkms_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Keyrings$Cryptokeys {
@@ -1985,10 +1988,11 @@ export namespace cloudkms_v1 {
      * Required. The name of the KeyRing associated with the CryptoKeys.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CryptoKey;
+    requestBody?: Schema$CryptoKey;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt {
     /**
@@ -2001,10 +2005,11 @@ export namespace cloudkms_v1 {
      * server will choose the appropriate version.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DecryptRequest;
+    requestBody?: Schema$DecryptRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt {
     /**
@@ -2018,10 +2023,11 @@ export namespace cloudkms_v1 {
      * primary version.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EncryptRequest;
+    requestBody?: Schema$EncryptRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get {
     /**
@@ -2085,10 +2091,11 @@ export namespace cloudkms_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CryptoKey;
+    requestBody?: Schema$CryptoKey;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy {
     /**
@@ -2101,10 +2108,11 @@ export namespace cloudkms_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions {
     /**
@@ -2117,10 +2125,11 @@ export namespace cloudkms_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion {
     /**
@@ -2132,10 +2141,11 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKey to update.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateCryptoKeyPrimaryVersionRequest;
+    requestBody?: Schema$UpdateCryptoKeyPrimaryVersionRequest;
   }
 
   export class
@@ -2618,10 +2628,11 @@ export namespace cloudkms_v1 {
      * CryptoKeyVersions.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CryptoKeyVersion;
+    requestBody?: Schema$CryptoKeyVersion;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy {
     /**
@@ -2633,10 +2644,11 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKeyVersion to destroy.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DestroyCryptoKeyVersionRequest;
+    requestBody?: Schema$DestroyCryptoKeyVersionRequest;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get {
     /**
@@ -2689,10 +2701,11 @@ export namespace cloudkms_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CryptoKeyVersion;
+    requestBody?: Schema$CryptoKeyVersion;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore {
     /**
@@ -2704,9 +2717,10 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKeyVersion to restore.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RestoreCryptoKeyVersionRequest;
+    requestBody?: Schema$RestoreCryptoKeyVersionRequest;
   }
 }

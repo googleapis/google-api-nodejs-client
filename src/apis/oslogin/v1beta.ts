@@ -357,10 +357,11 @@ export namespace oslogin_v1beta {
      * The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SshPublicKey;
+    requestBody?: Schema$SshPublicKey;
   }
 
   export class Resource$Users$Projects {
@@ -705,9 +706,10 @@ export namespace oslogin_v1beta {
      * Mask to control which fields get updated. Updates all if not present.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SshPublicKey;
+    requestBody?: Schema$SshPublicKey;
   }
 }

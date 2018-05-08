@@ -1919,10 +1919,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompositeType;
+    requestBody?: Schema$CompositeType;
   }
   export interface Params$Resource$Compositetypes$List {
     /**
@@ -1992,10 +1993,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompositeType;
+    requestBody?: Schema$CompositeType;
   }
   export interface Params$Resource$Compositetypes$Update {
     /**
@@ -2011,10 +2013,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CompositeType;
+    requestBody?: Schema$CompositeType;
   }
 
 
@@ -2830,10 +2833,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeploymentsCancelPreviewRequest;
+    requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
   export interface Params$Resource$Deployments$Delete {
     /**
@@ -2908,10 +2912,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
   export interface Params$Resource$Deployments$List {
     /**
@@ -3002,10 +3007,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
   export interface Params$Resource$Deployments$Setiampolicy {
     /**
@@ -3021,10 +3027,11 @@ export namespace deploymentmanager_alpha {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$Policy;
+    requestBody?: Schema$Policy;
   }
   export interface Params$Resource$Deployments$Stop {
     /**
@@ -3040,10 +3047,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeploymentsStopRequest;
+    requestBody?: Schema$DeploymentsStopRequest;
   }
   export interface Params$Resource$Deployments$Testiampermissions {
     /**
@@ -3059,10 +3067,11 @@ export namespace deploymentmanager_alpha {
      * Name of the resource for this request.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestPermissionsRequest;
+    requestBody?: Schema$TestPermissionsRequest;
   }
   export interface Params$Resource$Deployments$Update {
     /**
@@ -3099,10 +3108,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Deployment;
+    requestBody?: Schema$Deployment;
   }
 
 
@@ -4430,10 +4440,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TypeProvider;
+    requestBody?: Schema$TypeProvider;
   }
   export interface Params$Resource$Typeproviders$List {
     /**
@@ -4561,10 +4572,11 @@ export namespace deploymentmanager_alpha {
      * The name of the type provider for this request.
      */
     typeProvider?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TypeProvider;
+    requestBody?: Schema$TypeProvider;
   }
   export interface Params$Resource$Typeproviders$Update {
     /**
@@ -4580,10 +4592,11 @@ export namespace deploymentmanager_alpha {
      * The name of the type provider for this request.
      */
     typeProvider?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TypeProvider;
+    requestBody?: Schema$TypeProvider;
   }
 
 
@@ -5046,10 +5059,11 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Type;
+    requestBody?: Schema$Type;
   }
   export interface Params$Resource$Types$List {
     /**
@@ -5119,10 +5133,11 @@ export namespace deploymentmanager_alpha {
      * The name of the type for this request.
      */
     type?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Type;
+    requestBody?: Schema$Type;
   }
   export interface Params$Resource$Types$Update {
     /**
@@ -5138,9 +5153,10 @@ export namespace deploymentmanager_alpha {
      * The name of the type for this request.
      */
     type?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Type;
+    requestBody?: Schema$Type;
   }
 }

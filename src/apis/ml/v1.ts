@@ -1330,10 +1330,11 @@ export namespace ml_v1 {
      * requires the `predict` permission on the specified resource.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__PredictRequest;
+    requestBody?: Schema$GoogleCloudMlV1__PredictRequest;
   }
 
   export class Resource$Projects$Jobs {
@@ -1858,10 +1859,11 @@ export namespace ml_v1 {
      * Required. The name of the job to cancel.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__CancelJobRequest;
+    requestBody?: Schema$GoogleCloudMlV1__CancelJobRequest;
   }
   export interface Params$Resource$Projects$Jobs$Create {
     /**
@@ -1873,10 +1875,11 @@ export namespace ml_v1 {
      * Required. The project name.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__Job;
+    requestBody?: Schema$GoogleCloudMlV1__Job;
   }
   export interface Params$Resource$Projects$Jobs$Get {
     /**
@@ -1947,10 +1950,11 @@ export namespace ml_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+    requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Jobs$Testiampermissions {
     /**
@@ -1963,10 +1967,11 @@ export namespace ml_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+    requestBody?: Schema$GoogleIamV1__TestIamPermissionsRequest;
   }
 
 
@@ -2778,10 +2783,11 @@ export namespace ml_v1 {
      * Required. The project name.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__Model;
+    requestBody?: Schema$GoogleCloudMlV1__Model;
   }
   export interface Params$Resource$Projects$Models$Delete {
     /**
@@ -2866,10 +2872,11 @@ export namespace ml_v1 {
      * `default_version.name`.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__Model;
+    requestBody?: Schema$GoogleCloudMlV1__Model;
   }
   export interface Params$Resource$Projects$Models$Setiampolicy {
     /**
@@ -2882,10 +2889,11 @@ export namespace ml_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+    requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Models$Testiampermissions {
     /**
@@ -2898,10 +2906,11 @@ export namespace ml_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+    requestBody?: Schema$GoogleIamV1__TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Models$Versions {
@@ -3387,10 +3396,11 @@ export namespace ml_v1 {
      * Required. The name of the model.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__Version;
+    requestBody?: Schema$GoogleCloudMlV1__Version;
   }
   export interface Params$Resource$Projects$Models$Versions$Delete {
     /**
@@ -3463,10 +3473,11 @@ export namespace ml_v1 {
      * Currently the only supported update mask is`description`.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__Version;
+    requestBody?: Schema$GoogleCloudMlV1__Version;
   }
   export interface Params$Resource$Projects$Models$Versions$Setdefault {
     /**
@@ -3480,10 +3491,11 @@ export namespace ml_v1 {
      * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudMlV1__SetDefaultVersionRequest;
+    requestBody?: Schema$GoogleCloudMlV1__SetDefaultVersionRequest;
   }
 
 

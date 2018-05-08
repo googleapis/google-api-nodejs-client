@@ -8352,10 +8352,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update {
     /**
@@ -8367,10 +8368,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -8777,10 +8779,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountUserProfile;
+    requestBody?: Schema$AccountUserProfile;
   }
   export interface Params$Resource$Accountuserprofiles$List {
     /**
@@ -8849,10 +8852,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountUserProfile;
+    requestBody?: Schema$AccountUserProfile;
   }
   export interface Params$Resource$Accountuserprofiles$Update {
     /**
@@ -8864,10 +8868,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AccountUserProfile;
+    requestBody?: Schema$AccountUserProfile;
   }
 
 
@@ -9256,10 +9261,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Ad;
+    requestBody?: Schema$Ad;
   }
   export interface Params$Resource$Ads$List {
     /**
@@ -9391,10 +9397,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Ad;
+    requestBody?: Schema$Ad;
   }
   export interface Params$Resource$Ads$Update {
     /**
@@ -9406,10 +9413,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Ad;
+    requestBody?: Schema$Ad;
   }
 
 
@@ -9894,10 +9902,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdvertiserGroup;
+    requestBody?: Schema$AdvertiserGroup;
   }
   export interface Params$Resource$Advertisergroups$List {
     /**
@@ -9954,10 +9963,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdvertiserGroup;
+    requestBody?: Schema$AdvertiserGroup;
   }
   export interface Params$Resource$Advertisergroups$Update {
     /**
@@ -9969,10 +9979,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AdvertiserGroup;
+    requestBody?: Schema$AdvertiserGroup;
   }
 
 
@@ -10380,10 +10391,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LandingPage;
+    requestBody?: Schema$LandingPage;
   }
   export interface Params$Resource$Advertiserlandingpages$List {
     /**
@@ -10453,10 +10465,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LandingPage;
+    requestBody?: Schema$LandingPage;
   }
   export interface Params$Resource$Advertiserlandingpages$Update {
     /**
@@ -10468,10 +10481,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LandingPage;
+    requestBody?: Schema$LandingPage;
   }
 
 
@@ -10865,10 +10879,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Advertiser;
+    requestBody?: Schema$Advertiser;
   }
   export interface Params$Resource$Advertisers$List {
     /**
@@ -10950,10 +10965,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Advertiser;
+    requestBody?: Schema$Advertiser;
   }
   export interface Params$Resource$Advertisers$Update {
     /**
@@ -10965,10 +10981,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Advertiser;
+    requestBody?: Schema$Advertiser;
   }
 
 
@@ -11251,10 +11268,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CampaignCreativeAssociation;
+    requestBody?: Schema$CampaignCreativeAssociation;
   }
   export interface Params$Resource$Campaigncreativeassociations$List {
     /**
@@ -11666,10 +11684,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Campaign;
+    requestBody?: Schema$Campaign;
   }
   export interface Params$Resource$Campaigns$List {
     /**
@@ -11756,10 +11775,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Campaign;
+    requestBody?: Schema$Campaign;
   }
   export interface Params$Resource$Campaigns$Update {
     /**
@@ -11771,10 +11791,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Campaign;
+    requestBody?: Schema$Campaign;
   }
 
 
@@ -12783,10 +12804,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ContentCategory;
+    requestBody?: Schema$ContentCategory;
   }
   export interface Params$Resource$Contentcategories$List {
     /**
@@ -12843,10 +12865,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ContentCategory;
+    requestBody?: Schema$ContentCategory;
   }
   export interface Params$Resource$Contentcategories$Update {
     /**
@@ -12858,10 +12881,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ContentCategory;
+    requestBody?: Schema$ContentCategory;
   }
 
 
@@ -13043,10 +13067,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ConversionsBatchInsertRequest;
+    requestBody?: Schema$ConversionsBatchInsertRequest;
   }
   export interface Params$Resource$Conversions$Batchupdate {
     /**
@@ -13058,10 +13083,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ConversionsBatchUpdateRequest;
+    requestBody?: Schema$ConversionsBatchUpdateRequest;
   }
 
 
@@ -13341,14 +13367,16 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeAssetMetadata;
+    requestBody?: Schema$CreativeAssetMetadata;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -13357,7 +13385,7 @@ export namespace dfareporting_v3_0 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -13841,10 +13869,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeField;
+    requestBody?: Schema$CreativeField;
   }
   export interface Params$Resource$Creativefields$List {
     /**
@@ -13905,10 +13934,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeField;
+    requestBody?: Schema$CreativeField;
   }
   export interface Params$Resource$Creativefields$Update {
     /**
@@ -13920,10 +13950,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeField;
+    requestBody?: Schema$CreativeField;
   }
 
 
@@ -14428,10 +14459,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeFieldValue;
+    requestBody?: Schema$CreativeFieldValue;
   }
   export interface Params$Resource$Creativefieldvalues$List {
     /**
@@ -14491,10 +14523,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeFieldValue;
+    requestBody?: Schema$CreativeFieldValue;
   }
   export interface Params$Resource$Creativefieldvalues$Update {
     /**
@@ -14510,10 +14543,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeFieldValue;
+    requestBody?: Schema$CreativeFieldValue;
   }
 
 
@@ -14914,10 +14948,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeGroup;
+    requestBody?: Schema$CreativeGroup;
   }
   export interface Params$Resource$Creativegroups$List {
     /**
@@ -14982,10 +15017,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeGroup;
+    requestBody?: Schema$CreativeGroup;
   }
   export interface Params$Resource$Creativegroups$Update {
     /**
@@ -14997,10 +15033,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreativeGroup;
+    requestBody?: Schema$CreativeGroup;
   }
 
 
@@ -15388,10 +15425,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Creative;
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List {
     /**
@@ -15490,10 +15528,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Creative;
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$Update {
     /**
@@ -15505,10 +15544,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Creative;
+    requestBody?: Schema$Creative;
   }
 
 
@@ -15614,10 +15654,11 @@ export namespace dfareporting_v3_0 {
      * The DFA user profile ID.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DimensionValueRequest;
+    requestBody?: Schema$DimensionValueRequest;
   }
 
 
@@ -16112,10 +16153,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DirectorySite;
+    requestBody?: Schema$DirectorySite;
   }
   export interface Params$Resource$Directorysites$List {
     /**
@@ -16468,10 +16510,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DynamicTargetingKey;
+    requestBody?: Schema$DynamicTargetingKey;
   }
   export interface Params$Resource$Dynamictargetingkeys$List {
     /**
@@ -16961,10 +17004,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EventTag;
+    requestBody?: Schema$EventTag;
   }
   export interface Params$Resource$Eventtags$List {
     /**
@@ -17051,10 +17095,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EventTag;
+    requestBody?: Schema$EventTag;
   }
   export interface Params$Resource$Eventtags$Update {
     /**
@@ -17066,10 +17111,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EventTag;
+    requestBody?: Schema$EventTag;
   }
 
 
@@ -17852,10 +17898,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivity;
+    requestBody?: Schema$FloodlightActivity;
   }
   export interface Params$Resource$Floodlightactivities$List {
     /**
@@ -17951,10 +17998,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivity;
+    requestBody?: Schema$FloodlightActivity;
   }
   export interface Params$Resource$Floodlightactivities$Update {
     /**
@@ -17966,10 +18014,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivity;
+    requestBody?: Schema$FloodlightActivity;
   }
 
 
@@ -18384,10 +18433,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivityGroup;
+    requestBody?: Schema$FloodlightActivityGroup;
   }
   export interface Params$Resource$Floodlightactivitygroups$List {
     /**
@@ -18464,10 +18514,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivityGroup;
+    requestBody?: Schema$FloodlightActivityGroup;
   }
   export interface Params$Resource$Floodlightactivitygroups$Update {
     /**
@@ -18479,10 +18530,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightActivityGroup;
+    requestBody?: Schema$FloodlightActivityGroup;
   }
 
 
@@ -18836,10 +18888,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightConfiguration;
+    requestBody?: Schema$FloodlightConfiguration;
   }
   export interface Params$Resource$Floodlightconfigurations$Update {
     /**
@@ -18851,10 +18904,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FloodlightConfiguration;
+    requestBody?: Schema$FloodlightConfiguration;
   }
 
 
@@ -20696,10 +20750,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementGroup;
+    requestBody?: Schema$PlacementGroup;
   }
   export interface Params$Resource$Placementgroups$List {
     /**
@@ -20823,10 +20878,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementGroup;
+    requestBody?: Schema$PlacementGroup;
   }
   export interface Params$Resource$Placementgroups$Update {
     /**
@@ -20838,10 +20894,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementGroup;
+    requestBody?: Schema$PlacementGroup;
   }
 
 
@@ -21346,10 +21403,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Placement;
+    requestBody?: Schema$Placement;
   }
   export interface Params$Resource$Placements$List {
     /**
@@ -21482,10 +21540,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Placement;
+    requestBody?: Schema$Placement;
   }
   export interface Params$Resource$Placements$Update {
     /**
@@ -21497,10 +21556,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Placement;
+    requestBody?: Schema$Placement;
   }
 
 
@@ -21987,10 +22047,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementStrategy;
+    requestBody?: Schema$PlacementStrategy;
   }
   export interface Params$Resource$Placementstrategies$List {
     /**
@@ -22048,10 +22109,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementStrategy;
+    requestBody?: Schema$PlacementStrategy;
   }
   export interface Params$Resource$Placementstrategies$Update {
     /**
@@ -22063,10 +22125,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PlacementStrategy;
+    requestBody?: Schema$PlacementStrategy;
   }
 
 
@@ -23120,10 +23183,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingList;
+    requestBody?: Schema$RemarketingList;
   }
   export interface Params$Resource$Remarketinglists$List {
     /**
@@ -23188,10 +23252,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingList;
+    requestBody?: Schema$RemarketingList;
   }
   export interface Params$Resource$Remarketinglists$Update {
     /**
@@ -23203,10 +23268,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingList;
+    requestBody?: Schema$RemarketingList;
   }
 
 
@@ -23462,10 +23528,11 @@ export namespace dfareporting_v3_0 {
      * Remarketing list ID.
      */
     remarketingListId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingListShare;
+    requestBody?: Schema$RemarketingListShare;
   }
   export interface Params$Resource$Remarketinglistshares$Update {
     /**
@@ -23477,10 +23544,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingListShare;
+    requestBody?: Schema$RemarketingListShare;
   }
 
 
@@ -24008,10 +24076,11 @@ export namespace dfareporting_v3_0 {
      * The DFA user profile ID.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Report;
+    requestBody?: Schema$Report;
   }
   export interface Params$Resource$Reports$List {
     /**
@@ -24058,10 +24127,11 @@ export namespace dfareporting_v3_0 {
      * The ID of the report.
      */
     reportId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Report;
+    requestBody?: Schema$Report;
   }
   export interface Params$Resource$Reports$Run {
     /**
@@ -24096,10 +24166,11 @@ export namespace dfareporting_v3_0 {
      * The ID of the report.
      */
     reportId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Report;
+    requestBody?: Schema$Report;
   }
 
   export class Resource$Reports$Compatiblefields {
@@ -24196,10 +24267,11 @@ export namespace dfareporting_v3_0 {
      * The DFA user profile ID.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Report;
+    requestBody?: Schema$Report;
   }
 
 
@@ -24787,10 +24859,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Site;
+    requestBody?: Schema$Site;
   }
   export interface Params$Resource$Sites$List {
     /**
@@ -24884,10 +24957,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Site;
+    requestBody?: Schema$Site;
   }
   export interface Params$Resource$Sites$Update {
     /**
@@ -24899,10 +24973,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Site;
+    requestBody?: Schema$Site;
   }
 
 
@@ -25142,10 +25217,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Size;
+    requestBody?: Schema$Size;
   }
   export interface Params$Resource$Sizes$List {
     /**
@@ -25560,10 +25636,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subaccount;
+    requestBody?: Schema$Subaccount;
   }
   export interface Params$Resource$Subaccounts$List {
     /**
@@ -25620,10 +25697,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subaccount;
+    requestBody?: Schema$Subaccount;
   }
   export interface Params$Resource$Subaccounts$Update {
     /**
@@ -25635,10 +25713,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subaccount;
+    requestBody?: Schema$Subaccount;
   }
 
 
@@ -26269,10 +26348,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetingTemplate;
+    requestBody?: Schema$TargetingTemplate;
   }
   export interface Params$Resource$Targetingtemplates$List {
     /**
@@ -26333,10 +26413,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetingTemplate;
+    requestBody?: Schema$TargetingTemplate;
   }
   export interface Params$Resource$Targetingtemplates$Update {
     /**
@@ -26348,10 +26429,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TargetingTemplate;
+    requestBody?: Schema$TargetingTemplate;
   }
 
 
@@ -27347,10 +27429,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserRole;
+    requestBody?: Schema$UserRole;
   }
   export interface Params$Resource$Userroles$List {
     /**
@@ -27416,10 +27499,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserRole;
+    requestBody?: Schema$UserRole;
   }
   export interface Params$Resource$Userroles$Update {
     /**
@@ -27431,10 +27515,11 @@ export namespace dfareporting_v3_0 {
      * User profile ID associated with this request.
      */
     profileId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UserRole;
+    requestBody?: Schema$UserRole;
   }
 
 

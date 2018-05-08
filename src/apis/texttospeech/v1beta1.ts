@@ -316,10 +316,11 @@ export namespace texttospeech_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SynthesizeSpeechRequest;
+    requestBody?: Schema$SynthesizeSpeechRequest;
   }
 
 

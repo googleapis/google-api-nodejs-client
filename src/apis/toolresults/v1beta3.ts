@@ -1820,10 +1820,11 @@ export namespace toolresults_v1beta3 {
      * example, a UUID.  Optional, but strongly recommended.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$History;
+    requestBody?: Schema$History;
   }
   export interface Params$Resource$Projects$Histories$Get {
     /**
@@ -2203,10 +2204,11 @@ export namespace toolresults_v1beta3 {
      * example, a UUID.  Optional, but strongly recommended.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Execution;
+    requestBody?: Schema$Execution;
   }
   export interface Params$Resource$Projects$Histories$Executions$Get {
     /**
@@ -2275,10 +2277,11 @@ export namespace toolresults_v1beta3 {
      * example, a UUID.  Optional, but strongly recommended.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Execution;
+    requestBody?: Schema$Execution;
   }
 
   export class Resource$Projects$Histories$Executions$Clusters {
@@ -3017,10 +3020,11 @@ export namespace toolresults_v1beta3 {
      * example, a UUID.  Optional, but strongly recommended.
      */
     requestId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Step;
+    requestBody?: Schema$Step;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Get {
     /**
@@ -3123,10 +3127,11 @@ export namespace toolresults_v1beta3 {
      * A Step id.  Required.
      */
     stepId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Step;
+    requestBody?: Schema$Step;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles {
     /**
@@ -3150,10 +3155,11 @@ export namespace toolresults_v1beta3 {
      * A Step id. Note: This step must include a TestExecutionStep.  Required.
      */
     stepId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PublishXunitXmlFilesRequest;
+    requestBody?: Schema$PublishXunitXmlFilesRequest;
   }
 
   export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
@@ -3271,10 +3277,11 @@ export namespace toolresults_v1beta3 {
      * A tool results step ID.
      */
     stepId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PerfMetricsSummary;
+    requestBody?: Schema$PerfMetricsSummary;
   }
 
 
@@ -3568,10 +3575,11 @@ export namespace toolresults_v1beta3 {
      * A tool results step ID.
      */
     stepId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PerfSampleSeries;
+    requestBody?: Schema$PerfSampleSeries;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get {
     /**
@@ -3861,10 +3869,11 @@ export namespace toolresults_v1beta3 {
      * A tool results step ID.
      */
     stepId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchCreatePerfSamplesRequest;
+    requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List {
     /**

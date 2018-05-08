@@ -1241,10 +1241,11 @@ export namespace cloudbilling_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BillingAccount;
+    requestBody?: Schema$BillingAccount;
   }
   export interface Params$Resource$Billingaccounts$Get {
     /**
@@ -1313,10 +1314,11 @@ export namespace cloudbilling_v1 {
      * supported.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BillingAccount;
+    requestBody?: Schema$BillingAccount;
   }
   export interface Params$Resource$Billingaccounts$Setiampolicy {
     /**
@@ -1329,10 +1331,11 @@ export namespace cloudbilling_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Billingaccounts$Testiampermissions {
     /**
@@ -1345,10 +1348,11 @@ export namespace cloudbilling_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Billingaccounts$Projects {
@@ -1852,10 +1856,11 @@ export namespace cloudbilling_v1 {
      * that you want to update. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProjectBillingInfo;
+    requestBody?: Schema$ProjectBillingInfo;
   }
 
 

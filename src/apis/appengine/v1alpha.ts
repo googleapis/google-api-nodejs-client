@@ -1077,10 +1077,11 @@ export namespace appengine_v1alpha {
      * apps/myapp.
      */
     appsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AuthorizedCertificate;
+    requestBody?: Schema$AuthorizedCertificate;
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Delete {
     /**
@@ -1162,10 +1163,11 @@ export namespace appengine_v1alpha {
      * supported on the certificate_raw_data and display_name fields.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AuthorizedCertificate;
+    requestBody?: Schema$AuthorizedCertificate;
   }
 
 
@@ -1673,10 +1675,11 @@ export namespace appengine_v1alpha {
      * this domain. By default, overrides are rejected.
      */
     overrideStrategy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DomainMapping;
+    requestBody?: Schema$DomainMapping;
   }
   export interface Params$Resource$Apps$Domainmappings$Delete {
     /**
@@ -1758,10 +1761,11 @@ export namespace appengine_v1alpha {
      * Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DomainMapping;
+    requestBody?: Schema$DomainMapping;
   }
 
 

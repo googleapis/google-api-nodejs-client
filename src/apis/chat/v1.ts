@@ -1191,10 +1191,11 @@ export namespace chat_v1 {
      * if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Message;
+    requestBody?: Schema$Message;
   }
   export interface Params$Resource$Spaces$Messages$Delete {
     /**
@@ -1238,9 +1239,10 @@ export namespace chat_v1 {
      * paths: "text", "cards".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Message;
+    requestBody?: Schema$Message;
   }
 }

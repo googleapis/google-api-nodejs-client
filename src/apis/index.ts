@@ -153,6 +153,7 @@ import {proximitybeacon_v1beta1} from './proximitybeacon/v1beta1';
 import {pubsub_v1} from './pubsub/v1';
 import {pubsub_v1beta1a} from './pubsub/v1beta1a';
 import {pubsub_v1beta2} from './pubsub/v1beta2';
+import {redis_v1beta1} from './redis/v1beta1';
 import {replicapool_v1beta1} from './replicapool/v1beta1';
 import {replicapool_v1beta2} from './replicapool/v1beta2';
 import {replicapoolupdater_v1beta1} from './replicapoolupdater/v1beta1';
@@ -529,6 +530,9 @@ export const APIS: APIList = {
     'v1': pubsub_v1.Pubsub,
     'v1beta1a': pubsub_v1beta1a.Pubsub,
     'v1beta2': pubsub_v1beta2.Pubsub,
+  },
+  redis: {
+    'v1beta1': redis_v1beta1.Redis,
   },
   replicapool: {
     'v1beta1': replicapool_v1beta1.Replicapool,
@@ -1451,6 +1455,12 @@ export class GeneratedAPIs {
       versionOrOptions: 'v1'|pubsub_v1.Options|'v1beta1a'|
       pubsub_v1beta1a.Options|'v1beta2'|pubsub_v1beta2.Options) {
     return this.getAPI<T>('pubsub', versionOrOptions);
+  }
+  redis(version: 'v1beta1'): redis_v1beta1.Redis;
+  redis(options: redis_v1beta1.Options): redis_v1beta1.Redis;
+  redis<T = redis_v1beta1.Redis>(versionOrOptions: 'v1beta1'|
+                                 redis_v1beta1.Options) {
+    return this.getAPI<T>('redis', versionOrOptions);
   }
   replicapool(version: 'v1beta1'): replicapool_v1beta1.Replicapool;
   replicapool(options: replicapool_v1beta1.Options):

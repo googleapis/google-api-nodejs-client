@@ -1649,10 +1649,11 @@ export namespace logging_v2 {
      * "projects/my-logging-project", "organizations/123456789".
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
   export interface Params$Resource$Billingaccounts$Exclusions$Delete {
     /**
@@ -1736,10 +1737,11 @@ export namespace logging_v2 {
      * update_mask of "filter,description".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
 
 
@@ -2385,10 +2387,11 @@ export namespace logging_v2 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Billingaccounts$Sinks$Delete {
     /**
@@ -2489,10 +2492,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Billingaccounts$Sinks$Update {
     /**
@@ -2534,10 +2538,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 
 
@@ -2697,10 +2702,11 @@ export namespace logging_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ListLogEntriesRequest;
+    requestBody?: Schema$ListLogEntriesRequest;
   }
   export interface Params$Resource$Entries$Write {
     /**
@@ -2708,10 +2714,11 @@ export namespace logging_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WriteLogEntriesRequest;
+    requestBody?: Schema$WriteLogEntriesRequest;
   }
 
 
@@ -3068,10 +3075,11 @@ export namespace logging_v2 {
      * "projects/my-logging-project", "organizations/123456789".
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
   export interface Params$Resource$Exclusions$Delete {
     /**
@@ -3155,10 +3163,11 @@ export namespace logging_v2 {
      * update_mask of "filter,description".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
 
 
@@ -3541,10 +3550,11 @@ export namespace logging_v2 {
      * "projects/my-logging-project", "organizations/123456789".
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
   export interface Params$Resource$Folders$Exclusions$Delete {
     /**
@@ -3628,10 +3638,11 @@ export namespace logging_v2 {
      * update_mask of "filter,description".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
 
 
@@ -4275,10 +4286,11 @@ export namespace logging_v2 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Folders$Sinks$Delete {
     /**
@@ -4379,10 +4391,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Folders$Sinks$Update {
     /**
@@ -4424,10 +4437,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 
 
@@ -5113,10 +5127,11 @@ export namespace logging_v2 {
      * "projects/my-logging-project", "organizations/123456789".
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
   export interface Params$Resource$Organizations$Exclusions$Delete {
     /**
@@ -5200,10 +5215,11 @@ export namespace logging_v2 {
      * update_mask of "filter,description".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
 
 
@@ -5849,10 +5865,11 @@ export namespace logging_v2 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Organizations$Sinks$Delete {
     /**
@@ -5953,10 +5970,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Organizations$Sinks$Update {
     /**
@@ -5998,10 +6016,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 
 
@@ -6387,10 +6406,11 @@ export namespace logging_v2 {
      * "projects/my-logging-project", "organizations/123456789".
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
   export interface Params$Resource$Projects$Exclusions$Delete {
     /**
@@ -6474,10 +6494,11 @@ export namespace logging_v2 {
      * update_mask of "filter,description".
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogExclusion;
+    requestBody?: Schema$LogExclusion;
   }
 
 
@@ -7033,10 +7054,11 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogMetric;
+    requestBody?: Schema$LogMetric;
   }
   export interface Params$Resource$Projects$Metrics$Delete {
     /**
@@ -7101,10 +7123,11 @@ export namespace logging_v2 {
      * metric is created.
      */
     metricName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogMetric;
+    requestBody?: Schema$LogMetric;
   }
 
 
@@ -7554,10 +7577,11 @@ export namespace logging_v2 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Projects$Sinks$Delete {
     /**
@@ -7658,10 +7682,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Projects$Sinks$Update {
     /**
@@ -7703,10 +7728,11 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 
 
@@ -8078,10 +8104,11 @@ export namespace logging_v2 {
      * writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
   export interface Params$Resource$Sinks$Delete {
     /**
@@ -8182,9 +8209,10 @@ export namespace logging_v2 {
      * updateMask=filter.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$LogSink;
+    requestBody?: Schema$LogSink;
   }
 }

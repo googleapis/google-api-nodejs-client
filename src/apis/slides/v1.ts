@@ -3385,10 +3385,11 @@ export namespace slides_v1 {
      * The presentation to apply the updates to.
      */
     presentationId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdatePresentationRequest;
+    requestBody?: Schema$BatchUpdatePresentationRequest;
   }
   export interface Params$Resource$Presentations$Create {
     /**
@@ -3396,10 +3397,11 @@ export namespace slides_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Presentation;
+    requestBody?: Schema$Presentation;
   }
   export interface Params$Resource$Presentations$Get {
     /**

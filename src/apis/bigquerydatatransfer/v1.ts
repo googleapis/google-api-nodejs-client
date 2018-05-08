@@ -165,8 +165,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     supportsCustomSchedule?: boolean;
     /**
-     * Indicates whether the data source supports multiple transfers to
-     * different BigQuery targets.
+     * Deprecated. This field has no effect.
      */
     supportsMultipleTransfers?: boolean;
     /**
@@ -860,10 +859,11 @@ export namespace bigquerydatatransfer_v1 {
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CheckValidCredsRequest;
+    requestBody?: Schema$CheckValidCredsRequest;
   }
   export interface Params$Resource$Projects$Datasources$Get {
     /**
@@ -1325,10 +1325,11 @@ export namespace bigquerydatatransfer_v1 {
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CheckValidCredsRequest;
+    requestBody?: Schema$CheckValidCredsRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasources$Get {
     /**
@@ -1851,10 +1852,11 @@ export namespace bigquerydatatransfer_v1 {
      * will fail.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TransferConfig;
+    requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete {
     /**
@@ -1942,10 +1944,11 @@ export namespace bigquerydatatransfer_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TransferConfig;
+    requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns {
     /**
@@ -1958,10 +1961,11 @@ export namespace bigquerydatatransfer_v1 {
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ScheduleTransferRunsRequest;
+    requestBody?: Schema$ScheduleTransferRunsRequest;
   }
 
   export class Resource$Projects$Locations$Transferconfigs$Runs {
@@ -2841,10 +2845,11 @@ export namespace bigquerydatatransfer_v1 {
      * will fail.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TransferConfig;
+    requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Transferconfigs$Delete {
     /**
@@ -2932,10 +2937,11 @@ export namespace bigquerydatatransfer_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TransferConfig;
+    requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Transferconfigs$Scheduleruns {
     /**
@@ -2948,10 +2954,11 @@ export namespace bigquerydatatransfer_v1 {
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ScheduleTransferRunsRequest;
+    requestBody?: Schema$ScheduleTransferRunsRequest;
   }
 
   export class Resource$Projects$Transferconfigs$Runs {

@@ -1391,10 +1391,12 @@ export namespace vision_v1p2beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest;
+    requestBody?:
+        Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest;
   }
 
 
@@ -1495,9 +1497,10 @@ export namespace vision_v1p2beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest;
+    requestBody?: Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest;
   }
 }

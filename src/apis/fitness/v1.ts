@@ -730,10 +730,11 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AggregateRequest;
+    requestBody?: Schema$AggregateRequest;
   }
 
 
@@ -1193,10 +1194,11 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DataSource;
+    requestBody?: Schema$DataSource;
   }
   export interface Params$Resource$Users$Datasources$Delete {
     /**
@@ -1262,10 +1264,11 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DataSource;
+    requestBody?: Schema$DataSource;
   }
   export interface Params$Resource$Users$Datasources$Update {
     /**
@@ -1282,10 +1285,11 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DataSource;
+    requestBody?: Schema$DataSource;
   }
 
   export class Resource$Users$Datasources$Datapointchanges {
@@ -1741,10 +1745,11 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Dataset;
+    requestBody?: Schema$Dataset;
   }
 
 
@@ -2041,9 +2046,10 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Session;
+    requestBody?: Schema$Session;
   }
 }

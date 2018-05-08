@@ -2221,10 +2221,11 @@ export namespace monitoring_v3 {
      * the container.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AlertPolicy;
+    requestBody?: Schema$AlertPolicy;
   }
   export interface Params$Resource$Projects$Alertpolicies$Delete {
     /**
@@ -2322,10 +2323,11 @@ export namespace monitoring_v3 {
      * created.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AlertPolicy;
+    requestBody?: Schema$AlertPolicy;
   }
 
 
@@ -2477,10 +2479,11 @@ export namespace monitoring_v3 {
      * "projects/PROJECT_ID_OR_NUMBER".
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateCollectdTimeSeriesRequest;
+    requestBody?: Schema$CreateCollectdTimeSeriesRequest;
   }
 
 
@@ -3094,10 +3097,11 @@ export namespace monitoring_v3 {
      * If true, validate this request but do not create the group.
      */
     validateOnly?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
   export interface Params$Resource$Projects$Groups$Delete {
     /**
@@ -3184,10 +3188,11 @@ export namespace monitoring_v3 {
      * If true, validate this request but do not update the existing group.
      */
     validateOnly?: boolean;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Group;
+    requestBody?: Schema$Group;
   }
 
   export class Resource$Projects$Groups$Members {
@@ -3862,10 +3867,11 @@ export namespace monitoring_v3 {
      * "projects/{project_id_or_number}".
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$MetricDescriptor;
+    requestBody?: Schema$MetricDescriptor;
   }
   export interface Params$Resource$Projects$Metricdescriptors$Delete {
     /**
@@ -5068,10 +5074,11 @@ export namespace monitoring_v3 {
      * the channel.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$NotificationChannel;
+    requestBody?: Schema$NotificationChannel;
   }
   export interface Params$Resource$Projects$Notificationchannels$Delete {
     /**
@@ -5116,10 +5123,11 @@ export namespace monitoring_v3 {
      * specified channel is not verified, the request will fail.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GetNotificationChannelVerificationCodeRequest;
+    requestBody?: Schema$GetNotificationChannelVerificationCodeRequest;
   }
   export interface Params$Resource$Projects$Notificationchannels$List {
     /**
@@ -5176,10 +5184,11 @@ export namespace monitoring_v3 {
      * The fields to update.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$NotificationChannel;
+    requestBody?: Schema$NotificationChannel;
   }
   export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode {
     /**
@@ -5191,10 +5200,11 @@ export namespace monitoring_v3 {
      * The notification channel to which to send a verification code.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SendNotificationChannelVerificationCodeRequest;
+    requestBody?: Schema$SendNotificationChannelVerificationCodeRequest;
   }
   export interface Params$Resource$Projects$Notificationchannels$Verify {
     /**
@@ -5206,10 +5216,11 @@ export namespace monitoring_v3 {
      * The notification channel to verify.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$VerifyNotificationChannelRequest;
+    requestBody?: Schema$VerifyNotificationChannelRequest;
   }
 
 
@@ -5486,10 +5497,11 @@ export namespace monitoring_v3 {
      * "projects/{project_id_or_number}".
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateTimeSeriesRequest;
+    requestBody?: Schema$CreateTimeSeriesRequest;
   }
   export interface Params$Resource$Projects$Timeseries$List {
     /**
@@ -5961,10 +5973,11 @@ export namespace monitoring_v3 {
      * projects/[PROJECT_ID].
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UptimeCheckConfig;
+    requestBody?: Schema$UptimeCheckConfig;
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$Delete {
     /**
@@ -6036,10 +6049,11 @@ export namespace monitoring_v3 {
      * with the new configuration.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UptimeCheckConfig;
+    requestBody?: Schema$UptimeCheckConfig;
   }
 
 

@@ -2999,36 +2999,72 @@ export namespace identitytoolkit_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
   export interface Params$Resource$Relyingparty$Deleteaccount {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest;
   }
   export interface Params$Resource$Relyingparty$Downloadaccount {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
   export interface Params$Resource$Relyingparty$Emaillinksignin {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyEmailLinkSigninRequest;
   }
   export interface Params$Resource$Relyingparty$Getaccountinfo {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
   }
   export interface Params$Resource$Relyingparty$Getoobconfirmationcode {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Relyingparty;
   }
   export interface Params$Resource$Relyingparty$Getprojectconfig {
     /**
@@ -3062,65 +3098,131 @@ export namespace identitytoolkit_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyResetPasswordRequest;
   }
   export interface Params$Resource$Relyingparty$Sendverificationcode {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
   export interface Params$Resource$Relyingparty$Setaccountinfo {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartySetAccountInfoRequest;
   }
   export interface Params$Resource$Relyingparty$Setprojectconfig {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
   export interface Params$Resource$Relyingparty$Signoutuser {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartySignOutUserRequest;
   }
   export interface Params$Resource$Relyingparty$Signupnewuser {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
   export interface Params$Resource$Relyingparty$Uploadaccount {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyUploadAccountRequest;
   }
   export interface Params$Resource$Relyingparty$Verifyassertion {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
   export interface Params$Resource$Relyingparty$Verifycustomtoken {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest;
   }
   export interface Params$Resource$Relyingparty$Verifypassword {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
   export interface Params$Resource$Relyingparty$Verifyphonenumber {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest;
   }
 }

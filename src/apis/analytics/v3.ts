@@ -3597,10 +3597,11 @@ export namespace analytics_v3 {
      * Account ID to create the user link for.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
   export interface Params$Resource$Management$Accountuserlinks$List {
     /**
@@ -3636,10 +3637,11 @@ export namespace analytics_v3 {
      * Link ID to update the account-user link for.
      */
     linkId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
 
 
@@ -4155,10 +4157,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom dimension to create.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomDimension;
+    requestBody?: Schema$CustomDimension;
   }
   export interface Params$Resource$Management$Customdimensions$List {
     /**
@@ -4207,10 +4210,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom dimension to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomDimension;
+    requestBody?: Schema$CustomDimension;
   }
   export interface Params$Resource$Management$Customdimensions$Update {
     /**
@@ -4235,10 +4239,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom dimension to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomDimension;
+    requestBody?: Schema$CustomDimension;
   }
 
 
@@ -4644,10 +4649,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom dimension to create.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomMetric;
+    requestBody?: Schema$CustomMetric;
   }
   export interface Params$Resource$Management$Custommetrics$List {
     /**
@@ -4696,10 +4702,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom metric to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomMetric;
+    requestBody?: Schema$CustomMetric;
   }
   export interface Params$Resource$Management$Custommetrics$Update {
     /**
@@ -4724,10 +4731,11 @@ export namespace analytics_v3 {
      * Web property ID for the custom metric to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CustomMetric;
+    requestBody?: Schema$CustomMetric;
   }
 
 
@@ -5241,10 +5249,11 @@ export namespace analytics_v3 {
      * Web property ID to create the experiment for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Experiment;
+    requestBody?: Schema$Experiment;
   }
   export interface Params$Resource$Management$Experiments$List {
     /**
@@ -5296,10 +5305,11 @@ export namespace analytics_v3 {
      * Web property ID of the experiment to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Experiment;
+    requestBody?: Schema$Experiment;
   }
   export interface Params$Resource$Management$Experiments$Update {
     /**
@@ -5323,10 +5333,11 @@ export namespace analytics_v3 {
      * Web property ID of the experiment to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Experiment;
+    requestBody?: Schema$Experiment;
   }
 
 
@@ -5793,10 +5804,11 @@ export namespace analytics_v3 {
      * Account ID to create filter for.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Filter;
+    requestBody?: Schema$Filter;
   }
   export interface Params$Resource$Management$Filters$List {
     /**
@@ -5832,10 +5844,11 @@ export namespace analytics_v3 {
      * ID of the filter to be updated.
      */
     filterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Filter;
+    requestBody?: Schema$Filter;
   }
   export interface Params$Resource$Management$Filters$Update {
     /**
@@ -5851,10 +5864,11 @@ export namespace analytics_v3 {
      * ID of the filter to be updated.
      */
     filterId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Filter;
+    requestBody?: Schema$Filter;
   }
 
 
@@ -6265,10 +6279,11 @@ export namespace analytics_v3 {
      * Web property ID to create the goal for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Goal;
+    requestBody?: Schema$Goal;
   }
   export interface Params$Resource$Management$Goals$List {
     /**
@@ -6325,10 +6340,11 @@ export namespace analytics_v3 {
      * Web property ID to update the goal.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Goal;
+    requestBody?: Schema$Goal;
   }
   export interface Params$Resource$Management$Goals$Update {
     /**
@@ -6352,10 +6368,11 @@ export namespace analytics_v3 {
      * Web property ID to update the goal.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Goal;
+    requestBody?: Schema$Goal;
   }
 
 
@@ -6865,10 +6882,11 @@ export namespace analytics_v3 {
      * Web property Id to create profile filter link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProfileFilterLink;
+    requestBody?: Schema$ProfileFilterLink;
   }
   export interface Params$Resource$Management$Profilefilterlinks$List {
     /**
@@ -6923,10 +6941,11 @@ export namespace analytics_v3 {
      * Web property Id to which profile filter link belongs
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProfileFilterLink;
+    requestBody?: Schema$ProfileFilterLink;
   }
   export interface Params$Resource$Management$Profilefilterlinks$Update {
     /**
@@ -6950,10 +6969,11 @@ export namespace analytics_v3 {
      * Web property Id to which profile filter link belongs
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ProfileFilterLink;
+    requestBody?: Schema$ProfileFilterLink;
   }
 
 
@@ -7440,10 +7460,11 @@ export namespace analytics_v3 {
      * Web property ID to create the view (profile) for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Profile;
+    requestBody?: Schema$Profile;
   }
   export interface Params$Resource$Management$Profiles$List {
     /**
@@ -7491,10 +7512,11 @@ export namespace analytics_v3 {
      * Web property ID to which the view (profile) belongs
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Profile;
+    requestBody?: Schema$Profile;
   }
   export interface Params$Resource$Management$Profiles$Update {
     /**
@@ -7514,10 +7536,11 @@ export namespace analytics_v3 {
      * Web property ID to which the view (profile) belongs
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Profile;
+    requestBody?: Schema$Profile;
   }
 
 
@@ -7863,10 +7886,11 @@ export namespace analytics_v3 {
      * Web Property ID to create the user link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
   export interface Params$Resource$Management$Profileuserlinks$List {
     /**
@@ -7922,10 +7946,11 @@ export namespace analytics_v3 {
      * Web Property ID to update the user link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
 
 
@@ -8422,10 +8447,11 @@ export namespace analytics_v3 {
      * Web property ID for which to create the remarketing audience.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingAudience;
+    requestBody?: Schema$RemarketingAudience;
   }
   export interface Params$Resource$Management$Remarketingaudience$List {
     /**
@@ -8473,10 +8499,11 @@ export namespace analytics_v3 {
      * The web property ID of the remarketing audience to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingAudience;
+    requestBody?: Schema$RemarketingAudience;
   }
   export interface Params$Resource$Management$Remarketingaudience$Update {
     /**
@@ -8496,10 +8523,11 @@ export namespace analytics_v3 {
      * The web property ID of the remarketing audience to update.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemarketingAudience;
+    requestBody?: Schema$RemarketingAudience;
   }
 
 
@@ -8963,10 +8991,11 @@ export namespace analytics_v3 {
      * Web property ID to create the unsampled report for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UnsampledReport;
+    requestBody?: Schema$UnsampledReport;
   }
   export interface Params$Resource$Management$Unsampledreports$List {
     /**
@@ -9319,10 +9348,11 @@ export namespace analytics_v3 {
      * Web property Id for the uploads to be deleted.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
+    requestBody?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
   }
   export interface Params$Resource$Management$Uploads$Get {
     /**
@@ -9393,10 +9423,12 @@ export namespace analytics_v3 {
      * Web property UA-string associated with the upload.
      */
     webPropertyId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -9405,7 +9437,7 @@ export namespace analytics_v3 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -9799,10 +9831,11 @@ export namespace analytics_v3 {
      * Account ID to create the web property for.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Webproperty;
+    requestBody?: Schema$Webproperty;
   }
   export interface Params$Resource$Management$Webproperties$List {
     /**
@@ -9840,10 +9873,11 @@ export namespace analytics_v3 {
      * Web property ID
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Webproperty;
+    requestBody?: Schema$Webproperty;
   }
   export interface Params$Resource$Management$Webproperties$Update {
     /**
@@ -9859,10 +9893,11 @@ export namespace analytics_v3 {
      * Web property ID
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Webproperty;
+    requestBody?: Schema$Webproperty;
   }
 
 
@@ -10367,10 +10402,11 @@ export namespace analytics_v3 {
      * Web property ID to create the link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityAdWordsLink;
+    requestBody?: Schema$EntityAdWordsLink;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$List {
     /**
@@ -10415,10 +10451,11 @@ export namespace analytics_v3 {
      * Web property ID to retrieve the AdWords link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityAdWordsLink;
+    requestBody?: Schema$EntityAdWordsLink;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Update {
     /**
@@ -10438,10 +10475,11 @@ export namespace analytics_v3 {
      * Web property ID to retrieve the AdWords link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityAdWordsLink;
+    requestBody?: Schema$EntityAdWordsLink;
   }
 
 
@@ -10777,10 +10815,11 @@ export namespace analytics_v3 {
      * Web Property ID to create the user link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$List {
     /**
@@ -10826,10 +10865,11 @@ export namespace analytics_v3 {
      * Web property ID to update the account-user link for.
      */
     webPropertyId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EntityUserLink;
+    requestBody?: Schema$EntityUserLink;
   }
 
 
@@ -11095,11 +11135,23 @@ export namespace analytics_v3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountTicket;
   }
   export interface Params$Resource$Provisioning$Createaccounttree {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountTreeRequest;
   }
 }

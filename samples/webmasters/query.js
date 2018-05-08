@@ -24,7 +24,7 @@ const webmasters = google.webmasters({
 async function runSample () {
   const res = await webmasters.searchanalytics.query({
     siteUrl: 'http://jbeckwith.com',
-    resource: {
+    requestBody: {
       startDate: '2018-01-01',
       endDate: '2018-04-01'
     }

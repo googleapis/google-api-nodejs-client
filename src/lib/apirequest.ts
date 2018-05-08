@@ -82,7 +82,27 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   );
 
   const media = params.media || {};
-  const resource = params.resource;
+
+  /**
+   * In a previous version of this API, the request body was stuffed in a field
+   * named `resource`.  This caused lots of problems, because it's not uncommon
+   * to have an actual named parameter required which is also named `resource`.
+   * This mean that users would have to use `resource_` in those cases, which
+   * pretty much nobody figures out on their own. The request body is now
+   * documented as being in the `requestBody` property, but we also need to keep
+   * using `resource` for reasons of back-compat. Cases that need to be covered
+   * here:
+   * - user provides just a `resource` with a request body
+   * - user provides both a `resource` and a `resource_`
+   * - user provides just a `requestBody`
+   * - user provides both a `requestBody` and a `resource`
+   */
+  const resource = params.requestBody ? params.requestBody : params.resource;
+  if (!params.requestBody && params.resource) {
+    delete params.resource;
+  }
+  delete params.requestBody;
+
   let authClient = params.auth || parameters.context._options.auth ||
       parameters.context.google._options.auth;
 
@@ -90,7 +110,6 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
       'text/plain' :
       'application/octet-stream';
   delete params.media;
-  delete params.resource;
   delete params.auth;
 
   // Grab headers from user provided options

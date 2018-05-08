@@ -809,10 +809,11 @@ export namespace language_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnalyzeEntitiesRequest;
+    requestBody?: Schema$AnalyzeEntitiesRequest;
   }
   export interface Params$Resource$Documents$Analyzesentiment {
     /**
@@ -820,10 +821,11 @@ export namespace language_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnalyzeSentimentRequest;
+    requestBody?: Schema$AnalyzeSentimentRequest;
   }
   export interface Params$Resource$Documents$Analyzesyntax {
     /**
@@ -831,10 +833,11 @@ export namespace language_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnalyzeSyntaxRequest;
+    requestBody?: Schema$AnalyzeSyntaxRequest;
   }
   export interface Params$Resource$Documents$Annotatetext {
     /**
@@ -842,9 +845,10 @@ export namespace language_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AnnotateTextRequest;
+    requestBody?: Schema$AnnotateTextRequest;
   }
 }

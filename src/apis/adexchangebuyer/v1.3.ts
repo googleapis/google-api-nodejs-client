@@ -966,10 +966,11 @@ export namespace adexchangebuyer_v1_3 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update {
     /**
@@ -981,10 +982,11 @@ export namespace adexchangebuyer_v1_3 {
      * The account id
      */
     id?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -1389,10 +1391,11 @@ export namespace adexchangebuyer_v1_3 {
      * The billing id associated with the budget being updated.
      */
     billingId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Budget;
+    requestBody?: Schema$Budget;
   }
   export interface Params$Resource$Budget$Update {
     /**
@@ -1408,10 +1411,11 @@ export namespace adexchangebuyer_v1_3 {
      * The billing id associated with the budget being updated.
      */
     billingId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Budget;
+    requestBody?: Schema$Budget;
   }
 
 
@@ -1646,6 +1650,12 @@ export namespace adexchangebuyer_v1_3 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List {
     /**
@@ -2421,10 +2431,11 @@ export namespace adexchangebuyer_v1_3 {
      * The account id to insert the pretargeting config for.
      */
     accountId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
   export interface Params$Resource$Pretargetingconfig$List {
     /**
@@ -2451,10 +2462,11 @@ export namespace adexchangebuyer_v1_3 {
      * The specific id of the configuration to update.
      */
     configId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
   export interface Params$Resource$Pretargetingconfig$Update {
     /**
@@ -2470,9 +2482,10 @@ export namespace adexchangebuyer_v1_3 {
      * The specific id of the configuration to update.
      */
     configId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PretargetingConfig;
+    requestBody?: Schema$PretargetingConfig;
   }
 }

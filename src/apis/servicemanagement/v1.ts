@@ -3620,10 +3620,11 @@ export namespace servicemanagement_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ManagedService;
+    requestBody?: Schema$ManagedService;
   }
   export interface Params$Resource$Services$Delete {
     /**
@@ -3649,10 +3650,11 @@ export namespace servicemanagement_v1 {
      * cause the request to fail.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DisableServiceRequest;
+    requestBody?: Schema$DisableServiceRequest;
   }
   export interface Params$Resource$Services$Enable {
     /**
@@ -3665,10 +3667,11 @@ export namespace servicemanagement_v1 {
      * cause the request to fail.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EnableServiceRequest;
+    requestBody?: Schema$EnableServiceRequest;
   }
   export interface Params$Resource$Services$Generateconfigreport {
     /**
@@ -3676,10 +3679,11 @@ export namespace servicemanagement_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GenerateConfigReportRequest;
+    requestBody?: Schema$GenerateConfigReportRequest;
   }
   export interface Params$Resource$Services$Get {
     /**
@@ -3726,10 +3730,11 @@ export namespace servicemanagement_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Services$List {
     /**
@@ -3768,10 +3773,11 @@ export namespace servicemanagement_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Services$Testiampermissions {
     /**
@@ -3784,10 +3790,11 @@ export namespace servicemanagement_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Services$Undelete {
     /**
@@ -4117,10 +4124,11 @@ export namespace servicemanagement_v1 {
      * example: `example.googleapis.com`.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Service;
+    requestBody?: Schema$Service;
   }
   export interface Params$Resource$Services$Configs$Get {
     /**
@@ -4177,10 +4185,11 @@ export namespace servicemanagement_v1 {
      * example: `example.googleapis.com`.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SubmitConfigSourceRequest;
+    requestBody?: Schema$SubmitConfigSourceRequest;
   }
 
 
@@ -4426,10 +4435,11 @@ export namespace servicemanagement_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Services$Consumers$Setiampolicy {
     /**
@@ -4442,10 +4452,11 @@ export namespace servicemanagement_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Services$Consumers$Testiampermissions {
     /**
@@ -4458,10 +4469,11 @@ export namespace servicemanagement_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -4709,10 +4721,11 @@ export namespace servicemanagement_v1 {
      * example: `example.googleapis.com`.
      */
     serviceName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Rollout;
+    requestBody?: Schema$Rollout;
   }
   export interface Params$Resource$Services$Rollouts$Get {
     /**

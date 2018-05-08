@@ -1006,6 +1006,12 @@ export namespace doubleclicksearch_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConversionList;
   }
   export interface Params$Resource$Conversion$Patch {
     /**
@@ -1043,22 +1049,35 @@ export namespace doubleclicksearch_v2 {
      * The 0-based starting index for retrieving conversions results.
      */
     startRow?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ConversionList;
+    requestBody?: Schema$ConversionList;
   }
   export interface Params$Resource$Conversion$Update {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConversionList;
   }
   export interface Params$Resource$Conversion$Updateavailability {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateAvailabilityRequest;
   }
 
 
@@ -1335,6 +1354,12 @@ export namespace doubleclicksearch_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportRequest;
   }
   export interface Params$Resource$Reports$Get {
     /**
@@ -1367,6 +1392,12 @@ export namespace doubleclicksearch_v2 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportRequest;
   }
 
 

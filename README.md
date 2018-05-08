@@ -266,12 +266,12 @@ See the [Options section][options] for more information.
 
 ### Specifying request body
 
-The body of the request is specified in the `resource` parameter object of the request. The resource/body is specified as a JavaScript object with key/value pairs. For example, this sample creates a watcher that posts notifications to a Google Cloud Pub/Sub topic when emails are sent to a gmail account:
+The body of the request is specified in the `requestBody` parameter object of the request. The body is specified as a JavaScript object with key/value pairs. For example, this sample creates a watcher that posts notifications to a Google Cloud Pub/Sub topic when emails are sent to a gmail account:
 
 ```js
 const res = await gmail.users.watch({
   userId: 'me',
-  resource: {
+  requestBody: {
     // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
     topicName: `projects/el-gato/topics/gmail`
   }
@@ -280,7 +280,7 @@ console.log(res.data);
 ```
 
 ### Media uploads
-This client supports multipart media uploads. The resource parameters are specified in the `resource` parameter object, and the media itself is specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
+This client supports multipart media uploads. The resource parameters are specified in the `requestBody` parameter object, and the media itself is specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
 
 This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
@@ -291,7 +291,7 @@ const drive = google.drive({
 });
 
 const res = await drive.files.create({
-  resource: {
+  requestBody: {
     name: 'Test',
     mimeType: 'text/plain'
   },
@@ -314,7 +314,7 @@ const drive = google.drive({
 
 async function main() {
   const res = await drive.files.create({
-    resource: {
+    requestBody: {
       name: 'testimage.png',
       mimeType: 'image/png'
     },
@@ -486,6 +486,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 ## Questions/problems?
 * Ask your development related questions on [Stackoverflow][stackoverflow].
 * If you've found an bug/issue, please [file it on GitHub][bugs].
+
 
 [snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
 [snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client

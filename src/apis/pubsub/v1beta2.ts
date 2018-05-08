@@ -90,13 +90,12 @@ export namespace pubsub_v1beta2 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -1267,10 +1266,11 @@ export namespace pubsub_v1beta2 {
      * The subscription whose message is being acknowledged.
      */
     subscription?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AcknowledgeRequest;
+    requestBody?: Schema$AcknowledgeRequest;
   }
   export interface Params$Resource$Projects$Subscriptions$Create {
     /**
@@ -1287,10 +1287,11 @@ export namespace pubsub_v1beta2 {
      * characters in length, and it must not start with `"goog"`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Projects$Subscriptions$Delete {
     /**
@@ -1357,10 +1358,11 @@ export namespace pubsub_v1beta2 {
      * The name of the subscription.
      */
     subscription?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyAckDeadlineRequest;
+    requestBody?: Schema$ModifyAckDeadlineRequest;
   }
   export interface Params$Resource$Projects$Subscriptions$Modifypushconfig {
     /**
@@ -1372,10 +1374,11 @@ export namespace pubsub_v1beta2 {
      * The name of the subscription.
      */
     subscription?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyPushConfigRequest;
+    requestBody?: Schema$ModifyPushConfigRequest;
   }
   export interface Params$Resource$Projects$Subscriptions$Pull {
     /**
@@ -1387,10 +1390,11 @@ export namespace pubsub_v1beta2 {
      * The subscription from which messages should be pulled.
      */
     subscription?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PullRequest;
+    requestBody?: Schema$PullRequest;
   }
   export interface Params$Resource$Projects$Subscriptions$Setiampolicy {
     /**
@@ -1403,10 +1407,11 @@ export namespace pubsub_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Subscriptions$Testiampermissions {
     /**
@@ -1419,10 +1424,11 @@ export namespace pubsub_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -2007,10 +2013,11 @@ export namespace pubsub_v1beta2 {
      * and it must not start with `"goog"`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Topic;
+    requestBody?: Schema$Topic;
   }
   export interface Params$Resource$Projects$Topics$Delete {
     /**
@@ -2077,10 +2084,11 @@ export namespace pubsub_v1beta2 {
      * The messages in the request will be published on this topic.
      */
     topic?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PublishRequest;
+    requestBody?: Schema$PublishRequest;
   }
   export interface Params$Resource$Projects$Topics$Setiampolicy {
     /**
@@ -2093,10 +2101,11 @@ export namespace pubsub_v1beta2 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Topics$Testiampermissions {
     /**
@@ -2109,10 +2118,11 @@ export namespace pubsub_v1beta2 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Topics$Subscriptions {

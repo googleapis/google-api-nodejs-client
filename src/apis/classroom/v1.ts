@@ -1730,10 +1730,11 @@ export namespace classroom_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Course;
+    requestBody?: Schema$Course;
   }
   export interface Params$Resource$Courses$Delete {
     /**
@@ -1819,10 +1820,11 @@ export namespace classroom_v1 {
      * field should be specified as  `updateMask=<field1>,<field2>,...`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Course;
+    requestBody?: Schema$Course;
   }
   export interface Params$Resource$Courses$Update {
     /**
@@ -1835,10 +1837,11 @@ export namespace classroom_v1 {
      * Classroom-assigned identifier or an alias.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Course;
+    requestBody?: Schema$Course;
   }
 
   export class Resource$Courses$Aliases {
@@ -2085,10 +2088,11 @@ export namespace classroom_v1 {
      * Classroom-assigned identifier or an alias.
      */
     courseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CourseAlias;
+    requestBody?: Schema$CourseAlias;
   }
   export interface Params$Resource$Courses$Aliases$Delete {
     /**
@@ -2606,10 +2610,11 @@ export namespace classroom_v1 {
      * Classroom-assigned identifier or an alias.
      */
     courseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Announcement;
+    requestBody?: Schema$Announcement;
   }
   export interface Params$Resource$Courses$Announcements$Delete {
     /**
@@ -2696,10 +2701,11 @@ export namespace classroom_v1 {
      * Identifier of the announcement.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyAnnouncementAssigneesRequest;
+    requestBody?: Schema$ModifyAnnouncementAssigneesRequest;
   }
   export interface Params$Resource$Courses$Announcements$Patch {
     /**
@@ -2727,10 +2733,11 @@ export namespace classroom_v1 {
      * `text` * `state` * `scheduled_time`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Announcement;
+    requestBody?: Schema$Announcement;
   }
 
 
@@ -3218,10 +3225,11 @@ export namespace classroom_v1 {
      * Classroom-assigned identifier or an alias.
      */
     courseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CourseWork;
+    requestBody?: Schema$CourseWork;
   }
   export interface Params$Resource$Courses$Coursework$Delete {
     /**
@@ -3309,10 +3317,11 @@ export namespace classroom_v1 {
      * Identifier of the coursework.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyCourseWorkAssigneesRequest;
+    requestBody?: Schema$ModifyCourseWorkAssigneesRequest;
   }
   export interface Params$Resource$Courses$Coursework$Patch {
     /**
@@ -3341,10 +3350,11 @@ export namespace classroom_v1 {
      * `scheduled_time` * `submission_modification_mode`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CourseWork;
+    requestBody?: Schema$CourseWork;
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
@@ -4043,10 +4053,11 @@ export namespace classroom_v1 {
      * Identifier of the student submission.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyAttachmentsRequest;
+    requestBody?: Schema$ModifyAttachmentsRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch {
     /**
@@ -4074,10 +4085,11 @@ export namespace classroom_v1 {
      * * `draft_grade` * `assigned_grade`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StudentSubmission;
+    requestBody?: Schema$StudentSubmission;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim {
     /**
@@ -4098,10 +4110,11 @@ export namespace classroom_v1 {
      * Identifier of the student submission.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReclaimStudentSubmissionRequest;
+    requestBody?: Schema$ReclaimStudentSubmissionRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return {
     /**
@@ -4122,10 +4135,11 @@ export namespace classroom_v1 {
      * Identifier of the student submission.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReturnStudentSubmissionRequest;
+    requestBody?: Schema$ReturnStudentSubmissionRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin {
     /**
@@ -4146,10 +4160,11 @@ export namespace classroom_v1 {
      * Identifier of the student submission.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TurnInStudentSubmissionRequest;
+    requestBody?: Schema$TurnInStudentSubmissionRequest;
   }
 
 
@@ -4471,10 +4486,11 @@ export namespace classroom_v1 {
      * for any user.
      */
     enrollmentCode?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Student;
+    requestBody?: Schema$Student;
   }
   export interface Params$Resource$Courses$Students$Delete {
     /**
@@ -4847,10 +4863,11 @@ export namespace classroom_v1 {
      * Classroom-assigned identifier or an alias.
      */
     courseId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Teacher;
+    requestBody?: Schema$Teacher;
   }
   export interface Params$Resource$Courses$Teachers$Delete {
     /**
@@ -5297,10 +5314,11 @@ export namespace classroom_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Invitation;
+    requestBody?: Schema$Invitation;
   }
   export interface Params$Resource$Invitations$Delete {
     /**
@@ -5527,10 +5545,11 @@ export namespace classroom_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Registration;
+    requestBody?: Schema$Registration;
   }
   export interface Params$Resource$Registrations$Delete {
     /**
@@ -6012,10 +6031,11 @@ export namespace classroom_v1 {
      * ID of the student (in standard format)
      */
     studentId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GuardianInvitation;
+    requestBody?: Schema$GuardianInvitation;
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$Get {
     /**
@@ -6093,10 +6113,11 @@ export namespace classroom_v1 {
      * `updateMask=<field1>,<field2>,...`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$GuardianInvitation;
+    requestBody?: Schema$GuardianInvitation;
   }
 
 

@@ -1409,10 +1409,11 @@ export namespace tpu_v1alpha1 {
      * The parent resource name.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Node;
+    requestBody?: Schema$Node;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Delete {
     /**
@@ -1465,10 +1466,11 @@ export namespace tpu_v1alpha1 {
      * The resource name.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReimageNodeRequest;
+    requestBody?: Schema$ReimageNodeRequest;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Reset {
     /**
@@ -1480,10 +1482,11 @@ export namespace tpu_v1alpha1 {
      * The resource name.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ResetNodeRequest;
+    requestBody?: Schema$ResetNodeRequest;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Start {
     /**
@@ -1495,10 +1498,11 @@ export namespace tpu_v1alpha1 {
      * The resource name.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StartNodeRequest;
+    requestBody?: Schema$StartNodeRequest;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Stop {
     /**
@@ -1510,10 +1514,11 @@ export namespace tpu_v1alpha1 {
      * The resource name.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$StopNodeRequest;
+    requestBody?: Schema$StopNodeRequest;
   }
 
 

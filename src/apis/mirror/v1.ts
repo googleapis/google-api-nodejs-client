@@ -820,10 +820,11 @@ export namespace mirror_v1 {
      * The ID for the user.
      */
     userToken?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Account;
+    requestBody?: Schema$Account;
   }
 
 
@@ -1249,6 +1250,12 @@ export namespace mirror_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Contact;
   }
   export interface Params$Resource$Contacts$List {
     /**
@@ -1266,10 +1273,11 @@ export namespace mirror_v1 {
      * The ID of the contact.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Contact;
+    requestBody?: Schema$Contact;
   }
   export interface Params$Resource$Contacts$Update {
     /**
@@ -1281,10 +1289,11 @@ export namespace mirror_v1 {
      * The ID of the contact.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Contact;
+    requestBody?: Schema$Contact;
   }
 
 
@@ -1832,6 +1841,12 @@ export namespace mirror_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Subscriptions$List {
     /**
@@ -1849,10 +1864,11 @@ export namespace mirror_v1 {
      * The ID of the subscription.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subscription;
+    requestBody?: Schema$Subscription;
   }
 
 
@@ -2302,6 +2318,27 @@ export namespace mirror_v1 {
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TimelineItem;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
   export interface Params$Resource$Timeline$List {
     /**
@@ -2348,10 +2385,11 @@ export namespace mirror_v1 {
      * The ID of the timeline item.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TimelineItem;
+    requestBody?: Schema$TimelineItem;
   }
   export interface Params$Resource$Timeline$Update {
     /**
@@ -2363,14 +2401,16 @@ export namespace mirror_v1 {
      * The ID of the timeline item.
      */
     id?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$TimelineItem;
+    requestBody?: Schema$TimelineItem;
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2379,7 +2419,7 @@ export namespace mirror_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 
@@ -2708,10 +2748,12 @@ export namespace mirror_v1 {
      * The ID of the timeline item the attachment belongs to.
      */
     itemId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -2720,7 +2762,7 @@ export namespace mirror_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
   export interface Params$Resource$Timeline$Attachments$List {

@@ -1044,10 +1044,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AcknowledgeRequest;
+    requestBody?: Schema$AcknowledgeRequest;
   }
   export interface Params$Resource$Subscriptions$Create {
     /**
@@ -1055,10 +1056,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Subscriptions$Delete {
     /**
@@ -1108,10 +1110,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyAckDeadlineRequest;
+    requestBody?: Schema$ModifyAckDeadlineRequest;
   }
   export interface Params$Resource$Subscriptions$Modifypushconfig {
     /**
@@ -1119,10 +1122,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyPushConfigRequest;
+    requestBody?: Schema$ModifyPushConfigRequest;
   }
   export interface Params$Resource$Subscriptions$Pull {
     /**
@@ -1130,10 +1134,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PullRequest;
+    requestBody?: Schema$PullRequest;
   }
   export interface Params$Resource$Subscriptions$Pullbatch {
     /**
@@ -1141,10 +1146,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PullBatchRequest;
+    requestBody?: Schema$PullBatchRequest;
   }
 
 
@@ -1560,10 +1566,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Topic;
+    requestBody?: Schema$Topic;
   }
   export interface Params$Resource$Topics$Delete {
     /**
@@ -1613,10 +1620,11 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PublishRequest;
+    requestBody?: Schema$PublishRequest;
   }
   export interface Params$Resource$Topics$Publishbatch {
     /**
@@ -1624,9 +1632,10 @@ export namespace pubsub_v1beta1a {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PublishBatchRequest;
+    requestBody?: Schema$PublishBatchRequest;
   }
 }

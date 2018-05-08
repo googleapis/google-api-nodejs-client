@@ -593,10 +593,11 @@ export namespace cloudtrace_v2 {
      * `projects/[PROJECT_ID]`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchWriteSpansRequest;
+    requestBody?: Schema$BatchWriteSpansRequest;
   }
 
   export class Resource$Projects$Traces$Spans {
@@ -692,9 +693,10 @@ export namespace cloudtrace_v2 {
      * array.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Span;
+    requestBody?: Schema$Span;
   }
 }

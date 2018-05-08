@@ -24,7 +24,7 @@ const blogger = google.blogger({
 async function runSample () {
   const res = await blogger.posts.insert({
     blogId: '4340475495955554224',
-    resource: {
+    requestBody: {
       title: 'Hello from the googleapis npm module!',
       content: 'Visit https://github.com/google/google-api-nodejs-client to learn more!'
     }

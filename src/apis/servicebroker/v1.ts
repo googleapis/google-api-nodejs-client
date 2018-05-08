@@ -430,10 +430,11 @@ export namespace servicebroker_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__SetIamPolicyRequest;
+    requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
   export interface Params$Resource$V1$Testiampermissions {
     /**
@@ -446,9 +447,10 @@ export namespace servicebroker_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GoogleIamV1__TestIamPermissionsRequest;
+    requestBody?: Schema$GoogleIamV1__TestIamPermissionsRequest;
   }
 }

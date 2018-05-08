@@ -2177,10 +2177,11 @@ export namespace appengine_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Application;
+    requestBody?: Schema$Application;
   }
   export interface Params$Resource$Apps$Get {
     /**
@@ -2209,10 +2210,11 @@ export namespace appengine_v1 {
      * Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Application;
+    requestBody?: Schema$Application;
   }
   export interface Params$Resource$Apps$Repair {
     /**
@@ -2224,10 +2226,11 @@ export namespace appengine_v1 {
      * Part of `name`. Name of the application to repair. Example: apps/myapp
      */
     appsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RepairApplicationRequest;
+    requestBody?: Schema$RepairApplicationRequest;
   }
 
   export class Resource$Apps$Authorizedcertificates {
@@ -2617,10 +2620,11 @@ export namespace appengine_v1 {
      * apps/myapp.
      */
     appsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AuthorizedCertificate;
+    requestBody?: Schema$AuthorizedCertificate;
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Delete {
     /**
@@ -2702,10 +2706,11 @@ export namespace appengine_v1 {
      * supported on the certificate_raw_data and display_name fields.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AuthorizedCertificate;
+    requestBody?: Schema$AuthorizedCertificate;
   }
 
 
@@ -3204,10 +3209,11 @@ export namespace appengine_v1 {
      * this domain. By default, overrides are rejected.
      */
     overrideStrategy?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DomainMapping;
+    requestBody?: Schema$DomainMapping;
   }
   export interface Params$Resource$Apps$Domainmappings$Delete {
     /**
@@ -3280,10 +3286,11 @@ export namespace appengine_v1 {
      * Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DomainMapping;
+    requestBody?: Schema$DomainMapping;
   }
 
 
@@ -3751,10 +3758,11 @@ export namespace appengine_v1 {
      * apps/myapp/firewall/ingressRules.
      */
     appsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$BatchUpdateIngressRulesRequest;
+    requestBody?: Schema$BatchUpdateIngressRulesRequest;
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$Create {
     /**
@@ -3767,10 +3775,11 @@ export namespace appengine_v1 {
      * create a new rule. Example: apps/myapp/firewall/ingressRules.
      */
     appsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FirewallRule;
+    requestBody?: Schema$FirewallRule;
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$Delete {
     /**
@@ -3849,10 +3858,11 @@ export namespace appengine_v1 {
      * Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$FirewallRule;
+    requestBody?: Schema$FirewallRule;
   }
 
 
@@ -4612,10 +4622,11 @@ export namespace appengine_v1 {
      * Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Service;
+    requestBody?: Schema$Service;
   }
 
   export class Resource$Apps$Services$Versions {
@@ -5030,10 +5041,11 @@ export namespace appengine_v1 {
      * Part of `parent`. See documentation of `appsId`.
      */
     servicesId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Version;
+    requestBody?: Schema$Version;
   }
   export interface Params$Resource$Apps$Services$Versions$Delete {
     /**
@@ -5130,10 +5142,11 @@ export namespace appengine_v1 {
      * Part of `name`. See documentation of `appsId`.
      */
     versionsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Version;
+    requestBody?: Schema$Version;
   }
 
   export class Resource$Apps$Services$Versions$Instances {
@@ -5467,10 +5480,11 @@ export namespace appengine_v1 {
      * Part of `name`. See documentation of `appsId`.
      */
     versionsId?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DebugInstanceRequest;
+    requestBody?: Schema$DebugInstanceRequest;
   }
   export interface Params$Resource$Apps$Services$Versions$Instances$Delete {
     /**

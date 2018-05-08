@@ -1918,10 +1918,11 @@ export namespace androidmanagement_v1 {
      * The name of the SignupUrl used to sign up for the enterprise.
      */
     signupUrlName?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Enterprise;
+    requestBody?: Schema$Enterprise;
   }
   export interface Params$Resource$Enterprises$Get {
     /**
@@ -1949,10 +1950,11 @@ export namespace androidmanagement_v1 {
      * modifiable fields will be modified.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Enterprise;
+    requestBody?: Schema$Enterprise;
   }
 
   export class Resource$Enterprises$Applications {
@@ -2437,10 +2439,11 @@ export namespace androidmanagement_v1 {
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Command;
+    requestBody?: Schema$Command;
   }
   export interface Params$Resource$Enterprises$Devices$List {
     /**
@@ -2478,10 +2481,11 @@ export namespace androidmanagement_v1 {
      * modifiable fields will be modified.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
 
   export class Resource$Enterprises$Devices$Operations {
@@ -3003,10 +3007,11 @@ export namespace androidmanagement_v1 {
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$EnrollmentToken;
+    requestBody?: Schema$EnrollmentToken;
   }
   export interface Params$Resource$Enterprises$Enrollmenttokens$Delete {
     /**
@@ -3362,10 +3367,11 @@ export namespace androidmanagement_v1 {
      * modifiable fields will be modified.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Policy;
+    requestBody?: Schema$Policy;
   }
 
 
@@ -3460,10 +3466,11 @@ export namespace androidmanagement_v1 {
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$WebToken;
+    requestBody?: Schema$WebToken;
   }
 
 

@@ -552,9 +552,10 @@ export namespace appstate_v1 {
      * The key for the data to be retrieved.
      */
     stateKey?: number;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$UpdateRequest;
+    requestBody?: Schema$UpdateRequest;
   }
 }

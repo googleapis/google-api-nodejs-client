@@ -16,32 +16,31 @@ import * as nock from 'nock';
 import * as path from 'path';
 import * as url from 'url';
 
-import {GoogleApis} from '../src';
+import {GoogleApis, urlshortener_v1} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
-async function testSingleRequest(urlshortener: APIEndpoint) {
-  const obj = {longUrl: 'http://someurl...'};
-  const reqPath = '/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...';
-  nock(Utils.baseUrl).post(reqPath).reply(200);
-  const res = await urlshortener.url.insert(obj);
-  assert.equal(Utils.getQs(res), 'longUrl=http%3A%2F%2Fsomeurl...');
-  assert.equal(res.config.method.toLowerCase(), 'post');
+async function testSingleRequest(urlshortener: urlshortener_v1.Urlshortener) {
+  const requestBody = {longUrl: 'http://someurl...'};
+  const reqPath = '/urlshortener/v1/url';
+  nock(Utils.baseUrl).post(reqPath, requestBody).reply(200);
+  const res = await urlshortener.url.insert({requestBody});
+  assert.equal(res.config.method!.toLowerCase(), 'post');
 }
 
-async function testParams(urlshortener: APIEndpoint) {
+async function testParams(urlshortener: urlshortener_v1.Urlshortener) {
   const params = {shortUrl: 'a'};
   nock(Utils.baseUrl).get('/urlshortener/v1/url?shortUrl=a').reply(200);
   const res = await urlshortener.url.get(params);
   assert.equal(Utils.getQs(res), 'shortUrl=a');
-  assert.equal(res.config.method.toLowerCase(), 'get');
+  assert.equal(res.config.method!.toLowerCase(), 'get');
 }
 
-async function testInsert(urlshortener: APIEndpoint) {
-  const obj = {longUrl: 'http://google.com/'};
+async function testInsert(urlshortener: urlshortener_v1.Urlshortener) {
+  const requestBody = {longUrl: 'http://google.com/'};
   nock(Utils.baseUrl).post('/resource').reply(200);
-  const res = await urlshortener.url.insert({resource: obj});
+  const res = await urlshortener.url.insert({requestBody});
   assert.notEqual(res.data, null);
   assert.notEqual(res.data.kind, null);
   assert.notEqual(res.data.id, null);
@@ -50,14 +49,15 @@ async function testInsert(urlshortener: APIEndpoint) {
 }
 
 describe('Urlshortener', () => {
-  let localUrlshortener: APIEndpoint;
-  let remoteUrlshortener: APIEndpoint;
+  let localUrlshortener: urlshortener_v1.Urlshortener;
+  let remoteUrlshortener: urlshortener_v1.Urlshortener;
 
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remoteUrlshortener = await Utils.loadApi(google, 'urlshortener', 'v1');
+    remoteUrlshortener = await Utils.loadApi<urlshortener_v1.Urlshortener>(
+        google, 'urlshortener', 'v1');
     nock.disableNetConnect();
   });
 

@@ -2573,10 +2573,11 @@ export namespace serviceconsumermanagement_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CancelOperationRequest;
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Delete {
     /**
@@ -3133,10 +3134,11 @@ export namespace serviceconsumermanagement_v1 {
      * Name of the tenancy unit.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AddTenantProjectRequest;
+    requestBody?: Schema$AddTenantProjectRequest;
   }
   export interface Params$Resource$Services$Tenancyunits$Create {
     /**
@@ -3153,10 +3155,11 @@ export namespace serviceconsumermanagement_v1 {
      * using the new tenancy unit.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$CreateTenancyUnitRequest;
+    requestBody?: Schema$CreateTenancyUnitRequest;
   }
   export interface Params$Resource$Services$Tenancyunits$Delete {
     /**
@@ -3210,9 +3213,10 @@ export namespace serviceconsumermanagement_v1 {
      * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$RemoveTenantProjectRequest;
+    requestBody?: Schema$RemoveTenantProjectRequest;
   }
 }

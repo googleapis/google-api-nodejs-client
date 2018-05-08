@@ -1024,10 +1024,11 @@ export namespace replicapool_v1beta1 {
      * The zone for this replica pool.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$PoolsDeleteRequest;
+    requestBody?: Schema$PoolsDeleteRequest;
   }
   export interface Params$Resource$Pools$Get {
     /**
@@ -1062,10 +1063,11 @@ export namespace replicapool_v1beta1 {
      * The zone for this replica pool.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Pool;
+    requestBody?: Schema$Pool;
   }
   export interface Params$Resource$Pools$List {
     /**
@@ -1135,10 +1137,11 @@ export namespace replicapool_v1beta1 {
      * The zone for this replica pool.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Template;
+    requestBody?: Schema$Template;
   }
 
 
@@ -1453,10 +1456,11 @@ export namespace replicapool_v1beta1 {
      * The zone where the replica lives.
      */
     zone?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ReplicasDeleteRequest;
+    requestBody?: Schema$ReplicasDeleteRequest;
   }
   export interface Params$Resource$Replicas$Get {
     /**

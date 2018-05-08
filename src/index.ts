@@ -155,6 +155,7 @@ export {proximitybeacon_v1beta1} from './apis/proximitybeacon/v1beta1';
 export {pubsub_v1} from './apis/pubsub/v1';
 export {pubsub_v1beta1a} from './apis/pubsub/v1beta1a';
 export {pubsub_v1beta2} from './apis/pubsub/v1beta2';
+export {redis_v1beta1} from './apis/redis/v1beta1';
 export {replicapool_v1beta1} from './apis/replicapool/v1beta1';
 export {replicapool_v1beta2} from './apis/replicapool/v1beta2';
 export {replicapoolupdater_v1beta1} from './apis/replicapoolupdater/v1beta1';

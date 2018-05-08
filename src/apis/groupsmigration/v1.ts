@@ -174,10 +174,12 @@ export namespace groupsmigration_v1 {
      * The group ID
      */
     groupId?: string;
+
+
     /**
      * Media metadata
      */
-    media: {
+    media?: {
       /**
        * Media mime-type
        */
@@ -186,7 +188,7 @@ export namespace groupsmigration_v1 {
       /**
        * Media body contents
        */
-      body: any;
+      body?: any;
     };
   }
 }

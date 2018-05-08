@@ -567,10 +567,11 @@ export namespace speech_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$AsyncRecognizeRequest;
+    requestBody?: Schema$AsyncRecognizeRequest;
   }
   export interface Params$Resource$Speech$Syncrecognize {
     /**
@@ -578,9 +579,10 @@ export namespace speech_v1beta1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+
     /**
      * Request body metadata
      */
-    resource?: Schema$SyncRecognizeRequest;
+    requestBody?: Schema$SyncRecognizeRequest;
   }
 }

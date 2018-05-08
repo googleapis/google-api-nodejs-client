@@ -1419,10 +1419,11 @@ export namespace cloudiot_v1 {
      * For example, `projects/example-project/locations/us-central1`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeviceRegistry;
+    requestBody?: Schema$DeviceRegistry;
   }
   export interface Params$Resource$Projects$Locations$Registries$Delete {
     /**
@@ -1459,10 +1460,11 @@ export namespace cloudiot_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$List {
     /**
@@ -1508,10 +1510,11 @@ export namespace cloudiot_v1 {
      * `state_notification_config`.
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$DeviceRegistry;
+    requestBody?: Schema$DeviceRegistry;
   }
   export interface Params$Resource$Projects$Locations$Registries$Setiampolicy {
     /**
@@ -1524,10 +1527,11 @@ export namespace cloudiot_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$Testiampermissions {
     /**
@@ -1540,10 +1544,11 @@ export namespace cloudiot_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Registries$Devices {
@@ -1998,10 +2003,11 @@ export namespace cloudiot_v1 {
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$Delete {
     /**
@@ -2091,10 +2097,11 @@ export namespace cloudiot_v1 {
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyCloudToDeviceConfigRequest;
+    requestBody?: Schema$ModifyCloudToDeviceConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$Patch {
     /**
@@ -2117,10 +2124,11 @@ export namespace cloudiot_v1 {
      * `blocked`, and `metadata`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
 
   export class Resource$Projects$Locations$Registries$Devices$Configversions {
@@ -2606,10 +2614,11 @@ export namespace cloudiot_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$GetIamPolicyRequest;
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy {
     /**
@@ -2622,10 +2631,11 @@ export namespace cloudiot_v1 {
      * operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$SetIamPolicyRequest;
+    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions {
     /**
@@ -2638,10 +2648,11 @@ export namespace cloudiot_v1 {
      * See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+
     /**
      * Request body metadata
      */
-    resource_?: Schema$TestIamPermissionsRequest;
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Registries$Groups$Devices {
@@ -2997,10 +3008,11 @@ export namespace cloudiot_v1 {
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$ModifyCloudToDeviceConfigRequest;
+    requestBody?: Schema$ModifyCloudToDeviceConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch {
     /**
@@ -3023,10 +3035,11 @@ export namespace cloudiot_v1 {
      * `blocked`, and `metadata`
      */
     updateMask?: string;
+
     /**
      * Request body metadata
      */
-    resource?: Schema$Device;
+    requestBody?: Schema$Device;
   }
 
   export class
