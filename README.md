@@ -465,14 +465,11 @@ const apis = google.getSupportedAPIs();
 This will return an object with the API name as object property names, and an array of version strings as the object values;
 
 ### TypeScript
-This library is written in TypeScript, and provides types out of the box. Due to the shape of the API, in some cases you may need to use generics to get the appropriate types.  This is only an issue for APIs that include multiple versions.  For example, to use the Drive v3 API:
+This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are are all available from the `drive_v3` namespace:
 
 ```ts
-import {google, drive_v3} from 'googleapis';
-const drive = google.drive<drive_v3.Drive>('v3');
+import { drive_v3 } from 'googleapis';
 ```
-
-All classes and interfaces generated for each API are exported under the `apiName_version` namespace.
 
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
