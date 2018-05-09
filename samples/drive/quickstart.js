@@ -14,7 +14,7 @@
 'use strict';
 
 // [START main_body]
-const {google} = require('googleapis');
+const google = require('googleapis');
 const express = require('express');
 const opn = require('opn');
 const path = require('path');
