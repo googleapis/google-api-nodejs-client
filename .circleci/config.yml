@@ -64,12 +64,17 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - node10:
+          filters:
+            tags:
+              only: /.*/
       - publish_npm:
           requires:
             - node4
             - node6
             - node8
             - node9
+            - node10
           filters:
             branches:
               ignore: /.*/
@@ -104,6 +109,11 @@ jobs:
   node9:
     docker:
       - image: node:9
+        user: node
+    <<: *unit_tests
+  node10:
+    docker:
+      - image: node:10
         user: node
     <<: *unit_tests
 
