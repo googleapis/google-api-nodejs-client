@@ -85,7 +85,7 @@
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "engines": {
-    "node": ">=4.0"
+    "node": ">=6.0"
   },
   "devDependencies": {
     "@types/express": "^4.11.1",
