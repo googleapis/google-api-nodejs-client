@@ -59,8 +59,7 @@ export function createAPIRequest<T>(
     parameters: APIRequestParams, callback?: BodyResponseCallback<T>): void|
     AxiosPromise<T> {
   if (callback) {
-      createAPIRequestAsync<T>(parameters)
-          .then(r => callback(null, r), callback);
+    createAPIRequestAsync<T>(parameters).then(r => callback(null, r), callback);
   } else {
     return createAPIRequestAsync(parameters);
   }
