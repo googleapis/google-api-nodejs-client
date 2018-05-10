@@ -176,6 +176,29 @@ oauth2Client.setCredentials(tokens);
 
 With the credentials set on your OAuth2 client - you're ready to go!
 
+#### Handling refresh tokens
+Access tokens expire. This library will automatically use a refresh token to obtain a new access token if it is about to expire. An easy way to make sure you always store the most recent tokens is to use the `tokens` event:
+
+```js
+oauth2client.on('tokens', (tokens) => {
+  if (tokens.refresh_token) {
+    // store the refresh_token in my database!
+    console.log(tokens.refresh_token);
+  }
+  console.log(tokens.access_token);
+});
+```
+
+To set the `refresh_token` at a later time, you can use the `setCredentials` method:
+
+```js
+oauth2client.setCredentials({
+  refresh_token: `STORED_REFRESH_TOKEN`
+});
+```
+
+Once the client has a refresh token, access tokens will be acquired and refreshed automatically.
+
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
 
@@ -492,7 +515,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
 [circle]: https://circleci.com/gh/google/google-api-nodejs-client
-[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=svg
+[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=shield
 [releaselevel]: https://cloud.google.com/terms/launch-stages
 [releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
 [supported-list]: https://developers.google.com/apis-explorer/
