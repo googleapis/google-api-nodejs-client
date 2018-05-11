@@ -48,10 +48,6 @@ workflows:
   version: 2
   tests:
     jobs: &workflow_jobs
-      - node4:
-          filters:
-            tags:
-              only: /.*/
       - node6:
           filters:
             tags:
@@ -70,7 +66,6 @@ workflows:
               only: /.*/
       - publish_npm:
           requires:
-            - node4
             - node6
             - node8
             - node9
@@ -90,11 +85,6 @@ workflows:
     jobs: *workflow_jobs
 
 jobs:
-  node4:
-    docker:
-      - image: node:4
-        user: node
-    <<: *unit_tests
   node6:
     docker:
       - image: node:6
