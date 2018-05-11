@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace gamesManagement_v1management {
-  export interface Options extends GlobalOptions { version: 'v1management'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1management';
+  }
 
   /**
    * Google Play Game Services Management API

@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace spectrum_v1explorer {
-  export interface Options extends GlobalOptions { version: 'v1explorer'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1explorer';
+  }
 
   /**
    * Google Spectrum Database API

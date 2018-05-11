@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace admin_datatransfer_v1 {
-  export interface Options extends GlobalOptions { version: 'datatransfer_v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'datatransfer_v1';
+  }
 
   /**
    * Admin Data Transfer API

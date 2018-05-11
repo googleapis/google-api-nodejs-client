@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace gmail_v1 {
-  export interface Options extends GlobalOptions { version: 'v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1';
+  }
 
   /**
    * Gmail API
@@ -266,8 +268,12 @@ export namespace gmail_v1 {
     labelIds?: string[];
     message?: Schema$Message;
   }
-  export interface Schema$HistoryMessageAdded { message?: Schema$Message; }
-  export interface Schema$HistoryMessageDeleted { message?: Schema$Message; }
+  export interface Schema$HistoryMessageAdded {
+    message?: Schema$Message;
+  }
+  export interface Schema$HistoryMessageDeleted {
+    message?: Schema$Message;
+  }
   /**
    * IMAP settings for an account.
    */

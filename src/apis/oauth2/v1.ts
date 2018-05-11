@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace oauth2_v1 {
-  export interface Options extends GlobalOptions { version: 'v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1';
+  }
 
   /**
    * Google OAuth2 API
@@ -451,8 +453,12 @@ export namespace oauth2_v1 {
     }
   }
 
-  export interface Schema$Jwk { keys?: any[]; }
-  export interface Schema$Raw { keyvalues?: any[]; }
+  export interface Schema$Jwk {
+    keys?: any[];
+  }
+  export interface Schema$Raw {
+    keyvalues?: any[];
+  }
   export interface Schema$Tokeninfo {
     /**
      * The access type granted with this token. It can be offline or online.

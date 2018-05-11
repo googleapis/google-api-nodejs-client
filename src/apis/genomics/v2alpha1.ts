@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace genomics_v2alpha1 {
-  export interface Options extends GlobalOptions { version: 'v2alpha1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2alpha1';
+  }
 
   /**
    * Genomics API

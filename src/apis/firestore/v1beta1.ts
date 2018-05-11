@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace firestore_v1beta1 {
-  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta1';
+  }
 
   /**
    * Cloud Firestore API
@@ -415,7 +417,9 @@ export namespace firestore_v1beta1 {
   /**
    * A reference to a field, such as `max(messages.time) as max_time`.
    */
-  export interface Schema$FieldReference { fieldPath?: string; }
+  export interface Schema$FieldReference {
+    fieldPath?: string;
+  }
   /**
    * A transformation of a field of the document.
    */

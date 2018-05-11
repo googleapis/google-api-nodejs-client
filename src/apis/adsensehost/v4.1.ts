@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace adsensehost_v4_1 {
-  export interface Options extends GlobalOptions { version: 'v4_1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v4_1';
+  }
 
   /**
    * AdSense Host API

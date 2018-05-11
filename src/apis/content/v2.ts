@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace content_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * Content API for Shopping

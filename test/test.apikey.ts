@@ -11,9 +11,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
+import assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
-import * as nock from 'nock';
+import nock from 'nock';
 
 import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
 import {google} from '../src';

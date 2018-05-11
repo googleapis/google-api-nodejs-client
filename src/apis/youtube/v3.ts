@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace youtube_v3 {
-  export interface Options extends GlobalOptions { version: 'v3'; }
+  export interface Options extends GlobalOptions {
+    version: 'v3';
+  }
 
   /**
    * YouTube Data API
@@ -789,7 +791,9 @@ export namespace youtube_v3 {
   /**
    * Details about the content of a channel.
    */
-  export interface Schema$ChannelContentDetails { relatedPlaylists?: any; }
+  export interface Schema$ChannelContentDetails {
+    relatedPlaylists?: any;
+  }
   /**
    * The contentOwnerDetails object encapsulates channel data that is relevant
    * for YouTube Partners linked with the channel.
@@ -2171,7 +2175,9 @@ export namespace youtube_v3 {
      */
     type?: string;
   }
-  export interface Schema$LanguageTag { value?: string; }
+  export interface Schema$LanguageTag {
+    value?: string;
+  }
   /**
    * A liveBroadcast resource represents an event that will be streamed, via
    * live video, on YouTube.
@@ -3024,7 +3030,9 @@ export namespace youtube_v3 {
      */
     nonprofitLegalName?: string;
   }
-  export interface Schema$NonprofitId { value?: string; }
+  export interface Schema$NonprofitId {
+    value?: string;
+  }
   /**
    * Paging details for lists of resources, including total number of items
    * available and number of resources returned in a single page.

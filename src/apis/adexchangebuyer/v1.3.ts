@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace adexchangebuyer_v1_3 {
-  export interface Options extends GlobalOptions { version: 'v1_3'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1_3';
+  }
 
   /**
    * Ad Exchange Buyer API

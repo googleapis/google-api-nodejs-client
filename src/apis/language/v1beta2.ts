@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace language_v1beta2 {
-  export interface Options extends GlobalOptions { version: 'v1beta2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta2';
+  }
 
   /**
    * Cloud Natural Language API

@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace compute_v1 {
-  export interface Options extends GlobalOptions { version: 'v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1';
+  }
 
   /**
    * Compute Engine API
@@ -2528,7 +2530,9 @@ export namespace compute_v1 {
    * - projects/project-id/global/httpHealthChecks/health-check  -
    * global/httpHealthChecks/health-check
    */
-  export interface Schema$HealthCheckReference { healthCheck?: string; }
+  export interface Schema$HealthCheckReference {
+    healthCheck?: string;
+  }
   export interface Schema$HealthStatus {
     /**
      * Health state of the instance.
@@ -7558,7 +7562,9 @@ export namespace compute_v1 {
      */
     warning?: any;
   }
-  export interface Schema$TargetReference { target?: string; }
+  export interface Schema$TargetReference {
+    target?: string;
+  }
   export interface Schema$TargetSslProxiesSetBackendServiceRequest {
     /**
      * The URL of the new BackendService resource for the targetSslProxy.
@@ -8058,7 +8064,9 @@ export namespace compute_v1 {
      */
     warning?: any;
   }
-  export interface Schema$UrlMapReference { urlMap?: string; }
+  export interface Schema$UrlMapReference {
+    urlMap?: string;
+  }
   export interface Schema$UrlMapsValidateRequest {
     /**
      * Content of the UrlMap to be validated.

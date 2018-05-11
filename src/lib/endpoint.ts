@@ -21,7 +21,9 @@ import {createAPIRequest} from './apirequest';
 import {Discovery} from './discovery';
 import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
 
-export interface Target { [index: string]: {}; }
+export interface Target {
+  [index: string]: {};
+}
 
 export class Endpoint implements Target, APIRequestContext {
   _options: GlobalOptions;
