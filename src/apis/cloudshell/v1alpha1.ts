@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudshell_v1alpha1 {
-  export interface Options extends GlobalOptions { version: 'v1alpha1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1alpha1';
+  }
 
   /**
    * Cloud Shell API

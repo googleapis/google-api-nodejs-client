@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace deploymentmanager_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * Google Cloud Deployment Manager API

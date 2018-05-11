@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace replicapoolupdater_v1beta1 {
-  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta1';
+  }
 
   /**
    * Google Compute Engine Instance Group Updater API

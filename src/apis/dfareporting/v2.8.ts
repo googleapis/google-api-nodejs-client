@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dfareporting_v2_8 {
-  export interface Options extends GlobalOptions { version: 'v2_8'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2_8';
+  }
 
   /**
    * DCM/DFA Reporting And Trafficking API

@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace androidpublisher_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * Google Play Developer API
@@ -363,9 +365,15 @@ export namespace androidpublisher_v2 {
      */
     url?: string;
   }
-  export interface Schema$ImagesDeleteAllResponse { deleted?: Schema$Image[]; }
-  export interface Schema$ImagesListResponse { images?: Schema$Image[]; }
-  export interface Schema$ImagesUploadResponse { image?: Schema$Image; }
+  export interface Schema$ImagesDeleteAllResponse {
+    deleted?: Schema$Image[];
+  }
+  export interface Schema$ImagesListResponse {
+    images?: Schema$Image[];
+  }
+  export interface Schema$ImagesUploadResponse {
+    image?: Schema$Image;
+  }
   export interface Schema$InAppProduct {
     /**
      * The default language of the localized data, as defined by BCP 47. e.g.

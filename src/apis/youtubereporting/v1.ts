@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace youtubereporting_v1 {
-  export interface Options extends GlobalOptions { version: 'v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1';
+  }
 
   /**
    * YouTube Reporting API

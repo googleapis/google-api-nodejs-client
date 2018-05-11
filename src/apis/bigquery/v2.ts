@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace bigquery_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * BigQuery API
@@ -1790,7 +1792,9 @@ export namespace bigquery_v2 {
      */
     view?: Schema$ViewDefinition;
   }
-  export interface Schema$TableCell { v?: any; }
+  export interface Schema$TableCell {
+    v?: any;
+  }
   export interface Schema$TableDataInsertAllRequest {
     /**
      * [Optional] Accept rows that contain values that do not match the schema.

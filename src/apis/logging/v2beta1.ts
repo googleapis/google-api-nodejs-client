@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace logging_v2beta1 {
-  export interface Options extends GlobalOptions { version: 'v2beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2beta1';
+  }
 
   /**
    * Stackdriver Logging API

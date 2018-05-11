@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace admin_reports_v1 {
-  export interface Options extends GlobalOptions { version: 'reports_v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'reports_v1';
+  }
 
   /**
    * Admin Reports API

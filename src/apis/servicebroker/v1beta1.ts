@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace servicebroker_v1beta1 {
-  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta1';
+  }
 
   /**
    * Service Broker API

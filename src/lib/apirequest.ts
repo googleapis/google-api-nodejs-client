@@ -16,7 +16,7 @@ import {DefaultTransporter, OAuth2Client} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
-import * as urlTemplate from 'url-template';
+import urlTemplate from 'url-template';
 import * as uuid from 'uuid';
 
 import {APIRequestParams, GlobalOptions} from './api';

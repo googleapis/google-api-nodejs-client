@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace texttospeech_v1beta1 {
-  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta1';
+  }
 
   /**
    * Cloud Text-to-Speech API

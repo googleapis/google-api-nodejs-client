@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace tpu_v1alpha1 {
-  export interface Options extends GlobalOptions { version: 'v1alpha1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1alpha1';
+  }
 
   /**
    * Cloud TPU API

@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace vision_v1p2beta1 {
-  export interface Options extends GlobalOptions { version: 'v1p2beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1p2beta1';
+  }
 
   /**
    * Cloud Vision API

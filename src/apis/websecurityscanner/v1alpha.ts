@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace websecurityscanner_v1alpha {
-  export interface Options extends GlobalOptions { version: 'v1alpha'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1alpha';
+  }
 
   /**
    * Web Security Scanner API

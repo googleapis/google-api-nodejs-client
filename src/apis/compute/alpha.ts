@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace compute_alpha {
-  export interface Options extends GlobalOptions { version: 'alpha'; }
+  export interface Options extends GlobalOptions {
+    version: 'alpha';
+  }
 
   /**
    * Compute Engine API
@@ -1718,7 +1720,9 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$BackendServiceReference { backendService?: string; }
+  export interface Schema$BackendServiceReference {
+    backendService?: string;
+  }
   export interface Schema$BackendServicesScopedList {
     /**
      * A list of BackendServices contained in this scope.
@@ -3066,7 +3070,9 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$ForwardingRuleReference { forwardingRule?: string; }
+  export interface Schema$ForwardingRuleReference {
+    forwardingRule?: string;
+  }
   export interface Schema$ForwardingRulesScopedList {
     /**
      * A list of forwarding rules contained in this scope.
@@ -3249,7 +3255,9 @@ export namespace compute_alpha {
    * - projects/project-id/global/httpHealthChecks/health-check  -
    * global/httpHealthChecks/health-check
    */
-  export interface Schema$HealthCheckReference { healthCheck?: string; }
+  export interface Schema$HealthCheckReference {
+    healthCheck?: string;
+  }
   export interface Schema$HealthChecksAggregatedList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -9693,7 +9701,9 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$SecurityPolicyReference { securityPolicy?: string; }
+  export interface Schema$SecurityPolicyReference {
+    securityPolicy?: string;
+  }
   /**
    * Represents a rule that describes one or more match conditions along with
    * the action to be taken when traffic matches this condition (allow or deny).
@@ -11197,7 +11207,9 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$TargetReference { target?: string; }
+  export interface Schema$TargetReference {
+    target?: string;
+  }
   export interface Schema$TargetSslProxiesSetBackendServiceRequest {
     /**
      * The URL of the new BackendService resource for the targetSslProxy.
@@ -11753,7 +11765,9 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$UrlMapReference { urlMap?: string; }
+  export interface Schema$UrlMapReference {
+    urlMap?: string;
+  }
   export interface Schema$UrlMapsValidateRequest {
     /**
      * Content of the UrlMap to be validated.

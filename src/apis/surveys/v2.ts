@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace surveys_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * Surveys API
@@ -134,7 +136,9 @@ export namespace surveys_v2 {
     startIndex?: number;
     totalResults?: number;
   }
-  export interface Schema$ResultsGetRequest { resultMask?: Schema$ResultsMask; }
+  export interface Schema$ResultsGetRequest {
+    resultMask?: Schema$ResultsMask;
+  }
   export interface Schema$ResultsMask {
     fields?: Schema$FieldMask[];
     projection?: string;

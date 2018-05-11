@@ -50,14 +50,18 @@ export interface Schema {
   version: string;
 }
 
-export interface SchemaResources { [index: string]: SchemaResource; }
+export interface SchemaResources {
+  [index: string]: SchemaResource;
+}
 
 export interface SchemaResource {
   methods?: SchemaMethods;
   resources?: SchemaResources;
 }
 
-export interface SchemaItems { [index: string]: SchemaItem; }
+export interface SchemaItems {
+  [index: string]: SchemaItem;
+}
 
 export interface SchemaItem {
   description?: string;
@@ -70,7 +74,9 @@ export interface SchemaItem {
   $ref?: string;
 }
 
-export interface SchemaParameters { [index: string]: SchemaParameter; }
+export interface SchemaParameters {
+  [index: string]: SchemaParameter;
+}
 
 export interface SchemaParameter {
   default: string;
@@ -83,7 +89,9 @@ export interface SchemaParameter {
   required: boolean;
 }
 
-export interface SchemaMethods { [index: string]: SchemaMethod; }
+export interface SchemaMethods {
+  [index: string]: SchemaMethod;
+}
 
 export interface SchemaMethod {
   description: string;

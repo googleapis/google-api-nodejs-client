@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace redis_v1beta1 {
-  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1beta1';
+  }
 
   /**
    * Cloud Memorystore for Redis API

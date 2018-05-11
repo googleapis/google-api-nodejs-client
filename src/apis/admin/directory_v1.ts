@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace admin_directory_v1 {
-  export interface Options extends GlobalOptions { version: 'directory_v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'directory_v1';
+  }
 
   /**
    * Admin Directory API

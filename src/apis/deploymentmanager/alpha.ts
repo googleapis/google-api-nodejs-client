@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace deploymentmanager_alpha {
-  export interface Options extends GlobalOptions { version: 'alpha'; }
+  export interface Options extends GlobalOptions {
+    version: 'alpha';
+  }
 
   /**
    * Google Cloud Deployment Manager Alpha API

@@ -78,8 +78,12 @@ export interface GlobalOptions {
   cancelToken?: CancelToken;
 }
 
-export interface MethodOptions extends AxiosRequestConfig { rootUrl?: string; }
-export interface ServiceOptions extends GlobalOptions { version?: string; }
+export interface MethodOptions extends AxiosRequestConfig {
+  rootUrl?: string;
+}
+export interface ServiceOptions extends GlobalOptions {
+  version?: string;
+}
 
 export type BodyResponseCallback<T> =
     (err: Error|null, res?: AxiosResponse<T>|null) => void;

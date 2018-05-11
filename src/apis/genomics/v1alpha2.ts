@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace genomics_v1alpha2 {
-  export interface Options extends GlobalOptions { version: 'v1alpha2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1alpha2';
+  }
 
   /**
    * Genomics API
@@ -664,7 +666,9 @@ export namespace genomics_v1alpha2 {
      */
     imageUri?: string;
   }
-  export interface Schema$RepeatedString { values?: string[]; }
+  export interface Schema$RepeatedString {
+    values?: string[];
+  }
   /**
    * The pipeline run arguments.
    */

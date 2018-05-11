@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace testing_v1 {
-  export interface Options extends GlobalOptions { version: 'v1'; }
+  export interface Options extends GlobalOptions {
+    version: 'v1';
+  }
 
   /**
    * Cloud Testing API
@@ -435,7 +437,9 @@ export namespace testing_v1 {
    * Android application details based on application manifest and apk archive
    * contents
    */
-  export interface Schema$ApkDetail { apkManifest?: Schema$ApkManifest; }
+  export interface Schema$ApkDetail {
+    apkManifest?: Schema$ApkManifest;
+  }
   /**
    * An Android app manifest. See
    * http://developer.android.com/guide/topics/manifest/manifest-intro.html

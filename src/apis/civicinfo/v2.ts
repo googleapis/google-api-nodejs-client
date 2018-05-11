@@ -31,7 +31,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace civicinfo_v2 {
-  export interface Options extends GlobalOptions { version: 'v2'; }
+  export interface Options extends GlobalOptions {
+    version: 'v2';
+  }
 
   /**
    * Google Civic Information API
@@ -353,7 +355,9 @@ export namespace civicinfo_v2 {
      */
     type?: string;
   }
-  export interface Schema$ContextParams { clientProfile?: string; }
+  export interface Schema$ContextParams {
+    clientProfile?: string;
+  }
   /**
    * A request to look up representative information for a single division.
    */
