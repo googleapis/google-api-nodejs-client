@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -1601,6 +1601,14 @@ export namespace content_v2 {
      */
     merchantId?: string;
     method?: string;
+    /**
+     * The account ID by which this merchant is known to the POS provider.
+     */
+    posExternalAccountId?: string;
+    /**
+     * The ID of POS provider. Required only for SetPosProvider.
+     */
+    posProviderId?: string;
   }
   export interface Schema$LiasettingsCustomBatchResponse {
     /**
@@ -1635,6 +1643,10 @@ export namespace content_v2 {
      * The retrieved or updated Lia settings.
      */
     liaSettings?: Schema$LiaSettings;
+    /**
+     * The list of POS providers.
+     */
+    posProviders?: Schema$PosProviders[];
   }
   export interface Schema$LiasettingsGetAccessibleGmbAccountsResponse {
     /**
@@ -3423,6 +3435,30 @@ export namespace content_v2 {
      */
     kind?: string;
     resources?: Schema$PosStore[];
+  }
+  export interface Schema$PosProviders {
+    /**
+     * Country code.
+     */
+    country?: string;
+    /**
+     * A list of POS providers.
+     */
+    posProviders?: Schema$PosProvidersPosProvider[];
+  }
+  export interface Schema$PosProvidersPosProvider {
+    /**
+     * The display name of Pos Provider.
+     */
+    displayName?: string;
+    /**
+     * The full name of this POS Provider.
+     */
+    fullName?: string;
+    /**
+     * The ID of the account.
+     */
+    providerId?: string;
   }
   /**
    * The change of the available quantity of an item at the given store.

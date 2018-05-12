@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -769,6 +769,23 @@ export namespace container_v1beta1 {
     missingZones?: string[];
   }
   /**
+   * ListLocationsResponse returns the list of all GKE locations and their
+   * recommendation state.
+   */
+  export interface Schema$ListLocationsResponse {
+    /**
+     * A full list of GKE locations.
+     */
+    locations?: Schema$Location[];
+    /**
+     * Only return ListLocationsResponse that occur after the page_token. This
+     * value should be populated from the ListLocationsResponse.next_page_token
+     * if that response token was set (which happens when listing more Locations
+     * than fit in a single ListLocationsResponse).
+     */
+    nextPageToken?: string;
+  }
+  /**
    * ListNodePoolsResponse is the result of ListNodePoolsRequest.
    */
   export interface Schema$ListNodePoolsResponse {
@@ -807,6 +824,28 @@ export namespace container_v1beta1 {
      * A list of usable subnetworks in the specified network project.
      */
     subnetworks?: Schema$UsableSubnetwork[];
+  }
+  /**
+   * Location returns the location name, and if the location is recommended for
+   * GKE cluster scheduling.
+   */
+  export interface Schema$Location {
+    /**
+     * Contains the name of the resource requested. Specific in the format
+     * &#39;projects/x/locations/*&#39;.
+     */
+    name?: string;
+    /**
+     * Recommended is a bool combining the drain state of the location (ie- has
+     * the region been drained manually?), and the stockout status of any zone
+     * according to Zone Advisor. This will be internal only for use by
+     * pantheon.
+     */
+    recommended?: boolean;
+    /**
+     * Contains the type of location this Location is for. Regional or Zonal.
+     */
+    type?: string;
   }
   /**
    * MaintenancePolicy defines the maintenance policy to be used for the
@@ -2132,6 +2171,73 @@ export namespace container_v1beta1 {
         return createAPIRequest<Schema$ServerConfig>(parameters);
       }
     }
+
+
+    /**
+     * container.projects.locations.list
+     * @alias container.projects.locations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Contains the name of the resource requested. Specific in the format 'projects/x/locations'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$List,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$List|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
+        void|AxiosPromise<Schema$ListLocationsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+parent}/locations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Getserverconfig {
@@ -2157,6 +2263,18 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Contains the name of the resource requested. Specific in the format
+     * 'projects/x/locations'.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Clusters {

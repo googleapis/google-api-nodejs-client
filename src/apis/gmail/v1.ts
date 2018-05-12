@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -2687,28 +2687,28 @@ export namespace gmail_v1 {
     }
 
 
-    /**
-     * gmail.users.messages.import
-     * @desc Imports a message into only this user's mailbox, with standard
-     * email delivery scanning and classification similar to receiving via SMTP.
-     * Does not send a message.
-     * @alias gmail.users.messages.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
-     * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
-     * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
-     * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * gmail.users.messages.import
+ * @desc Imports a message into only this user's mailbox, with standard email
+ * delivery scanning and classification similar to receiving via SMTP. Does not
+ * send a message.
+ * @alias gmail.users.messages.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+ * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
+ * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
+ * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
+ * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+ * @param  {object} params.resource Media resource metadata
+ * @param {object} params.media Media object
+ * @param {string} params.media.mimeType Media mime-type
+ * @param {string|object} params.media.body Media body contents
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Users$Messages$Import, options?: MethodOptions): AxiosPromise<Schema$Message>;
 import(params: Params$Resource$Users$Messages$Import, options: MethodOptions|BodyResponseCallback<Schema$Message>, callback: BodyResponseCallback<Schema$Message>): void;
 import(params: Params$Resource$Users$Messages$Import, callback: BodyResponseCallback<Schema$Message>): void;

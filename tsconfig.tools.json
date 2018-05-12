@@ -3,9 +3,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "target": "es6"
+    "target": "es2017"
   },
   "include": [
-    "src/scripts/*.ts"
+    "src/generator/*.ts"
   ]
 }

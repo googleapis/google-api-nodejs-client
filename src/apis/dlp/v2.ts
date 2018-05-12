@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -363,7 +363,7 @@ export namespace dlp_v2 {
     fileTypes?: string[];
   }
   /**
-   * Message representing a path in Cloud Storage.
+   * Message representing a single file or path in Cloud Storage.
    */
   export interface Schema$GooglePrivacyDlpV2CloudStoragePath {
     /**

@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -6664,81 +6664,78 @@ export namespace genomics_v1 {
     }
 
 
-    /**
-     * genomics.readgroupsets.import
-     * @desc Creates read group sets by asynchronously importing the provided
-     * information.  The caller must have WRITE permissions to the dataset.  ##
-     * Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import  -
-     * Tags will be converted to strings - tag types are not preserved -
-     * Comments (`@CO`) in the input file header will not be preserved -
-     * Original header order of references (`@SQ`) will not be preserved - Any
-     * reverse stranded unmapped reads will be reverse complemented, and their
-     * qualities (also the "BQ" and "OQ" tags, if any) will be reversed -
-     * Unmapped reads will be stripped of positional information (reference name
-     * and position)
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Genomics API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var genomics = google.genomics('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   genomics.readgroupsets.import(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias genomics.readgroupsets.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {().ImportReadGroupSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * genomics.readgroupsets.import
+ * @desc Creates read group sets by asynchronously importing the provided
+ * information.  The caller must have WRITE permissions to the dataset.  ##
+ * Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import  - Tags
+ * will be converted to strings - tag types are not preserved - Comments (`@CO`)
+ * in the input file header will not be preserved - Original header order of
+ * references (`@SQ`) will not be preserved - Any reverse stranded unmapped
+ * reads will be reverse complemented, and their qualities (also the "BQ" and
+ * "OQ" tags, if any) will be reversed - Unmapped reads will be stripped of
+ * positional information (reference name and position)
+ * @example
+ * * // BEFORE RUNNING:
+ * // ---------------
+ * // 1. If not already done, enable the Genomics API
+ * //    and check the quota for your project at
+ * //    https://console.developers.google.com/apis/api/genomics
+ * // 2. This sample uses Application Default Credentials for authentication.
+ * //    If not already done, install the gcloud CLI from
+ * //    https://cloud.google.com/sdk and run
+ * //    `gcloud beta auth application-default login`.
+ * //    For more information, see
+ * //
+ * https://developers.google.com/identity/protocols/application-default-credentials
+ * // 3. Install the Node.js client library by running
+ * //    `npm install googleapis --save`
+ *
+ * var google = require('googleapis');
+ * var genomics = google.genomics('v1');
+ *
+ * authorize(function(authClient) {
+ *   var request = {
+ *     resource: {
+ *       // TODO: Add desired properties to the request body.
+ *     },
+ *
+ *     auth: authClient,
+ *   };
+ *
+ *   genomics.readgroupsets.import(request, function(err, response) {
+ *     if (err) {
+ *       console.error(err);
+ *       return;
+ *     }
+ *
+ *     // TODO: Change code below to process the `response` object:
+ *     console.log(JSON.stringify(response, null, 2));
+ *   });
+ * });
+ *
+ * function authorize(callback) {
+ *   google.auth.getApplicationDefault(function(err, authClient) {
+ *     if (err) {
+ *       console.error('authentication failed: ', err);
+ *       return;
+ *     }
+ *     if (authClient.createScopedRequired && authClient.createScopedRequired())
+ * { var scopes = ['https://www.googleapis.com/auth/cloud-platform']; authClient
+ * = authClient.createScoped(scopes);
+ *     }
+ *     callback(authClient);
+ *   });
+ * }
+ * @alias genomics.readgroupsets.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {().ImportReadGroupSetsRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Readgroupsets$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Readgroupsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Readgroupsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
@@ -8632,82 +8629,79 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
 
 
-    /**
-     * genomics.variants.import
-     * @desc Creates variant data by asynchronously importing the provided
-     * information.  The variants for import will be merged with any existing
-     * variant that matches its reference sequence, start, end, reference bases,
-     * and alternative bases. If no such variant exists, a new one will be
-     * created. When variants are merged, the call information from the new
-     * variant is added to the existing variant, and Variant info fields are
-     * merged as specified in infoMergeConfig. As a special case, for
-     * single-sample VCF files, QUAL and FILTER fields will be moved to the call
-     * level; these are sometimes interpreted in a call-specific context.
-     * Imported VCF headers are appended to the metadata already in a variant
-     * set.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Genomics API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var genomics = google.genomics('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   genomics.variants.import(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias genomics.variants.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {().ImportVariantsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * genomics.variants.import
+ * @desc Creates variant data by asynchronously importing the provided
+ * information.  The variants for import will be merged with any existing
+ * variant that matches its reference sequence, start, end, reference bases, and
+ * alternative bases. If no such variant exists, a new one will be created. When
+ * variants are merged, the call information from the new variant is added to
+ * the existing variant, and Variant info fields are merged as specified in
+ * infoMergeConfig. As a special case, for single-sample VCF files, QUAL and
+ * FILTER fields will be moved to the call level; these are sometimes
+ * interpreted in a call-specific context. Imported VCF headers are appended to
+ * the metadata already in a variant set.
+ * @example
+ * * // BEFORE RUNNING:
+ * // ---------------
+ * // 1. If not already done, enable the Genomics API
+ * //    and check the quota for your project at
+ * //    https://console.developers.google.com/apis/api/genomics
+ * // 2. This sample uses Application Default Credentials for authentication.
+ * //    If not already done, install the gcloud CLI from
+ * //    https://cloud.google.com/sdk and run
+ * //    `gcloud beta auth application-default login`.
+ * //    For more information, see
+ * //
+ * https://developers.google.com/identity/protocols/application-default-credentials
+ * // 3. Install the Node.js client library by running
+ * //    `npm install googleapis --save`
+ *
+ * var google = require('googleapis');
+ * var genomics = google.genomics('v1');
+ *
+ * authorize(function(authClient) {
+ *   var request = {
+ *     resource: {
+ *       // TODO: Add desired properties to the request body.
+ *     },
+ *
+ *     auth: authClient,
+ *   };
+ *
+ *   genomics.variants.import(request, function(err, response) {
+ *     if (err) {
+ *       console.error(err);
+ *       return;
+ *     }
+ *
+ *     // TODO: Change code below to process the `response` object:
+ *     console.log(JSON.stringify(response, null, 2));
+ *   });
+ * });
+ *
+ * function authorize(callback) {
+ *   google.auth.getApplicationDefault(function(err, authClient) {
+ *     if (err) {
+ *       console.error('authentication failed: ', err);
+ *       return;
+ *     }
+ *     if (authClient.createScopedRequired && authClient.createScopedRequired())
+ * { var scopes = ['https://www.googleapis.com/auth/cloud-platform']; authClient
+ * = authClient.createScoped(scopes);
+ *     }
+ *     callback(authClient);
+ *   });
+ * }
+ * @alias genomics.variants.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {().ImportVariantsRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Variants$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Variants$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Variants$Import, callback: BodyResponseCallback<Schema$Operation>): void;

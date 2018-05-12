@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -171,6 +171,31 @@ export namespace androidpublisher_v2 {
      * The ID of the edit that can be used in subsequent API calls.
      */
     id?: string;
+  }
+  export interface Schema$Bundle {
+    /**
+     * A sha1 hash of the upload payload, encoded as a hex string and matching
+     * the output of the sha1sum command.
+     */
+    sha1?: string;
+    /**
+     * A sha256 hash of the upload payload, encoded as a hex string and matching
+     * the output of the sha256sum command.
+     */
+    sha256?: string;
+    /**
+     * The version code of the Android App Bundle. As specified in the Android
+     * App Bundle&#39;s base module APK manifest file.
+     */
+    versionCode?: number;
+  }
+  export interface Schema$BundlesListResponse {
+    bundles?: Schema$Bundle[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;androidpublisher#bundlesListResponse&quot;.
+     */
+    kind?: string;
   }
   export interface Schema$Comment {
     /**
@@ -797,6 +822,11 @@ export namespace androidpublisher_v2 {
      */
     track?: string;
     userFraction?: number;
+    /**
+     * Version codes to make active on this track. Note that this list should
+     * contain all versions you wish to be active, including those you wish to
+     * retain from previous releases.
+     */
     versionCodes?: number[];
   }
   export interface Schema$TracksListResponse {
@@ -903,6 +933,7 @@ export namespace androidpublisher_v2 {
     root: Androidpublisher;
     apklistings: Resource$Edits$Apklistings;
     apks: Resource$Edits$Apks;
+    bundles: Resource$Edits$Bundles;
     deobfuscationfiles: Resource$Edits$Deobfuscationfiles;
     details: Resource$Edits$Details;
     expansionfiles: Resource$Edits$Expansionfiles;
@@ -915,6 +946,7 @@ export namespace androidpublisher_v2 {
       this.getRoot.bind(this);
       this.apklistings = new Resource$Edits$Apklistings(root);
       this.apks = new Resource$Edits$Apks(root);
+      this.bundles = new Resource$Edits$Bundles(root);
       this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(root);
       this.details = new Resource$Edits$Details(root);
       this.expansionfiles = new Resource$Edits$Expansionfiles(root);
@@ -2225,6 +2257,211 @@ export namespace androidpublisher_v2 {
     packageName?: string;
   }
   export interface Params$Resource$Edits$Apks$Upload {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
+
+  export class Resource$Edits$Bundles {
+    root: Androidpublisher;
+    constructor(root: Androidpublisher) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * androidpublisher.edits.bundles.list
+     * @alias androidpublisher.edits.bundles.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Edits$Bundles$List, options?: MethodOptions):
+        AxiosPromise<Schema$BundlesListResponse>;
+    list(
+        params: Params$Resource$Edits$Bundles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$BundlesListResponse>,
+        callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
+    list(
+        params: Params$Resource$Edits$Bundles$List,
+        callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Edits$Bundles$List|
+        BodyResponseCallback<Schema$BundlesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BundlesListResponse>,
+        callback?: BodyResponseCallback<Schema$BundlesListResponse>):
+        void|AxiosPromise<Schema$BundlesListResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Edits$Bundles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}/bundles')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['packageName', 'editId'],
+        pathParams: ['editId', 'packageName'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$BundlesListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BundlesListResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * androidpublisher.edits.bundles.upload
+     * @alias androidpublisher.edits.bundles.upload
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upload(
+        params?: Params$Resource$Edits$Bundles$Upload,
+        options?: MethodOptions): AxiosPromise<Schema$Bundle>;
+    upload(
+        params: Params$Resource$Edits$Bundles$Upload,
+        options: MethodOptions|BodyResponseCallback<Schema$Bundle>,
+        callback: BodyResponseCallback<Schema$Bundle>): void;
+    upload(
+        params: Params$Resource$Edits$Bundles$Upload,
+        callback: BodyResponseCallback<Schema$Bundle>): void;
+    upload(callback: BodyResponseCallback<Schema$Bundle>): void;
+    upload(
+        paramsOrCallback?: Params$Resource$Edits$Bundles$Upload|
+        BodyResponseCallback<Schema$Bundle>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bundle>,
+        callback?: BodyResponseCallback<Schema$Bundle>):
+        void|AxiosPromise<Schema$Bundle> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Edits$Bundles$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}/bundles')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        mediaUrl:
+            (rootUrl +
+             '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/bundles')
+                .replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['packageName', 'editId'],
+        pathParams: ['editId', 'packageName'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Bundle>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Bundle>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Edits$Bundles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+  }
+  export interface Params$Resource$Edits$Bundles$Upload {
     /**
      * Auth client or API Key for the request
      */

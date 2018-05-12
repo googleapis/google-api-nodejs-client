@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -1084,15 +1084,13 @@ export namespace androidenterprise_v1 {
     /**
      * The availability granted to the device for the specified products.
      * &quot;all&quot; gives the device access to all products, regardless of
-     * approval status. &quot;allApproved&quot; entitles the device to access
-     * all products that are approved for the enterprise.
-     * &quot;allApproved&quot; and &quot;all&quot; do not enable automatic
-     * visibility of &quot;alpha&quot; or &quot;beta&quot; tracks.
-     * &quot;whitelist&quot; grants the device access the products specified in
-     * productPolicy[]. Only products that are approved or products that were
-     * previously approved (products with revoked approval) by the enterprise
-     * can be whitelisted. If no value is provided, the availability set at the
-     * user level is applied by default.
+     * approval status. &quot;all&quot; does not enable automatic visibility of
+     * &quot;alpha&quot; or &quot;beta&quot; tracks. &quot;whitelist&quot;
+     * grants the device access the products specified in productPolicy[]. Only
+     * products that are approved or products that were previously approved
+     * (products with revoked approval) by the enterprise can be whitelisted. If
+     * no value is provided, the availability set at the user level is applied
+     * by default.
      */
     productAvailabilityPolicy?: string;
     /**

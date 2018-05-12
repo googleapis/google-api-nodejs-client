@@ -15,9 +15,10 @@
  */
 
 import * as path from 'path';
-import pify from 'pify';
-import * as rimraf from 'rimraf';
+import rimraf from 'rimraf';
 import {install} from 'source-map-support';
+import * as util from 'util';
+
 import {Generator} from './generator';
 
 // enable source map support
@@ -35,7 +36,8 @@ async function main() {
     });
   } else {
     console.log('Removing old APIs...');
-    await pify(rimraf)(path.join(__dirname, '../../../src/apis'));
+    const apiPath = path.join(__dirname, '../../../src/apis');
+    await util.promisify(rimraf)(apiPath);
     console.log('Generating APIs...');
     await gen.generateAllAPIs();
     console.log('Finished generating APIs!');

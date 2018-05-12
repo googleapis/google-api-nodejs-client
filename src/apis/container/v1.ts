@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -309,8 +309,7 @@ export namespace container_v1 {
      */
     masterAuth?: Schema$MasterAuth;
     /**
-     * Master authorized networks is a Beta feature. The configuration options
-     * for master authorized networks feature.
+     * The configuration options for master authorized networks feature.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -426,8 +425,7 @@ export namespace container_v1 {
      */
     desiredLocations?: string[];
     /**
-     * Master authorized networks is a Beta feature. The desired configuration
-     * options for master authorized networks feature.
+     * The desired configuration options for master authorized networks feature.
      */
     desiredMasterAuthorizedNetworksConfig?:
         Schema$MasterAuthorizedNetworksConfig;
@@ -819,11 +817,10 @@ export namespace container_v1 {
     username?: string;
   }
   /**
-   * Master authorized networks is a Beta feature. Configuration options for the
-   * master authorized networks feature. Enabled master authorized networks will
-   * disallow all external traffic to access Kubernetes master through HTTPS
-   * except traffic from the given CIDR blocks, Google Compute Engine Public IPs
-   * and Google Prod IPs.
+   * Configuration options for the master authorized networks feature. Enabled
+   * master authorized networks will disallow all external traffic to access
+   * Kubernetes master through HTTPS except traffic from the given CIDR blocks,
+   * Google Compute Engine Public IPs and Google Prod IPs.
    */
   export interface Schema$MasterAuthorizedNetworksConfig {
     /**

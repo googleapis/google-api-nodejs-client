@@ -17,7 +17,7 @@ import nock from 'nock';
 
 import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
 import {google} from '../src';
-import {APIEndpoint} from '../src/lib/api';
+import {APIEndpoint} from '../src/shared/api';
 
 import {Utils} from './utils';
 

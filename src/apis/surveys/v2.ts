@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -56,7 +56,6 @@ export namespace surveys_v2 {
     google: GoogleApis;
     root = this;
 
-    mobileapppanels: Resource$Mobileapppanels;
     results: Resource$Results;
     surveys: Resource$Surveys;
 
@@ -65,7 +64,6 @@ export namespace surveys_v2 {
       this.google = google;
       this.getRoot.bind(this);
 
-      this.mobileapppanels = new Resource$Mobileapppanels(this);
       this.results = new Resource$Results(this);
       this.surveys = new Resource$Surveys(this);
     }
@@ -78,58 +76,6 @@ export namespace surveys_v2 {
   export interface Schema$FieldMask {
     fields?: Schema$FieldMask[];
     id?: number;
-  }
-  /**
-   * Representation of an individual pre-defined panel object defining a
-   * targeted audience of opinion rewards mobile app users.
-   */
-  export interface Schema$MobileAppPanel {
-    /**
-     * Country code for the country of the users that the panel contains. Uses
-     * standard ISO 3166-1 2-character language codes. For instance,
-     * &#39;US&#39; for the United States, and &#39;GB&#39; for the United
-     * Kingdom. Any survey created targeting this panel must also target the
-     * corresponding country.
-     */
-    country?: string;
-    /**
-     * Whether or not the panel is accessible to all API users.
-     */
-    isPublicPanel?: boolean;
-    /**
-     * Language code that the panel can target. For instance, &#39;en-US&#39;.
-     * Uses standard BCP47 language codes. See specification. Any survey created
-     * targeting this panel must also target the corresponding language.
-     */
-    language?: string;
-    /**
-     * Unique panel ID string. This corresponds to the mobile_app_panel_id used
-     * in Survey Insert requests.
-     */
-    mobileAppPanelId?: string;
-    /**
-     * Human readable name of the audience panel.
-     */
-    name?: string;
-    /**
-     * List of email addresses for users who can target members of this panel.
-     * Must contain at least the address of the user making the API call for
-     * panels that are not public. This field will be empty for public panels.
-     */
-    owners?: string[];
-  }
-  export interface Schema$MobileAppPanelsListResponse {
-    pageInfo?: Schema$PageInfo;
-    /**
-     * Unique request ID used for logging and debugging. Please include in any
-     * error reporting or troubleshooting requests.
-     */
-    requestId?: string;
-    /**
-     * An individual predefined panel of Opinion Rewards mobile users.
-     */
-    resources?: Schema$MobileAppPanel[];
-    tokenPagination?: Schema$TokenPagination;
   }
   export interface Schema$PageInfo {
     resultPerPage?: number;
@@ -235,12 +181,6 @@ export namespace surveys_v2 {
      */
     languages?: string[];
     /**
-     * Key for predefined panel that causes survey to be sent to a predefined
-     * set of Opinion Rewards App users. You must set PopulationSource to
-     * ANDROID_APP_PANEL to use this field.
-     */
-    mobileAppPanelId?: string;
-    /**
      * Online population source where the respondents are sampled from.
      */
     populationSource?: string;
@@ -259,22 +199,23 @@ export namespace surveys_v2 {
      */
     currencyCode?: string;
     /**
-     * Threshold to start a survey automatically if the quoted price is at most
-     * this value. When a survey has a Screener (threshold) question, it must go
-     * through an incidence pricing test to determine the final cost per
-     * response. Typically you will have to make a followup call to start the
-     * survey giving the final computed cost per response. If the survey has no
-     * threshold_answers, setting this property will return an error. By
-     * specifying this property, you indicate the max price per response you are
-     * willing to pay in advance of the incidence test. If the price turns out
-     * to be lower than the specified value, the survey will begin immediately
-     * and you will be charged at the rate determined by the incidence pricing
-     * test. If the price turns out to be greater than the specified value the
-     * survey will not be started and you will instead be notified what price
-     * was determined by the incidence test. At that point, you must raise the
-     * value of this property to be greater than or equal to that cost before
-     * attempting to start the survey again. This will immediately start the
-     * survey as long the incidence test was run within the last 21 days.
+     * *Deprecated* Threshold to start a survey automatically if the quoted
+     * price is at most this value. When a survey has a Screener (threshold)
+     * question, it must go through an incidence pricing test to determine the
+     * final cost per response. Typically you will have to make a followup call
+     * to start the survey giving the final computed cost per response. If the
+     * survey has no threshold_answers, setting this property will return an
+     * error. By specifying this property, you indicate the max price per
+     * response you are willing to pay in advance of the incidence test. If the
+     * price turns out to be lower than the specified value, the survey will
+     * begin immediately and you will be charged at the rate determined by the
+     * incidence pricing test. If the price turns out to be greater than the
+     * specified value the survey will not be started and you will instead be
+     * notified what price was determined by the incidence test. At that point,
+     * you must raise the value of this property to be greater than or equal to
+     * that cost before attempting to start the survey again. This will
+     * immediately start the survey as long the incidence test was run within
+     * the last 21 days. This will no longer be available after June 2018.
      */
     maxCostPerResponseNanos?: string;
     /**
@@ -441,8 +382,9 @@ export namespace surveys_v2 {
   }
   export interface Schema$SurveysStartRequest {
     /**
-     * Threshold to start a survey automically if the quoted prices is less than
-     * or equal to this value. See Survey.Cost for more details.
+     * *Deprecated* Threshold to start a survey automatically if the quoted
+     * prices is less than or equal to this value. See Survey.Cost for more
+     * details. This will no longer be available after June 2018.
      */
     maxCostPerResponseNanos?: string;
   }
@@ -463,273 +405,6 @@ export namespace surveys_v2 {
   export interface Schema$TokenPagination {
     nextPageToken?: string;
     previousPageToken?: string;
-  }
-
-
-  export class Resource$Mobileapppanels {
-    root: Surveys;
-    constructor(root: Surveys) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * surveys.mobileapppanels.get
-     * @desc Retrieves a MobileAppPanel that is available to the authenticated
-     * user.
-     * @alias surveys.mobileapppanels.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.panelId External URL ID for the panel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Mobileapppanels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MobileAppPanel>;
-    get(params: Params$Resource$Mobileapppanels$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    get(params: Params$Resource$Mobileapppanels$Get,
-        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    get(callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    get(paramsOrCallback?: Params$Resource$Mobileapppanels$Get|
-        BodyResponseCallback<Schema$MobileAppPanel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppPanel>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanel>):
-        void|AxiosPromise<Schema$MobileAppPanel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Mobileapppanels$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['panelId'],
-        pathParams: ['panelId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$MobileAppPanel>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$MobileAppPanel>(parameters);
-      }
-    }
-
-
-    /**
-     * surveys.mobileapppanels.list
-     * @desc Lists the MobileAppPanels available to the authenticated user.
-     * @alias surveys.mobileapppanels.list
-     * @memberOf! ()
-     *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults
-     * @param {integer=} params.startIndex
-     * @param {string=} params.token
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Mobileapppanels$List, options?: MethodOptions):
-        AxiosPromise<Schema$MobileAppPanelsListResponse>;
-    list(
-        params: Params$Resource$Mobileapppanels$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
-        callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
-        void;
-    list(
-        params: Params$Resource$Mobileapppanels$List,
-        callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
-        void;
-    list(
-        paramsOrCallback?: Params$Resource$Mobileapppanels$List|
-        BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
-        void|AxiosPromise<Schema$MobileAppPanelsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Mobileapppanels$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/mobileAppPanels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$MobileAppPanelsListResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$MobileAppPanelsListResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * surveys.mobileapppanels.update
-     * @desc Updates a MobileAppPanel. Currently the only property that can be
-     * updated is the owners property.
-     * @alias surveys.mobileapppanels.update
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.panelId External URL ID for the panel.
-     * @param {().MobileAppPanel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update(
-        params?: Params$Resource$Mobileapppanels$Update,
-        options?: MethodOptions): AxiosPromise<Schema$MobileAppPanel>;
-    update(
-        params: Params$Resource$Mobileapppanels$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    update(
-        params: Params$Resource$Mobileapppanels$Update,
-        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    update(callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    update(
-        paramsOrCallback?: Params$Resource$Mobileapppanels$Update|
-        BodyResponseCallback<Schema$MobileAppPanel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppPanel>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanel>):
-        void|AxiosPromise<Schema$MobileAppPanel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$Update;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Mobileapppanels$Update;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['panelId'],
-        pathParams: ['panelId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$MobileAppPanel>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$MobileAppPanel>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Mobileapppanels$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * External URL ID for the panel.
-     */
-    panelId?: string;
-  }
-  export interface Params$Resource$Mobileapppanels$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     *
-     */
-    maxResults?: number;
-    /**
-     *
-     */
-    startIndex?: number;
-    /**
-     *
-     */
-    token?: string;
-  }
-  export interface Params$Resource$Mobileapppanels$Update {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * External URL ID for the panel.
-     */
-    panelId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$MobileAppPanel;
   }
 
 

@@ -15,21 +15,19 @@ import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
 import minimist from 'minimist';
-import * as mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import Q from 'p-queue';
 import * as path from 'path';
-import pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../lib/schema';
-
-import {buildurl} from './generator_utils';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../shared/schema';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;
-const fsp = pify(fs);
+const writeFile = util.promisify(fs.writeFile);
+const readDir = util.promisify(fs.readdir);
 
 const DISCOVERY_URL = argv['discovery-url'] ?
     argv['discovery-url'] :
@@ -39,7 +37,7 @@ const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
 const srcPath = path.join(__dirname, '../../../src');
-const TEMPLATES_DIR = path.join(srcPath, 'templates');
+const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
 const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
 const INDEX_TEMPLATE = path.join(TEMPLATES_DIR, 'index.njk');
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
@@ -223,14 +221,14 @@ export class Generator {
     const rootIndexPath = path.join(apisPath, '../', 'index.ts');
 
     // Dynamically discover available APIs
-    const files: string[] = await fsp.readdir(apisPath);
+    const files: string[] = await readDir(apisPath);
     for (const file of files) {
       const filePath = path.join(apisPath, file);
-      if (!(await fsp.stat(filePath)).isDirectory()) {
+      if (!(await util.promisify(fs.stat)(filePath)).isDirectory()) {
         continue;
       }
       apis[file] = {};
-      const files: string[] = await fsp.readdir(path.join(apisPath, file));
+      const files: string[] = await readDir(path.join(apisPath, file));
       for (const version of files) {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
@@ -240,10 +238,10 @@ export class Generator {
     }
 
     const result = this.env.render('index.njk', {apis});
-    await fsp.writeFile(indexPath, result, {encoding: 'utf8'});
+    await writeFile(indexPath, result, {encoding: 'utf8'});
 
     const res2 = this.env.render('root-index.njk', {apis});
-    await fsp.writeFile(rootIndexPath, res2, {encoding: 'utf8'});
+    await writeFile(rootIndexPath, res2, {encoding: 'utf8'});
   }
 
   /**
@@ -309,8 +307,8 @@ export class Generator {
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
-      const file: string =
-          await fsp.readFile(apiDiscoveryUrl, {encoding: 'utf-8'});
+      const file = await util.promisify(fs.readFile)(
+          apiDiscoveryUrl, {encoding: 'utf-8'});
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
       this.logResult(apiDiscoveryUrl, `Starting discovery doc request...`);
@@ -336,10 +334,21 @@ export class Generator {
     await Promise.all(tasks.map(t => t()));
     this.logResult(apiDiscoveryUrl, `Step 2...`);
     const contents = this.env.render(API_TEMPLATE, {api: schema});
-    await pify(mkdirp)(path.dirname(exportFilename));
+    await util.promisify(mkdirp)(path.dirname(exportFilename));
     this.logResult(apiDiscoveryUrl, `Step 3...`);
-    await fsp.writeFile(exportFilename, contents, {encoding: 'utf8'});
+    await writeFile(exportFilename, contents, {encoding: 'utf8'});
     this.logResult(apiDiscoveryUrl, `Template generation complete.`);
     return exportFilename;
   }
+}
+
+/**
+ * Build a string used to create a URL from the discovery doc provided URL.
+ * replace double slashes with single slash (except in https://)
+ * @private
+ * @param  input URL to build from
+ * @return Resulting built URL
+ */
+function buildurl(input?: string) {
+  return input ? `'${input}'`.replace(/([^:]\/)\/+/g, '$1') : '';
 }

@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -481,11 +481,11 @@ export namespace dialogflow_v2 {
      * Note: If `ml_enabled` setting is set to false, then this intent is not
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled`
-     * field instead. NOTE: If neither `ml_enabled` nor `ml_disabled` field is
-     * set, then the default value is determined as follows: - Before April
-     * 15th, 2018 the default is:   ml_enabled = false / ml_disabled = true. -
-     * After April 15th, 2018 the default is:   ml_enabled = true / ml_disabled
-     * = false.
+     * field instead. NOTE: If both `ml_enabled` and `ml_disabled` are either
+     * not set or false, then the default value is determined as follows: -
+     * Before April 15th, 2018 the default is:   ml_enabled = false /
+     * ml_disabled = true. - After April 15th, 2018 the default is:   ml_enabled
+     * = true / ml_disabled = false.
      */
     mlEnabled?: boolean;
     /**
@@ -730,8 +730,8 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageImage {
     /**
-     * Optional. A text description of the image to be used for accessibility,
-     * e.g., screen readers.
+     * A text description of the image to be used for accessibility, e.g.,
+     * screen readers. Required if image_uri is set for CarouselSelect.
      */
     accessibilityText?: string;
     /**
@@ -1303,8 +1303,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2ExportAgentRequest {
     /**
-     * Optional. The Google Cloud Storage URI to export the agent to. Note: The
-     * URI must start with &quot;gs://&quot;. If left unspecified, the
+     * Optional. The [Google Cloud
+     * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     * to. The format of this URI must be
+     * `gs://&lt;bucket-name&gt;/&lt;object-name&gt;`. If left unspecified, the
      * serialized agent is returned inline.
      */
     agentUri?: string;
@@ -2614,23 +2616,23 @@ export namespace dialogflow_v2 {
     }
 
 
-    /**
-     * dialogflow.projects.agent.import
-     * @desc Imports the specified agent from a ZIP file.  Uploads new intents
-     * and entity types without deleting the existing ones. Intents and entity
-     * types with the same name are replaced with the new versions from
-     * ImportAgentRequest.  Operation <response: google.protobuf.Empty,
-     * metadata: google.protobuf.Struct>
-     * @alias dialogflow.projects.agent.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
-     * @param {().GoogleCloudDialogflowV2ImportAgentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * dialogflow.projects.agent.import
+ * @desc Imports the specified agent from a ZIP file.  Uploads new intents and
+ * entity types without deleting the existing ones. Intents and entity types
+ * with the same name are replaced with the new versions from
+ * ImportAgentRequest.  Operation <response: google.protobuf.Empty, metadata:
+ * google.protobuf.Struct>
+ * @alias dialogflow.projects.agent.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
+ * @param {().GoogleCloudDialogflowV2ImportAgentRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Projects$Agent$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
 import(params: Params$Resource$Projects$Agent$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(params: Params$Resource$Projects$Agent$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;

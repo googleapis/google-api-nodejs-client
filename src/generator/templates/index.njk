@@ -15,7 +15,7 @@
 
 import * as path from 'path';
 import * as util from 'util';
-import { ServiceOptions } from '../lib/api';
+import { ServiceOptions } from '../shared/api';
 {% for apiName, api in apis %}
   {% for versionName, version in api %}import { {{ apiName }}_{{ version|replace('.','_') }} } from './{{ apiName }}/{{ version }}';
 {% endfor %}
