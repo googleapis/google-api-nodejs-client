@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -36,7 +36,7 @@ export namespace cloudfunctions_v1 {
   }
 
   /**
-   * Google Cloud Functions API
+   * Cloud Functions API
    *
    * Manages lightweight user-provided functions executed in response to events.
    *
@@ -139,6 +139,11 @@ export namespace cloudfunctions_v1 {
      * globally and match pattern `projects/x/locations/x/functions/x
      */
     name?: string;
+    /**
+     * The runtime in which the function is going to run. If empty, defaults to
+     * Node.js 6.
+     */
+    runtime?: string;
     /**
      * Output only. The email of the function&#39;s service account.
      */

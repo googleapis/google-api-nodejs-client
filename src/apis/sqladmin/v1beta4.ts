@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -2879,21 +2879,21 @@ export namespace sqladmin_v1beta4 {
     }
 
 
-    /**
-     * sql.instances.import
-     * @desc Imports data into a Cloud SQL instance from a MySQL dump file in
-     * Google Cloud Storage.
-     * @alias sql.instances.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().InstancesImportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * sql.instances.import
+ * @desc Imports data into a Cloud SQL instance from a MySQL dump file in Google
+ * Cloud Storage.
+ * @alias sql.instances.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+ * @param {string} params.project Project ID of the project that contains the instance.
+ * @param {().InstancesImportRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Instances$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Instances$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Instances$Import, callback: BodyResponseCallback<Schema$Operation>): void;

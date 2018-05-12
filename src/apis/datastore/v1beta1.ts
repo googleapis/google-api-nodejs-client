@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -589,24 +589,23 @@ export namespace datastore_v1beta1 {
     }
 
 
-    /**
-     * datastore.projects.import
-     * @desc Imports entities into Google Cloud Datastore. Existing entities
-     * with the same key are overwritten. The import occurs in the background
-     * and its progress can be monitored and managed via the Operation resource
-     * that is created. If an ImportEntities operation is cancelled, it is
-     * possible that a subset of the data has already been imported to Cloud
-     * Datastore.
-     * @alias datastore.projects.import
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
+/**
+ * datastore.projects.import
+ * @desc Imports entities into Google Cloud Datastore. Existing entities with
+ * the same key are overwritten. The import occurs in the background and its
+ * progress can be monitored and managed via the Operation resource that is
+ * created. If an ImportEntities operation is cancelled, it is possible that a
+ * subset of the data has already been imported to Cloud Datastore.
+ * @alias datastore.projects.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.projectId Project ID against which to make the request.
+ * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
 import(params?: Params$Resource$Projects$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
 import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;

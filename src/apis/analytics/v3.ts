@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -2466,6 +2466,19 @@ export namespace analytics_v3 {
      * Time this web property was created.
      */
     created?: string;
+    /**
+     * Set to true to reset the retention period of the user identifier with
+     * each new event from that user (thus setting the expiration date to
+     * current time plus retention period). Set to false to delete data
+     * associated with the user identifer automatically after the rentention
+     * period. This property cannot be set on insert.
+     */
+    dataRetentionResetOnNewActivity?: boolean;
+    /**
+     * The length of time for which user and event data is retained. This
+     * property cannot be set on insert.
+     */
+    dataRetentionTtl?: string;
     /**
      * Default view (profile) ID.
      */

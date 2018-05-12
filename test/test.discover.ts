@@ -17,7 +17,7 @@ import * as path from 'path';
 
 import {GoogleApis} from '../src';
 import {APIS} from '../src/apis';
-import {APIEndpoint} from '../src/lib/api';
+import {APIEndpoint} from '../src/shared/api';
 
 describe('GoogleApis#discover', () => {
   it('should get a list of supported apis', () => {

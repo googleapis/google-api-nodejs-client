@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -124,6 +124,37 @@ export namespace sheets_v4 {
      * The rule to add.
      */
     rule?: Schema$ConditionalFormatRule;
+  }
+  /**
+   * Creates a group over the specified range.  If the requested range is a
+   * superset of the range of an existing group G, then the depth of G will be
+   * incremented and this new group G&#39; will have the depth of that group.
+   * For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth
+   * 1] and [C:D, depth 2]. If the requested range is a subset of the range of
+   * an existing group G, then the depth of the new group G&#39; will be one
+   * greater than the depth of G. For example, a group [B:E, depth 1] + [C:D]
+   * results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range
+   * starts before and ends within, or starts within and ends after, the range
+   * of an existing group G, then the range of the existing group G will become
+   * the union of the ranges, and the new group G&#39; will have depth one
+   * greater than the depth of G and range as the intersection of the ranges.
+   * For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth
+   * 1] and [C:D, depth 2].
+   */
+  export interface Schema$AddDimensionGroupRequest {
+    /**
+     * The range over which to create a group.
+     */
+    range?: Schema$DimensionRange;
+  }
+  /**
+   * The result of adding a group.
+   */
+  export interface Schema$AddDimensionGroupResponse {
+    /**
+     * All groups of a dimension after adding a group to that dimension.
+     */
+    dimensionGroups?: Schema$DimensionGroup[];
   }
   /**
    * Adds a filter view.
@@ -1513,6 +1544,26 @@ export namespace sheets_v4 {
     strict?: boolean;
   }
   /**
+   * Allows you to organize the date-time values in a source data column into
+   * buckets based on selected parts of their date or time values. For example,
+   * consider a pivot table showing sales transactions by date:
+   * +----------+--------------+     | Date     | SUM of Sales |
+   * +----------+--------------+     | 1/1/2017 |      $621.14 |     | 2/3/2017
+   * |      $708.84 |     | 5/8/2017 |      $326.84 |     ...
+   * +----------+--------------+ Applying a date-time group rule with a
+   * DateTimeRuleType of YEAR_MONTH results in the following pivot table.
+   * +--------------+--------------+     | Grouped Date | SUM of Sales |
+   * +--------------+--------------+     | 2017-Jan     |   $53,731.78 |     |
+   * 2017-Feb     |   $83,475.32 |     | 2017-Mar     |   $94,385.05 |     ...
+   * +--------------+--------------+
+   */
+  export interface Schema$DateTimeRule {
+    /**
+     * The type of date-time grouping to apply.
+     */
+    type?: string;
+  }
+  /**
    * Removes the banded range with the given ID from the spreadsheet.
    */
   export interface Schema$DeleteBandingRequest {
@@ -1562,6 +1613,27 @@ export namespace sheets_v4 {
      * The metadata that was deleted.
      */
     deletedDeveloperMetadata?: Schema$DeveloperMetadata[];
+  }
+  /**
+   * Deletes a group over the specified range by decrementing the depth of the
+   * dimensions in the range.  For example, assume the sheet has a depth-1 group
+   * over B:E and a depth-2 group over C:D. Deleting a group over D:E would
+   * leave the sheet with a depth-1 group over B:D and a depth-2 group over C:C.
+   */
+  export interface Schema$DeleteDimensionGroupRequest {
+    /**
+     * The range of the group to be deleted.
+     */
+    range?: Schema$DimensionRange;
+  }
+  /**
+   * The result of deleting a group.
+   */
+  export interface Schema$DeleteDimensionGroupResponse {
+    /**
+     * All groups of a dimension after deleting a group from that dimension.
+     */
+    dimensionGroups?: Schema$DimensionGroup[];
   }
   /**
    * Deletes the dimensions from the sheet.
@@ -1754,6 +1826,32 @@ export namespace sheets_v4 {
      * metadata visibile to the requesting project is considered.
      */
     visibility?: string;
+  }
+  /**
+   * A group over an interval of rows or columns on a sheet, which can contain
+   * or be contained within other groups. A group can be collapsed or expanded
+   * as a unit on the sheet.
+   */
+  export interface Schema$DimensionGroup {
+    /**
+     * True if this group is collapsed. A collapsed group will remain collapsed
+     * if an overlapping group at a shallower depth is expanded.  collapsed ==
+     * true does not imply that all dimensions within the group are hidden,
+     * since a dimension&#39;s visibility can change independently from this
+     * group property. However, when this property is updated, all dimensions
+     * within it will be set to hidden if collapsed == true, or set to visible
+     * if collapsed == false.
+     */
+    collapsed?: boolean;
+    /**
+     * The depth of the group, representing how many groups have a range that
+     * wholly contains the range of this group.
+     */
+    depth?: number;
+    /**
+     * The range over which this group exists.
+     */
+    range?: Schema$DimensionRange;
   }
   /**
    * Properties about a dimension.
@@ -2162,6 +2260,10 @@ export namespace sheets_v4 {
      */
     columnCount?: number;
     /**
+     * True if the column grouping control toggle is shown after the group.
+     */
+    columnGroupControlAfter?: boolean;
+    /**
      * The number of columns that are frozen in the grid.
      */
     frozenColumnCount?: number;
@@ -2177,6 +2279,10 @@ export namespace sheets_v4 {
      * The number of rows in the grid.
      */
     rowCount?: number;
+    /**
+     * True if the row grouping control toggle is shown after the group.
+     */
+    rowGroupControlAfter?: boolean;
   }
   /**
    * A range on a sheet. All indexes are zero-based. Indexes are half open, e.g
@@ -2756,6 +2862,10 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotGroupRule {
     /**
+     * A DateTimeRule.
+     */
+    dateTimeRule?: Schema$DateTimeRule;
+    /**
      * A HistogramRule.
      */
     histogramRule?: Schema$HistogramRule;
@@ -2973,6 +3083,10 @@ export namespace sheets_v4 {
      */
     addConditionalFormatRule?: Schema$AddConditionalFormatRuleRequest;
     /**
+     * Creates a group over the specified range.
+     */
+    addDimensionGroup?: Schema$AddDimensionGroupRequest;
+    /**
      * Adds a filter view.
      */
     addFilterView?: Schema$AddFilterViewRequest;
@@ -3037,6 +3151,10 @@ export namespace sheets_v4 {
      * Deletes rows or columns in a sheet.
      */
     deleteDimension?: Schema$DeleteDimensionRequest;
+    /**
+     * Deletes a group over the specified range.
+     */
+    deleteDimensionGroup?: Schema$DeleteDimensionGroupRequest;
     /**
      * Deletes an embedded object (e.g, chart, image) in a sheet.
      */
@@ -3146,6 +3264,10 @@ export namespace sheets_v4 {
      */
     updateDeveloperMetadata?: Schema$UpdateDeveloperMetadataRequest;
     /**
+     * Updates the state of the specified group.
+     */
+    updateDimensionGroup?: Schema$UpdateDimensionGroupRequest;
+    /**
      * Updates dimensions&#39; properties.
      */
     updateDimensionProperties?: Schema$UpdateDimensionPropertiesRequest;
@@ -3187,6 +3309,10 @@ export namespace sheets_v4 {
      */
     addChart?: Schema$AddChartResponse;
     /**
+     * A reply from adding a dimension group.
+     */
+    addDimensionGroup?: Schema$AddDimensionGroupResponse;
+    /**
      * A reply from adding a filter view.
      */
     addFilterView?: Schema$AddFilterViewResponse;
@@ -3214,6 +3340,10 @@ export namespace sheets_v4 {
      * A reply from deleting a developer metadata entry.
      */
     deleteDeveloperMetadata?: Schema$DeleteDeveloperMetadataResponse;
+    /**
+     * A reply from deleting a dimension group.
+     */
+    deleteDimensionGroup?: Schema$DeleteDimensionGroupResponse;
     /**
      * A reply from duplicating a filter view.
      */
@@ -3310,6 +3440,11 @@ export namespace sheets_v4 {
      */
     charts?: Schema$EmbeddedChart[];
     /**
+     * All column groups on this sheet, ordered by increasing range start index,
+     * then by group depth.
+     */
+    columnGroups?: Schema$DimensionGroup[];
+    /**
      * The conditional format rules in this sheet.
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
@@ -3343,6 +3478,11 @@ export namespace sheets_v4 {
      * The protected ranges in this sheet.
      */
     protectedRanges?: Schema$ProtectedRange[];
+    /**
+     * All row groups on this sheet, ordered by increasing range start index,
+     * then by group depth.
+     */
+    rowGroups?: Schema$DimensionGroup[];
   }
   /**
    * Properties of a sheet.
@@ -3891,6 +4031,22 @@ export namespace sheets_v4 {
      * The updated developer metadata.
      */
     developerMetadata?: Schema$DeveloperMetadata[];
+  }
+  /**
+   * Updates the state of the specified group.
+   */
+  export interface Schema$UpdateDimensionGroupRequest {
+    /**
+     * The group whose state should be updated. The range and depth of the group
+     * should specify a valid group on the sheet, and all other fields updated.
+     */
+    dimensionGroup?: Schema$DimensionGroup;
+    /**
+     * The fields that should be updated.  At least one field must be specified.
+     * The root `dimensionGroup` is implied and should not be specified. A
+     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     */
+    fields?: string;
   }
   /**
    * Updates properties of dimensions within the specified range.

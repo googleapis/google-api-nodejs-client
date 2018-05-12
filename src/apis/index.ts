@@ -16,7 +16,7 @@
 import * as path from 'path';
 import * as util from 'util';
 
-import {ServiceOptions} from '../lib/api';
+import {ServiceOptions} from '../shared/api';
 
 import {abusiveexperiencereport_v1} from './abusiveexperiencereport/v1';
 import {acceleratedmobilepageurl_v1} from './acceleratedmobilepageurl/v1';
@@ -42,6 +42,7 @@ import {androidmanagement_v1} from './androidmanagement/v1';
 import {androidpublisher_v1} from './androidpublisher/v1';
 import {androidpublisher_v1_1} from './androidpublisher/v1.1';
 import {androidpublisher_v2} from './androidpublisher/v2';
+import {androidpublisher_v3} from './androidpublisher/v3';
 import {appengine_v1} from './appengine/v1';
 import {appengine_v1alpha} from './appengine/v1alpha';
 import {appengine_v1beta} from './appengine/v1beta';
@@ -124,6 +125,7 @@ import {groupsmigration_v1} from './groupsmigration/v1';
 import {groupssettings_v1} from './groupssettings/v1';
 import {iam_v1} from './iam/v1';
 import {identitytoolkit_v3} from './identitytoolkit/v3';
+import {jobs_v2} from './jobs/v2';
 import {kgsearch_v1} from './kgsearch/v1';
 import {language_v1} from './language/v1';
 import {language_v1beta1} from './language/v1beta1';
@@ -145,6 +147,7 @@ import {pagespeedonline_v2} from './pagespeedonline/v2';
 import {pagespeedonline_v4} from './pagespeedonline/v4';
 import {partners_v2} from './partners/v2';
 import {people_v1} from './people/v1';
+import {photoslibrary_v1} from './photoslibrary/v1';
 import {playcustomapp_v1} from './playcustomapp/v1';
 import {plus_v1} from './plus/v1';
 import {plusDomains_v1} from './plusDomains/v1';
@@ -273,6 +276,7 @@ export const APIS: APIList = {
     'v1.1': androidpublisher_v1_1.Androidpublisher,
     'v1': androidpublisher_v1.Androidpublisher,
     'v2': androidpublisher_v2.Androidpublisher,
+    'v3': androidpublisher_v3.Androidpublisher,
   },
   appengine: {
     'v1': appengine_v1.Appengine,
@@ -464,6 +468,9 @@ export const APIS: APIList = {
   identitytoolkit: {
     'v3': identitytoolkit_v3.Identitytoolkit,
   },
+  jobs: {
+    'v2': jobs_v2.Jobs,
+  },
   kgsearch: {
     'v1': kgsearch_v1.Kgsearch,
   },
@@ -510,6 +517,9 @@ export const APIS: APIList = {
   },
   people: {
     'v1': people_v1.People,
+  },
+  photoslibrary: {
+    'v1': photoslibrary_v1.Photoslibrary,
   },
   playcustomapp: {
     'v1': playcustomapp_v1.Playcustomapp,
@@ -847,13 +857,18 @@ export class GeneratedAPIs {
   androidpublisher(version: 'v2'): androidpublisher_v2.Androidpublisher;
   androidpublisher(options: androidpublisher_v2.Options):
       androidpublisher_v2.Androidpublisher;
+  androidpublisher(version: 'v3'): androidpublisher_v3.Androidpublisher;
+  androidpublisher(options: androidpublisher_v3.Options):
+      androidpublisher_v3.Androidpublisher;
   androidpublisher<
       T = androidpublisher_v1_1.Androidpublisher |
           androidpublisher_v1.Androidpublisher |
-          androidpublisher_v2.Androidpublisher>(
+          androidpublisher_v2.Androidpublisher |
+          androidpublisher_v3.Androidpublisher>(
       versionOrOptions: 'v1_1'|
       androidpublisher_v1_1.Options|'v1'|
-      androidpublisher_v1.Options|'v2'|androidpublisher_v2.Options) {
+      androidpublisher_v1.Options|'v2'|
+      androidpublisher_v2.Options|'v3'|androidpublisher_v3.Options) {
     return this.getAPI<T>('androidpublisher', versionOrOptions);
   }
   appengine(version: 'v1'): appengine_v1.Appengine;
@@ -1309,6 +1324,11 @@ export class GeneratedAPIs {
       versionOrOptions: 'v3'|identitytoolkit_v3.Options) {
     return this.getAPI<T>('identitytoolkit', versionOrOptions);
   }
+  jobs(version: 'v2'): jobs_v2.Jobs;
+  jobs(options: jobs_v2.Options): jobs_v2.Jobs;
+  jobs<T = jobs_v2.Jobs>(versionOrOptions: 'v2'|jobs_v2.Options) {
+    return this.getAPI<T>('jobs', versionOrOptions);
+  }
   kgsearch(version: 'v1'): kgsearch_v1.Kgsearch;
   kgsearch(options: kgsearch_v1.Options): kgsearch_v1.Kgsearch;
   kgsearch<T = kgsearch_v1.Kgsearch>(versionOrOptions: 'v1'|
@@ -1414,6 +1434,13 @@ export class GeneratedAPIs {
   people(options: people_v1.Options): people_v1.People;
   people<T = people_v1.People>(versionOrOptions: 'v1'|people_v1.Options) {
     return this.getAPI<T>('people', versionOrOptions);
+  }
+  photoslibrary(version: 'v1'): photoslibrary_v1.Photoslibrary;
+  photoslibrary(options: photoslibrary_v1.Options):
+      photoslibrary_v1.Photoslibrary;
+  photoslibrary<T = photoslibrary_v1.Photoslibrary>(versionOrOptions: 'v1'|
+                                                    photoslibrary_v1.Options) {
+    return this.getAPI<T>('photoslibrary', versionOrOptions);
   }
   playcustomapp(version: 'v1'): playcustomapp_v1.Playcustomapp;
   playcustomapp(options: playcustomapp_v1.Options):

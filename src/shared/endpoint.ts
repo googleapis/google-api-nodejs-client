@@ -14,8 +14,6 @@
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 
 import {GoogleApis} from '../index';
-import {buildurl} from '../scripts/generator_utils';
-
 import {APIRequestContext, APIRequestParams, GlobalOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Discovery} from './discovery';
@@ -142,4 +140,15 @@ export class Endpoint implements Target, APIRequestContext {
     });
     return pathParams;
   }
+}
+
+/**
+ * Build a string used to create a URL from the discovery doc provided URL.
+ * replace double slashes with single slash (except in https://)
+ * @private
+ * @param  input URL to build from
+ * @return Resulting built URL
+ */
+function buildurl(input?: string) {
+  return input ? `'${input}'`.replace(/([^:]\/)\/+/g, '$1') : '';
 }

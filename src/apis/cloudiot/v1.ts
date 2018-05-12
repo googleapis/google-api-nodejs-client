@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -725,6 +725,7 @@ export namespace cloudiot_v1 {
      * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
      * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
+     * @param {string=} params.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -811,6 +812,12 @@ export namespace cloudiot_v1 {
      * other fields specified.
      */
     fieldMask?: string;
+    /**
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     * specified, only non-gateway devices are returned. If
+     * `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
+     */
+    gatewayType?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
@@ -1783,6 +1790,7 @@ export namespace cloudiot_v1 {
      * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
      * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
+     * @param {string=} params.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -2067,6 +2075,12 @@ export namespace cloudiot_v1 {
      * other fields specified.
      */
     fieldMask?: string;
+    /**
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     * specified, only non-gateway devices are returned. If
+     * `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
+     */
+    gatewayType?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer

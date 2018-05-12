@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -752,9 +752,8 @@ export namespace videointelligence_v1beta1 {
      * in terms of accuracy, with the top (first) alternative being the most
      * probable, as ranked by the recognizer.
      */
-    // clang-format off
-    alternatives?: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
-    // clang-format on
+    alternatives?:
+        Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
   }
   /**
    * Annotation progress for a single video.

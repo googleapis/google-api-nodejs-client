@@ -16,7 +16,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {GoogleApis} from './lib/googleapis';
+import {GoogleApis} from './shared/googleapis';
 const google = new GoogleApis();
 export {google, GoogleApis};
 
@@ -44,6 +44,7 @@ export {androidmanagement_v1} from './apis/androidmanagement/v1';
 export {androidpublisher_v1_1} from './apis/androidpublisher/v1.1';
 export {androidpublisher_v1} from './apis/androidpublisher/v1';
 export {androidpublisher_v2} from './apis/androidpublisher/v2';
+export {androidpublisher_v3} from './apis/androidpublisher/v3';
 export {appengine_v1} from './apis/appengine/v1';
 export {appengine_v1alpha} from './apis/appengine/v1alpha';
 export {appengine_v1beta} from './apis/appengine/v1beta';
@@ -126,6 +127,7 @@ export {groupsmigration_v1} from './apis/groupsmigration/v1';
 export {groupssettings_v1} from './apis/groupssettings/v1';
 export {iam_v1} from './apis/iam/v1';
 export {identitytoolkit_v3} from './apis/identitytoolkit/v3';
+export {jobs_v2} from './apis/jobs/v2';
 export {kgsearch_v1} from './apis/kgsearch/v1';
 export {language_v1} from './apis/language/v1';
 export {language_v1beta1} from './apis/language/v1beta1';
@@ -147,6 +149,7 @@ export {pagespeedonline_v2} from './apis/pagespeedonline/v2';
 export {pagespeedonline_v4} from './apis/pagespeedonline/v4';
 export {partners_v2} from './apis/partners/v2';
 export {people_v1} from './apis/people/v1';
+export {photoslibrary_v1} from './apis/photoslibrary/v1';
 export {playcustomapp_v1} from './apis/playcustomapp/v1';
 export {plus_v1} from './apis/plus/v1';
 export {plusDomains_v1} from './apis/plusDomains/v1';

@@ -15,7 +15,7 @@ import assert from 'assert';
 import nock from 'nock';
 
 import {drive_v2, GoogleApis} from '../src';
-import {APIEndpoint} from '../src/lib/api';
+import {APIEndpoint} from '../src/shared/api';
 
 import {Utils} from './utils';
 

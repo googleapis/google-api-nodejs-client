@@ -38,7 +38,7 @@ fix-typescript:
 	gts fix
 
 generate: build-tools
-	node build/src/scripts/generate.js
+	node build/src/generator/generate.js
 	clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts
 
 install:

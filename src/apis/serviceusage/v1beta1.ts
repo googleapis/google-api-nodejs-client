@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -347,6 +347,22 @@ export namespace serviceusage_v1beta1 {
     serviceIds?: string[];
   }
   /**
+   * Response message for the `BatchEnableServices` method. This response
+   * message is assigned to the `response` field of the returned Operation when
+   * that operation is done.
+   */
+  export interface Schema$BatchEnableServicesResponse {
+    /**
+     * If allow_partial_success is true, and one or more services could not be
+     * enabled, this field contains the details about each failure.
+     */
+    failures?: Schema$EnableFailure[];
+    /**
+     * The new state of the services after enabling.
+     */
+    services?: Schema$GoogleApiServiceusageV1Service[];
+  }
+  /**
    * Billing related configuration of the service.  The following example shows
    * how to configure monitored resources and metrics for billing:
    * monitored_resources:     - type: library.googleapis.com/branch labels: -
@@ -513,6 +529,17 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$DisableServiceRequest {}
   /**
+   * Response message for the `DisableService` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$DisableServiceResponse {
+    /**
+     * The new state of the service after disabling.
+     */
+    service?: Schema$GoogleApiServiceusageV1Service;
+  }
+  /**
    * `Documentation` provides the information for describing a service. Example:
    * &lt;pre&gt;&lt;code&gt;documentation:   summary: &gt;     The Google
    * Calendar API gives access     to most calendar features.   pages:   - name:
@@ -605,10 +632,31 @@ export namespace serviceusage_v1beta1 {
      */
     selector?: string;
   }
+  export interface Schema$EnableFailure {
+    /**
+     * An error message describing why the service could not be enabled.
+     */
+    errorMessage?: string;
+    /**
+     * The service id of a service that could not be enabled.
+     */
+    serviceId?: string;
+  }
   /**
    * Request message for the `EnableService` method.
    */
   export interface Schema$EnableServiceRequest {}
+  /**
+   * Response message for the `EnableService` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$EnableServiceResponse {
+    /**
+     * The new state of the service after enabling.
+     */
+    service?: Schema$GoogleApiServiceusageV1Service;
+  }
   /**
    * `Endpoint` describes a network endpoint that serves a set of APIs. A
    * service may expose any number of endpoints, and all endpoints share the
@@ -901,6 +949,72 @@ export namespace serviceusage_v1beta1 {
      * name. Example:      types:     - name: google.protobuf.Int32
      */
     types?: Schema$Type[];
+    /**
+     * Configuration controlling usage of this service.
+     */
+    usage?: Schema$Usage;
+  }
+  /**
+   * A service that is available for use by the consumer.
+   */
+  export interface Schema$GoogleApiServiceusageV1Service {
+    /**
+     * The service configuration of the available service. Some fields may be
+     * filtered out of the configuration in responses to the `ListServices`
+     * method. These fields are present only in responses to the `GetService`
+     * method.
+     */
+    config?: Schema$GoogleApiServiceusageV1ServiceConfig;
+    /**
+     * The resource name of the consumer and service.  A valid name would be: -
+     * projects/123/services/serviceusage.googleapis.com
+     */
+    name?: string;
+    /**
+     * The resource name of the consumer.  A valid name would be: - projects/123
+     */
+    parent?: string;
+    /**
+     * Whether or not the service has been enabled for use by the consumer.
+     */
+    state?: string;
+  }
+  /**
+   * The configuration of the service.
+   */
+  export interface Schema$GoogleApiServiceusageV1ServiceConfig {
+    /**
+     * A list of API interfaces exported by this service. Contains only the
+     * names, versions, and method names of the interfaces.
+     */
+    apis?: Schema$Api[];
+    /**
+     * Auth configuration. Contains only the OAuth rules.
+     */
+    authentication?: Schema$Authentication;
+    /**
+     * Additional API documentation. Contains only the summary and the
+     * documentation URL.
+     */
+    documentation?: Schema$Documentation;
+    /**
+     * Configuration for network endpoints. Contains only the names and aliases
+     * of the endpoints.
+     */
+    endpoints?: Schema$Endpoint[];
+    /**
+     * The DNS address at which this service is available.  An example DNS
+     * address would be: `calendar.googleapis.com`.
+     */
+    name?: string;
+    /**
+     * Quota configuration.
+     */
+    quota?: Schema$Quota;
+    /**
+     * The product title for this service.
+     */
+    title?: string;
     /**
      * Configuration controlling usage of this service.
      */

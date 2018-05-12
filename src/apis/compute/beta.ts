@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -1540,7 +1540,7 @@ export namespace compute_beta {
      * a Google account.  * `allAuthenticatedUsers`: A special identifier that
      * represents anyone who is authenticated with a Google account or a service
      * account.  * `user:{emailid}`: An email address that represents a specific
-     * Google account. For example, `alice@gmail.com` or `joe@example.com`.    *
+     * Google account. For example, `alice@gmail.com` .    *
      * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
@@ -2227,6 +2227,12 @@ export namespace compute_beta {
      * [Output Only] Name of the resource.
      */
     name?: string;
+    /**
+     * [Output Only] URL of the region where the disk type resides. Only
+     * applicable for regional resources. You must specify this field as part of
+     * the HTTP request URL. It is not settable as a field in the request body.
+     */
+    region?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -6077,7 +6083,8 @@ export namespace compute_beta {
    */
   export interface Schema$Operation {
     /**
-     * [Output Only] Reserved for future use.
+     * [Output Only] The value of `requestId` if you provided it in the request.
+     * Not present otherwise.
      */
     clientOperationId?: string;
     /**
@@ -6884,6 +6891,25 @@ export namespace compute_beta {
      * The labels to set for this resource.
      */
     labels?: any;
+  }
+  export interface Schema$RegionSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
   }
   /**
    * Commitment for a particular resource (a Commitment is composed of one or
@@ -9998,8 +10024,7 @@ export namespace compute_beta {
 
     /**
      * compute.acceleratorTypes.get
-     * @desc Returns the specified accelerator type. Gets a list of available
-     * accelerator types by making a list() request.
+     * @desc Returns the specified accelerator type.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -40707,7 +40732,7 @@ export namespace compute_beta {
 
     /**
      * compute.interconnects.get
-     * @desc Returns the specified interconnect. Gets a list of available
+     * @desc Returns the specified interconnect. Get a list of available
      * interconnects by making a list() request.
      * @example
      * * // BEFORE RUNNING:
@@ -42002,7 +42027,7 @@ export namespace compute_beta {
      * compute.licenses.list
      * @desc Retrieves the list of licenses available in the specified project.
      * This method does not get any licenses that belong to other projects,
-     * including licenses attached to publicly-available images, like Debian 8.
+     * including licenses attached to publicly-available images, like Debian 9.
      * If you want to get a list of publicly-available licenses, use this method
      * to make a request to the respective image project, such as debian-cloud
      * or windows-cloud.
@@ -62480,7 +62505,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -63177,7 +63202,7 @@ export namespace compute_beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Policy;
+    requestBody?: Schema$RegionSetPolicyRequest;
   }
   export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess {
     /**

@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
+import {createAPIRequest} from '../../shared/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -208,7 +208,7 @@ export namespace deploymentmanager_v2beta {
      * a Google account.  * `allAuthenticatedUsers`: A special identifier that
      * represents anyone who is authenticated with a Google account or a service
      * account.  * `user:{emailid}`: An email address that represents a specific
-     * Google account. For example, `alice@gmail.com` or `joe@example.com`.    *
+     * Google account. For example, `alice@gmail.com` .    *
      * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
@@ -538,6 +538,25 @@ export namespace deploymentmanager_v2beta {
      */
     title?: string;
   }
+  export interface Schema$GlobalSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
+  }
   export interface Schema$ImportFile {
     /**
      * The contents of the file.
@@ -696,7 +715,8 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$Operation {
     /**
-     * [Output Only] Reserved for future use.
+     * [Output Only] The value of `requestId` if you provided it in the request.
+     * Not present otherwise.
      */
     clientOperationId?: string;
     /**
@@ -860,17 +880,20 @@ export namespace deploymentmanager_v2beta {
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.    A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**  { &quot;bindings&quot;: [ { &quot;role&quot;:
-   * &quot;roles/owner&quot;, &quot;members&quot;: [
+   * defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ {
+   * &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
    * &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;] } ] }  For a description of IAM and its
-   * features, see the [IAM developer&#39;s
+   * [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: -
+   * members: - user:mike@example.com - group:admins@example.com -
+   * domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com
+   * role: roles/owner - members: - user:sean@example.com role: roles/viewer For
+   * a description of IAM and its features, see the [IAM developer&#39;s
    * guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
@@ -2474,7 +2497,7 @@ export namespace deploymentmanager_v2beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2965,7 +2988,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Policy;
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Deployments$Stop {
     /**
