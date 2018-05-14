@@ -64,12 +64,24 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - publish_shared:
+          requires:
+            - node6
+            - node8
+            - node9
+            - node10
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[\d.]+$/
       - publish_npm:
           requires:
             - node6
             - node8
             - node9
             - node10
+            - publish_shared
           filters:
             branches:
               ignore: /.*/
@@ -106,6 +118,25 @@ jobs:
       - image: node:10
         user: node
     <<: *unit_tests
+
+  publish_shared:
+    docker:
+      - image: node:8
+        user: node
+    steps:
+      - checkout
+      - run:
+          name: Switch to the common directory
+          command: cd src/shared
+      - run:
+          name: Install modules and dependencies.
+          command: npm install --unsafe-perm
+      - run:
+          name: Set NPM authentication.
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
+         name: Publish the module to npm.
+         command: npm publish --access=public
 
   publish_npm:
     docker:

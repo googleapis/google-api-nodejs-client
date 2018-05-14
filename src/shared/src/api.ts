@@ -12,14 +12,8 @@
 // limitations under the License.
 
 import {AxiosAdapter, AxiosProxyConfig, AxiosRequestConfig, AxiosResponse, AxiosTransformer, CancelToken} from 'axios';
-import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
-import {OutgoingHttpHeaders} from 'http';
-import * as stream from 'stream';
-
-import {GoogleApis} from '..';
-
+import {OAuth2Client} from 'google-auth-library';
 import {Endpoint} from './endpoint';
-import {SchemaParameters} from './schema';
 
 // tslint:disable-next-line no-any
 export interface APIRequestParams<T = any> {
@@ -31,8 +25,12 @@ export interface APIRequestParams<T = any> {
   mediaUrl?: string|null;
 }
 
+export interface GoogleConfigurable {
+  _options: GlobalOptions;
+}
+
 export interface APIRequestContext {
-  google: GoogleApis;
+  google: GoogleConfigurable;
   _options: GlobalOptions;
 }
 

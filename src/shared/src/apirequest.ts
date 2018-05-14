@@ -25,7 +25,7 @@ import {SchemaParameters} from './schema';
 const maxContentLength = Math.pow(2, 31);
 
 // tslint:disable-next-line no-var-requires
-const pkg = require('../../../package.json');
+const pkg = require('../../../../package.json');
 const USER_AGENT = `google-api-nodejs-client/${pkg.version} (gzip)`;
 
 function isReadableStream(obj: stream.Readable|string) {
