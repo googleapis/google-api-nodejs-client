@@ -77,10 +77,6 @@ workflows:
               only: /^v[\d.]+$/
       - publish_npm:
           requires:
-            - node6
-            - node8
-            - node9
-            - node10
             - publish_shared
           filters:
             branches:
@@ -130,7 +126,7 @@ jobs:
           command: cd src/shared
       - run:
           name: Install modules and dependencies.
-          command: npm install --unsafe-perm
+          command: npm install
       - run:
           name: Set NPM authentication.
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -146,7 +142,7 @@ jobs:
       - checkout
       - run:
           name: Install modules and dependencies.
-          command: npm install --unsafe-perm
+          command: npm install
       - run:
           name: Build
           command: make build
