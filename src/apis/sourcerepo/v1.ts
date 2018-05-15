@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace sourcerepo_v1 {
    * Access source code repositories hosted by Google.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const sourcerepo = google.sourcerepo('v1');
    *
    * @namespace sourcerepo
@@ -52,12 +47,12 @@ export namespace sourcerepo_v1 {
    */
   export class Sourcerepo {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
@@ -95,7 +90,7 @@ export namespace sourcerepo_v1 {
    */
   export interface Schema$AuditConfig {
     /**
-     * The configuration for logging of each type of permission. Next ID: 4
+     * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
@@ -136,13 +131,12 @@ export namespace sourcerepo_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -201,18 +195,22 @@ export namespace sourcerepo_v1 {
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -242,6 +240,48 @@ export namespace sourcerepo_v1 {
     version?: number;
   }
   /**
+   * Cloud Source Repositories configuration of a project.
+   */
+  export interface Schema$ProjectConfig {
+    /**
+     * Reject a Git push that contains a private key.
+     */
+    enablePrivateKeyCheck?: boolean;
+    /**
+     * The name of the project. Values are of the form
+     * `projects/&lt;project&gt;`.
+     */
+    name?: string;
+    /**
+     * How this project publishes a change in the repositories through Cloud
+     * Pub/Sub. Keyed by the topic names.
+     */
+    pubsubConfigs?: any;
+  }
+  /**
+   * Configuration to publish a Cloud Pub/Sub message.
+   */
+  export interface Schema$PubsubConfig {
+    /**
+     * The format of the Cloud Pub/Sub messages.
+     */
+    messageFormat?: string;
+    /**
+     * Email address of the service account used for publishing Cloud Pub/Sub
+     * messages. This service account needs to be in the same project as the
+     * PubsubConfig. When added, the caller needs to have
+     * iam.serviceAccounts.actAs permission on this service account. If
+     * unspecified, it defaults to the compute engine default service account.
+     */
+    serviceAccountEmail?: string;
+    /**
+     * A topic of Cloud Pub/Sub. Values are of the form
+     * `projects/&lt;project&gt;/topics/&lt;topic&gt;`. The project needs to be
+     * the same project as this config is in.
+     */
+    topic?: string;
+  }
+  /**
    * A repository (or repo) is a Git repository storing versioned source
    * content.
    */
@@ -257,6 +297,11 @@ export namespace sourcerepo_v1 {
      * slashes. eg, `projects/myproject/repos/name/with/slash`
      */
     name?: string;
+    /**
+     * How this repository publishes a change in the repository through Cloud
+     * Pub/Sub. Keyed by the topic names.
+     */
+    pubsubConfigs?: any;
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only
      * returned by GetRepo.
@@ -309,6 +354,36 @@ export namespace sourcerepo_v1 {
      */
     permissions?: string[];
   }
+  /**
+   * Request for UpdateProjectConfig.
+   */
+  export interface Schema$UpdateProjectConfigRequest {
+    /**
+     * The new configuration for the project.
+     */
+    projectConfig?: Schema$ProjectConfig;
+    /**
+     * A FieldMask specifying which fields of the project_config to modify. Only
+     * the fields in the mask will be modified. If no mask is provided, this
+     * request is no-op.
+     */
+    updateMask?: string;
+  }
+  /**
+   * Request for UpdateRepo.
+   */
+  export interface Schema$UpdateRepoRequest {
+    /**
+     * The new configuration for the repository.
+     */
+    repo?: Schema$Repo;
+    /**
+     * A FieldMask specifying which fields of the repo to modify. Only the
+     * fields in the mask will be modified. If no mask is provided, this request
+     * is no-op.
+     */
+    updateMask?: string;
+  }
 
 
   export class Resource$Projects {
@@ -323,8 +398,172 @@ export namespace sourcerepo_v1 {
     getRoot() {
       return this.root;
     }
+
+
+    /**
+     * sourcerepo.projects.getConfig
+     * @desc Returns the Cloud Source Repositories configuration of the project.
+     * @alias sourcerepo.projects.getConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the requested project. Values are of the form `projects/<project>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getConfig(
+        params?: Params$Resource$Projects$Getconfig,
+        options?: MethodOptions): AxiosPromise<Schema$ProjectConfig>;
+    getConfig(
+        params: Params$Resource$Projects$Getconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
+        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    getConfig(
+        params: Params$Resource$Projects$Getconfig,
+        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    getConfig(callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    getConfig(
+        paramsOrCallback?: Params$Resource$Projects$Getconfig|
+        BodyResponseCallback<Schema$ProjectConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProjectConfig>,
+        callback?: BodyResponseCallback<Schema$ProjectConfig>):
+        void|AxiosPromise<Schema$ProjectConfig> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/config')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ProjectConfig>(parameters);
+      }
+    }
+
+
+    /**
+     * sourcerepo.projects.updateConfig
+     * @desc Updates the Cloud Source Repositories configuration of the project.
+     * @alias sourcerepo.projects.updateConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the requested project. Values are of the form `projects/<project>`.
+     * @param {().UpdateProjectConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateConfig(
+        params?: Params$Resource$Projects$Updateconfig,
+        options?: MethodOptions): AxiosPromise<Schema$ProjectConfig>;
+    updateConfig(
+        params: Params$Resource$Projects$Updateconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
+        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    updateConfig(
+        params: Params$Resource$Projects$Updateconfig,
+        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    updateConfig(callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+    updateConfig(
+        paramsOrCallback?: Params$Resource$Projects$Updateconfig|
+        BodyResponseCallback<Schema$ProjectConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProjectConfig>,
+        callback?: BodyResponseCallback<Schema$ProjectConfig>):
+        void|AxiosPromise<Schema$ProjectConfig> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/config')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ProjectConfig>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Getconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the requested project. Values are of the form
+     * `projects/<project>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Updateconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the requested project. Values are of the form
+     * `projects/<project>`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateProjectConfigRequest;
+  }
 
   export class Resource$Projects$Repos {
     root: Sourcerepo;
@@ -669,6 +908,72 @@ export namespace sourcerepo_v1 {
 
 
     /**
+     * sourcerepo.projects.repos.patch
+     * @desc Updates information about a repo.
+     * @alias sourcerepo.projects.repos.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
+     * @param {().UpdateRepoRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Repos$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Repo>;
+    patch(
+        params: Params$Resource$Projects$Repos$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    patch(
+        params: Params$Resource$Projects$Repos$Patch,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    patch(callback: BodyResponseCallback<Schema$Repo>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Patch|
+        BodyResponseCallback<Schema$Repo>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
+        callback?: BodyResponseCallback<Schema$Repo>):
+        void|AxiosPromise<Schema$Repo> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Repo>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Repo>(parameters);
+      }
+    }
+
+
+    /**
      * sourcerepo.projects.repos.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces
      * any existing policy.
@@ -888,6 +1193,23 @@ export namespace sourcerepo_v1 {
      * ListReposResponse's next_page_token field.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Repos$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the requested repository. Values are of the form
+     * `projects/<project>/repos/<repo>`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateRepoRequest;
   }
   export interface Params$Resource$Projects$Repos$Setiampolicy {
     /**

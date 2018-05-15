@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -42,7 +37,7 @@ export namespace androiddeviceprovisioning_v1 {
    * and EMMs.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
    *
    * @namespace androiddeviceprovisioning
@@ -53,14 +48,14 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export class Androiddeviceprovisioning {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     customers: Resource$Customers;
     operations: Resource$Operations;
     partners: Resource$Partners;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
@@ -148,6 +143,11 @@ export namespace androiddeviceprovisioning_v1 {
      * but can also add, delete, and edit your organization&#39;s portal users.
      */
     ownerEmails?: string[];
+    /**
+     * Output only. Whether any user from the company has accepted the latest
+     * Terms of Service (ToS). See TermsStatus.
+     */
+    termsStatus?: string;
   }
   /**
    * A configuration collects the provisioning options for Android devices. Each

@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace reseller_v1 {
    * Creates and manages your customers and their subscriptions.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const reseller = google.reseller('v1');
    *
    * @namespace reseller
@@ -52,14 +47,14 @@ export namespace reseller_v1 {
    */
   export class Reseller {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     customers: Resource$Customers;
     resellernotify: Resource$Resellernotify;
     subscriptions: Resource$Subscriptions;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

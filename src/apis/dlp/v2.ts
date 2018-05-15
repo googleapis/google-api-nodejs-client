@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -43,7 +38,7 @@ export namespace dlp_v2 {
    * storage repositories.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const dlp = google.dlp('v2');
    *
    * @namespace dlp
@@ -54,14 +49,14 @@ export namespace dlp_v2 {
    */
   export class Dlp {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     infoTypes: Resource$Infotypes;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

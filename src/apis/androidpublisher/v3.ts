@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace androidpublisher_v3 {
    * Lets Android application developers access their Google Play accounts.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const androidpublisher = google.androidpublisher('v3');
    *
    * @namespace androidpublisher
@@ -52,7 +47,7 @@ export namespace androidpublisher_v3 {
    */
   export class Androidpublisher {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     edits: Resource$Edits;
@@ -60,7 +55,7 @@ export namespace androidpublisher_v3 {
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

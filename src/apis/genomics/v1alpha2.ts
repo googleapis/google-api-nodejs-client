@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace genomics_v1alpha2 {
    * Upload, process, query, and search Genomics data in the cloud.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const genomics = google.genomics('v1alpha2');
    *
    * @namespace genomics
@@ -52,13 +47,13 @@ export namespace genomics_v1alpha2 {
    */
   export class Genomics {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     operations: Resource$Operations;
     pipelines: Resource$Pipelines;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

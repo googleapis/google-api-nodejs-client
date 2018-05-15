@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -42,7 +37,7 @@ export namespace safebrowsing_v4 {
    * against Google-generated lists of unsafe web resources.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const safebrowsing = google.safebrowsing('v4');
    *
    * @namespace safebrowsing
@@ -53,7 +48,7 @@ export namespace safebrowsing_v4 {
    */
   export class Safebrowsing {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     encodedFullHashes: Resource$Encodedfullhashes;
@@ -64,7 +59,7 @@ export namespace safebrowsing_v4 {
     threatListUpdates: Resource$Threatlistupdates;
     threatMatches: Resource$Threatmatches;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

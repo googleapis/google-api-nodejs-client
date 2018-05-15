@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace composer_v1beta1 {
    * Manages Apache Airflow environments on Google Cloud Platform.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const composer = google.composer('v1beta1');
    *
    * @namespace composer
@@ -52,12 +47,12 @@ export namespace composer_v1beta1 {
    */
   export class Composer {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
@@ -101,7 +96,7 @@ export namespace composer_v1beta1 {
     labels?: any;
     /**
      * The resource name of the environment, in the form:
-     * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
      */
     name?: string;
     /**
@@ -142,16 +137,16 @@ export namespace composer_v1beta1 {
      */
     gkeCluster?: string;
     /**
-     * The configuration used for the Container Engine cluster.
+     * The configuration used for the Kubernetes Engine cluster.
      */
     nodeConfig?: Schema$NodeConfig;
     /**
-     * The number of nodes in the Container Engine cluster that will be used to
+     * The number of nodes in the Kubernetes Engine cluster that will be used to
      * run this environment.
      */
     nodeCount?: number;
     /**
-     * The config settings for software inside the environment.
+     * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
   }
@@ -182,65 +177,62 @@ export namespace composer_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
-   * The configuration information for the Container Engine nodes running the
+   * The configuration information for the Kubernetes Engine nodes running the
    * Apache Airflow software.
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum is 10GB. If
+     * Optional. The disk size in GB used for node VMs. Minimum size is 10GB. If
      * unspecified, defaults to 100GB. Cannot be updated.
      */
     diskSizeGb?: number;
     /**
      * Optional. The Compute Engine [zone](/compute/docs/regions-zones) in which
      * to deploy the VMs used to run the Apache Airflow software, specified as a
-     * relative resource
-     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name).
-     * For example: `projects/{projectId}/zones/{zoneId}`.  This `location` must
+     * [relative resource
+     * name](/apis/design/resource_names#relative_resource_name). For example:
+     * &quot;projects/{projectId}/zones/{zoneId}&quot;.  This `location` must
      * belong to the enclosing environment&#39;s project and location. If both
      * this field and `nodeConfig.machineType` are specified,
      * `nodeConfig.machineType` must belong to this `location`; if both are
      * unspecified, the service will pick a zone in the Compute Engine region
-     * corresponding to the Cloud Composer location and propagate that choice to
-     * both fields. If exactly one of this field and `nodeConfig.machineType` is
-     * specified, the location information from the specified field will be
-     * propagated to the unspecified field.
+     * corresponding to the Cloud Composer location, and propagate that choice
+     * to both fields. If only one field (`location` or
+     * `nodeConfig.machineType`) is specified, the location information from the
+     * specified field will be propagated to the unspecified field.
      */
     location?: string;
     /**
-     * Optional. The Google Compute Engine [machine type](
-     * /compute/docs/machine-types) used for cluster instances, specified as a
-     * [relative resource name](
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name).
-     * For example:
-     * `projects/{projectId}/zones/{zoneId}/machineTypes/{machineTypeId}`.  The
-     * `machineType` must belong to the enclosing environment&#39;s project and
-     * location. If both this field and `nodeConfig.location` are specified,
+     * Optional. The Compute Engine [machine type](/compute/docs/machine-types)
+     * used for cluster instances, specified as a [relative resource
+     * name](/apis/design/resource_names#relative_resource_name). For example:
+     * &quot;projects/{projectId}/zones/{zoneId}/machineTypes/{machineTypeId}&quot;.
+     * The `machineType` must belong to the enclosing environment&#39;s project
+     * and location. If both this field and `nodeConfig.location` are specified,
      * this `machineType` must belong to the `nodeConfig.location`; if both are
      * unspecified, the service will pick a zone in the Compute Engine region
-     * corresponding to the Cloud Composer location and propagate that choice to
-     * both fields. If exactly one of this field and `nodeConfig.location` is
+     * corresponding to the Cloud Composer location, and propagate that choice
+     * to both fields. If exactly one of this field and `nodeConfig.location` is
      * specified, the location information from the specified field will be
-     * propagated to the unspecified field.  Furthermore, if this field is
-     * unspecified, the `machineTypeId` defaults to `n1-standard-1`.
+     * propagated to the unspecified field.  If this field is unspecified, the
+     * `machineTypeId` defaults to &quot;n1-standard-1&quot;.
      */
     machineType?: string;
     /**
      * Optional. The Compute Engine network to be used for machine
-     * communications, specified as a [relative resource name](
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name).
-     * For example: `projects/{projectId}/global/networks/{networkId}`.  [Shared
+     * communications, specified as a [relative resource
+     * name](/apis/design/resource_names#relative_resource_name). For example:
+     * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  [Shared
      * VPC](/vpc/docs/shared-vpc) is not currently supported. The network must
      * belong to the environment&#39;s project. If unspecified, the
      * &quot;default&quot; network ID in the environment&#39;s project is used.
-     * If a &quot;Custom Subnet Network&quot; (see [Using
-     * Subnetworks](/compute/docs/subnetworks) for more information) is
+     * If a [Custom Subnet Network]((/vpc/docs/vpc#vpc_networks_and_subnets) is
      * provided, `nodeConfig.subnetwork` must also be provided.
      */
     network?: string;
     /**
-     * Optional. The set of Google API scopes to be made available on all of the
-     * node VMs. If `oauth_scopes` is empty, defaults to
+     * Optional. The set of Google API scopes to be made available on all node
+     * VMs. If `oauth_scopes` is empty, defaults to
      * [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. Cannot be
      * updated.
      */
@@ -253,13 +245,12 @@ export namespace composer_v1beta1 {
     serviceAccount?: string;
     /**
      * Optional. The Compute Engine subnetwork to be used for machine
-     * communications, specified as a [relative resource name](
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name).
-     * For example:
-     * `projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}`  If
-     * a subnetwork is provided, `nodeConfig.network` must also be provided, and
-     * the subnetwork must belong to the enclosing environment&#39;s project and
-     * location.
+     * communications, specified as a [relative resource
+     * name](/apis/design/resource_names#relative_resource_name). For example:
+     * &quot;projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}&quot;
+     * If a subnetwork is provided, `nodeConfig.network` must also be provided,
+     * and the subnetwork must belong to the enclosing environment&#39;s project
+     * and location.
      */
     subnetwork?: string;
     /**
@@ -341,34 +332,34 @@ export namespace composer_v1beta1 {
     state?: string;
   }
   /**
-   * Specifies the selection and config of software inside the environment.
+   * Specifies the selection and configuration of software inside the
+   * environment.
    */
   export interface Schema$SoftwareConfig {
     /**
      * Optional. Apache Airflow configuration properties to override.  Property
-     * keys contain the section and property name, separated by a hyphen, for
-     * example `core-dags_are_paused_at_creation`. Sections must not contain
-     * hyphens (&quot;-&quot;), opening square brackets (&quot;[&quot;),  or
-     * closing square brackets (&quot;]&quot;). The name must be non-empty and
-     * must not contain an equals sign (&quot;=&quot;) or semicolon
-     * (&quot;;&quot;). The section as well as the name must not contain a
-     * period (&quot;.&quot;). Apache Airflow configuration property names must
-     * be written in
-     * [snake_case](https://www.google.com/url?sa=D&amp;q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSnake_case).
-     * Property values can contain any character and be written in any
-     * lower/upper case format.  Certain Apache Airflow configuration property
-     * values are
-     * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists)
+     * keys contain the section and property names, separated by a hyphen, for
+     * example &quot;core-dags_are_paused_at_creation&quot;. Section names must
+     * not contain hyphens (&quot;-&quot;), opening square brackets
+     * (&quot;[&quot;),  or closing square brackets (&quot;]&quot;). The
+     * property name must not be empty and must not contain an equals sign
+     * (&quot;=&quot;) or semicolon (&quot;;&quot;). Section and property names
+     * must not contain a period (&quot;.&quot;). Apache Airflow configuration
+     * property names must be written in
+     * [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values
+     * can contain any character, and can be written in any lower/upper case
+     * format.  Certain Apache Airflow configuration property values are
+     * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists),
      * and cannot be overridden.
      */
     airflowConfigOverrides?: any;
     /**
      * Optional. Additional environment variables to provide to the Apache
      * Airflow scheduler, worker, and webserver processes.  Environment variable
-     * names must match the regular expression `a-zA-Z_*`. Furthermore, they
-     * cannot specify Apache Airflow software configuration overrides (i.e.,
-     * match the regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`); nor can
-     * they take any of the following reserved values:  * `AIRFLOW_HOME` *
+     * names must match the regular expression `a-zA-Z_*`. They cannot specify
+     * Apache Airflow software configuration overrides (they cannot match the
+     * regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot
+     * match any of the following reserved names:  * `AIRFLOW_HOME` *
      * `C_FORCE_ROOT` * `CONTAINER_NAME` * `DAGS_FOLDER` * `GCP_PROJECT` *
      * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` *
      * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
@@ -389,10 +380,10 @@ export namespace composer_v1beta1 {
     /**
      * Optional. Custom Python Package Index (PyPI) packages to be installed in
      * the environment.  Keys refer to the lowercase package name such as
-     * `numpy` and values are the lowercase extras and version specifier such as
-     * `==1.12.0`, `[devel,gcp_api]`, or `[devel]&gt;=1.8.2, &lt;1.9.2`. To
-     * specify a package without pinning it to a version specifier, use the
-     * empty string as the value.
+     * &quot;numpy&quot; and values are the lowercase extras and version
+     * specifier such as &quot;==1.12.0&quot;, &quot;[devel,gcp_api]&quot;, or
+     * &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without
+     * pinning it to a version specifier, use the empty string as the value.
      */
     pypiPackages?: any;
   }
@@ -502,7 +493,7 @@ export namespace composer_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent must be of the form `projects/{projectId}/locations/{locationId}`.
+     * @param {string} params.parent The parent must be of the form "projects/{projectId}/locations/{locationId}".
      * @param {().Environment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -571,7 +562,7 @@ export namespace composer_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The environment to delete, in the form: `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * @param {string} params.name The environment to delete, in the form: "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -638,7 +629,7 @@ export namespace composer_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the environment to get, in the form: `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * @param {string} params.name The resource name of the environment to get, in the form: "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -702,7 +693,7 @@ export namespace composer_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of environments to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent List environments in the given project and location, in the form: `projects/{projectId}/locations/{locationId}`
+     * @param {string} params.parent List environments in the given project and location, in the form: "projects/{projectId}/locations/{locationId}"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -770,7 +761,7 @@ export namespace composer_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of the environment to update, in the form: `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * @param {string} params.name The relative resource name of the environment to update, in the form: "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * @param {string=} params.updateMask Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "scikit-learn":"==0.19.0"           }         }       }     }  Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected.  Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows:      {       "labels":{         "label1":"new-label1-value"         "label2":"new-label2-value"       }     }  Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected.  It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "botocore":"==1.7.14"           }         }       }     }  <strong>Note:</strong> Only the following fields can be updated:   <table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages  </td>  <td>Replace all custom custom PyPI packages. If a replacement  package map is not included in `environment`, all custom  PyPI packages are cleared. It is an error to provide both this mask and a  mask specifying an individual package.</td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages.<var>packagename</var></td>  <td>Update the custom PyPI package <var>packagename</var>,  preserving other packages. To delete the package, include it in  `updateMask`, and omit the mapping for it in  `environment.config.softwareConfig.pypiPackages`. It is an error  to provide both a mask of this form and the  "config.softwareConfig.pypiPackages" mask.</td>  </tr>  <tr>  <td>labels</td>  <td>Replace all environment labels. If a replacement labels map is not  included in `environment`, all labels are cleared. It is an error to  provide both this mask and a mask specifying one or more individual  labels.</td>  </tr>  <tr>  <td>labels.<var>labelName</var></td>  <td>Set the label named <var>labelName</var>, while preserving other  labels. To delete the label, include it in `updateMask` and omit its  mapping in `environment.labels`. It is an error to provide both a  mask of this form and the "labels" mask.</td>  </tr>  <tr>  <td>config.nodeCount</td>  <td>Horizontally scale the number of nodes in the environment. An integer  greater than or equal to 3 must be provided in the `config.nodeCount` field.  </td>  </tr>  <tr>  <td>config.softwareConfig.airflowConfigOverrides</td>  <td>Replace all Apache Airflow config overrides. If a replacement config  overrides map is not included in `environment`, all config overrides  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual config overrides.</td>  </tr>  <tr>  <td>config.softwareConfig.properties.<var>section</var>-<var>name  </var></td>  <td>Override the Apache Airflow property <var>name</var> in the section  named <var>section</var>, preserving other properties. To delete the  property override, include it in `updateMask` and omit its mapping  in `environment.config.softwareConfig.properties`.  It is an error to provide both a mask of this form and the  "config.softwareConfig.properties" mask.</td>  </tr>  <tr>  <td>config.softwareConfig.envVariables</td>  <td>Replace all environment variables. If a replacement environment  variable map is not included in `environment`, all custom environment  variables  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual environment variables.</td>  </tr>  </tbody>  </table>
      * @param {().Environment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -840,7 +831,7 @@ export namespace composer_v1beta1 {
 
     /**
      * The parent must be of the form
-     * `projects/{projectId}/locations/{locationId}`.
+     * "projects/{projectId}/locations/{locationId}".
      */
     parent?: string;
 
@@ -857,7 +848,7 @@ export namespace composer_v1beta1 {
 
     /**
      * The environment to delete, in the form:
-     * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      */
     name?: string;
   }
@@ -869,7 +860,7 @@ export namespace composer_v1beta1 {
 
     /**
      * The resource name of the environment to get, in the form:
-     * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      */
     name?: string;
   }
@@ -889,7 +880,7 @@ export namespace composer_v1beta1 {
     pageToken?: string;
     /**
      * List environments in the given project and location, in the form:
-     * `projects/{projectId}/locations/{locationId}`
+     * "projects/{projectId}/locations/{locationId}"
      */
     parent?: string;
   }
@@ -901,7 +892,7 @@ export namespace composer_v1beta1 {
 
     /**
      * The relative resource name of the environment to update, in the form:
-     * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
+     * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      */
     name?: string;
     /**

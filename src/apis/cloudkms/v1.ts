@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -42,7 +37,7 @@ export namespace cloudkms_v1 {
    * You can generate, use, rotate, and destroy AES256 encryption keys.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const cloudkms = google.cloudkms('v1');
    *
    * @namespace cloudkms
@@ -53,12 +48,12 @@ export namespace cloudkms_v1 {
    */
   export class Cloudkms {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
