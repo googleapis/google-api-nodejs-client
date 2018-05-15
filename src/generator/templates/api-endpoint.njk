@@ -18,13 +18,9 @@
  * limitations under the License.
  */
 
-import { GoogleApis } from '../..';
 import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
-import { createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback } from '../../src/shared';
+import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback } from '../../shared/src';
 import { AxiosPromise } from 'axios';
-
-// TODO: We will eventually get the `any` in here cleared out, but in the interim we
-// want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -50,7 +46,7 @@ export interface Options extends GlobalOptions {
  * {{ api.description | oneLine }}
  *
  * @example
- * const google = require('googleapis');
+ * const {google} = require('googleapis');
  * const {{ api.name }} = google.{{ api.name }}('{{ api.version }}');
  *
  * @namespace {{ api.name }}
@@ -62,7 +58,7 @@ export interface Options extends GlobalOptions {
 export class {{ Name }} {
 
   _options: GlobalOptions;
-  google: GoogleApis;
+  google: GoogleConfigurable;
   root = this;
 
   {% if api.resources %}
@@ -71,7 +67,7 @@ export class {{ Name }} {
     {% endfor %}
   {% endif %}
 
-  constructor(options: GlobalOptions, google: GoogleApis) {
+  constructor(options: GlobalOptions, google: GoogleConfigurable) {
     this._options = options || {};
     this.google = google;
     this.getRoot.bind(this);

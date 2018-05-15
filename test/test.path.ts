@@ -14,7 +14,6 @@
 import assert from 'assert';
 import {AxiosResponse} from 'axios';
 import nock from 'nock';
-import * as url from 'url';
 
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/shared/src/api';
