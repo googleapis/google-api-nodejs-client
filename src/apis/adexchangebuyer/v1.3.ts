@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -43,7 +38,7 @@ export namespace adexchangebuyer_v1_3 {
    * reports.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const adexchangebuyer = google.adexchangebuyer('v1.3');
    *
    * @namespace adexchangebuyer
@@ -54,7 +49,7 @@ export namespace adexchangebuyer_v1_3 {
    */
   export class Adexchangebuyer {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -65,7 +60,7 @@ export namespace adexchangebuyer_v1_3 {
     performanceReport: Resource$Performancereport;
     pretargetingConfig: Resource$Pretargetingconfig;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

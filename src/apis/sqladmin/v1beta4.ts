@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -42,7 +37,7 @@ export namespace sqladmin_v1beta4 {
    * MySQL databases.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const sqladmin = google.sqladmin('v1beta4');
    *
    * @namespace sqladmin
@@ -53,7 +48,7 @@ export namespace sqladmin_v1beta4 {
    */
   export class Sqladmin {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     backupRuns: Resource$Backupruns;
@@ -65,7 +60,7 @@ export namespace sqladmin_v1beta4 {
     tiers: Resource$Tiers;
     users: Resource$Users;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
@@ -746,6 +741,20 @@ export namespace sqladmin_v1beta4 {
     nextPageToken?: string;
   }
   /**
+   * Instances ListServerCas response.
+   */
+  export interface Schema$InstancesListServerCasResponse {
+    activeVersion?: string;
+    /**
+     * List of server CA certificates for the instance.
+     */
+    certs?: Schema$SslCert[];
+    /**
+     * This is always sql#instancesListServerCas.
+     */
+    kind?: string;
+  }
+  /**
    * Database instance restore backup request.
    */
   export interface Schema$InstancesRestoreBackupRequest {
@@ -753,6 +762,15 @@ export namespace sqladmin_v1beta4 {
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
+  }
+  /**
+   * Rotate Server CA request.
+   */
+  export interface Schema$InstancesRotateServerCaRequest {
+    /**
+     * Contains details about the rotate server CA operation.
+     */
+    rotateServerCaContext?: Schema$RotateServerCaContext;
   }
   /**
    * Instance truncate log request.
@@ -1083,6 +1101,21 @@ export namespace sqladmin_v1beta4 {
      * This is always sql#restoreBackupContext.
      */
     kind?: string;
+  }
+  /**
+   * Instance rotate server CA context.
+   */
+  export interface Schema$RotateServerCaContext {
+    /**
+     * This is always sql#rotateServerCaContext.
+     */
+    kind?: string;
+    /**
+     * The fingerprint of the next version to be rotated to. If left
+     * unspecified, will be rotated to the most recently added server CA
+     * version.
+     */
+    nextVersion?: string;
   }
   /**
    * Database instance settings.
@@ -2466,6 +2499,80 @@ export namespace sqladmin_v1beta4 {
 
 
     /**
+     * sql.instances.addServerCa
+     * @desc Add a new trusted Certificate Authority (CA) version for the
+     * specified instance. Required to prepare for a certificate rotation. If a
+     * CA version was previously added but never used in a certificate rotation,
+     * this operation replaces that version. There can not be more than one CA
+     * version waiting to be rotated in.
+     * @alias sql.instances.addServerCa
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addServerCa(
+        params?: Params$Resource$Instances$Addserverca,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addServerCa(
+        params: Params$Resource$Instances$Addserverca,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addServerCa(
+        params: Params$Resource$Instances$Addserverca,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addServerCa(callback: BodyResponseCallback<Schema$Operation>): void;
+    addServerCa(
+        paramsOrCallback?: Params$Resource$Instances$Addserverca|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Addserverca;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Addserverca;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/sql/v1beta4/projects/{project}/instances/{instance}/addServerCa')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * sql.instances.clone
      * @desc Creates a Cloud SQL instance as a clone of the source instance. The
      * API is not ready for Second Generation instances yet.
@@ -3054,6 +3161,88 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
     /**
+     * sql.instances.listServerCas
+     * @desc Lists all of the trusted Certificate Authorities (CAs) for the
+     * specified instance. There can be up to three CAs listed: the CA that was
+     * used to sign the certificate that is currently in use, a CA that has been
+     * added but not yet used to sign a certificate, and a CA used to sign a
+     * certificate that has previously rotated out.
+     * @alias sql.instances.listServerCas
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listServerCas(
+        params?: Params$Resource$Instances$Listservercas,
+        options?: MethodOptions):
+        AxiosPromise<Schema$InstancesListServerCasResponse>;
+    listServerCas(
+        params: Params$Resource$Instances$Listservercas,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
+        void;
+    listServerCas(
+        params: Params$Resource$Instances$Listservercas,
+        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
+        void;
+    listServerCas(
+        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
+        void;
+    listServerCas(
+        paramsOrCallback?: Params$Resource$Instances$Listservercas|
+        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+        callback?: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
+        void|AxiosPromise<Schema$InstancesListServerCasResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Listservercas;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Listservercas;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/sql/v1beta4/projects/{project}/instances/{instance}/listServerCas')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstancesListServerCasResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InstancesListServerCasResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * sql.instances.patch
      * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
      * partial update, so you must include values for all the settings that you
@@ -3410,6 +3599,78 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
     /**
+     * sql.instances.rotateServerCa
+     * @desc Rotates the server certificate to one signed by the Certificate
+     * Authority (CA) version previously added with the addServerCA method.
+     * @alias sql.instances.rotateServerCa
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {().InstancesRotateServerCaRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    rotateServerCa(
+        params?: Params$Resource$Instances$Rotateserverca,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    rotateServerCa(
+        params: Params$Resource$Instances$Rotateserverca,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    rotateServerCa(
+        params: Params$Resource$Instances$Rotateserverca,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    rotateServerCa(callback: BodyResponseCallback<Schema$Operation>): void;
+    rotateServerCa(
+        paramsOrCallback?: Params$Resource$Instances$Rotateserverca|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Rotateserverca;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Rotateserverca;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/sql/v1beta4/projects/{project}/instances/{instance}/rotateServerCa')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * sql.instances.startReplica
      * @desc Starts the replication in the read replica instance.
      * @alias sql.instances.startReplica
@@ -3690,6 +3951,21 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
+  export interface Params$Resource$Instances$Addserverca {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Instances$Clone {
     /**
      * Auth client or API Key for the request
@@ -3863,6 +4139,21 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
+  export interface Params$Resource$Instances$Listservercas {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Instances$Patch {
     /**
      * Auth client or API Key for the request
@@ -3947,6 +4238,26 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Request body metadata
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
+  }
+  export interface Params$Resource$Instances$Rotateserverca {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesRotateServerCaRequest;
   }
   export interface Params$Resource$Instances$Startreplica {
     /**

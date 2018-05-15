@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -42,7 +37,7 @@ export namespace sqladmin_v1beta3 {
    * MySQL databases.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const sqladmin = google.sqladmin('v1beta3');
    *
    * @namespace sqladmin
@@ -53,7 +48,7 @@ export namespace sqladmin_v1beta3 {
    */
   export class Sqladmin {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     backupRuns: Resource$Backupruns;
@@ -63,7 +58,7 @@ export namespace sqladmin_v1beta3 {
     sslCerts: Resource$Sslcerts;
     tiers: Resource$Tiers;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

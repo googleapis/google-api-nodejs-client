@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace mirror_v1 {
    * Interacts with Glass users via the timeline.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const mirror = google.mirror('v1');
    *
    * @namespace mirror
@@ -52,7 +47,7 @@ export namespace mirror_v1 {
    */
   export class Mirror {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -62,7 +57,7 @@ export namespace mirror_v1 {
     subscriptions: Resource$Subscriptions;
     timeline: Resource$Timeline;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

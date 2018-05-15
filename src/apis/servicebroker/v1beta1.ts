@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -43,7 +38,7 @@ export namespace servicebroker_v1beta1 {
    * (https://www.openservicebrokerapi.org/).
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const servicebroker = google.servicebroker('v1beta1');
    *
    * @namespace servicebroker
@@ -54,13 +49,13 @@ export namespace servicebroker_v1beta1 {
    */
   export class Servicebroker {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
     v1beta1: Resource$V1beta1;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

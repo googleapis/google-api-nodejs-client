@@ -17,12 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {GoogleApis} from '../..';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
-
-
-// TODO: We will eventually get the `any` in here cleared out, but in the
-// interim we want to turn on no-implicit-any.
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -41,7 +36,7 @@ export namespace doubleclickbidmanager_v1 {
    * API for viewing and managing your reports in DoubleClick Bid Manager.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
    *
    * @namespace doubleclickbidmanager
@@ -52,7 +47,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export class Doubleclickbidmanager {
     _options: GlobalOptions;
-    google: GoogleApis;
+    google: GoogleConfigurable;
     root = this;
 
     lineitems: Resource$Lineitems;
@@ -60,7 +55,7 @@ export namespace doubleclickbidmanager_v1 {
     reports: Resource$Reports;
     sdf: Resource$Sdf;
 
-    constructor(options: GlobalOptions, google: GoogleApis) {
+    constructor(options: GlobalOptions, google: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
