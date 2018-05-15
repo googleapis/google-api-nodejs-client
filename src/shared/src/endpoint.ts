@@ -13,10 +13,8 @@
 
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 
-import {GoogleApis} from '../index';
 import {APIRequestContext, APIRequestParams, GlobalOptions} from './api';
 import {createAPIRequest} from './apirequest';
-import {Discovery} from './discovery';
 import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
 
 export interface Target {

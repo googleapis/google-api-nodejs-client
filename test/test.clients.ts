@@ -18,7 +18,7 @@ import * as path from 'path';
 import * as url from 'url';
 
 import {datastore_v1, GoogleApis} from '../src';
-import {APIEndpoint} from '../src/shared/api';
+import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 

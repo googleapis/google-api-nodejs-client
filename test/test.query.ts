@@ -15,7 +15,7 @@ import assert from 'assert';
 import nock from 'nock';
 import * as url from 'url';
 import {google, GoogleApis} from '../src';
-import {APIEndpoint} from '../src/shared/api';
+import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 

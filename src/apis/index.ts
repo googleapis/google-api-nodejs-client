@@ -16,7 +16,7 @@
 import * as path from 'path';
 import * as util from 'util';
 
-import {ServiceOptions} from '../shared/api';
+import {ServiceOptions} from '../shared/src';
 
 import {abusiveexperiencereport_v1} from './abusiveexperiencereport/v1';
 import {acceleratedmobilepageurl_v1} from './acceleratedmobilepageurl/v1';

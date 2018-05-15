@@ -18,8 +18,8 @@ import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
-import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../shared/api';
-import {createAPIRequest} from '../../shared/apirequest';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, MethodOptions} from '../../shared/src';
+
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -655,12 +655,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                * Project ID against which to make the request.
                */
               projectId?: string;
-                      
+
                        /**
               * Request body metadata
               */
             requestBody?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
-          
+
                   }
               export interface Params$Resource$Projects$Import {
           /**
@@ -672,15 +672,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                * Project ID against which to make the request.
                */
               projectId?: string;
-                      
+
                        /**
               * Request body metadata
               */
             requestBody?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
-          
+
                   }
-          
-    
-  
+
+
+
 
 }

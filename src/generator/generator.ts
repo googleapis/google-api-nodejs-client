@@ -22,7 +22,7 @@ import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
 
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../shared/schema';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../shared/src';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;

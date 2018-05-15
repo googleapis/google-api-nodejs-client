@@ -16,17 +16,12 @@ import {DefaultTransporter} from 'google-auth-library';
 import pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
-
-import {GoogleApis} from '..';
-import {GeneratedAPIs} from '../apis/index';
-
 import {GlobalOptions, ServiceOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Endpoint} from './endpoint';
 import {Schema, Schemas} from './schema';
 
-export type EndpointCreator = (options: GlobalOptions, google: GoogleApis) =>
-    Endpoint;
+export type EndpointCreator = (options: GlobalOptions, google: {}) => Endpoint;
 
 const fsp = pify(fs);
 
@@ -75,7 +70,7 @@ export class Discovery {
    * Generate all APIs and return as in-memory object.
    * @param discoveryUrl
    */
-  async discoverAllAPIs(discoveryUrl: string): Promise<GeneratedAPIs> {
+  async discoverAllAPIs(discoveryUrl: string): Promise<{}> {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
     const res =
         await this.transporter.request<Schemas>({url: discoveryUrl, headers});
@@ -119,7 +114,7 @@ export class Discovery {
       }
       versionIndex[set.api.name][set.api.version] = set.endpointCreator;
     }
-    return apisIndex as GeneratedAPIs;
+    return apisIndex;
   }
 
   /**

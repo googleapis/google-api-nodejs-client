@@ -16,7 +16,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {GoogleApis} from './shared/googleapis';
+import {GoogleApis} from './googleapis';
 const google = new GoogleApis();
 export {google, GoogleApis};
 

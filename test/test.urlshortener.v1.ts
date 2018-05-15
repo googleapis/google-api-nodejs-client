@@ -17,7 +17,7 @@ import * as path from 'path';
 import * as url from 'url';
 
 import {GoogleApis, urlshortener_v1} from '../src';
-import {APIEndpoint} from '../src/shared/api';
+import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 
