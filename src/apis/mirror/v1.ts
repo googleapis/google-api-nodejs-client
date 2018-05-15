@@ -47,7 +47,7 @@ export namespace mirror_v1 {
    */
   export class Mirror {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -57,7 +57,7 @@ export namespace mirror_v1 {
     subscriptions: Resource$Subscriptions;
     timeline: Resource$Timeline;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

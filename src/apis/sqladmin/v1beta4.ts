@@ -48,7 +48,7 @@ export namespace sqladmin_v1beta4 {
    */
   export class Sqladmin {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     backupRuns: Resource$Backupruns;
@@ -60,7 +60,7 @@ export namespace sqladmin_v1beta4 {
     tiers: Resource$Tiers;
     users: Resource$Users;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

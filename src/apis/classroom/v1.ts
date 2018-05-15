@@ -47,7 +47,7 @@ export namespace classroom_v1 {
    */
   export class Classroom {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     courses: Resource$Courses;
@@ -55,7 +55,7 @@ export namespace classroom_v1 {
     registrations: Resource$Registrations;
     userProfiles: Resource$Userprofiles;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

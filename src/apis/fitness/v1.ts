@@ -48,12 +48,12 @@ export namespace fitness_v1 {
    */
   export class Fitness {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     users: Resource$Users;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

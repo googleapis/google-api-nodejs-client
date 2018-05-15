@@ -49,13 +49,13 @@ export namespace servicebroker_v1beta1 {
    */
   export class Servicebroker {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
     v1beta1: Resource$V1beta1;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

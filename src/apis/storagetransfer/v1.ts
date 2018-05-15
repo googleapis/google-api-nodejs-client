@@ -48,14 +48,14 @@ export namespace storagetransfer_v1 {
    */
   export class Storagetransfer {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     googleServiceAccounts: Resource$Googleserviceaccounts;
     transferJobs: Resource$Transferjobs;
     transferOperations: Resource$Transferoperations;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

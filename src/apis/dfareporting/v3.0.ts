@@ -47,7 +47,7 @@ export namespace dfareporting_v3_0 {
    */
   export class Dfareporting {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accountActiveAdSummaries: Resource$Accountactiveadsummaries;
@@ -111,7 +111,7 @@ export namespace dfareporting_v3_0 {
     userRoles: Resource$Userroles;
     videoFormats: Resource$Videoformats;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

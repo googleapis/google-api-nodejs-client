@@ -47,7 +47,7 @@ export namespace proximitybeacon_v1beta1 {
    */
   export class Proximitybeacon {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     beaconinfo: Resource$Beaconinfo;
@@ -55,7 +55,7 @@ export namespace proximitybeacon_v1beta1 {
     namespaces: Resource$Namespaces;
     v1beta1: Resource$V1beta1;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

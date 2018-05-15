@@ -49,13 +49,13 @@ export namespace replicapoolupdater_v1beta1 {
    */
   export class Replicapoolupdater {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     rollingUpdates: Resource$Rollingupdates;
     zoneOperations: Resource$Zoneoperations;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

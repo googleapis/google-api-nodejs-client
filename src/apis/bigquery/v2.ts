@@ -47,7 +47,7 @@ export namespace bigquery_v2 {
    */
   export class Bigquery {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     datasets: Resource$Datasets;
@@ -56,7 +56,7 @@ export namespace bigquery_v2 {
     tabledata: Resource$Tabledata;
     tables: Resource$Tables;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

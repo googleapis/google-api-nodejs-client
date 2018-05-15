@@ -48,14 +48,14 @@ export namespace translate_v2 {
    */
   export class Translate {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     detections: Resource$Detections;
     languages: Resource$Languages;
     translations: Resource$Translations;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

@@ -48,7 +48,7 @@ export namespace admin_directory_v1 {
    */
   export class Admin {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     asps: Resource$Asps;
@@ -72,7 +72,7 @@ export namespace admin_directory_v1 {
     users: Resource$Users;
     verificationCodes: Resource$Verificationcodes;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

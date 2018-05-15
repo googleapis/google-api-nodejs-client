@@ -47,7 +47,7 @@ export namespace calendar_v3 {
    */
   export class Calendar {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     acl: Resource$Acl;
@@ -59,7 +59,7 @@ export namespace calendar_v3 {
     freebusy: Resource$Freebusy;
     settings: Resource$Settings;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

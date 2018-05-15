@@ -47,7 +47,7 @@ export namespace genomics_v1 {
    */
   export class Genomics {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     annotations: Resource$Annotations;
@@ -62,7 +62,7 @@ export namespace genomics_v1 {
     variants: Resource$Variants;
     variantsets: Resource$Variantsets;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

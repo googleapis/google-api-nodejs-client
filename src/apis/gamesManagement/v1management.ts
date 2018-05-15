@@ -47,7 +47,7 @@ export namespace gamesManagement_v1management {
    */
   export class Gamesmanagement {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     achievements: Resource$Achievements;
@@ -59,7 +59,7 @@ export namespace gamesManagement_v1management {
     scores: Resource$Scores;
     turnBasedMatches: Resource$Turnbasedmatches;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

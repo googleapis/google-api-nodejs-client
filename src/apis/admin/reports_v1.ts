@@ -48,7 +48,7 @@ export namespace admin_reports_v1 {
    */
   export class Admin {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     activities: Resource$Activities;
@@ -57,7 +57,7 @@ export namespace admin_reports_v1 {
     entityUsageReports: Resource$Entityusagereports;
     userUsageReport: Resource$Userusagereport;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

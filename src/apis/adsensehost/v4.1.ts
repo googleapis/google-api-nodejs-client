@@ -48,7 +48,7 @@ export namespace adsensehost_v4_1 {
    */
   export class Adsensehost {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -58,7 +58,7 @@ export namespace adsensehost_v4_1 {
     reports: Resource$Reports;
     urlchannels: Resource$Urlchannels;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

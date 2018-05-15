@@ -47,13 +47,13 @@ export namespace androidpublisher_v1_1 {
    */
   export class Androidpublisher {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     inapppurchases: Resource$Inapppurchases;
     purchases: Resource$Purchases;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

@@ -49,13 +49,13 @@ export namespace monitoring_v3 {
    */
   export class Monitoring {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     projects: Resource$Projects;
     uptimeCheckIps: Resource$Uptimecheckips;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

@@ -48,12 +48,12 @@ export namespace acceleratedmobilepageurl_v1 {
    */
   export class Acceleratedmobilepageurl {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     ampUrls: Resource$Ampurls;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

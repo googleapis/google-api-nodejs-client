@@ -48,13 +48,13 @@ export namespace androidmanagement_v1 {
    */
   export class Androidmanagement {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     enterprises: Resource$Enterprises;
     signupUrls: Resource$Signupurls;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

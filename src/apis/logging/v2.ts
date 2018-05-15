@@ -47,7 +47,7 @@ export namespace logging_v2 {
    */
   export class Logging {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     billingAccounts: Resource$Billingaccounts;
@@ -60,7 +60,7 @@ export namespace logging_v2 {
     projects: Resource$Projects;
     sinks: Resource$Sinks;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

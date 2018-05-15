@@ -47,7 +47,7 @@ export namespace books_v1 {
    */
   export class Books {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     bookshelves: Resource$Bookshelves;
@@ -64,7 +64,7 @@ export namespace books_v1 {
     series: Resource$Series;
     volumes: Resource$Volumes;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

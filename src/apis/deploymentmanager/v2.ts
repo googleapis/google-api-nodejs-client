@@ -48,7 +48,7 @@ export namespace deploymentmanager_v2 {
    */
   export class Deploymentmanager {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     deployments: Resource$Deployments;
@@ -57,7 +57,7 @@ export namespace deploymentmanager_v2 {
     resources: Resource$Resources;
     types: Resource$Types;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

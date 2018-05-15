@@ -48,7 +48,7 @@ export namespace drive_v2 {
    */
   export class Drive {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     about: Resource$About;
@@ -66,7 +66,7 @@ export namespace drive_v2 {
     revisions: Resource$Revisions;
     teamdrives: Resource$Teamdrives;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

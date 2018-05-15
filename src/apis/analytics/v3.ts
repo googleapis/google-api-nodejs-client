@@ -47,7 +47,7 @@ export namespace analytics_v3 {
    */
   export class Analytics {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     data: Resource$Data;
@@ -55,7 +55,7 @@ export namespace analytics_v3 {
     metadata: Resource$Metadata;
     provisioning: Resource$Provisioning;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

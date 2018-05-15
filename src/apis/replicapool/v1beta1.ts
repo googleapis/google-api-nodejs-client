@@ -48,13 +48,13 @@ export namespace replicapool_v1beta1 {
    */
   export class Replicapool {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     pools: Resource$Pools;
     replicas: Resource$Replicas;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
