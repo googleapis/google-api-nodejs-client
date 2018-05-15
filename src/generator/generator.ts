@@ -233,6 +233,10 @@ export class Generator {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
           apis[file][version] = parts.name;
+          const apiIdxPath = path.join(apisPath, file, 'index.ts');
+          const result =
+              this.env.render('api-index.njk', {name: file, api: apis[file]});
+          await writeFile(apiIdxPath, result);
         }
       }
     }
