@@ -47,13 +47,13 @@ export namespace tasks_v1 {
    */
   export class Tasks {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     tasklists: Resource$Tasklists;
     tasks: Resource$Tasks;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

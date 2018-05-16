@@ -47,13 +47,13 @@ export namespace genomics_v1alpha2 {
    */
   export class Genomics {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     operations: Resource$Operations;
     pipelines: Resource$Pipelines;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

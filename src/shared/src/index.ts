@@ -12,6 +12,7 @@
 // limitations under the License.
 
 export {APIEndpoint, APIRequestContext, APIRequestParams, BodyResponseCallback, GlobalOptions, GoogleConfigurable, MethodOptions, ServiceOptions} from './api';
+export {getAPI} from './apiIndex';
 export {createAPIRequest} from './apirequest';
 export {Discovery, DiscoveryOptions, EndpointCreator} from './discovery';
 export {Endpoint, Target} from './endpoint';

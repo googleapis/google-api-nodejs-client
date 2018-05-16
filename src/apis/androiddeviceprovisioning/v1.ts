@@ -48,14 +48,14 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export class Androiddeviceprovisioning {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     customers: Resource$Customers;
     operations: Resource$Operations;
     partners: Resource$Partners;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

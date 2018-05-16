@@ -49,13 +49,13 @@ export namespace servicemanagement_v1 {
    */
   export class Servicemanagement {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     operations: Resource$Operations;
     services: Resource$Services;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

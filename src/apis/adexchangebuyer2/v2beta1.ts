@@ -49,13 +49,13 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export class Adexchangebuyer2 {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
     bidders: Resource$Bidders;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

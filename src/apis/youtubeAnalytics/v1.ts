@@ -47,14 +47,14 @@ export namespace youtubeAnalytics_v1 {
    */
   export class Youtubeanalytics {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     groupItems: Resource$Groupitems;
     groups: Resource$Groups;
     reports: Resource$Reports;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

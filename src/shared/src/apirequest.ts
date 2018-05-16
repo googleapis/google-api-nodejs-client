@@ -72,11 +72,14 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // Create a new params object so it can no longer be modified from outside
   // code Also support global and per-client params, but allow them to be
   // overriden per-request
+  const topOptions = parameters.context.google ?
+      parameters.context.google._options.params :
+      {};
   params = Object.assign(
-      {},                                         // New base object
-      parameters.context.google._options.params,  // Global params
-      parameters.context._options.params,         // Per-client params
-      params                                      // API call params
+      {},                                  // New base object
+      topOptions,                          // Global params
+      parameters.context._options.params,  // Per-client params
+      params                               // API call params
   );
 
   const media = params.media || {};
@@ -102,7 +105,8 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   delete params.requestBody;
 
   let authClient = params.auth || parameters.context._options.auth ||
-      parameters.context.google._options.auth;
+      (parameters.context.google ? parameters.context.google._options.auth :
+                                   null);
 
   const defaultMime = typeof media.body === 'string' ?
       'text/plain' :
@@ -239,8 +243,8 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // API call witht the global options configured at the API Context
   // level, or at the global level.
   const mergedOptions = Object.assign(
-      {}, parameters.context.google._options, parameters.context._options,
-      options);
+      {}, (parameters.context.google ? parameters.context.google._options : {}),
+      parameters.context._options, options);
   delete mergedOptions.auth;  // is overridden by our auth code
 
   // Perform the HTTP request.  NOTE: this function used to return a

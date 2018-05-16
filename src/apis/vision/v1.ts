@@ -49,14 +49,14 @@ export namespace vision_v1 {
    */
   export class Vision {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     images: Resource$Images;
     locations: Resource$Locations;
     operations: Resource$Operations;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

@@ -48,7 +48,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export class Cloudresourcemanager {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     folders: Resource$Folders;
@@ -57,7 +57,7 @@ export namespace cloudresourcemanager_v1 {
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

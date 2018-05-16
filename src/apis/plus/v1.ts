@@ -47,14 +47,14 @@ export namespace plus_v1 {
    */
   export class Plus {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     activities: Resource$Activities;
     comments: Resource$Comments;
     people: Resource$People;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

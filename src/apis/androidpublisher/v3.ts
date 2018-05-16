@@ -47,7 +47,7 @@ export namespace androidpublisher_v3 {
    */
   export class Androidpublisher {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     edits: Resource$Edits;
@@ -55,7 +55,7 @@ export namespace androidpublisher_v3 {
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

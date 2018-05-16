@@ -47,7 +47,7 @@ export namespace webmasters_v3 {
    */
   export class Webmasters {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     searchanalytics: Resource$Searchanalytics;
@@ -56,7 +56,7 @@ export namespace webmasters_v3 {
     urlcrawlerrorscounts: Resource$Urlcrawlerrorscounts;
     urlcrawlerrorssamples: Resource$Urlcrawlerrorssamples;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

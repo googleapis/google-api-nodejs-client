@@ -48,7 +48,7 @@ export namespace content_v2 {
    */
   export class Content {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -64,7 +64,7 @@ export namespace content_v2 {
     productstatuses: Resource$Productstatuses;
     shippingsettings: Resource$Shippingsettings;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

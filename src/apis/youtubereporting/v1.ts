@@ -48,14 +48,14 @@ export namespace youtubereporting_v1 {
    */
   export class Youtubereporting {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     jobs: Resource$Jobs;
     media: Resource$Media;
     reportTypes: Resource$Reporttypes;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

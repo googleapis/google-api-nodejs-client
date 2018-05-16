@@ -48,13 +48,13 @@ export namespace digitalassetlinks_v1 {
    */
   export class Digitalassetlinks {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     assetlinks: Resource$Assetlinks;
     statements: Resource$Statements;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

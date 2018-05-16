@@ -47,14 +47,14 @@ export namespace gamesConfiguration_v1configuration {
    */
   export class Gamesconfiguration {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     achievementConfigurations: Resource$Achievementconfigurations;
     imageConfigurations: Resource$Imageconfigurations;
     leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

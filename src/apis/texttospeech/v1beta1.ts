@@ -48,13 +48,13 @@ export namespace texttospeech_v1beta1 {
    */
   export class Texttospeech {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     text: Resource$Text;
     voices: Resource$Voices;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

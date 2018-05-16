@@ -48,14 +48,14 @@ export namespace jobs_v2 {
    */
   export class Jobs {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     companies: Resource$Companies;
     jobs: Resource$Jobs;
     v2: Resource$V2;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

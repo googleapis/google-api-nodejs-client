@@ -47,7 +47,7 @@ export namespace adexchangeseller_v1_1 {
    */
   export class Adexchangeseller {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -60,7 +60,7 @@ export namespace adexchangeseller_v1_1 {
     reports: Resource$Reports;
     urlchannels: Resource$Urlchannels;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

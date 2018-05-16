@@ -48,13 +48,13 @@ export namespace resourceviews_v1beta1 {
    */
   export class Resourceviews {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     regionViews: Resource$Regionviews;
     zoneViews: Resource$Zoneviews;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

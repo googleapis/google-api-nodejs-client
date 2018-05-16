@@ -30,7 +30,7 @@ export interface GoogleConfigurable {
 }
 
 export interface APIRequestContext {
-  google: GoogleConfigurable;
+  google?: GoogleConfigurable;
   _options: GlobalOptions;
 }
 

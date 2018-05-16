@@ -47,14 +47,14 @@ export namespace firebasedynamiclinks_v1 {
    */
   export class Firebasedynamiclinks {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     managedShortLinks: Resource$Managedshortlinks;
     shortLinks: Resource$Shortlinks;
     v1: Resource$V1;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

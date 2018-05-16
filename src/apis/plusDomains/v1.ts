@@ -47,7 +47,7 @@ export namespace plusDomains_v1 {
    */
   export class Plusdomains {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     activities: Resource$Activities;
@@ -57,7 +57,7 @@ export namespace plusDomains_v1 {
     media: Resource$Media;
     people: Resource$People;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

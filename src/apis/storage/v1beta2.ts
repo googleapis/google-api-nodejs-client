@@ -47,7 +47,7 @@ export namespace storage_v1beta2 {
    */
   export class Storage {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     bucketAccessControls: Resource$Bucketaccesscontrols;
@@ -57,7 +57,7 @@ export namespace storage_v1beta2 {
     objectAccessControls: Resource$Objectaccesscontrols;
     objects: Resource$Objects;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

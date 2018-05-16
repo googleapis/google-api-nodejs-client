@@ -48,7 +48,7 @@ export namespace youtube_v3 {
    */
   export class Youtube {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     activities: Resource$Activities;
@@ -78,7 +78,7 @@ export namespace youtube_v3 {
     videos: Resource$Videos;
     watermarks: Resource$Watermarks;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

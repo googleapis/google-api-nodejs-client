@@ -48,7 +48,7 @@ export namespace partners_v2 {
    */
   export class Partners {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     analytics: Resource$Analytics;
@@ -61,7 +61,7 @@ export namespace partners_v2 {
     userStates: Resource$Userstates;
     v2: Resource$V2;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

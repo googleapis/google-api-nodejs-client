@@ -47,7 +47,7 @@ export namespace dns_v2beta1 {
    */
   export class Dns {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     changes: Resource$Changes;
@@ -57,7 +57,7 @@ export namespace dns_v2beta1 {
     projects: Resource$Projects;
     resourceRecordSets: Resource$Resourcerecordsets;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

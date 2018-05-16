@@ -47,13 +47,13 @@ export namespace cloudfunctions_v1 {
    */
   export class Cloudfunctions {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     operations: Resource$Operations;
     projects: Resource$Projects;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

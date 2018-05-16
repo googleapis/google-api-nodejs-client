@@ -47,7 +47,7 @@ export namespace androidenterprise_v1 {
    */
   export class Androidenterprise {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     devices: Resource$Devices;
@@ -66,7 +66,7 @@ export namespace androidenterprise_v1 {
     storelayoutpages: Resource$Storelayoutpages;
     users: Resource$Users;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

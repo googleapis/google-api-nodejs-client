@@ -47,14 +47,14 @@ export namespace photoslibrary_v1 {
    */
   export class Photoslibrary {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     albums: Resource$Albums;
     mediaItems: Resource$Mediaitems;
     sharedAlbums: Resource$Sharedalbums;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

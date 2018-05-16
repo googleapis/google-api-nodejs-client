@@ -48,14 +48,14 @@ export namespace doubleclicksearch_v2 {
    */
   export class Doubleclicksearch {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     conversion: Resource$Conversion;
     reports: Resource$Reports;
     savedColumns: Resource$Savedcolumns;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

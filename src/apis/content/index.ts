@@ -1,0 +1,34 @@
+// Copyright 2018, Google, LLC.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/*! THIS FILE IS AUTO-GENERATED */
+
+import {getAPI} from '../../shared/src';
+import {content_v2} from './v2';
+import {content_v2sandbox} from './v2sandbox';
+
+export const VERSIONS = {
+  'v2': content_v2.Content,
+  'v2sandbox': content_v2sandbox.Content,
+};
+
+export function content(version: 'v2'): content_v2.Content;
+export function content(options: content_v2.Options): content_v2.Content;
+export function content(version: 'v2sandbox'): content_v2sandbox.Content;
+export function content(options: content_v2sandbox.Options):
+    content_v2sandbox.Content;
+export function content<T = content_v2.Content | content_v2sandbox.Content>(
+    versionOrOptions: 'v2'|content_v2.Options|'v2sandbox'|
+    content_v2sandbox.Options) {
+  return getAPI<T>('content', versionOrOptions, VERSIONS);
+}

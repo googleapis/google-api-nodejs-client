@@ -54,14 +54,14 @@ export namespace script_v1 {
    */
   export class Script {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     processes: Resource$Processes;
     projects: Resource$Projects;
     scripts: Resource$Scripts;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

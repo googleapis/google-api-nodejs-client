@@ -48,13 +48,13 @@ export namespace pubsub_v1beta1a {
    */
   export class Pubsub {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     subscriptions: Resource$Subscriptions;
     topics: Resource$Topics;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

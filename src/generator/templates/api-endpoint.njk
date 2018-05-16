@@ -58,7 +58,7 @@ export interface Options extends GlobalOptions {
 export class {{ Name }} {
 
   _options: GlobalOptions;
-  google: GoogleConfigurable;
+  google?: GoogleConfigurable;
   root = this;
 
   {% if api.resources %}
@@ -67,7 +67,7 @@ export class {{ Name }} {
     {% endfor %}
   {% endif %}
 
-  constructor(options: GlobalOptions, google: GoogleConfigurable) {
+  constructor(options: GlobalOptions, google?: GoogleConfigurable) {
     this._options = options || {};
     this.google = google;
     this.getRoot.bind(this);

@@ -48,7 +48,7 @@ export namespace safebrowsing_v4 {
    */
   export class Safebrowsing {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     encodedFullHashes: Resource$Encodedfullhashes;
@@ -59,7 +59,7 @@ export namespace safebrowsing_v4 {
     threatListUpdates: Resource$Threatlistupdates;
     threatMatches: Resource$Threatmatches;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);

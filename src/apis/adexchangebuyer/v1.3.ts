@@ -49,7 +49,7 @@ export namespace adexchangebuyer_v1_3 {
    */
   export class Adexchangebuyer {
     _options: GlobalOptions;
-    google: GoogleConfigurable;
+    google?: GoogleConfigurable;
     root = this;
 
     accounts: Resource$Accounts;
@@ -60,7 +60,7 @@ export namespace adexchangebuyer_v1_3 {
     performanceReport: Resource$Performancereport;
     pretargetingConfig: Resource$Pretargetingconfig;
 
-    constructor(options: GlobalOptions, google: GoogleConfigurable) {
+    constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
       this.google = google;
       this.getRoot.bind(this);
