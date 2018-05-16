@@ -212,7 +212,7 @@ const plus = google.plus({
 async function main() {
   const res = await plus.people.get({ userId: 'me' });
   console.log(`Hello ${res.data.displayName}!`);
-});
+};
 
 main().catch(console.error);
 ```
