@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {youtubeAnalytics_v1} from './v1';
 import {youtubeAnalytics_v1beta1} from './v1beta1';
 import {youtubeAnalytics_v2} from './v2';
@@ -40,8 +40,9 @@ export function youtubeAnalytics<
     T = youtubeAnalytics_v1.Youtubeanalytics |
         youtubeAnalytics_v1beta1.Youtubeanalytics |
         youtubeAnalytics_v2.Youtubeanalytics>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     youtubeAnalytics_v1.Options|'v1beta1'|
     youtubeAnalytics_v1beta1.Options|'v2'|youtubeAnalytics_v2.Options) {
-  return getAPI<T>('youtubeAnalytics', versionOrOptions, VERSIONS);
+  return getAPI<T>('youtubeAnalytics', versionOrOptions, VERSIONS, this);
 }

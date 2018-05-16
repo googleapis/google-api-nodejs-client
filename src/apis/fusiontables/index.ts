@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {fusiontables_v1} from './v1';
 import {fusiontables_v2} from './v2';
 
@@ -30,7 +30,8 @@ export function fusiontables(options: fusiontables_v2.Options):
     fusiontables_v2.Fusiontables;
 export function
 fusiontables<T = fusiontables_v1.Fusiontables | fusiontables_v2.Fusiontables>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|fusiontables_v1.Options|'v2'|
     fusiontables_v2.Options) {
-  return getAPI<T>('fusiontables', versionOrOptions, VERSIONS);
+  return getAPI<T>('fusiontables', versionOrOptions, VERSIONS, this);
 }

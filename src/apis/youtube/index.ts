@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {youtube_v3} from './v3';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function youtube(version: 'v3'): youtube_v3.Youtube;
 export function youtube(options: youtube_v3.Options): youtube_v3.Youtube;
-export function youtube<T = youtube_v3.Youtube>(versionOrOptions: 'v3'|
-                                                youtube_v3.Options) {
-  return getAPI<T>('youtube', versionOrOptions, VERSIONS);
+export function youtube<T = youtube_v3.Youtube>(
+    this: GoogleConfigurable, versionOrOptions: 'v3'|youtube_v3.Options) {
+  return getAPI<T>('youtube', versionOrOptions, VERSIONS, this);
 }

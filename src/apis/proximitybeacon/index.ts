@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {proximitybeacon_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function proximitybeacon(version: 'v1beta1'):
 export function proximitybeacon(options: proximitybeacon_v1beta1.Options):
     proximitybeacon_v1beta1.Proximitybeacon;
 export function proximitybeacon<T = proximitybeacon_v1beta1.Proximitybeacon>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|proximitybeacon_v1beta1.Options) {
-  return getAPI<T>('proximitybeacon', versionOrOptions, VERSIONS);
+  return getAPI<T>('proximitybeacon', versionOrOptions, VERSIONS, this);
 }

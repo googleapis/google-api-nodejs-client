@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudfunctions_v1} from './v1';
 import {cloudfunctions_v1beta2} from './v1beta2';
 
@@ -32,7 +32,8 @@ export function cloudfunctions(options: cloudfunctions_v1beta2.Options):
 export function cloudfunctions<
     T = cloudfunctions_v1.Cloudfunctions |
         cloudfunctions_v1beta2.Cloudfunctions>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     cloudfunctions_v1.Options|'v1beta2'|cloudfunctions_v1beta2.Options) {
-  return getAPI<T>('cloudfunctions', versionOrOptions, VERSIONS);
+  return getAPI<T>('cloudfunctions', versionOrOptions, VERSIONS, this);
 }

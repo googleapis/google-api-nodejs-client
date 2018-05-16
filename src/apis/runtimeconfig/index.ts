@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {runtimeconfig_v1} from './v1';
 import {runtimeconfig_v1beta1} from './v1beta1';
 
@@ -31,7 +31,8 @@ export function runtimeconfig(options: runtimeconfig_v1beta1.Options):
     runtimeconfig_v1beta1.Runtimeconfig;
 export function runtimeconfig<
     T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     runtimeconfig_v1.Options|'v1beta1'|runtimeconfig_v1beta1.Options) {
-  return getAPI<T>('runtimeconfig', versionOrOptions, VERSIONS);
+  return getAPI<T>('runtimeconfig', versionOrOptions, VERSIONS, this);
 }

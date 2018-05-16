@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {calendar_v3} from './v3';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function calendar(version: 'v3'): calendar_v3.Calendar;
 export function calendar(options: calendar_v3.Options): calendar_v3.Calendar;
-export function calendar<T = calendar_v3.Calendar>(versionOrOptions: 'v3'|
-                                                   calendar_v3.Options) {
-  return getAPI<T>('calendar', versionOrOptions, VERSIONS);
+export function calendar<T = calendar_v3.Calendar>(
+    this: GoogleConfigurable, versionOrOptions: 'v3'|calendar_v3.Options) {
+  return getAPI<T>('calendar', versionOrOptions, VERSIONS, this);
 }

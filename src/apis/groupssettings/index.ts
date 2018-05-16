@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {groupssettings_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function groupssettings(version: 'v1'): groupssettings_v1.Groupssettings;
 export function groupssettings(options: groupssettings_v1.Options):
     groupssettings_v1.Groupssettings;
 export function groupssettings<T = groupssettings_v1.Groupssettings>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|groupssettings_v1.Options) {
-  return getAPI<T>('groupssettings', versionOrOptions, VERSIONS);
+  return getAPI<T>('groupssettings', versionOrOptions, VERSIONS, this);
 }

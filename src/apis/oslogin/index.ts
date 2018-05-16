@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {oslogin_v1} from './v1';
 import {oslogin_v1alpha} from './v1alpha';
 import {oslogin_v1beta} from './v1beta';
@@ -34,7 +34,8 @@ export function oslogin(options: oslogin_v1beta.Options):
     oslogin_v1beta.Oslogin;
 export function oslogin<
     T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin | oslogin_v1beta.Oslogin>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|oslogin_v1.Options|'v1alpha'|
     oslogin_v1alpha.Options|'v1beta'|oslogin_v1beta.Options) {
-  return getAPI<T>('oslogin', versionOrOptions, VERSIONS);
+  return getAPI<T>('oslogin', versionOrOptions, VERSIONS, this);
 }

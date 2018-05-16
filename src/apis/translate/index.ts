@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {translate_v2} from './v2';
 
 export const VERSIONS = {
@@ -23,7 +23,7 @@ export const VERSIONS = {
 export function translate(version: 'v2'): translate_v2.Translate;
 export function translate(options: translate_v2.Options):
     translate_v2.Translate;
-export function translate<T = translate_v2.Translate>(versionOrOptions: 'v2'|
-                                                      translate_v2.Options) {
-  return getAPI<T>('translate', versionOrOptions, VERSIONS);
+export function translate<T = translate_v2.Translate>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|translate_v2.Options) {
+  return getAPI<T>('translate', versionOrOptions, VERSIONS, this);
 }

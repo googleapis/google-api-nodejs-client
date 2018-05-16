@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {content_v2} from './v2';
 import {content_v2sandbox} from './v2sandbox';
 
@@ -28,7 +28,8 @@ export function content(version: 'v2sandbox'): content_v2sandbox.Content;
 export function content(options: content_v2sandbox.Options):
     content_v2sandbox.Content;
 export function content<T = content_v2.Content | content_v2sandbox.Content>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|content_v2.Options|'v2sandbox'|
     content_v2sandbox.Options) {
-  return getAPI<T>('content', versionOrOptions, VERSIONS);
+  return getAPI<T>('content', versionOrOptions, VERSIONS, this);
 }

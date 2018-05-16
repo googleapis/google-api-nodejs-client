@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {datastore_v1} from './v1';
 import {datastore_v1beta1} from './v1beta1';
 import {datastore_v1beta3} from './v1beta3';
@@ -36,7 +36,8 @@ export function datastore(options: datastore_v1beta3.Options):
 export function datastore<
     T = datastore_v1.Datastore | datastore_v1beta1.Datastore |
         datastore_v1beta3.Datastore>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|datastore_v1.Options|'v1beta1'|
     datastore_v1beta1.Options|'v1beta3'|datastore_v1beta3.Options) {
-  return getAPI<T>('datastore', versionOrOptions, VERSIONS);
+  return getAPI<T>('datastore', versionOrOptions, VERSIONS, this);
 }

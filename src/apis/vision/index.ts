@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {vision_v1} from './v1';
 import {vision_v1p1beta1} from './v1p1beta1';
 import {vision_v1p2beta1} from './v1p2beta1';
@@ -34,7 +34,8 @@ export function vision(options: vision_v1p2beta1.Options):
     vision_v1p2beta1.Vision;
 export function vision<
     T = vision_v1.Vision | vision_v1p1beta1.Vision | vision_v1p2beta1.Vision>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|vision_v1.Options|'v1p1beta1'|
     vision_v1p1beta1.Options|'v1p2beta1'|vision_v1p2beta1.Options) {
-  return getAPI<T>('vision', versionOrOptions, VERSIONS);
+  return getAPI<T>('vision', versionOrOptions, VERSIONS, this);
 }

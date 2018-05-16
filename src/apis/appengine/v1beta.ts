@@ -608,16 +608,21 @@ export namespace appengine_v1beta {
    * Endpoints API Service provides tooling for serving Open API and gRPC
    * endpoints via an NGINX proxy. Only valid for App Engine Flexible
    * environment deployments.The fields here refer to the name and configuration
-   * id of a &quot;service&quot; resource in the Service Management API
+   * ID of a &quot;service&quot; resource in the Service Management API
    * (https://cloud.google.com/service-management/overview).
    */
   export interface Schema$EndpointsApiService {
     /**
-     * Endpoints service configuration id as specified by the Service Management
-     * API. For example &quot;2016-09-19r1&quot;By default, the Endpoints
-     * service configuration id is fixed and config_id must be specified. To
-     * keep the Endpoints service configuration id updated with each rollout,
-     * specify RolloutStrategy.MANAGED and omit config_id.
+     * Endpoints service configuration ID as specified by the Service Management
+     * API. For example &quot;2016-09-19r1&quot;.By default, the rollout
+     * strategy for Endpoints is RolloutStrategy.FIXED. This means that
+     * Endpoints starts up with a particular configuration ID. When a new
+     * configuration is rolled out, Endpoints must be given the new
+     * configuration ID. The config_id field is used to give the configuration
+     * ID and is required in this case.Endpoints also has a rollout strategy
+     * called RolloutStrategy.MANAGED. When using this, Endpoints fetches the
+     * latest configuration and does not need to be told the configuration ID.
+     * In this case, config_id must be omitted.
      */
     configId?: string;
     /**
@@ -5043,32 +5048,34 @@ export namespace appengine_v1beta {
      * appengine.apps.services.versions.patch
      * @desc Updates the specified Version resource. You can specify the
      * following fields depending on the App Engine environment and type of
-     * scaling that the version resource uses: serving_status
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status):
-     * For Version resources that use basic scaling, manual scaling, or run in
-     * the App Engine flexible environment. instance_class
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class):
-     * For Version resources that run in the App Engine standard environment.
-     * automatic_scaling.min_idle_instances
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine standard environment. automatic_scaling.max_idle_instances
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine standard environment. automatic_scaling.min_total_instances
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine flexible environment. automatic_scaling.max_total_instances
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine flexible environment. automatic_scaling.cool_down_period_sec
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine flexible environment.
+     * scaling that the version resource uses:Standard environment
+     * instance_class
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class)automatic
+     * scaling in the standard environment: automatic_scaling.min_idle_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
+     * automatic_scaling.max_idle_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
+     * automaticScaling.standard_scheduler_settings.max_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)
+     * automaticScaling.standard_scheduler_settings.min_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)
+     * automaticScaling.standard_scheduler_settings.target_cpu_utilization
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)
+     * automaticScaling.standard_scheduler_settings.target_throughput_utilization
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)basic
+     * scaling or manual scaling in the standard environment: serving_status
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)Flexible
+     * environment serving_status
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)automatic
+     * scaling in the flexible environment:
+     * automatic_scaling.min_total_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
+     * automatic_scaling.max_total_instances
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
+     * automatic_scaling.cool_down_period_sec
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
      * automatic_scaling.cpu_utilization.target_utilization
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling):
-     * For Version resources that use automatic scaling and run in the App
-     * Engine flexible environment.
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)
      * @alias appengine.apps.services.versions.patch
      * @memberOf! ()
      *

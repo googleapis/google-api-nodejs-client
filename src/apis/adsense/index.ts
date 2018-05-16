@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {adsense_v1_4} from './v1.4';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function adsense(version: 'v1_4'): adsense_v1_4.Adsense;
 export function adsense(options: adsense_v1_4.Options): adsense_v1_4.Adsense;
-export function adsense<T = adsense_v1_4.Adsense>(versionOrOptions: 'v1_4'|
-                                                  adsense_v1_4.Options) {
-  return getAPI<T>('adsense', versionOrOptions, VERSIONS);
+export function adsense<T = adsense_v1_4.Adsense>(
+    this: GoogleConfigurable, versionOrOptions: 'v1_4'|adsense_v1_4.Options) {
+  return getAPI<T>('adsense', versionOrOptions, VERSIONS, this);
 }

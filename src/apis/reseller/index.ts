@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {reseller_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function reseller(version: 'v1'): reseller_v1.Reseller;
 export function reseller(options: reseller_v1.Options): reseller_v1.Reseller;
-export function reseller<T = reseller_v1.Reseller>(versionOrOptions: 'v1'|
-                                                   reseller_v1.Options) {
-  return getAPI<T>('reseller', versionOrOptions, VERSIONS);
+export function reseller<T = reseller_v1.Reseller>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|reseller_v1.Options) {
+  return getAPI<T>('reseller', versionOrOptions, VERSIONS, this);
 }

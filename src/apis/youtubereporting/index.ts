@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {youtubereporting_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function youtubereporting(version: 'v1'):
 export function youtubereporting(options: youtubereporting_v1.Options):
     youtubereporting_v1.Youtubereporting;
 export function youtubereporting<T = youtubereporting_v1.Youtubereporting>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|youtubereporting_v1.Options) {
-  return getAPI<T>('youtubereporting', versionOrOptions, VERSIONS);
+  return getAPI<T>('youtubereporting', versionOrOptions, VERSIONS, this);
 }

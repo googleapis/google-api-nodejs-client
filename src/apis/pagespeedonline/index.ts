@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {pagespeedonline_v1} from './v1';
 import {pagespeedonline_v2} from './v2';
 import {pagespeedonline_v4} from './v4';
@@ -40,7 +40,8 @@ export function pagespeedonline<
     T = pagespeedonline_v1.Pagespeedonline |
         pagespeedonline_v2.Pagespeedonline |
         pagespeedonline_v4.Pagespeedonline>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|pagespeedonline_v1.Options|'v2'|
     pagespeedonline_v2.Options|'v4'|pagespeedonline_v4.Options) {
-  return getAPI<T>('pagespeedonline', versionOrOptions, VERSIONS);
+  return getAPI<T>('pagespeedonline', versionOrOptions, VERSIONS, this);
 }

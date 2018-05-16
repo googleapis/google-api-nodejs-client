@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {chat_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,6 +22,7 @@ export const VERSIONS = {
 
 export function chat(version: 'v1'): chat_v1.Chat;
 export function chat(options: chat_v1.Options): chat_v1.Chat;
-export function chat<T = chat_v1.Chat>(versionOrOptions: 'v1'|chat_v1.Options) {
-  return getAPI<T>('chat', versionOrOptions, VERSIONS);
+export function chat<T = chat_v1.Chat>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|chat_v1.Options) {
+  return getAPI<T>('chat', versionOrOptions, VERSIONS, this);
 }

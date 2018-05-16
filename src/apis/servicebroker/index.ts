@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {servicebroker_v1} from './v1';
 import {servicebroker_v1alpha1} from './v1alpha1';
 import {servicebroker_v1beta1} from './v1beta1';
@@ -38,8 +38,9 @@ export function servicebroker(options: servicebroker_v1beta1.Options):
 export function servicebroker<
     T = servicebroker_v1.Servicebroker | servicebroker_v1alpha1.Servicebroker |
         servicebroker_v1beta1.Servicebroker>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     servicebroker_v1.Options|'v1alpha1'|
     servicebroker_v1alpha1.Options|'v1beta1'|servicebroker_v1beta1.Options) {
-  return getAPI<T>('servicebroker', versionOrOptions, VERSIONS);
+  return getAPI<T>('servicebroker', versionOrOptions, VERSIONS, this);
 }

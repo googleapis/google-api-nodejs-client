@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {gmail_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function gmail(version: 'v1'): gmail_v1.Gmail;
 export function gmail(options: gmail_v1.Options): gmail_v1.Gmail;
-export function gmail<T = gmail_v1.Gmail>(versionOrOptions: 'v1'|
-                                          gmail_v1.Options) {
-  return getAPI<T>('gmail', versionOrOptions, VERSIONS);
+export function gmail<T = gmail_v1.Gmail>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|gmail_v1.Options) {
+  return getAPI<T>('gmail', versionOrOptions, VERSIONS, this);
 }

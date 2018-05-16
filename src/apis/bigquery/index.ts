@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {bigquery_v2} from './v2';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function bigquery(version: 'v2'): bigquery_v2.Bigquery;
 export function bigquery(options: bigquery_v2.Options): bigquery_v2.Bigquery;
-export function bigquery<T = bigquery_v2.Bigquery>(versionOrOptions: 'v2'|
-                                                   bigquery_v2.Options) {
-  return getAPI<T>('bigquery', versionOrOptions, VERSIONS);
+export function bigquery<T = bigquery_v2.Bigquery>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|bigquery_v2.Options) {
+  return getAPI<T>('bigquery', versionOrOptions, VERSIONS, this);
 }

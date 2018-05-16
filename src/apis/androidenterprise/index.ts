@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {androidenterprise_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function androidenterprise(version: 'v1'):
 export function androidenterprise(options: androidenterprise_v1.Options):
     androidenterprise_v1.Androidenterprise;
 export function androidenterprise<T = androidenterprise_v1.Androidenterprise>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|androidenterprise_v1.Options) {
-  return getAPI<T>('androidenterprise', versionOrOptions, VERSIONS);
+  return getAPI<T>('androidenterprise', versionOrOptions, VERSIONS, this);
 }

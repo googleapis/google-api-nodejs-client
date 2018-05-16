@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {firestore_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function firestore(version: 'v1beta1'): firestore_v1beta1.Firestore;
 export function firestore(options: firestore_v1beta1.Options):
     firestore_v1beta1.Firestore;
 export function firestore<T = firestore_v1beta1.Firestore>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|firestore_v1beta1.Options) {
-  return getAPI<T>('firestore', versionOrOptions, VERSIONS);
+  return getAPI<T>('firestore', versionOrOptions, VERSIONS, this);
 }

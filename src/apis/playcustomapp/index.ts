@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {playcustomapp_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function playcustomapp(version: 'v1'): playcustomapp_v1.Playcustomapp;
 export function playcustomapp(options: playcustomapp_v1.Options):
     playcustomapp_v1.Playcustomapp;
 export function playcustomapp<T = playcustomapp_v1.Playcustomapp>(
-    versionOrOptions: 'v1'|playcustomapp_v1.Options) {
-  return getAPI<T>('playcustomapp', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|playcustomapp_v1.Options) {
+  return getAPI<T>('playcustomapp', versionOrOptions, VERSIONS, this);
 }

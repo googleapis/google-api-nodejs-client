@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {dlp_v2} from './v2';
 
 export const VERSIONS = {
@@ -22,6 +22,7 @@ export const VERSIONS = {
 
 export function dlp(version: 'v2'): dlp_v2.Dlp;
 export function dlp(options: dlp_v2.Options): dlp_v2.Dlp;
-export function dlp<T = dlp_v2.Dlp>(versionOrOptions: 'v2'|dlp_v2.Options) {
-  return getAPI<T>('dlp', versionOrOptions, VERSIONS);
+export function dlp<T = dlp_v2.Dlp>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|dlp_v2.Options) {
+  return getAPI<T>('dlp', versionOrOptions, VERSIONS, this);
 }

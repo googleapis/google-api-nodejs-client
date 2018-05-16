@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {monitoring_v3} from './v3';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function monitoring(version: 'v3'): monitoring_v3.Monitoring;
 export function monitoring(options: monitoring_v3.Options):
     monitoring_v3.Monitoring;
 export function monitoring<T = monitoring_v3.Monitoring>(
-    versionOrOptions: 'v3'|monitoring_v3.Options) {
-  return getAPI<T>('monitoring', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v3'|monitoring_v3.Options) {
+  return getAPI<T>('monitoring', versionOrOptions, VERSIONS, this);
 }

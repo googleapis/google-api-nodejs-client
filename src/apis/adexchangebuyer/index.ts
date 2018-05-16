@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {adexchangebuyer_v1_2} from './v1.2';
 import {adexchangebuyer_v1_3} from './v1.3';
 import {adexchangebuyer_v1_4} from './v1.4';
@@ -40,8 +40,9 @@ export function adexchangebuyer<
     T = adexchangebuyer_v1_2.Adexchangebuyer |
         adexchangebuyer_v1_3.Adexchangebuyer |
         adexchangebuyer_v1_4.Adexchangebuyer>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1_2'|
     adexchangebuyer_v1_2.Options|'v1_3'|
     adexchangebuyer_v1_3.Options|'v1_4'|adexchangebuyer_v1_4.Options) {
-  return getAPI<T>('adexchangebuyer', versionOrOptions, VERSIONS);
+  return getAPI<T>('adexchangebuyer', versionOrOptions, VERSIONS, this);
 }

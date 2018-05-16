@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudkms_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function cloudkms(version: 'v1'): cloudkms_v1.Cloudkms;
 export function cloudkms(options: cloudkms_v1.Options): cloudkms_v1.Cloudkms;
-export function cloudkms<T = cloudkms_v1.Cloudkms>(versionOrOptions: 'v1'|
-                                                   cloudkms_v1.Options) {
-  return getAPI<T>('cloudkms', versionOrOptions, VERSIONS);
+export function cloudkms<T = cloudkms_v1.Cloudkms>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudkms_v1.Options) {
+  return getAPI<T>('cloudkms', versionOrOptions, VERSIONS, this);
 }

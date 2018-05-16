@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {gamesConfiguration_v1configuration} from './v1configuration';
 
 export const VERSIONS = {
@@ -27,7 +27,8 @@ export function gamesConfiguration(
     gamesConfiguration_v1configuration.Gamesconfiguration;
 export function
 gamesConfiguration<T = gamesConfiguration_v1configuration.Gamesconfiguration>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1configuration'|
     gamesConfiguration_v1configuration.Options) {
-  return getAPI<T>('gamesConfiguration', versionOrOptions, VERSIONS);
+  return getAPI<T>('gamesConfiguration', versionOrOptions, VERSIONS, this);
 }

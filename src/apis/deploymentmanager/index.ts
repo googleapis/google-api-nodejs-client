@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {deploymentmanager_alpha} from './alpha';
 import {deploymentmanager_v2} from './v2';
 import {deploymentmanager_v2beta} from './v2beta';
@@ -40,8 +40,9 @@ export function deploymentmanager<
     T = deploymentmanager_alpha.Deploymentmanager |
         deploymentmanager_v2.Deploymentmanager |
         deploymentmanager_v2beta.Deploymentmanager>(
+    this: GoogleConfigurable,
     versionOrOptions: 'alpha'|
     deploymentmanager_alpha.Options|'v2'|
     deploymentmanager_v2.Options|'v2beta'|deploymentmanager_v2beta.Options) {
-  return getAPI<T>('deploymentmanager', versionOrOptions, VERSIONS);
+  return getAPI<T>('deploymentmanager', versionOrOptions, VERSIONS, this);
 }

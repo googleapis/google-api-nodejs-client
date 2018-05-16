@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudtrace_v1} from './v1';
 import {cloudtrace_v2} from './v2';
 
@@ -30,6 +30,7 @@ export function cloudtrace(options: cloudtrace_v2.Options):
     cloudtrace_v2.Cloudtrace;
 export function
 cloudtrace<T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|cloudtrace_v1.Options|'v2'|cloudtrace_v2.Options) {
-  return getAPI<T>('cloudtrace', versionOrOptions, VERSIONS);
+  return getAPI<T>('cloudtrace', versionOrOptions, VERSIONS, this);
 }

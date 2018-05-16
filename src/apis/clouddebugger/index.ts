@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {clouddebugger_v2} from './v2';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function clouddebugger(version: 'v2'): clouddebugger_v2.Clouddebugger;
 export function clouddebugger(options: clouddebugger_v2.Options):
     clouddebugger_v2.Clouddebugger;
 export function clouddebugger<T = clouddebugger_v2.Clouddebugger>(
-    versionOrOptions: 'v2'|clouddebugger_v2.Options) {
-  return getAPI<T>('clouddebugger', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v2'|clouddebugger_v2.Options) {
+  return getAPI<T>('clouddebugger', versionOrOptions, VERSIONS, this);
 }

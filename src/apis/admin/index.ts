@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {admin_datatransfer_v1} from './datatransfer_v1';
 import {admin_directory_v1} from './directory_v1';
 import {admin_reports_v1} from './reports_v1';
@@ -36,8 +36,9 @@ export function admin(options: admin_reports_v1.Options):
 export function admin<
     T = admin_datatransfer_v1.Admin | admin_directory_v1.Admin |
         admin_reports_v1.Admin>(
+    this: GoogleConfigurable,
     versionOrOptions: 'datatransfer_v1'|
     admin_datatransfer_v1.Options|'directory_v1'|
     admin_directory_v1.Options|'reports_v1'|admin_reports_v1.Options) {
-  return getAPI<T>('admin', versionOrOptions, VERSIONS);
+  return getAPI<T>('admin', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {identitytoolkit_v3} from './v3';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function identitytoolkit(version: 'v3'):
 export function identitytoolkit(options: identitytoolkit_v3.Options):
     identitytoolkit_v3.Identitytoolkit;
 export function identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v3'|identitytoolkit_v3.Options) {
-  return getAPI<T>('identitytoolkit', versionOrOptions, VERSIONS);
+  return getAPI<T>('identitytoolkit', versionOrOptions, VERSIONS, this);
 }

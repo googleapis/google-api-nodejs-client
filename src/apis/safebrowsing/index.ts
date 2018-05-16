@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {safebrowsing_v4} from './v4';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function safebrowsing(version: 'v4'): safebrowsing_v4.Safebrowsing;
 export function safebrowsing(options: safebrowsing_v4.Options):
     safebrowsing_v4.Safebrowsing;
 export function safebrowsing<T = safebrowsing_v4.Safebrowsing>(
-    versionOrOptions: 'v4'|safebrowsing_v4.Options) {
-  return getAPI<T>('safebrowsing', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v4'|safebrowsing_v4.Options) {
+  return getAPI<T>('safebrowsing', versionOrOptions, VERSIONS, this);
 }

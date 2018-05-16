@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {groupsmigration_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function groupsmigration(version: 'v1'):
 export function groupsmigration(options: groupsmigration_v1.Options):
     groupsmigration_v1.Groupsmigration;
 export function groupsmigration<T = groupsmigration_v1.Groupsmigration>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|groupsmigration_v1.Options) {
-  return getAPI<T>('groupsmigration', versionOrOptions, VERSIONS);
+  return getAPI<T>('groupsmigration', versionOrOptions, VERSIONS, this);
 }

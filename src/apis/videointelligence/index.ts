@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {videointelligence_v1} from './v1';
 import {videointelligence_v1beta1} from './v1beta1';
 import {videointelligence_v1beta2} from './v1beta2';
@@ -40,9 +40,10 @@ export function videointelligence<
     T = videointelligence_v1.Videointelligence |
         videointelligence_v1beta1.Videointelligence |
         videointelligence_v1beta2.Videointelligence>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     videointelligence_v1.Options|'v1beta1'|
     videointelligence_v1beta1.Options|'v1beta2'|
     videointelligence_v1beta2.Options) {
-  return getAPI<T>('videointelligence', versionOrOptions, VERSIONS);
+  return getAPI<T>('videointelligence', versionOrOptions, VERSIONS, this);
 }

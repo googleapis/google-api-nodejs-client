@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {serviceconsumermanagement_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,6 +27,8 @@ export function serviceconsumermanagement(
     serviceconsumermanagement_v1.Serviceconsumermanagement;
 export function serviceconsumermanagement<
     T = serviceconsumermanagement_v1.Serviceconsumermanagement>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|serviceconsumermanagement_v1.Options) {
-  return getAPI<T>('serviceconsumermanagement', versionOrOptions, VERSIONS);
+  return getAPI<T>(
+      'serviceconsumermanagement', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {blogger_v2} from './v2';
 import {blogger_v3} from './v3';
 
@@ -27,6 +27,7 @@ export function blogger(options: blogger_v2.Options): blogger_v2.Blogger;
 export function blogger(version: 'v3'): blogger_v3.Blogger;
 export function blogger(options: blogger_v3.Options): blogger_v3.Blogger;
 export function blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|blogger_v2.Options|'v3'|blogger_v3.Options) {
-  return getAPI<T>('blogger', versionOrOptions, VERSIONS);
+  return getAPI<T>('blogger', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {manufacturers_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function manufacturers(version: 'v1'): manufacturers_v1.Manufacturers;
 export function manufacturers(options: manufacturers_v1.Options):
     manufacturers_v1.Manufacturers;
 export function manufacturers<T = manufacturers_v1.Manufacturers>(
-    versionOrOptions: 'v1'|manufacturers_v1.Options) {
-  return getAPI<T>('manufacturers', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|manufacturers_v1.Options) {
+  return getAPI<T>('manufacturers', versionOrOptions, VERSIONS, this);
 }

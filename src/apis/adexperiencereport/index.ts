@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {adexperiencereport_v1} from './v1';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function adexperiencereport(options: adexperiencereport_v1.Options):
     adexperiencereport_v1.Adexperiencereport;
 export function
 adexperiencereport<T = adexperiencereport_v1.Adexperiencereport>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|adexperiencereport_v1.Options) {
-  return getAPI<T>('adexperiencereport', versionOrOptions, VERSIONS);
+  return getAPI<T>('adexperiencereport', versionOrOptions, VERSIONS, this);
 }

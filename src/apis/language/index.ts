@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {language_v1} from './v1';
 import {language_v1beta1} from './v1beta1';
 import {language_v1beta2} from './v1beta2';
@@ -35,7 +35,8 @@ export function language(options: language_v1beta2.Options):
 export function language<
     T = language_v1.Language | language_v1beta1.Language |
         language_v1beta2.Language>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|language_v1.Options|'v1beta1'|
     language_v1beta1.Options|'v1beta2'|language_v1beta2.Options) {
-  return getAPI<T>('language', versionOrOptions, VERSIONS);
+  return getAPI<T>('language', versionOrOptions, VERSIONS, this);
 }

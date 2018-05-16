@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {testing_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function testing(version: 'v1'): testing_v1.Testing;
 export function testing(options: testing_v1.Options): testing_v1.Testing;
-export function testing<T = testing_v1.Testing>(versionOrOptions: 'v1'|
-                                                testing_v1.Options) {
-  return getAPI<T>('testing', versionOrOptions, VERSIONS);
+export function testing<T = testing_v1.Testing>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|testing_v1.Options) {
+  return getAPI<T>('testing', versionOrOptions, VERSIONS, this);
 }

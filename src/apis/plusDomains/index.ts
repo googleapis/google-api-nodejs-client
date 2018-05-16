@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {plusDomains_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function plusDomains(version: 'v1'): plusDomains_v1.Plusdomains;
 export function plusDomains(options: plusDomains_v1.Options):
     plusDomains_v1.Plusdomains;
 export function plusDomains<T = plusDomains_v1.Plusdomains>(
-    versionOrOptions: 'v1'|plusDomains_v1.Options) {
-  return getAPI<T>('plusDomains', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|plusDomains_v1.Options) {
+  return getAPI<T>('plusDomains', versionOrOptions, VERSIONS, this);
 }

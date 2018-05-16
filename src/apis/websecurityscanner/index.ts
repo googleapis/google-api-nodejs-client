@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {websecurityscanner_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function websecurityscanner(options: websecurityscanner_v1alpha.Options):
     websecurityscanner_v1alpha.Websecurityscanner;
 export function
 websecurityscanner<T = websecurityscanner_v1alpha.Websecurityscanner>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1alpha'|websecurityscanner_v1alpha.Options) {
-  return getAPI<T>('websecurityscanner', versionOrOptions, VERSIONS);
+  return getAPI<T>('websecurityscanner', versionOrOptions, VERSIONS, this);
 }

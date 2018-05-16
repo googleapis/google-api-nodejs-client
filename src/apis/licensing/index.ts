@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {licensing_v1} from './v1';
 
 export const VERSIONS = {
@@ -23,7 +23,7 @@ export const VERSIONS = {
 export function licensing(version: 'v1'): licensing_v1.Licensing;
 export function licensing(options: licensing_v1.Options):
     licensing_v1.Licensing;
-export function licensing<T = licensing_v1.Licensing>(versionOrOptions: 'v1'|
-                                                      licensing_v1.Options) {
-  return getAPI<T>('licensing', versionOrOptions, VERSIONS);
+export function licensing<T = licensing_v1.Licensing>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|licensing_v1.Options) {
+  return getAPI<T>('licensing', versionOrOptions, VERSIONS, this);
 }

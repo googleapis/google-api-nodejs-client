@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {webmasters_v3} from './v3';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function webmasters(version: 'v3'): webmasters_v3.Webmasters;
 export function webmasters(options: webmasters_v3.Options):
     webmasters_v3.Webmasters;
 export function webmasters<T = webmasters_v3.Webmasters>(
-    versionOrOptions: 'v3'|webmasters_v3.Options) {
-  return getAPI<T>('webmasters', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v3'|webmasters_v3.Options) {
+  return getAPI<T>('webmasters', versionOrOptions, VERSIONS, this);
 }
