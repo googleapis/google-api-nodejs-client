@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {tpu_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
@@ -22,7 +22,8 @@ export const VERSIONS = {
 
 export function tpu(version: 'v1alpha1'): tpu_v1alpha1.Tpu;
 export function tpu(options: tpu_v1alpha1.Options): tpu_v1alpha1.Tpu;
-export function tpu<T = tpu_v1alpha1.Tpu>(versionOrOptions: 'v1alpha1'|
-                                          tpu_v1alpha1.Options) {
-  return getAPI<T>('tpu', versionOrOptions, VERSIONS);
+export function tpu<T = tpu_v1alpha1.Tpu>(
+    this: GoogleConfigurable,
+    versionOrOptions: 'v1alpha1'|tpu_v1alpha1.Options) {
+  return getAPI<T>('tpu', versionOrOptions, VERSIONS, this);
 }

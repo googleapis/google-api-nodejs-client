@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {appsactivity_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function appsactivity(version: 'v1'): appsactivity_v1.Appsactivity;
 export function appsactivity(options: appsactivity_v1.Options):
     appsactivity_v1.Appsactivity;
 export function appsactivity<T = appsactivity_v1.Appsactivity>(
-    versionOrOptions: 'v1'|appsactivity_v1.Options) {
-  return getAPI<T>('appsactivity', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|appsactivity_v1.Options) {
+  return getAPI<T>('appsactivity', versionOrOptions, VERSIONS, this);
 }

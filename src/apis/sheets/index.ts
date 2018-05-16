@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {sheets_v4} from './v4';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function sheets(version: 'v4'): sheets_v4.Sheets;
 export function sheets(options: sheets_v4.Options): sheets_v4.Sheets;
-export function sheets<T = sheets_v4.Sheets>(versionOrOptions: 'v4'|
-                                             sheets_v4.Options) {
-  return getAPI<T>('sheets', versionOrOptions, VERSIONS);
+export function sheets<T = sheets_v4.Sheets>(
+    this: GoogleConfigurable, versionOrOptions: 'v4'|sheets_v4.Options) {
+  return getAPI<T>('sheets', versionOrOptions, VERSIONS, this);
 }

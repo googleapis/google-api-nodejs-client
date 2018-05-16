@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {compute_alpha} from './alpha';
 import {compute_beta} from './beta';
 import {compute_v1} from './v1';
@@ -32,7 +32,8 @@ export function compute(version: 'v1'): compute_v1.Compute;
 export function compute(options: compute_v1.Options): compute_v1.Compute;
 export function
 compute<T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute>(
+    this: GoogleConfigurable,
     versionOrOptions: 'alpha'|compute_alpha.Options|'beta'|
     compute_beta.Options|'v1'|compute_v1.Options) {
-  return getAPI<T>('compute', versionOrOptions, VERSIONS);
+  return getAPI<T>('compute', versionOrOptions, VERSIONS, this);
 }

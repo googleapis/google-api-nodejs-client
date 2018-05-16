@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudiot_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function cloudiot(version: 'v1'): cloudiot_v1.Cloudiot;
 export function cloudiot(options: cloudiot_v1.Options): cloudiot_v1.Cloudiot;
-export function cloudiot<T = cloudiot_v1.Cloudiot>(versionOrOptions: 'v1'|
-                                                   cloudiot_v1.Options) {
-  return getAPI<T>('cloudiot', versionOrOptions, VERSIONS);
+export function cloudiot<T = cloudiot_v1.Cloudiot>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudiot_v1.Options) {
+  return getAPI<T>('cloudiot', versionOrOptions, VERSIONS, this);
 }

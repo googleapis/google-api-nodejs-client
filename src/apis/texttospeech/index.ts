@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {texttospeech_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function texttospeech(version: 'v1beta1'):
 export function texttospeech(options: texttospeech_v1beta1.Options):
     texttospeech_v1beta1.Texttospeech;
 export function texttospeech<T = texttospeech_v1beta1.Texttospeech>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|texttospeech_v1beta1.Options) {
-  return getAPI<T>('texttospeech', versionOrOptions, VERSIONS);
+  return getAPI<T>('texttospeech', versionOrOptions, VERSIONS, this);
 }

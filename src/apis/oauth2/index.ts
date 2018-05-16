@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {oauth2_v1} from './v1';
 import {oauth2_v2} from './v2';
 
@@ -27,6 +27,7 @@ export function oauth2(options: oauth2_v1.Options): oauth2_v1.Oauth2;
 export function oauth2(version: 'v2'): oauth2_v2.Oauth2;
 export function oauth2(options: oauth2_v2.Options): oauth2_v2.Oauth2;
 export function oauth2<T = oauth2_v1.Oauth2 | oauth2_v2.Oauth2>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|oauth2_v1.Options|'v2'|oauth2_v2.Options) {
-  return getAPI<T>('oauth2', versionOrOptions, VERSIONS);
+  return getAPI<T>('oauth2', versionOrOptions, VERSIONS, this);
 }

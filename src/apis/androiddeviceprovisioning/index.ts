@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {androiddeviceprovisioning_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,6 +27,8 @@ export function androiddeviceprovisioning(
     androiddeviceprovisioning_v1.Androiddeviceprovisioning;
 export function androiddeviceprovisioning<
     T = androiddeviceprovisioning_v1.Androiddeviceprovisioning>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|androiddeviceprovisioning_v1.Options) {
-  return getAPI<T>('androiddeviceprovisioning', versionOrOptions, VERSIONS);
+  return getAPI<T>(
+      'androiddeviceprovisioning', versionOrOptions, VERSIONS, this);
 }

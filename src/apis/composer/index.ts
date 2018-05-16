@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {composer_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function composer(version: 'v1beta1'): composer_v1beta1.Composer;
 export function composer(options: composer_v1beta1.Options):
     composer_v1beta1.Composer;
 export function composer<T = composer_v1beta1.Composer>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|composer_v1beta1.Options) {
-  return getAPI<T>('composer', versionOrOptions, VERSIONS);
+  return getAPI<T>('composer', versionOrOptions, VERSIONS, this);
 }

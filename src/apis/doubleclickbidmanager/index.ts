@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {doubleclickbidmanager_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,6 +27,7 @@ export function doubleclickbidmanager(
     doubleclickbidmanager_v1.Doubleclickbidmanager;
 export function
 doubleclickbidmanager<T = doubleclickbidmanager_v1.Doubleclickbidmanager>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|doubleclickbidmanager_v1.Options) {
-  return getAPI<T>('doubleclickbidmanager', versionOrOptions, VERSIONS);
+  return getAPI<T>('doubleclickbidmanager', versionOrOptions, VERSIONS, this);
 }

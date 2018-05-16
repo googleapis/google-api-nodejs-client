@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {streetviewpublish_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function streetviewpublish(version: 'v1'):
 export function streetviewpublish(options: streetviewpublish_v1.Options):
     streetviewpublish_v1.Streetviewpublish;
 export function streetviewpublish<T = streetviewpublish_v1.Streetviewpublish>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|streetviewpublish_v1.Options) {
-  return getAPI<T>('streetviewpublish', versionOrOptions, VERSIONS);
+  return getAPI<T>('streetviewpublish', versionOrOptions, VERSIONS, this);
 }

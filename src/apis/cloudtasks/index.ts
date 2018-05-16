@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudtasks_v2beta2} from './v2beta2';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function cloudtasks(version: 'v2beta2'): cloudtasks_v2beta2.Cloudtasks;
 export function cloudtasks(options: cloudtasks_v2beta2.Options):
     cloudtasks_v2beta2.Cloudtasks;
 export function cloudtasks<T = cloudtasks_v2beta2.Cloudtasks>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2beta2'|cloudtasks_v2beta2.Options) {
-  return getAPI<T>('cloudtasks', versionOrOptions, VERSIONS);
+  return getAPI<T>('cloudtasks', versionOrOptions, VERSIONS, this);
 }

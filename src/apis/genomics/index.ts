@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {genomics_v1} from './v1';
 import {genomics_v1alpha2} from './v1alpha2';
 import {genomics_v2alpha1} from './v2alpha1';
@@ -35,7 +35,8 @@ export function genomics(options: genomics_v2alpha1.Options):
 export function genomics<
     T = genomics_v1.Genomics | genomics_v1alpha2.Genomics |
         genomics_v2alpha1.Genomics>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|genomics_v1.Options|'v1alpha2'|
     genomics_v1alpha2.Options|'v2alpha1'|genomics_v2alpha1.Options) {
-  return getAPI<T>('genomics', versionOrOptions, VERSIONS);
+  return getAPI<T>('genomics', versionOrOptions, VERSIONS, this);
 }

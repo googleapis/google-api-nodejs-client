@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 
 import {androidpublisher_v1} from './v1';
 import {androidpublisher_v1_1} from './v1.1';
@@ -48,9 +48,10 @@ export function androidpublisher<
         androidpublisher_v1.Androidpublisher |
         androidpublisher_v2.Androidpublisher |
         androidpublisher_v3.Androidpublisher>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1_1'|
     androidpublisher_v1_1.Options|'v1'|
     androidpublisher_v1.Options|'v2'|
     androidpublisher_v2.Options|'v3'|androidpublisher_v3.Options) {
-  return getAPI<T>('androidpublisher', versionOrOptions, VERSIONS);
+  return getAPI<T>('androidpublisher', versionOrOptions, VERSIONS, this);
 }

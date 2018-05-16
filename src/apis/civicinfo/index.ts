@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {civicinfo_v2} from './v2';
 
 export const VERSIONS = {
@@ -23,7 +23,7 @@ export const VERSIONS = {
 export function civicinfo(version: 'v2'): civicinfo_v2.Civicinfo;
 export function civicinfo(options: civicinfo_v2.Options):
     civicinfo_v2.Civicinfo;
-export function civicinfo<T = civicinfo_v2.Civicinfo>(versionOrOptions: 'v2'|
-                                                      civicinfo_v2.Options) {
-  return getAPI<T>('civicinfo', versionOrOptions, VERSIONS);
+export function civicinfo<T = civicinfo_v2.Civicinfo>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|civicinfo_v2.Options) {
+  return getAPI<T>('civicinfo', versionOrOptions, VERSIONS, this);
 }

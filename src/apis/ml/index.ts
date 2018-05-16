@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {ml_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,6 +22,7 @@ export const VERSIONS = {
 
 export function ml(version: 'v1'): ml_v1.Ml;
 export function ml(options: ml_v1.Options): ml_v1.Ml;
-export function ml<T = ml_v1.Ml>(versionOrOptions: 'v1'|ml_v1.Options) {
-  return getAPI<T>('ml', versionOrOptions, VERSIONS);
+export function ml<T = ml_v1.Ml>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|ml_v1.Options) {
+  return getAPI<T>('ml', versionOrOptions, VERSIONS, this);
 }

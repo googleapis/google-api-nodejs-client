@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {toolresults_v1beta3} from './v1beta3';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function toolresults(version: 'v1beta3'):
 export function toolresults(options: toolresults_v1beta3.Options):
     toolresults_v1beta3.Toolresults;
 export function toolresults<T = toolresults_v1beta3.Toolresults>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta3'|toolresults_v1beta3.Options) {
-  return getAPI<T>('toolresults', versionOrOptions, VERSIONS);
+  return getAPI<T>('toolresults', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {slides_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function slides(version: 'v1'): slides_v1.Slides;
 export function slides(options: slides_v1.Options): slides_v1.Slides;
-export function slides<T = slides_v1.Slides>(versionOrOptions: 'v1'|
-                                             slides_v1.Options) {
-  return getAPI<T>('slides', versionOrOptions, VERSIONS);
+export function slides<T = slides_v1.Slides>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|slides_v1.Options) {
+  return getAPI<T>('slides', versionOrOptions, VERSIONS, this);
 }

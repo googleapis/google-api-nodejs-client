@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {appengine_v1} from './v1';
 import {appengine_v1alpha} from './v1alpha';
 import {appengine_v1beta} from './v1beta';
@@ -47,9 +47,10 @@ export function appengine<
     T = appengine_v1.Appengine | appengine_v1alpha.Appengine |
         appengine_v1beta.Appengine | appengine_v1beta4.Appengine |
         appengine_v1beta5.Appengine>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|appengine_v1.Options|'v1alpha'|
     appengine_v1alpha.Options|'v1beta'|
     appengine_v1beta.Options|'v1beta4'|
     appengine_v1beta4.Options|'v1beta5'|appengine_v1beta5.Options) {
-  return getAPI<T>('appengine', versionOrOptions, VERSIONS);
+  return getAPI<T>('appengine', versionOrOptions, VERSIONS, this);
 }

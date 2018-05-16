@@ -31,7 +31,7 @@ export namespace analyticsreporting_v4 {
   }
 
   /**
-   * Google Analytics Reporting API
+   * Analytics Reporting API
    *
    * Accesses Analytics report data.
    *
@@ -700,7 +700,7 @@ export namespace analyticsreporting_v4 {
     /**
      * Page size is for paging and specifies the maximum number of returned
      * rows. Page size should be &gt;= 0. A query returns the default of 1,000
-     * rows. The Analytics Core Reporting API returns a maximum of 10,000 rows
+     * rows. The Analytics Core Reporting API returns a maximum of 100,000 rows
      * per request, no matter how many you ask for. It can also return fewer
      * rows than requested, if there aren&#39;t as many dimension segments as
      * you expect. For instance, there are fewer than 300 possible values for

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {bigquerydatatransfer_v1} from './v1';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function bigquerydatatransfer(options: bigquerydatatransfer_v1.Options):
     bigquerydatatransfer_v1.Bigquerydatatransfer;
 export function
 bigquerydatatransfer<T = bigquerydatatransfer_v1.Bigquerydatatransfer>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|bigquerydatatransfer_v1.Options) {
-  return getAPI<T>('bigquerydatatransfer', versionOrOptions, VERSIONS);
+  return getAPI<T>('bigquerydatatransfer', versionOrOptions, VERSIONS, this);
 }

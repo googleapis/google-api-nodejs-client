@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {analytics_v2_4} from './v2.4';
 import {analytics_v3} from './v3';
 
@@ -30,6 +30,7 @@ export function analytics(options: analytics_v3.Options):
     analytics_v3.Analytics;
 export function
 analytics<T = analytics_v2_4.Analytics | analytics_v3.Analytics>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2_4'|analytics_v2_4.Options|'v3'|analytics_v3.Options) {
-  return getAPI<T>('analytics', versionOrOptions, VERSIONS);
+  return getAPI<T>('analytics', versionOrOptions, VERSIONS, this);
 }

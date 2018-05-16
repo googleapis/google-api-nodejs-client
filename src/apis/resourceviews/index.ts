@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {resourceviews_v1beta1} from './v1beta1';
 import {resourceviews_v1beta2} from './v1beta2';
 
@@ -33,7 +33,8 @@ export function resourceviews(options: resourceviews_v1beta2.Options):
 export function resourceviews<
     T = resourceviews_v1beta1.Resourceviews |
         resourceviews_v1beta2.Resourceviews>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|
     resourceviews_v1beta1.Options|'v1beta2'|resourceviews_v1beta2.Options) {
-  return getAPI<T>('resourceviews', versionOrOptions, VERSIONS);
+  return getAPI<T>('resourceviews', versionOrOptions, VERSIONS, this);
 }

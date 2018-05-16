@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {vault_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function vault(version: 'v1'): vault_v1.Vault;
 export function vault(options: vault_v1.Options): vault_v1.Vault;
-export function vault<T = vault_v1.Vault>(versionOrOptions: 'v1'|
-                                          vault_v1.Options) {
-  return getAPI<T>('vault', versionOrOptions, VERSIONS);
+export function vault<T = vault_v1.Vault>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|vault_v1.Options) {
+  return getAPI<T>('vault', versionOrOptions, VERSIONS, this);
 }

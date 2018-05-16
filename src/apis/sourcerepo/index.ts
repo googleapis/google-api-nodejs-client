@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {sourcerepo_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function sourcerepo(version: 'v1'): sourcerepo_v1.Sourcerepo;
 export function sourcerepo(options: sourcerepo_v1.Options):
     sourcerepo_v1.Sourcerepo;
 export function sourcerepo<T = sourcerepo_v1.Sourcerepo>(
-    versionOrOptions: 'v1'|sourcerepo_v1.Options) {
-  return getAPI<T>('sourcerepo', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|sourcerepo_v1.Options) {
+  return getAPI<T>('sourcerepo', versionOrOptions, VERSIONS, this);
 }

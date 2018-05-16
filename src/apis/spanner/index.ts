@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {spanner_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function spanner(version: 'v1'): spanner_v1.Spanner;
 export function spanner(options: spanner_v1.Options): spanner_v1.Spanner;
-export function spanner<T = spanner_v1.Spanner>(versionOrOptions: 'v1'|
-                                                spanner_v1.Options) {
-  return getAPI<T>('spanner', versionOrOptions, VERSIONS);
+export function spanner<T = spanner_v1.Spanner>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|spanner_v1.Options) {
+  return getAPI<T>('spanner', versionOrOptions, VERSIONS, this);
 }

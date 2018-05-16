@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {digitalassetlinks_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function digitalassetlinks(version: 'v1'):
 export function digitalassetlinks(options: digitalassetlinks_v1.Options):
     digitalassetlinks_v1.Digitalassetlinks;
 export function digitalassetlinks<T = digitalassetlinks_v1.Digitalassetlinks>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|digitalassetlinks_v1.Options) {
-  return getAPI<T>('digitalassetlinks', versionOrOptions, VERSIONS);
+  return getAPI<T>('digitalassetlinks', versionOrOptions, VERSIONS, this);
 }

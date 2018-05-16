@@ -16,7 +16,7 @@ import {GlobalOptions, GoogleConfigurable, ServiceOptions} from '.';
 export function getAPI<T>(
     api: string, options: ServiceOptions|string,
     // tslint:disable-next-line no-any
-    versions: {[index: string]: any}) {
+    versions: {[index: string]: any}, context?: GoogleConfigurable) {
   let version: string;
   if (typeof options === 'string') {
     version = options;
@@ -29,7 +29,7 @@ export function getAPI<T>(
   }
   try {
     const ctr = versions[version];
-    const ep = new ctr(options);
+    const ep = new ctr(options, context);
     return Object.freeze(ep) as T;
   } catch (e) {
     throw new Error(

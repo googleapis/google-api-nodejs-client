@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {dialogflow_v2} from './v2';
 import {dialogflow_v2beta1} from './v2beta1';
 
@@ -30,7 +30,8 @@ export function dialogflow(options: dialogflow_v2beta1.Options):
     dialogflow_v2beta1.Dialogflow;
 export function
 dialogflow<T = dialogflow_v2.Dialogflow | dialogflow_v2beta1.Dialogflow>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|dialogflow_v2.Options|'v2beta1'|
     dialogflow_v2beta1.Options) {
-  return getAPI<T>('dialogflow', versionOrOptions, VERSIONS);
+  return getAPI<T>('dialogflow', versionOrOptions, VERSIONS, this);
 }

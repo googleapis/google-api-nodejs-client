@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {doubleclicksearch_v2} from './v2';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function doubleclicksearch(version: 'v2'):
 export function doubleclicksearch(options: doubleclicksearch_v2.Options):
     doubleclicksearch_v2.Doubleclicksearch;
 export function doubleclicksearch<T = doubleclicksearch_v2.Doubleclicksearch>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|doubleclicksearch_v2.Options) {
-  return getAPI<T>('doubleclicksearch', versionOrOptions, VERSIONS);
+  return getAPI<T>('doubleclicksearch', versionOrOptions, VERSIONS, this);
 }

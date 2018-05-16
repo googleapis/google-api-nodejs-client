@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {drive_v2} from './v2';
 import {drive_v3} from './v3';
 
@@ -27,6 +27,7 @@ export function drive(options: drive_v2.Options): drive_v2.Drive;
 export function drive(version: 'v3'): drive_v3.Drive;
 export function drive(options: drive_v3.Options): drive_v3.Drive;
 export function drive<T = drive_v2.Drive | drive_v3.Drive>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|drive_v2.Options|'v3'|drive_v3.Options) {
-  return getAPI<T>('drive', versionOrOptions, VERSIONS);
+  return getAPI<T>('drive', versionOrOptions, VERSIONS, this);
 }

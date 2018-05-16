@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {firebaserules_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function firebaserules(version: 'v1'): firebaserules_v1.Firebaserules;
 export function firebaserules(options: firebaserules_v1.Options):
     firebaserules_v1.Firebaserules;
 export function firebaserules<T = firebaserules_v1.Firebaserules>(
-    versionOrOptions: 'v1'|firebaserules_v1.Options) {
-  return getAPI<T>('firebaserules', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|firebaserules_v1.Options) {
+  return getAPI<T>('firebaserules', versionOrOptions, VERSIONS, this);
 }

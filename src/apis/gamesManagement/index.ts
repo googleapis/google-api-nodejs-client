@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {gamesManagement_v1management} from './v1management';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function gamesManagement(options: gamesManagement_v1management.Options):
     gamesManagement_v1management.Gamesmanagement;
 export function
 gamesManagement<T = gamesManagement_v1management.Gamesmanagement>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1management'|gamesManagement_v1management.Options) {
-  return getAPI<T>('gamesManagement', versionOrOptions, VERSIONS);
+  return getAPI<T>('gamesManagement', versionOrOptions, VERSIONS, this);
 }

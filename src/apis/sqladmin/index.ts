@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {sqladmin_v1beta3} from './v1beta3';
 import {sqladmin_v1beta4} from './v1beta4';
 
@@ -30,7 +30,8 @@ export function sqladmin(options: sqladmin_v1beta4.Options):
     sqladmin_v1beta4.Sqladmin;
 export function
 sqladmin<T = sqladmin_v1beta3.Sqladmin | sqladmin_v1beta4.Sqladmin>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta3'|
     sqladmin_v1beta3.Options|'v1beta4'|sqladmin_v1beta4.Options) {
-  return getAPI<T>('sqladmin', versionOrOptions, VERSIONS);
+  return getAPI<T>('sqladmin', versionOrOptions, VERSIONS, this);
 }

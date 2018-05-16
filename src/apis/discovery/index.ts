@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {discovery_v1} from './v1';
 
 export const VERSIONS = {
@@ -23,7 +23,7 @@ export const VERSIONS = {
 export function discovery(version: 'v1'): discovery_v1.Discovery;
 export function discovery(options: discovery_v1.Options):
     discovery_v1.Discovery;
-export function discovery<T = discovery_v1.Discovery>(versionOrOptions: 'v1'|
-                                                      discovery_v1.Options) {
-  return getAPI<T>('discovery', versionOrOptions, VERSIONS);
+export function discovery<T = discovery_v1.Discovery>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|discovery_v1.Options) {
+  return getAPI<T>('discovery', versionOrOptions, VERSIONS, this);
 }

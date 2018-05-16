@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {acceleratedmobilepageurl_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,6 +27,8 @@ export function acceleratedmobilepageurl(
     acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
 export function acceleratedmobilepageurl<
     T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|acceleratedmobilepageurl_v1.Options) {
-  return getAPI<T>('acceleratedmobilepageurl', versionOrOptions, VERSIONS);
+  return getAPI<T>(
+      'acceleratedmobilepageurl', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {androidmanagement_v1} from './v1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function androidmanagement(version: 'v1'):
 export function androidmanagement(options: androidmanagement_v1.Options):
     androidmanagement_v1.Androidmanagement;
 export function androidmanagement<T = androidmanagement_v1.Androidmanagement>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|androidmanagement_v1.Options) {
-  return getAPI<T>('androidmanagement', versionOrOptions, VERSIONS);
+  return getAPI<T>('androidmanagement', versionOrOptions, VERSIONS, this);
 }

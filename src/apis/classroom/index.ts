@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {classroom_v1} from './v1';
 
 export const VERSIONS = {
@@ -23,7 +23,7 @@ export const VERSIONS = {
 export function classroom(version: 'v1'): classroom_v1.Classroom;
 export function classroom(options: classroom_v1.Options):
     classroom_v1.Classroom;
-export function classroom<T = classroom_v1.Classroom>(versionOrOptions: 'v1'|
-                                                      classroom_v1.Options) {
-  return getAPI<T>('classroom', versionOrOptions, VERSIONS);
+export function classroom<T = classroom_v1.Classroom>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|classroom_v1.Options) {
+  return getAPI<T>('classroom', versionOrOptions, VERSIONS, this);
 }

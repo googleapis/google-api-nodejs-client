@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {spectrum_v1explorer} from './v1explorer';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function spectrum(version: 'v1explorer'): spectrum_v1explorer.Spectrum;
 export function spectrum(options: spectrum_v1explorer.Options):
     spectrum_v1explorer.Spectrum;
 export function spectrum<T = spectrum_v1explorer.Spectrum>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1explorer'|spectrum_v1explorer.Options) {
-  return getAPI<T>('spectrum', versionOrOptions, VERSIONS);
+  return getAPI<T>('spectrum', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {webfonts_v1} from './v1';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function webfonts(version: 'v1'): webfonts_v1.Webfonts;
 export function webfonts(options: webfonts_v1.Options): webfonts_v1.Webfonts;
-export function webfonts<T = webfonts_v1.Webfonts>(versionOrOptions: 'v1'|
-                                                   webfonts_v1.Options) {
-  return getAPI<T>('webfonts', versionOrOptions, VERSIONS);
+export function webfonts<T = webfonts_v1.Webfonts>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|webfonts_v1.Options) {
+  return getAPI<T>('webfonts', versionOrOptions, VERSIONS, this);
 }

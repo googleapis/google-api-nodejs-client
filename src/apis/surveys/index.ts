@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {surveys_v2} from './v2';
 
 export const VERSIONS = {
@@ -22,7 +22,7 @@ export const VERSIONS = {
 
 export function surveys(version: 'v2'): surveys_v2.Surveys;
 export function surveys(options: surveys_v2.Options): surveys_v2.Surveys;
-export function surveys<T = surveys_v2.Surveys>(versionOrOptions: 'v2'|
-                                                surveys_v2.Options) {
-  return getAPI<T>('surveys', versionOrOptions, VERSIONS);
+export function surveys<T = surveys_v2.Surveys>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|surveys_v2.Options) {
+  return getAPI<T>('surveys', versionOrOptions, VERSIONS, this);
 }

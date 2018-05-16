@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudresourcemanager_v1} from './v1';
 import {cloudresourcemanager_v1beta1} from './v1beta1';
 import {cloudresourcemanager_v2} from './v2';
@@ -49,10 +49,11 @@ export function cloudresourcemanager<
         cloudresourcemanager_v1beta1.Cloudresourcemanager |
         cloudresourcemanager_v2.Cloudresourcemanager |
         cloudresourcemanager_v2beta1.Cloudresourcemanager>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|
     cloudresourcemanager_v1.Options|'v1beta1'|
     cloudresourcemanager_v1beta1.Options|'v2'|
     cloudresourcemanager_v2.Options|'v2beta1'|
     cloudresourcemanager_v2beta1.Options) {
-  return getAPI<T>('cloudresourcemanager', versionOrOptions, VERSIONS);
+  return getAPI<T>('cloudresourcemanager', versionOrOptions, VERSIONS, this);
 }

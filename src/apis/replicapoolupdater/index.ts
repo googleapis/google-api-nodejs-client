@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {replicapoolupdater_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function replicapoolupdater(options: replicapoolupdater_v1beta1.Options):
     replicapoolupdater_v1beta1.Replicapoolupdater;
 export function
 replicapoolupdater<T = replicapoolupdater_v1beta1.Replicapoolupdater>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|replicapoolupdater_v1beta1.Options) {
-  return getAPI<T>('replicapoolupdater', versionOrOptions, VERSIONS);
+  return getAPI<T>('replicapoolupdater', versionOrOptions, VERSIONS, this);
 }

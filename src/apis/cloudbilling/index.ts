@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {cloudbilling_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function cloudbilling(version: 'v1'): cloudbilling_v1.Cloudbilling;
 export function cloudbilling(options: cloudbilling_v1.Options):
     cloudbilling_v1.Cloudbilling;
 export function cloudbilling<T = cloudbilling_v1.Cloudbilling>(
-    versionOrOptions: 'v1'|cloudbilling_v1.Options) {
-  return getAPI<T>('cloudbilling', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudbilling_v1.Options) {
+  return getAPI<T>('cloudbilling', versionOrOptions, VERSIONS, this);
 }

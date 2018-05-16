@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {adsensehost_v4_1} from './v4.1';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function adsensehost(version: 'v4_1'): adsensehost_v4_1.Adsensehost;
 export function adsensehost(options: adsensehost_v4_1.Options):
     adsensehost_v4_1.Adsensehost;
 export function adsensehost<T = adsensehost_v4_1.Adsensehost>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v4_1'|adsensehost_v4_1.Options) {
-  return getAPI<T>('adsensehost', versionOrOptions, VERSIONS);
+  return getAPI<T>('adsensehost', versionOrOptions, VERSIONS, this);
 }

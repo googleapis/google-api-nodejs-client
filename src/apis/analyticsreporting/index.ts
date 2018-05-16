@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {analyticsreporting_v4} from './v4';
 
 export const VERSIONS = {
@@ -26,6 +26,7 @@ export function analyticsreporting(options: analyticsreporting_v4.Options):
     analyticsreporting_v4.Analyticsreporting;
 export function
 analyticsreporting<T = analyticsreporting_v4.Analyticsreporting>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v4'|analyticsreporting_v4.Options) {
-  return getAPI<T>('analyticsreporting', versionOrOptions, VERSIONS);
+  return getAPI<T>('analyticsreporting', versionOrOptions, VERSIONS, this);
 }

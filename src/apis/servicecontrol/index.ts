@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {servicecontrol_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,7 @@ export function servicecontrol(version: 'v1'): servicecontrol_v1.Servicecontrol;
 export function servicecontrol(options: servicecontrol_v1.Options):
     servicecontrol_v1.Servicecontrol;
 export function servicecontrol<T = servicecontrol_v1.Servicecontrol>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|servicecontrol_v1.Options) {
-  return getAPI<T>('servicecontrol', versionOrOptions, VERSIONS);
+  return getAPI<T>('servicecontrol', versionOrOptions, VERSIONS, this);
 }

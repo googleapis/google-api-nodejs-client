@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {jobs_v2} from './v2';
 
 export const VERSIONS = {
@@ -22,6 +22,7 @@ export const VERSIONS = {
 
 export function jobs(version: 'v2'): jobs_v2.Jobs;
 export function jobs(options: jobs_v2.Options): jobs_v2.Jobs;
-export function jobs<T = jobs_v2.Jobs>(versionOrOptions: 'v2'|jobs_v2.Options) {
-  return getAPI<T>('jobs', versionOrOptions, VERSIONS);
+export function jobs<T = jobs_v2.Jobs>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|jobs_v2.Options) {
+  return getAPI<T>('jobs', versionOrOptions, VERSIONS, this);
 }

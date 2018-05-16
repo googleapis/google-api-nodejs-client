@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {photoslibrary_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function photoslibrary(version: 'v1'): photoslibrary_v1.Photoslibrary;
 export function photoslibrary(options: photoslibrary_v1.Options):
     photoslibrary_v1.Photoslibrary;
 export function photoslibrary<T = photoslibrary_v1.Photoslibrary>(
-    versionOrOptions: 'v1'|photoslibrary_v1.Options) {
-  return getAPI<T>('photoslibrary', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|photoslibrary_v1.Options) {
+  return getAPI<T>('photoslibrary', versionOrOptions, VERSIONS, this);
 }

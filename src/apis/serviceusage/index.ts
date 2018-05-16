@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {serviceusage_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
@@ -25,6 +25,7 @@ export function serviceusage(version: 'v1beta1'):
 export function serviceusage(options: serviceusage_v1beta1.Options):
     serviceusage_v1beta1.Serviceusage;
 export function serviceusage<T = serviceusage_v1beta1.Serviceusage>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1beta1'|serviceusage_v1beta1.Options) {
-  return getAPI<T>('serviceusage', versionOrOptions, VERSIONS);
+  return getAPI<T>('serviceusage', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {logging_v2} from './v2';
 import {logging_v2beta1} from './v2beta1';
 
@@ -28,7 +28,8 @@ export function logging(version: 'v2beta1'): logging_v2beta1.Logging;
 export function logging(options: logging_v2beta1.Options):
     logging_v2beta1.Logging;
 export function logging<T = logging_v2.Logging | logging_v2beta1.Logging>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v2'|logging_v2.Options|'v2beta1'|
     logging_v2beta1.Options) {
-  return getAPI<T>('logging', versionOrOptions, VERSIONS);
+  return getAPI<T>('logging', versionOrOptions, VERSIONS, this);
 }

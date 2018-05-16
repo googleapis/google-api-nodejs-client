@@ -13,12 +13,10 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import * as path from 'path';
-import * as util from 'util';
-import { ServiceOptions } from '../shared/src';
+import { ServiceOptions, getAPI } from '../shared/src';
+
 {% for apiName, api in apis %}
-  {% for versionName, version in api %}import { {{ apiName }}_{{ version|replace('.','_') }} } from './{{ apiName }}/{{ version }}';
-{% endfor %}
+  import * as {{ apiName }} from './{{ apiName }}';
 {% endfor %}
 
 export interface APIList {
@@ -27,44 +25,13 @@ export interface APIList {
 }
 
 export const APIS: APIList = {
-  {% for apiName, api in apis %}{{ apiName }}: {
-    {% for versionName, version in api %}'{{ version }}': {{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}},
-    {% endfor %}
-  },
+  {% for apiName, api in apis %}
+    {{ apiName }}: {{ apiName }}.VERSIONS,
   {% endfor %}
 };
 
 export class GeneratedAPIs {
-  // tslint:disable-next-line no-any
-  private getAPI<T = any>(api: string, options: ServiceOptions|string) {
-    let version: string;
-    if (typeof options === 'string') {
-      version = options;
-      options = {};
-    } else if (typeof options === 'object') {
-      version = options.version!;
-      delete options.version;
-    } else {
-      throw new Error('Argument error: Accepts only string or object');
-    }
-    try {
-      const endpoint = APIS[api][path.basename(version)];
-      const ep = new endpoint(options, this);
-      return Object.freeze(ep) as T;
-    } catch (e) {
-      throw new Error(
-          `Unable to load endpoint ${api}("${version}"): ${e.message}`);
-    }
-  }
-
 {% for apiName, api in apis %}
-  {% for versionName, version in api %}
-    {% set Version = version|replace('.','_') %}
-    {{ apiName }}(version: '{{ Version }}'): {{ apiName }}_{{ Version }}.{{ apiName|capitalize }};
-    {{ apiName }}(options: {{ apiName }}_{{ Version }}.Options): {{ apiName }}_{{ Version }}.{{ apiName|capitalize }};
-  {% endfor %}
-  {{ apiName }}<T = {% for versionName, version in api %}{{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(versionOrOptions: {% for versionName, version in api %}'{{ version|replace('.','_') }}'|{{ apiName }}_{{ version|replace('.','_') }}.Options{% if not loop.last %}|{% endif %}{% endfor %}) {
-    return this.getAPI<T>('{{ apiName }}', versionOrOptions);
-  }
+  {{ apiName }} = {{ apiName }}.{{ apiName }}.bind(this);
 {% endfor %}
 }

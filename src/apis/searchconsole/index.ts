@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {searchconsole_v1} from './v1';
 
 export const VERSIONS = {
@@ -24,6 +24,6 @@ export function searchconsole(version: 'v1'): searchconsole_v1.Searchconsole;
 export function searchconsole(options: searchconsole_v1.Options):
     searchconsole_v1.Searchconsole;
 export function searchconsole<T = searchconsole_v1.Searchconsole>(
-    versionOrOptions: 'v1'|searchconsole_v1.Options) {
-  return getAPI<T>('searchconsole', versionOrOptions, VERSIONS);
+    this: GoogleConfigurable, versionOrOptions: 'v1'|searchconsole_v1.Options) {
+  return getAPI<T>('searchconsole', versionOrOptions, VERSIONS, this);
 }

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from '../../shared/src';
 import {abusiveexperiencereport_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,6 +27,7 @@ export function abusiveexperiencereport(
     abusiveexperiencereport_v1.Abusiveexperiencereport;
 export function
 abusiveexperiencereport<T = abusiveexperiencereport_v1.Abusiveexperiencereport>(
+    this: GoogleConfigurable,
     versionOrOptions: 'v1'|abusiveexperiencereport_v1.Options) {
-  return getAPI<T>('abusiveexperiencereport', versionOrOptions, VERSIONS);
+  return getAPI<T>('abusiveexperiencereport', versionOrOptions, VERSIONS, this);
 }
