@@ -197,7 +197,7 @@ oauth2client.setCredentials({
 });
 ```
 
-Once the client has a refresh token, access tokens will be acquired and refreshed automatically.
+Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API. You can use the `oauth2Client.refreshAccessToken()` method for this purpose, returning the tokens in the response.
 
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
