@@ -1,6 +1,6 @@
 {
   "name": "googleapis-common",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A common tooling library used by the googleapis npm module. You probably don't want to use this directly.",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
