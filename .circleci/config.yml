@@ -122,17 +122,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Switch to the common directory
-          command: cd src/shared
-      - run:
           name: Install modules and dependencies.
-          command: npm install
+          command: cd src/shared && npm install
       - run:
           name: Set NPM authentication.
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run:
          name: Publish the module to npm.
-         command: npm publish --access=public
+         command: cd src/shared && npm publish --access=public
 
   publish_npm:
     docker:
