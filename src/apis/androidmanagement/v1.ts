@@ -117,6 +117,19 @@ export namespace androidmanagement_v1 {
     title?: string;
   }
   /**
+   * An app-related event.
+   */
+  export interface Schema$ApplicationEvent {
+    /**
+     * The creation time of the event.
+     */
+    createTime?: string;
+    /**
+     * App event type.
+     */
+    eventType?: string;
+  }
+  /**
    * A permission required by the app.
    */
   export interface Schema$ApplicationPermission {
@@ -149,6 +162,10 @@ export namespace androidmanagement_v1 {
      * The scopes delegated to the app from Android Device Policy.
      */
     delegatedScopes?: string[];
+    /**
+     * Whether the app should be disabled, but app data is preserved.
+     */
+    disabled?: boolean;
     /**
      * The type of installation to perform.
      */
@@ -198,6 +215,82 @@ export namespace androidmanagement_v1 {
      * apps.
      */
     permissionGrants?: Schema$PermissionGrant[];
+  }
+  /**
+   * Information reported about an installed app.
+   */
+  export interface Schema$ApplicationReport {
+    /**
+     * The source of the package.
+     */
+    applicationSource?: string;
+    /**
+     * The display name of the app.
+     */
+    displayName?: string;
+    /**
+     * List of app events. The most recent 20 events are stored in the list.
+     */
+    events?: Schema$ApplicationEvent[];
+    /**
+     * The package name of the app that installed this app.
+     */
+    installerPackageName?: string;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * The SHA-256 hash of the app&#39;s APK file, which can be used to verify
+     * the app hasn&#39;t been modified. Each byte of the hash value is
+     * represented as a two-digit hexadecimal number.
+     */
+    packageSha256Hash?: string;
+    /**
+     * The SHA-1 hash of each android.content.pm.Signature
+     * (https://developer.android.com/reference/android/content/pm/Signature.html)
+     * associated with the app package. Each byte of each hash value is
+     * represented as a two-digit hexadecimal number.
+     */
+    signingKeyCertFingerprints?: string[];
+    /**
+     * Application state.
+     */
+    state?: string;
+    /**
+     * The app version code, which can be used to determine whether one version
+     * is more recent than another.
+     */
+    versionCode?: number;
+    /**
+     * The app version as displayed to the user.
+     */
+    versionName?: string;
+  }
+  /**
+   * A rule for automatically choosing a private key and certificate to
+   * authenticate the device to a server.
+   */
+  export interface Schema$ChoosePrivateKeyRule {
+    /**
+     * The package names for which outgoing requests are subject to this rule.
+     * If no package names are specified, then the rule applies to all packages.
+     * For each package name listed, the rule applies to that package and all
+     * other packages that shared the same Android UID. The SHA256 hash of the
+     * signing key signatures of each package_name will be verified against
+     * those provided by Play
+     */
+    packageNames?: string[];
+    /**
+     * The alias of the private key to be used.
+     */
+    privateKeyAlias?: string;
+    /**
+     * The URL pattern to match against the URL of the outgoing request. The
+     * pattern may contain asterisk (*) wildcards. Any URL is matched if
+     * unspecified.
+     */
+    urlPattern?: string;
   }
   /**
    * A command.
@@ -275,6 +368,12 @@ export namespace androidmanagement_v1 {
      * The API level of the Android platform version running on the device.
      */
     apiLevel?: number;
+    /**
+     * Reports for apps installed on the device. This information is only
+     * available when application_reports_enabled is true in the device&#39;s
+     * policy.
+     */
+    applicationReports?: Schema$ApplicationReport[];
     /**
      * The name of the policy currently applied to the device.
      */
@@ -1138,6 +1237,13 @@ export namespace androidmanagement_v1 {
      */
     cellBroadcastsConfigDisabled?: boolean;
     /**
+     * Rules for automatically choosing a private key and certificate to
+     * authenticate the device to a server. The rules are ordered by increasing
+     * precedence, so if an outgoing request matches more than one rule, the
+     * last rule defines which private key to use.
+     */
+    choosePrivateKeyRules?: Schema$ChoosePrivateKeyRule[];
+    /**
      * Rules declaring which mitigating actions to take when a device is not
      * compliant with its policy. When the conditions for multiple rules are
      * satisfied, all of the mitigating actions for the rules are taken. There
@@ -1292,6 +1398,12 @@ export namespace androidmanagement_v1 {
      * Default intent handler activities.
      */
     persistentPreferredActivities?: Schema$PersistentPreferredActivity[];
+    /**
+     * Allows showing UI on a device for a user to choose a private key alias if
+     * there are no matching rules in ChoosePrivateKeyRules. For devices below
+     * Android P, setting this may leave enterprise keys vulnerable.
+     */
+    privateKeySelectionEnabled?: boolean;
     /**
      * The network-independent global HTTP proxy. Typically proxies should be
      * configured per-network in open_network_configuration. However for unusual
@@ -1559,6 +1671,10 @@ export namespace androidmanagement_v1 {
    * Settings controlling the behavior of status reports.
    */
   export interface Schema$StatusReportingSettings {
+    /**
+     * Whether app reports are enabled.
+     */
+    applicationReportsEnabled?: boolean;
     /**
      * Whether device settings reporting is enabled.
      */

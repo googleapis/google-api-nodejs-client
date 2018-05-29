@@ -122,19 +122,19 @@ export namespace sheets_v4 {
   }
   /**
    * Creates a group over the specified range.  If the requested range is a
-   * superset of the range of an existing group G, then the depth of G will be
-   * incremented and this new group G&#39; will have the depth of that group.
-   * For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth
-   * 1] and [C:D, depth 2]. If the requested range is a subset of the range of
-   * an existing group G, then the depth of the new group G&#39; will be one
+   * superset of the range of an existing group G, then the depth of G is
+   * incremented and this new group G&#39; has the depth of that group. For
+   * example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1]
+   * and [C:D, depth 2]. If the requested range is a subset of the range of an
+   * existing group G, then the depth of the new group G&#39; becomes one
    * greater than the depth of G. For example, a group [B:E, depth 1] + [C:D]
    * results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range
    * starts before and ends within, or starts within and ends after, the range
-   * of an existing group G, then the range of the existing group G will become
-   * the union of the ranges, and the new group G&#39; will have depth one
-   * greater than the depth of G and range as the intersection of the ranges.
-   * For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth
-   * 1] and [C:D, depth 2].
+   * of an existing group G, then the range of the existing group G becomes the
+   * union of the ranges, and the new group G&#39; has depth one greater than
+   * the depth of G and range as the intersection of the ranges. For example, a
+   * group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D,
+   * depth 2].
    */
   export interface Schema$AddDimensionGroupRequest {
     /**
@@ -331,9 +331,9 @@ export namespace sheets_v4 {
      */
     bandedRangeId?: number;
     /**
-     * Properties for column bands. These properties will be applied on a
-     * column- by-column basis throughout all the columns in the range. At least
-     * one of row_properties or column_properties must be specified.
+     * Properties for column bands. These properties are applied on a column-
+     * by-column basis throughout all the columns in the range. At least one of
+     * row_properties or column_properties must be specified.
      */
     columnProperties?: Schema$BandingProperties;
     /**
@@ -341,8 +341,8 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * Properties for row bands. These properties will be applied on a
-     * row-by-row basis throughout all the rows in the range. At least one of
+     * Properties for row bands. These properties are applied on a row-by-row
+     * basis throughout all the rows in the range. At least one of
      * row_properties or column_properties must be specified.
      */
     rowProperties?: Schema$BandingProperties;
@@ -431,7 +431,7 @@ export namespace sheets_v4 {
   export interface Schema$BasicChartSeries {
     /**
      * The color for elements (i.e. bars, lines, points) associated with this
-     * series.  If empty, a default color will be used.
+     * series.  If empty, a default color is used.
      */
     color?: Schema$Color;
     /**
@@ -853,7 +853,7 @@ export namespace sheets_v4 {
   export interface Schema$BooleanRule {
     /**
      * The condition of the rule. If the condition evaluates to true, the format
-     * will be applied.
+     * is applied.
      */
     condition?: Schema$BooleanCondition;
     /**
@@ -949,9 +949,9 @@ export namespace sheets_v4 {
     domain?: Schema$ChartData;
     /**
      * The data containing the bubble group IDs. All bubbles with the same group
-     * ID will be drawn in the same color. If bubble_sizes is specified then
-     * this field must also be specified but may contain blank values. This
-     * field is optional.
+     * ID are drawn in the same color. If bubble_sizes is specified then this
+     * field must also be specified but may contain blank values. This field is
+     * optional.
      */
     groupIds?: Schema$ChartData;
     /**
@@ -1048,9 +1048,9 @@ export namespace sheets_v4 {
      */
     effectiveFormat?: Schema$CellFormat;
     /**
-     * The effective value of the cell. For cells with formulas, this will be
-     * the calculated value.  For cells with literals, this will be the same as
-     * the user_entered_value. This field is read-only.
+     * The effective value of the cell. For cells with formulas, this is the
+     * calculated value.  For cells with literals, this is the same as the
+     * user_entered_value. This field is read-only.
      */
     effectiveValue?: Schema$ExtendedValue;
     /**
@@ -1084,7 +1084,7 @@ export namespace sheets_v4 {
      * subsequent run (and properties of the first run will continue the
      * properties of the cell unless explicitly changed).  When writing, the new
      * runs will overwrite any prior runs.  When writing a new
-     * user_entered_value, previous runs will be erased.
+     * user_entered_value, previous runs are erased.
      */
     textFormatRuns?: Schema$TextFormatRun[];
     /**
@@ -1384,8 +1384,8 @@ export namespace sheets_v4 {
      */
     gradientRule?: Schema$GradientRule;
     /**
-     * The ranges that will be formatted if the condition is true. All the
-     * ranges must be on the same grid.
+     * The ranges that are formatted if the condition is true. All the ranges
+     * must be on the same grid.
      */
     ranges?: Schema$GridRange[];
   }
@@ -1401,9 +1401,9 @@ export namespace sheets_v4 {
      */
     relativeDate?: string;
     /**
-     * A value the condition is based on. The value will be parsed as if the
-     * user typed into a cell. Formulas are supported (and must begin with an
-     * `=` or a &#39;+&#39;).
+     * A value the condition is based on. The value is parsed as if the user
+     * typed into a cell. Formulas are supported (and must begin with an `=` or
+     * a &#39;+&#39;).
      */
     userEnteredValue?: string;
   }
@@ -1612,8 +1612,8 @@ export namespace sheets_v4 {
   /**
    * Deletes a group over the specified range by decrementing the depth of the
    * dimensions in the range.  For example, assume the sheet has a depth-1 group
-   * over B:E and a depth-2 group over C:D. Deleting a group over D:E would
-   * leave the sheet with a depth-1 group over B:D and a depth-2 group over C:C.
+   * over B:E and a depth-2 group over C:D. Deleting a group over D:E leaves the
+   * sheet with a depth-1 group over B:D and a depth-2 group over C:C.
    */
   export interface Schema$DeleteDimensionGroupRequest {
     /**
@@ -1708,7 +1708,7 @@ export namespace sheets_v4 {
    * metadata is associated with row 5 and another row is then subsequently
    * inserted above row 5, that original metadata will still be associated with
    * the row it was first associated with (what is now row 6). If the associated
-   * object is deleted its metadata will be deleted too.
+   * object is deleted its metadata is deleted too.
    */
   export interface Schema$DeveloperMetadata {
     /**
@@ -1829,13 +1829,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$DimensionGroup {
     /**
-     * True if this group is collapsed. A collapsed group will remain collapsed
-     * if an overlapping group at a shallower depth is expanded.  collapsed ==
-     * true does not imply that all dimensions within the group are hidden,
-     * since a dimension&#39;s visibility can change independently from this
-     * group property. However, when this property is updated, all dimensions
-     * within it will be set to hidden if collapsed == true, or set to visible
-     * if collapsed == false.
+     * This field is true if this group is collapsed. A collapsed group remains
+     * collapsed if an overlapping group at a shallower depth is expanded.  A
+     * true value does not imply that all dimensions within the group are
+     * hidden, since a dimension&#39;s visibility can change independently from
+     * this group property. However, when this property is updated, all
+     * dimensions within it are set to hidden if this field is true, or set to
+     * visible if this field is false.
      */
     collapsed?: boolean;
     /**
@@ -1984,8 +1984,8 @@ export namespace sheets_v4 {
    */
   export interface Schema$EmbeddedObjectPosition {
     /**
-     * If true, the embedded object will be put on a new sheet whose ID is
-     * chosen for you. Used only when writing.
+     * If true, the embedded object is put on a new sheet whose ID is chosen for
+     * you. Used only when writing.
      */
     newSheet?: boolean;
     /**
@@ -2362,40 +2362,40 @@ export namespace sheets_v4 {
   /**
    * Allows you to organize the numeric values in a source data column into
    * buckets of a constant size. All values from HistogramRule.start to
-   * HistogramRule.end will be placed into groups of size
-   * HistogramRule.interval. In addition, all values below HistogramRule.start
-   * will be placed in one group, and all values above HistogramRule.end will be
-   * placed in another. Only HistogramRule.interval is required, though if
-   * HistogramRule.start and HistogramRule.end are both provided,
-   * HistogramRule.start must be less than HistogramRule.end. For example, a
-   * pivot table showing average purchase amount by age that has 50+ rows:
-   * +-----+-------------------+     | Age | AVERAGE of Amount |
-   * +-----+-------------------+     | 16  |            $27.13 |     | 17  |
-   * $5.24 |     | 18  |            $20.15 |     ... +-----+-------------------+
-   * could be turned into a pivot table that looks like the one below by
-   * applying a histogram group rule with a HistogramRule.start of 25, an
-   * HistogramRule.interval of 20, and an HistogramRule.end of 65.
-   * +-------------+-------------------+     | Grouped Age | AVERAGE of Amount |
-   * +-------------+-------------------+     | &lt; 25        | $19.34 |     |
-   * 25-45       |            $31.43 |     | 45-65       |            $35.87 |
-   * | &gt; 65        |            $27.55 | +-------------+-------------------+
-   * | Grand Total |            $29.12 |     +-------------+-------------------+
+   * HistogramRule.end are placed into groups of size HistogramRule.interval. In
+   * addition, all values below HistogramRule.start are placed in one group, and
+   * all values above HistogramRule.end are placed in another. Only
+   * HistogramRule.interval is required, though if HistogramRule.start and
+   * HistogramRule.end are both provided, HistogramRule.start must be less than
+   * HistogramRule.end. For example, a pivot table showing average purchase
+   * amount by age that has 50+ rows:      +-----+-------------------+     | Age
+   * | AVERAGE of Amount |     +-----+-------------------+     | 16  | $27.13 |
+   * | 17  |             $5.24 |     | 18  |            $20.15 |     ...
+   * +-----+-------------------+ could be turned into a pivot table that looks
+   * like the one below by applying a histogram group rule with a
+   * HistogramRule.start of 25, an HistogramRule.interval of 20, and an
+   * HistogramRule.end of 65.      +-------------+-------------------+     |
+   * Grouped Age | AVERAGE of Amount |     +-------------+-------------------+
+   * | &lt; 25        |            $19.34 |     | 25-45       | $31.43 |     |
+   * 45-65       |            $35.87 |     | &gt; 65        |            $27.55
+   * |     +-------------+-------------------+     | Grand Total | $29.12 |
+   * +-------------+-------------------+
    */
   export interface Schema$HistogramRule {
     /**
-     * The maximum value at which items will be placed into buckets of constant
-     * size. Values above end will be lumped into a single bucket. This field is
+     * The maximum value at which items are placed into buckets of constant
+     * size. Values above end are lumped into a single bucket. This field is
      * optional.
      */
     end?: number;
     /**
-     * The size of the buckets that will be created. Must be positive.
+     * The size of the buckets that are created. Must be positive.
      */
     interval?: number;
     /**
-     * The minimum value at which items will be placed into buckets of constant
-     * size. Values below start will be lumped into a single bucket. This field
-     * is optional.
+     * The minimum value at which items are placed into buckets of constant
+     * size. Values below start are lumped into a single bucket. This field is
+     * optional.
      */
     start?: number;
   }
@@ -2506,12 +2506,12 @@ export namespace sheets_v4 {
    * State | SUM of Population |     +-------+-------------------+     | AK    |
    * 0.7 |     | AL    |               4.8 |     | AR    |               2.9 |
    * ...     +-------+-------------------+ could be turned into a pivot table
-   * that aggregates population by time zone by providing a list of groups (e.g.
-   * groupName = &#39;Central&#39;, items = [&#39;AL&#39;, &#39;AR&#39;,
-   * &#39;IA&#39;, ...]) to a manual group rule. Note that a similar effect
-   * could be achieved by adding a time zone column to the source data and
-   * adjusting the pivot table.      +-----------+-------------------+     |
-   * Time Zone | SUM of Population |     +-----------+-------------------+     |
+   * that aggregates population by time zone by providing a list of groups (for
+   * example, groupName = &#39;Central&#39;, items = [&#39;AL&#39;,
+   * &#39;AR&#39;, &#39;IA&#39;, ...]) to a manual group rule. Note that a
+   * similar effect could be achieved by adding a time zone column to the source
+   * data and adjusting the pivot table.      +-----------+-------------------+
+   * | Time Zone | SUM of Population |     +-----------+-------------------+ |
    * Central   |             106.3 |     | Eastern   |             151.9 |     |
    * Mountain  |              17.4 |     ... +-----------+-------------------+
    */
@@ -2812,7 +2812,7 @@ export namespace sheets_v4 {
     label?: string;
     /**
      * True if the headings in this pivot group should be repeated. This is only
-     * valid for row groupings and will be ignored by columns.  By default, we
+     * valid for row groupings and is ignored by columns.  By default, we
      * minimize repitition of headings by not showing higher level headings
      * where they are the same. For example, even though the third row below
      * corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it
@@ -2913,12 +2913,12 @@ export namespace sheets_v4 {
      */
     columns?: Schema$PivotGroup[];
     /**
-     * An optional mapping of filters per source column offset.  The filters
-     * will be applied before aggregating data into the pivot table. The
-     * map&#39;s key is the column offset of the source range that you want to
-     * filter, and the value is the criteria for that column.  For example, if
-     * the source was `C10:E15`, a key of `0` will have the filter for column
-     * `C`, whereas the key `1` is for column `D`.
+     * An optional mapping of filters per source column offset.  The filters are
+     * applied before aggregating data into the pivot table. The map&#39;s key
+     * is the column offset of the source range that you want to filter, and the
+     * value is the criteria for that column.  For example, if the source was
+     * `C10:E15`, a key of `0` will have the filter for column `C`, whereas the
+     * key `1` is for column `D`.
      */
     criteria?: any;
     /**
@@ -2947,8 +2947,8 @@ export namespace sheets_v4 {
      * If specified, indicates that pivot values should be displayed as the
      * result of a calculation with another pivot value. For example, if
      * calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the
-     * pivot values will be displayed as the percentage of the grand total. In
-     * the Sheets UI, this is referred to as &quot;Show As&quot; in the value
+     * pivot values are displayed as the percentage of the grand total. In the
+     * Sheets UI, this is referred to as &quot;Show As&quot; in the value
      * section of a pivot table.
      */
     calculatedDisplayType?: string;
@@ -3423,7 +3423,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Sheet {
     /**
-     * The banded (i.e. alternating colors) ranges on this sheet.
+     * The banded (alternating colors) ranges on this sheet.
      */
     bandedRanges?: Schema$BandedRange[];
     /**
@@ -3496,12 +3496,12 @@ export namespace sheets_v4 {
     hidden?: boolean;
     /**
      * The index of the sheet within the spreadsheet. When adding or updating
-     * sheet properties, if this field is excluded then the sheet will be added
-     * or moved to the end of the sheet list. When updating sheet indices or
+     * sheet properties, if this field is excluded then the sheet is added or
+     * moved to the end of the sheet list. When updating sheet indices or
      * inserting sheets, movement is considered in &quot;before the move&quot;
      * indexes. For example, if there were 3 sheets (S1, S2, S3) in order to
      * move S1 ahead of S2 the index would have to be set to 2. A sheet index
-     * update request will be ignored if the requested index is identical to the
+     * update request is ignored if the requested index is identical to the
      * sheets current index or if the requested new index is equal to the
      * current sheet index + 1.
      */
@@ -3769,10 +3769,10 @@ export namespace sheets_v4 {
   export interface Schema$TreemapChartSpec {
     /**
      * The data that determines the background color of each treemap data cell.
-     * This field is optional. If not specified, size_data will be used to
-     * determine background colors. If specified, the data is expected to be
-     * numeric. color_scale will determine how the values in this data map to
-     * data cell background colors.
+     * This field is optional. If not specified, size_data is used to determine
+     * background colors. If specified, the data is expected to be numeric.
+     * color_scale will determine how the values in this data map to data cell
+     * background colors.
      */
     colorData?: Schema$ChartData;
     /**
@@ -3833,8 +3833,8 @@ export namespace sheets_v4 {
     /**
      * The data that determines the size of each treemap data cell. This data is
      * expected to be numeric. The cells corresponding to non-numeric or missing
-     * data will not be rendered. If color_data is not specified, this data will
-     * be used to determine data cell background colors as well.
+     * data will not be rendered. If color_data is not specified, this data is
+     * used to determine data cell background colors as well.
      */
     sizeData?: Schema$ChartData;
     /**
@@ -6816,7 +6816,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
      * @param {string} params.range The A1 notation of the values to update.
-     * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {string=} params.valueInputOption How the input data should be interpreted.
@@ -7118,7 +7118,7 @@ export namespace sheets_v4 {
      * Determines how dates, times, and durations in the response should be
      * rendered. This is ignored if response_value_render_option is
      * FORMATTED_VALUE. The default dateTime render option is
-     * [DateTimeRenderOption.SERIAL_NUMBER].
+     * DateTimeRenderOption.SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**

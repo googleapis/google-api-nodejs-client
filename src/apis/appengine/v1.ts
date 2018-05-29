@@ -213,6 +213,14 @@ export namespace appengine_v1 {
      */
     id?: string;
     /**
+     * Only applicable if this certificate is managed by App Engine. Managed
+     * certificates are tied to the lifecycle of a DomainMapping and cannot be
+     * updated or deleted via the AuthorizedCertificates API. If this
+     * certificate is manually administered by the user, this field will be
+     * empty.@OutputOnly
+     */
+    managedCertificate?: Schema$ManagedCertificate;
+    /**
      * Full path to the AuthorizedCertificate resource in the API. Example:
      * apps/myapp/authorizedCertificates/12345.@OutputOnly
      */
@@ -1018,6 +1026,23 @@ export namespace appengine_v1 {
     standardEnvironmentAvailable?: boolean;
   }
   /**
+   * A certificate managed by App Engine.
+   */
+  export interface Schema$ManagedCertificate {
+    /**
+     * Time at which the certificate was last renewed. The renewal process is
+     * fully managed. Certificate renewal will automatically occur before the
+     * certificate expires. Renewal errors can be tracked via
+     * ManagementStatus.@OutputOnly
+     */
+    lastRenewalTime?: string;
+    /**
+     * Status of certificate management. Refers to the most recent certificate
+     * acquisition or renewal attempt.@OutputOnly
+     */
+    status?: string;
+  }
+  /**
    * A service with manual scaling runs continuously, allowing you to perform
    * complex initialization and rely on the state of its memory over time.
    */
@@ -1436,9 +1461,30 @@ export namespace appengine_v1 {
   export interface Schema$SslSettings {
     /**
      * ID of the AuthorizedCertificate resource configuring SSL for the
-     * application. Clearing this field will remove SSL support. Example: 12345.
+     * application. Clearing this field will remove SSL support.By default, a
+     * managed certificate is automatically created for every domain mapping. To
+     * omit SSL support or to configure SSL manually, specify
+     * SslManagementType.MANUAL on a CREATE or UPDATE request. You must be
+     * authorized to administer the AuthorizedCertificate resource to manually
+     * map it to a DomainMapping resource. Example: 12345.
      */
     certificateId?: string;
+    /**
+     * ID of the managed AuthorizedCertificate resource currently being
+     * provisioned, if applicable. Until the new managed certificate has been
+     * successfully provisioned, the previous SSL state will be preserved. Once
+     * the provisioning process completes, the certificate_id field will reflect
+     * the new managed certificate and this field will be left empty. To remove
+     * SSL support while there is still a pending managed certificate, clear the
+     * certificate_id field with an UpdateDomainMappingRequest.@OutputOnly
+     */
+    pendingManagedCertificateId?: string;
+    /**
+     * SSL management type for this domain. If AUTOMATIC, a managed certificate
+     * is automatically provisioned. If MANUAL, certificate_id must be manually
+     * specified in order to configure SSL for this domain.
+     */
+    sslManagementType?: string;
   }
   /**
    * Scheduler settings for standard environment.

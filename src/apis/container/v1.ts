@@ -2245,7 +2245,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setAddons
-     * @desc Sets the addons of a specific cluster.
+     * @desc Sets the addons for a specific cluster.
      * @alias container.projects.locations.clusters.setAddons
      * @memberOf! ()
      *
@@ -2384,7 +2384,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations of a specific cluster.
+     * @desc Sets the locations for a specific cluster.
      * @alias container.projects.locations.clusters.setLocations
      * @memberOf! ()
      *
@@ -2453,7 +2453,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setLogging
-     * @desc Sets the logging service of a specific cluster.
+     * @desc Sets the logging service for a specific cluster.
      * @alias container.projects.locations.clusters.setLogging
      * @memberOf! ()
      *
@@ -2597,8 +2597,8 @@ export namespace container_v1 {
     /**
      * container.projects.locations.clusters.setMasterAuth
      * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password of a specific cluster. This can be either via password
-     * generation or explicitly set the password.
+     * the admin password for a specific cluster. This can be either via
+     * password generation or explicitly set the password.
      * @alias container.projects.locations.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -2668,7 +2668,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setMonitoring
-     * @desc Sets the monitoring service of a specific cluster.
+     * @desc Sets the monitoring service for a specific cluster.
      * @alias container.projects.locations.clusters.setMonitoring
      * @memberOf! ()
      *
@@ -3015,7 +3015,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.updateMaster
-     * @desc Updates the master of a specific cluster.
+     * @desc Updates the master for a specific cluster.
      * @alias container.projects.locations.clusters.updateMaster
      * @memberOf! ()
      *
@@ -3773,7 +3773,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.setAutoscaling
-     * @desc Sets the autoscaling settings of a specific node pool.
+     * @desc Sets the autoscaling settings for a specific node pool.
      * @alias container.projects.locations.clusters.nodePools.setAutoscaling
      * @memberOf! ()
      *
@@ -3919,7 +3919,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.setSize
-     * @desc Sets the size of a specific node pool.
+     * @desc Sets the size for a specific node pool.
      * @alias container.projects.locations.clusters.nodePools.setSize
      * @memberOf! ()
      *
@@ -3989,7 +3989,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.update
-     * @desc Updates the version and/or image type of a specific node pool.
+     * @desc Updates the version and/or image type for a specific node pool.
      * @alias container.projects.locations.clusters.nodePools.update
      * @memberOf! ()
      *
@@ -4739,7 +4739,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.addons
-     * @desc Sets the addons of a specific cluster.
+     * @desc Sets the addons for a specific cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5679,7 +5679,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.locations
-     * @desc Sets the locations of a specific cluster.
+     * @desc Sets the locations for a specific cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5815,7 +5815,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.logging
-     * @desc Sets the logging service of a specific cluster.
+     * @desc Sets the logging service for a specific cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5951,7 +5951,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.master
-     * @desc Updates the master of a specific cluster.
+     * @desc Updates the master for a specific cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6087,7 +6087,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.monitoring
-     * @desc Sets the monitoring service of a specific cluster.
+     * @desc Sets the monitoring service for a specific cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6501,8 +6501,8 @@ export namespace container_v1 {
     /**
      * container.projects.zones.clusters.setMasterAuth
      * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password of a specific cluster. This can be either via password
-     * generation or explicitly set the password.
+     * the admin password for a specific cluster. This can be either via
+     * password generation or explicitly set the password.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7548,7 +7548,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.autoscaling
-     * @desc Sets the autoscaling settings of a specific node pool.
+     * @desc Sets the autoscaling settings for a specific node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8520,7 +8520,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.setSize
-     * @desc Sets the size of a specific node pool.
+     * @desc Sets the size for a specific node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8662,7 +8662,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.update
-     * @desc Updates the version and/or image type of a specific node pool.
+     * @desc Updates the version and/or image type for a specific node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

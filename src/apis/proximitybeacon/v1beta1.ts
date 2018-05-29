@@ -278,7 +278,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+     * month.
      */
     month?: number;
     /**

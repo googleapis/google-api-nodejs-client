@@ -2540,7 +2540,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
-     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED, state.  Upon
+     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon
      * restoration of the CryptoKeyVersion, state will be set to DISABLED, and
      * destroy_time will be cleared.
      * @alias

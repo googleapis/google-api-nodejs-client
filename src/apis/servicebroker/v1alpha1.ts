@@ -429,6 +429,11 @@ export namespace servicebroker_v1alpha1 {
      */
     createTime?: string;
     /**
+     * Output only. Name of the Deployment Manager deployment used for
+     * provisioning of this service instance.
+     */
+    deploymentName?: string;
+    /**
      * The id of the service instance. Must be unique within GCP project.
      * Maximum length is 64, GUID recommended. Required.
      */

@@ -153,7 +153,8 @@ export namespace clouddebugger_v2 {
      */
     logMessageFormat?: string;
     /**
-     * The stack at breakpoint time.
+     * The stack at breakpoint time, where stack_frames[0] represents the most
+     * recently entered function.
      */
     stackFrames?: Schema$StackFrame[];
     /**

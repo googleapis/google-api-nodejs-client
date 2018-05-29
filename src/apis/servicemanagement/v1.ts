@@ -225,10 +225,6 @@ export namespace servicemanagement_v1 {
      */
     allowWithoutCredential?: boolean;
     /**
-     * Configuration for custom authentication.
-     */
-    customAuth?: Schema$CustomAuthRequirements;
-    /**
      * The requirements for OAuth credentials.
      */
     oauth?: Schema$OAuthRequirements;
@@ -593,17 +589,6 @@ export namespace servicemanagement_v1 {
      * feature (like quota and billing) will be enabled.
      */
     environment?: string;
-  }
-  /**
-   * Configuration for a custom authentication provider.
-   */
-  export interface Schema$CustomAuthRequirements {
-    /**
-     * A configuration string containing connection information for the
-     * authentication provider, typically formatted as a SmartService string
-     * (go/smartservice).
-     */
-    provider?: string;
   }
   /**
    * Customize service error responses.  For example, list any service specific

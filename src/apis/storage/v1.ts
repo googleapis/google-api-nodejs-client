@@ -97,17 +97,19 @@ export namespace storage_v1 {
      */
     cors?: any[];
     /**
-     * Defines the default value for Event-Based hold on newly created objects
-     * in this bucket. Event-Based hold is a way to retain objects indefinitely
-     * until an event occurs, signified by the hold&#39;s release. After being
-     * released, such objects will be subject to bucket-level retention (if
-     * any). One sample use case of this flag is for banks to hold loan
-     * documents for at least 3 years after loan is paid in full. Here
-     * bucket-level retention is 3 years and the event is loan being paid in
-     * full. In this example these objects will be held intact for any number of
-     * years until the event has occurred (hold is released) and then 3 more
-     * years after that. Objects under Event-Based hold cannot be deleted,
-     * overwritten or archived until the hold is removed.
+     * The default value for event-based hold on newly created objects in this
+     * bucket. Event-based hold is a way to retain objects indefinitely until an
+     * event occurs, signified by the hold&#39;s release. After being released,
+     * such objects will be subject to bucket-level retention (if any). One
+     * sample use case of this flag is for banks to hold loan documents for at
+     * least 3 years after loan is paid in full. Here, bucket-level retention is
+     * 3 years and the event is loan being paid in full. In this example, these
+     * objects will be held intact for any number of years until the event has
+     * occurred (event-based hold on the object is released) and then 3 more
+     * years after that. That means retention duration of the objects begins
+     * from the moment event-based hold transitioned from true to false. Objects
+     * under event-based hold cannot be deleted, overwritten or archived until
+     * the hold is removed.
      */
     defaultEventBasedHold?: boolean;
     /**
@@ -169,13 +171,13 @@ export namespace storage_v1 {
      */
     projectNumber?: string;
     /**
-     * Defines the retention policy for a bucket. The Retention policy enforces
-     * a minimum retention time for all objects contained in the bucket, based
-     * on their creation time. Any attempt to overwrite or delete objects
-     * younger than the retention period will result in a PERMISSION_DENIED
-     * error. An unlocked retention policy can be modified or removed from the
-     * bucket via the UpdateBucketMetadata RPC. A locked retention policy cannot
-     * be removed or shortened in duration for the lifetime of the bucket.
+     * The bucket&#39;s retention policy. The retention policy enforces a
+     * minimum retention time for all objects contained in the bucket, based on
+     * their creation time. Any attempt to overwrite or delete objects younger
+     * than the retention period will result in a PERMISSION_DENIED error. An
+     * unlocked retention policy can be modified or removed from the bucket via
+     * a storage.buckets.update operation. A locked retention policy cannot be
+     * removed or shortened in duration for the lifetime of the bucket.
      * Attempting to remove or decrease period of a locked retention policy will
      * result in a PERMISSION_DENIED error.
      */
@@ -487,15 +489,18 @@ export namespace storage_v1 {
      */
     etag?: string;
     /**
-     * Defines the Event-Based hold for an object. Event-Based hold is a way to
-     * retain objects indefinitely until an event occurs, signified by the
-     * hold&#39;s release. After being released, such objects will be subject to
-     * bucket-level retention (if any). One sample use case of this flag is for
-     * banks to hold loan documents for at least 3 years after loan is paid in
-     * full. Here bucket-level retention is 3 years and the event is loan being
-     * paid in full. In this example these objects will be held intact for any
-     * number of years until the event has occurred (hold is released) and then
-     * 3 more years after that.
+     * Whether an object is under event-based hold. Event-based hold is a way to
+     * retain objects until an event occurs, which is signified by the
+     * hold&#39;s release (i.e. this value is set to false). After being
+     * released (set to false), such objects will be subject to bucket-level
+     * retention (if any). One sample use case of this flag is for banks to hold
+     * loan documents for at least 3 years after loan is paid in full. Here,
+     * bucket-level retention is 3 years and the event is the loan being paid in
+     * full. In this example, these objects will be held intact for any number
+     * of years until the event has occurred (event-based hold on the object is
+     * released) and then 3 more years after that. That means retention duration
+     * of the objects begins from the moment event-based hold transitioned from
+     * true to false.
      */
     eventBasedHold?: boolean;
     /**
@@ -545,13 +550,13 @@ export namespace storage_v1 {
      */
     owner?: any;
     /**
-     * Specifies the earliest time that the object&#39;s retention period
-     * expires. This value is server-determined and is in RFC 3339 format. Note
-     * 1: This field is not provided for objects with an active Event-Based
+     * A server-determined value that specifies the earliest time that the
+     * object&#39;s retention period expires. This value is in RFC 3339 format.
+     * Note 1: This field is not provided for objects with an active event-based
      * hold, since retention expiration is unknown until the hold is removed.
-     * Note 2: This value can be provided even when TemporaryHold is set (so
+     * Note 2: This value can be provided even when temporary hold is set (so
      * that the user can reason about policy without having to first unset the
-     * TemporaryHold).
+     * temporary hold).
      */
     retentionExpirationTime?: string;
     /**
@@ -567,11 +572,12 @@ export namespace storage_v1 {
      */
     storageClass?: string;
     /**
-     * Defines the temporary hold for an object. This flag is used to enforce a
-     * temporary hold on an object. While it is set to true, the object is
-     * protected against deletion and overwrites. A common use case of this flag
-     * is regulatory investigations where objects need to be retained while the
-     * investigation is ongoing.
+     * Whether an object is under temporary hold. While this flag is set to
+     * true, the object is protected against deletion and overwrites. A common
+     * use case of this flag is regulatory investigations where objects need to
+     * be retained while the investigation is ongoing. Note that unlike
+     * event-based hold, temporary hold does not impact retention expiration
+     * time of an object.
      */
     temporaryHold?: boolean;
     /**
@@ -6780,6 +6786,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which to look for objects.
      * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
@@ -7628,6 +7635,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which to look for objects.
      * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
@@ -8073,6 +8081,11 @@ export namespace storage_v1 {
      */
     delimiter?: string;
     /**
+     * If true, objects that end in exactly one instance of delimiter will have
+     * their metadata included in items in addition to prefixes.
+     */
+    includeTrailingDelimiter?: boolean;
+    /**
      * Maximum number of items plus prefixes to return in a single page of
      * responses. As duplicate prefixes are omitted, fewer total results may be
      * returned than requested. The service will use this parameter or 1,000
@@ -8425,6 +8438,11 @@ export namespace storage_v1 {
      * prefixes are omitted.
      */
     delimiter?: string;
+    /**
+     * If true, objects that end in exactly one instance of delimiter will have
+     * their metadata included in items in addition to prefixes.
+     */
+    includeTrailingDelimiter?: boolean;
     /**
      * Maximum number of items plus prefixes to return in a single page of
      * responses. As duplicate prefixes are omitted, fewer total results may be

@@ -93,6 +93,8 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails {
     categoricalStatsResult?: Schema$GooglePrivacyDlpV2CategoricalStatsResult;
+    deltaPresenceEstimationResult?:
+        Schema$GooglePrivacyDlpV2DeltaPresenceEstimationResult;
     kAnonymityResult?: Schema$GooglePrivacyDlpV2KAnonymityResult;
     kMapEstimationResult?: Schema$GooglePrivacyDlpV2KMapEstimationResult;
     lDiversityResult?: Schema$GooglePrivacyDlpV2LDiversityResult;
@@ -106,6 +108,14 @@ export namespace dlp_v2 {
      */
     requestedSourceTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
+  /**
+   * An auxiliary table contains statistical information on the relative
+   * frequency of different quasi-identifiers values. It has one or several
+   * quasi-identifiers columns, and one column that indicates the relative
+   * frequency of each quasi-identifier tuple. If a tuple is present in the data
+   * but not in the auxiliary table, the corresponding relative frequency is
+   * assumed to be zero (and thus, the tuple is highly reidentifiable).
+   */
   export interface Schema$GooglePrivacyDlpV2AuxiliaryTable {
     /**
      * Quasi-identifier columns. [required]
@@ -151,6 +161,7 @@ export namespace dlp_v2 {
      * will be scanned. Cannot be used in conjunction with TimespanConfig.
      */
     rowsLimit?: string;
+    sampleMethod?: string;
     /**
      * Complete BigQuery table reference.
      */
@@ -352,10 +363,17 @@ export namespace dlp_v2 {
     bytesLimitPerFile?: string;
     fileSet?: Schema$GooglePrivacyDlpV2FileSet;
     /**
+     * Limits the number of files to scan to this percentage of the input
+     * FileSet. Number of files scanned is rounded down. Must be between 0 and
+     * 100, inclusively. Both 0 and 100 means no limit. Defaults to 0.
+     */
+    filesLimitPercent?: number;
+    /**
      * List of file type groups to include in the scan. If empty, all files are
      * scanned and available data format processors are applied.
      */
     fileTypes?: string[];
+    sampleMethod?: string;
   }
   /**
    * Message representing a single file or path in Cloud Storage.
@@ -580,7 +598,7 @@ export namespace dlp_v2 {
      * value type integer or string.  The tweak is constructed as a sequence of
      * bytes in big endian byte order such that:  - a 64 bit integer is encoded
      * followed by a single byte of value 1 - a string is encoded in UTF-8
-     * format followed by a single byte of value  å 2
+     * format followed by a single byte of value 2
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -629,32 +647,33 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CustomInfoType {
     /**
-     * Set of detection rules to apply to all findings of this custom info type.
+     * Set of detection rules to apply to all findings of this CustomInfoType.
      * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` custom info type.
+     * `surrogate_type` CustomInfoType.
      */
     detectionRules?: Schema$GooglePrivacyDlpV2DetectionRule[];
     /**
-     * Dictionary-based custom info type.
+     * A list of phrases to detect as a CustomInfoType.
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
     /**
-     * Info type configuration. All custom info types must have configurations
-     * that do not conflict with built-in info types or other custom info types.
+     * All CustomInfoTypes must have a name that does not conflict with built-in
+     * InfoTypes or other CustomInfoTypes.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
-     * Likelihood to return for this custom info type. This base value can be
+     * Likelihood to return for this CustomInfoType. This base value can be
      * altered by a detection rule if the finding meets the criteria specified
      * by the rule. Defaults to `VERY_LIKELY` if not specified.
      */
     likelihood?: string;
     /**
-     * Regex-based custom info type.
+     * Regular expression based CustomInfoType.
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
     /**
-     * Surrogate info type.
+     * Message for detecting output from deidentification transformations that
+     * support reversing.
      */
     surrogateType?: Schema$GooglePrivacyDlpV2SurrogateType;
   }
@@ -820,7 +839,100 @@ export namespace dlp_v2 {
     updateTime?: string;
   }
   /**
-   * Rule for modifying a custom info type to alter behavior under certain
+   * δ-presence metric, used to estimate how likely it is for an attacker to
+   * figure out that one given individual appears in a de-identified dataset.
+   * Similarly to the k-map metric, we cannot compute δ-presence exactly without
+   * knowing the attack dataset, so we use a statistical model instead.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationConfig {
+    /**
+     * Several auxiliary tables can be used in the analysis. Each custom_tag
+     * used to tag a quasi-identifiers field must appear in exactly one field of
+     * one auxiliary table.
+     */
+    auxiliaryTables?: Schema$GooglePrivacyDlpV2StatisticalTable[];
+    /**
+     * Fields considered to be quasi-identifiers. No two fields can have the
+     * same tag. [required]
+     */
+    quasiIds?: Schema$GooglePrivacyDlpV2QuasiId[];
+    /**
+     * ISO 3166-1 alpha-2 region code to use in the statistical modeling.
+     * Required if no column is tagged with a region-specific InfoType (like
+     * US_ZIP_5) or a region code.
+     */
+    regionCode?: string;
+  }
+  /**
+   * A DeltaPresenceEstimationHistogramBucket message with the following values:
+   * min_probability: 0.1   max_probability: 0.2   frequency: 42 means that
+   * there are 42 records for which δ is in [0.1, 0.2). An important particular
+   * case is when min_probability = max_probability = 1: then, every individual
+   * who shares this quasi-identifier combination is in the dataset.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket {
+    /**
+     * Number of records within these probability bounds.
+     */
+    bucketSize?: string;
+    /**
+     * Total number of distinct quasi-identifier tuple values in this bucket.
+     */
+    bucketValueCount?: string;
+    /**
+     * Sample of quasi-identifier tuple values in this bucket. The total number
+     * of classes returned per bucket is capped at 20.
+     */
+    bucketValues?:
+        Schema$GooglePrivacyDlpV2DeltaPresenceEstimationQuasiIdValues[];
+    /**
+     * Always greater than or equal to min_probability.
+     */
+    maxProbability?: number;
+    /**
+     * Between 0 and 1.
+     */
+    minProbability?: number;
+  }
+  /**
+   * A tuple of values for the quasi-identifier columns.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationQuasiIdValues {
+    /**
+     * The estimated probability that a given individual sharing these
+     * quasi-identifier values is in the dataset. This value, typically called
+     * δ, is the ratio between the number of records in the dataset with these
+     * quasi-identifier values, and the total number of individuals (inside
+     * *and* outside the dataset) with these quasi-identifier values. For
+     * example, if there are 15 individuals in the dataset who share the same
+     * quasi-identifier values, and an estimated 100 people in the entire
+     * population with these values, then δ is 0.15.
+     */
+    estimatedProbability?: number;
+    /**
+     * The quasi-identifier values.
+     */
+    quasiIdsValues?: Schema$GooglePrivacyDlpV2Value[];
+  }
+  /**
+   * Result of the δ-presence computation. Note that these results are an
+   * estimation, not exact values.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationResult {
+    /**
+     * The intervals [min_probability, max_probability) do not overlap. If a
+     * value doesn&#39;t correspond to any such interval, the associated
+     * frequency is zero. For example, the following records: {min_probability:
+     * 0, max_probability: 0.1, frequency: 17}   {min_probability: 0.2,
+     * max_probability: 0.3, frequency: 42}   {min_probability: 0.3,
+     * max_probability: 0.4, frequency: 99} mean that there are no record with
+     * an estimated probability in [0.1, 0.2) nor larger or equal to 0.4.
+     */
+    deltaPresenceEstimationHistogram?:
+        Schema$GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket[];
+  }
+  /**
+   * Rule for modifying a CustomInfoType to alter behavior under certain
    * circumstances, depending on the specific details of the rule. Not supported
    * for the `surrogate_type` custom info type.
    */
@@ -1087,12 +1199,12 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
-   * Detection rule that adjusts the likelihood of findings within a certain
-   * proximity of hotwords.
+   * The rule that adjusts the likelihood of findings within a certain proximity
+   * of hotwords.
    */
   export interface Schema$GooglePrivacyDlpV2HotwordRule {
     /**
-     * Regex pattern defining what qualifies as a hotword.
+     * Regular expression pattern defining what qualifies as a hotword.
      */
     hotwordRegex?: Schema$GooglePrivacyDlpV2Regex;
     /**
@@ -1148,7 +1260,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type.
+     * Name of the information type. Either a name of your choosing when
+     * creating a CustomInfoType, or one of the names listed at
+     * https://cloud.google.com/dlp/docs/infotypes-reference when specifying a
+     * built-in type.
      */
     name?: string;
   }
@@ -1251,7 +1366,8 @@ export namespace dlp_v2 {
     includeQuote?: boolean;
     /**
      * Restricts what info_types to look for. The values must correspond to
-     * InfoType values returned by ListInfoTypes or found in documentation.
+     * InfoType values returned by ListInfoTypes or listed at
+     * https://cloud.google.com/dlp/docs/infotypes-reference.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -1929,6 +2045,8 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PrivacyMetric {
     categoricalStatsConfig?: Schema$GooglePrivacyDlpV2CategoricalStatsConfig;
+    deltaPresenceEstimationConfig?:
+        Schema$GooglePrivacyDlpV2DeltaPresenceEstimationConfig;
     kAnonymityConfig?: Schema$GooglePrivacyDlpV2KAnonymityConfig;
     kMapEstimationConfig?: Schema$GooglePrivacyDlpV2KMapEstimationConfig;
     lDiversityConfig?: Schema$GooglePrivacyDlpV2LDiversityConfig;
@@ -1970,6 +2088,42 @@ export namespace dlp_v2 {
      * projects/{project}/topics/{topic}.
      */
     topic?: string;
+  }
+  /**
+   * A column with a semantic tag attached.
+   */
+  export interface Schema$GooglePrivacyDlpV2QuasiId {
+    /**
+     * A column can be tagged with a custom tag. In this case, the user must
+     * indicate an auxiliary table that contains statistical information on the
+     * possible values of this column (below).
+     */
+    customTag?: string;
+    /**
+     * Identifies the column. [required]
+     */
+    field?: Schema$GooglePrivacyDlpV2FieldId;
+    /**
+     * If no semantic tag is indicated, we infer the statistical model from the
+     * distribution of values in the input data
+     */
+    inferred?: Schema$GoogleProtobufEmpty;
+    /**
+     * A column can be tagged with a InfoType to use the relevant public dataset
+     * as a statistical model of population, if available. We currently support
+     * US ZIP codes, region codes, ages and genders. To programmatically obtain
+     * the list of supported InfoTypes, use ListInfoTypes with the
+     * supported_by=RISK_ANALYSIS filter.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
+  }
+  /**
+   * A quasi-identifier column has a custom_tag, used to know which column in
+   * the data corresponds to which column in the statistical model.
+   */
+  export interface Schema$GooglePrivacyDlpV2QuasiIdentifierField {
+    customTag?: string;
+    field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
    * A quasi-identifier column has a custom_tag, used to know which column in
@@ -2238,6 +2392,30 @@ export namespace dlp_v2 {
     recurrencePeriodDuration?: string;
   }
   /**
+   * An auxiliary table containing statistical information on the relative
+   * frequency of different quasi-identifiers values. It has one or several
+   * quasi-identifiers columns, and one column that indicates the relative
+   * frequency of each quasi-identifier tuple. If a tuple is present in the data
+   * but not in the auxiliary table, the corresponding relative frequency is
+   * assumed to be zero (and thus, the tuple is highly reidentifiable).
+   */
+  export interface Schema$GooglePrivacyDlpV2StatisticalTable {
+    /**
+     * Quasi-identifier columns. [required]
+     */
+    quasiIds?: Schema$GooglePrivacyDlpV2QuasiIdentifierField[];
+    /**
+     * The relative frequency column must contain a floating-point number
+     * between 0 and 1 (inclusive). Null values are assumed to be zero.
+     * [required]
+     */
+    relativeFrequency?: Schema$GooglePrivacyDlpV2FieldId;
+    /**
+     * Auxiliary table location. [required]
+     */
+    table?: Schema$GooglePrivacyDlpV2BigQueryTable;
+  }
+  /**
    * Shared message indicating Cloud storage type.
    */
   export interface Schema$GooglePrivacyDlpV2StorageConfig {
@@ -2274,7 +2452,7 @@ export namespace dlp_v2 {
    * These types of transformations are those that perform pseudonymization,
    * thereby producing a &quot;surrogate&quot; as output. This should be used in
    * conjunction with a field on the transformation such as
-   * `surrogate_info_type`. This custom info type does not support the use of
+   * `surrogate_info_type`. This CustomInfoType does not support the use of
    * `detection_rules`.
    */
   export interface Schema$GooglePrivacyDlpV2SurrogateType {}

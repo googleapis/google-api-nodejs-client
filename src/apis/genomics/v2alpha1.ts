@@ -100,6 +100,13 @@ export namespace genomics_v2alpha1 {
      */
     commands?: string[];
     /**
+     * If the specified image is hosted on a private registry other than Google
+     * Container Registry, the credentials required to pull the image must be
+     * specified here as an encrypted secret.  The secret must decrypt to a JSON
+     * encoded dictionary containing both `username` and `password` keys.
+     */
+    credentials?: Schema$Secret;
+    /**
      * If specified, overrides the ENTRYPOINT specified in the container.
      */
     entrypoint?: string;
@@ -655,6 +662,23 @@ export namespace genomics_v2alpha1 {
      * Execution information specific to Google Compute Engine.
      */
     computeEngine?: Schema$ComputeEngine;
+  }
+  /**
+   * Secret holds encrypted information that is only decrypted and stored in RAM
+   * by the worker VM when running the pipeline.
+   */
+  export interface Schema$Secret {
+    /**
+     * The value of the cipherText response from the `encrypt` method.
+     */
+    cipherText?: string;
+    /**
+     * The name of the Cloud KMS key that will be used to decrypt the secret
+     * value.  The VM service account must have the required permissions and
+     * authentication scopes to invoke the `decrypt` method on the specified
+     * key.
+     */
+    keyName?: string;
   }
   /**
    * Carries information about a Google Cloud Service Account.

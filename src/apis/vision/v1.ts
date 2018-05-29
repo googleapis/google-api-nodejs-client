@@ -52,6 +52,7 @@ export namespace vision_v1 {
     google?: GoogleConfigurable;
     root = this;
 
+    files: Resource$Files;
     images: Resource$Images;
     locations: Resource$Locations;
     operations: Resource$Operations;
@@ -61,6 +62,7 @@ export namespace vision_v1 {
       this.google = google;
       this.getRoot.bind(this);
 
+      this.files = new Resource$Files(this);
       this.images = new Resource$Images(this);
       this.locations = new Resource$Locations(this);
       this.operations = new Resource$Operations(this);
@@ -71,6 +73,20 @@ export namespace vision_v1 {
     }
   }
 
+  /**
+   * Response to a single file annotation request. A file may contain one or
+   * more images, which individually have their own responses.
+   */
+  export interface Schema$AnnotateFileResponse {
+    /**
+     * Information about the file for which this response is generated.
+     */
+    inputConfig?: Schema$InputConfig;
+    /**
+     * Individual responses to images found within the file.
+     */
+    responses?: Schema$AnnotateImageResponse[];
+  }
   /**
    * Request for performing Google Cloud Vision API tasks over a user-provided
    * image, with user-requested features.
@@ -93,6 +109,11 @@ export namespace vision_v1 {
    * Response to an image annotation request.
    */
   export interface Schema$AnnotateImageResponse {
+    /**
+     * If present, contextual information is needed to understand where this
+     * image comes from.
+     */
+    context?: Schema$ImageAnnotationContext;
     /**
      * If present, crop hints have completed successfully.
      */
@@ -141,6 +162,56 @@ export namespace vision_v1 {
      * If present, web detection has completed successfully.
      */
     webDetection?: Schema$WebDetection;
+  }
+  /**
+   * An offline file annotation request.
+   */
+  export interface Schema$AsyncAnnotateFileRequest {
+    /**
+     * Required. Requested features.
+     */
+    features?: Schema$Feature[];
+    /**
+     * Additional context that may accompany the image(s) in the file.
+     */
+    imageContext?: Schema$ImageContext;
+    /**
+     * Required. Information about the input file.
+     */
+    inputConfig?: Schema$InputConfig;
+    /**
+     * Required. The desired output location and metadata (e.g. format).
+     */
+    outputConfig?: Schema$OutputConfig;
+  }
+  /**
+   * The response for a single offline file annotation request.
+   */
+  export interface Schema$AsyncAnnotateFileResponse {
+    /**
+     * The output location and metadata from AsyncAnnotateFileRequest.
+     */
+    outputConfig?: Schema$OutputConfig;
+  }
+  /**
+   * Multiple async file annotation requests are batched into a single service
+   * call.
+   */
+  export interface Schema$AsyncBatchAnnotateFilesRequest {
+    /**
+     * Individual async file annotation requests for this batch.
+     */
+    requests?: Schema$AsyncAnnotateFileRequest[];
+  }
+  /**
+   * Response to an async batch file annotation request.
+   */
+  export interface Schema$AsyncBatchAnnotateFilesResponse {
+    /**
+     * The list of file annotation responses, one for each request in
+     * AsyncBatchAnnotateFilesRequest.
+     */
+    responses?: Schema$AsyncAnnotateFileResponse[];
   }
   /**
    * Multiple image annotation requests are batched into a single service call.
@@ -196,6 +267,10 @@ export namespace vision_v1 {
    * A bounding polygon for the detected image annotation.
    */
   export interface Schema$BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$NormalizedVertex[];
     /**
      * The bounding polygon vertices.
      */
@@ -550,6 +625,34 @@ export namespace vision_v1 {
      * The feature type.
      */
     type?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the output will be written to.
+   */
+  export interface Schema$GcsDestination {
+    /**
+     * Google Cloud Storage URI where the results will be stored. Results will
+     * be in JSON format and preceded by its corresponding input URI. This field
+     * can either represent a single file, or a prefix for multiple outputs.
+     * Prefixes must end in a `/`.  Examples:  *    File:
+     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
+     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
+     * response is still AnnotateFileResponse, each of which contains some
+     * subset of the full list of AnnotateImageResponse. Multiple outputs can
+     * happen if, for example, the output JSON is too large and overflows into
+     * multiple sharded files.
+     */
+    uri?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the input will be read from.
+   */
+  export interface Schema$GcsSource {
+    /**
+     * Google Cloud Storage URI for the input file. This must only be a Google
+     * Cloud Storage object. Wildcards are not currently supported.
+     */
+    uri?: string;
   }
   /**
    * Response to a single file annotation request. A file may contain one or
@@ -1392,6 +1495,111 @@ export namespace vision_v1 {
     symbols?: Schema$GoogleCloudVisionV1p2beta1Symbol[];
   }
   /**
+   * Metadata for the batch operations such as the current state.  This is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1BatchOperationMetadata {
+    /**
+     * The time when the batch request is finished and
+     * google.longrunning.Operation.done is set to true.
+     */
+    endTime?: string;
+    /**
+     * The current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the batch request was submitted to the server.
+     */
+    submitTime?: string;
+  }
+  /**
+   * A bounding polygon for the detected image annotation.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$GoogleCloudVisionV1p3beta1NormalizedVertex[];
+    /**
+     * The bounding polygon vertices.
+     */
+    vertices?: Schema$GoogleCloudVisionV1p3beta1Vertex[];
+  }
+  /**
+   * Response message for the `ImportProductSets` method.  This message is
+   * returned by the google.longrunning.Operations.GetOperation method in the
+   * returned google.longrunning.Operation.response field.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ImportProductSetsResponse {
+    /**
+     * The list of reference_images that are imported successfully.
+     */
+    referenceImages?: Schema$GoogleCloudVisionV1p3beta1ReferenceImage[];
+    /**
+     * The rpc status for each ImportProductSet request, including both
+     * successes and errors.  The number of statuses here matches the number of
+     * lines in the csv file, and statuses[i] stores the success or failure
+     * status of processing the i-th line of the csv, starting from line 0.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+   * coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * A `ReferenceImage` represents a product image and its associated metadata,
+   * such as bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ReferenceImage {
+    /**
+     * Bounding polygons around the areas of interest in the reference image.
+     * Optional. If this field is empty, the system will try to detect regions
+     * of interest. At most 10 bounding polygons will be used.  The provided
+     * shape is converted into a non-rotated rectangle. Once converted, the
+     * small edge of the rectangle must be greater than or equal to 300 pixels.
+     * The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     */
+    boundingPolys?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly[];
+    /**
+     * The resource name of the reference image.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * This field is ignored when creating a reference image.
+     */
+    name?: string;
+    /**
+     * The Google Cloud Storage URI of the reference image.  The URI must start
+     * with `gs://`.  Required.
+     */
+    uri?: string;
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
+   * are in the same scale as the original image.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1Vertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
    * Client image to perform Google Cloud Vision API tasks over.
    */
   export interface Schema$Image {
@@ -1407,6 +1615,21 @@ export namespace vision_v1 {
      * precedence and is used to perform the image annotation request.
      */
     source?: Schema$ImageSource;
+  }
+  /**
+   * If an image was produced from a file (e.g. a PDF), this message gives
+   * information about the source of that image.
+   */
+  export interface Schema$ImageAnnotationContext {
+    /**
+     * If the file was a PDF or TIFF, this field gives the page number within
+     * the file used to produce the image.
+     */
+    pageNumber?: number;
+    /**
+     * The URI of the file used to produce the image.
+     */
+    uri?: string;
   }
   /**
    * Image context and/or feature-specific parameters.
@@ -1474,6 +1697,20 @@ export namespace vision_v1 {
     imageUri?: string;
   }
   /**
+   * The desired input location and metadata.
+   */
+  export interface Schema$InputConfig {
+    /**
+     * The Google Cloud Storage location to read the input from.
+     */
+    gcsSource?: Schema$GcsSource;
+    /**
+     * The type of the file. Currently only &quot;application/pdf&quot; and
+     * &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     */
+    mimeType?: string;
+  }
+  /**
    * A face-specific landmark (for example, a face feature).
    */
   export interface Schema$Landmark {
@@ -1539,6 +1776,20 @@ export namespace vision_v1 {
     latLng?: Schema$LatLng;
   }
   /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+   * coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a
    * network API call.
    */
@@ -1576,6 +1827,43 @@ export namespace vision_v1 {
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: any;
+  }
+  /**
+   * Contains metadata for the BatchAnnotateImages operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * The time when the batch request was received.
+     */
+    createTime?: string;
+    /**
+     * Current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the operation result was last updated.
+     */
+    updateTime?: string;
+  }
+  /**
+   * The desired output location and metadata.
+   */
+  export interface Schema$OutputConfig {
+    /**
+     * The max number of response protos to put into each output JSON file on
+     * Google Cloud Storage. The valid range is [1, 100]. If not specified, the
+     * default value is 20.  For example, for one pdf file with 100 pages, 100
+     * response protos will be generated. If `batch_size` = 20, then 5 json
+     * files each containing 20 response protos will be written under the prefix
+     * `gcs_destination`.`uri`.  Currently, batch_size only applies to
+     * GcsDestination, with potential future support for other output
+     * configurations.
+     */
+    batchSize?: number;
+    /**
+     * The Google Cloud Storage location to write the output(s) to.
+     */
+    gcsDestination?: Schema$GcsDestination;
   }
   /**
    * Detected page from OCR.
@@ -1971,6 +2259,104 @@ export namespace vision_v1 {
      * reading order.
      */
     symbols?: Schema$Symbol[];
+  }
+
+
+  export class Resource$Files {
+    root: Vision;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.files.asyncBatchAnnotate
+     * @desc Run asynchronous image detection and annotation for a list of
+     * generic files, such as PDF files, which may contain multiple pages and
+     * multiple images per page. Progress and results can be retrieved through
+     * the `google.longrunning.Operations` interface. `Operation.metadata`
+     * contains `OperationMetadata` (metadata). `Operation.response` contains
+     * `AsyncBatchAnnotateFilesResponse` (results).
+     * @alias vision.files.asyncBatchAnnotate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asyncBatchAnnotate(
+        params?: Params$Resource$Files$Asyncbatchannotate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+        params: Params$Resource$Files$Asyncbatchannotate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        params: Params$Resource$Files$Asyncbatchannotate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        paramsOrCallback?: Params$Resource$Files$Asyncbatchannotate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Asyncbatchannotate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/files:asyncBatchAnnotate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Files$Asyncbatchannotate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AsyncBatchAnnotateFilesRequest;
   }
 
 

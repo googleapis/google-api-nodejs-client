@@ -52,6 +52,7 @@ export namespace vision_v1p1beta1 {
     google?: GoogleConfigurable;
     root = this;
 
+    files: Resource$Files;
     images: Resource$Images;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -59,6 +60,7 @@ export namespace vision_v1p1beta1 {
       this.google = google;
       this.getRoot.bind(this);
 
+      this.files = new Resource$Files(this);
       this.images = new Resource$Images(this);
     }
 
@@ -67,6 +69,142 @@ export namespace vision_v1p1beta1 {
     }
   }
 
+  /**
+   * Response to a single file annotation request. A file may contain one or
+   * more images, which individually have their own responses.
+   */
+  export interface Schema$AnnotateFileResponse {
+    /**
+     * Information about the file for which this response is generated.
+     */
+    inputConfig?: Schema$InputConfig;
+    /**
+     * Individual responses to images found within the file.
+     */
+    responses?: Schema$AnnotateImageResponse[];
+  }
+  /**
+   * Response to an image annotation request.
+   */
+  export interface Schema$AnnotateImageResponse {
+    /**
+     * If present, contextual information is needed to understand where this
+     * image comes from.
+     */
+    context?: Schema$ImageAnnotationContext;
+    /**
+     * If present, crop hints have completed successfully.
+     */
+    cropHintsAnnotation?: Schema$CropHintsAnnotation;
+    /**
+     * If set, represents the error message for the operation. Note that
+     * filled-in image annotations are guaranteed to be correct, even when
+     * `error` is set.
+     */
+    error?: Schema$Status;
+    /**
+     * If present, face detection has completed successfully.
+     */
+    faceAnnotations?: Schema$FaceAnnotation[];
+    /**
+     * If present, text (OCR) detection or document (OCR) text detection has
+     * completed successfully. This annotation provides the structural hierarchy
+     * for the OCR detected text.
+     */
+    fullTextAnnotation?: Schema$TextAnnotation;
+    /**
+     * If present, image properties were extracted successfully.
+     */
+    imagePropertiesAnnotation?: Schema$ImageProperties;
+    /**
+     * If present, label detection has completed successfully.
+     */
+    labelAnnotations?: Schema$EntityAnnotation[];
+    /**
+     * If present, landmark detection has completed successfully.
+     */
+    landmarkAnnotations?: Schema$EntityAnnotation[];
+    /**
+     * If present, logo detection has completed successfully.
+     */
+    logoAnnotations?: Schema$EntityAnnotation[];
+    /**
+     * If present, safe-search annotation has completed successfully.
+     */
+    safeSearchAnnotation?: Schema$SafeSearchAnnotation;
+    /**
+     * If present, text (OCR) detection has completed successfully.
+     */
+    textAnnotations?: Schema$EntityAnnotation[];
+    /**
+     * If present, web detection has completed successfully.
+     */
+    webDetection?: Schema$WebDetection;
+  }
+  /**
+   * The response for a single offline file annotation request.
+   */
+  export interface Schema$AsyncAnnotateFileResponse {
+    /**
+     * The output location and metadata from AsyncAnnotateFileRequest.
+     */
+    outputConfig?: Schema$OutputConfig;
+  }
+  /**
+   * Response to an async batch file annotation request.
+   */
+  export interface Schema$AsyncBatchAnnotateFilesResponse {
+    /**
+     * The list of file annotation responses, one for each request in
+     * AsyncBatchAnnotateFilesRequest.
+     */
+    responses?: Schema$AsyncAnnotateFileResponse[];
+  }
+  /**
+   * Logical element on the page.
+   */
+  export interface Schema$Block {
+    /**
+     * Detected block type (text, image etc) for this block.
+     */
+    blockType?: string;
+    /**
+     * The bounding box for the block. The vertices are in the order of
+     * top-left, top-right, bottom-right, bottom-left. When a rotation of the
+     * bounding box is detected the rotation is represented as around the
+     * top-left corner as defined when the text is read in the &#39;natural&#39;
+     * orientation. For example:  * when the text is horizontal it might look
+     * like:          0----1         |    |         3----2  * when it&#39;s
+     * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
+     * 1----0    and the vertice order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$BoundingPoly;
+    /**
+     * Confidence of the OCR results on the block. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * List of paragraphs in this block (if this blocks is of type text).
+     */
+    paragraphs?: Schema$Paragraph[];
+    /**
+     * Additional information detected for the block.
+     */
+    property?: Schema$TextProperty;
+  }
+  /**
+   * A bounding polygon for the detected image annotation.
+   */
+  export interface Schema$BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$NormalizedVertex[];
+    /**
+     * The bounding polygon vertices.
+     */
+    vertices?: Schema$Vertex[];
+  }
   /**
    * Represents a color in the RGBA color space. This representation is designed
    * for simplicity of conversion to/from color representations in various
@@ -148,6 +286,256 @@ export namespace vision_v1p1beta1 {
     red?: number;
   }
   /**
+   * Color information consists of RGB channels, score, and the fraction of the
+   * image that the color occupies in the image.
+   */
+  export interface Schema$ColorInfo {
+    /**
+     * RGB components of the color.
+     */
+    color?: Schema$Color;
+    /**
+     * The fraction of pixels the color occupies in the image. Value in range
+     * [0, 1].
+     */
+    pixelFraction?: number;
+    /**
+     * Image-specific score for this color. Value in range [0, 1].
+     */
+    score?: number;
+  }
+  /**
+   * Single crop hint that is used to generate a new crop when serving an image.
+   */
+  export interface Schema$CropHint {
+    /**
+     * The bounding polygon for the crop region. The coordinates of the bounding
+     * box are in the original image&#39;s scale, as returned in `ImageParams`.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * Confidence of this being a salient region.  Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Fraction of importance of this salient region with respect to the
+     * original image.
+     */
+    importanceFraction?: number;
+  }
+  /**
+   * Set of crop hints that are used to generate new crops when serving images.
+   */
+  export interface Schema$CropHintsAnnotation {
+    /**
+     * Crop hint results.
+     */
+    cropHints?: Schema$CropHint[];
+  }
+  /**
+   * Detected start or end of a structural component.
+   */
+  export interface Schema$DetectedBreak {
+    /**
+     * True if break prepends the element.
+     */
+    isPrefix?: boolean;
+    /**
+     * Detected break type.
+     */
+    type?: string;
+  }
+  /**
+   * Detected language for a structural component.
+   */
+  export interface Schema$DetectedLanguage {
+    /**
+     * Confidence of detected language. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or
+     * &quot;sr-Latn&quot;. For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+  }
+  /**
+   * Set of dominant colors and their corresponding scores.
+   */
+  export interface Schema$DominantColorsAnnotation {
+    /**
+     * RGB color values with their score and pixel fraction.
+     */
+    colors?: Schema$ColorInfo[];
+  }
+  /**
+   * Set of detected entity features.
+   */
+  export interface Schema$EntityAnnotation {
+    /**
+     * Image region to which this entity belongs. Not produced for
+     * `LABEL_DETECTION` features.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection
+     * in an image. For example, for an image in which the &quot;Eiffel
+     * Tower&quot; entity is detected, this field represents the confidence that
+     * there is a tower in the query image. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Entity textual description, expressed in its `locale` language.
+     */
+    description?: string;
+    /**
+     * The language code for the locale in which the entity textual
+     * `description` is expressed.
+     */
+    locale?: string;
+    /**
+     * The location information for the detected entity. Multiple `LocationInfo`
+     * elements can be present because one location may indicate the location of
+     * the scene in the image, and another location may indicate the location of
+     * the place where the image was taken. Location information is usually
+     * present for landmarks.
+     */
+    locations?: Schema$LocationInfo[];
+    /**
+     * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
+     * Search API](https://developers.google.com/knowledge-graph/).
+     */
+    mid?: string;
+    /**
+     * Some entities may have optional user-supplied `Property` (name/value)
+     * fields, such a score or string that qualifies the entity.
+     */
+    properties?: Schema$Property[];
+    /**
+     * Overall score of the result. Range [0, 1].
+     */
+    score?: number;
+    /**
+     * The relevancy of the ICA (Image Content Annotation) label to the image.
+     * For example, the relevancy of &quot;tower&quot; is likely higher to an
+     * image containing the detected &quot;Eiffel Tower&quot; than to an image
+     * containing a detected distant towering building, even though the
+     * confidence that there is a tower in each image may be the same. Range [0,
+     * 1].
+     */
+    topicality?: number;
+  }
+  /**
+   * A face annotation object contains the results of face detection.
+   */
+  export interface Schema$FaceAnnotation {
+    /**
+     * Anger likelihood.
+     */
+    angerLikelihood?: string;
+    /**
+     * Blurred likelihood.
+     */
+    blurredLikelihood?: string;
+    /**
+     * The bounding polygon around the face. The coordinates of the bounding box
+     * are in the original image&#39;s scale, as returned in `ImageParams`. The
+     * bounding box is computed to &quot;frame&quot; the face in accordance with
+     * human expectations. It is based on the landmarker results. Note that one
+     * or more x and/or y coordinates may not be generated in the `BoundingPoly`
+     * (the polygon will be unbounded) if only a partial face appears in the
+     * image to be annotated.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * Detection confidence. Range [0, 1].
+     */
+    detectionConfidence?: number;
+    /**
+     * The `fd_bounding_poly` bounding polygon is tighter than the
+     * `boundingPoly`, and encloses only the skin part of the face. Typically,
+     * it is used to eliminate the face from any image analysis that detects the
+     * &quot;amount of skin&quot; visible in an image. It is not based on the
+     * landmarker results, only on the initial face detection, hence the
+     * &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+     */
+    fdBoundingPoly?: Schema$BoundingPoly;
+    /**
+     * Headwear likelihood.
+     */
+    headwearLikelihood?: string;
+    /**
+     * Joy likelihood.
+     */
+    joyLikelihood?: string;
+    /**
+     * Face landmarking confidence. Range [0, 1].
+     */
+    landmarkingConfidence?: number;
+    /**
+     * Detected face landmarks.
+     */
+    landmarks?: Schema$Landmark[];
+    /**
+     * Yaw angle, which indicates the leftward/rightward angle that the face is
+     * pointing relative to the vertical plane perpendicular to the image. Range
+     * [-180,180].
+     */
+    panAngle?: number;
+    /**
+     * Roll angle, which indicates the amount of clockwise/anti-clockwise
+     * rotation of the face relative to the image vertical about the axis
+     * perpendicular to the face. Range [-180,180].
+     */
+    rollAngle?: number;
+    /**
+     * Sorrow likelihood.
+     */
+    sorrowLikelihood?: string;
+    /**
+     * Surprise likelihood.
+     */
+    surpriseLikelihood?: string;
+    /**
+     * Pitch angle, which indicates the upwards/downwards angle that the face is
+     * pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     */
+    tiltAngle?: number;
+    /**
+     * Under-exposed likelihood.
+     */
+    underExposedLikelihood?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the output will be written to.
+   */
+  export interface Schema$GcsDestination {
+    /**
+     * Google Cloud Storage URI where the results will be stored. Results will
+     * be in JSON format and preceded by its corresponding input URI. This field
+     * can either represent a single file, or a prefix for multiple outputs.
+     * Prefixes must end in a `/`.  Examples:  *    File:
+     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
+     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
+     * response is still AnnotateFileResponse, each of which contains some
+     * subset of the full list of AnnotateImageResponse. Multiple outputs can
+     * happen if, for example, the output JSON is too large and overflows into
+     * multiple sharded files.
+     */
+    uri?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the input will be read from.
+   */
+  export interface Schema$GcsSource {
+    /**
+     * Google Cloud Storage URI for the input file. This must only be a Google
+     * Cloud Storage object. Wildcards are not currently supported.
+     */
+    uri?: string;
+  }
+  /**
    * Request for performing Google Cloud Vision API tasks over a user-provided
    * image, with user-requested features.
    */
@@ -169,6 +557,11 @@ export namespace vision_v1p1beta1 {
    * Response to an image annotation request.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1AnnotateImageResponse {
+    /**
+     * If present, contextual information is needed to understand where this
+     * image comes from.
+     */
+    context?: Schema$GoogleCloudVisionV1p1beta1ImageAnnotationContext;
     /**
      * If present, crop hints have completed successfully.
      */
@@ -219,6 +612,37 @@ export namespace vision_v1p1beta1 {
      * If present, web detection has completed successfully.
      */
     webDetection?: Schema$GoogleCloudVisionV1p1beta1WebDetection;
+  }
+  /**
+   * An offline file annotation request.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1AsyncAnnotateFileRequest {
+    /**
+     * Required. Requested features.
+     */
+    features?: Schema$GoogleCloudVisionV1p1beta1Feature[];
+    /**
+     * Additional context that may accompany the image(s) in the file.
+     */
+    imageContext?: Schema$GoogleCloudVisionV1p1beta1ImageContext;
+    /**
+     * Required. Information about the input file.
+     */
+    inputConfig?: Schema$GoogleCloudVisionV1p1beta1InputConfig;
+    /**
+     * Required. The desired output location and metadata (e.g. format).
+     */
+    outputConfig?: Schema$GoogleCloudVisionV1p1beta1OutputConfig;
+  }
+  /**
+   * Multiple async file annotation requests are batched into a single service
+   * call.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest {
+    /**
+     * Individual async file annotation requests for this batch.
+     */
+    requests?: Schema$GoogleCloudVisionV1p1beta1AsyncAnnotateFileRequest[];
   }
   /**
    * Multiple image annotation requests are batched into a single service call.
@@ -523,6 +947,34 @@ export namespace vision_v1p1beta1 {
     type?: string;
   }
   /**
+   * The Google Cloud Storage location where the output will be written to.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1GcsDestination {
+    /**
+     * Google Cloud Storage URI where the results will be stored. Results will
+     * be in JSON format and preceded by its corresponding input URI. This field
+     * can either represent a single file, or a prefix for multiple outputs.
+     * Prefixes must end in a `/`.  Examples:  *    File:
+     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
+     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
+     * response is still AnnotateFileResponse, each of which contains some
+     * subset of the full list of AnnotateImageResponse. Multiple outputs can
+     * happen if, for example, the output JSON is too large and overflows into
+     * multiple sharded files.
+     */
+    uri?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the input will be read from.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1GcsSource {
+    /**
+     * Google Cloud Storage URI for the input file. This must only be a Google
+     * Cloud Storage object. Wildcards are not currently supported.
+     */
+    uri?: string;
+  }
+  /**
    * Client image to perform Google Cloud Vision API tasks over.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Image {
@@ -538,6 +990,21 @@ export namespace vision_v1p1beta1 {
      * precedence and is used to perform the image annotation request.
      */
     source?: Schema$GoogleCloudVisionV1p1beta1ImageSource;
+  }
+  /**
+   * If an image was produced from a file (e.g. a PDF), this message gives
+   * information about the source of that image.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ImageAnnotationContext {
+    /**
+     * If the file was a PDF or TIFF, this field gives the page number within
+     * the file used to produce the image.
+     */
+    pageNumber?: number;
+    /**
+     * The URI of the file used to produce the image.
+     */
+    uri?: string;
   }
   /**
    * Image context and/or feature-specific parameters.
@@ -605,6 +1072,20 @@ export namespace vision_v1p1beta1 {
     imageUri?: string;
   }
   /**
+   * The desired input location and metadata.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1InputConfig {
+    /**
+     * The Google Cloud Storage location to read the input from.
+     */
+    gcsSource?: Schema$GoogleCloudVisionV1p1beta1GcsSource;
+    /**
+     * The type of the file. Currently only &quot;application/pdf&quot; and
+     * &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     */
+    mimeType?: string;
+  }
+  /**
    * Rectangle determined by min and max `LatLng` pairs.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1LatLongRect {
@@ -625,6 +1106,26 @@ export namespace vision_v1p1beta1 {
      * lat/long location coordinates.
      */
     latLng?: Schema$LatLng;
+  }
+  /**
+   * The desired output location and metadata.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1OutputConfig {
+    /**
+     * The max number of response protos to put into each output JSON file on
+     * Google Cloud Storage. The valid range is [1, 100]. If not specified, the
+     * default value is 20.  For example, for one pdf file with 100 pages, 100
+     * response protos will be generated. If `batch_size` = 20, then 5 json
+     * files each containing 20 response protos will be written under the prefix
+     * `gcs_destination`.`uri`.  Currently, batch_size only applies to
+     * GcsDestination, with potential future support for other output
+     * configurations.
+     */
+    batchSize?: number;
+    /**
+     * The Google Cloud Storage location to write the output(s) to.
+     */
+    gcsDestination?: Schema$GoogleCloudVisionV1p1beta1GcsDestination;
   }
   /**
    * Detected page from OCR.
@@ -1845,6 +2346,162 @@ export namespace vision_v1p1beta1 {
     symbols?: Schema$GoogleCloudVisionV1p2beta1Symbol[];
   }
   /**
+   * Metadata for the batch operations such as the current state.  This is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1BatchOperationMetadata {
+    /**
+     * The time when the batch request is finished and
+     * google.longrunning.Operation.done is set to true.
+     */
+    endTime?: string;
+    /**
+     * The current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the batch request was submitted to the server.
+     */
+    submitTime?: string;
+  }
+  /**
+   * A bounding polygon for the detected image annotation.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$GoogleCloudVisionV1p3beta1NormalizedVertex[];
+    /**
+     * The bounding polygon vertices.
+     */
+    vertices?: Schema$GoogleCloudVisionV1p3beta1Vertex[];
+  }
+  /**
+   * Response message for the `ImportProductSets` method.  This message is
+   * returned by the google.longrunning.Operations.GetOperation method in the
+   * returned google.longrunning.Operation.response field.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ImportProductSetsResponse {
+    /**
+     * The list of reference_images that are imported successfully.
+     */
+    referenceImages?: Schema$GoogleCloudVisionV1p3beta1ReferenceImage[];
+    /**
+     * The rpc status for each ImportProductSet request, including both
+     * successes and errors.  The number of statuses here matches the number of
+     * lines in the csv file, and statuses[i] stores the success or failure
+     * status of processing the i-th line of the csv, starting from line 0.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+   * coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * A `ReferenceImage` represents a product image and its associated metadata,
+   * such as bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ReferenceImage {
+    /**
+     * Bounding polygons around the areas of interest in the reference image.
+     * Optional. If this field is empty, the system will try to detect regions
+     * of interest. At most 10 bounding polygons will be used.  The provided
+     * shape is converted into a non-rotated rectangle. Once converted, the
+     * small edge of the rectangle must be greater than or equal to 300 pixels.
+     * The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     */
+    boundingPolys?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly[];
+    /**
+     * The resource name of the reference image.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * This field is ignored when creating a reference image.
+     */
+    name?: string;
+    /**
+     * The Google Cloud Storage URI of the reference image.  The URI must start
+     * with `gs://`.  Required.
+     */
+    uri?: string;
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
+   * are in the same scale as the original image.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1Vertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * If an image was produced from a file (e.g. a PDF), this message gives
+   * information about the source of that image.
+   */
+  export interface Schema$ImageAnnotationContext {
+    /**
+     * If the file was a PDF or TIFF, this field gives the page number within
+     * the file used to produce the image.
+     */
+    pageNumber?: number;
+    /**
+     * The URI of the file used to produce the image.
+     */
+    uri?: string;
+  }
+  /**
+   * Stores image properties, such as dominant colors.
+   */
+  export interface Schema$ImageProperties {
+    /**
+     * If present, dominant colors completed successfully.
+     */
+    dominantColors?: Schema$DominantColorsAnnotation;
+  }
+  /**
+   * The desired input location and metadata.
+   */
+  export interface Schema$InputConfig {
+    /**
+     * The Google Cloud Storage location to read the input from.
+     */
+    gcsSource?: Schema$GcsSource;
+    /**
+     * The type of the file. Currently only &quot;application/pdf&quot; and
+     * &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     */
+    mimeType?: string;
+  }
+  /**
+   * A face-specific landmark (for example, a face feature).
+   */
+  export interface Schema$Landmark {
+    /**
+     * Face landmark position.
+     */
+    position?: Schema$Position;
+    /**
+     * Face landmark type.
+     */
+    type?: string;
+  }
+  /**
    * An object representing a latitude/longitude pair. This is expressed as a
    * pair of doubles representing degrees latitude and degrees longitude. Unless
    * specified otherwise, this must conform to the &lt;a
@@ -1860,6 +2517,229 @@ export namespace vision_v1p1beta1 {
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
     longitude?: number;
+  }
+  /**
+   * Detected entity location information.
+   */
+  export interface Schema$LocationInfo {
+    /**
+     * lat/long location coordinates.
+     */
+    latLng?: Schema$LatLng;
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+   * coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * This resource represents a long-running operation that is the result of a
+   * network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If
+     * `true`, the operation is completed, and either `error` or `response` is
+     * available.
+     */
+    done?: boolean;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation.  It typically
+     * contains progress information and common metadata such as create time.
+     * Some services might not provide such metadata.  Any method that returns a
+     * long-running operation should document the metadata type, if any.
+     */
+    metadata?: any;
+    /**
+     * The server-assigned name, which is only unique within the same service
+     * that originally returns it. If you use the default HTTP mapping, the
+     * `name` should have the format of `operations/some/unique/name`.
+     */
+    name?: string;
+    /**
+     * The normal response of the operation in case of success.  If the original
+     * method returns no data on success, such as `Delete`, the response is
+     * `google.protobuf.Empty`.  If the original method is standard
+     * `Get`/`Create`/`Update`, the response should be the resource.  For other
+     * methods, the response should have the type `XxxResponse`, where `Xxx` is
+     * the original method name.  For example, if the original method name is
+     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: any;
+  }
+  /**
+   * Contains metadata for the BatchAnnotateImages operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * The time when the batch request was received.
+     */
+    createTime?: string;
+    /**
+     * Current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the operation result was last updated.
+     */
+    updateTime?: string;
+  }
+  /**
+   * The desired output location and metadata.
+   */
+  export interface Schema$OutputConfig {
+    /**
+     * The max number of response protos to put into each output JSON file on
+     * Google Cloud Storage. The valid range is [1, 100]. If not specified, the
+     * default value is 20.  For example, for one pdf file with 100 pages, 100
+     * response protos will be generated. If `batch_size` = 20, then 5 json
+     * files each containing 20 response protos will be written under the prefix
+     * `gcs_destination`.`uri`.  Currently, batch_size only applies to
+     * GcsDestination, with potential future support for other output
+     * configurations.
+     */
+    batchSize?: number;
+    /**
+     * The Google Cloud Storage location to write the output(s) to.
+     */
+    gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * Detected page from OCR.
+   */
+  export interface Schema$Page {
+    /**
+     * List of blocks of text, images etc on this page.
+     */
+    blocks?: Schema$Block[];
+    /**
+     * Confidence of the OCR results on the page. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Page height. For PDFs the unit is points. For images (including TIFFs)
+     * the unit is pixels.
+     */
+    height?: number;
+    /**
+     * Additional information detected on the page.
+     */
+    property?: Schema$TextProperty;
+    /**
+     * Page width. For PDFs the unit is points. For images (including TIFFs) the
+     * unit is pixels.
+     */
+    width?: number;
+  }
+  /**
+   * Structural unit of text representing a number of words in certain order.
+   */
+  export interface Schema$Paragraph {
+    /**
+     * The bounding box for the paragraph. The vertices are in the order of
+     * top-left, top-right, bottom-right, bottom-left. When a rotation of the
+     * bounding box is detected the rotation is represented as around the
+     * top-left corner as defined when the text is read in the &#39;natural&#39;
+     * orientation. For example:   * when the text is horizontal it might look
+     * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
+     * degrees around the top-left corner it becomes:      2----3      |    |
+     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$BoundingPoly;
+    /**
+     * Confidence of the OCR results for the paragraph. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the paragraph.
+     */
+    property?: Schema$TextProperty;
+    /**
+     * List of words in this paragraph.
+     */
+    words?: Schema$Word[];
+  }
+  /**
+   * A 3D position in the image, used primarily for Face detection landmarks. A
+   * valid Position must have both x and y coordinates. The position coordinates
+   * are in the same scale as the original image.
+   */
+  export interface Schema$Position {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+    /**
+     * Z coordinate (or depth).
+     */
+    z?: number;
+  }
+  /**
+   * A `Property` consists of a user-supplied name/value pair.
+   */
+  export interface Schema$Property {
+    /**
+     * Name of the property.
+     */
+    name?: string;
+    /**
+     * Value of numeric properties.
+     */
+    uint64Value?: string;
+    /**
+     * Value of the property.
+     */
+    value?: string;
+  }
+  /**
+   * Set of features pertaining to the image, computed by computer vision
+   * methods over safe-search verticals (for example, adult, spoof, medical,
+   * violence).
+   */
+  export interface Schema$SafeSearchAnnotation {
+    /**
+     * Represents the adult content likelihood for the image. Adult content may
+     * contain elements such as nudity, pornographic images or cartoons, or
+     * sexual activities.
+     */
+    adult?: string;
+    /**
+     * Likelihood that this is a medical image.
+     */
+    medical?: string;
+    /**
+     * Likelihood that the request image contains racy content. Racy content may
+     * include (but is not limited to) skimpy or sheer clothing, strategically
+     * covered nudity, lewd or provocative poses, or close-ups of sensitive body
+     * areas.
+     */
+    racy?: string;
+    /**
+     * Spoof likelihood. The likelihood that an modification was made to the
+     * image&#39;s canonical version to make it appear funny or offensive.
+     */
+    spoof?: string;
+    /**
+     * Likelihood that this image contains violent content.
+     */
+    violence?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1913,6 +2793,314 @@ export namespace vision_v1p1beta1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * A single symbol representation.
+   */
+  export interface Schema$Symbol {
+    /**
+     * The bounding box for the symbol. The vertices are in the order of
+     * top-left, top-right, bottom-right, bottom-left. When a rotation of the
+     * bounding box is detected the rotation is represented as around the
+     * top-left corner as defined when the text is read in the &#39;natural&#39;
+     * orientation. For example:   * when the text is horizontal it might look
+     * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
+     * degrees around the top-left corner it becomes:      2----3      |    |
+     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$BoundingPoly;
+    /**
+     * Confidence of the OCR results for the symbol. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the symbol.
+     */
+    property?: Schema$TextProperty;
+    /**
+     * The actual UTF-8 representation of the symbol.
+     */
+    text?: string;
+  }
+  /**
+   * TextAnnotation contains a structured representation of OCR extracted text.
+   * The hierarchy of an OCR extracted text structure is like this:
+   * TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt;
+   * Symbol Each structural component, starting from Page, may further have
+   * their own properties. Properties describe detected languages, breaks etc..
+   * Please refer to the TextAnnotation.TextProperty message definition below
+   * for more detail.
+   */
+  export interface Schema$TextAnnotation {
+    /**
+     * List of pages detected by OCR.
+     */
+    pages?: Schema$Page[];
+    /**
+     * UTF-8 text detected on the pages.
+     */
+    text?: string;
+  }
+  /**
+   * Additional information detected on the structural component.
+   */
+  export interface Schema$TextProperty {
+    /**
+     * Detected start or end of a text segment.
+     */
+    detectedBreak?: Schema$DetectedBreak;
+    /**
+     * A list of detected languages together with confidence.
+     */
+    detectedLanguages?: Schema$DetectedLanguage[];
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
+   * are in the same scale as the original image.
+   */
+  export interface Schema$Vertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * Relevant information for the image from the Internet.
+   */
+  export interface Schema$WebDetection {
+    /**
+     * Best guess text labels for the request image.
+     */
+    bestGuessLabels?: Schema$WebLabel[];
+    /**
+     * Fully matching images from the Internet. Can include resized copies of
+     * the query image.
+     */
+    fullMatchingImages?: Schema$WebImage[];
+    /**
+     * Web pages containing the matching images from the Internet.
+     */
+    pagesWithMatchingImages?: Schema$WebPage[];
+    /**
+     * Partial matching images from the Internet. Those images are similar
+     * enough to share some key-point features. For example an original image
+     * will likely have partial matching for its crops.
+     */
+    partialMatchingImages?: Schema$WebImage[];
+    /**
+     * The visually similar image results.
+     */
+    visuallySimilarImages?: Schema$WebImage[];
+    /**
+     * Deduced entities from similar images on the Internet.
+     */
+    webEntities?: Schema$WebEntity[];
+  }
+  /**
+   * Entity deduced from similar images on the Internet.
+   */
+  export interface Schema$WebEntity {
+    /**
+     * Canonical description of the entity, in English.
+     */
+    description?: string;
+    /**
+     * Opaque entity ID.
+     */
+    entityId?: string;
+    /**
+     * Overall relevancy score for the entity. Not normalized and not comparable
+     * across different image queries.
+     */
+    score?: number;
+  }
+  /**
+   * Metadata for online images.
+   */
+  export interface Schema$WebImage {
+    /**
+     * (Deprecated) Overall relevancy score for the image.
+     */
+    score?: number;
+    /**
+     * The result image URL.
+     */
+    url?: string;
+  }
+  /**
+   * Label to provide extra metadata for the web detection.
+   */
+  export interface Schema$WebLabel {
+    /**
+     * Label for extra metadata.
+     */
+    label?: string;
+    /**
+     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or
+     * &quot;sr-Latn&quot;. For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+  }
+  /**
+   * Metadata for web pages.
+   */
+  export interface Schema$WebPage {
+    /**
+     * Fully matching images on the page. Can include resized copies of the
+     * query image.
+     */
+    fullMatchingImages?: Schema$WebImage[];
+    /**
+     * Title for the web page, may contain HTML markups.
+     */
+    pageTitle?: string;
+    /**
+     * Partial matching images on the page. Those images are similar enough to
+     * share some key-point features. For example an original image will likely
+     * have partial matching for its crops.
+     */
+    partialMatchingImages?: Schema$WebImage[];
+    /**
+     * (Deprecated) Overall relevancy score for the web page.
+     */
+    score?: number;
+    /**
+     * The result web page URL.
+     */
+    url?: string;
+  }
+  /**
+   * A word representation.
+   */
+  export interface Schema$Word {
+    /**
+     * The bounding box for the word. The vertices are in the order of top-left,
+     * top-right, bottom-right, bottom-left. When a rotation of the bounding box
+     * is detected the rotation is represented as around the top-left corner as
+     * defined when the text is read in the &#39;natural&#39; orientation. For
+     * example:   * when the text is horizontal it might look like:      0----1
+     * |    |      3----2   * when it&#39;s rotated 180 degrees around the
+     * top-left corner it becomes:      2----3      |    |      1----0   and the
+     * vertice order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$BoundingPoly;
+    /**
+     * Confidence of the OCR results for the word. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the word.
+     */
+    property?: Schema$TextProperty;
+    /**
+     * List of symbols in the word. The order of the symbols follows the natural
+     * reading order.
+     */
+    symbols?: Schema$Symbol[];
+  }
+
+
+  export class Resource$Files {
+    root: Vision;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.files.asyncBatchAnnotate
+     * @desc Run asynchronous image detection and annotation for a list of
+     * generic files, such as PDF files, which may contain multiple pages and
+     * multiple images per page. Progress and results can be retrieved through
+     * the `google.longrunning.Operations` interface. `Operation.metadata`
+     * contains `OperationMetadata` (metadata). `Operation.response` contains
+     * `AsyncBatchAnnotateFilesResponse` (results).
+     * @alias vision.files.asyncBatchAnnotate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asyncBatchAnnotate(
+        params?: Params$Resource$Files$Asyncbatchannotate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+        params: Params$Resource$Files$Asyncbatchannotate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        params: Params$Resource$Files$Asyncbatchannotate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(callback: BodyResponseCallback<Schema$Operation>): void;
+    asyncBatchAnnotate(
+        paramsOrCallback?: Params$Resource$Files$Asyncbatchannotate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Asyncbatchannotate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1p1beta1/files:asyncBatchAnnotate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Files$Asyncbatchannotate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?:
+        Schema$GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest;
   }
 
 

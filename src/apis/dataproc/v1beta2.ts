@@ -634,6 +634,11 @@ export namespace dataproc_v1beta2 {
      */
     instanceId?: string;
     /**
+     * Optional. Map from parameter names to values that should be used for
+     * those parameters.
+     */
+    parameters?: any;
+    /**
      * Optional. The version of workflow template to instantiate. If specified,
      * the workflow will be instantiated only if the current version of the
      * workflow template has the supplied version.This option cannot be used to
@@ -1032,6 +1037,19 @@ export namespace dataproc_v1beta2 {
     stepId?: string;
   }
   /**
+   * Configuration for parameter validation.
+   */
+  export interface Schema$ParameterValidation {
+    /**
+     * Validation based on regular expressions.
+     */
+    regex?: Schema$RegexValidation;
+    /**
+     * Validation based on a list of allowed values.
+     */
+    values?: Schema$ValueValidation;
+  }
+  /**
    * A Cloud Dataproc job for running Apache Pig (https://pig.apache.org/)
    * queries on YARN.
    */
@@ -1178,6 +1196,17 @@ export namespace dataproc_v1beta2 {
      * ]   } }
      */
     queries?: string[];
+  }
+  /**
+   * Validation based on regular expressions.
+   */
+  export interface Schema$RegexValidation {
+    /**
+     * Required. RE2 regular expressions used to validate the parameter&#39;s
+     * value. The provided value must match the regexes in its entirety, e.g.
+     * substring matches are not enough.
+     */
+    regexes?: string[];
   }
   /**
    * Request message for SetIamPolicy method.
@@ -1367,6 +1396,65 @@ export namespace dataproc_v1beta2 {
     requestId?: string;
   }
   /**
+   * A configurable parameter that replaces one or more fields in the template.
+   */
+  export interface Schema$TemplateParameter {
+    /**
+     * Optional. User-friendly description of the parameter. Must not exceed
+     * 1024 characters.
+     */
+    description?: string;
+    /**
+     * Required. Paths to all fields that this parameter replaces. Each field
+     * may appear in at most one Parameter&#39;s fields list.Field path syntax:A
+     * field path is similar to a FieldMask. For example, a field path that
+     * references the zone field of the template&#39;s cluster selector would
+     * look like:placement.clusterSelector.zoneThe only differences between
+     * field paths and standard field masks are that: Values in maps can be
+     * referenced by key.Example:
+     * placement.clusterSelector.clusterLabels&#39;key&#39; Jobs in the jobs
+     * list can be referenced by step id.Example:
+     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri Items in repeated fields
+     * can be referenced by zero-based index.Example:
+     * jobs&#39;step-id&#39;.sparkJob.args0NOTE: Maps and repeated fields may
+     * not be parameterized in their entirety. Only individual map values and
+     * items in repeated fields may be referenced. For example, the following
+     * field paths are invalid: - placement.clusterSelector.clusterLabels -
+     * jobs&#39;step-id&#39;.sparkJob.argsParameterizable fields:Only certain
+     * types of fields may be parameterized, specifically: - Labels - File uris
+     * - Job properties - Job arguments - Script variables - Main class (in
+     * HadoopJob and SparkJob) - Zone (in ClusterSelector)Examples of
+     * parameterizable fields:Labels:labels&#39;key&#39;
+     * placement.managedCluster.labels&#39;key&#39;
+     * placement.clusterSelector.clusterLabels&#39;key&#39;
+     * jobs&#39;step-id&#39;.labels&#39;key&#39;File
+     * uris:jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
+     * jobs&#39;step-id&#39;.hiveJob.queryFileUri
+     * jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri
+     * jobs&#39;step-id&#39;.hadoopJob.jarFileUris0
+     * jobs&#39;step-id&#39;.hadoopJob.archiveUris0
+     * jobs&#39;step-id&#39;.hadoopJob.fileUris0
+     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0Other:jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
+     * jobs&#39;step-id&#39;.hadoopJob.args0
+     * jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39;
+     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
+     * placement.clusterSelector.zone
+     */
+    fields?: string[];
+    /**
+     * Required. User-friendly parameter name. This name is used as a key when
+     * providing a value for this parameter when the template is instantiated.
+     * Must contain only capital letters (A-Z), numbers (0-9), and underscores
+     * (_), and must not start with a number. The maximum length is 40
+     * characters.
+     */
+    name?: string;
+    /**
+     * Optional. Validation rules to be applied to this parameter&#39;s value.
+     */
+    validation?: Schema$ParameterValidation;
+  }
+  /**
    * Request message for TestIamPermissions method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -1387,6 +1475,15 @@ export namespace dataproc_v1beta2 {
      * allowed.
      */
     permissions?: string[];
+  }
+  /**
+   * Validation based on a list of allowed values.
+   */
+  export interface Schema$ValueValidation {
+    /**
+     * Required. List of allowed values for this parameter.
+     */
+    values?: string[];
   }
   /**
    * The workflow graph.
@@ -1494,6 +1591,12 @@ export namespace dataproc_v1beta2 {
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
     name?: string;
+    /**
+     * Optional. Template parameters whose values are substituted into the
+     * template. Values for these parameters must be provided when the template
+     * is instantiated.
+     */
+    parameters?: Schema$TemplateParameter[];
     /**
      * Required. WorkflowTemplate scheduling information.
      */

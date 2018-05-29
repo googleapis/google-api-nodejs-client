@@ -52,6 +52,7 @@ export namespace androidpublisher_v2 {
 
     edits: Resource$Edits;
     inappproducts: Resource$Inappproducts;
+    orders: Resource$Orders;
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
 
@@ -62,6 +63,7 @@ export namespace androidpublisher_v2 {
 
       this.edits = new Resource$Edits(this);
       this.inappproducts = new Resource$Inappproducts(this);
+      this.orders = new Resource$Orders(this);
       this.purchases = new Resource$Purchases(this);
       this.reviews = new Resource$Reviews(this);
     }
@@ -812,8 +814,7 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$Track {
     /**
-     * Identifier for this track. One of &quot;alpha&quot;, &quot;beta&quot;,
-     * &quot;production&quot;, &quot;rollout&quot; or &quot;internal&quot;.
+     * Identifier for this track.
      */
     track?: string;
     userFraction?: number;
@@ -5607,6 +5608,111 @@ export namespace androidpublisher_v2 {
      * Request body metadata
      */
     requestBody?: Schema$InAppProduct;
+  }
+
+
+  export class Resource$Orders {
+    root: Androidpublisher;
+    constructor(root: Androidpublisher) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * androidpublisher.orders.refund
+     * @desc Refund a user's subscription or in-app purchase order.
+     * @alias androidpublisher.orders.refund
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.orderId The order ID provided to the user when the subscription or in-app order was purchased.
+     * @param {string} params.packageName The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     * @param {boolean=} params.revoke Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    refund(params?: Params$Resource$Orders$Refund, options?: MethodOptions):
+        AxiosPromise<void>;
+    refund(
+        params: Params$Resource$Orders$Refund,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    refund(
+        params: Params$Resource$Orders$Refund,
+        callback: BodyResponseCallback<void>): void;
+    refund(callback: BodyResponseCallback<void>): void;
+    refund(
+        paramsOrCallback?: Params$Resource$Orders$Refund|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Refund;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidpublisher/v2/applications/{packageName}/orders/{orderId}:refund')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['packageName', 'orderId'],
+        pathParams: ['orderId', 'packageName'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orders$Refund {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The order ID provided to the user when the subscription or in-app order
+     * was purchased.
+     */
+    orderId?: string;
+    /**
+     * The package name of the application for which this subscription or in-app
+     * item was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Whether to revoke the purchased item. If set to true, access to the
+     * subscription or in-app item will be terminated immediately. If the item
+     * is a recurring subscription, all future payments will also be terminated.
+     * Consumed in-app items need to be handled by developer's app. (optional)
+     */
+    revoke?: boolean;
   }
 
 

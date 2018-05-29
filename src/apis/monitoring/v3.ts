@@ -477,6 +477,12 @@ export namespace monitoring_v3 {
      */
     count?: string;
     /**
+     * Must be in increasing order of |value| field. The current requirement
+     * enforced by the backend is that at most one Exemplar will fall into any
+     * bucket.
+     */
+    exemplars?: Schema$Exemplar[];
+    /**
      * The arithmetic mean of the values in the population. If count is zero
      * then this field must be zero.
      */
@@ -522,6 +528,33 @@ export namespace monitoring_v3 {
    * representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
+  /**
+   * Exemplars are example points that may be used to annotate aggregated
+   * distribution values. They are metadata that gives information about a
+   * particular value added to a Distribution bucket, such as a trace ID that
+   * was active when a value was added. They may contain further information,
+   * such as a example values and timestamps, origin, etc.
+   */
+  export interface Schema$Exemplar {
+    /**
+     * Contextual information about the example value. Examples are:Trace ID:
+     * type.googleapis.com/google.devtools.cloudtrace.v1.TraceLiteral string:
+     * type.googleapis.com/google.protobuf.StringValueLabels dropped during
+     * aggregation:  type.googleapis.com/google.monitoring.v3.DroppedLabelsThere
+     * may be only a single attachment of any given message type in a single
+     * exemplar, and this is enforced by the system.
+     */
+    attachments?: any[];
+    /**
+     * The observation (sampling) time of the above value.
+     */
+    timestamp?: string;
+    /**
+     * Value of the exemplar point. This value determines to which bucket the
+     * exemplar belongs.
+     */
+    value?: number;
+  }
   /**
    * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1
    * (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i
@@ -1143,13 +1176,13 @@ export namespace monitoring_v3 {
     /**
      * The amount of time that a time series must violate the threshold to be
      * considered failing. Currently, only values that are a multiple of a
-     * minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value
-     * is given, an error will be returned. The Duration.nanos field is ignored.
-     * When choosing a duration, it is useful to keep in mind the frequency of
-     * the underlying time series data (which may also be affected by any
-     * alignments specified in the aggregation field); a good duration is long
-     * enough so that a single outlier does not generate spurious alerts, but
-     * short enough that unhealthy states are detected and alerted on quickly.
+     * minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid
+     * value is given, an error will be returned. When choosing a duration, it
+     * is useful to keep in mind the frequency of the underlying time series
+     * data (which may also be affected by any alignments specified in the
+     * aggregations field); a good duration is long enough so that a single
+     * outlier does not generate spurious alerts, but short enough that
+     * unhealthy states are detected and alerted on quickly.
      */
     duration?: string;
     /**

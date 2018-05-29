@@ -434,6 +434,10 @@ export namespace firebasedynamiclinks_v1 {
      */
     requestedLink?: string;
     /**
+     * Which IP version the request was made from.
+     */
+    requestIpVersion?: string;
+    /**
      * The entire FDL, expanded from a short link. It is the same as the
      * requested_link, if it is long. Parameters from this should not be used
      * directly (ie: server can default utm_[campaign|medium|source] to a value
