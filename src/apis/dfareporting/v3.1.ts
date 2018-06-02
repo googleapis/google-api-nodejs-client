@@ -25,9 +25,9 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace dfareporting_v2_8 {
+export namespace dfareporting_v3_1 {
   export interface Options extends GlobalOptions {
-    version: 'v2_8';
+    version: 'v3_1';
   }
 
   /**
@@ -37,12 +37,12 @@ export namespace dfareporting_v2_8 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const dfareporting = google.dfareporting('v2.8');
+   * const dfareporting = google.dfareporting('v3.1');
    *
    * @namespace dfareporting
    * @type {Function}
-   * @version v2.8
-   * @variation v2.8
+   * @version v3.1
+   * @variation v3.1
    * @param {object=} options Options for Dfareporting
    */
   export class Dfareporting {
@@ -57,6 +57,7 @@ export namespace dfareporting_v2_8 {
     accountUserProfiles: Resource$Accountuserprofiles;
     ads: Resource$Ads;
     advertiserGroups: Resource$Advertisergroups;
+    advertiserLandingPages: Resource$Advertiserlandingpages;
     advertisers: Resource$Advertisers;
     browsers: Resource$Browsers;
     campaignCreativeAssociations: Resource$Campaigncreativeassociations;
@@ -82,9 +83,9 @@ export namespace dfareporting_v2_8 {
     floodlightActivityGroups: Resource$Floodlightactivitygroups;
     floodlightConfigurations: Resource$Floodlightconfigurations;
     inventoryItems: Resource$Inventoryitems;
-    landingPages: Resource$Landingpages;
     languages: Resource$Languages;
     metros: Resource$Metros;
+    mobileApps: Resource$Mobileapps;
     mobileCarriers: Resource$Mobilecarriers;
     operatingSystems: Resource$Operatingsystems;
     operatingSystemVersions: Resource$Operatingsystemversions;
@@ -124,6 +125,7 @@ export namespace dfareporting_v2_8 {
       this.accountUserProfiles = new Resource$Accountuserprofiles(this);
       this.ads = new Resource$Ads(this);
       this.advertiserGroups = new Resource$Advertisergroups(this);
+      this.advertiserLandingPages = new Resource$Advertiserlandingpages(this);
       this.advertisers = new Resource$Advertisers(this);
       this.browsers = new Resource$Browsers(this);
       this.campaignCreativeAssociations =
@@ -152,9 +154,9 @@ export namespace dfareporting_v2_8 {
       this.floodlightConfigurations =
           new Resource$Floodlightconfigurations(this);
       this.inventoryItems = new Resource$Inventoryitems(this);
-      this.landingPages = new Resource$Landingpages(this);
       this.languages = new Resource$Languages(this);
       this.metros = new Resource$Metros(this);
+      this.mobileApps = new Resource$Mobileapps(this);
       this.mobileCarriers = new Resource$Mobilecarriers(this);
       this.operatingSystems = new Resource$Operatingsystems(this);
       this.operatingSystemVersions = new Resource$Operatingsystemversions(this);
@@ -986,6 +988,24 @@ export namespace dfareporting_v2_8 {
     nextPageToken?: string;
   }
   /**
+   * Landing Page List Response
+   */
+  export interface Schema$AdvertiserLandingPagesListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dfareporting#advertiserLandingPagesListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * Landing page collection
+     */
+    landingPages?: Schema$LandingPage[];
+    /**
+     * Pagination token to be used for the next list operation.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * Advertiser List Response
    */
   export interface Schema$AdvertisersListResponse {
@@ -1175,6 +1195,10 @@ export namespace dfareporting_v2_8 {
      */
     defaultClickThroughEventTagProperties?:
         Schema$DefaultClickThroughEventTagProperties;
+    /**
+     * The default landing page ID for this campaign.
+     */
+    defaultLandingPageId?: string;
     /**
      * Date on which the campaign will stop running. On insert, the end date
      * must be today or a future date. The end date must be later than or be the
@@ -1438,6 +1462,11 @@ export namespace dfareporting_v2_8 {
    */
   export interface Schema$ClickTag {
     /**
+     * Parameter value for the specified click tag. This field contains a
+     * click-through url.
+     */
+    clickThroughUrl?: Schema$CreativeClickThroughUrl;
+    /**
      * Advertiser event name associated with the click tag. This field is used
      * by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to
      * DISPLAY when the primary asset type is not HTML_IMAGE.
@@ -1449,11 +1478,6 @@ export namespace dfareporting_v2_8 {
      * asset&#39;s creativeAssetId.name field.
      */
     name?: string;
-    /**
-     * Parameter value for the specified click tag. This field contains a
-     * click-through url.
-     */
-    value?: string;
   }
   /**
    * Click-through URL
@@ -1960,11 +1984,10 @@ export namespace dfareporting_v2_8 {
      */
     backgroundColor?: string;
     /**
-     * Click-through URL for backup image. Applicable to the following creative
-     * types: FLASH_INPAGE, and HTML5_BANNER. Applicable to DISPLAY when the
-     * primary asset type is not HTML_IMAGE.
+     * Click-through URL for backup image. Applicable to ENHANCED_BANNER when
+     * the primary asset type is not HTML_IMAGE.
      */
-    backupImageClickThroughUrl?: string;
+    backupImageClickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
      * List of feature dependencies that will cause a backup image to be served
      * if the browser that serves the ad does not support them. Feature
@@ -2012,8 +2035,8 @@ export namespace dfareporting_v2_8 {
     /**
      * List of companion creatives assigned to an in-Stream video creative.
      * Acceptable values include IDs of existing flash and image creatives.
-     * Applicable to the following creative types: all VPAID and all
-     * INSTREAM_VIDEO with dynamicAssetSelection set to false.
+     * Applicable to the following creative types: all VPAID, all INSTREAM_AUDIO
+     * and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
      */
     companionCreatives?: string[];
     /**
@@ -2024,9 +2047,11 @@ export namespace dfareporting_v2_8 {
      * Only pre-existing creatives may have these compatibilities since new
      * creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL
      * instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads
-     * developed with the VAST standard. Applicable to all creative types.
-     * Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; -
-     * &quot;IN_STREAM_VIDEO&quot; - &quot;DISPLAY&quot; -
+     * developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in
+     * in-stream audio ads developed with the VAST standard. Applicable to all
+     * creative types.  Acceptable values are: - &quot;APP&quot; -
+     * &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; -
+     * &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; -
      * &quot;DISPLAY_INTERSTITIAL&quot;
      */
     compatibility?: string[];
@@ -2133,6 +2158,17 @@ export namespace dfareporting_v2_8 {
      */
     latestTraffickedCreativeId?: string;
     /**
+     * Description of the audio or video ad. Applicable to the following
+     * creative types: all INSTREAM_VIDEO, INSTREAM_AUDIO, and all VPAID.
+     */
+    mediaDescription?: string;
+    /**
+     * Creative audio or video duration in seconds. This is a read-only field.
+     * Applicable to the following creative types: INSTREAM_VIDEO,
+     * INSTREAM_AUDIO, all RICH_MEDIA, and all VPAID.
+     */
+    mediaDuration?: number;
+    /**
      * Name of the creative. This is a required field and must be less than 256
      * characters long. Applicable to all creative types.
      */
@@ -2142,6 +2178,11 @@ export namespace dfareporting_v2_8 {
      * creative types: all RICH_MEDIA.
      */
     overrideCss?: string;
+    /**
+     * The asset ID of the polite load image asset. Applicable to the creative
+     * type: DISPLAY.
+     */
+    politeLoadAssetId?: string;
     /**
      * Amount of time to play the video before counting a view. Applicable to
      * the following creative types: all INSTREAM_VIDEO.
@@ -2246,8 +2287,9 @@ export namespace dfareporting_v2_8 {
      */
     thirdPartyRichMediaImpressionsUrl?: string;
     /**
-     * Third-party URLs for tracking in-stream video creative events. Applicable
-     * to the following creative types: all INSTREAM_VIDEO and all VPAID.
+     * Third-party URLs for tracking in-stream creative events. Applicable to
+     * the following creative types: all INSTREAM_VIDEO, all INSTREAM_AUDIO, and
+     * all VPAID.
      */
     thirdPartyUrls?: Schema$ThirdPartyTrackingUrl[];
     /**
@@ -2273,7 +2315,7 @@ export namespace dfareporting_v2_8 {
     type?: string;
     /**
      * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
-     * creative types: INSTREAM_VIDEO and VPAID.
+     * creative types: INSTREAM_AUDIO and INSTREAM_VIDEO and VPAID.
      */
     universalAdId?: Schema$UniversalAdId;
     /**
@@ -2287,17 +2329,6 @@ export namespace dfareporting_v2_8 {
      * to all creative types.
      */
     version?: number;
-    /**
-     * Description of the video ad. Applicable to the following creative types:
-     * all INSTREAM_VIDEO and all VPAID.
-     */
-    videoDescription?: string;
-    /**
-     * Creative video duration in seconds. This is a read-only field. Applicable
-     * to the following creative types: INSTREAM_VIDEO, all RICH_MEDIA, and all
-     * VPAID.
-     */
-    videoDuration?: number;
   }
   /**
    * Creative Asset.
@@ -2310,9 +2341,9 @@ export namespace dfareporting_v2_8 {
      */
     actionScript3?: boolean;
     /**
-     * Whether the video asset is active. This is a read-only field for
+     * Whether the video or audio asset is active. This is a read-only field for
      * VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative
-     * types: INSTREAM_VIDEO and all VPAID.
+     * types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
     active?: boolean;
     /**
@@ -2338,8 +2369,9 @@ export namespace dfareporting_v2_8 {
      */
     backupImageExit?: Schema$CreativeCustomEvent;
     /**
-     * Detected bit-rate for video asset. This is a read-only field. Applicable
-     * to the following creative types: INSTREAM_VIDEO and all VPAID.
+     * Detected bit-rate for audio or video asset. This is a read-only field.
+     * Applicable to the following creative types: INSTREAM_AUDIO,
+     * INSTREAM_VIDEO and all VPAID.
      */
     bitRate?: number;
     /**
@@ -2383,8 +2415,8 @@ export namespace dfareporting_v2_8 {
     displayType?: string;
     /**
      * Duration in seconds for which an asset will be displayed. Applicable to
-     * the following creative types: INSTREAM_VIDEO and VPAID_LINEAR_VIDEO.
-     * Value must be greater than or equal to 1.
+     * the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and
+     * VPAID_LINEAR_VIDEO. Value must be greater than or equal to 1.
      */
     duration?: number;
     /**
@@ -2436,8 +2468,15 @@ export namespace dfareporting_v2_8 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Detected MIME type for video asset. This is a read-only field. Applicable
-     * to the following creative types: INSTREAM_VIDEO and all VPAID.
+     * Detected duration for audio or video asset. This is a read-only field.
+     * Applicable to the following creative types: INSTREAM_AUDIO,
+     * INSTREAM_VIDEO and all VPAID.
+     */
+    mediaDuration?: number;
+    /**
+     * Detected MIME type for audio or video asset. This is a read-only field.
+     * Applicable to the following creative types: INSTREAM_AUDIO,
+     * INSTREAM_VIDEO and all VPAID.
      */
     mimeType?: string;
     /**
@@ -2447,6 +2486,10 @@ export namespace dfareporting_v2_8 {
      * ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
     offset?: Schema$OffsetPosition;
+    /**
+     * Orientation of video asset. This is a read-only, auto-generated field.
+     */
+    orientation?: string;
     /**
      * Whether the backup asset is original or changed by the user in DCM.
      * Applicable to the following creative types: all RICH_MEDIA.
@@ -2510,6 +2553,10 @@ export namespace dfareporting_v2_8 {
      * ALTERNATE_VIDEO assets that are marked active serve as backup in case the
      * VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or
      * removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
+     * PARENT_AUDIO refers to audios uploaded by the user in DCM and is
+     * applicable to INSTREAM_AUDIO creatives. TRANSCODED_AUDIO refers to audios
+     * transcoded by DCM from PARENT_AUDIO assets and is applicable to
+     * INSTREAM_AUDIO creatives.
      */
     role?: string;
     /**
@@ -2547,11 +2594,6 @@ export namespace dfareporting_v2_8 {
      * Applicable to the following creative types: all RICH_MEDIA.
      */
     verticallyLocked?: boolean;
-    /**
-     * Detected video duration for video asset. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
-     */
-    videoDuration?: number;
     /**
      * Window mode options for flash assets. Applicable to the following
      * creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING,
@@ -2745,6 +2787,28 @@ export namespace dfareporting_v2_8 {
     weight?: number;
   }
   /**
+   * Click-through URL
+   */
+  export interface Schema$CreativeClickThroughUrl {
+    /**
+     * Read-only convenience field representing the actual URL that will be used
+     * for this click-through. The URL is computed as follows:  - If
+     * landingPageId is specified then that landing page&#39;s URL is assigned
+     * to this field. - Otherwise, the customClickThroughUrl is assigned to this
+     * field.
+     */
+    computedClickThroughUrl?: string;
+    /**
+     * Custom click-through URL. Applicable if the landingPageId field is left
+     * unset.
+     */
+    customClickThroughUrl?: string;
+    /**
+     * ID of the landing page for the click-through URL.
+     */
+    landingPageId?: string;
+  }
+  /**
    * Creative Custom Event.
    */
   export interface Schema$CreativeCustomEvent {
@@ -2772,9 +2836,10 @@ export namespace dfareporting_v2_8 {
      */
     artworkType?: string;
     /**
-     * Exit URL of the event. This field is used only for exit events.
+     * Exit click-through URL for the event. This field is used only for exit
+     * events.
      */
-    exitUrl?: string;
+    exitClickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
      * ID of this event. This is a required field and should not be modified
      * after insertion.
@@ -3180,6 +3245,34 @@ export namespace dfareporting_v2_8 {
      * America/New York time zone applies.
      */
     userLocalTime?: boolean;
+  }
+  /**
+   * Contains information about a landing page deep link.
+   */
+  export interface Schema$DeepLink {
+    /**
+     * The URL of the mobile app being linked to.
+     */
+    appUrl?: string;
+    /**
+     * The fallback URL. This URL will be served to users who do not have the
+     * mobile app installed.
+     */
+    fallbackUrl?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dfareporting#deepLink&quot;.
+     */
+    kind?: string;
+    /**
+     * The mobile app targeted by this deep link.
+     */
+    mobileApp?: Schema$MobileApp;
+    /**
+     * Ads served to users on these remarketing lists will use this deep link.
+     * Applicable when mobileApp.directory is APPLE_APP_STORE.
+     */
+    remarketingListIds?: string[];
   }
   /**
    * Properties of inheriting and overriding the default click-through event
@@ -3891,6 +3984,12 @@ export namespace dfareporting_v2_8 {
      */
     floodlightActivityTag?: string;
     /**
+     * The global snippet section of a global site tag. The global site tag sets
+     * new cookies on your domain, which will store a unique identifier for a
+     * user or the ad click that brought the user to your site. Learn more.
+     */
+    globalSiteTagGlobalSnippet?: string;
+    /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
      */
@@ -3987,6 +4086,11 @@ export namespace dfareporting_v2_8 {
      */
     floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
+     * The type of Floodlight tag this activity will generate. This is a
+     * required field.
+     */
+    floodlightTagType?: string;
+    /**
      * Whether this activity is archived.
      */
     hidden?: boolean;
@@ -4000,10 +4104,6 @@ export namespace dfareporting_v2_8 {
      * read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
-    /**
-     * Whether the image tag is enabled for this activity.
-     */
-    imageTagEnabled?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;dfareporting#floodlightActivity&quot;.
@@ -4535,11 +4635,17 @@ export namespace dfareporting_v2_8 {
    */
   export interface Schema$LandingPage {
     /**
-     * Whether or not this landing page will be assigned to any ads or creatives
-     * that do not have a landing page assigned explicitly. Only one default
-     * landing page is allowed per campaign.
+     * Advertiser ID of this landing page. This is a required field.
      */
-    default?: boolean;
+    advertiserId?: string;
+    /**
+     * Whether this landing page has been archived.
+     */
+    archived?: boolean;
+    /**
+     * Links that will direct the user to a mobile app, if installed.
+     */
+    deepLinks?: Schema$DeepLink[];
     /**
      * ID of this landing page. This is a read-only, auto-generated field.
      */
@@ -4551,28 +4657,13 @@ export namespace dfareporting_v2_8 {
     kind?: string;
     /**
      * Name of this landing page. This is a required field. It must be less than
-     * 256 characters long, and must be unique among landing pages of the same
-     * campaign.
+     * 256 characters long.
      */
     name?: string;
     /**
      * URL of this landing page. This is a required field.
      */
     url?: string;
-  }
-  /**
-   * Landing Page List Response
-   */
-  export interface Schema$LandingPagesListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#landingPagesListResponse&quot;.
-     */
-    kind?: string;
-    /**
-     * Landing page collection
-     */
-    landingPages?: Schema$LandingPage[];
   }
   /**
    * Contains information about a language that can be targeted by ads.
@@ -4810,6 +4901,50 @@ export namespace dfareporting_v2_8 {
      * Metro collection.
      */
     metros?: Schema$Metro[];
+  }
+  /**
+   * Contains information about a mobile app. Used as a landing page deep link.
+   */
+  export interface Schema$MobileApp {
+    /**
+     * Mobile app directory.
+     */
+    directory?: string;
+    /**
+     * ID of this mobile app.
+     */
+    id?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dfareporting#mobileApp&quot;.
+     */
+    kind?: string;
+    /**
+     * Publisher name.
+     */
+    publisherName?: string;
+    /**
+     * Title of this mobile app.
+     */
+    title?: string;
+  }
+  /**
+   * Mobile app List Response
+   */
+  export interface Schema$MobileAppsListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dfareporting#mobileAppsListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * Mobile apps collection.
+     */
+    mobileApps?: Schema$MobileApp[];
+    /**
+     * Pagination token to be used for the next list operation.
+     */
+    nextPageToken?: string;
   }
   /**
    * Contains information about a mobile carrier that can be targeted by ads.
@@ -7142,7 +7277,7 @@ export namespace dfareporting_v2_8 {
    */
   export interface Schema$ThirdPartyTrackingUrl {
     /**
-     * Third-party URL type for in-stream video creatives.
+     * Third-party URL type for in-stream video and in-stream audio creatives.
      */
     thirdPartyUrlType?: string;
     /**
@@ -7167,7 +7302,7 @@ export namespace dfareporting_v2_8 {
   }
   /**
    * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
-   * creative types: INSTREAM_VIDEO and VPAID.
+   * creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID.
    */
   export interface Schema$UniversalAdId {
     /**
@@ -7461,6 +7596,11 @@ export namespace dfareporting_v2_8 {
      */
     kind?: string;
     /**
+     * Orientation of a video placement. If this value is set, placement will
+     * return assets matching the specified orientation.
+     */
+    orientation?: string;
+    /**
      * Settings for the skippability of video creatives served to this
      * placement. If this object is provided, the creative-level skippable
      * settings will be overridden.
@@ -7490,55 +7630,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountActiveAdSummaries.get
      * @desc Gets the account's active ad summary by account ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Account ID.
-     *     summaryAccountId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountActiveAdSummaries.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountActiveAdSummaries.get
      * @memberOf! ()
      *
@@ -7585,7 +7676,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -7635,55 +7726,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountPermissionGroups.get
      * @desc Gets one account permission group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Account permission group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountPermissionGroups.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountPermissionGroups.get
      * @memberOf! ()
      *
@@ -7730,7 +7772,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountPermissionGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountPermissionGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -7751,52 +7793,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountPermissionGroups.list
      * @desc Retrieves the list of account permission groups.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountPermissionGroups.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountPermissionGroups.list
      * @memberOf! ()
      *
@@ -7854,7 +7850,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountPermissionGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountPermissionGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -7917,57 +7913,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountPermissions.get
      * @desc Gets one account permission by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Account permission ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountPermissions.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountPermissions.get
      * @memberOf! ()
      *
@@ -8013,7 +7958,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountPermissions/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountPermissions/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -8034,54 +7979,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountPermissions.list
      * @desc Retrieves the list of account permissions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountPermissions.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountPermissions.list
      * @memberOf! ()
      *
@@ -8135,7 +8032,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountPermissions')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountPermissions')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -8198,57 +8095,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accounts.get
      * @desc Gets one account by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Account ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accounts.get
      * @memberOf! ()
      *
@@ -8291,7 +8137,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/accounts/{id}')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/accounts/{id}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -8313,67 +8159,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.accounts.list
      * @desc Retrieves the list of accounts, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var accountsPage = response['accounts'];
-     *     if (!accountsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < accountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `accountsPage`: console.log(JSON.stringify(accountsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.accounts.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.accounts.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accounts.list
      * @memberOf! ()
      *
@@ -8427,7 +8212,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/accounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/accounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -8448,63 +8233,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accounts.patch
      * @desc Updates an existing account. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Account ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accounts.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accounts.patch
      * @memberOf! ()
      *
@@ -8551,7 +8279,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/accounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/accounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -8572,60 +8300,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accounts.update
      * @desc Updates an existing account.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accounts.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accounts.update
      * @memberOf! ()
      *
@@ -8671,7 +8345,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/accounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/accounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -8802,57 +8476,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountUserProfiles.get
      * @desc Gets one account user profile by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User profile ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountUserProfiles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountUserProfiles.get
      * @memberOf! ()
      *
@@ -8898,7 +8521,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountUserProfiles/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountUserProfiles/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -8919,56 +8542,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountUserProfiles.insert
      * @desc Inserts a new account user profile.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountUserProfiles.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountUserProfiles.insert
      * @memberOf! ()
      *
@@ -9018,7 +8591,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountUserProfiles')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountUserProfiles')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -9040,68 +8613,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.accountUserProfiles.list
      * @desc Retrieves a list of account user profiles, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var accountUserProfilesPage = response['accountUserProfiles'];
-     *     if (!accountUserProfilesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < accountUserProfilesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `accountUserProfilesPage`:
-     *       console.log(JSON.stringify(accountUserProfilesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.accountUserProfiles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.accountUserProfiles.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountUserProfiles.list
      * @memberOf! ()
      *
@@ -9166,7 +8677,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountUserProfiles')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountUserProfiles')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -9190,61 +8701,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.accountUserProfiles.patch
      * @desc Updates an existing account user profile. This method supports
      * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User profile ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountUserProfiles.patch(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountUserProfiles.patch
      * @memberOf! ()
      *
@@ -9295,7 +8751,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountUserProfiles')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountUserProfiles')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -9316,58 +8772,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.accountUserProfiles.update
      * @desc Updates an existing account user profile.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.accountUserProfiles.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.accountUserProfiles.update
      * @memberOf! ()
      *
@@ -9417,7 +8821,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/accountUserProfiles')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/accountUserProfiles')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -9572,57 +8976,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.ads.get
      * @desc Gets one ad by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Ad ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.ads.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.ads.get
      * @memberOf! ()
      *
@@ -9665,7 +9018,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/ads/{id}')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/ads/{id}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -9686,58 +9039,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.ads.insert
      * @desc Inserts a new ad.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.ads.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.ads.insert
      * @memberOf! ()
      *
@@ -9782,7 +9083,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles/{profileId}/ads')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles/{profileId}/ads')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -9804,67 +9105,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.ads.list
      * @desc Retrieves a list of ads, possibly filtered. This method supports
      * paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var adsPage = response['ads'];
-     *     if (!adsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < adsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `adsPage`:
-     *       console.log(JSON.stringify(adsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.ads.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.ads.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.ads.list
      * @memberOf! ()
      *
@@ -9932,7 +9172,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles/{profileId}/ads')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles/{profileId}/ads')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -9953,63 +9193,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.ads.patch
      * @desc Updates an existing ad. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Ad ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.ads.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.ads.patch
      * @memberOf! ()
      *
@@ -10055,7 +9238,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles/{profileId}/ads')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles/{profileId}/ads')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -10076,60 +9259,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.ads.update
      * @desc Updates an existing ad.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.ads.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.ads.update
      * @memberOf! ()
      *
@@ -10174,7 +9303,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles/{profileId}/ads')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles/{profileId}/ads')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -10392,54 +9521,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertiserGroups.delete
      * @desc Deletes an existing advertiser group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertiserGroups.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.delete
      * @memberOf! ()
      *
@@ -10487,7 +9568,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -10508,57 +9589,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertiserGroups.get
      * @desc Gets one advertiser group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertiserGroups.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.get
      * @memberOf! ()
      *
@@ -10604,7 +9634,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -10625,58 +9655,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertiserGroups.insert
      * @desc Inserts a new advertiser group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertiserGroups.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.insert
      * @memberOf! ()
      *
@@ -10726,7 +9704,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -10748,68 +9726,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.advertiserGroups.list
      * @desc Retrieves a list of advertiser groups, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var advertiserGroupsPage = response['advertiserGroups'];
-     *     if (!advertiserGroupsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < advertiserGroupsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `advertiserGroupsPage`:
-     *       console.log(JSON.stringify(advertiserGroupsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.advertiserGroups.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.advertiserGroups.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.list
      * @memberOf! ()
      *
@@ -10869,7 +9785,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -10893,63 +9809,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.advertiserGroups.patch
      * @desc Updates an existing advertiser group. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertiserGroups.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.patch
      * @memberOf! ()
      *
@@ -11000,7 +9859,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -11021,60 +9880,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertiserGroups.update
      * @desc Updates an existing advertiser group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertiserGroups.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertiserGroups.update
      * @memberOf! ()
      *
@@ -11124,7 +9929,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertiserGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -11267,6 +10072,508 @@ export namespace dfareporting_v2_8 {
   }
 
 
+  export class Resource$Advertiserlandingpages {
+    root: Dfareporting;
+    constructor(root: Dfareporting) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dfareporting.advertiserLandingPages.get
+     * @desc Gets one landing page by ID.
+     * @alias dfareporting.advertiserLandingPages.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id Landing page ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Advertiserlandingpages$Get,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+    get(params: Params$Resource$Advertiserlandingpages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(params: Params$Resource$Advertiserlandingpages$Get,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(paramsOrCallback?: Params$Resource$Advertiserlandingpages$Get|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
+        callback?: BodyResponseCallback<Schema$LandingPage>):
+        void|AxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Advertiserlandingpages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserlandingpages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserLandingPages/{id}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LandingPage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LandingPage>(parameters);
+      }
+    }
+
+
+    /**
+     * dfareporting.advertiserLandingPages.insert
+     * @desc Inserts a new landing page.
+     * @alias dfareporting.advertiserLandingPages.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Advertiserlandingpages$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+    insert(
+        params: Params$Resource$Advertiserlandingpages$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(
+        params: Params$Resource$Advertiserlandingpages$Insert,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Insert|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
+        callback?: BodyResponseCallback<Schema$LandingPage>):
+        void|AxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Advertiserlandingpages$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserlandingpages$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserLandingPages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LandingPage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LandingPage>(parameters);
+      }
+    }
+
+
+    /**
+     * dfareporting.advertiserLandingPages.list
+     * @desc Retrieves a list of landing pages.
+     * @alias dfareporting.advertiserLandingPages.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserIds Select only landing pages that belong to these advertisers.
+     * @param {boolean=} params.archived Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
+     * @param {string=} params.ids Select only landing pages with these IDs.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
+     * @param {string=} params.sortField Field by which to sort the list.
+     * @param {string=} params.sortOrder Order of sorted results.
+     * @param {string=} params.subaccountId Select only landing pages that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Advertiserlandingpages$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
+    list(
+        params: Params$Resource$Advertiserlandingpages$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+        callback:
+            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+        void;
+    list(
+        params: Params$Resource$Advertiserlandingpages$List,
+        callback:
+            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Advertiserlandingpages$List|
+        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+        callback?:
+            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+        void|AxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Advertiserlandingpages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserlandingpages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserLandingPages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dfareporting.advertiserLandingPages.patch
+     * @desc Updates an existing landing page. This method supports patch
+     * semantics.
+     * @alias dfareporting.advertiserLandingPages.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id Landing page ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Advertiserlandingpages$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+    patch(
+        params: Params$Resource$Advertiserlandingpages$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    patch(
+        params: Params$Resource$Advertiserlandingpages$Patch,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    patch(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Patch|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
+        callback?: BodyResponseCallback<Schema$LandingPage>):
+        void|AxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Advertiserlandingpages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserlandingpages$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserLandingPages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LandingPage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LandingPage>(parameters);
+      }
+    }
+
+
+    /**
+     * dfareporting.advertiserLandingPages.update
+     * @desc Updates an existing landing page.
+     * @alias dfareporting.advertiserLandingPages.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+        params?: Params$Resource$Advertiserlandingpages$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+    update(
+        params: Params$Resource$Advertiserlandingpages$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(
+        params: Params$Resource$Advertiserlandingpages$Update,
+        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(callback: BodyResponseCallback<Schema$LandingPage>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Update|
+        BodyResponseCallback<Schema$LandingPage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LandingPage>,
+        callback?: BodyResponseCallback<Schema$LandingPage>):
+        void|AxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Advertiserlandingpages$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserlandingpages$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertiserLandingPages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LandingPage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LandingPage>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertiserlandingpages$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Advertiserlandingpages$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LandingPage;
+  }
+  export interface Params$Resource$Advertiserlandingpages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only landing pages that belong to these advertisers.
+     */
+    advertiserIds?: string;
+    /**
+     * Select only archived landing pages. Don't set this field to select both
+     * archived and non-archived landing pages.
+     */
+    archived?: boolean;
+    /**
+     * Select only landing pages with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for landing pages by name or ID. Wildcards (*) are
+     * allowed. For example, "landingpage*2017" will return landing pages with
+     * names like "landingpage July 2017", "landingpage March 2017", or simply
+     * "landingpage 2017". Most of the searches also add wildcards implicitly at
+     * the start and the end of the search string. For example, a search string
+     * of "landingpage" will match campaigns with name "my landingpage",
+     * "landingpage 2015", or simply "landingpage".
+     */
+    searchString?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only landing pages that belong to this subaccount.
+     */
+    subaccountId?: string;
+  }
+  export interface Params$Resource$Advertiserlandingpages$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Landing page ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LandingPage;
+  }
+  export interface Params$Resource$Advertiserlandingpages$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LandingPage;
+  }
+
+
   export class Resource$Advertisers {
     root: Dfareporting;
     constructor(root: Dfareporting) {
@@ -11282,57 +10589,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertisers.get
      * @desc Gets one advertiser by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertisers.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertisers.get
      * @memberOf! ()
      *
@@ -11377,7 +10633,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/advertisers/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/advertisers/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -11398,58 +10654,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertisers.insert
      * @desc Inserts a new advertiser.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertisers.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertisers.insert
      * @memberOf! ()
      *
@@ -11498,7 +10702,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/advertisers')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/advertisers')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -11520,68 +10724,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.advertisers.list
      * @desc Retrieves a list of advertisers, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var advertisersPage = response['advertisers'];
-     *     if (!advertisersPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < advertisersPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `advertisersPage`: console.log(JSON.stringify(advertisersPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.advertisers.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.advertisers.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertisers.list
      * @memberOf! ()
      *
@@ -11640,7 +10782,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/advertisers')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/advertisers')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -11662,63 +10804,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.advertisers.patch
      * @desc Updates an existing advertiser. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertisers.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertisers.patch
      * @memberOf! ()
      *
@@ -11767,7 +10852,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/advertisers')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/advertisers')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -11788,60 +10873,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.advertisers.update
      * @desc Updates an existing advertiser.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.advertisers.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.advertisers.update
      * @memberOf! ()
      *
@@ -11890,7 +10921,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/advertisers')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/advertisers')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -12058,54 +11089,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.browsers.list
      * @desc Retrieves a list of browsers.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.browsers.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.browsers.list
      * @memberOf! ()
      *
@@ -12152,7 +11135,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/browsers')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/browsers')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -12200,59 +11183,6 @@ export namespace dfareporting_v2_8 {
      * @desc Associates a creative with the specified campaign. This method
      * creates a default ad with dimensions matching the creative in the
      * campaign if such a default ad does not exist already.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Campaign ID in this association.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.campaignCreativeAssociations.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaignCreativeAssociations.insert
      * @memberOf! ()
      *
@@ -12308,7 +11238,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -12331,73 +11261,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.campaignCreativeAssociations.list
      * @desc Retrieves the list of creative IDs associated with the specified
      * campaign. This method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Campaign ID in this association.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var campaignCreativeAssociationsPage =
-     * response['campaignCreativeAssociations']; if
-     * (!campaignCreativeAssociationsPage) { return;
-     *     }
-     *     for (var i = 0; i < campaignCreativeAssociationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `campaignCreativeAssociationsPage`:
-     *       console.log(JSON.stringify(campaignCreativeAssociationsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.campaignCreativeAssociations.list(request,
-     * handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.campaignCreativeAssociations.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! ()
      *
@@ -12456,7 +11319,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -12540,57 +11403,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.campaigns.get
      * @desc Gets one campaign by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Campaign ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.campaigns.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaigns.get
      * @memberOf! ()
      *
@@ -12634,7 +11446,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/campaigns/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -12655,71 +11467,10 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.campaigns.insert
      * @desc Inserts a new campaign.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Default landing page name for this new campaign. Must be less than
-     * 256 characters long. defaultLandingPageName: '',  // TODO: Update
-     * placeholder value.
-     *
-     *     // Default landing page URL for this new campaign.
-     *     defaultLandingPageUrl: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.campaigns.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaigns.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.defaultLandingPageName Default landing page name for this new campaign. Must be less than 256 characters long.
-     * @param {string} params.defaultLandingPageUrl Default landing page URL for this new campaign.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12761,14 +11512,13 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/campaigns')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/campaigns')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
         params,
-        requiredParams:
-            ['profileId', 'defaultLandingPageName', 'defaultLandingPageUrl'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.getRoot()
       };
@@ -12784,67 +11534,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.campaigns.list
      * @desc Retrieves a list of campaigns, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var campaignsPage = response['campaigns'];
-     *     if (!campaignsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < campaignsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `campaignsPage`: console.log(JSON.stringify(campaignsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.campaigns.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.campaigns.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaigns.list
      * @memberOf! ()
      *
@@ -12904,7 +11593,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/campaigns')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/campaigns')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -12925,63 +11614,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.campaigns.patch
      * @desc Updates an existing campaign. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Campaign ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.campaigns.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaigns.patch
      * @memberOf! ()
      *
@@ -13028,7 +11660,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/campaigns')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/campaigns')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -13049,60 +11681,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.campaigns.update
      * @desc Updates an existing campaign.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.campaigns.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.campaigns.update
      * @memberOf! ()
      *
@@ -13148,7 +11726,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/campaigns')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/campaigns')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -13187,15 +11765,6 @@ export namespace dfareporting_v2_8 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
-    /**
-     * Default landing page name for this new campaign. Must be less than 256
-     * characters long.
-     */
-    defaultLandingPageName?: string;
-    /**
-     * Default landing page URL for this new campaign.
-     */
-    defaultLandingPageUrl?: string;
     /**
      * User profile ID associated with this request.
      */
@@ -13330,57 +11899,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.changeLogs.get
      * @desc Gets one change log by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Change log ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.changeLogs.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.changeLogs.get
      * @memberOf! ()
      *
@@ -13425,7 +11943,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/changeLogs/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/changeLogs/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -13446,68 +11964,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.changeLogs.list
      * @desc Retrieves a list of change logs. This method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var changeLogsPage = response['changeLogs'];
-     *     if (!changeLogsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < changeLogsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `changeLogsPage`: console.log(JSON.stringify(changeLogsPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.changeLogs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.changeLogs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.changeLogs.list
      * @memberOf! ()
      *
@@ -13564,7 +12020,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/changeLogs')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/changeLogs')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -13676,54 +12132,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.cities.list
      * @desc Retrieves a list of cities, possibly filtered.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.cities.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.cities.list
      * @memberOf! ()
      *
@@ -13773,7 +12181,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/cities')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/cities')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -13835,57 +12243,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.connectionTypes.get
      * @desc Gets one connection type by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Connection type ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.connectionTypes.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.connectionTypes.get
      * @memberOf! ()
      *
@@ -13931,7 +12288,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/connectionTypes/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/connectionTypes/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -13952,54 +12309,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.connectionTypes.list
      * @desc Retrieves a list of connection types.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.connectionTypes.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.connectionTypes.list
      * @memberOf! ()
      *
@@ -14052,7 +12361,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/connectionTypes')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/connectionTypes')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -14114,54 +12423,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.contentCategories.delete
      * @desc Deletes an existing content category.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Content category ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.contentCategories.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.delete
      * @memberOf! ()
      *
@@ -14209,7 +12470,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -14230,57 +12491,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.contentCategories.get
      * @desc Gets one content category by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Content category ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.contentCategories.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.get
      * @memberOf! ()
      *
@@ -14326,7 +12536,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -14347,56 +12557,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.contentCategories.insert
      * @desc Inserts a new content category.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.contentCategories.insert(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.insert
      * @memberOf! ()
      *
@@ -14446,7 +12606,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -14468,68 +12628,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.contentCategories.list
      * @desc Retrieves a list of content categories, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var contentCategoriesPage = response['contentCategories'];
-     *     if (!contentCategoriesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < contentCategoriesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `contentCategoriesPage`:
-     *       console.log(JSON.stringify(contentCategoriesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.contentCategories.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.contentCategories.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.list
      * @memberOf! ()
      *
@@ -14589,7 +12687,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -14613,63 +12711,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.contentCategories.patch
      * @desc Updates an existing content category. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Content category ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.contentCategories.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.patch
      * @memberOf! ()
      *
@@ -14720,7 +12761,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -14741,58 +12782,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.contentCategories.update
      * @desc Updates an existing content category.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.contentCategories.update(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.contentCategories.update
      * @memberOf! ()
      *
@@ -14842,7 +12831,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/contentCategories')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/contentCategories')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -15000,58 +12989,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.conversions.batchinsert
      * @desc Inserts conversions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.conversions.batchinsert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/ddmconversions'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.conversions.batchinsert
      * @memberOf! ()
      *
@@ -15107,7 +13044,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/conversions/batchinsert')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/conversions/batchinsert')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -15130,58 +13067,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.conversions.batchupdate
      * @desc Updates existing conversions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.conversions.batchupdate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/ddmconversions'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.conversions.batchupdate
      * @memberOf! ()
      *
@@ -15237,7 +13122,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/conversions/batchupdate')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/conversions/batchupdate')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -15306,57 +13191,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.countries.get
      * @desc Gets one country by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Country DART ID.
-     *     dartId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.countries.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.countries.get
      * @memberOf! ()
      *
@@ -15400,7 +13234,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/countries/{dartId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/countries/{dartId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -15421,54 +13255,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.countries.list
      * @desc Retrieves a list of countries.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.countries.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.countries.list
      * @memberOf! ()
      *
@@ -15515,7 +13301,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/countries')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/countries')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -15576,68 +13362,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeAssets.insert
      * @desc Inserts a new creative asset.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Advertiser ID of this creative. This is a required field.
-     *     advertiserId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     media: {
-     *       // TODO: Add desired media content for upload. See
-     *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '',  // See
-     * https://www.w3.org/Protocols/rfc1341/4_Content-Type.html body: '',
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeAssets.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeAssets.insert
      * @memberOf! ()
      *
@@ -15692,7 +13416,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -15700,7 +13424,7 @@ export namespace dfareporting_v2_8 {
         params,
         mediaUrl:
             (rootUrl +
-             '/upload/dfareporting/v2.8/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
+             '/upload/dfareporting/v3.1/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
@@ -15766,54 +13490,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFields.delete
      * @desc Deletes an existing creative field.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFields.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.delete
      * @memberOf! ()
      *
@@ -15861,7 +13537,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -15882,57 +13558,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFields.get
      * @desc Gets one creative field by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFields.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.get
      * @memberOf! ()
      *
@@ -15978,7 +13603,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -15999,58 +13624,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFields.insert
      * @desc Inserts a new creative field.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFields.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.insert
      * @memberOf! ()
      *
@@ -16100,7 +13673,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -16122,68 +13695,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeFields.list
      * @desc Retrieves a list of creative fields, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var creativeFieldsPage = response['creativeFields'];
-     *     if (!creativeFieldsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < creativeFieldsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `creativeFieldsPage`: console.log(JSON.stringify(creativeFieldsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.creativeFields.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.creativeFields.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.list
      * @memberOf! ()
      *
@@ -16242,7 +13753,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -16265,63 +13776,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeFields.patch
      * @desc Updates an existing creative field. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFields.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.patch
      * @memberOf! ()
      *
@@ -16372,7 +13826,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -16393,60 +13847,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFields.update
      * @desc Updates an existing creative field.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFields.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFields.update
      * @memberOf! ()
      *
@@ -16496,7 +13896,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -16658,57 +14058,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFieldValues.delete
      * @desc Deletes an existing creative field value.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field Value ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.delete
      * @memberOf! ()
      *
@@ -16757,7 +14106,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -16778,60 +14127,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFieldValues.get
      * @desc Gets one creative field value by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field Value ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.get
      * @memberOf! ()
      *
@@ -16878,7 +14173,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -16899,59 +14194,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFieldValues.insert
      * @desc Inserts a new creative field value.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.insert
      * @memberOf! ()
      *
@@ -17002,7 +14244,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -17024,71 +14266,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeFieldValues.list
      * @desc Retrieves a list of creative field values, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var creativeFieldValuesPage = response['creativeFieldValues'];
-     *     if (!creativeFieldValuesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < creativeFieldValuesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `creativeFieldValuesPage`:
-     *       console.log(JSON.stringify(creativeFieldValuesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.creativeFieldValues.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.list
      * @memberOf! ()
      *
@@ -17151,7 +14328,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -17175,64 +14352,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeFieldValues.patch
      * @desc Updates an existing creative field value. This method supports
      * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative Field Value ID
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.patch(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.patch
      * @memberOf! ()
      *
@@ -17284,7 +14403,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -17305,61 +14424,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeFieldValues.update
      * @desc Updates an existing creative field value.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeFieldValues.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeFieldValues.update
      * @memberOf! ()
      *
@@ -17410,7 +14474,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -17587,57 +14651,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeGroups.get
      * @desc Gets one creative group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeGroups.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeGroups.get
      * @memberOf! ()
      *
@@ -17683,7 +14696,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -17704,58 +14717,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeGroups.insert
      * @desc Inserts a new creative group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeGroups.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeGroups.insert
      * @memberOf! ()
      *
@@ -17805,7 +14766,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -17827,68 +14788,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeGroups.list
      * @desc Retrieves a list of creative groups, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var creativeGroupsPage = response['creativeGroups'];
-     *     if (!creativeGroupsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < creativeGroupsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `creativeGroupsPage`: console.log(JSON.stringify(creativeGroupsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.creativeGroups.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.creativeGroups.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeGroups.list
      * @memberOf! ()
      *
@@ -17948,7 +14847,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -17971,63 +14870,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creativeGroups.patch
      * @desc Updates an existing creative group. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeGroups.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeGroups.patch
      * @memberOf! ()
      *
@@ -18078,7 +14920,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -18099,60 +14941,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creativeGroups.update
      * @desc Updates an existing creative group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creativeGroups.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creativeGroups.update
      * @memberOf! ()
      *
@@ -18202,7 +14990,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creativeGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creativeGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -18353,57 +15141,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creatives.get
      * @desc Gets one creative by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creatives.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creatives.get
      * @memberOf! ()
      *
@@ -18447,7 +15184,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/creatives/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/creatives/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -18468,58 +15205,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creatives.insert
      * @desc Inserts a new creative.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creatives.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creatives.insert
      * @memberOf! ()
      *
@@ -18565,7 +15250,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/creatives')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/creatives')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -18587,67 +15272,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.creatives.list
      * @desc Retrieves a list of creatives, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var creativesPage = response['creatives'];
-     *     if (!creativesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < creativesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `creativesPage`: console.log(JSON.stringify(creativesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.creatives.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.creatives.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creatives.list
      * @memberOf! ()
      *
@@ -18710,7 +15334,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/creatives')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/creatives')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -18731,63 +15355,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creatives.patch
      * @desc Updates an existing creative. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Creative ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creatives.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creatives.patch
      * @memberOf! ()
      *
@@ -18834,7 +15401,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/creatives')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/creatives')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -18855,60 +15422,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.creatives.update
      * @desc Updates an existing creative.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.creatives.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.creatives.update
      * @memberOf! ()
      *
@@ -18954,7 +15467,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/creatives')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/creatives')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -19139,71 +15652,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.dimensionValues.query
      * @desc Retrieves list of report dimension values for a list of filters.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.dimensionValues.query(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.dimensionValues.query(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.dimensionValues.query
      * @memberOf! ()
      *
@@ -19255,7 +15703,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/dimensionvalues/query')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/dimensionvalues/query')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -19314,55 +15762,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.directorySiteContacts.get
      * @desc Gets one directory site contact by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Directory site contact ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.directorySiteContacts.get(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.directorySiteContacts.get
      * @memberOf! ()
      *
@@ -19409,7 +15808,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/directorySiteContacts/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/directorySiteContacts/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -19431,68 +15830,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.directorySiteContacts.list
      * @desc Retrieves a list of directory site contacts, possibly filtered.
      * This method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var directorySiteContactsPage = response['directorySiteContacts'];
-     *     if (!directorySiteContactsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < directorySiteContactsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `directorySiteContactsPage`:
-     *       console.log(JSON.stringify(directorySiteContactsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.directorySiteContacts.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.directorySiteContacts.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.directorySiteContacts.list
      * @memberOf! ()
      *
@@ -19557,7 +15894,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/directorySiteContacts')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/directorySiteContacts')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -19656,57 +15993,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.directorySites.get
      * @desc Gets one directory site by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Directory site ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.directorySites.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.directorySites.get
      * @memberOf! ()
      *
@@ -19752,7 +16038,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/directorySites/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/directorySites/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -19773,58 +16059,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.directorySites.insert
      * @desc Inserts a new directory site.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.directorySites.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.directorySites.insert
      * @memberOf! ()
      *
@@ -19874,7 +16108,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/directorySites')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/directorySites')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -19896,68 +16130,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.directorySites.list
      * @desc Retrieves a list of directory sites, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var directorySitesPage = response['directorySites'];
-     *     if (!directorySitesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < directorySitesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `directorySitesPage`: console.log(JSON.stringify(directorySitesPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.directorySites.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.directorySites.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.directorySites.list
      * @memberOf! ()
      *
@@ -20022,7 +16194,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/directorySites')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/directorySites')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -20162,62 +16334,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.dynamicTargetingKeys.delete
      * @desc Deletes an existing dynamic targeting key.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // ID of the object of this dynamic targeting key. This is a required
-     * field. objectId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Name of this dynamic targeting key. This is a required field. Must
-     * be less than 256 characters long
-     *     // and cannot contain commas. All characters are converted to
-     * lowercase. name: '',  // TODO: Update placeholder value.
-     *
-     *     // Type of the object of this dynamic targeting key. This is a
-     * required field. objectType: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.dynamicTargetingKeys.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.dynamicTargetingKeys.delete
      * @memberOf! ()
      *
@@ -20267,7 +16383,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -20292,56 +16408,6 @@ export namespace dfareporting_v2_8 {
      * creatives, or placements. There is a maximum of 1000 keys per advertiser,
      * out of which a maximum of 20 keys can be assigned per ad, creative, or
      * placement.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.dynamicTargetingKeys.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.dynamicTargetingKeys.insert
      * @memberOf! ()
      *
@@ -20391,7 +16457,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/dynamicTargetingKeys')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/dynamicTargetingKeys')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -20412,52 +16478,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.dynamicTargetingKeys.list
      * @desc Retrieves a list of dynamic targeting keys.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.dynamicTargetingKeys.list(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.dynamicTargetingKeys.list
      * @memberOf! ()
      *
@@ -20519,7 +16539,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/dynamicTargetingKeys')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/dynamicTargetingKeys')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -20625,54 +16645,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.eventTags.delete
      * @desc Deletes an existing event tag.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Event tag ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.delete
      * @memberOf! ()
      *
@@ -20718,7 +16690,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/eventTags/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/eventTags/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -20739,57 +16711,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.eventTags.get
      * @desc Gets one event tag by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Event tag ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.get
      * @memberOf! ()
      *
@@ -20833,7 +16754,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/eventTags/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/eventTags/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -20854,58 +16775,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.eventTags.insert
      * @desc Inserts a new event tag.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.insert
      * @memberOf! ()
      *
@@ -20951,7 +16820,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/eventTags')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/eventTags')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -20972,54 +16841,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.eventTags.list
      * @desc Retrieves a list of event tags, possibly filtered.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.list
      * @memberOf! ()
      *
@@ -21076,7 +16897,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/eventTags')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/eventTags')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -21098,63 +16919,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.eventTags.patch
      * @desc Updates an existing event tag. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Event tag ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.patch
      * @memberOf! ()
      *
@@ -21201,7 +16965,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/eventTags')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/eventTags')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -21222,60 +16986,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.eventTags.update
      * @desc Updates an existing event tag.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.eventTags.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.eventTags.update
      * @memberOf! ()
      *
@@ -21321,7 +17031,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/eventTags')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/eventTags')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -21510,61 +17220,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.files.get
      * @desc Retrieves a report file by its report ID and file ID. This method
      * supports media download.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report file.
-     *     fileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.files.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.files.get
      * @memberOf! ()
      *
@@ -21607,7 +17262,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/reports/{reportId}/files/{fileId}')
+                    '/dfareporting/v3.1/reports/{reportId}/files/{fileId}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -21628,67 +17283,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.files.list
      * @desc Lists files for a user profile.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.files.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.files.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.files.list
      * @memberOf! ()
      *
@@ -21738,7 +17332,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/files')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/files')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -21819,54 +17413,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivities.delete
      * @desc Deletes an existing floodlight activity.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight activity ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.delete
      * @memberOf! ()
      *
@@ -21914,7 +17460,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -21935,52 +17481,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivities.generatetag
      * @desc Generates a tag for a floodlight activity.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.generatetag(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.generatetag
      * @memberOf! ()
      *
@@ -22036,7 +17536,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities/generatetag')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities/generatetag')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -22059,55 +17559,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivities.get
      * @desc Gets one floodlight activity by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight activity ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.get(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.get
      * @memberOf! ()
      *
@@ -22153,7 +17604,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -22174,56 +17625,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivities.insert
      * @desc Inserts a new floodlight activity.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.insert
      * @memberOf! ()
      *
@@ -22273,7 +17674,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -22295,68 +17696,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.floodlightActivities.list
      * @desc Retrieves a list of floodlight activities, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var floodlightActivitiesPage = response['floodlightActivities'];
-     *     if (!floodlightActivitiesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < floodlightActivitiesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `floodlightActivitiesPage`:
-     *       console.log(JSON.stringify(floodlightActivitiesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.floodlightActivities.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.floodlightActivities.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.list
      * @memberOf! ()
      *
@@ -22427,7 +17766,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -22451,61 +17790,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.floodlightActivities.patch
      * @desc Updates an existing floodlight activity. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight activity ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.patch(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.patch
      * @memberOf! ()
      *
@@ -22556,7 +17840,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -22577,58 +17861,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivities.update
      * @desc Updates an existing floodlight activity.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivities.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivities.update
      * @memberOf! ()
      *
@@ -22678,7 +17910,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivities')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivities')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -22890,55 +18122,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivityGroups.get
      * @desc Gets one floodlight activity group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight activity Group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivityGroups.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivityGroups.get
      * @memberOf! ()
      *
@@ -22985,7 +18168,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivityGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivityGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -23006,56 +18189,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivityGroups.insert
      * @desc Inserts a new floodlight activity group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivityGroups.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivityGroups.insert
      * @memberOf! ()
      *
@@ -23107,7 +18240,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivityGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivityGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -23129,69 +18262,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.floodlightActivityGroups.list
      * @desc Retrieves a list of floodlight activity groups, possibly filtered.
      * This method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var floodlightActivityGroupsPage =
-     * response['floodlightActivityGroups']; if (!floodlightActivityGroupsPage)
-     * { return;
-     *     }
-     *     for (var i = 0; i < floodlightActivityGroupsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `floodlightActivityGroupsPage`:
-     *       console.log(JSON.stringify(floodlightActivityGroupsPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.floodlightActivityGroups.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.floodlightActivityGroups.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivityGroups.list
      * @memberOf! ()
      *
@@ -23258,7 +18328,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivityGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivityGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -23282,61 +18352,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.floodlightActivityGroups.patch
      * @desc Updates an existing floodlight activity group. This method supports
      * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight activity Group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivityGroups.patch(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivityGroups.patch
      * @memberOf! ()
      *
@@ -23388,7 +18403,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivityGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivityGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -23409,58 +18424,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightActivityGroups.update
      * @desc Updates an existing floodlight activity group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightActivityGroups.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightActivityGroups.update
      * @memberOf! ()
      *
@@ -23512,7 +18475,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightActivityGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightActivityGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -23675,55 +18638,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightConfigurations.get
      * @desc Gets one floodlight configuration by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight configuration ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightConfigurations.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightConfigurations.get
      * @memberOf! ()
      *
@@ -23770,7 +18684,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightConfigurations/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightConfigurations/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -23791,52 +18705,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightConfigurations.list
      * @desc Retrieves a list of floodlight configurations, possibly filtered.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightConfigurations.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightConfigurations.list
      * @memberOf! ()
      *
@@ -23895,7 +18763,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightConfigurations')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightConfigurations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -23919,61 +18787,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.floodlightConfigurations.patch
      * @desc Updates an existing floodlight configuration. This method supports
      * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Floodlight configuration ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightConfigurations.patch(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightConfigurations.patch
      * @memberOf! ()
      *
@@ -24025,7 +18838,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightConfigurations')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightConfigurations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -24046,58 +18859,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.floodlightConfigurations.update
      * @desc Updates an existing floodlight configuration.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.floodlightConfigurations.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.floodlightConfigurations.update
      * @memberOf! ()
      *
@@ -24149,7 +18910,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/floodlightConfigurations')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/floodlightConfigurations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -24251,60 +19012,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.inventoryItems.get
      * @desc Gets one inventory item by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for order documents.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Inventory item ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.inventoryItems.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.inventoryItems.get
      * @memberOf! ()
      *
@@ -24351,7 +19058,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -24373,71 +19080,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.inventoryItems.list
      * @desc Retrieves a list of inventory items, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for order documents.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var inventoryItemsPage = response['inventoryItems'];
-     *     if (!inventoryItemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < inventoryItemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `inventoryItemsPage`: console.log(JSON.stringify(inventoryItemsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.inventoryItems.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.inventoryItems.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.inventoryItems.list
      * @memberOf! ()
      *
@@ -24499,7 +19141,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/inventoryItems')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/inventoryItems')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -24590,884 +19232,6 @@ export namespace dfareporting_v2_8 {
   }
 
 
-  export class Resource$Landingpages {
-    root: Dfareporting;
-    constructor(root: Dfareporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * dfareporting.landingPages.delete
-     * @desc Deletes an existing campaign landing page.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Landingpages$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
-    delete(
-        params: Params$Resource$Landingpages$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    delete(
-        params: Params$Resource$Landingpages$Delete,
-        callback: BodyResponseCallback<void>): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Landingpages$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Landingpages$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId', 'id'],
-        pathParams: ['campaignId', 'id', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-
-    /**
-     * dfareporting.landingPages.get
-     * @desc Gets one campaign landing page by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Landingpages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
-    get(params: Params$Resource$Landingpages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    get(params: Params$Resource$Landingpages$Get,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    get(callback: BodyResponseCallback<Schema$LandingPage>): void;
-    get(paramsOrCallback?: Params$Resource$Landingpages$Get|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Landingpages$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId', 'id'],
-        pathParams: ['campaignId', 'id', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$LandingPage>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LandingPage>(parameters);
-      }
-    }
-
-
-    /**
-     * dfareporting.landingPages.insert
-     * @desc Inserts a new landing page for the specified campaign.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(
-        params?: Params$Resource$Landingpages$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
-    insert(
-        params: Params$Resource$Landingpages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    insert(
-        params: Params$Resource$Landingpages$Insert,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    insert(callback: BodyResponseCallback<Schema$LandingPage>): void;
-    insert(
-        paramsOrCallback?: Params$Resource$Landingpages$Insert|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Landingpages$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId'],
-        pathParams: ['campaignId', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$LandingPage>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LandingPage>(parameters);
-      }
-    }
-
-
-    /**
-     * dfareporting.landingPages.list
-     * @desc Retrieves the list of landing pages for the specified campaign.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Landingpages$List, options?: MethodOptions):
-        AxiosPromise<Schema$LandingPagesListResponse>;
-    list(
-        params: Params$Resource$Landingpages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LandingPagesListResponse>,
-        callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
-    list(
-        params: Params$Resource$Landingpages$List,
-        callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$LandingPagesListResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Landingpages$List|
-        BodyResponseCallback<Schema$LandingPagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LandingPagesListResponse>):
-        void|AxiosPromise<Schema$LandingPagesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Landingpages$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId'],
-        pathParams: ['campaignId', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$LandingPagesListResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LandingPagesListResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * dfareporting.landingPages.patch
-     * @desc Updates an existing campaign landing page. This method supports
-     * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(params?: Params$Resource$Landingpages$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$LandingPage>;
-    patch(
-        params: Params$Resource$Landingpages$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    patch(
-        params: Params$Resource$Landingpages$Patch,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    patch(callback: BodyResponseCallback<Schema$LandingPage>): void;
-    patch(
-        paramsOrCallback?: Params$Resource$Landingpages$Patch|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Landingpages$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId', 'id'],
-        pathParams: ['campaignId', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$LandingPage>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LandingPage>(parameters);
-      }
-    }
-
-
-    /**
-     * dfareporting.landingPages.update
-     * @desc Updates an existing campaign landing page.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Landing page campaign ID.
-     *     campaignId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.landingPages.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
-     * @alias dfareporting.landingPages.update
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Landing page campaign ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update(
-        params?: Params$Resource$Landingpages$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
-    update(
-        params: Params$Resource$Landingpages$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    update(
-        params: Params$Resource$Landingpages$Update,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    update(callback: BodyResponseCallback<Schema$LandingPage>): void;
-    update(
-        paramsOrCallback?: Params$Resource$Landingpages$Update|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Landingpages$Update;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Landingpages$Update;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/campaigns/{campaignId}/landingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['profileId', 'campaignId'],
-        pathParams: ['campaignId', 'profileId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$LandingPage>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LandingPage>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Landingpages$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * Landing page ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-  }
-  export interface Params$Resource$Landingpages$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * Landing page ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-  }
-  export interface Params$Resource$Landingpages$Insert {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LandingPage;
-  }
-  export interface Params$Resource$Landingpages$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-  }
-  export interface Params$Resource$Landingpages$Patch {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * Landing page ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LandingPage;
-  }
-  export interface Params$Resource$Landingpages$Update {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Landing page campaign ID.
-     */
-    campaignId?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LandingPage;
-  }
-
-
   export class Resource$Languages {
     root: Dfareporting;
     constructor(root: Dfareporting) {
@@ -25483,54 +19247,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.languages.list
      * @desc Retrieves a list of languages.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.languages.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.languages.list
      * @memberOf! ()
      *
@@ -25577,7 +19293,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/languages')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/languages')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -25623,54 +19339,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.metros.list
      * @desc Retrieves a list of metros.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.metros.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.metros.list
      * @memberOf! ()
      *
@@ -25716,7 +19384,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/metros')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/metros')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -25747,6 +19415,208 @@ export namespace dfareporting_v2_8 {
   }
 
 
+  export class Resource$Mobileapps {
+    root: Dfareporting;
+    constructor(root: Dfareporting) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dfareporting.mobileApps.get
+     * @desc Gets one mobile app by ID.
+     * @alias dfareporting.mobileApps.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id Mobile app ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Mobileapps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$MobileApp>;
+    get(params: Params$Resource$Mobileapps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileApp>,
+        callback: BodyResponseCallback<Schema$MobileApp>): void;
+    get(params: Params$Resource$Mobileapps$Get,
+        callback: BodyResponseCallback<Schema$MobileApp>): void;
+    get(callback: BodyResponseCallback<Schema$MobileApp>): void;
+    get(paramsOrCallback?: Params$Resource$Mobileapps$Get|
+        BodyResponseCallback<Schema$MobileApp>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileApp>,
+        callback?: BodyResponseCallback<Schema$MobileApp>):
+        void|AxiosPromise<Schema$MobileApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobileapps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/dfareporting/v3.1/userprofiles/{profileId}/mobileApps/{id}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MobileApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MobileApp>(parameters);
+      }
+    }
+
+
+    /**
+     * dfareporting.mobileApps.list
+     * @desc Retrieves list of available mobile apps.
+     * @alias dfareporting.mobileApps.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.directories Select only apps from these directories.
+     * @param {string=} params.ids Select only apps with these IDs.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Mobileapps$List, options?: MethodOptions):
+        AxiosPromise<Schema$MobileAppsListResponse>;
+    list(
+        params: Params$Resource$Mobileapps$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$MobileAppsListResponse>,
+        callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
+    list(
+        params: Params$Resource$Mobileapps$List,
+        callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Mobileapps$List|
+        BodyResponseCallback<Schema$MobileAppsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileAppsListResponse>,
+        callback?: BodyResponseCallback<Schema$MobileAppsListResponse>):
+        void|AxiosPromise<Schema$MobileAppsListResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobileapps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/dfareporting/v3.1/userprofiles/{profileId}/mobileApps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MobileAppsListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MobileAppsListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Mobileapps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Mobile app ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Mobileapps$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Select only apps from these directories.
+     */
+    directories?: string;
+    /**
+     * Select only apps with these IDs.
+     */
+    ids?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
+     * For example, "app*2015" will return objects with names like "app Jan
+     * 2018", "app Jan 2018", or simply "app 2018". Most of the searches also
+     * add wildcards implicitly at the start and the end of the search string.
+     * For example, a search string of "app" will match objects with name "my
+     * app", "app 2018", or simply "app".
+     */
+    searchString?: string;
+  }
+
+
   export class Resource$Mobilecarriers {
     root: Dfareporting;
     constructor(root: Dfareporting) {
@@ -25762,57 +19632,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.mobileCarriers.get
      * @desc Gets one mobile carrier by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Mobile carrier ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.mobileCarriers.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.mobileCarriers.get
      * @memberOf! ()
      *
@@ -25858,7 +19677,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/mobileCarriers/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/mobileCarriers/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -25879,54 +19698,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.mobileCarriers.list
      * @desc Retrieves a list of mobile carriers.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.mobileCarriers.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.mobileCarriers.list
      * @memberOf! ()
      *
@@ -25978,7 +19749,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/mobileCarriers')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/mobileCarriers')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26040,57 +19811,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.operatingSystems.get
      * @desc Gets one operating system by DART ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Operating system DART ID.
-     *     dartId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.operatingSystems.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.operatingSystems.get
      * @memberOf! ()
      *
@@ -26136,7 +19856,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/operatingSystems/{dartId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/operatingSystems/{dartId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26157,54 +19877,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.operatingSystems.list
      * @desc Retrieves a list of operating systems.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.operatingSystems.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.operatingSystems.list
      * @memberOf! ()
      *
@@ -26258,7 +19930,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/operatingSystems')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/operatingSystems')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26321,55 +19993,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.operatingSystemVersions.get
      * @desc Gets one operating system version by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Operating system version ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.operatingSystemVersions.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.operatingSystemVersions.get
      * @memberOf! ()
      *
@@ -26416,7 +20039,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/operatingSystemVersions/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/operatingSystemVersions/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26437,52 +20060,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.operatingSystemVersions.list
      * @desc Retrieves a list of operating system versions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.operatingSystemVersions.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.operatingSystemVersions.list
      * @memberOf! ()
      *
@@ -26540,7 +20117,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/operatingSystemVersions')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/operatingSystemVersions')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26603,60 +20180,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.orderDocuments.get
      * @desc Gets one order document by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for order documents.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Order document ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.orderDocuments.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.orderDocuments.get
      * @memberOf! ()
      *
@@ -26703,7 +20226,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26725,71 +20248,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.orderDocuments.list
      * @desc Retrieves a list of order documents, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for order documents.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var orderDocumentsPage = response['orderDocuments'];
-     *     if (!orderDocumentsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < orderDocumentsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `orderDocumentsPage`: console.log(JSON.stringify(orderDocumentsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.orderDocuments.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.orderDocuments.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.orderDocuments.list
      * @memberOf! ()
      *
@@ -26851,7 +20309,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/orderDocuments')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/orderDocuments')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -26963,60 +20421,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.orders.get
      * @desc Gets one order by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for orders.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Order ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.orders.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.orders.get
      * @memberOf! ()
      *
@@ -27061,7 +20465,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/orders/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/orders/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -27083,70 +20487,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.orders.list
      * @desc Retrieves a list of orders, possibly filtered. This method supports
      * paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID for orders.
-     *     projectId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var ordersPage = response['orders'];
-     *     if (!ordersPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < ordersPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `ordersPage`: console.log(JSON.stringify(ordersPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.orders.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.orders.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.orders.list
      * @memberOf! ()
      *
@@ -27201,7 +20541,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/projects/{projectId}/orders')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/projects/{projectId}/orders')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -27303,57 +20643,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementGroups.get
      * @desc Gets one placement group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementGroups.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementGroups.get
      * @memberOf! ()
      *
@@ -27399,7 +20688,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -27420,58 +20709,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementGroups.insert
      * @desc Inserts a new placement group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementGroups.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementGroups.insert
      * @memberOf! ()
      *
@@ -27521,7 +20758,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -27543,68 +20780,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placementGroups.list
      * @desc Retrieves a list of placement groups, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var placementGroupsPage = response['placementGroups'];
-     *     if (!placementGroupsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < placementGroupsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `placementGroupsPage`: console.log(JSON.stringify(placementGroupsPage[i],
-     * null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.placementGroups.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.placementGroups.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementGroups.list
      * @memberOf! ()
      *
@@ -27676,7 +20851,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -27699,63 +20874,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placementGroups.patch
      * @desc Updates an existing placement group. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementGroups.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementGroups.patch
      * @memberOf! ()
      *
@@ -27806,7 +20924,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -27827,60 +20945,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementGroups.update
      * @desc Updates an existing placement group.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementGroups.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementGroups.update
      * @memberOf! ()
      *
@@ -27930,7 +20994,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -28140,54 +21204,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placements.generatetags
      * @desc Generates tags for a placement.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placements.generatetags(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.generatetags
      * @memberOf! ()
      *
@@ -28245,7 +21261,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placements/generatetags')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placements/generatetags')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -28268,57 +21284,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placements.get
      * @desc Gets one placement by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placements.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.get
      * @memberOf! ()
      *
@@ -28363,7 +21328,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placements/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placements/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -28384,58 +21349,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placements.insert
      * @desc Inserts a new placement.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placements.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.insert
      * @memberOf! ()
      *
@@ -28483,7 +21396,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/placements')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/placements')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -28505,68 +21418,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placements.list
      * @desc Retrieves a list of placements, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var placementsPage = response['placements'];
-     *     if (!placementsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < placementsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `placementsPage`: console.log(JSON.stringify(placementsPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.placements.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.placements.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.list
      * @memberOf! ()
      *
@@ -28635,7 +21486,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/placements')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/placements')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -28657,63 +21508,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placements.patch
      * @desc Updates an existing placement. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placements.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.patch
      * @memberOf! ()
      *
@@ -28761,7 +21555,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/placements')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/placements')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -28782,60 +21576,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placements.update
      * @desc Updates an existing placement.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placements.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placements.update
      * @memberOf! ()
      *
@@ -28883,7 +21623,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/placements')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/placements')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -29126,54 +21866,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementStrategies.delete
      * @desc Deletes an existing placement strategy.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement strategy ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementStrategies.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.delete
      * @memberOf! ()
      *
@@ -29221,7 +21913,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -29242,57 +21934,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementStrategies.get
      * @desc Gets one placement strategy by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement strategy ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementStrategies.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.get
      * @memberOf! ()
      *
@@ -29338,7 +21979,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -29359,56 +22000,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementStrategies.insert
      * @desc Inserts a new placement strategy.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementStrategies.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.insert
      * @memberOf! ()
      *
@@ -29458,7 +22049,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -29480,68 +22071,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placementStrategies.list
      * @desc Retrieves a list of placement strategies, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var placementStrategiesPage = response['placementStrategies'];
-     *     if (!placementStrategiesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < placementStrategiesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `placementStrategiesPage`:
-     *       console.log(JSON.stringify(placementStrategiesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.placementStrategies.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.placementStrategies.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.list
      * @memberOf! ()
      *
@@ -29603,7 +22132,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -29627,61 +22156,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.placementStrategies.patch
      * @desc Updates an existing placement strategy. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Placement strategy ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementStrategies.patch(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.patch
      * @memberOf! ()
      *
@@ -29732,7 +22206,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -29753,58 +22227,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.placementStrategies.update
      * @desc Updates an existing placement strategy.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.placementStrategies.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.placementStrategies.update
      * @memberOf! ()
      *
@@ -29854,7 +22276,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/placementStrategies')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/placementStrategies')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -30013,57 +22435,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.platformTypes.get
      * @desc Gets one platform type by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Platform type ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.platformTypes.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.platformTypes.get
      * @memberOf! ()
      *
@@ -30109,7 +22480,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/platformTypes/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/platformTypes/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30130,54 +22501,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.platformTypes.list
      * @desc Retrieves a list of platform types.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.platformTypes.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.platformTypes.list
      * @memberOf! ()
      *
@@ -30226,7 +22549,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/platformTypes')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/platformTypes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30288,57 +22611,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.postalCodes.get
      * @desc Gets one postal code by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Postal code ID.
-     *     code: 'my-code',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.postalCodes.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.postalCodes.get
      * @memberOf! ()
      *
@@ -30383,7 +22655,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/postalCodes/{code}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/postalCodes/{code}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30404,54 +22676,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.postalCodes.list
      * @desc Retrieves a list of postal codes.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.postalCodes.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.postalCodes.list
      * @memberOf! ()
      *
@@ -30498,7 +22722,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/postalCodes')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/postalCodes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30559,57 +22783,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.projects.get
      * @desc Gets one project by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Project ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.projects.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.projects.get
      * @memberOf! ()
      *
@@ -30652,7 +22825,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/projects/{id}')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/projects/{id}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30674,67 +22847,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.projects.list
      * @desc Retrieves a list of projects, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var projectsPage = response['projects'];
-     *     if (!projectsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < projectsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `projectsPage`: console.log(JSON.stringify(projectsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.projects.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.projects.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.projects.list
      * @memberOf! ()
      *
@@ -30788,7 +22900,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/projects')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/projects')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -30882,54 +22994,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.regions.list
      * @desc Retrieves a list of regions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.regions.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.regions.list
      * @memberOf! ()
      *
@@ -30975,7 +23039,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/regions')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/regions')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -31021,57 +23085,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.remarketingLists.get
      * @desc Gets one remarketing list by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Remarketing list ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingLists.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingLists.get
      * @memberOf! ()
      *
@@ -31117,7 +23130,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingLists/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingLists/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -31138,58 +23151,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.remarketingLists.insert
      * @desc Inserts a new remarketing list.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingLists.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingLists.insert
      * @memberOf! ()
      *
@@ -31239,7 +23200,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingLists')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingLists')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -31261,71 +23222,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.remarketingLists.list
      * @desc Retrieves a list of remarketing lists, possibly filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Select only remarketing lists owned by this advertiser.
-     *     advertiserId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var remarketingListsPage = response['remarketingLists'];
-     *     if (!remarketingListsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < remarketingListsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `remarketingListsPage`:
-     *       console.log(JSON.stringify(remarketingListsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.remarketingLists.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.remarketingLists.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingLists.list
      * @memberOf! ()
      *
@@ -31387,7 +23283,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingLists')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingLists')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -31411,63 +23307,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.remarketingLists.patch
      * @desc Updates an existing remarketing list. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Remarketing list ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingLists.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingLists.patch
      * @memberOf! ()
      *
@@ -31518,7 +23357,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingLists')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingLists')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -31539,60 +23378,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.remarketingLists.update
      * @desc Updates an existing remarketing list.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingLists.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingLists.update
      * @memberOf! ()
      *
@@ -31642,7 +23427,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingLists')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingLists')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -31793,55 +23578,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.remarketingListShares.get
      * @desc Gets one remarketing list share by remarketing list ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Remarketing list ID.
-     *     remarketingListId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingListShares.get(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingListShares.get
      * @memberOf! ()
      *
@@ -31888,7 +23624,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingListShares/{remarketingListId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingListShares/{remarketingListId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -31910,61 +23646,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.remarketingListShares.patch
      * @desc Updates an existing remarketing list share. This method supports
      * patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Remarketing list ID.
-     *     remarketingListId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingListShares.patch(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingListShares.patch
      * @memberOf! ()
      *
@@ -32016,7 +23697,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingListShares')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingListShares')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -32037,58 +23718,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.remarketingListShares.update
      * @desc Updates an existing remarketing list share.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.remarketingListShares.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.remarketingListShares.update
      * @memberOf! ()
      *
@@ -32139,7 +23768,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/remarketingListShares')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/remarketingListShares')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -32229,54 +23858,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.delete
      * @desc Deletes a report by its ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.delete
      * @memberOf! ()
      *
@@ -32322,7 +23903,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -32343,57 +23924,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.get
      * @desc Retrieves a report by its ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.get
      * @memberOf! ()
      *
@@ -32437,7 +23967,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -32458,58 +23988,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.insert
      * @desc Creates a report.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.insert
      * @memberOf! ()
      *
@@ -32555,7 +24033,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/reports')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/reports')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -32576,67 +24054,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.list
      * @desc Retrieves list of reports.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.reports.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.reports.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.list
      * @memberOf! ()
      *
@@ -32687,7 +24104,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/reports')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/reports')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -32708,63 +24125,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.patch
      * @desc Updates a report. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.patch
      * @memberOf! ()
      *
@@ -32812,7 +24172,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -32833,57 +24193,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.run
      * @desc Runs a report.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.run(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.run
      * @memberOf! ()
      *
@@ -32928,7 +24237,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}/run')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}/run')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -32949,63 +24258,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.update
      * @desc Updates a report.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.update
      * @memberOf! ()
      *
@@ -33053,7 +24305,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -33225,56 +24477,6 @@ export namespace dfareporting_v2_8 {
      * @desc Returns the fields that are compatible to be selected in the
      * respective sections of a report criteria, given the fields already
      * selected in the input report and user permissions.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.compatibleFields.query(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.compatibleFields.query
      * @memberOf! ()
      *
@@ -33324,7 +24526,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/compatiblefields/query')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/compatiblefields/query')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -33375,64 +24577,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.files.get
      * @desc Retrieves a report file. This method supports media download.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the report file.
-     *     fileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.reports.files.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.files.get
      * @memberOf! ()
      *
@@ -33478,7 +24622,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}/files/{fileId}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}/files/{fileId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -33499,70 +24643,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.reports.files.list
      * @desc Lists files for a report.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The DFA profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the parent report.
-     *     reportId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.reports.files.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.reports.files.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.reports.files.list
      * @memberOf! ()
      *
@@ -33614,7 +24694,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/reports/{reportId}/files')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/reports/{reportId}/files')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -33700,57 +24780,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sites.get
      * @desc Gets one site by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Site ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sites.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sites.get
      * @memberOf! ()
      *
@@ -33793,7 +24822,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sites/{id}')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sites/{id}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -33814,58 +24843,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sites.insert
      * @desc Inserts a new site.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sites.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sites.insert
      * @memberOf! ()
      *
@@ -33911,7 +24888,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sites')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sites')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -33933,67 +24910,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.sites.list
      * @desc Retrieves a list of sites, possibly filtered. This method supports
      * paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var sitesPage = response['sites'];
-     *     if (!sitesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < sitesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `sitesPage`:
-     *       console.log(JSON.stringify(sitesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.sites.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.sites.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sites.list
      * @memberOf! ()
      *
@@ -34054,7 +24970,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sites')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sites')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -34075,63 +24991,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sites.patch
      * @desc Updates an existing site. This method supports patch semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Site ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sites.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sites.patch
      * @memberOf! ()
      *
@@ -34178,7 +25037,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sites')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sites')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -34199,60 +25058,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sites.update
      * @desc Updates an existing site.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sites.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sites.update
      * @memberOf! ()
      *
@@ -34298,7 +25103,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sites')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sites')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -34478,57 +25283,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sizes.get
      * @desc Gets one size by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Size ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sizes.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sizes.get
      * @memberOf! ()
      *
@@ -34571,7 +25325,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sizes/{id}')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sizes/{id}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -34592,58 +25346,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.sizes.insert
      * @desc Inserts a new size.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sizes.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sizes.insert
      * @memberOf! ()
      *
@@ -34689,7 +25391,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sizes')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sizes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -34713,54 +25415,6 @@ export namespace dfareporting_v2_8 {
      * globally unique and may include values not currently in use by your
      * account. Due to this, the list of sizes returned by this method may
      * differ from the list seen in the Trafficking UI.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.sizes.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.sizes.list
      * @memberOf! ()
      *
@@ -34810,7 +25464,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/sizes')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/sizes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -34903,57 +25557,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.subaccounts.get
      * @desc Gets one subaccount by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Subaccount ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.subaccounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.subaccounts.get
      * @memberOf! ()
      *
@@ -34998,7 +25601,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/subaccounts/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/subaccounts/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -35019,58 +25622,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.subaccounts.insert
      * @desc Inserts a new subaccount.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.subaccounts.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.subaccounts.insert
      * @memberOf! ()
      *
@@ -35119,7 +25670,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/subaccounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/subaccounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -35141,68 +25692,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.subaccounts.list
      * @desc Gets a list of subaccounts, possibly filtered. This method supports
      * paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var subaccountsPage = response['subaccounts'];
-     *     if (!subaccountsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < subaccountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `subaccountsPage`: console.log(JSON.stringify(subaccountsPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.subaccounts.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.subaccounts.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.subaccounts.list
      * @memberOf! ()
      *
@@ -35255,7 +25744,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/subaccounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/subaccounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -35277,63 +25766,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.subaccounts.patch
      * @desc Updates an existing subaccount. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Subaccount ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.subaccounts.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.subaccounts.patch
      * @memberOf! ()
      *
@@ -35382,7 +25814,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/subaccounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/subaccounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -35403,60 +25835,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.subaccounts.update
      * @desc Updates an existing subaccount.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.subaccounts.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.subaccounts.update
      * @memberOf! ()
      *
@@ -35505,7 +25883,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/subaccounts')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/subaccounts')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -35648,55 +26026,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.targetableRemarketingLists.get
      * @desc Gets one remarketing list by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Remarketing list ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.targetableRemarketingLists.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetableRemarketingLists.get
      * @memberOf! ()
      *
@@ -35744,7 +26073,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetableRemarketingLists/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetableRemarketingLists/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -35767,72 +26096,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.targetableRemarketingLists.list
      * @desc Retrieves a list of targetable remarketing lists, possibly
      * filtered. This method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Select only targetable remarketing lists targetable by these
-     * advertisers. advertiserId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var targetableRemarketingListsPage =
-     * response['targetableRemarketingLists']; if
-     * (!targetableRemarketingListsPage) { return;
-     *     }
-     *     for (var i = 0; i < targetableRemarketingListsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `targetableRemarketingListsPage`:
-     *       console.log(JSON.stringify(targetableRemarketingListsPage[i], null,
-     * 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.targetableRemarketingLists.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.targetableRemarketingLists.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetableRemarketingLists.list
      * @memberOf! ()
      *
@@ -35894,7 +26157,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetableRemarketingLists')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetableRemarketingLists')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -35991,57 +26254,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.targetingTemplates.get
      * @desc Gets one targeting template by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Targeting template ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.targetingTemplates.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetingTemplates.get
      * @memberOf! ()
      *
@@ -36087,7 +26299,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetingTemplates/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetingTemplates/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -36108,56 +26320,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.targetingTemplates.insert
      * @desc Inserts a new targeting template.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.targetingTemplates.insert(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetingTemplates.insert
      * @memberOf! ()
      *
@@ -36207,7 +26369,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetingTemplates')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetingTemplates')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -36229,68 +26391,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.targetingTemplates.list
      * @desc Retrieves a list of targeting templates, optionally filtered. This
      * method supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var targetingTemplatesPage = response['targetingTemplates'];
-     *     if (!targetingTemplatesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < targetingTemplatesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `targetingTemplatesPage`:
-     *       console.log(JSON.stringify(targetingTemplatesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.targetingTemplates.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.targetingTemplates.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetingTemplates.list
      * @memberOf! ()
      *
@@ -36351,7 +26451,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetingTemplates')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetingTemplates')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -36375,61 +26475,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.targetingTemplates.patch
      * @desc Updates an existing targeting template. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Targeting template ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.targetingTemplates.patch(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetingTemplates.patch
      * @memberOf! ()
      *
@@ -36480,7 +26525,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetingTemplates')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetingTemplates')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -36501,58 +26546,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.targetingTemplates.update
      * @desc Updates an existing targeting template.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.targetingTemplates.update(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.targetingTemplates.update
      * @memberOf! ()
      *
@@ -36602,7 +26595,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/targetingTemplates')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/targetingTemplates')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -36749,55 +26742,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userProfiles.get
      * @desc Gets one user profile by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The user profile ID.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userProfiles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userProfiles.get
      * @memberOf! ()
      *
@@ -36839,7 +26783,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles/{profileId}')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles/{profileId}')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -36860,52 +26804,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userProfiles.list
      * @desc Retrieves list of user profiles for a user.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userProfiles.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/dfareporting'
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userProfiles.list
      * @memberOf! ()
      *
@@ -36950,7 +26848,7 @@ export namespace dfareporting_v2_8 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/dfareporting/v2.8/userprofiles')
+              url: (rootUrl + '/dfareporting/v3.1/userprofiles')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37002,55 +26900,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRolePermissionGroups.get
      * @desc Gets one user role permission group by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User role permission group ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRolePermissionGroups.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRolePermissionGroups.get
      * @memberOf! ()
      *
@@ -37097,7 +26946,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRolePermissionGroups/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRolePermissionGroups/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37118,52 +26967,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRolePermissionGroups.list
      * @desc Gets a list of all supported user role permission groups.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRolePermissionGroups.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRolePermissionGroups.list
      * @memberOf! ()
      *
@@ -37221,7 +27024,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRolePermissionGroups')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRolePermissionGroups')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37284,57 +27087,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRolePermissions.get
      * @desc Gets one user role permission by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User role permission ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRolePermissions.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRolePermissions.get
      * @memberOf! ()
      *
@@ -37380,7 +27132,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRolePermissions/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRolePermissions/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37401,52 +27153,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRolePermissions.list
      * @desc Gets a list of user role permissions, possibly filtered.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRolePermissions.list(request, function(err, response)
-     * { if (err) { console.error(err); return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRolePermissions.list
      * @memberOf! ()
      *
@@ -37503,7 +27209,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRolePermissions')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRolePermissions')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37570,54 +27276,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRoles.delete
      * @desc Deletes an existing user role.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User role ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRoles.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.delete
      * @memberOf! ()
      *
@@ -37663,7 +27321,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRoles/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRoles/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
@@ -37684,57 +27342,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRoles.get
      * @desc Gets one user role by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User role ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRoles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.get
      * @memberOf! ()
      *
@@ -37778,7 +27385,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/userRoles/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/userRoles/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -37799,58 +27406,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRoles.insert
      * @desc Inserts a new user role.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRoles.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.insert
      * @memberOf! ()
      *
@@ -37896,7 +27451,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/userRoles')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/userRoles')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -37918,67 +27473,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.userRoles.list
      * @desc Retrieves a list of user roles, possibly filtered. This method
      * supports paging.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var userRolesPage = response['userRoles'];
-     *     if (!userRolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < userRolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `userRolesPage`: console.log(JSON.stringify(userRolesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       dfareporting.userRoles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   dfareporting.userRoles.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.list
      * @memberOf! ()
      *
@@ -38033,7 +27527,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/userRoles')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/userRoles')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -38055,63 +27549,6 @@ export namespace dfareporting_v2_8 {
      * dfareporting.userRoles.patch
      * @desc Updates an existing user role. This method supports patch
      * semantics.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // User role ID.
-     *     id: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRoles.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.patch
      * @memberOf! ()
      *
@@ -38158,7 +27595,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/userRoles')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/userRoles')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
@@ -38179,60 +27616,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.userRoles.update
      * @desc Updates an existing user role.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.userRoles.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.userRoles.update
      * @memberOf! ()
      *
@@ -38278,7 +27661,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/userRoles')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/userRoles')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             },
@@ -38445,57 +27828,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.videoFormats.get
      * @desc Gets one video format by ID.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     // Video format ID.
-     *     id: 0,  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.videoFormats.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.videoFormats.get
      * @memberOf! ()
      *
@@ -38540,7 +27872,7 @@ export namespace dfareporting_v2_8 {
             {
               url:
                   (rootUrl +
-                   '/dfareporting/v2.8/userprofiles/{profileId}/videoFormats/{id}')
+                   '/dfareporting/v3.1/userprofiles/{profileId}/videoFormats/{id}')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -38561,54 +27893,6 @@ export namespace dfareporting_v2_8 {
     /**
      * dfareporting.videoFormats.list
      * @desc Lists available video formats.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking
-     * API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dfareporting
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var dfareporting = google.dfareporting('v2.8');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // User profile ID associated with this request.
-     *     profileId: '0',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dfareporting.videoFormats.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/doubleclick-advertisers/authorizing#examples
-     *   //
-     *   // Authorize using the following scope:
-     *   //   'https://www.googleapis.com/auth/dfatrafficking'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias dfareporting.videoFormats.list
      * @memberOf! ()
      *
@@ -38656,7 +27940,7 @@ export namespace dfareporting_v2_8 {
         options: Object.assign(
             {
               url: (rootUrl +
-                    '/dfareporting/v2.8/userprofiles/{profileId}/videoFormats')
+                    '/dfareporting/v3.1/userprofiles/{profileId}/videoFormats')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },

@@ -723,6 +723,16 @@ export namespace testing_v1 {
     tags?: string[];
   }
   /**
+   * The currently provided software environment on the devices under test.
+   */
+  export interface Schema$ProvidedSoftwareCatalog {
+    /**
+     * A string representing the current version of Android Test Orchestrator
+     * that is provided by TestExecutionService. Example: &quot;1.0.2 beta&quot;
+     */
+    orchestratorVersion?: string;
+  }
+  /**
    * A file or directory to install on the device before the test starts
    */
   export interface Schema$RegularFile {
@@ -850,6 +860,10 @@ export namespace testing_v1 {
      * Supported network configurations
      */
     networkConfigurationCatalog?: Schema$NetworkConfigurationCatalog;
+    /**
+     * The software test environment provided by TestExecutionService.
+     */
+    softwareCatalog?: Schema$ProvidedSoftwareCatalog;
   }
   /**
    * Specifies a single test to be executed in a single environment.

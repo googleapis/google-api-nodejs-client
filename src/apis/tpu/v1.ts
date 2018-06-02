@@ -25,9 +25,9 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace tpu_v1alpha1 {
+export namespace tpu_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha1';
+    version: 'v1';
   }
 
   /**
@@ -37,12 +37,12 @@ export namespace tpu_v1alpha1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const tpu = google.tpu('v1alpha1');
+   * const tpu = google.tpu('v1');
    *
    * @namespace tpu
    * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Tpu
    */
   export class Tpu {
@@ -526,8 +526,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -597,7 +596,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}/locations')
+              url: (rootUrl + '/v1/{+name}/locations')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -708,8 +707,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -785,7 +783,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+parent}/acceleratorTypes')
+              url: (rootUrl + '/v1/{+parent}/acceleratorTypes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -908,7 +906,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+parent}/nodes')
+              url: (rootUrl + '/v1/{+parent}/nodes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -975,8 +973,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -1037,8 +1034,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1106,7 +1102,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+parent}/nodes')
+              url: (rootUrl + '/v1/{+parent}/nodes')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1174,7 +1170,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}:reimage')
+              url: (rootUrl + '/v1/{+name}:reimage')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1242,8 +1238,8 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}:reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url:
+                  (rootUrl + '/v1/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1310,8 +1306,8 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}:start')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url:
+                  (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1378,8 +1374,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}:stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1591,7 +1586,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}:cancel')
+              url: (rootUrl + '/v1/{+name}:cancel')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1660,8 +1655,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -1725,8 +1719,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1804,7 +1797,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+name}/operations')
+              url: (rootUrl + '/v1/{+name}/operations')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1939,8 +1932,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1959,7 +1951,7 @@ export namespace tpu_v1alpha1 {
 
     /**
      * tpu.projects.locations.tensorflowVersions.list
-     * @desc Lists TensorFlow versions supported by this API.
+     * @desc List TensorFlow versions supported by this API.
      * @alias tpu.projects.locations.tensorflowVersions.list
      * @memberOf! ()
      *
@@ -2017,7 +2009,7 @@ export namespace tpu_v1alpha1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1alpha1/{+parent}/tensorflowVersions')
+              url: (rootUrl + '/v1/{+parent}/tensorflowVersions')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },

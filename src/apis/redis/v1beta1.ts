@@ -145,11 +145,11 @@ export namespace redis_v1beta1 {
      */
     createTime?: string;
     /**
-     * Output only. The current zone where the Redis endpoint is placed. In
-     * single zone deployments, this will always be the same as [location_id]
-     * provided by the user at creation time. In cross-zone instances (only
-     * applicable in STANDARD_HA tier), this can be either [location_id] or
-     * [alternative_location_id] and can change on a failover event.
+     * Output only. The current zone where the Redis endpoint is placed. For
+     * Basic Tier instances, this will always be the same as the [location_id]
+     * provided by the user at creation time. For Standard Tier instances, this
+     * can be either [location_id] or [alternative_location_id] and can change
+     * after a failover event.
      */
     currentLocationId?: string;
     /**
@@ -169,12 +169,12 @@ export namespace redis_v1beta1 {
      * Optional. The zone where the instance will be provisioned. If not
      * provided, the service will choose a zone for the instance. For
      * STANDARD_HA tier, instances will be created across two zones for
-     * protection against zonal failures. if [alternative_location_id] is also
+     * protection against zonal failures. If [alternative_location_id] is also
      * provided, it must be different from [location_id].
      */
     locationId?: string;
     /**
-     * Required. Redis memory size in GB, up to 200GB.
+     * Required. Redis memory size in GiB.
      */
     memorySizeGb?: number;
     /**
@@ -182,8 +182,8 @@ export namespace redis_v1beta1 {
      * location using the form:
      * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * Note: Redis instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users get to choose
-     * which specific zone (or collection of zones for cross-zone instances) an
+     * location_id here refers to a GCP region; however, users may choose which
+     * specific zone (or collection of zones for cross-zone instances) an
      * instance should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
      */
@@ -195,7 +195,7 @@ export namespace redis_v1beta1 {
     /**
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
-     * are:  * maxmemory-policy  * notify-keyspace-events
+     * are:   *   maxmemory-policy  *   notify-keyspace-events
      */
     redisConfigs?: any;
     /**
@@ -209,7 +209,7 @@ export namespace redis_v1beta1 {
      * Optional. The CIDR range of internal addresses that are reserved for this
      * instance. If not provided, the service will choose an unused /29 block,
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and
-     * non-overlapping with existing subnets in a network.
+     * non-overlapping with existing subnets in an authorized network.
      */
     reservedIpRange?: string;
     /**
@@ -680,7 +680,7 @@ export namespace redis_v1beta1 {
     /**
      * redis.projects.locations.instances.create
      * @desc Creates a Redis instance based on the specified tier and memory
-     * size.  By default, the instance is peered to the project's [default
+     * size.  By default, the instance is accessible from the project's [default
      * network](/compute/docs/networks-and-firewalls#networks).  The creation is
      * executed asynchronously and callers may check the returned operation to
      * track its progress. Once the operation is completed the Redis instance
@@ -966,8 +966,8 @@ export namespace redis_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`  Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users get to choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to [location_id] and [alternative_location_id] fields for more details.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `display_name` * `labels` * `redis_config` * `redis_version`
+     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`  Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to [location_id] and [alternative_location_id] fields for more details.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance:   *   `displayName`  *   `labels`  *   `memorySizeGb`  *   `redisConfig`
      * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1115,8 +1115,8 @@ export namespace redis_v1beta1 {
      * location using the form:
      * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * Note: Redis instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users get to choose
-     * which specific zone (or collection of zones for cross-zone instances) an
+     * location_id here refers to a GCP region; however, users may choose which
+     * specific zone (or collection of zones for cross-zone instances) an
      * instance should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
      */
@@ -1124,8 +1124,8 @@ export namespace redis_v1beta1 {
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field. The elements of the repeated paths field may only include
-     * these fields from Instance: * `display_name` * `labels` * `redis_config`
-     * * `redis_version`
+     * these fields from Instance:   *   `displayName`  *   `labels`  *
+     * `memorySizeGb`  *   `redisConfig`
      */
     updateMask?: string;
 

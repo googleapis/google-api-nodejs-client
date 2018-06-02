@@ -299,7 +299,8 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Document {
     /**
-     * The content of the input in string format.
+     * The content of the input in string format. Cloud audit logging exempt
+     * since it is based on user data.
      */
     content?: string;
     /**

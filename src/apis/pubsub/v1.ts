@@ -103,7 +103,10 @@ export namespace pubsub_v1 {
     role?: string;
   }
   /**
-   * Request for the `CreateSnapshot` method.
+   * Request for the `CreateSnapshot` method.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
+   * API might be changed in backward-incompatible ways and is not recommended
+   * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$CreateSnapshotRequest {
     /**
@@ -127,7 +130,10 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Response for the `ListSnapshots` method.
+   * Response for the `ListSnapshots` method.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
+   * API might be changed in backward-incompatible ways and is not recommended
+   * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$ListSnapshotsResponse {
     /**
@@ -156,8 +162,10 @@ export namespace pubsub_v1 {
     subscriptions?: Schema$Subscription[];
   }
   /**
-   * Response for the `ListTopicSnapshots` method. [ALPHA] This method is a part
-   * of a closed Alpha API.
+   * Response for the `ListTopicSnapshots` method.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
+   * API might be changed in backward-incompatible ways and is not recommended
+   * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$ListTopicSnapshotsResponse {
     /**
@@ -395,7 +403,10 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
-   * Request for the `Seek` method.
+   * Request for the `Seek` method.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
+   * API might be changed in backward-incompatible ways and is not recommended
+   * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$SeekRequest {
     /**
@@ -432,7 +443,10 @@ export namespace pubsub_v1 {
     policy?: Schema$Policy;
   }
   /**
-   * A snapshot resource.
+   * A snapshot resource.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This
+   * feature is part of an alpha release. This API might be changed in
+   * backward-incompatible ways and is not recommended for production use. It is
+   * not subject to any SLA or deprecation policy.
    */
   export interface Schema$Snapshot {
     /**
@@ -485,7 +499,10 @@ export namespace pubsub_v1 {
      * `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a
      * `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or
-     * less than 10 minutes. [ALPHA] This field is a part of a closed Alpha API.
+     * less than 10 minutes.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This
+     * feature is part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      */
     messageRetentionDuration?: string;
     /**
@@ -508,7 +525,10 @@ export namespace pubsub_v1 {
      * Indicates whether to retain acknowledged messages. If true, then messages
      * are not expunged from the subscription&#39;s backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. [ALPHA] This field is a part of a closed Alpha API.
+     * window.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This feature is
+     * part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      */
     retainAckedMessages?: boolean;
     /**
@@ -555,11 +575,14 @@ export namespace pubsub_v1 {
     name?: string;
   }
   /**
-   * Request for the UpdateSnapshot method.
+   * Request for the UpdateSnapshot method.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
+   * API might be changed in backward-incompatible ways and is not recommended
+   * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$UpdateSnapshotRequest {
     /**
-     * The updated snpashot object.
+     * The updated snapshot object.
      */
     snapshot?: Schema$Snapshot;
     /**
@@ -617,15 +640,17 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.create
-     * @desc [ALPHA] This method is a part of a closed Alpha API. Creates a
-     * snapshot from the requested subscription. If the snapshot already exists,
-     * returns `ALREADY_EXISTS`. If the requested subscription doesn't exist,
-     * returns `NOT_FOUND`. If the backlog in the subscription is too old -- and
-     * the resulting snapshot would expire in less than 1 hour -- then
-     * `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time`
-     * field.  If the name is not provided in the request, the server will
-     * assign a random name for this snapshot on the same project as the
-     * subscription, conforming to the [resource name
+     * @desc Creates a snapshot from the requested subscription.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy. If
+     * the snapshot already exists, returns `ALREADY_EXISTS`. If the requested
+     * subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the
+     * subscription is too old -- and the resulting snapshot would expire in
+     * less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the
+     * `Snapshot.expire_time` field. If the name is not provided in the request,
+     * the server will assign a random name for this snapshot on the same
+     * project as the subscription, conforming to the [resource name
      * format](https://cloud.google.com/pubsub/docs/overview#names). The
      * generated name is populated in the returned Snapshot object. Note that
      * for REST API requests, you must specify a name in the request.
@@ -694,11 +719,14 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.delete
-     * @desc Removes an existing snapshot. All messages retained in the snapshot
-     * are immediately dropped. After a snapshot is deleted, a new one may be
-     * created with the same name, but the new one has no association with the
-     * old snapshot or its subscription, unless the same subscription is
-     * specified. [ALPHA] This method is a part of a closed Alpha API.
+     * @desc Removes an existing snapshot. <br><br> <b>ALPHA:</b> This feature
+     * is part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy. When the snapshot is
+     * deleted, all messages retained in the snapshot are immediately dropped.
+     * After a snapshot is deleted, a new one may be created with the same name,
+     * but the new one has no association with the old snapshot or its
+     * subscription, unless the same subscription is specified.
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -763,8 +791,10 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.get
-     * @desc Gets the configuration details of a snapshot. [ALPHA] This method
-     * is a part of a closed Alpha API.
+     * @desc Gets the configuration details of a snapshot.<br><br> <b>ALPHA:</b>
+     * This feature is part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -945,8 +975,10 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.list
-     * @desc Lists the existing snapshots. [ALPHA] This method is a part of a
-     * closed Alpha API.
+     * @desc Lists the existing snapshots.<br><br> <b>ALPHA:</b> This feature is
+     * part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -1016,9 +1048,11 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.patch
-     * @desc Updates an existing snapshot. Note that certain properties of a
-     * snapshot are not modifiable. [ALPHA] This method is a part of a closed
-     * Alpha API.
+     * @desc Updates an existing snapshot.<br><br> <b>ALPHA:</b> This feature is
+     * part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy. Note that certain
+     * properties of a snapshot are not modifiable.
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -1616,11 +1650,13 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.create
-     * @desc Creates a subscription to a given topic. If the subscription
-     * already exists, returns `ALREADY_EXISTS`. If the corresponding topic
-     * doesn't exist, returns `NOT_FOUND`.  If the name is not provided in the
-     * request, the server will assign a random name for this subscription on
-     * the same project as the topic, conforming to the [resource name
+     * @desc Creates a subscription to a given topic. See the <a
+     * href="/pubsub/docs/admin#resource_names"> resource name rules</a>. If the
+     * subscription already exists, returns `ALREADY_EXISTS`. If the
+     * corresponding topic doesn't exist, returns `NOT_FOUND`.  If the name is
+     * not provided in the request, the server will assign a random name for
+     * this subscription on the same project as the topic, conforming to the
+     * [resource name
      * format](https://cloud.google.com/pubsub/docs/overview#names). The
      * generated name is populated in the returned Subscription object. Note
      * that for REST API requests, you must specify a name in the request.
@@ -2713,8 +2749,10 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.subscriptions.seek
      * @desc Seeks an existing subscription to a point in time or to a given
-     * snapshot, whichever is provided in the request. [ALPHA] This method is a
-     * part of a closed Alpha API.
+     * snapshot, whichever is provided in the request.<br><br> <b>ALPHA:</b>
+     * This feature is part of an alpha release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -3282,7 +3320,8 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.create
-     * @desc Creates the given topic with the given name.
+     * @desc Creates the given topic with the given name. See the <a
+     * href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4449,8 +4488,10 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.snapshots.list
-     * @desc Lists the names of the snapshots on this topic. [ALPHA] This method
-     * is a part of a closed Alpha API.
+     * @desc Lists the names of the snapshots on this topic.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *

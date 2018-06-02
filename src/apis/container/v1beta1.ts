@@ -126,6 +126,16 @@ export namespace container_v1beta1 {
     description?: string;
   }
   /**
+   * Configuration for Binary Authorization.
+   */
+  export interface Schema$BinaryAuthorization {
+    /**
+     * Enable Binary Authorization for this cluster. If enabled, all container
+     * images will be validated by Google Binauthz.
+     */
+    enabled?: boolean;
+  }
+  /**
    * CancelOperationRequest cancels a single operation.
    */
   export interface Schema$CancelOperationRequest {
@@ -182,6 +192,10 @@ export namespace container_v1beta1 {
      * Configurations for the various addons available to run in the cluster.
      */
     addonsConfig?: Schema$AddonsConfig;
+    /**
+     * Configuration for Binary Authorization.
+     */
+    binaryAuthorization?: Schema$BinaryAuthorization;
     /**
      * The IP address range of the container pods in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
@@ -425,6 +439,10 @@ export namespace container_v1beta1 {
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
+    /**
+     * The desired configuration options for the Binary Authorization feature.
+     */
+    desiredBinaryAuthorization?: Schema$BinaryAuthorization;
     /**
      * The desired image type for the node pool. NOTE: Set the
      * &quot;desired_node_pool&quot; field as well.
@@ -977,6 +995,12 @@ export namespace container_v1beta1 {
      * 100GB.
      */
     diskSizeGb?: number;
+    /**
+     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or
+     * &#39;pd-ssd&#39;)  If unspecified, the default disk type is
+     * &#39;pd-standard&#39;
+     */
+    diskType?: string;
     /**
      * The image type to use for this node. Note that for a given image type,
      * the latest version of it will be used.
@@ -2507,7 +2531,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.get
-     * @desc Gets the details of a specific cluster.
+     * @desc Gets the details for a specific cluster.
      * @alias container.projects.locations.clusters.get
      * @memberOf! ()
      *
@@ -2642,7 +2666,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setAddons
-     * @desc Sets the addons of a specific cluster.
+     * @desc Sets the addons for a specific cluster.
      * @alias container.projects.locations.clusters.setAddons
      * @memberOf! ()
      *
@@ -2781,7 +2805,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations of a specific cluster.
+     * @desc Sets the locations for a specific cluster.
      * @alias container.projects.locations.clusters.setLocations
      * @memberOf! ()
      *
@@ -2850,7 +2874,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setLogging
-     * @desc Sets the logging service of a specific cluster.
+     * @desc Sets the logging service for a specific cluster.
      * @alias container.projects.locations.clusters.setLogging
      * @memberOf! ()
      *
@@ -2994,9 +3018,9 @@ export namespace container_v1beta1 {
     /**
      * container.projects.locations.clusters.setMasterAuth
      * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password of a specific cluster. This can be either via password
-     * generation or explicitly set. Modify basic_auth.csv and reset the K8S API
-     * server.
+     * the admin password for a specific cluster. This can be either via
+     * password generation or explicitly set. Modify basic_auth.csv and reset
+     * the K8S API server.
      * @alias container.projects.locations.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -3066,7 +3090,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setMonitoring
-     * @desc Sets the monitoring service of a specific cluster.
+     * @desc Sets the monitoring service for a specific cluster.
      * @alias container.projects.locations.clusters.setMonitoring
      * @memberOf! ()
      *
@@ -3346,7 +3370,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.update
-     * @desc Updates the settings of a specific cluster.
+     * @desc Updates the settings for a specific cluster.
      * @alias container.projects.locations.clusters.update
      * @memberOf! ()
      *
@@ -3413,7 +3437,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.updateMaster
-     * @desc Updates the master of a specific cluster.
+     * @desc Updates the master for a specific cluster.
      * @alias container.projects.locations.clusters.updateMaster
      * @memberOf! ()
      *
@@ -4317,7 +4341,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.nodePools.setSize
-     * @desc Sets the size of a specific node pool.
+     * @desc Sets the size for a specific node pool.
      * @alias container.projects.locations.clusters.nodePools.setSize
      * @memberOf! ()
      *
@@ -5080,7 +5104,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.addons
-     * @desc Sets the addons of a specific cluster.
+     * @desc Sets the addons for a specific cluster.
      * @alias container.projects.zones.clusters.addons
      * @memberOf! ()
      *
@@ -5380,7 +5404,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.get
-     * @desc Gets the details of a specific cluster.
+     * @desc Gets the details for a specific cluster.
      * @alias container.projects.zones.clusters.get
      * @memberOf! ()
      *
@@ -5591,7 +5615,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.locations
-     * @desc Sets the locations of a specific cluster.
+     * @desc Sets the locations for a specific cluster.
      * @alias container.projects.zones.clusters.locations
      * @memberOf! ()
      *
@@ -5663,7 +5687,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.logging
-     * @desc Sets the logging service of a specific cluster.
+     * @desc Sets the logging service for a specific cluster.
      * @alias container.projects.zones.clusters.logging
      * @memberOf! ()
      *
@@ -5735,7 +5759,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.master
-     * @desc Updates the master of a specific cluster.
+     * @desc Updates the master for a specific cluster.
      * @alias container.projects.zones.clusters.master
      * @memberOf! ()
      *
@@ -5807,7 +5831,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.monitoring
-     * @desc Sets the monitoring service of a specific cluster.
+     * @desc Sets the monitoring service for a specific cluster.
      * @alias container.projects.zones.clusters.monitoring
      * @memberOf! ()
      *
@@ -6028,9 +6052,9 @@ export namespace container_v1beta1 {
     /**
      * container.projects.zones.clusters.setMasterAuth
      * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password of a specific cluster. This can be either via password
-     * generation or explicitly set. Modify basic_auth.csv and reset the K8S API
-     * server.
+     * the admin password for a specific cluster. This can be either via
+     * password generation or explicitly set. Modify basic_auth.csv and reset
+     * the K8S API server.
      * @alias container.projects.zones.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -6249,7 +6273,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.update
-     * @desc Updates the settings of a specific cluster.
+     * @desc Updates the settings for a specific cluster.
      * @alias container.projects.zones.clusters.update
      * @memberOf! ()
      *
@@ -7333,7 +7357,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.nodePools.setSize
-     * @desc Sets the size of a specific node pool.
+     * @desc Sets the size for a specific node pool.
      * @alias container.projects.zones.clusters.nodePools.setSize
      * @memberOf! ()
      *

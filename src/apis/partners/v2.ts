@@ -281,6 +281,10 @@ export namespace partners_v2 {
      */
     autoApprovalEmailDomains?: string[];
     /**
+     * Whether the company&#39;s badge authority is in AWN
+     */
+    badgeAuthorityInAwn?: boolean;
+    /**
      * Partner badge tier
      */
     badgeTier?: string;

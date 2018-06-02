@@ -484,9 +484,7 @@ export namespace jobs_v2 {
     type?: string;
   }
   /**
-   * Input only.  Create job request.  The job typically becomes searchable
-   * within 10 seconds, but it may take up to 5 minutes for the job to become
-   * searchable.
+   * Input only.  Create job request.
    */
   export interface Schema$CreateJobRequest {
     /**
@@ -622,7 +620,7 @@ export namespace jobs_v2 {
   /**
    * Deprecated. Use BatchDeleteJobsRequest instead.  Input only.  Delete job by
    * filter request.  The job typically becomes unsearchable within 10 seconds,
-   * but it may take up to 5 minutes for the job to become unsearchable.
+   * but it may take up to 5 minutes.
    */
   export interface Schema$DeleteJobsByFilterRequest {
     /**
@@ -2096,9 +2094,7 @@ export namespace jobs_v2 {
     values?: string[];
   }
   /**
-   * Input only.  Update job request.  The job typically becomes searchable
-   * within 10 seconds, but it may take up to 5 minutes for the job to become
-   * searchable.
+   * Input only.  Update job request.
    */
   export interface Schema$UpdateJobRequest {
     /**
@@ -2756,7 +2752,8 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.create
-     * @desc Creates a new job.
+     * @desc Creates a new job.  Typically, the job becomes searchable within 10
+     * seconds, but it may take up to 5 minutes.
      * @alias jobs.jobs.create
      * @memberOf! ()
      *
@@ -2819,9 +2816,8 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.delete
-     * @desc Deletes the specified job. You can specify whether to synchronously
-     * wait for validation, indexing, and general processing to be completed
-     * before the response is returned.
+     * @desc Deletes the specified job.  Typically, the job becomes unsearchable
+     * within 10 seconds, but it may take up to 5 minutes.
      * @alias jobs.jobs.delete
      * @memberOf! ()
      *
@@ -2955,7 +2951,7 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.get
      * @desc Retrieves the specified job, whose status is OPEN or recently
-     * EXPIRED in 60 days.
+     * EXPIRED within the last 90 days.
      * @alias jobs.jobs.get
      * @memberOf! ()
      *
@@ -3156,12 +3152,9 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.patch
-     * @desc Updates the specified job. You can specify whether to synchronously
-     * wait for validation, indexing, and general processing to be completed
-     * before the response is returned.  If this call is executed synchronously,
-     * the returned job is guaranteed to be fully processed and complete upon
-     * response. The `companyName` and `distributorCompanyId` job fields cannot
-     * be updated.
+     * @desc Updates the specified job.  Typically, the updated contents become
+     * visible in search results within 10 seconds, but it may take up to 5
+     * minutes.
      * @alias jobs.jobs.patch
      * @memberOf! ()
      *

@@ -2128,11 +2128,13 @@ export namespace slides_v1 {
    */
   export interface Schema$SlideProperties {
     /**
-     * The object ID of the layout that this slide is based on.
+     * The object ID of the layout that this slide is based on. This property is
+     * read-only.
      */
     layoutObjectId?: string;
     /**
-     * The object ID of the master that this slide is based on.
+     * The object ID of the master that this slide is based on. This property is
+     * read-only.
      */
     masterObjectId?: string;
     /**
@@ -2142,7 +2144,8 @@ export namespace slides_v1 {
      * placeholder shape with type BODY on the notes page contains the speaker
      * notes for this slide. The ID of this shape is identified by the
      * speakerNotesObjectId field. The notes page is read-only except for the
-     * text content and styles of the speaker notes shape.
+     * text content and styles of the speaker notes shape. This property is
+     * read-only.
      */
     notesPage?: Schema$Page;
   }

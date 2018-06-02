@@ -668,12 +668,10 @@ export namespace cloudiot_v1 {
 
   export class Resource$Projects$Locations {
     root: Cloudiot;
-    groups: Resource$Projects$Locations$Groups;
     registries: Resource$Projects$Locations$Registries;
     constructor(root: Cloudiot) {
       this.root = root;
       this.getRoot.bind(this);
-      this.groups = new Resource$Projects$Locations$Groups(root);
       this.registries = new Resource$Projects$Locations$Registries(root);
     }
 
@@ -681,158 +679,6 @@ export namespace cloudiot_v1 {
       return this.root;
     }
   }
-
-
-  export class Resource$Projects$Locations$Groups {
-    root: Cloudiot;
-    devices: Resource$Projects$Locations$Groups$Devices;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.devices = new Resource$Projects$Locations$Groups$Devices(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Projects$Locations$Groups$Devices {
-    root: Cloudiot;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * cloudiot.projects.locations.groups.devices.list
-     * @desc List devices in a device registry.
-     * @alias cloudiot.projects.locations.groups.devices.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
-     * @param {string=} params.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
-     * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
-     * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Groups$Devices$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Groups$Devices$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
-        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Groups$Devices$List,
-        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Groups$Devices$List|
-        BodyResponseCallback<Schema$ListDevicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDevicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
-        void|AxiosPromise<Schema$ListDevicesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Groups$Devices$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Groups$Devices$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/devices')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListDevicesResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Groups$Devices$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
-     */
-    deviceIds?: string;
-    /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
-     */
-    deviceNumIds?: string;
-    /**
-     * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
-     * other fields specified.
-     */
-    fieldMask?: string;
-    /**
-     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
-     * specified, only non-gateway devices are returned. If
-     * `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
-     */
-    gatewayType?: string;
-    /**
-     * The maximum number of devices to return in the response. If this value is
-     * zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
-     */
-    pageSize?: number;
-    /**
-     * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call, and that the system
-     * should return the next page of data.
-     */
-    pageToken?: string;
-    /**
-     * The device registry path. Required. For example,
-     * `projects/my-project/locations/us-central1/registries/my-registry`.
-     */
-    parent?: string;
-  }
-
 
 
   export class Resource$Projects$Locations$Registries {
@@ -1785,7 +1631,6 @@ export namespace cloudiot_v1 {
      * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
      * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
-     * @param {string=} params.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -2070,12 +1915,6 @@ export namespace cloudiot_v1 {
      * other fields specified.
      */
     fieldMask?: string;
-    /**
-     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
-     * specified, only non-gateway devices are returned. If
-     * `GATEWAY_TYPE_UNSPECIFIED` specified, all devices are returned.
-     */
-    gatewayType?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer

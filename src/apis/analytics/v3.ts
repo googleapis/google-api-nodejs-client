@@ -54,6 +54,7 @@ export namespace analytics_v3 {
     management: Resource$Management;
     metadata: Resource$Metadata;
     provisioning: Resource$Provisioning;
+    userDeletion: Resource$Userdeletion;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
@@ -64,6 +65,7 @@ export namespace analytics_v3 {
       this.management = new Resource$Management(this);
       this.metadata = new Resource$Metadata(this);
       this.provisioning = new Resource$Provisioning(this);
+      this.userDeletion = new Resource$Userdeletion(this);
     }
 
     getRoot() {
@@ -2385,6 +2387,32 @@ export namespace analytics_v3 {
      * resources in the result.
      */
     totalResults?: number;
+  }
+  /**
+   * JSON template for a user deletion request resource.
+   */
+  export interface Schema$UserDeletionRequest {
+    /**
+     * This marks the point in time for which all user data before should be
+     * deleted
+     */
+    deletionRequestTime?: string;
+    /**
+     * Firebase Project Id
+     */
+    firebaseProjectId?: string;
+    /**
+     * User ID.
+     */
+    id?: any;
+    /**
+     * Value is &quot;analytics#userDeletionRequest&quot;.
+     */
+    kind?: string;
+    /**
+     * Web property ID of the form UA-XXXXX-YY.
+     */
+    webPropertyId?: string;
   }
   /**
    * JSON template for a user reference.
@@ -11163,5 +11191,116 @@ export namespace analytics_v3 {
      * Request body metadata
      */
     requestBody?: Schema$AccountTreeRequest;
+  }
+
+
+  export class Resource$Userdeletion {
+    root: Analytics;
+    userDeletionRequest: Resource$Userdeletion$Userdeletionrequest;
+    constructor(root: Analytics) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.userDeletionRequest =
+          new Resource$Userdeletion$Userdeletionrequest(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Userdeletion$Userdeletionrequest {
+    root: Analytics;
+    constructor(root: Analytics) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * analytics.userDeletion.userDeletionRequest.upsert
+     * @desc Insert or update a user deletion requests.
+     * @alias analytics.userDeletion.userDeletionRequest.upsert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().UserDeletionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upsert(
+        params?: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+        options?: MethodOptions): AxiosPromise<Schema$UserDeletionRequest>;
+    upsert(
+        params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+        options: MethodOptions|BodyResponseCallback<Schema$UserDeletionRequest>,
+        callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
+    upsert(
+        params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+        callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
+    upsert(callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
+    upsert(
+        paramsOrCallback?:
+            Params$Resource$Userdeletion$Userdeletionrequest$Upsert|
+        BodyResponseCallback<Schema$UserDeletionRequest>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserDeletionRequest>,
+        callback?: BodyResponseCallback<Schema$UserDeletionRequest>):
+        void|AxiosPromise<Schema$UserDeletionRequest> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/analytics/v3/userDeletion/userDeletionRequests:upsert')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserDeletionRequest>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UserDeletionRequest>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserDeletionRequest;
   }
 }

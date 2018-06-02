@@ -1214,7 +1214,8 @@ export namespace bigquery_v2 {
     jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
-     * and EU.
+     * and EU. See details at
+     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -1306,6 +1307,10 @@ export namespace bigquery_v2 {
      * than 50 tables will not have a complete list.
      */
     referencedTables?: Schema$TableReference[];
+    /**
+     * [Output-only] Job resource usage breakdown by reservation.
+     */
+    reservationUsage?: any[];
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
@@ -1938,15 +1943,17 @@ export namespace bigquery_v2 {
   }
   export interface Schema$TimePartitioning {
     /**
-     * [Optional] Number of milliseconds for which to keep the storage for a
-     * partition.
+     * [Optional] Number of milliseconds for which to keep the storage for
+     * partitions in the table. The storage in a partition will have an
+     * expiration time of its partition time plus this value.
      */
     expirationMs?: string;
     /**
      * [Experimental] [Optional] If not set, the table is partitioned by pseudo
-     * column &#39;_PARTITIONTIME&#39;; if set, the table is partitioned by this
-     * field. The field must be a top-level TIMESTAMP or DATE field. Its mode
-     * must be NULLABLE or REQUIRED.
+     * column, referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type,
+     * or &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the
+     * table is instead partitioned by this field. The field must be a top-level
+     * TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string;
     /**
@@ -2028,7 +2035,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2147,7 +2154,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2266,7 +2273,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2389,7 +2396,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2527,7 +2534,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2658,7 +2665,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2927,7 +2934,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -2971,7 +2978,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU.
+     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      * @param {string} params.projectId [Required] Project ID of the job to cancel
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3053,7 +3060,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -3097,7 +3104,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU.
+     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      * @param {string} params.projectId [Required] Project ID of the requested job
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3172,7 +3179,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -3229,7 +3236,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU.
+     * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      * @param {integer=} params.maxResults Maximum number of results to read
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId [Required] Project ID of the query job
@@ -3317,7 +3324,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -3455,7 +3462,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -3593,7 +3600,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -3708,7 +3715,8 @@ export namespace bigquery_v2 {
     jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
-     * and EU.
+     * and EU. See details at
+     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -3728,7 +3736,8 @@ export namespace bigquery_v2 {
     jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
-     * and EU.
+     * and EU. See details at
+     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -3748,7 +3757,8 @@ export namespace bigquery_v2 {
     jobId?: string;
     /**
      * [Experimental] The geographic location where the job should run. Required
-     * except for US and EU.
+     * except for US and EU. See details at
+     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -3899,7 +3909,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4024,7 +4034,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4195,7 +4205,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4337,7 +4347,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4557,7 +4567,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4682,7 +4692,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4807,7 +4817,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -4936,7 +4946,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -5078,7 +5088,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {
@@ -5214,7 +5224,7 @@ export namespace bigquery_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var bigquery = google.bigquery('v2');
      *
      * authorize(function(authClient) {

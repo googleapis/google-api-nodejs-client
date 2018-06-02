@@ -573,12 +573,11 @@ export namespace script_v1 {
     value?: string;
   }
   /**
-   * A representation of a execution of an Apps Script function that is started
-   * using run. The execution response does not arrive until the function
-   * finishes executing. The maximum execution runtime is listed in the [Apps
-   * Script quotas
-   * guide](/apps-script/guides/services/quotas#current_limitations).
-   * &lt;p&gt;After the execution is started, it can have one of four
+   * A representation of an execution of an Apps Script function started with
+   * run. The execution response does not arrive until the function finishes
+   * executing. The maximum execution runtime is listed in the [Apps Script
+   * quotas guide](/apps-script/guides/services/quotas#current_limitations).
+   * &lt;p&gt;After execution has started, it can have one of four
    * outcomes:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; If the script function returns
    * successfully, the   response field contains an   ExecutionResponse object
    * with the function&#39;s return value in the object&#39;s `result`
@@ -683,9 +682,8 @@ export namespace script_v1 {
     details?: any[];
     /**
      * A developer-facing error message, which is in English. Any user-facing
-     * error message is localized and sent in the
-     * [google.rpc.Status.details](google.rpc.Status.details) field, or
-     * localized by the client.
+     * error message is localized and sent in the details field, or localized by
+     * the client.
      */
     message?: string;
   }

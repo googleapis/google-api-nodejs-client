@@ -119,19 +119,25 @@ export namespace ml_v1 {
   export interface Schema$GoogleCloudMlV1__AutoScaling {
     /**
      * Optional. The minimum number of nodes to allocate for this model. These
-     * nodes are always up, starting from the time the model is deployed, so the
-     * cost of operating this model will be at least `rate` * `min_nodes` *
-     * number of hours since last billing cycle, where `rate` is the cost per
-     * node-hour as documented in the [pricing guide](/ml-engine/docs/pricing),
-     * even if no predictions are performed. There is additional cost for each
-     * prediction performed.  Unlike manual scaling, if the load gets too heavy
-     * for the nodes that are up, the service will automatically add nodes to
-     * handle the increased load as well as scale back as traffic drops, always
-     * maintaining at least `min_nodes`. You will be charged for the time in
-     * which additional nodes are used.  If not specified, `min_nodes` defaults
-     * to 0, in which case, when traffic to a model stops (and after a cool-down
-     * period), nodes will be shut down and no charges will be incurred until
-     * traffic to the model resumes.
+     * nodes are always up, starting from the time the model is deployed.
+     * Therefore, the cost of operating this model will be at least `rate` *
+     * `min_nodes` * number of hours since last billing cycle, where `rate` is
+     * the cost per node-hour as documented in the [pricing
+     * guide](/ml-engine/docs/pricing), even if no predictions are performed.
+     * There is additional cost for each prediction performed.  Unlike manual
+     * scaling, if the load gets too heavy for the nodes that are up, the
+     * service will automatically add nodes to handle the increased load as well
+     * as scale back as traffic drops, always maintaining at least `min_nodes`.
+     * You will be charged for the time in which additional nodes are used.  If
+     * not specified, `min_nodes` defaults to 0, in which case, when traffic to
+     * a model stops (and after a cool-down period), nodes will be shut down and
+     * no charges will be incurred until traffic to the model resumes.  You can
+     * set `min_nodes` when creating the model version, and you can also update
+     * `min_nodes` for an existing version: &lt;pre&gt; update_body.json: {
+     * &#39;autoScaling&#39;: {     &#39;minNodes&#39;: 5   } } &lt;/pre&gt;
+     * HTTP request: &lt;pre&gt; PATCH
+     * https://ml.googleapis.com/v1/{name=projects/x/models/x/versions/*}?update_mask=autoScaling.minNodes
+     * -d @./update_body.json &lt;/pre&gt;
      */
     minNodes?: number;
   }
@@ -635,36 +641,29 @@ export namespace ml_v1 {
      * computation than the standard machine can handle   satisfactorily.
      * &lt;/dd&gt;   &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A
      * machine with roughly twice the number of cores and roughly double the
-     * memory of &lt;code
-     * suppresswarning=&quot;true&quot;&gt;complex_model_s&lt;/code&gt;.
-     * &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A
-     * machine with roughly twice the number of cores and roughly double the
-     * memory of &lt;code
-     * suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt;.
-     * &lt;/dd&gt;   &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine
-     * equivalent to &lt;code
-     * suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also
-     * includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a
+     * memory of &lt;i&gt;complex_model_s&lt;/i&gt;.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine with
+     * roughly twice the number of cores and roughly double the   memory of
+     * &lt;i&gt;complex_model_m&lt;/i&gt;.   &lt;/dd&gt;
+     * &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to
+     * &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla
+     * K80 GPU. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-gpus&quot;&gt;using GPUs to
      * train your model&lt;/a&gt;.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine
-     * equivalent to   &lt;code
-     * suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that
-     * also includes   four NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;
+     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
+     * NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine
-     * equivalent to   &lt;code
-     * suppresswarning=&quot;true&quot;&gt;complex_model_l&lt;/code&gt; that
-     * also includes   eight NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;
-     * &lt;dt&gt;standard_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to
-     * &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that
+     * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes eight
+     * NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;
+     * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
      * also includes a single NVIDIA Tesla P100 GPU. The availability of these
-     * GPUs is in the Beta launch stage.   &lt;/dd&gt;
+     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine
-     * equivalent to   &lt;code
-     * suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that
-     * also includes   four NVIDIA Tesla P100 GPUs. The availability of these
-     * GPUs is in   the Beta launch stage.   &lt;/dd&gt;
-     * &lt;dt&gt;standard_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
+     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
+     * NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
      * Cloud TPU. The availability of Cloud TPU is in   &lt;i&gt;Beta&lt;/i&gt;
      * launch stage. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to

@@ -98,7 +98,6 @@ import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
 import * as partners from './partners';
 import * as people from './people';
-import * as photoslibrary from './photoslibrary';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
 import * as plusDomains from './plusDomains';
@@ -109,7 +108,6 @@ import * as redis from './redis';
 import * as replicapool from './replicapool';
 import * as replicapoolupdater from './replicapoolupdater';
 import * as reseller from './reseller';
-import * as resourceviews from './resourceviews';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
 import * as script from './script';
@@ -239,7 +237,6 @@ export const APIS: APIList = {
   pagespeedonline: pagespeedonline.VERSIONS,
   partners: partners.VERSIONS,
   people: people.VERSIONS,
-  photoslibrary: photoslibrary.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
   plusDomains: plusDomains.VERSIONS,
@@ -250,7 +247,6 @@ export const APIS: APIList = {
   replicapool: replicapool.VERSIONS,
   replicapoolupdater: replicapoolupdater.VERSIONS,
   reseller: reseller.VERSIONS,
-  resourceviews: resourceviews.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
   script: script.VERSIONS,
@@ -380,7 +376,6 @@ export class GeneratedAPIs {
   pagespeedonline = pagespeedonline.pagespeedonline.bind(this);
   partners = partners.partners.bind(this);
   people = people.people.bind(this);
-  photoslibrary = photoslibrary.photoslibrary.bind(this);
   playcustomapp = playcustomapp.playcustomapp.bind(this);
   plus = plus.plus.bind(this);
   plusDomains = plusDomains.plusDomains.bind(this);
@@ -391,7 +386,6 @@ export class GeneratedAPIs {
   replicapool = replicapool.replicapool.bind(this);
   replicapoolupdater = replicapoolupdater.replicapoolupdater.bind(this);
   reseller = reseller.reseller.bind(this);
-  resourceviews = resourceviews.resourceviews.bind(this);
   runtimeconfig = runtimeconfig.runtimeconfig.bind(this);
   safebrowsing = safebrowsing.safebrowsing.bind(this);
   script = script.script.bind(this);

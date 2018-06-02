@@ -171,7 +171,7 @@ export namespace bigquerydatatransfer_v1 {
     transferType?: string;
     /**
      * The number of seconds to wait for an update from the data source before
-     * BigQuery marks the transfer as failed.
+     * the Data Transfer Service marks the transfer as FAILED.
      */
     updateDeadlineSeconds?: number;
   }
@@ -196,7 +196,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     displayName?: string;
     /**
-     * When parameter is a record, describes child fields.
+     * Deprecated. This field has no effect.
      */
     fields?: Schema$DataSourceParameter[];
     /**
@@ -216,12 +216,11 @@ export namespace bigquerydatatransfer_v1 {
      */
     paramId?: string;
     /**
-     * If set to true, schema should be taken from the parent with the same
-     * parameter_id. Only applicable when parameter type is RECORD.
+     * Deprecated. This field has no effect.
      */
     recurse?: boolean;
     /**
-     * Can parameter have multiple values.
+     * Deprecated. This field has no effect.
      */
     repeated?: boolean;
     /**

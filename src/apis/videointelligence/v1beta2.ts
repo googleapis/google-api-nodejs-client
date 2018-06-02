@@ -70,166 +70,6 @@ export namespace videointelligence_v1beta2 {
    * `Operation` returned by the `GetOperation` call of the
    * `google::longrunning::Operations` service.
    */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgress {
-    /**
-     * Progress metadata for all videos specified in `AnnotateVideoRequest`.
-     */
-    annotationProgress?:
-        Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[];
-  }
-  /**
-   * Video annotation response. Included in the `response` field of the
-   * `Operation` returned by the `GetOperation` call of the
-   * `google::longrunning::Operations` service.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoResponse {
-    /**
-     * Annotation results for all videos specified in `AnnotateVideoRequest`.
-     */
-    annotationResults?:
-        Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults[];
-  }
-  /**
-   * Label annotation.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_LabelAnnotation {
-    /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
-     */
-    description?: string;
-    /**
-     * Language code for `description` in BCP-47 format.
-     */
-    languageCode?: string;
-    /**
-     * Where the label was detected and with what confidence.
-     */
-    locations?: Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation[];
-  }
-  /**
-   * Label location.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation {
-    /**
-     * Confidence that the label is accurate. Range: [0, 1].
-     */
-    confidence?: number;
-    /**
-     * Label level.
-     */
-    level?: string;
-    /**
-     * Video segment. Set to [-1, -1] for video-level labels. Set to [timestamp,
-     * timestamp] for frame-level labels. Otherwise, corresponds to one of
-     * `AnnotateSpec.segments` (if specified) or to shot boundaries (if
-     * requested).
-     */
-    segment?: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment;
-  }
-  /**
-   * Safe search annotation (based on per-frame visual signals only). If no
-   * unsafe content has been detected in a frame, no annotations are present for
-   * that frame. If only some types of unsafe content have been detected in a
-   * frame, the likelihood is set to `UNKNOWN` for all other types of unsafe
-   * content.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation {
-    /**
-     * Likelihood of adult content.
-     */
-    adult?: string;
-    /**
-     * Likelihood of medical content.
-     */
-    medical?: string;
-    /**
-     * Likelihood of racy content.
-     */
-    racy?: string;
-    /**
-     * Likelihood that an obvious modification was made to the original version
-     * to make it appear funny or offensive.
-     */
-    spoof?: string;
-    /**
-     * Video time offset in microseconds.
-     */
-    timeOffset?: string;
-    /**
-     * Likelihood of violent content.
-     */
-    violent?: string;
-  }
-  /**
-   * Annotation progress for a single video.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress {
-    /**
-     * Video file location in [Google Cloud
-     * Storage](https://cloud.google.com/storage/).
-     */
-    inputUri?: string;
-    /**
-     * Approximate percentage processed thus far. Guaranteed to be 100 when
-     * fully processed.
-     */
-    progressPercent?: number;
-    /**
-     * Time when the request was received.
-     */
-    startTime?: string;
-    /**
-     * Time of the most recent update.
-     */
-    updateTime?: string;
-  }
-  /**
-   * Annotation results for a single video.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults {
-    /**
-     * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-     * some videos may succeed and some may fail.
-     */
-    error?: Schema$GoogleRpc_Status;
-    /**
-     * Video file location in [Google Cloud
-     * Storage](https://cloud.google.com/storage/).
-     */
-    inputUri?: string;
-    /**
-     * Label annotations. There is exactly one element for each unique label.
-     */
-    labelAnnotations?:
-        Schema$GoogleCloudVideointelligenceV1beta1_LabelAnnotation[];
-    /**
-     * Safe search annotations.
-     */
-    safeSearchAnnotations?:
-        Schema$GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation[];
-    /**
-     * Shot annotations. Each shot is represented as a video segment.
-     */
-    shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
-  }
-  /**
-   * Video segment.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment {
-    /**
-     * End offset in microseconds (inclusive). Unset means 0.
-     */
-    endTimeOffset?: string;
-    /**
-     * Start offset in microseconds (inclusive). Unset means 0.
-     */
-    startTimeOffset?: string;
-  }
-  /**
-   * Video annotation progress. Included in the `metadata` field of the
-   * `Operation` returned by the `GetOperation` call of the
-   * `google::longrunning::Operations` service.
-   */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress {
     /**
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
@@ -566,19 +406,6 @@ export namespace videointelligence_v1beta2 {
         Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[];
   }
   /**
-   * Emotion attribute.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute {
-    /**
-     * Emotion entry.
-     */
-    emotion?: string;
-    /**
-     * Confidence score.
-     */
-    score?: number;
-  }
-  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Entity {
@@ -621,58 +448,6 @@ export namespace videointelligence_v1beta2 {
      * video frame for this location.
      */
     timeOffset?: string;
-  }
-  /**
-   * Face detection annotation.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
-    /**
-     * All video frames where a face was detected.
-     */
-    frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[];
-    /**
-     * All video segments where a face was detected.
-     */
-    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment[];
-  }
-  /**
-   * Face detection attribute.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute {
-    /**
-     * Emotion attributes.
-     */
-    emotions?: Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[];
-    /**
-     * Normalized Bounding box.
-     */
-    normalizedBoundingBox?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox;
-  }
-  /**
-   * Video frame level annotation results for face detection.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame {
-    /**
-     * Face attributes in a frame. There can be more than one attributes if the
-     * same face is detected in multiple locations within the current frame.
-     */
-    attributes?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute[];
-    /**
-     * Time-offset, relative to the beginning of the video, corresponding to the
-     * video frame for this location.
-     */
-    timeOffset?: string;
-  }
-  /**
-   * Video segment level annotation results for face detection.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment {
-    /**
-     * Video segment where a face was detected.
-     */
-    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -723,28 +498,6 @@ export namespace videointelligence_v1beta2 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
-  }
-  /**
-   * Normalized bounding box. The normalized vertex coordinates are relative to
-   * the original image. Range: [0, 1].
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox {
-    /**
-     * Bottom Y coordinate.
-     */
-    bottom?: number;
-    /**
-     * Left X coordinate.
-     */
-    left?: number;
-    /**
-     * Right X coordinate.
-     */
-    right?: number;
-    /**
-     * Top Y coordinate.
-     */
-    top?: number;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -821,11 +574,6 @@ export namespace videointelligence_v1beta2 {
      */
     explicitAnnotation?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
-    /**
-     * Face detection annotations.
-     */
-    faceDetectionAnnotations?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
     /**
      * Label annotations on frame level. There is exactly one element for each
      * unique label.

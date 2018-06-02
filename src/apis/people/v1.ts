@@ -120,9 +120,8 @@ export namespace people_v1 {
      */
     streetAddress?: string;
     /**
-     * The type of the address. The type can be custom or predefined. Possible
-     * values include, but are not limited to, the following:  * `home` * `work`
-     * * `other`
+     * The type of the address. The type can be custom or one of these
+     * predefined values:  * `home` * `work` * `other`
      */
     type?: string;
   }
@@ -250,9 +249,8 @@ export namespace people_v1 {
   export interface Schema$ContactGroupMembership {
     /**
      * The contact group ID for the contact group membership. The contact group
-     * ID can be custom or predefined. Possible values include, but are not
-     * limited to, the following:  *  `myContacts` *  `starred` *  A numerical
-     * ID for user-created groups.
+     * ID can be custom or one of these predefined values:  *  `myContacts` *
+     * `starred` *  A numerical ID for user-created groups.
      */
     contactGroupId?: string;
   }
@@ -370,9 +368,8 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the email address. The type can be custom or predefined.
-     * Possible values include, but are not limited to, the following:  * `home`
-     * * `work` * `other`
+     * The type of the email address. The type can be custom or one of these
+     * predefined values:  * `home` * `work` * `other`
      */
     type?: string;
     /**
@@ -406,9 +403,8 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the event. The type can be custom or predefined. Possible
-     * values include, but are not limited to, the following:  * `anniversary` *
-     * `other`
+     * The type of the event. The type can be custom or one of these predefined
+     * values:  * `anniversary` * `other`
      */
     type?: string;
   }
@@ -446,9 +442,8 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The gender for the person. The gender can be custom or predefined.
-     * Possible values include, but are not limited to, the following:  * `male`
-     * * `female` * `other` * `unknown`
+     * The gender for the person. The gender can be custom or one of these
+     * predefined values:  * `male` * `female` * `other` * `unknown`
      */
     value?: string;
   }
@@ -477,16 +472,14 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The protocol of the IM client. The protocol can be custom or predefined.
-     * Possible values include, but are not limited to, the following:  * `aim`
-     * * `msn` * `yahoo` * `skype` * `qq` * `googleTalk` * `icq` * `jabber` *
-     * `netMeeting`
+     * The protocol of the IM client. The protocol can be custom or one of these
+     * predefined values:  * `aim` * `msn` * `yahoo` * `skype` * `qq` *
+     * `googleTalk` * `icq` * `jabber` * `netMeeting`
      */
     protocol?: string;
     /**
-     * The type of the IM client. The type can be custom or predefined. Possible
-     * values include, but are not limited to, the following:  * `home` * `work`
-     * * `other`
+     * The type of the IM client. The type can be custom or one of these
+     * predefined values:  * `home` * `work` * `other`
      */
     type?: string;
     /**
@@ -765,9 +758,8 @@ export namespace people_v1 {
      */
     title?: string;
     /**
-     * The type of the organization. The type can be custom or predefined.
-     * Possible values include, but are not limited to, the following:  * `work`
-     * * `school`
+     * The type of the organization. The type can be custom or  one of these
+     * predefined values:  * `work` * `school`
      */
     type?: string;
   }
@@ -892,6 +884,10 @@ export namespace people_v1 {
      */
     resourceName?: string;
     /**
+     * The person&#39;s SIP addresses.
+     */
+    sipAddresses?: Schema$SipAddress[];
+    /**
      * The person&#39;s skills.
      */
     skills?: Schema$Skill[];
@@ -986,10 +982,10 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the phone number. The type can be custom or predefined.
-     * Possible values include, but are not limited to, the following:  * `home`
-     * * `work` * `mobile` * `homeFax` * `workFax` * `otherFax` * `pager` *
-     * `workMobile` * `workPager` * `main` * `googleVoice` * `other`
+     * The type of the phone number. The type can be custom or one of these
+     * predefined values:  * `home` * `work` * `mobile` * `homeFax` * `workFax`
+     * * `otherFax` * `pager` * `workMobile` * `workPager` * `main` *
+     * `googleVoice` * `other`
      */
     type?: string;
     /**
@@ -1052,10 +1048,9 @@ export namespace people_v1 {
     person?: string;
     /**
      * The person&#39;s relation to the other person. The type can be custom or
-     * predefined. Possible values include, but are not limited to, the
-     * following values:  * `spouse` * `child` * `mother` * `father` * `parent`
-     * * `brother` * `sister` * `friend` * `relative` * `domesticPartner` *
-     * `manager` * `assistant` * `referredBy` * `partner`
+     * one of these predefined values:  * `spouse` * `child` * `mother` *
+     * `father` * `parent` * `brother` * `sister` * `friend` * `relative` *
+     * `domesticPartner` * `manager` * `assistant` * `referredBy` * `partner`
      */
     type?: string;
   }
@@ -1075,9 +1070,8 @@ export namespace people_v1 {
     metadata?: Schema$FieldMetadata;
     /**
      * The kind of relationship the person is looking for. The value can be
-     * custom or predefined. Possible values include, but are not limited to,
-     * the following values:  * `friend` * `date` * `relationship` *
-     * `networking`
+     * custom or one of these predefined values:  * `friend` * `date` *
+     * `relationship` * `networking`
      */
     value?: string;
   }
@@ -1096,10 +1090,10 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The relationship status. The value can be custom or predefined. Possible
-     * values include, but are not limited to, the following:  * `single` *
-     * `inARelationship` * `engaged` * `married` * `itsComplicated` *
-     * `openRelationship` * `widowed` * `inDomesticPartnership` * `inCivilUnion`
+     * The relationship status. The value can be custom or one of these
+     * predefined values:  * `single` * `inARelationship` * `engaged` *
+     * `married` * `itsComplicated` * `openRelationship` * `widowed` *
+     * `inDomesticPartnership` * `inCivilUnion`
      */
     value?: string;
   }
@@ -1118,6 +1112,32 @@ export namespace people_v1 {
     metadata?: Schema$FieldMetadata;
     /**
      * The address of the residence.
+     */
+    value?: string;
+  }
+  /**
+   * A person&#39;s SIP address. Session Initial Protocol addresses are used for
+   * VoIP communications to make voice or video calls over the internet.
+   */
+  export interface Schema$SipAddress {
+    /**
+     * The read-only type of the SIP address translated and formatted in the
+     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     */
+    formattedType?: string;
+    /**
+     * Metadata about the SIP address.
+     */
+    metadata?: Schema$FieldMetadata;
+    /**
+     * The type of the SIP address. The type can be custom or or one of these
+     * predefined values:  * `home` * `work` * `mobile` * `other`
+     */
+    type?: string;
+    /**
+     * The SIP address in the [RFC
+     * 3261 19.1](https://tools.ietf.org/html/rfc3261#section-19.1) SIP URI
+     * format.
      */
     value?: string;
   }
@@ -1253,10 +1273,10 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the URL. The type can be custom or predefined. Possible
-     * values include, but are not limited to, the following:  * `home` * `work`
-     * * `blog` * `profile` * `homePage` * `ftp` * `reservations` *
-     * `appInstallPage`: website for a Google+ application. * `other`
+     * The type of the URL. The type can be custom or one of these predefined
+     * values:  * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` *
+     * `reservations` * `appInstallPage`: website for a Google+ application. *
+     * `other`
      */
     type?: string;
     /**
@@ -2080,7 +2100,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls * userDefined
+     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string} params.resourceName The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2146,7 +2166,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls * userDefined
+     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string=} params.resourceNames The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2224,7 +2244,7 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
-     * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * urls * userDefined
+     * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      * @param {().Person} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2325,7 +2345,7 @@ export namespace people_v1 {
      * genders * imClients * interests * locales * memberships * metadata *
      * names * nicknames * occupations * organizations * phoneNumbers * photos *
      * relations * relationshipInterests * relationshipStatuses * residences *
-     * skills * taglines * urls * userDefined
+     * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**
@@ -2358,7 +2378,7 @@ export namespace people_v1 {
      * genders * imClients * interests * locales * memberships * metadata *
      * names * nicknames * occupations * organizations * phoneNumbers * photos *
      * relations * relationshipInterests * relationshipStatuses * residences *
-     * skills * taglines * urls * userDefined
+     * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**
@@ -2396,7 +2416,7 @@ export namespace people_v1 {
      * All updated fields will be replaced. Valid values are:  * addresses *
      * biographies * birthdays * emailAddresses * events * genders * imClients *
      * interests * locales * names * nicknames * occupations * organizations *
-     * phoneNumbers * relations * residences * urls * userDefined
+     * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      */
     updatePersonFields?: string;
 
@@ -2429,7 +2449,7 @@ export namespace people_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100.
      * @param {string=} params.pageToken The token of the page to be returned.
-     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls * userDefined
+     * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
@@ -2518,7 +2538,7 @@ export namespace people_v1 {
      * genders * imClients * interests * locales * memberships * metadata *
      * names * nicknames * occupations * organizations * phoneNumbers * photos *
      * relations * relationshipInterests * relationshipStatuses * residences *
-     * skills * taglines * urls * userDefined
+     * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**

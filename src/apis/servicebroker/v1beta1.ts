@@ -88,6 +88,11 @@ export namespace servicebroker_v1beta1 {
      */
     createTime?: string;
     /**
+     * Output only. String containing the Deployment Manager deployment name
+     * that was created for this binding,
+     */
+    deploymentName?: string;
+    /**
      * Configuration options for the service binding.
      */
     parameters?: any;
@@ -96,6 +101,11 @@ export namespace servicebroker_v1beta1 {
      * Maximum length is 64, GUID recommended. Required.
      */
     plan_id?: string;
+    /**
+     * Output only. The resource name of the binding, e.g.
+     * projects/project_id/brokers/broker_id/service_instances/instance_id/bindings/binding_id.
+     */
+    resourceName?: string;
     /**
      * The id of the service. Must be a valid identifier of a service contained
      * in the list from a `ListServices()` call. Maximum length is 64, GUID
@@ -240,11 +250,21 @@ export namespace servicebroker_v1beta1 {
      */
     credentials?: any;
     /**
+     * String containing the Deployment Manager deployment name that was created
+     * for this binding,
+     */
+    deploymentName?: string;
+    /**
      * Used to communicate description of the response. Usually for non-standard
      * error codes.
      * https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#service-broker-errors
      */
     description?: string;
+    /**
+     * Output only. The resource name of the binding, e.g.
+     * projects/project_id/brokers/broker_id/service_instances/instance_id/bindings/binding_id.
+     */
+    resourceName?: string;
     /**
      * A URL to which the platform may proxy requests for the address sent with
      * bind_resource.route
@@ -476,6 +496,11 @@ export namespace servicebroker_v1beta1 {
      * Output only. Timestamp for when the instance was created.
      */
     createTime?: string;
+    /**
+     * Output only. String containing the Deployment Manager deployment name
+     * that was created for this instance,
+     */
+    deploymentName?: string;
     /**
      * To return errors when GetInstance call is done via HTTP to be unified
      * with other methods.

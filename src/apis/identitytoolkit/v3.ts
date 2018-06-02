@@ -319,6 +319,16 @@ export namespace identitytoolkit_v3 {
      * The session_id passed by client.
      */
     sessionId?: string;
+    /**
+     * For multi-tenant use cases, in order to construct sign-in URL with the
+     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
+     * IDP configs from.
+     */
+    tenantId?: string;
+    /**
+     * Tenant project number to be used for idp discovery.
+     */
+    tenantProjectNumber?: string;
   }
   /**
    * Request to delete account.
@@ -741,6 +751,16 @@ export namespace identitytoolkit_v3 {
      * The photo url of the user.
      */
     photoUrl?: string;
+    /**
+     * For multi-tenant use cases, in order to construct sign-in URL with the
+     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
+     * IDP configs from.
+     */
+    tenantId?: string;
+    /**
+     * Tenant project number to be used for idp discovery.
+     */
+    tenantProjectNumber?: string;
   }
   /**
    * Request to upload user account in batch.
@@ -851,6 +871,16 @@ export namespace identitytoolkit_v3 {
      * Session ID, which should match the one in previous createAuthUri request.
      */
     sessionId?: string;
+    /**
+     * For multi-tenant use cases, in order to construct sign-in URL with the
+     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
+     * IDP configs from.
+     */
+    tenantId?: string;
+    /**
+     * Tenant project number to be used for idp discovery.
+     */
+    tenantProjectNumber?: string;
   }
   /**
    * Request to verify a custom token
@@ -916,6 +946,16 @@ export namespace identitytoolkit_v3 {
      * Whether return sts id token and refresh token instead of gitkit token.
      */
     returnSecureToken?: boolean;
+    /**
+     * For multi-tenant use cases, in order to construct sign-in URL with the
+     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
+     * IDP configs from.
+     */
+    tenantId?: string;
+    /**
+     * Tenant project number to be used for idp discovery.
+     */
+    tenantProjectNumber?: string;
   }
   /**
    * Request for Identitytoolkit-VerifyPhoneNumber
