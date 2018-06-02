@@ -956,6 +956,11 @@ export namespace monitoring_v3 {
    */
   export interface Schema$ListTimeSeriesResponse {
     /**
+     * Query execution errors that may have caused the time series data returned
+     * to be incomplete.
+     */
+    executionErrors?: Schema$Status[];
+    /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value. To see the additional results, use that value as
      * pageToken in the next call to this method.
@@ -5453,7 +5458,7 @@ export namespace monitoring_v3 {
      * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
      * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are returned in reverse time order.
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. When view field sets to FULL, it limits the number of Points server will return; if view field is HEADERS, it limits the number of TimeSeries server will return.
+     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      * @param {string=} params.view Specifies which information is returned about the time series.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5615,10 +5620,11 @@ export namespace monitoring_v3 {
      */
     orderBy?: string;
     /**
-     * A positive number that is the maximum number of results to return. When
-     * view field sets to FULL, it limits the number of Points server will
-     * return; if view field is HEADERS, it limits the number of TimeSeries
-     * server will return.
+     * A positive number that is the maximum number of results to return. If
+     * page_size is empty or more than 100,000 results, the effective page_size
+     * is 100,000 results. If view is set to FULL, this is the maximum number of
+     * Points returned. If view is set to HEADERS, this is the maximum number of
+     * TimeSeries returned.
      */
     pageSize?: number;
     /**

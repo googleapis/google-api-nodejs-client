@@ -1491,8 +1491,7 @@ export namespace androidmanagement_v1 {
      */
     usbFileTransferDisabled?: boolean;
     /**
-     * Allows admins to toggle whether USB storge is enabled or disabled on
-     * user&#39;s devices.
+     * Whether USB storage is enabled.
      */
     usbMassStorageEnabled?: boolean;
     /**
