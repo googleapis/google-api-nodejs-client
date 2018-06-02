@@ -21,7 +21,7 @@ const analytics = google.analytics({
   auth: sampleClient.oAuth2Client
 });
 
-// Custom Goals must be exist prior to used as an objectiveMetric
+// Custom Goals must exist prior to being used as an objectiveMetric
 const objectiveMetric = 'ga:goal1Completions';
 
 // Serving frameworks listed below:
