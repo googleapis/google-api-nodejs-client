@@ -31,7 +31,12 @@ export const APIS: APIList = {
 };
 
 export class GeneratedAPIs {
-{% for apiName, api in apis %}
-  {{ apiName }} = {{ apiName }}.{{ apiName }}.bind(this);
-{% endfor %}
+  {% for apiName, api in apis %}
+    {{ apiName }} = {{ apiName }}.{{ apiName }};
+  {% endfor %}
+  constructor() {
+    {% for apiName, api in apis %}
+      this.{{ apiName }} = this.{{ apiName }}.bind(this);
+    {% endfor %}
+  }
 }
