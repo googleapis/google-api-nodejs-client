@@ -3421,7 +3421,7 @@ export namespace compute_v1 {
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager or the field need to be unset.
+     * InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -4182,6 +4182,11 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The current state of whether or not this Interconnect is
+     * functional.
+     */
+    state?: string;
   }
   /**
    * Represents an InterconnectAttachment (VLAN attachment) resource. For more
@@ -4190,6 +4195,28 @@ export namespace compute_v1 {
    * v1.interconnectAttachments ==)
    */
   export interface Schema$InterconnectAttachment {
+    /**
+     * Determines whether this Attachment will carry packets. Not present for
+     * PARTNER_PROVIDER.
+     */
+    adminEnabled?: boolean;
+    /**
+     * Provisioned bandwidth capacity for the interconnectAttachment. Can be set
+     * by the partner to update the customer&#39;s provisioned bandwidth. Output
+     * only for for PARTNER type, mutable for PARTNER_PROVIDER, not available
+     * for DEDICATED.
+     */
+    bandwidth?: string;
+    /**
+     * Up to 16 candidate prefixes that can be used to restrict the allocation
+     * of cloudRouterIpAddress and customerRouterIpAddress for this attachment.
+     * All prefixes must be within link-local address space (169.254.0.0/16) and
+     * must be /29 or shorter (/28, /27, etc). Google will attempt to select an
+     * unused /29 from the supplied candidate prefix(es). The request will fail
+     * if all possible /29s are in use on Google?s edge. If not supplied, Google
+     * will randomly select an unused /29 from all of link-local space.
+     */
+    candidateSubnets?: string[];
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud
      * Router Interface for this interconnect attachment.
@@ -4208,6 +4235,16 @@ export namespace compute_v1 {
      * An optional description of this resource.
      */
     description?: string;
+    /**
+     * Desired availability domain for the attachment. Only available for type
+     * PARTNER, at creation time. For improved reliability, customers should
+     * configure a pair of attachments with one per availability domain. The
+     * selected availability domain will be provided to the Partner via the
+     * pairing key so that the provisioned circuit will lie in the specified
+     * domain. If not specified, the value will default to
+     * AVAILABILITY_DOMAIN_ANY.
+     */
+    edgeAvailabilityDomain?: string;
     /**
      * [Output Only] Google reference ID, to be used when raising support
      * tickets with Google or otherwise to debug backend connectivity issues.
@@ -4244,6 +4281,26 @@ export namespace compute_v1 {
      */
     operationalStatus?: string;
     /**
+     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not
+     * present for DEDICATED]. The opaque identifier of an PARTNER attachment
+     * used to initiate provisioning with a selected partner. Of the form
+     * &quot;XXXXX/region/domain&quot;
+     */
+    pairingKey?: string;
+    /**
+     * Optional BGP ASN for the router that should be supplied by a layer 3
+     * Partner if they configured BGP on behalf of the customer. Output only for
+     * PARTNER type, input only for PARTNER_PROVIDER, not available for
+     * DEDICATED.
+     */
+    partnerAsn?: string;
+    /**
+     * Informational metadata about Partner attachments from Partners to display
+     * to customers. Output only for for PARTNER type, mutable for
+     * PARTNER_PROVIDER, not available for DEDICATED.
+     */
+    partnerMetadata?: Schema$InterconnectAttachmentPartnerMetadata;
+    /**
      * [Output Only] Information specific to an InterconnectAttachment. This
      * property is populated if the interconnect that this is attached to is of
      * type DEDICATED.
@@ -4266,6 +4323,17 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The current state of this attachment&#39;s functionality.
+     */
+    state?: string;
+    type?: string;
+    /**
+     * Available only for DEDICATED and PARTNER_PROVIDER. Desired VLAN tag for
+     * this attachment, in the range 2-4094. This field refers to 802.1q VLAN
+     * tag, also known as IEEE 802.1Q Only specified at creation time.
+     */
+    vlanTag8021q?: number;
   }
   export interface Schema$InterconnectAttachmentAggregatedList {
     /**
@@ -4333,6 +4401,30 @@ export namespace compute_v1 {
      * [Output Only] Informational warning message.
      */
     warning?: any;
+  }
+  /**
+   * Informational metadata about Partner attachments from Partners to display
+   * to customers. These fields are propagated from PARTNER_PROVIDER attachments
+   * to their corresponding PARTNER attachments.
+   */
+  export interface Schema$InterconnectAttachmentPartnerMetadata {
+    /**
+     * Plain text name of the Interconnect this attachment is connected to, as
+     * displayed in the Partner?s portal. For instance ?Chicago 1?. This value
+     * may be validated to match approved Partner values.
+     */
+    interconnectName?: string;
+    /**
+     * Plain text name of the Partner providing this attachment. This value may
+     * be validated to match approved Partner values.
+     */
+    partnerName?: string;
+    /**
+     * URL of the Partner?s portal for this Attachment. Partners may customise
+     * this to be a deep-link to the specific resource on the Partner portal.
+     * This value may be validated to match approved Partner values.
+     */
+    portalUrl?: string;
   }
   /**
    * Information for an interconnect attachment when this belongs to an
@@ -6288,6 +6380,14 @@ export namespace compute_v1 {
      */
     ipAddress?: string;
     /**
+     * [Output Only] Type of how the resource/configuration of the BGP peer is
+     * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
+     * represents an BGP peer that is automatically created for PARTNER
+     * interconnectAttachment, Google will automatically create/delete this type
+     * of BGP peer when the PARTNER interconnectAttachment is created/deleted.
+     */
+    managementType?: string;
+    /**
      * Name of this BGP peer. The name must be 1-63 characters long and comply
      * with RFC1035.
      */
@@ -6323,6 +6423,15 @@ export namespace compute_v1 {
      * either be a VPN Tunnel or an interconnect attachment.
      */
     linkedVpnTunnel?: string;
+    /**
+     * [Output Only] Type of how the resource/configuration of the interface is
+     * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
+     * represents an interface that is automatically created for PARTNER type
+     * interconnectAttachment, Google will automatically create/update/delete
+     * this type of interface when the PARTNER interconnectAttachment is
+     * created/provisioned/deleted.
+     */
+    managementType?: string;
     /**
      * Name of this interface entry. The name must be 1-63 characters long and
      * comply with RFC1035.
@@ -6558,8 +6667,8 @@ export namespace compute_v1 {
      */
     labels?: any;
     /**
-     * Integer license codes indicating which licenses are attached to this
-     * snapshot.
+     * [Output Only] Integer license codes indicating which licenses are
+     * attached to this snapshot.
      */
     licenseCodes?: string[];
     /**
@@ -7186,6 +7295,12 @@ export namespace compute_v1 {
      */
     warning?: any;
   }
+  export interface Schema$TargetHttpsProxiesSetQuicOverrideRequest {
+    /**
+     * QUIC policy for the TargetHttpsProxy resource.
+     */
+    quicOverride?: string;
+  }
   export interface Schema$TargetHttpsProxiesSetSslCertificatesRequest {
     /**
      * New set of SslCertificate resources to associate with this
@@ -7229,6 +7344,16 @@ export namespace compute_v1 {
      * dash.
      */
     name?: string;
+    /**
+     * Specifies the QUIC override policy for this TargetHttpsProxy resource.
+     * This determines whether the load balancer will attempt to negotiate QUIC
+     * with clients or not. Can specify one of NONE, ENABLE, or DISABLE. Specify
+     * ENABLE to always enable QUIC, Enables QUIC when set to ENABLE, and
+     * disables QUIC when set to DISABLE. If NONE is specified, uses the QUIC
+     * policy with no user overrides, which is equivalent to DISABLE. Not
+     * specifying this field is equivalent to specifying NONE.
+     */
+    quicOverride?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -33542,6 +33667,81 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$InterconnectAttachmentList>(parameters);
       }
     }
+
+
+    /**
+     * compute.interconnectAttachments.patch
+     * @desc Updates the specified interconnect attachment with the data
+     * included in the request. This method supports PATCH semantics and uses
+     * the JSON merge patch format and processing rules.
+     * @alias compute.interconnectAttachments.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().InterconnectAttachment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Interconnectattachments$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Interconnectattachments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Interconnectattachments$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Interconnectattachments$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Interconnectattachments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnectattachments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Interconnectattachments$Aggregatedlist {
@@ -33739,6 +33939,43 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Interconnectattachments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the interconnect attachment to patch.
+     */
+    interconnectAttachment?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterconnectAttachment;
   }
 
 
@@ -53880,6 +54117,78 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.targetHttpsProxies.setQuicOverride
+     * @desc Sets the QUIC override policy for TargetHttpsProxy.
+     * @alias compute.targetHttpsProxies.setQuicOverride
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set the QUIC override policy for. The name should conform to RFC1035.
+     * @param {().TargetHttpsProxiesSetQuicOverrideRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setQuicOverride(
+        params?: Params$Resource$Targethttpsproxies$Setquicoverride,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setQuicOverride(
+        params: Params$Resource$Targethttpsproxies$Setquicoverride,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setQuicOverride(
+        params: Params$Resource$Targethttpsproxies$Setquicoverride,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setQuicOverride(callback: BodyResponseCallback<Schema$Operation>): void;
+    setQuicOverride(
+        paramsOrCallback?: Params$Resource$Targethttpsproxies$Setquicoverride|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Targethttpsproxies$Setquicoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targethttpsproxies$Setquicoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setQuicOverride')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.targetHttpsProxies.setSslCertificates
      * @desc Replaces SslCertificates for TargetHttpsProxy.
      * @example
@@ -54344,6 +54653,40 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Targethttpsproxies$Setquicoverride {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to set the QUIC override policy
+     * for. The name should conform to RFC1035.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TargetHttpsProxiesSetQuicOverrideRequest;
   }
   export interface Params$Resource$Targethttpsproxies$Setsslcertificates {
     /**

@@ -623,9 +623,9 @@ export namespace logging_v2 {
      * Required. An advanced logs filter that matches the log entries to be
      * excluded. By using the sample function, you can exclude less than 100% of
      * the matching log entries. For example, the following filter matches 99%
-     * of low-severity log entries from load balancers:
-     * &quot;resource.type=http_load_balancer severity&lt;ERROR sample(insertId,
-     * 0.99)&quot;
+     * of low-severity log entries from load
+     * balancers:&quot;resource.type=http_load_balancer severity&lt;ERROR
+     * sample(insertId, 0.99)&quot;
      */
     filter?: string;
     /**
