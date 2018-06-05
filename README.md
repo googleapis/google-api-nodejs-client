@@ -102,7 +102,7 @@ runSample().catch(console.error);
 ```
 
 ### Samples
-There are a lot of [samples](samples/) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
+There are a lot of [samples](https://github.com/google/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
 ### Reference API
 This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/).
