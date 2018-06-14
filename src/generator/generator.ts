@@ -208,13 +208,13 @@ export class Generator {
     }));
     try {
       await queue.onIdle();
-      await this.generateIndex();
+      await this.generateIndex(apis);
     } catch (e) {
       console.log(util.inspect(this.state, {maxArrayLength: null}));
     }
   }
 
-  async generateIndex() {
+  async generateIndex(metadata: Schema[]) {
     const apis: {[index: string]: {[index: string]: string}} = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
@@ -233,10 +233,21 @@ export class Generator {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
           apis[file][version] = parts.name;
+          const desc = metadata.filter(x => x.name === file)[0].description;
+          // generate the index.ts
           const apiIdxPath = path.join(apisPath, file, 'index.ts');
           const result =
               this.env.render('api-index.njk', {name: file, api: apis[file]});
           await writeFile(apiIdxPath, result);
+          // generate the package.json
+          const pkgPath = path.join(apisPath, file, 'package.json');
+          const pkgResult =
+              this.env.render('package.json.njk', {name: file, desc});
+          await writeFile(pkgPath, pkgResult);
+          // generate the README.md
+          const rdPath = path.join(apisPath, file, 'README.md');
+          const rdResult = this.env.render('README.md.njk', {name: file, desc});
+          await writeFile(rdPath, rdResult);
         }
       }
     }
