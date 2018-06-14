@@ -459,10 +459,22 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$Network {
     /**
-     * The network name to attach the VM&#39;s network interface to.  If
-     * unspecified, the global default network is used.
+     * The network name to attach the VM&#39;s network interface to.  The value
+     * will be prefixed with &quot;global/networks/&quot; unless it contains a
+     * &quot;/&quot; in which case it is assumed to be a fully specified network
+     * resource URL.  If unspecified, the global default network is used.
      */
     name?: string;
+    /**
+     * If the specified network is configured for custom subnet creation, the
+     * name of the subnetwork to attach the instance to must be specified here.
+     * The value is prefixed with &quot;regions/x/subnetworks/&quot; unless it
+     * contains a &quot;/&quot; in which case it is assumed to be a full
+     * specified subnetwork resource URL.  If the &#39;*&#39; character appears
+     * in the value, it is replaced with the region that the virtual machine has
+     * been allocated in.
+     */
+    subnetwork?: string;
     /**
      * If set to true, do not attach a public IP address to the VM.  Note that
      * without an public IP address, additional configuration is required to

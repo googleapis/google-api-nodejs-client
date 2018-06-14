@@ -621,8 +621,8 @@ export namespace appengine_v1beta {
      * configuration ID. The config_id field is used to give the configuration
      * ID and is required in this case.Endpoints also has a rollout strategy
      * called RolloutStrategy.MANAGED. When using this, Endpoints fetches the
-     * latest configuration and does not need to be told the configuration ID.
-     * In this case, config_id must be omitted.
+     * latest configuration and does not need the configuration ID. In this
+     * case, config_id must be omitted.
      */
     configId?: string;
     /**

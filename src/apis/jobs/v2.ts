@@ -203,7 +203,8 @@ export namespace jobs_v2 {
      * the company. If an employer has a subsidiary or sub-brand, such as
      * &quot;Alphabet&quot; and &quot;Google&quot;, which the client wishes to
      * use as the company displayed on the job. Best practice is to create a
-     * distinct company identifier for each distinct brand displayed.
+     * distinct company identifier for each distinct brand displayed.  The
+     * maximum number of allowed characters is 255.
      */
     distributorCompanyId?: string;
     /**
@@ -235,14 +236,18 @@ export namespace jobs_v2 {
      * Optional.  A list of keys of filterable Job.custom_attributes, whose
      * corresponding `string_values` are used in keyword search. Jobs with
      * `string_values` under these specified field keys are returned if any of
-     * the values matches the search keyword.
+     * the values matches the search keyword. Custom field values with
+     * parenthesis, brackets and special symbols might not be properly
+     * searchable, and those keyword queries need to be surrounded by quotes.
      */
     keywordSearchableCustomAttributes?: string[];
     /**
      * Deprecated. Use keyword_searchable_custom_attributes instead.  Optional.
      * A list of filterable custom fields that should be used in keyword search.
      * The jobs of this company are returned if any of these custom fields
-     * matches the search keyword.
+     * matches the search keyword. Custom field values with parenthesis,
+     * brackets and special symbols might not be properly searchable, and those
+     * keyword queries need to be surrounded by quotes.
      */
     keywordSearchableCustomFields?: number[];
     /**
@@ -358,7 +363,7 @@ export namespace jobs_v2 {
      */
     type?: string;
     /**
-     * Required.  Specify desired ** base compensation entry&#39;s **
+     * Required.  Specify desired `base compensation entry&#39;s`
      * CompensationInfo.CompensationUnit.
      */
     units?: string[];
@@ -635,7 +640,7 @@ export namespace jobs_v2 {
     filter?: Schema$Filter;
   }
   /**
-   * Input only.  Device information collected from the job searcher, candidate,
+   * Input only.  Device information collected from the job seeker, candidate,
    * or other entity conducting the job search. Providing this information
    * improves the quality of the search results across devices.
    */
@@ -645,7 +650,7 @@ export namespace jobs_v2 {
      */
     deviceType?: string;
     /**
-     * Optional.  A device-specific ID. It must be a unique identifier, which
+     * Optional.  A device-specific ID. The ID must be a unique identifier that
      * distinguishes the device from other devices.
      */
     id?: string;
@@ -668,7 +673,7 @@ export namespace jobs_v2 {
      */
     compensationRange?: Schema$ExtendedCompensationInfoCompensationRange;
     /**
-     * Required.  Specify desired ** base compensation entry&#39;s **
+     * Required.  Specify desired `base compensation entry&#39;s`
      * ExtendedCompensationInfo.CompensationUnit.
      */
     compensationUnits?: string[];
@@ -874,16 +879,16 @@ export namespace jobs_v2 {
   export interface Schema$HistogramFacets {
     /**
      * Optional.  Specifies compensation field-based histogram requests.
-     * Duplicate CompensationHistogramRequest.types are not allowed.
+     * Duplicate values of CompensationHistogramRequest.type are not allowed.
      */
     compensationHistogramFacets?: Schema$CompensationHistogramRequest[];
     /**
      * Optional.  Specifies the custom attributes histogram requests. Duplicate
-     * CustomAttributeHistogramRequest.keys are not allowed.
+     * values of CustomAttributeHistogramRequest.key are not allowed.
      */
     customAttributeHistogramFacets?: Schema$CustomAttributeHistogramRequest[];
     /**
-     * Optional. Specifies the simple type of histogram facets, e.g,
+     * Optional. Specifies the simple type of histogram facets, for example,
      * `COMPANY_SIZE`, `EMPLOYMENT_TYPE` etc. This field is equivalent to
      * GetHistogramRequest.
      */
@@ -1017,7 +1022,7 @@ export namespace jobs_v2 {
     description?: string;
     /**
      * Optional but one of company_name or distributor_company_id must be
-     * provided.  A unique company identifier that used by job distributors to
+     * provided.  A unique company identifier used by job distributors to
      * identify an employer&#39;s company entity. company_name takes precedence
      * over this field, and is the recommended field to use to identify
      * companies.  The maximum number of allowed characters is 255.
@@ -1040,35 +1045,34 @@ export namespace jobs_v2 {
      */
     endDate?: Schema$Date;
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience.  The expiration timestamp of the job. After this timestamp,
-     * the job is marked as expired, and it no longer appears in search results.
-     * The expired job can&#39;t be deleted or listed by the DeleteJob and
-     * ListJobs APIs, but it can be retrieved with the GetJob API or updated
-     * with the UpdateJob API. An expired job can be updated and opened again by
-     * using a future expiration timestamp. It can also remain expired. Updating
-     * an expired job to be open fails if there is another existing open job
-     * with same requisition_id, company_name and language_code.  The expired
-     * jobs are retained in our system for 90 days. However, the overall expired
-     * job count cannot exceed 3 times the maximum of open jobs count over the
-     * past week, otherwise jobs with earlier expire time are cleaned first.
-     * Expired jobs are no longer accessible after they are cleaned out. The
-     * format of this field is RFC 3339 date strings. Example:
-     * 2000-01-01T00:00:00.999999999Z See
+     * Optional but strongly recommended for the best service experience.  The
+     * expiration timestamp of the job. After this timestamp, the job is marked
+     * as expired, and it no longer appears in search results. The expired job
+     * can&#39;t be deleted or listed by the DeleteJob and ListJobs APIs, but it
+     * can be retrieved with the GetJob API or updated with the UpdateJob API.
+     * An expired job can be updated and opened again by using a future
+     * expiration timestamp. Updating an expired job fails if there is another
+     * existing open job with same requisition_id, company_name and
+     * language_code.  The expired jobs are retained in our system for 90 days.
+     * However, the overall expired job count cannot exceed 3 times the maximum
+     * of open jobs count over the past week, otherwise jobs with earlier expire
+     * time are cleaned first. Expired jobs are no longer accessible after they
+     * are cleaned out. The format of this field is RFC 3339 date strings.
+     * Example: 2000-01-01T00:00:00.999999999Z See
      * [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
      * A valid date range is between 1970-01-01T00:00:00.0Z and
      * 2100-12-31T23:59:59.999Z. Invalid dates are ignored and treated as expire
-     * time not provided.  If this value is not provided on job creation or
-     * invalid, the job posting expires after 30 days from the job&#39;s
-     * creation time. For example, if the job was created on 2017/01/01 13:00AM
-     * UTC with an unspecified expiration date, the job expires after 2017/01/31
-     * 13:00AM UTC.  If this value is not provided but expiry_date is,
-     * expiry_date is used.  If this value is not provided on job update, it
-     * depends on the field masks set by UpdateJobRequest.update_job_fields. If
-     * the field masks include expiry_time, or the masks are empty meaning that
-     * every field is updated, the job posting expires after 30 days from the
-     * job&#39;s last update time. Otherwise the expiration date isn&#39;t
-     * updated.
+     * time not provided.  If this value is not provided at the time of job
+     * creation or is invalid, the job posting expires after 30 days from the
+     * job&#39;s creation time. For example, if the job was created on
+     * 2017/01/01 13:00AM UTC with an unspecified expiration date, the job
+     * expires after 2017/01/31 13:00AM UTC.  If this value is not provided but
+     * expiry_date is, expiry_date is used.  If this value is not provided on
+     * job update, it depends on the field masks set by
+     * UpdateJobRequest.update_job_fields. If the field masks include
+     * expiry_time, or the masks are empty meaning that every field is updated,
+     * the job posting expires after 30 days from the job&#39;s last update
+     * time. Otherwise the expiration date isn&#39;t updated.
      */
     expireTime?: string;
     /**
@@ -1138,8 +1142,9 @@ export namespace jobs_v2 {
      * requirements for fluency that are associated with the job.  Language
      * codes must be in BCP-47 format, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see [Tags for Identifying
-     * Languages](https://tools.ietf.org/html/bcp47).  The default value is
-     * `en-US`.
+     * Languages](https://tools.ietf.org/html/bcp47){:
+     * class=&quot;external&quot; target=&quot;_blank&quot; }.  The default
+     * value is `en-US`.
      */
     languageCode?: string;
     /**
@@ -1148,10 +1153,10 @@ export namespace jobs_v2 {
      */
     level?: string;
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience.  Location(s) where the job is hiring.  Providing the full
-     * street address(es) of the hiring location is recommended to enable better
-     * API results, including job searches by commute time.  At most 50
+     * Optional but strongly recommended for the best service experience.
+     * Location(s) where the emploeyer is looking to hire for this job posting.
+     * Specifying the full street address(es) of the hiring location enables
+     * better API results, especially job searches by commute time.  At most 50
      * locations are allowed for best search performance. If a job has more
      * locations, it is suggested to split it into multiple jobs with unique
      * requisition_ids (e.g. &#39;ReqA&#39; becomes &#39;ReqA-1&#39;,
@@ -1210,7 +1215,7 @@ export namespace jobs_v2 {
      * used by clients for client identification and tracking of listings. A job
      * is not allowed to be created if there is another job with the same
      * requisition_id, company_name and language_code.  The maximum number of
-     * allowed characters is 225.
+     * allowed characters is 255.
      */
     requisitionId?: string;
     /**
@@ -1341,9 +1346,9 @@ export namespace jobs_v2 {
     /**
      * Optional.  This filter specifies the locale of jobs to search against,
      * for example, &quot;en-US&quot;.  If a value is not specified, the search
-     * results can contain jobs in any locale.   Language codes should be in
-     * BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more
-     * information, see [Tags for Identifying
+     * results may contain jobs in any locale.   Language codes should be in
+     * BCP-47 format, for example, &quot;en-US&quot; or &quot;sr-Latn&quot;. For
+     * more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47).  At most 10 language code
      * filters are allowed.
      */
@@ -1362,20 +1367,20 @@ export namespace jobs_v2 {
     /**
      * Optional.  Jobs published within a range specified by this filter are
      * searched against, for example, DateRange.PAST_MONTH. If a value is not
-     * specified, all open jobs are searched against regardless of the date on
-     * which they were published.
+     * specified, all open jobs are searched against regardless of the date they
+     * were published.
      */
     publishDateRange?: string;
     /**
      * Optional.  The query filter contains the keywords that match against the
      * job title, description, and location fields.  The maximum query size is
-     * 255 bytes.
+     * 255 bytes/characters.
      */
     query?: string;
     /**
-     * Optional.  This flag controls whether the job search should be restricted
-     * to jobs owned by the current user.  Defaults to false that all jobs
-     * accessible to the user are searched against.
+     * Deprecated. Do not use this field.  This flag controls whether the job
+     * search should be restricted to jobs owned by the current user.  Defaults
+     * to false where all jobs accessible to the user are searched against.
      */
     tenantJobOnly?: boolean;
   }
@@ -1425,50 +1430,48 @@ export namespace jobs_v2 {
     categories?: string[];
     /**
      * Optional.   Allows filtering jobs by commute time with different travel
-     * methods (e.g.  driving or public transit). Note: this only works with
-     * COMMUTE  MODE. When specified, [JobQuery.location_filters] will be
-     * ignored.   Currently we do not support sorting by commute time.
+     * methods (for  example, driving or public transit). Note: This only works
+     * with COMMUTE  MODE. When specified, [JobQuery.location_filters] is
+     * ignored.   Currently we don&#39;t support sorting by commute time.
      */
     commuteFilter?: Schema$CommutePreference;
     /**
-     * Optional.  This filter specifies the exact company display name of jobs
-     * to search against.  If a value is not specified, jobs within the search
-     * results can be associated with any company.  If multiple values are
+     * Optional.  This filter specifies the exact company display name of the
+     * jobs to search against.  If a value isn&#39;t specified, jobs within the
+     * search results are associated with any company.  If multiple values are
      * specified, jobs within the search results may be associated with any of
      * the specified companies.  At most 20 company display name filters are
      * allowed.
      */
     companyDisplayNames?: string[];
     /**
-     * Optional.  The company names filter specifies the company entities to
-     * search against.  If a value is not specified, jobs are searched for
-     * against all companies.  If multiple values are specified, jobs are
-     * searched against the specified companies.  At most 20 company filters are
-     * allowed.
+     * Optional.  This filter specifies the company entities to search against.
+     * If a value isn&#39;t specified, jobs are searched for against all
+     * companies.  If multiple values are specified, jobs are searched against
+     * the companies specified.  At most 20 company filters are allowed.
      */
     companyNames?: string[];
     /**
      * Optional.  This search filter is applied only to Job.compensation_info.
      * For example, if the filter is specified as &quot;Hourly job with per-hour
-     * compensation &gt; $15&quot;, only jobs that meet these criteria are
-     * searched. If a filter is not defined, all open jobs are searched.
+     * compensation &gt; $15&quot;, only jobs meeting these criteria are
+     * searched. If a filter isn&#39;t defined, all open jobs are searched.
      */
     compensationFilter?: Schema$CompensationFilter;
     /**
      * Optional.  This filter specifies a structured syntax to match against the
-     * Job.custom_attributes that are marked as `filterable`.  The syntax for
-     * this expression is a subset of Google SQL syntax.  Supported operators
-     * are: =, !=, &lt;, &lt;=, &gt;, &gt;= where the left of the operator is a
-     * custom field key and the right of the operator is a number or string
-     * (surrounded by quotes) value.  Supported functions are
-     * LOWER(&lt;field_name&gt;) to perform case insensitive match and
-     * EMPTY(&lt;field_name&gt;) to filter on the existence of a key.  Boolean
-     * expressions (AND/OR/NOT) are supported up to 3 levels of nesting (for
-     * example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), and there can be
-     * a maximum of 50 comparisons/functions in the expression. The expression
-     * must be &lt; 2000 characters in length.  Sample Query: (key1 =
-     * &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT EMPTY(key1)) AND
-     * key2 &gt; 100
+     * Job.custom_attributes marked as `filterable`.  The syntax for this
+     * expression is a subset of Google SQL syntax.  Supported operators are: =,
+     * !=, &lt;, &lt;=, &gt;, &gt;= where the left of the operator is a custom
+     * field key and the right of the operator is a number or string (surrounded
+     * by quotes) value.  Supported functions are LOWER(&lt;field_name&gt;) to
+     * perform case insensitive match and EMPTY(&lt;field_name&gt;) to filter on
+     * the existence of a key.  Boolean expressions (AND/OR/NOT) are supported
+     * up to 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D)
+     * AND E&quot;), a maximum of 50 comparisons/functions are allowed in the
+     * expression. The expression must be &lt; 2000 characters in length. Sample
+     * Query: (key1 = &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT
+     * EMPTY(key1)) AND key2 &gt; 100
      */
     customAttributeFilter?: string;
     /**
@@ -1481,17 +1484,17 @@ export namespace jobs_v2 {
     /**
      * Optional.  The employment type filter specifies the employment type of
      * jobs to search against, such as EmploymentType.FULL_TIME.  If a value is
-     * not specified, jobs in the search results will include any employment
-     * type.  If multiple values are specified, jobs in the search results
-     * include any of the specified employment types.
+     * not specified, jobs in the search results includes any employment type.
+     * If multiple values are specified, jobs in the search results include any
+     * of the specified employment types.
      */
     employmentTypes?: string[];
     /**
      * Optional.  This filter specifies the locale of jobs to search against,
-     * for example, &quot;en-US&quot;.  If a value is not specified, the search
-     * results can contain jobs in any locale.   Language codes should be in
-     * BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more
-     * information, see [Tags for Identifying
+     * for example, &quot;en-US&quot;.  If a value isn&#39;t specified, the
+     * search results can contain jobs in any locale.   Language codes should be
+     * in BCP-47 format, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For
+     * more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47).  At most 10 language code
      * filters are allowed.
      */
@@ -1499,19 +1502,19 @@ export namespace jobs_v2 {
     /**
      * Optional.  The location filter specifies geo-regions containing the jobs
      * to search against. See LocationFilter for more information.  If a
-     * location value is not specified, jobs that fit the other search criteria
-     * are retrieved regardless of where they&#39;re located.  If multiple
-     * values are specified, jobs are retrieved from any of the specified
-     * locations, and, if different values are specified for the
+     * location value isn&#39;tt specified, jobs fitting the other search
+     * criteria are retrieved regardless of where they&#39;re located.  If
+     * multiple values are specified, jobs are retrieved from any of the
+     * specified locations, and, if different values are specified for the
      * LocationFilter.distance_in_miles parameter, the maximum provided distance
      * is used for all locations.  At most 5 location filters are allowed.
      */
     locationFilters?: Schema$LocationFilter[];
     /**
      * Optional.  Jobs published within a range specified by this filter are
-     * searched against, for example, DateRange.PAST_MONTH. If a value is not
-     * specified, all open jobs are searched against regardless of the date on
-     * which they were published.
+     * searched against, for example, DateRange.PAST_MONTH. If a value isn&#39;t
+     * specified, all open jobs are searched against regardless of their
+     * published date.
      */
     publishDateRange?: string;
     /**
@@ -1519,12 +1522,6 @@ export namespace jobs_v2 {
      * description, and location fields.  The maximum query size is 255 bytes.
      */
     query?: string;
-    /**
-     * Optional.  This flag controls whether the job search should be restricted
-     * to jobs owned by the current user.  Defaults to false: all jobs
-     * accessible to the user are searched against.
-     */
-    tenantJobOnly?: boolean;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -1670,8 +1667,8 @@ export namespace jobs_v2 {
      */
     jobSummary?: string;
     /**
-     * Contains snippets of text from the Job.job_title field that most closely
-     * match a search query&#39;s keywords, if available. The matching query
+     * Contains snippets of text from the Job.job_title field most closely
+     * matching a search query&#39;s keywords, if available. The matching query
      * keywords are enclosed in HTML bold tags.
      */
     jobTitleSnippet?: string;
@@ -1872,7 +1869,9 @@ export namespace jobs_v2 {
      * &lt;em&gt;Foo, Inc.&lt;/em&gt;, on job board www.foo.com and career site
      * www.bar.com, then this field is set to &quot;foo.com&quot; for use on the
      * job board, and &quot;bar.com&quot; for use on the career site.  If this
-     * field is not available for some reason, please send &quot;UNKNOWN&quot;.
+     * field is not available for some reason, send &quot;UNKNOWN&quot;. Note
+     * that any improvements to the {{ api_name }} model for a particular tenant
+     * site, rely on this field being set correctly to some domain.
      */
     domain?: string;
     /**
@@ -1880,7 +1879,9 @@ export namespace jobs_v2 {
      * as the duration of an end user&#39;s interaction with the service over a
      * period. Obfuscate this field for privacy concerns before providing it to
      * the API.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
+     * model for a particular tenant site, rely on this field being set
+     * correctly to some unique session_id.
      */
     sessionId?: string;
     /**
@@ -1889,7 +1890,9 @@ export namespace jobs_v2 {
      * this value in order to have the strongest positive impact on search
      * quality. Obfuscate this field for privacy concerns before providing it to
      * the service.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
+     * model for a particular tenant site, rely on this field being set
+     * correctly to some unique user_id.
      */
     userId?: string;
   }
@@ -1919,7 +1922,7 @@ export namespace jobs_v2 {
    */
   export interface Schema$SearchJobsRequest {
     /**
-     * Deprecated. Any value provided in this field will be ignored.  Optional.
+     * Deprecated. Any value provided in this field is ignored.  Optional.
      * Controls whether to disable relevance thresholding. Relevance
      * thresholding removes jobs that have low relevance in search results, for
      * example, removing &quot;Assistant to the CEO&quot; positions from the
@@ -1954,8 +1957,8 @@ export namespace jobs_v2 {
      */
     histogramFacets?: Schema$HistogramFacets;
     /**
-     * Optional.  The number of job attributes that is returned for jobs in the
-     * search response. Defaults to JobView.SMALL if no value is specified.
+     * Optional.  The number of job attributes returned for jobs in the search
+     * response. Defaults to JobView.SMALL if no value is specified.
      */
     jobView?: string;
     /**
@@ -1963,18 +1966,19 @@ export namespace jobs_v2 {
      */
     mode?: string;
     /**
-     * Optional.  An integer that specifies the current offset (i.e. starting
-     * result) in search results. This field is only considered if page_token is
-     * unset.  For example, 0 means to  return results starting from the first
-     * matching job, and 10 means to return from the 11th job. This can be used
-     * for pagination, (for example, pageSize = 10 and offset = 10 means to
-     * return from the second page).
+     * Optional.  An integer that specifies the current offset (that is,
+     * starting result location, amongst the jobs deemed by the API as relevant)
+     * in search results. This field is only considered if page_token is unset.
+     * For example, 0 means to  return results starting from the first matching
+     * job, and 10 means to return from the 11th job. This can be used for
+     * pagination, (for example, pageSize = 10 and offset = 10 means to return
+     * from the second page).
      */
     offset?: number;
     /**
-     * Deprecated. Use sort_by instead.  Optional.  The criteria that determine
-     * how search results are sorted. Defaults to SortBy.RELEVANCE_DESC if no
-     * value is specified.
+     * Deprecated. Use sort_by instead.  Optional.  The criteria determining how
+     * search results are sorted. Defaults to SortBy.RELEVANCE_DESC if no value
+     * is specified.
      */
     orderBy?: string;
     /**
@@ -1984,9 +1988,9 @@ export namespace jobs_v2 {
      */
     pageSize?: number;
     /**
-     * Optional.  The token that specifies the current offset within search
-     * results. See SearchJobsResponse.next_page_token for an explanation of how
-     * to obtain the next set of query results.
+     * Optional.  The token specifying the current offset within search results.
+     * See SearchJobsResponse.next_page_token for an explanation of how to
+     * obtain the next set of query results.
      */
     pageToken?: string;
     /**
@@ -2001,7 +2005,7 @@ export namespace jobs_v2 {
      */
     requestMetadata?: Schema$RequestMetadata;
     /**
-     * Optional.  The criteria that determine how search results are sorted.
+     * Optional.  The criteria determining how search results are sorted.
      * Defaults to SortBy.RELEVANCE_DESC if no value is specified.
      */
     sortBy?: string;
@@ -2011,7 +2015,7 @@ export namespace jobs_v2 {
    */
   export interface Schema$SearchJobsResponse {
     /**
-     * The commute filter that the service applied to the specified query. This
+     * The commute filter the service applied to the specified query. This
      * information is only available when query has a valid CommutePreference.
      */
     appliedCommuteFilter?: Schema$CommutePreference;
@@ -2568,7 +2572,7 @@ export namespace jobs_v2 {
      * @param {string} params.companyName Required.  The resource name of the company that owns the jobs to be listed, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      * @param {boolean=} params.idsOnly Optional.  If set to `true`, only job ID, job requisition ID and language code will be returned.  A typical use is to synchronize job repositories.  Defaults to false.
      * @param {boolean=} params.includeJobsCount Deprecated. Please DO NOT use this field except for small companies. Suggest counting jobs page by page instead.  Optional.  Set to true if the total number of open jobs is to be returned.  Defaults to false.
-     * @param {string=} params.jobRequisitionId Optional.  The requisition ID, also known as posting ID, assigned by the company to the job.  The number of allowable characters is 225.
+     * @param {string=} params.jobRequisitionId Optional.  The requisition ID, also known as posting ID, assigned by the company to the job.  The maximum number of allowable characters is 225.
      * @param {integer=} params.pageSize Optional.  The maximum number of jobs to be returned per page of results.  If ids_only is set to true, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
      * @param {string=} params.pageToken Optional.  The starting point of a query result.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2655,7 +2659,7 @@ export namespace jobs_v2 {
     includeJobsCount?: boolean;
     /**
      * Optional.  The requisition ID, also known as posting ID, assigned by the
-     * company to the job.  The number of allowable characters is 225.
+     * company to the job.  The maximum number of allowable characters is 225.
      */
     jobRequisitionId?: string;
     /**
@@ -2687,7 +2691,7 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.batchDelete
-     * @desc Deletes a list of Jobs by filter.
+     * @desc Deletes a list of Job postings by filter.
      * @alias jobs.jobs.batchDelete
      * @memberOf! ()
      *
@@ -3152,9 +3156,8 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.patch
-     * @desc Updates the specified job.  Typically, the updated contents become
-     * visible in search results within 10 seconds, but it may take up to 5
-     * minutes.
+     * @desc Updates specified job.  Typically, updated contents become visible
+     * in search results within 10 seconds, but it may take up to 5 minutes.
      * @alias jobs.jobs.patch
      * @memberOf! ()
      *
@@ -3284,12 +3287,13 @@ export namespace jobs_v2 {
 
     /**
      * jobs.jobs.searchForAlert
-     * @desc Searches for jobs using the provided SearchJobsRequest.  This call
-     * is intended to use for large, periodic tasks such as email alert
-     * processing, and has different algorithmic adjustments that are targeted
-     * to passive job seekers.  This call constrains the visibility of jobs
-     * present in the database, and only returns jobs the caller has permission
-     * to search against.
+     * @desc Searches for jobs using the provided SearchJobsRequest.  This API
+     * call is intended for the use case of targeting passive job seekers (for
+     * example, job seekers who have signed up to receive email alerts about
+     * potential job opportunities), and has different algorithmic adjustments
+     * that are targeted to passive job seekers.  This call constrains the
+     * visibility of jobs present in the database, and only returns jobs the
+     * caller has permission to search against.
      * @alias jobs.jobs.searchForAlert
      * @memberOf! ()
      *

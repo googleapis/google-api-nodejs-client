@@ -180,6 +180,10 @@ export namespace dataproc_v1beta2 {
      */
     configBucket?: string;
     /**
+     * Optional. Encryption settings for the cluster.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
      * Required. The shared Compute Engine config settings for all instances in
      * a cluster.
      */
@@ -391,6 +395,16 @@ export namespace dataproc_v1beta2 {
    * representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
+  /**
+   * Encryption settings for the cluster.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. The Cloud KMS key name to use for PD disk encryption for all
+     * instances in the cluster.
+     */
+    gcePdKmsKeyName?: string;
+  }
   /**
    * Common config settings for resources of Compute Engine cluster instances,
    * applicable to all instances in the cluster.

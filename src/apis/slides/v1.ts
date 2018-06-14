@@ -473,7 +473,9 @@ export namespace slides_v1 {
     objectId?: string;
   }
   /**
-   * Creates a video.
+   * Creates a video.  NOTE: Drive video creation requires that the requesting
+   * app have at least one of the drive, drive.readonly, or drive.file OAuth
+   * scopes.
    */
   export interface Schema$CreateVideoRequest {
     /**
@@ -488,7 +490,9 @@ export namespace slides_v1 {
     /**
      * The video source&#39;s unique identifier for this video.  e.g. For
      * YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is
-     * 7U3axjORYZ0.
+     * 7U3axjORYZ0. For Drive video
+     * https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID
+     * is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.
      */
     id?: string;
     /**

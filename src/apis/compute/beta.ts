@@ -76,6 +76,7 @@ export namespace compute_beta {
     licenseCodes: Resource$Licensecodes;
     licenses: Resource$Licenses;
     machineTypes: Resource$Machinetypes;
+    networkEndpointGroups: Resource$Networkendpointgroups;
     networks: Resource$Networks;
     nodeGroups: Resource$Nodegroups;
     nodeTemplates: Resource$Nodetemplates;
@@ -140,6 +141,7 @@ export namespace compute_beta {
       this.licenseCodes = new Resource$Licensecodes(this);
       this.licenses = new Resource$Licenses(this);
       this.machineTypes = new Resource$Machinetypes(this);
+      this.networkEndpointGroups = new Resource$Networkendpointgroups(this);
       this.networks = new Resource$Networks(this);
       this.nodeGroups = new Resource$Nodegroups(this);
       this.nodeTemplates = new Resource$Nodetemplates(this);
@@ -432,11 +434,24 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * The URL of the network in which to reserve the address. This field can
+     * only be used with INTERNAL type with VPC_PEERING purpose.
+     */
+    network?: string;
+    /**
      * This signifies the networking tier used for configuring this Address and
      * can only take the following values: PREMIUM , STANDARD.  If this field is
      * not specified, it is assumed to be PREMIUM.
      */
     networkTier?: string;
+    /**
+     * The prefix length if the resource reprensents an IP range.
+     */
+    prefixLength?: number;
+    /**
+     * The purpose of resource, only used with INTERNAL type.
+     */
+    purpose?: string;
     /**
      * [Output Only] URL of the region where the regional address resides. This
      * field is not applicable to global addresses. You must specify this field
@@ -1136,6 +1151,14 @@ export namespace compute_beta {
      */
     maxConnections?: number;
     /**
+     * The max number of simultaneous connections that a single backend network
+     * endpoint can handle. This is used to calculate the capacity of the group.
+     * Can be used in either CONNECTION or UTILIZATION balancing modes. For
+     * CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must
+     * be set.  This cannot be used for internal load balancing.
+     */
+    maxConnectionsPerEndpoint?: number;
+    /**
      * The max number of simultaneous connections that a single backend instance
      * can handle. This is used to calculate the capacity of the group. Can be
      * used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION
@@ -1150,6 +1173,14 @@ export namespace compute_beta {
      * used for internal load balancing.
      */
     maxRate?: number;
+    /**
+     * The max requests per second (RPS) that a single backend network endpoint
+     * can handle. This is used to calculate the capacity of the group. Can be
+     * used in either balancing mode. For RATE mode, either maxRate or
+     * maxRatePerEndpoint must be set.  This cannot be used for internal load
+     * balancing.
+     */
+    maxRatePerEndpoint?: number;
     /**
      * The max requests per second (RPS) that a single backend instance can
      * handle. This is used to calculate the capacity of the group. Can be used
@@ -1511,6 +1542,9 @@ export namespace compute_beta {
      * [Output Only] Informational warning message.
      */
     warning?: any;
+  }
+  export interface Schema$BackendServiceReference {
+    backendService?: string;
   }
   export interface Schema$BackendServicesScopedList {
     /**
@@ -2823,6 +2857,9 @@ export namespace compute_beta {
      */
     warning?: any;
   }
+  export interface Schema$ForwardingRuleReference {
+    forwardingRule?: string;
+  }
   export interface Schema$ForwardingRulesScopedList {
     /**
      * A list of forwarding rules contained in this scope.
@@ -2999,6 +3036,28 @@ export namespace compute_beta {
      */
     port?: number;
   }
+  export interface Schema$HealthStatusForNetworkEndpoint {
+    /**
+     * URL of the backend service associated with the health state of the
+     * network endpoint.
+     */
+    backendService?: Schema$BackendServiceReference;
+    /**
+     * URL of the forwarding rule associated with the health state of the
+     * network endpoint.
+     */
+    forwardingRule?: Schema$ForwardingRuleReference;
+    /**
+     * URL of the health check associated with the health state of the network
+     * endpoint.
+     */
+    healthCheck?: Schema$HealthCheckReference;
+    /**
+     * Health state of the network endpoint determined based on the health
+     * checks configured.
+     */
+    healthState?: string;
+  }
   /**
    * UrlMaps A host-matching rule for a URL. If matched, will use the named
    * PathMatcher to select the BackendService.
@@ -3039,46 +3098,23 @@ export namespace compute_beta {
      */
     portName?: string;
     /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTP2 health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
      * Specifies the type of proxy header to append before sending data to the
      * backend, either NONE or PROXY_V1. The default is NONE.
      */
     proxyHeader?: string;
     /**
      * The request path of the HTTP/2 health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value
-     * is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is
      * /.
      */
     requestPath?: string;
@@ -3165,6 +3201,51 @@ export namespace compute_beta {
      */
     unhealthyThreshold?: number;
   }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value
+     * is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTP health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * Contains a list of HttpHealthCheck resources.
    */
@@ -3197,6 +3278,51 @@ export namespace compute_beta {
      * [Output Only] Informational warning message.
      */
     warning?: any;
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTPS health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
@@ -3272,40 +3398,6 @@ export namespace compute_beta {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -5734,7 +5826,7 @@ export namespace compute_beta {
     warning?: any;
   }
   /**
-   * Next available tag: 12
+   * A Managed Instance resource.
    */
   export interface Schema$ManagedInstance {
     /**
@@ -5912,6 +6004,249 @@ export namespace compute_beta {
      * this network.
      */
     subnetworks?: string[];
+  }
+  /**
+   * The network endpoint.
+   */
+  export interface Schema$NetworkEndpoint {
+    /**
+     * The name for a specific VM instance that the IP address belongs to. This
+     * is required for network endpoints of type GCE_VM_IP and GCE_VM_IP_PORT.
+     * The instance must be in the same zone of network endpoint group.  The
+     * name must be 1-63 characters long, and comply with RFC1035.
+     */
+    instance?: string;
+    /**
+     * Optional IPv4 address of network endpoint. The IP address must belong to
+     * a VM in GCE (either the primary IP or as part of an aliased IP range). If
+     * the IP address is not specified, then the primary IP address for the VM
+     * instance in the network that the network endpoint group belongs to will
+     * be used.
+     */
+    ipAddress?: string;
+    /**
+     * Optional port number of network endpoint. If not specified and the
+     * NetworkEndpointGroup.network_endpoint_type is GCE_IP_PORT, the
+     * defaultPort for the network endpoint group will be used.
+     */
+    port?: number;
+  }
+  /**
+   * Represents a collection of network endpoints.
+   */
+  export interface Schema$NetworkEndpointGroup {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of the resource. Always compute#networkEndpointGroup
+     * for network endpoint group.
+     */
+    kind?: string;
+    /**
+     * This field is only valid when the network endpoint group type is
+     * LOAD_BALANCING.
+     */
+    loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
+    /**
+     * Name of the resource; provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
+     * must be a lowercase letter, and all following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
+     */
+    name?: string;
+    /**
+     * Type of network endpoints in this network endpoint group. Only supported
+     * values for LOAD_BALANCING are GCE_VM_IP or GCE_VM_IP_PORT.
+     */
+    networkEndpointType?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output only] Number of network endpoints in the network endpoint group.
+     */
+    size?: number;
+    /**
+     * Specify the type of this network endpoint group. Only LOAD_BALANCING is
+     * valid for now.
+     */
+    type?: string;
+  }
+  export interface Schema$NetworkEndpointGroupAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NetworkEndpointGroupsScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] The resource type, which is always
+     * compute#networkEndpointGroupAggregatedList for aggregated lists of
+     * network endpoint groups.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * Load balancing specific fields for network endpoint group of type
+   * LOAD_BALANCING.
+   */
+  export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
+    /**
+     * The default port used if the port number is not specified in the network
+     * endpoint. If the network endpoint type is GCE_VM_IP, this field must not
+     * be specified.
+     */
+    defaultPort?: number;
+    /**
+     * The URL of the network to which all network endpoints in the NEG belong.
+     * Uses &quot;default&quot; project network if unspecified.
+     */
+    network?: string;
+    /**
+     * Optional URL of the subnetwork to which all network endpoints in the NEG
+     * belong.
+     */
+    subnetwork?: string;
+    /**
+     * [Output Only] The URL of the zone where the network endpoint group is
+     * located.
+     */
+    zone?: string;
+  }
+  export interface Schema$NetworkEndpointGroupList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NetworkEndpointGroup resources.
+     */
+    items?: Schema$NetworkEndpointGroup[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute#networkEndpointGroupList for network endpoint group lists.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NetworkEndpointGroupsAttachEndpointsRequest {
+    /**
+     * The list of network endpoints to be attached.
+     */
+    networkEndpoints?: Schema$NetworkEndpoint[];
+  }
+  export interface Schema$NetworkEndpointGroupsDetachEndpointsRequest {
+    /**
+     * The list of network endpoints to be detached.
+     */
+    networkEndpoints?: Schema$NetworkEndpoint[];
+  }
+  export interface Schema$NetworkEndpointGroupsListEndpointsRequest {
+    /**
+     * Optional query parameter for showing the health status of each network
+     * endpoint. Valid options are SKIP or SHOW. If you don&#39;t specifiy this
+     * parameter, the health status of network endpoints will not be provided.
+     */
+    healthStatus?: string;
+  }
+  export interface Schema$NetworkEndpointGroupsListNetworkEndpoints {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NetworkEndpointWithHealthStatus resources.
+     */
+    items?: Schema$NetworkEndpointWithHealthStatus[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute#networkEndpointGroupsListNetworkEndpoints for the list of network
+     * endpoints in the specified network endpoint group.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NetworkEndpointGroupsScopedList {
+    /**
+     * [Output Only] The list of network endpoint groups that are contained in
+     * this scope.
+     */
+    networkEndpointGroups?: Schema$NetworkEndpointGroup[];
+    /**
+     * [Output Only] An informational warning that replaces the list of network
+     * endpoint groups when the list is empty.
+     */
+    warning?: any;
+  }
+  export interface Schema$NetworkEndpointWithHealthStatus {
+    /**
+     * [Output only] The health status of network endpoint;
+     */
+    healths?: Schema$HealthStatusForNetworkEndpoint[];
+    /**
+     * [Output only] The network endpoint;
+     */
+    networkEndpoint?: Schema$NetworkEndpoint;
   }
   /**
    * A network interface resource attached to an instance.
@@ -6839,6 +7174,12 @@ export namespace compute_beta {
      * Deprecated.
      */
     version?: number;
+  }
+  export interface Schema$PreconfiguredWafSet {
+    /**
+     * List of entities that are currently supported for WAF rules.
+     */
+    expressionSets?: Schema$WafExpressionSet[];
   }
   /**
    * A Project resource. For an overview of projects, see  Cloud Platform
@@ -7967,6 +8308,12 @@ export namespace compute_beta {
      */
     values?: string[];
   }
+  export interface Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse {
+    preconfiguredExpressionSets?: Schema$SecurityPoliciesWafConfig;
+  }
+  export interface Schema$SecurityPoliciesWafConfig {
+    wafRules?: Schema$PreconfiguredWafSet;
+  }
   /**
    * A security policy is comprised of one or more rules. It can also be
    * associated with one or more &#39;targets&#39;. Next available tag: 11
@@ -8469,6 +8816,17 @@ export namespace compute_beta {
      * port_name are defined, port takes precedence.
      */
     portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, SSL health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
     /**
      * Specifies the type of proxy header to append before sending data to the
      * backend, either NONE or PROXY_V1. The default is NONE.
@@ -10241,6 +10599,34 @@ export namespace compute_beta {
      * is empty.
      */
     warning?: any;
+  }
+  export interface Schema$WafExpressionSet {
+    /**
+     * A list of alternate IDs. The format should be: - E.g. XSS-stable Generic
+     * suffix like &quot;stable&quot; is particularly useful if a policy likes
+     * to avail newer set of expressions without having to change the policy. A
+     * given alias name can&#39;t be used for more than one entity set.
+     */
+    aliases?: string[];
+    /**
+     * List of available expressions.
+     */
+    expressions?: Schema$WafExpressionSetExpression[];
+    /**
+     * Google specified expression set ID. The format should be: - E.g.
+     * XSS-20170329
+     */
+    id?: string;
+  }
+  export interface Schema$WafExpressionSetExpression {
+    /**
+     * Expression ID should uniquely identify the origin of the expression. E.g.
+     * owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1
+     * rule id 973337. The ID could be used to determine the individual attack
+     * definition that has been detected. It could also be used to exclude it
+     * from the policy in case of false positive.
+     */
+    id?: string;
   }
   export interface Schema$XpnHostList {
     /**
@@ -43553,6 +43939,1088 @@ export namespace compute_beta {
   }
 
 
+  export class Resource$Networkendpointgroups {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.aggregatedList
+     * @desc Retrieves the list of network endpoint groups and sorts them by
+     * zone.
+     * @alias compute.networkEndpointGroups.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Networkendpointgroups$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$NetworkEndpointGroupAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Networkendpointgroups$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>,
+        callback:
+            BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Networkendpointgroups$Aggregatedlist,
+        callback:
+            BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>):
+        void;
+    aggregatedList(
+        callback:
+            BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Networkendpointgroups$Aggregatedlist|
+        BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>,
+        callback?:
+            BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>):
+        void|AxiosPromise<Schema$NetworkEndpointGroupAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/aggregated/networkEndpointGroups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroupAggregatedList>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.attachNetworkEndpoints
+     * @desc Attach a list of network endpoints to the specified network
+     * endpoint group.
+     * @alias compute.networkEndpointGroups.attachNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {().NetworkEndpointGroupsAttachEndpointsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    attachNetworkEndpoints(
+        params?: Params$Resource$Networkendpointgroups$Attachnetworkendpoints,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    attachNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Attachnetworkendpoints,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Attachnetworkendpoints,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachNetworkEndpoints(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    attachNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Networkendpointgroups$Attachnetworkendpoints|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Attachnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Networkendpointgroups$Attachnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.delete
+     * @desc Deletes the specified network endpoint group. The network endpoints
+     * in the NEG and the VM instances they belong to are not terminated when
+     * the NEG is deleted. Note that the NEG cannot be deleted if there are
+     * backend services referencing it.
+     * @alias compute.networkEndpointGroups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Networkendpointgroups$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Networkendpointgroups$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Networkendpointgroups$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Networkendpointgroups$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.detachNetworkEndpoints
+     * @desc Detach a list of network endpoints from the specified network
+     * endpoint group.
+     * @alias compute.networkEndpointGroups.detachNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {().NetworkEndpointGroupsDetachEndpointsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    detachNetworkEndpoints(
+        params?: Params$Resource$Networkendpointgroups$Detachnetworkendpoints,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    detachNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Detachnetworkendpoints,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    detachNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Detachnetworkendpoints,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    detachNetworkEndpoints(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    detachNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Networkendpointgroups$Detachnetworkendpoints|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Detachnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Networkendpointgroups$Detachnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.get
+     * @desc Returns the specified network endpoint group. Gets a list of
+     * available network endpoint groups by making a list() request.
+     * @alias compute.networkEndpointGroups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Networkendpointgroups$Get,
+        options?: MethodOptions): AxiosPromise<Schema$NetworkEndpointGroup>;
+    get(params: Params$Resource$Networkendpointgroups$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(params: Params$Resource$Networkendpointgroups$Get,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Networkendpointgroups$Get|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        callback?: BodyResponseCallback<Schema$NetworkEndpointGroup>):
+        void|AxiosPromise<Schema$NetworkEndpointGroup> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Networkendpointgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroup>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.insert
+     * @desc Creates a network endpoint group in the specified project using the
+     * parameters that are included in the request.
+     * @alias compute.networkEndpointGroups.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where you want to create the network endpoint group. It should comply with RFC1035.
+     * @param {().NetworkEndpointGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Networkendpointgroups$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Networkendpointgroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Networkendpointgroups$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Networkendpointgroups$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.list
+     * @desc Retrieves the list of network endpoint groups that are located in
+     * the specified project and zone.
+     * @alias compute.networkEndpointGroups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Networkendpointgroups$List,
+        options?: MethodOptions): AxiosPromise<Schema$NetworkEndpointGroupList>;
+    list(
+        params: Params$Resource$Networkendpointgroups$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(
+        params: Params$Resource$Networkendpointgroups$List,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Networkendpointgroups$List|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        callback?: BodyResponseCallback<Schema$NetworkEndpointGroupList>):
+        void|AxiosPromise<Schema$NetworkEndpointGroupList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.listNetworkEndpoints
+     * @desc Lists the network endpoints in the specified network endpoint
+     * group.
+     * @alias compute.networkEndpointGroups.listNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param {().NetworkEndpointGroupsListEndpointsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNetworkEndpoints(
+        params?: Params$Resource$Networkendpointgroups$Listnetworkendpoints,
+        options?: MethodOptions):
+        AxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints>;
+    listNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Listnetworkendpoints,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        callback: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>): void;
+    listNetworkEndpoints(
+        params: Params$Resource$Networkendpointgroups$Listnetworkendpoints,
+        callback: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>): void;
+    listNetworkEndpoints(callback: BodyResponseCallback<
+                         Schema$NetworkEndpointGroupsListNetworkEndpoints>):
+        void;
+    listNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Networkendpointgroups$Listnetworkendpoints|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        callback?: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>):
+        void|AxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Listnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Networkendpointgroups$Listnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupsListNetworkEndpoints>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networkEndpointGroups.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.networkEndpointGroups.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Networkendpointgroups$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Networkendpointgroups$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Networkendpointgroups$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Networkendpointgroups$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networkendpointgroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networkendpointgroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/networkEndpointGroups/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Networkendpointgroups$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Networkendpointgroups$Attachnetworkendpoints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group where you are attaching network
+     * endpoints to. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroupsAttachEndpointsRequest;
+  }
+  export interface Params$Resource$Networkendpointgroups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group to delete. It should comply with
+     * RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Networkendpointgroups$Detachnetworkendpoints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group where you are removing network
+     * endpoints. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroupsDetachEndpointsRequest;
+  }
+  export interface Params$Resource$Networkendpointgroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Networkendpointgroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where you want to create the network endpoint group.
+     * It should comply with RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroup;
+  }
+  export interface Params$Resource$Networkendpointgroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Networkendpointgroups$Listnetworkendpoints {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * The name of the network endpoint group from which you want to generate a
+     * list of included network endpoints. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone where the network endpoint group is located. It
+     * should comply with RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroupsListEndpointsRequest;
+  }
+  export interface Params$Resource$Networkendpointgroups$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
   export class Resource$Networks {
     root: Compute;
     constructor(root: Compute) {
@@ -61385,6 +62853,102 @@ export namespace compute_beta {
 
 
     /**
+     * compute.securityPolicies.listPreconfiguredExpressionSets
+     * @desc Gets the current list of preconfigured Web Application Firewall
+     * (WAF) expressions.
+     * @alias compute.securityPolicies.listPreconfiguredExpressionSets
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPreconfiguredExpressionSets(
+        params?:
+            Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets,
+        options?: MethodOptions):
+        AxiosPromise<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>;
+    listPreconfiguredExpressionSets(
+        params:
+            Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>,
+        callback: BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>):
+        void;
+    listPreconfiguredExpressionSets(
+        params:
+            Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets,
+        callback: BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>):
+        void;
+    listPreconfiguredExpressionSets(
+        callback: BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>):
+        void;
+    listPreconfiguredExpressionSets(
+        paramsOrCallback?:
+            Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets|
+        BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>,
+        callback?: BodyResponseCallback<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>):
+        void|AxiosPromise<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/listPreconfiguredExpressionSets')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.securityPolicies.patch
      * @desc Patches the specified policy with the data included in the request.
      * @example
@@ -61905,6 +63469,60 @@ export namespace compute_beta {
     requestBody?: Schema$SecurityPolicy;
   }
   export interface Params$Resource$Securitypolicies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets {
     /**
      * Auth client or API Key for the request
      */

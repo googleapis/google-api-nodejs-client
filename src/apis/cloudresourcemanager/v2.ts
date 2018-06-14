@@ -370,13 +370,17 @@ export namespace cloudresourcemanager_v2 {
      * criteria is specified then all accessible folders will be returned. Query
      * expressions can be used to restrict results based upon displayName,
      * lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR`
-     * can be used along with the suffix wildcard symbol `*`.  Some example
-     * queries are:  |Query | Description| |----- | -----------|
-     * |displayName=Test* | Folders whose display name starts with
-     * &quot;Test&quot;. |lifecycleState=ACTIVE | Folders whose lifecycleState
-     * is ACTIVE. |parent=folders/123 | Folders whose parent is
-     * &quot;folders/123&quot;. |parent=folders/123 AND lifecycleState=ACTIVE |
-     * Active folders whose parent is &quot;folders/123&quot;.|
+     * can be used along with the suffix wildcard symbol `*`.  The displayName
+     * field in a query expression should use escaped quotes for values that
+     * include whitespace to prevent unexpected behavior.  Some example queries
+     * are:  |Query | Description| |----- | -----------| |displayName=Test* |
+     * Folders whose display name starts with &quot;Test&quot;.|
+     * |lifecycleState=ACTIVE | Folders whose lifecycleState is ACTIVE.|
+     * |parent=folders/123 | Folders whose parent is &quot;folders/123&quot;.|
+     * |parent=folders/123 AND lifecycleState=ACTIVE | Active folders whose
+     * parent is &quot;folders/123&quot;.| |displayName=\\&quot;Test
+     * String\\&quot;|Folders whose display name includes both &quot;Test&quot;
+     * and &quot;String&quot;.|
      */
     query?: string;
   }
@@ -521,11 +525,11 @@ export namespace cloudresourcemanager_v2 {
      * headroom when moving folders that contain deleted folders. + The addition
      * of the Folder must not cause the total number of Folders under its parent
      * to exceed 100.  If the operation fails due to a folder constraint
-     * violation, a PreconditionFailure explaining the violation will be
-     * returned. If the failure occurs synchronously then the
-     * PreconditionFailure will be returned via the Status.details field and if
-     * it occurs asynchronously then the PreconditionFailure will be returned
-     * via the the Operation.error field.  The caller must have
+     * violation, some errors may be returned by the CreateFolder request, with
+     * status code FAILED_PRECONDITION and an error description. Other folder
+     * constraint violations will be communicated in the Operation, with the
+     * specific PreconditionFailure returned via the details list in the
+     * Operation.error field.  The caller must have
      * `resourcemanager.folders.create` permission on the identified parent.
      * @alias cloudresourcemanager.folders.create
      * @memberOf! ()

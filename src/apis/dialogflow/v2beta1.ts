@@ -536,7 +536,7 @@ export namespace dialogflow_v2beta1 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * sentence semantics. Next available field number: 22.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
@@ -1597,7 +1597,7 @@ export namespace dialogflow_v2beta1 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * sentence semantics. Next available field number: 22.
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**
@@ -4120,7 +4120,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID>. and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID> and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
      * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4229,7 +4229,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * construction and will be available soon. If <Environment ID> is not
      * specified, we assume default 'draft' environment. If <User ID> is not
      * specified, we are using "-". It’s up to the API caller to choose an
-     * appropriate <Session ID>. and <User Id>. They can be a random numbers or
+     * appropriate <Session ID> and <User Id>. They can be a random numbers or
      * some type of user and session identifiers (preferably hashed). The length
      * of the <Session ID> and <User ID> must not exceed 36 characters.
      */
@@ -6117,7 +6117,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID>. and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID> and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
      * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6221,7 +6221,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * construction and will be available soon. If <Environment ID> is not
      * specified, we assume default 'draft' environment. If <User ID> is not
      * specified, we are using "-". It’s up to the API caller to choose an
-     * appropriate <Session ID>. and <User Id>. They can be a random numbers or
+     * appropriate <Session ID> and <User Id>. They can be a random numbers or
      * some type of user and session identifiers (preferably hashed). The length
      * of the <Session ID> and <User ID> must not exceed 36 characters.
      */

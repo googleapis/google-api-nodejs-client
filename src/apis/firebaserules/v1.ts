@@ -384,6 +384,11 @@ export namespace firebaserules_v1 {
      * State of the test.
      */
     state?: string;
+    /**
+     * The set of visited expressions for a given test. This returns positions
+     * and evaluation results of all visited expressions.
+     */
+    visitedExpressions?: Schema$VisitedExpression[];
   }
   /**
    * The request for FirebaseRulesService.TestRuleset.
@@ -439,6 +444,19 @@ export namespace firebaserules_v1 {
      * Specifies which fields to update.
      */
     updateMask?: string;
+  }
+  /**
+   * Store the position and access outcome for an expression visited in rules.
+   */
+  export interface Schema$VisitedExpression {
+    /**
+     * Position in the `Source` or `Ruleset` where an expression was visited.
+     */
+    sourcePosition?: Schema$SourcePosition;
+    /**
+     * The evaluated value for the visited expression, e.g. true/false
+     */
+    value?: any;
   }
 
 

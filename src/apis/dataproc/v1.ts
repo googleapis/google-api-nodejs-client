@@ -204,6 +204,23 @@ export namespace dataproc_v1 {
     yarnMetrics?: any;
   }
   /**
+   * The cluster operation triggered by a workflow.
+   */
+  export interface Schema$ClusterOperation {
+    /**
+     * Output only. Indicates the operation is done.
+     */
+    done?: boolean;
+    /**
+     * Output only. Error, if operation failed.
+     */
+    error?: string;
+    /**
+     * Output only. The id of the cluster operation.
+     */
+    operationId?: string;
+  }
+  /**
    * Metadata describing the operation.
    */
   export interface Schema$ClusterOperationMetadata {
@@ -305,6 +322,12 @@ export namespace dataproc_v1 {
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
     bootDiskSizeGb?: number;
+    /**
+     * Optional. Type of the boot disk (default is &quot;pd-standard&quot;).
+     * Valid values: &quot;pd-ssd&quot; (Persistent Disk Solid State Drive) or
+     * &quot;pd-standard&quot; (Persistent Disk Hard Disk Drive).
+     */
+    bootDiskType?: string;
     /**
      * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs
      * are not attached, the boot disk is used to store runtime logs and HDFS
@@ -1093,6 +1116,78 @@ export namespace dataproc_v1 {
      * hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
+  }
+  /**
+   * The workflow graph.
+   */
+  export interface Schema$WorkflowGraph {
+    /**
+     * Output only. The workflow nodes.
+     */
+    nodes?: Schema$WorkflowNode[];
+  }
+  /**
+   * A Cloud Dataproc workflow template resource.
+   */
+  export interface Schema$WorkflowMetadata {
+    /**
+     * Output only. The name of the managed cluster.
+     */
+    clusterName?: string;
+    /**
+     * Output only. The create cluster operation metadata.
+     */
+    createCluster?: Schema$ClusterOperation;
+    /**
+     * Output only. The delete cluster operation metadata.
+     */
+    deleteCluster?: Schema$ClusterOperation;
+    /**
+     * Output only. The workflow graph.
+     */
+    graph?: Schema$WorkflowGraph;
+    /**
+     * Map from parameter names to values that were used for those parameters.
+     */
+    parameters?: any;
+    /**
+     * Output only. The workflow state.
+     */
+    state?: string;
+    /**
+     * Output only. The &quot;resource name&quot; of the template.
+     */
+    template?: string;
+    /**
+     * Output only. The version of template at the time of workflow
+     * instantiation.
+     */
+    version?: number;
+  }
+  /**
+   * The workflow node.
+   */
+  export interface Schema$WorkflowNode {
+    /**
+     * Output only. The error detail.
+     */
+    error?: string;
+    /**
+     * Output only. The job id; populated after the node enters RUNNING state.
+     */
+    jobId?: string;
+    /**
+     * Output only. Node&#39;s prerequisite nodes.
+     */
+    prerequisiteStepIds?: string[];
+    /**
+     * Output only. The node state.
+     */
+    state?: string;
+    /**
+     * Output only. The name of the node.
+     */
+    stepId?: string;
   }
   /**
    * A YARN application created by a job. Application information is a subset of

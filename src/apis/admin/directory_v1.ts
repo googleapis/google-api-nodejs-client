@@ -2874,7 +2874,7 @@ export namespace admin_directory_v1 {
      * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
+     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3221,7 +3221,7 @@ export namespace admin_directory_v1 {
     projection?: string;
     /**
      * Search string in the format given at
-     * http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
+     * http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      */
     query?: string;
     /**
@@ -4439,7 +4439,7 @@ export namespace admin_directory_v1 {
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4693,7 +4693,7 @@ export namespace admin_directory_v1 {
     /**
      * Query string search. Should be of the form "". Complete documentation is
      * at
-     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
      */
     query?: string;
     /**
@@ -5842,7 +5842,7 @@ export namespace admin_directory_v1 {
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
+     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5985,7 +5985,7 @@ export namespace admin_directory_v1 {
     projection?: string;
     /**
      * Search string in the format given at
-     * http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
+     * http://support.google.com/a/bin/answer.py?answer=1408863#search
      */
     query?: string;
     /**
