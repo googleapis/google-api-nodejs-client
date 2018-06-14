@@ -819,6 +819,17 @@ export namespace ml_v1 {
      */
     lastUseTime?: string;
     /**
+     * Optional. The type of machine on which to serve the model. Currently only
+     * applies to online prediction service. Naming design doc for CMLE online
+     * prediction Machine Types:
+     * https://docs.google.com/document/d/1V3tko3VJ64PcpsmNxCXiPoPGccL9_K8gX1YjC8UofzQ/edit#heading=h.7lvy6owfx4eh.
+     * The following are currently supported and will be deprecated in Beta
+     * release.   mls1-highmem-1    1 core    2 Gb RAM   mls1-highcpu-4    4
+     * core    2 Gb RAM The following are available in Beta:   mls1-c1-m2 1 core
+     * 2 Gb RAM   Default   mls1-c4-m2        1 core    4 Gb RAM
+     */
+    machineType?: string;
+    /**
      * Manually select the number of nodes to use for serving the model. You
      * should generally use `auto_scaling` with an appropriate `min_nodes`
      * instead, but this option is available if you want more predictable

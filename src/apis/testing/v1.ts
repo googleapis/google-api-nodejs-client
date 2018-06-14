@@ -159,8 +159,8 @@ export namespace testing_v1 {
      * Orchestrator offers the following benefits:  - No shared state  - Crashes
      * are isolated  - Logs are scoped per test  See
      * &lt;https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator&gt;
-     * for more information about Android Test Orchestrator.  Optional, if
-     * empty, test will be run without orchestrator.
+     * for more information about Android Test Orchestrator.  Optional. If not
+     * set, the test will be run without the orchestrator.
      */
     orchestratorOption?: string;
     /**
