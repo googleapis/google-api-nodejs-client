@@ -167,6 +167,10 @@ export namespace servicecontrol_v1 {
      */
     requestMetadata?: Schema$RequestMetadata;
     /**
+     * The resource location information.
+     */
+    resourceLocation?: Schema$ResourceLocation;
+    /**
      * The resource or collection that is the target of the operation. The name
      * is a scheme-less URI, not including the API service name. For example:
      * &quot;shelves/SHELF_ID/books&quot;
@@ -1025,6 +1029,17 @@ export namespace servicecontrol_v1 {
      * Name of the resource. This is used for auditing purposes.
      */
     resourceName?: string;
+  }
+  /**
+   * Location information about a resource.
+   */
+  export interface Schema$ResourceLocation {
+    /**
+     * The locations of a resource after the execution of the operation. For
+     * example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;
+     * &quot;nam3&quot;
+     */
+    currentLocations?: string[];
   }
   /**
    * Request message for QuotaController.StartReconciliation.

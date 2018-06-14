@@ -712,6 +712,24 @@ export namespace content_v2 {
      */
     services?: string[];
   }
+  export interface Schema$CutoffTime {
+    /**
+     * Hour of the cutoff time until which an order has to be placed to be
+     * processed in the same day. Required.
+     */
+    hour?: number;
+    /**
+     * Minute of the cutoff time until which an order has to be placed to be
+     * processed in the same day. Required.
+     */
+    minute?: number;
+    /**
+     * Timezone identifier for the cutoff time. A list of identifiers can be
+     * found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;.
+     * Required.
+     */
+    timezone?: string;
+  }
   /**
    * Datafeed configuration data.
    */
@@ -1104,16 +1122,32 @@ export namespace content_v2 {
   }
   export interface Schema$DeliveryTime {
     /**
+     * Business days cutoff time definition. If not configured the cutoff time
+     * will be defaulted to 8AM PST.
+     */
+    cutoffTime?: Schema$CutoffTime;
+    /**
      * Holiday cutoff definitions. If configured, they specify order cutoff
      * times for holiday-specific shipping.
      */
     holidayCutoffs?: Schema$HolidayCutoff[];
+    /**
+     * Maximum number of business days spent before an order is shipped. 0 means
+     * same day shipped, 1 means next day shipped. Must be greater than or equal
+     * to minHandlingTimeInDays.
+     */
+    maxHandlingTimeInDays?: number;
     /**
      * Maximum number of business days that is spent in transit. 0 means same
      * day delivery, 1 means next day delivery. Must be greater than or equal to
      * minTransitTimeInDays. Required.
      */
     maxTransitTimeInDays?: number;
+    /**
+     * Minimum number of business days spent before an order is shipped. 0 means
+     * same day shipped, 1 means next day shipped.
+     */
+    minHandlingTimeInDays?: number;
     /**
      * Minimum number of business days that is spent in transit. 0 means same
      * day delivery, 1 means next day delivery. Required.
@@ -1564,6 +1598,10 @@ export namespace content_v2 {
      */
     onDisplayToOrder?: Schema$LiaOnDisplayToOrderSettings;
     /**
+     * The POS data provider linked with this country.
+     */
+    posDataProvider?: Schema$LiaPosDataProvider;
+    /**
      * The status of the &quot;Store pickup&quot; feature.
      */
     storePickupActive?: boolean;
@@ -1595,6 +1633,16 @@ export namespace content_v2 {
      * The status of the ?On display to order? feature.
      */
     status?: string;
+  }
+  export interface Schema$LiaPosDataProvider {
+    /**
+     * The ID of the POS data provider.
+     */
+    posDataProviderId?: string;
+    /**
+     * The account ID by which this merchant is known to the POS data provider.
+     */
+    posExternalAccountId?: string;
   }
   export interface Schema$LiaSettings {
     /**
@@ -1716,6 +1764,17 @@ export namespace content_v2 {
      */
     kind?: string;
   }
+  export interface Schema$LiasettingsListPosDataProvidersResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#liasettingsListPosDataProvidersResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The list of POS data providers for each eligible country
+     */
+    posDataProviders?: Schema$PosDataProviders[];
+  }
   export interface Schema$LiasettingsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
@@ -1746,6 +1805,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
+     */
+    kind?: string;
+  }
+  export interface Schema$LiasettingsSetPosDataProviderResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#liasettingsSetPosDataProviderResponse&quot;.
      */
     kind?: string;
   }
@@ -4690,6 +4756,11 @@ export namespace content_v2 {
      */
     mainTable?: Schema$Table;
     /**
+     * Name of the rate group. Optional. If set has to be unique within shipping
+     * service.
+     */
+    name?: string;
+    /**
      * The value of the rate group (e.g. flat rate $10). Can only be set if
      * mainTable and subtables are not set.
      */
@@ -4923,6 +4994,10 @@ export namespace content_v2 {
      * The details of the customer who placed the order.
      */
     customer?: Schema$TestOrderCustomer;
+    /**
+     * Whether the orderinvoices service should support this order.
+     */
+    enableOrderinvoices?: boolean;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#testOrder&quot;.
@@ -6084,7 +6159,8 @@ export namespace content_v2 {
 
     /**
      * content.accountstatuses.get
-     * @desc Retrieves the status of a Merchant Center account.
+     * @desc Retrieves the status of a Merchant Center account. Multi-client
+     * accounts can only call this method for sub-accounts.
      * @alias content.accountstatuses.get
      * @memberOf! ()
      *
@@ -8287,6 +8363,81 @@ export namespace content_v2 {
 
 
     /**
+     * content.liasettings.listposdataproviders
+     * @desc Retrieves the list of POS data providers that have active settings
+     * for the all eiligible countries.
+     * @alias content.liasettings.listposdataproviders
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listposdataproviders(
+        params?: Params$Resource$Liasettings$Listposdataproviders,
+        options?: MethodOptions):
+        AxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
+    listposdataproviders(
+        params: Params$Resource$Liasettings$Listposdataproviders,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+        callback: BodyResponseCallback<
+            Schema$LiasettingsListPosDataProvidersResponse>): void;
+    listposdataproviders(
+        params: Params$Resource$Liasettings$Listposdataproviders,
+        callback: BodyResponseCallback<
+            Schema$LiasettingsListPosDataProvidersResponse>): void;
+    listposdataproviders(callback: BodyResponseCallback<
+                         Schema$LiasettingsListPosDataProvidersResponse>): void;
+    listposdataproviders(
+        paramsOrCallback?: Params$Resource$Liasettings$Listposdataproviders|
+        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+        callback?: BodyResponseCallback<
+            Schema$LiasettingsListPosDataProvidersResponse>):
+        void|AxiosPromise<Schema$LiasettingsListPosDataProvidersResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Liasettings$Listposdataproviders;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liasettings$Listposdataproviders;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/liasettings/posdataproviders')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * content.liasettings.patch
      * @desc Updates the LIA settings of the account. This method supports patch
      * semantics.
@@ -8613,6 +8764,91 @@ export namespace content_v2 {
 
 
     /**
+     * content.liasettings.setposdataprovider
+     * @desc Sets the POS data provider for the specified country.
+     * @alias content.liasettings.setposdataprovider
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
+     * @param {string=} params.country The country for which the POS data provider is selected.
+     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     * @param {string=} params.posDataProviderId The ID of POS data provider.
+     * @param {string=} params.posExternalAccountId The account ID by which this merchant is known to the POS data provider.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setposdataprovider(
+        params?: Params$Resource$Liasettings$Setposdataprovider,
+        options?: MethodOptions):
+        AxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
+    setposdataprovider(
+        params: Params$Resource$Liasettings$Setposdataprovider,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+        callback:
+            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
+        void;
+    setposdataprovider(
+        params: Params$Resource$Liasettings$Setposdataprovider,
+        callback:
+            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
+        void;
+    setposdataprovider(
+        callback:
+            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
+        void;
+    setposdataprovider(
+        paramsOrCallback?: Params$Resource$Liasettings$Setposdataprovider|
+        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+        callback?:
+            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
+        void|AxiosPromise<Schema$LiasettingsSetPosDataProviderResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Liasettings$Setposdataprovider;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liasettings$Setposdataprovider;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/liasettings/{accountId}/setposdataprovider')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * content.liasettings.update
      * @desc Updates the LIA settings of the account.
      * @alias content.liasettings.update
@@ -8754,6 +8990,12 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Liasettings$Listposdataproviders {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
   export interface Params$Resource$Liasettings$Patch {
     /**
      * Auth client or API Key for the request
@@ -8856,6 +9098,36 @@ export namespace content_v2 {
      * must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+  }
+  export interface Params$Resource$Liasettings$Setposdataprovider {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account for which to retrieve accessible Google My Business
+     * accounts.
+     */
+    accountId?: string;
+    /**
+     * The country for which the POS data provider is selected.
+     */
+    country?: string;
+    /**
+     * The ID of the managing account. If this parameter is not the same as
+     * accountId, then this account must be a multi-client account and accountId
+     * must be the ID of a sub-account of this account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of POS data provider.
+     */
+    posDataProviderId?: string;
+    /**
+     * The account ID by which this merchant is known to the POS data provider.
+     */
+    posExternalAccountId?: string;
   }
   export interface Params$Resource$Liasettings$Update {
     /**

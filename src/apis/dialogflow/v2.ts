@@ -421,7 +421,7 @@ export namespace dialogflow_v2 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * sentence semantics. Next available field number: 22.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
@@ -1383,7 +1383,7 @@ export namespace dialogflow_v2 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * sentence semantics. Next available field number: 22.
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**

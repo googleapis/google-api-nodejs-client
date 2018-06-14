@@ -163,7 +163,8 @@ export namespace androidmanagement_v1 {
      */
     delegatedScopes?: string[];
     /**
-     * Whether the app should be disabled, but app data is preserved.
+     * Whether the app is disabled. When disabled, the app data is still
+     * preserved.
      */
     disabled?: boolean;
     /**
@@ -426,7 +427,10 @@ export namespace androidmanagement_v1 {
      */
     hardwareStatusSamples?: Schema$HardwareStatus[];
     /**
-     * The last time the device sent a policy compliance report.
+     * The last time the device sent a policy compliance report. Important: This
+     * field is deprecated. The timestamp will be on last_status_report_time
+     * field, and last_status_report_time will be used for both status report
+     * and compliance report.
      */
     lastPolicyComplianceReportTime?: string;
     /**
@@ -1130,7 +1134,8 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$PermissionGrant {
     /**
-     * The android permission, e.g. android.permission.READ_CALENDAR.
+     * The android permission or group, e.g. android.permission.READ_CALENDAR or
+     * android.permission_group.CALENDAR.
      */
     permission?: string;
     /**

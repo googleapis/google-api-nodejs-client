@@ -72,7 +72,8 @@ export namespace dlp_v2 {
   }
 
   /**
-   * A task to execute on the completion of a job.
+   * A task to execute on the completion of a job. See
+   * https://cloud.google.com/dlp/docs/concepts-actions to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Action {
     /**
@@ -236,7 +237,8 @@ export namespace dlp_v2 {
    * can be used on data of type: number, long, string, timestamp. If the bound
    * `Value` type differs from the type of data being transformed, we will first
    * attempt converting the type of the data to be transformed to match the type
-   * of the bound before comparing.
+   * of the bound before comparing. See
+   * https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2BucketingConfig {
     /**
@@ -443,7 +445,9 @@ export namespace dlp_v2 {
      */
     byteItem?: Schema$GooglePrivacyDlpV2ByteContentItem;
     /**
-     * Structured content for inspection.
+     * Structured content for inspection. See
+     * https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
+     * learn more.
      */
     table?: Schema$GooglePrivacyDlpV2Table;
     /**
@@ -582,7 +586,7 @@ export namespace dlp_v2 {
    * crypto key and context, the same identifier will be replaced with the same
    * surrogate. Identifiers must be at least two characters long. In the case
    * that the identifier is the empty string, it will be skipped. See
-   * [Pseudonymization](/dlp/docs/pseudonymization) for example usage.
+   * https://cloud.google.com/dlp/docs/pseudonymization to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
     commonAlphabet?: string;
@@ -702,7 +706,8 @@ export namespace dlp_v2 {
   }
   /**
    * Shifts dates by random number of days, with option to be consistent for the
-   * same context.
+   * same context. See https://cloud.google.com/dlp/docs/concepts-date-shifting
+   * to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DateShiftConfig {
     /**
@@ -809,6 +814,7 @@ export namespace dlp_v2 {
   }
   /**
    * The DeidentifyTemplates contains instructions on how to deidentify content.
+   * See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
     /**
@@ -1173,7 +1179,8 @@ export namespace dlp_v2 {
    * with &quot;10-20&quot;.  This can be used on data of type: double, long. If
    * the bound Value type differs from the type of data being transformed, we
    * will first attempt converting the type of the data to be transformed to
-   * match the type of the bound before comparing.
+   * match the type of the bound before comparing.  See
+   * https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig {
     /**
@@ -1246,7 +1253,7 @@ export namespace dlp_v2 {
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
      * If true, all text found in the image, regardless whether it matches an
-     * info_type, is redacted.
+     * info_type, is redacted. Only one should be provided.
      */
     redactAllText?: boolean;
     /**
@@ -1320,8 +1327,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeTransformation {
     /**
-     * InfoTypes to apply the transformation to. Empty list will match all
-     * available infoTypes for this transformation.
+     * InfoTypes to apply the transformation to. An empty list will cause this
+     * transformation to apply to all findings that correspond to infoTypes that
+     * were requested in `InspectConfig`.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
@@ -1352,7 +1360,9 @@ export namespace dlp_v2 {
      */
     contentOptions?: string[];
     /**
-     * Custom infoTypes provided by the user.
+     * CustomInfoTypes provided by the user. See
+     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn
+     * more.
      */
     customInfoTypes?: Schema$GooglePrivacyDlpV2CustomInfoType[];
     /**
@@ -1373,7 +1383,7 @@ export namespace dlp_v2 {
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
      * Only returns findings equal or above this threshold. The default is
-     * POSSIBLE.
+     * POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
      */
     minLikelihood?: string;
   }
@@ -1463,7 +1473,8 @@ export namespace dlp_v2 {
   /**
    * The inspectTemplate contains a configuration (set of types of sensitive
    * data to be detected) to be used anywhere you otherwise would normally
-   * specify InspectConfig.
+   * specify InspectConfig. See
+   * https://cloud.google.com/dlp/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2InspectTemplate {
     /**
@@ -1494,7 +1505,8 @@ export namespace dlp_v2 {
     updateTime?: string;
   }
   /**
-   * Contains a configuration to make dlp api calls on a repeating basis.
+   * Contains a configuration to make dlp api calls on a repeating basis. See
+   * https://cloud.google.com/dlp/docs/concepts-job-triggers to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2JobTrigger {
     /**
@@ -1964,21 +1976,27 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2OutputStorageConfig {
     /**
-     * Schema used for writing the findings. Columns are derived from the
-     * `Finding` object. If appending to an existing table, any columns from the
-     * predefined schema that are missing will be added. No columns in the
-     * existing table will be deleted.  If unspecified, then all available
-     * columns will be used for a new table, and no changes will be made to an
-     * existing table.
+     * Schema used for writing the findings for Inspect jobs. This field is only
+     * used for Inspect and must be unspecified for Risk jobs. Columns are
+     * derived from the `Finding` object. If appending to an existing table, any
+     * columns from the predefined schema that are missing will be added. No
+     * columns in the existing table will be deleted.  If unspecified, then all
+     * available columns will be used for a new table, and no changes will be
+     * made to an existing table.
      */
     outputSchema?: string;
     /**
      * Store findings in an existing table or a new table in an existing
-     * dataset. Each column in an existing table must have the same name, type,
-     * and mode of a field in the `Finding` object. If table_id is not set a new
-     * one will be generated for you with the following format:
-     * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
-     * generating the date details.
+     * dataset. If table_id is not set a new one will be generated for you with
+     * the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific
+     * timezone will be used for generating the date details.  For Inspect, each
+     * column in an existing output table must have the same name, type, and
+     * mode of a field in the `Finding` object.  For Risk, an existing output
+     * table should be the output of a previous Risk analysis job run on the
+     * same source table, with the same privacy metric and quasi-identifiers.
+     * Risk jobs that analyze the same table but compute a different privacy
+     * metric, or use different sets of quasi-identifiers, cannot store their
+     * results in the same table.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
@@ -2219,8 +2237,8 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2RedactConfig {}
   /**
-   * Request to search for potentially sensitive info in a list of items and
-   * replace it with a default or provided content.
+   * Request to search for potentially sensitive info in an image and redact it
+   * by covering it with a colored rectangle.
    */
   export interface Schema$GooglePrivacyDlpV2RedactImageRequest {
     /**
@@ -2350,7 +2368,8 @@ export namespace dlp_v2 {
     totalEstimatedBytes?: string;
   }
   /**
-   * Configuration for a risk analysis job.
+   * Configuration for a risk analysis job. See
+   * https://cloud.google.com/dlp/docs/concepts-risk-analysis to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig {
     /**
@@ -2373,7 +2392,7 @@ export namespace dlp_v2 {
   /**
    * If set, the detailed findings will be persisted to the specified
    * OutputStorageConfig. Only a single instance of this action can be
-   * specified. Compatible with: Inspect
+   * specified. Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2SaveFindings {
     outputConfig?: Schema$GooglePrivacyDlpV2OutputStorageConfig;
@@ -2384,10 +2403,10 @@ export namespace dlp_v2 {
   export interface Schema$GooglePrivacyDlpV2Schedule {
     /**
      * With this option a job is started a regular periodic basis. For example:
-     * every 10 minutes.  A scheduled start time will be skipped if the previous
-     * execution has not ended when its scheduled time occurs.  This value must
-     * be set to a time duration greater than or equal to 60 minutes and can be
-     * no longer than 60 days.
+     * every day (86400 seconds).  A scheduled start time will be skipped if the
+     * previous execution has not ended when its scheduled time occurs.  This
+     * value must be set to a time duration greater than or equal to 1 day and
+     * can be no longer than 60 days.
      */
     recurrencePeriodDuration?: string;
   }
@@ -2458,6 +2477,8 @@ export namespace dlp_v2 {
   export interface Schema$GooglePrivacyDlpV2SurrogateType {}
   /**
    * Structured content to inspect. Up to 50,000 `Value`s per request allowed.
+   * See https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
+   * learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Table {
     headers?: Schema$GooglePrivacyDlpV2FieldId[];
@@ -2832,8 +2853,8 @@ export namespace dlp_v2 {
     /**
      * dlp.infoTypes.list
      * @desc Returns a list of the sensitive information types that the DLP API
-     * supports. For more information, see [Listing supported predefined
-     * infoTypes](/dlp/docs/listing-infotypes).
+     * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
+     * learn more.
      * @alias dlp.infoTypes.list
      * @memberOf! ()
      *
@@ -2956,7 +2977,8 @@ export namespace dlp_v2 {
     /**
      * dlp.organizations.deidentifyTemplates.create
      * @desc Creates a DeidentifyTemplate for re-using frequently used
-     * configuration for de-identifying content, images, and storage.
+     * configuration for de-identifying content, images, and storage. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.organizations.deidentifyTemplates.create
      * @memberOf! ()
      *
@@ -3037,7 +3059,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.deidentifyTemplates.delete
-     * @desc Deletes a DeidentifyTemplate.
+     * @desc Deletes a DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.organizations.deidentifyTemplates.delete
      * @memberOf! ()
      *
@@ -3104,7 +3127,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.deidentifyTemplates.get
-     * @desc Gets a DeidentifyTemplate.
+     * @desc Gets a DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.organizations.deidentifyTemplates.get
      * @memberOf! ()
      *
@@ -3178,7 +3202,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.deidentifyTemplates.list
-     * @desc Lists DeidentifyTemplates.
+     * @desc Lists DeidentifyTemplates. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.organizations.deidentifyTemplates.list
      * @memberOf! ()
      *
@@ -3259,7 +3284,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.deidentifyTemplates.patch
-     * @desc Updates the DeidentifyTemplate.
+     * @desc Updates the DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.organizations.deidentifyTemplates.patch
      * @memberOf! ()
      *
@@ -3437,7 +3463,8 @@ export namespace dlp_v2 {
     /**
      * dlp.organizations.inspectTemplates.create
      * @desc Creates an InspectTemplate for re-using frequently used
-     * configuration for inspecting content, images, and storage.
+     * configuration for inspecting content, images, and storage. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.organizations.inspectTemplates.create
      * @memberOf! ()
      *
@@ -3517,7 +3544,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.inspectTemplates.delete
-     * @desc Deletes an InspectTemplate.
+     * @desc Deletes an InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.organizations.inspectTemplates.delete
      * @memberOf! ()
      *
@@ -3584,7 +3612,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.inspectTemplates.get
-     * @desc Gets an InspectTemplate.
+     * @desc Gets an InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.organizations.inspectTemplates.get
      * @memberOf! ()
      *
@@ -3657,7 +3686,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.inspectTemplates.list
-     * @desc Lists InspectTemplates.
+     * @desc Lists InspectTemplates. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.organizations.inspectTemplates.list
      * @memberOf! ()
      *
@@ -3735,7 +3765,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.organizations.inspectTemplates.patch
-     * @desc Updates the InspectTemplate.
+     * @desc Updates the InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.organizations.inspectTemplates.patch
      * @memberOf! ()
      *
@@ -3938,8 +3969,9 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.content.deidentify
      * @desc De-identifies potentially sensitive info from a ContentItem. This
-     * method has limits on input size and output size. [How-to
-     * guide](/dlp/docs/deidentify-sensitive-data)
+     * method has limits on input size and output size. See
+     * https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn
+     * more.
      * @alias dlp.projects.content.deidentify
      * @memberOf! ()
      *
@@ -4017,9 +4049,9 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.content.inspect
      * @desc Finds potentially sensitive info in content. This method has limits
-     * on input size, processing time, and output size. [How-to guide for
-     * text](/dlp/docs/inspecting-text), [How-to guide for
-     * images](/dlp/docs/inspecting-images)
+     * on input size, processing time, and output size.  For how to guides, see
+     * https://cloud.google.com/dlp/docs/inspecting-images and
+     * https://cloud.google.com/dlp/docs/inspecting-text,
      * @alias dlp.projects.content.inspect
      * @memberOf! ()
      *
@@ -4095,7 +4127,9 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.content.reidentify
-     * @desc Re-identifies content that has been de-identified.
+     * @desc Re-identifies content that has been de-identified. See
+     * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
+     * to learn more.
      * @alias dlp.projects.content.reidentify
      * @memberOf! ()
      *
@@ -4235,7 +4269,8 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.deidentifyTemplates.create
      * @desc Creates a DeidentifyTemplate for re-using frequently used
-     * configuration for de-identifying content, images, and storage.
+     * configuration for de-identifying content, images, and storage. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.projects.deidentifyTemplates.create
      * @memberOf! ()
      *
@@ -4315,7 +4350,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.deidentifyTemplates.delete
-     * @desc Deletes a DeidentifyTemplate.
+     * @desc Deletes a DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.projects.deidentifyTemplates.delete
      * @memberOf! ()
      *
@@ -4381,7 +4417,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.deidentifyTemplates.get
-     * @desc Gets a DeidentifyTemplate.
+     * @desc Gets a DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.projects.deidentifyTemplates.get
      * @memberOf! ()
      *
@@ -4454,7 +4491,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.deidentifyTemplates.list
-     * @desc Lists DeidentifyTemplates.
+     * @desc Lists DeidentifyTemplates. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.projects.deidentifyTemplates.list
      * @memberOf! ()
      *
@@ -4534,7 +4572,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.deidentifyTemplates.patch
-     * @desc Updates the DeidentifyTemplate.
+     * @desc Updates the DeidentifyTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates-deid to learn more.
      * @alias dlp.projects.deidentifyTemplates.patch
      * @memberOf! ()
      *
@@ -4712,7 +4751,8 @@ export namespace dlp_v2 {
      * dlp.projects.dlpJobs.cancel
      * @desc Starts asynchronous cancellation on a long-running DlpJob. The
      * server makes a best effort to cancel the DlpJob, but success is not
-     * guaranteed.
+     * guaranteed. See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.dlpJobs.cancel
      * @memberOf! ()
      *
@@ -4780,8 +4820,9 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.dlpJobs.create
-     * @desc Creates a new job to inspect storage or calculate risk metrics.
-     * [How-to guide](/dlp/docs/compute-risk-analysis).
+     * @desc Creates a new job to inspect storage or calculate risk metrics. See
+     * https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.dlpJobs.create
      * @memberOf! ()
      *
@@ -4853,7 +4894,9 @@ export namespace dlp_v2 {
      * dlp.projects.dlpJobs.delete
      * @desc Deletes a long-running DlpJob. This method indicates that the
      * client is no longer interested in the DlpJob result. The job will be
-     * cancelled if possible.
+     * cancelled if possible. See
+     * https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.dlpJobs.delete
      * @memberOf! ()
      *
@@ -4919,7 +4962,9 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.dlpJobs.get
-     * @desc Gets the latest state of a long-running DlpJob.
+     * @desc Gets the latest state of a long-running DlpJob. See
+     * https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.dlpJobs.get
      * @memberOf! ()
      *
@@ -4982,7 +5027,9 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.dlpJobs.list
-     * @desc Lists DlpJobs that match the specified filter in the request.
+     * @desc Lists DlpJobs that match the specified filter in the request. See
+     * https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.dlpJobs.list
      * @memberOf! ()
      *
@@ -5174,8 +5221,9 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.image.redact
      * @desc Redacts potentially sensitive info from an image. This method has
-     * limits on input size, processing time, and output size. [How-to
-     * guide](/dlp/docs/redacting-sensitive-data-images)
+     * limits on input size, processing time, and output size. See
+     * https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
+     * learn more.
      * @alias dlp.projects.image.redact
      * @memberOf! ()
      *
@@ -5286,7 +5334,8 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.inspectTemplates.create
      * @desc Creates an InspectTemplate for re-using frequently used
-     * configuration for inspecting content, images, and storage.
+     * configuration for inspecting content, images, and storage. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.projects.inspectTemplates.create
      * @memberOf! ()
      *
@@ -5365,7 +5414,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.inspectTemplates.delete
-     * @desc Deletes an InspectTemplate.
+     * @desc Deletes an InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.projects.inspectTemplates.delete
      * @memberOf! ()
      *
@@ -5431,7 +5481,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.inspectTemplates.get
-     * @desc Gets an InspectTemplate.
+     * @desc Gets an InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.projects.inspectTemplates.get
      * @memberOf! ()
      *
@@ -5504,7 +5555,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.inspectTemplates.list
-     * @desc Lists InspectTemplates.
+     * @desc Lists InspectTemplates. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.projects.inspectTemplates.list
      * @memberOf! ()
      *
@@ -5582,7 +5634,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.inspectTemplates.patch
-     * @desc Updates the InspectTemplate.
+     * @desc Updates the InspectTemplate. See
+     * https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @alias dlp.projects.inspectTemplates.patch
      * @memberOf! ()
      *
@@ -5758,7 +5811,8 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.jobTriggers.create
      * @desc Creates a job trigger to run DLP actions such as scanning storage
-     * for sensitive information on a set schedule.
+     * for sensitive information on a set schedule. See
+     * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.jobTriggers.create
      * @memberOf! ()
      *
@@ -5833,7 +5887,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.jobTriggers.delete
-     * @desc Deletes a job trigger.
+     * @desc Deletes a job trigger. See
+     * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.jobTriggers.delete
      * @memberOf! ()
      *
@@ -5899,7 +5954,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.jobTriggers.get
-     * @desc Gets a job trigger.
+     * @desc Gets a job trigger. See
+     * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.jobTriggers.get
      * @memberOf! ()
      *
@@ -5968,15 +6024,16 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.jobTriggers.list
-     * @desc Lists job triggers.
+     * @desc Lists job triggers. See
+     * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.jobTriggers.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by 'asc/desc' postfix, i.e. `"create_time asc,name desc,schedule_mode asc"`. This list is case-insensitive.  Example: `"name asc,schedule_mode desc, status desc"`  Supported filters keys and values are:  - `create_time`: corresponds to time the triggeredJob was created. - `update_time`: corresponds to time the triggeredJob was last updated. - `name`: corresponds to JobTrigger's display name. - `status`: corresponds to the triggeredJob status.
+     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the triggeredJob was created. - `update_time`: corresponds to time the triggeredJob was last updated. - `name`: corresponds to JobTrigger's name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` and `filter` should not change for subsequent calls, but can be omitted if token is specified.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * @param {string} params.parent The parent resource name, for example `projects/my-project-id`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6046,7 +6103,8 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.jobTriggers.patch
-     * @desc Updates a job trigger.
+     * @desc Updates a job trigger. See
+     * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.jobTriggers.patch
      * @memberOf! ()
      *
@@ -6166,13 +6224,13 @@ export namespace dlp_v2 {
 
     /**
      * Optional comma separated list of triggeredJob fields to order by,
-     * followed by 'asc/desc' postfix, i.e. `"create_time asc,name
-     * desc,schedule_mode asc"`. This list is case-insensitive.  Example: `"name
-     * asc,schedule_mode desc, status desc"`  Supported filters keys and values
-     * are:  - `create_time`: corresponds to time the triggeredJob was created.
-     * - `update_time`: corresponds to time the triggeredJob was last updated. -
-     * `name`: corresponds to JobTrigger's display name. - `status`: corresponds
-     * to the triggeredJob status.
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.  Example: `name asc,update_time, create_time desc`
+     * Supported fields are:  - `create_time`: corresponds to time the
+     * triggeredJob was created. - `update_time`: corresponds to time the
+     * triggeredJob was last updated. - `name`: corresponds to JobTrigger's
+     * name.
      */
     orderBy?: string;
     /**
@@ -6181,12 +6239,11 @@ export namespace dlp_v2 {
     pageSize?: number;
     /**
      * Optional page token to continue retrieval. Comes from previous call to
-     * ListJobTriggers. `order_by` and `filter` should not change for subsequent
-     * calls, but can be omitted if token is specified.
+     * ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example `projects/my-project-id`.
      */
     parent?: string;
   }

@@ -582,6 +582,11 @@ export namespace appengine_v1 {
      * &quot;myapi.endpoints.myproject.cloud.goog&quot;
      */
     name?: string;
+    /**
+     * Endpoints rollout strategy. If FIXED, config_id must be specified. If
+     * MANAGED, config_id must be omitted.
+     */
+    rolloutStrategy?: string;
   }
   /**
    * Custom static error page to be served when an error occurs.

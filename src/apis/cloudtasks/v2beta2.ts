@@ -33,8 +33,7 @@ export namespace cloudtasks_v2beta2 {
   /**
    * Cloud Tasks API
    *
-   * Manages the execution of large numbers of distributed requests. Cloud Tasks
-   * is in Alpha.
+   * Manages the execution of large numbers of distributed requests.
    *
    * @example
    * const {google} = require('googleapis');
@@ -423,8 +422,9 @@ export namespace cloudtasks_v2beta2 {
      */
     leaseDuration?: string;
     /**
-     * The maximum number of tasks to lease. The maximum that can be requested
-     * is 1000.
+     * The maximum number of tasks to lease.  The system will make a best effort
+     * to return as close to as `max_tasks` as possible.  The largest that
+     * `max_tasks` can be is 1000.
      */
     maxTasks?: number;
     /**

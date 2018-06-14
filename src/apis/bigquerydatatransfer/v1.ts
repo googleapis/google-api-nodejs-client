@@ -571,7 +571,7 @@ export namespace bigquerydatatransfer_v1 {
      * created as part of a regular schedule. For batch transfer runs that are
      * scheduled manually, this is empty. NOTE: the system might choose to delay
      * the schedule depending on the current load, so `schedule_time`
-     * doesn&#39;t always matches this.
+     * doesn&#39;t always match this.
      */
     schedule?: string;
     /**

@@ -14,18 +14,17 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from '../../shared/src';
-import {replicapool_v1beta1} from './v1beta1';
+import {iamcredentials_v1} from './v1';
 
 export const VERSIONS = {
-  'v1beta1': replicapool_v1beta1.Replicapool,
+  'v1': iamcredentials_v1.Iamcredentials,
 };
 
-export function replicapool(version: 'v1beta1'):
-    replicapool_v1beta1.Replicapool;
-export function replicapool(options: replicapool_v1beta1.Options):
-    replicapool_v1beta1.Replicapool;
-export function replicapool<T = replicapool_v1beta1.Replicapool>(
+export function iamcredentials(version: 'v1'): iamcredentials_v1.Iamcredentials;
+export function iamcredentials(options: iamcredentials_v1.Options):
+    iamcredentials_v1.Iamcredentials;
+export function iamcredentials<T = iamcredentials_v1.Iamcredentials>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|replicapool_v1beta1.Options) {
-  return getAPI<T>('replicapool', versionOrOptions, VERSIONS, this);
+    versionOrOptions: 'v1'|iamcredentials_v1.Options) {
+  return getAPI<T>('iamcredentials', versionOrOptions, VERSIONS, this);
 }

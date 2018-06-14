@@ -31,7 +31,7 @@ export namespace cloudbuild_v1 {
   }
 
   /**
-   * Cloud Container Builder API
+   * Cloud Container Builder
    *
    * Builds container images in the cloud.
    *

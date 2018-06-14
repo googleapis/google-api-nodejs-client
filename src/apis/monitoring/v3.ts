@@ -477,9 +477,7 @@ export namespace monitoring_v3 {
      */
     count?: string;
     /**
-     * Must be in increasing order of |value| field. The current requirement
-     * enforced by the backend is that at most one Exemplar will fall into any
-     * bucket.
+     * Must be in increasing order of value field.
      */
     exemplars?: Schema$Exemplar[];
     /**
