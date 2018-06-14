@@ -203,7 +203,8 @@ export namespace jobs_v2 {
      * the company. If an employer has a subsidiary or sub-brand, such as
      * &quot;Alphabet&quot; and &quot;Google&quot;, which the client wishes to
      * use as the company displayed on the job. Best practice is to create a
-     * distinct company identifier for each distinct brand displayed.
+     * distinct company identifier for each distinct brand displayed.  The
+     * maximum number of allowed characters is 255.
      */
     distributorCompanyId?: string;
     /**
@@ -358,7 +359,7 @@ export namespace jobs_v2 {
      */
     type?: string;
     /**
-     * Required.  Specify desired ** base compensation entry&#39;s **
+     * Required.  Specify desired `base compensation entry&#39;s`
      * CompensationInfo.CompensationUnit.
      */
     units?: string[];
@@ -668,7 +669,7 @@ export namespace jobs_v2 {
      */
     compensationRange?: Schema$ExtendedCompensationInfoCompensationRange;
     /**
-     * Required.  Specify desired ** base compensation entry&#39;s **
+     * Required.  Specify desired `base compensation entry&#39;s`
      * ExtendedCompensationInfo.CompensationUnit.
      */
     compensationUnits?: string[];
@@ -1210,7 +1211,7 @@ export namespace jobs_v2 {
      * used by clients for client identification and tracking of listings. A job
      * is not allowed to be created if there is another job with the same
      * requisition_id, company_name and language_code.  The maximum number of
-     * allowed characters is 225.
+     * allowed characters is 255.
      */
     requisitionId?: string;
     /**
@@ -1369,7 +1370,7 @@ export namespace jobs_v2 {
     /**
      * Optional.  The query filter contains the keywords that match against the
      * job title, description, and location fields.  The maximum query size is
-     * 255 bytes.
+     * 255 bytes/characters.
      */
     query?: string;
     /**
@@ -2568,7 +2569,7 @@ export namespace jobs_v2 {
      * @param {string} params.companyName Required.  The resource name of the company that owns the jobs to be listed, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      * @param {boolean=} params.idsOnly Optional.  If set to `true`, only job ID, job requisition ID and language code will be returned.  A typical use is to synchronize job repositories.  Defaults to false.
      * @param {boolean=} params.includeJobsCount Deprecated. Please DO NOT use this field except for small companies. Suggest counting jobs page by page instead.  Optional.  Set to true if the total number of open jobs is to be returned.  Defaults to false.
-     * @param {string=} params.jobRequisitionId Optional.  The requisition ID, also known as posting ID, assigned by the company to the job.  The number of allowable characters is 225.
+     * @param {string=} params.jobRequisitionId Optional.  The requisition ID, also known as posting ID, assigned by the company to the job.  The maximum number of allowable characters is 225.
      * @param {integer=} params.pageSize Optional.  The maximum number of jobs to be returned per page of results.  If ids_only is set to true, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
      * @param {string=} params.pageToken Optional.  The starting point of a query result.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2655,7 +2656,7 @@ export namespace jobs_v2 {
     includeJobsCount?: boolean;
     /**
      * Optional.  The requisition ID, also known as posting ID, assigned by the
-     * company to the job.  The number of allowable characters is 225.
+     * company to the job.  The maximum number of allowable characters is 225.
      */
     jobRequisitionId?: string;
     /**

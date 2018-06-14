@@ -1360,7 +1360,8 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1WebDetection {
     /**
-     * Best guess text labels for the request image.
+     * The service&#39;s best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebLabel[];
     /**
@@ -2209,7 +2210,8 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1WebDetection {
     /**
-     * Best guess text labels for the request image.
+     * The service&#39;s best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebLabel[];
     /**
@@ -2873,7 +2875,8 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$WebDetection {
     /**
-     * Best guess text labels for the request image.
+     * The service&#39;s best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$WebLabel[];
     /**

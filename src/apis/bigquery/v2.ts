@@ -1325,6 +1325,8 @@ export namespace bigquery_v2 {
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;DELETE&quot;: DELETE query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
+     * &quot;MERGE&quot;: MERGE query; see
+     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT.
      * &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS
      * SELECT ... &quot;DROP_TABLE&quot;: DROP TABLE query.

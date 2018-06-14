@@ -370,14 +370,18 @@ export namespace cloudresourcemanager_v2beta1 {
      * criteria is specified then all accessible folders will be returned. Query
      * expressions can be used to restrict results based upon displayName,
      * lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR`
-     * can be used along with the suffix wildcard symbol `*`.  Some example
-     * queries are:  |Query | Description| |----- | -----------|
+     * can be used along with the suffix wildcard symbol `*`.  The displayName
+     * field in a query expression should use escaped quotes for values that
+     * include whitespace to prevent unexpected behavior.  Some example queries
+     * are:  |Query | Description| |----- | -----------|
      * |displayName=Test*|Folders whose display name starts with
      * &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is
      * ACTIVE.| |parent=folders/123|Folders whose parent is
      * &quot;folders/123&quot;.| |parent=folders/123 AND
      * lifecycleState=ACTIVE|Active folders whose parent is
-     * &quot;folders/123&quot;.|
+     * &quot;folders/123&quot;.| |displayName=\\&quot;Test
+     * String\\&quot;|Folders whose display name includes both &quot;Test&quot;
+     * and &quot;String&quot;.|
      */
     query?: string;
   }

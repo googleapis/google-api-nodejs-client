@@ -83,6 +83,7 @@ import * as gmail from './gmail';
 import * as groupsmigration from './groupsmigration';
 import * as groupssettings from './groupssettings';
 import * as iam from './iam';
+import * as iamcredentials from './iamcredentials';
 import * as identitytoolkit from './identitytoolkit';
 import * as jobs from './jobs';
 import * as kgsearch from './kgsearch';
@@ -222,6 +223,7 @@ export const APIS: APIList = {
   groupsmigration: groupsmigration.VERSIONS,
   groupssettings: groupssettings.VERSIONS,
   iam: iam.VERSIONS,
+  iamcredentials: iamcredentials.VERSIONS,
   identitytoolkit: identitytoolkit.VERSIONS,
   jobs: jobs.VERSIONS,
   kgsearch: kgsearch.VERSIONS,
@@ -358,6 +360,7 @@ export class GeneratedAPIs {
   groupsmigration = groupsmigration.groupsmigration;
   groupssettings = groupssettings.groupssettings;
   iam = iam.iam;
+  iamcredentials = iamcredentials.iamcredentials;
   identitytoolkit = identitytoolkit.identitytoolkit;
   jobs = jobs.jobs;
   kgsearch = kgsearch.kgsearch;
@@ -492,6 +495,7 @@ export class GeneratedAPIs {
     this.groupsmigration = this.groupsmigration.bind(this);
     this.groupssettings = this.groupssettings.bind(this);
     this.iam = this.iam.bind(this);
+    this.iamcredentials = this.iamcredentials.bind(this);
     this.identitytoolkit = this.identitytoolkit.bind(this);
     this.jobs = this.jobs.bind(this);
     this.kgsearch = this.kgsearch.bind(this);

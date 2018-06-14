@@ -1908,6 +1908,10 @@ export namespace content_v2sandbox {
      */
     customer?: Schema$TestOrderCustomer;
     /**
+     * Whether the orderinvoices service should support this order.
+     */
+    enableOrderinvoices?: boolean;
+    /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#testOrder&quot;.
      */

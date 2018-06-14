@@ -1815,6 +1815,41 @@ export namespace compute_v1 {
     warning?: any;
   }
   /**
+   * A specification of the desired way to instantiate a disk in the instance
+   * template when its created from a source instance.
+   */
+  export interface Schema$DiskInstantiationConfig {
+    /**
+     * Specifies whether the disk will be auto-deleted when the instance is
+     * deleted (but not when the disk is detached from the instance).
+     */
+    autoDelete?: boolean;
+    /**
+     * The custom source image to be used to restore this disk when
+     * instantiating this instance template.
+     */
+    customImage?: string;
+    /**
+     * Specifies the device name of the disk to which the configurations apply
+     * to.
+     */
+    deviceName?: string;
+    /**
+     * Specifies whether to include the disk and what image to use. Possible
+     * values are:   - source-image: to use the same image that was used to
+     * create the source instance&#39;s corresponding disk. Applicable to the
+     * boot disk and additional read-write disks.  - source-image-family: to use
+     * the same image family that was used to create the source instance&#39;s
+     * corresponding disk. Applicable to the boot disk and additional read-write
+     * disks.  - custom-image: to use a user-provided image url for disk
+     * creation. Applicable to the boot disk and additional read-write disks.  -
+     * attach-read-only: to attach a read-only disk. Applicable to read-only
+     * disks.  - do-not-include: to exclude a disk from the template. Applicable
+     * to additional read-write disks, local SSDs, and read-only disks.
+     */
+    instantiateFrom?: string;
+  }
+  /**
    * A list of Disk resources.
    */
   export interface Schema$DiskList {
@@ -4014,6 +4049,18 @@ export namespace compute_v1 {
      * URL.
      */
     selfLink?: string;
+    /**
+     * The source instance used to create the template. You can provide this as
+     * a partial or full URL to the resource. For example, the following are
+     * valid values:   -
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     * - projects/project/zones/zone/instances/instance
+     */
+    sourceInstance?: string;
+    /**
+     * The source instance params to use to create this instance template.
+     */
+    sourceInstanceParams?: Schema$SourceInstanceParams;
   }
   /**
    * A list of instance templates.
@@ -4964,7 +5011,7 @@ export namespace compute_v1 {
     warning?: any;
   }
   /**
-   * Next available tag: 12
+   * A Managed Instance resource.
    */
   export interface Schema$ManagedInstance {
     /**
@@ -6769,6 +6816,19 @@ export namespace compute_v1 {
      * [Output Only] Informational warning message.
      */
     warning?: any;
+  }
+  /**
+   * A specification of the parameters to use when creating the instance
+   * template from a source instance.
+   */
+  export interface Schema$SourceInstanceParams {
+    /**
+     * Attached disks configuration. If not provided, defaults are applied: For
+     * boot disk and any other R/W disks, new custom images will be created from
+     * each disk. For read-only disks, they will be attached in read-only mode.
+     * Local SSD disks will be created as blank volumes.
+     */
+    diskConfigs?: Schema$DiskInstantiationConfig[];
   }
   /**
    * An SslCertificate resource. This resource provides a mechanism to upload an

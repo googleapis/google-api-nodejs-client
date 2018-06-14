@@ -938,6 +938,28 @@ export namespace container_v1beta1 {
     enabled?: boolean;
   }
   /**
+   * Progress metric is (string, int|float|string) pair.
+   */
+  export interface Schema$Metric {
+    /**
+     * For metrics with floating point value.
+     */
+    doubleValue?: number;
+    /**
+     * For metrics with integer value.
+     */
+    intValue?: string;
+    /**
+     * Metric name, required. e.g., &quot;nodes total&quot;, &quot;percent
+     * done&quot;
+     */
+    name?: string;
+    /**
+     * For metrics with custom values (ratios, visual progress, etc.).
+     */
+    stringValue?: string;
+  }
+  /**
    * NetworkConfig reports the relative names of network &amp; subnetwork.
    */
   export interface Schema$NetworkConfig {
@@ -1247,6 +1269,10 @@ export namespace container_v1beta1 {
      */
     operationType?: string;
     /**
+     * [Output only] Progress information for an operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
      * Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -1273,6 +1299,32 @@ export namespace container_v1beta1 {
      * place. This field is deprecated, use location instead.
      */
     zone?: string;
+  }
+  /**
+   * Information about operation (or operation stage) progress.
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * Progress metric bundle, for example:   metrics: [{name: &quot;nodes
+     * done&quot;,     int_value: 15},             {name: &quot;nodes
+     * total&quot;,    int_value: 32}] or   metrics: [{name:
+     * &quot;progress&quot;,       double_value: 0.56},             {name:
+     * &quot;progress scale&quot;, double_value: 1.0}]
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * A non-parameterized string describing an operation stage. Unset for
+     * single-stage operations.
+     */
+    name?: string;
+    /**
+     * Substages of an operation or a stage.
+     */
+    stages?: Schema$OperationProgress[];
+    /**
+     * Status of an operation stage. Unset for single-stage operations.
+     */
+    status?: string;
   }
   /**
    * Configuration for the PodSecurityPolicy feature.

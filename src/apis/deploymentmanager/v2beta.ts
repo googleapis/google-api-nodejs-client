@@ -3902,7 +3902,7 @@ export namespace deploymentmanager_v2beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
-     * @param {string} params.type The name of the type provider for this request.
+     * @param {string} params.type The name of the type provider type for this request.
      * @param {string} params.typeProvider The name of the type provider for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4374,7 +4374,7 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
     /**
-     * The name of the type provider for this request.
+     * The name of the type provider type for this request.
      */
     type?: string;
     /**

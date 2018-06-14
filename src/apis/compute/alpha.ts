@@ -2851,6 +2851,15 @@ export namespace compute_alpha {
    */
   export interface Schema$ForwardingRule {
     /**
+     * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. This
+     * field cannot be used with port or portRange fields.  When the load
+     * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
+     * to allow packets addressed to any ports will be forwarded to the backends
+     * configured with this forwarding rule.
+     */
+    allPorts?: boolean;
+    /**
      * This field is not used for external load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
@@ -6655,7 +6664,7 @@ export namespace compute_alpha {
     warning?: any;
   }
   /**
-   * Next available tag: 12
+   * A Managed Instance resource.
    */
   export interface Schema$ManagedInstance {
     /**
@@ -9419,6 +9428,17 @@ export namespace compute_alpha {
      */
     autoAllocatedNatIps?: string[];
     /**
+     * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
+     */
+    icmpIdleTimeoutSec?: number;
+    /**
+     * Minimum number of ports allocated to a VM from this NAT config. If not
+     * set, a default number of ports is allocated to a VM. This gets rounded up
+     * to the nearest power of 2. Eg. if the value of this field is 50, at least
+     * 64 ports will be allocated to a VM.
+     */
+    minPortsPerVm?: number;
+    /**
      * Unique name of this Nat service. The name must be 1-63 characters long
      * and comply with RFC1035.
      */
@@ -9447,6 +9467,20 @@ export namespace compute_alpha {
      * SubnetworkIpRangeToNatOption above.
      */
     subnetworks?: Schema$RouterNatSubnetworkToNat[];
+    /**
+     * Timeout (in seconds) for TCP established connections. Defaults to 1200s
+     * if not set.
+     */
+    tcpEstablishedIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if
+     * not set.
+     */
+    tcpTransitoryIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
+     */
+    udpIdleTimeoutSec?: number;
   }
   /**
    * Defines the IP ranges that want to use NAT for a subnetwork.
@@ -12042,17 +12076,6 @@ export namespace compute_alpha {
      */
     network?: string;
     /**
-     * The redundancy mode configured for this VPN gateway. Possible values are
-     * ACTIVE_ACTIVE and NONE. If set to ACTIVE_ACTIVE, two VPN interfaces are
-     * created thereby providing higher availability. If set to NONE, only one
-     * interface is created with a lower availability SLA.  If this field is
-     * specified, either 2 or 1 external IP addresses (depending on the value of
-     * specified redundancy) are automatically allocated for use with this VPN
-     * gateway, and incoming traffic on the external addresses to ports ESP,
-     * UDP:500 and UDP:4500 are automatically forwarded to this gateway.
-     */
-    redundancy?: string;
-    /**
      * [Output Only] URL of the region where the VPN gateway resides.
      */
     region?: string;
@@ -12263,15 +12286,13 @@ export namespace compute_alpha {
     /**
      * URL of the VPN gateway with which this VPN tunnel is associated. Provided
      * by the client when the VPN tunnel is created. This must be used (instead
-     * of target_vpn_gateway) if a VPN gateway resource is created with
-     * redundancy.  VPN gateway resource provides a way to create a highly
-     * available VPN setup.
+     * of target_vpn_gateway) if a High Availability VPN gateway resource is
+     * created.
      */
     vpnGateway?: string;
     /**
      * The interface ID of the VPN gateway with which this VPN tunnel is
-     * associated. If the VPN gateway has redundancy other than NONE, this field
-     * is required to identify which interface of the VPN gateway to use.
+     * associated.
      */
     vpnGatewayInterface?: number;
   }

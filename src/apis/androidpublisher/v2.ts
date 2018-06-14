@@ -408,6 +408,13 @@ export namespace androidpublisher_v2 {
      */
     defaultPrice?: Schema$Price;
     /**
+     * Grace period of the subscription, specified in ISO 8601 format. It will
+     * allow developers to give their subscribers a grace period when the
+     * payment for the new recurrence period is declined. Acceptable values =
+     * &quot;P3D&quot; (three days) and &quot;P7D&quot; (seven days)
+     */
+    gracePeriod?: string;
+    /**
      * List of localized title and description data.
      */
     listings?: any;
@@ -2368,6 +2375,12 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.bundles.upload
+     * @desc Uploads a new Android App Bundle to this edit. If you are using the
+     * Google API client libraries, please increase the timeout of the http
+     * request before calling this endpoint (a timeout of 2 minutes is
+     * recommended). See:
+     * https://developers.google.com/api-client-library/java/google-api-java-client/errors
+     * for an example in java.
      * @alias androidpublisher.edits.bundles.upload
      * @memberOf! ()
      *

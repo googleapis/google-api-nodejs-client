@@ -428,6 +428,13 @@ export namespace cloudresourcemanager_v1 {
      * that matches the value specified in this `Constraint`.
      */
     suggestedValue?: string;
+    /**
+     * Indicates whether subtrees of Cloud Resource Manager resource hierarchy
+     * can be used in `Policy.allowed_values` and `Policy.denied_values`. For
+     * example, `&quot;under:folders/123&quot;` would match any resource under
+     * the &#39;folders/123&#39; folder.
+     */
+    supportsUnder?: boolean;
   }
   /**
    * The response message for Liens.ListLiens.
@@ -477,19 +484,29 @@ export namespace cloudresourcemanager_v1 {
   }
   /**
    * Used in `policy_type` to specify how `list_policy` behaves at this
-   * resource.  A `ListPolicy` can define specific values that are allowed or
-   * denied by setting either the `allowed_values` or `denied_values` fields. It
-   * can also be used to allow or deny all values, by setting the `all_values`
-   * field. If `all_values` is `ALL_VALUES_UNSPECIFIED`, exactly one of
-   * `allowed_values` or `denied_values` must be set (attempting to set both or
-   * neither will result in a failed request). If `all_values` is set to either
-   * `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
+   * resource.  `ListPolicy` can define specific values and subtrees of Cloud
+   * Resource Manager resource hierarchy (`Organizations`, `Folders`,
+   * `Projects`) that are allowed or denied by setting the `allowed_values` and
+   * `denied_values` fields. This is achieved by using the `under:` and optional
+   * `is:` prefixes. The `under:` prefix is used to denote resource subtree
+   * values. The `is:` prefix is used to denote specific values, and is required
+   * only if the value contains a &quot;:&quot;. Values prefixed with
+   * &quot;is:&quot; are treated the same as values with no prefix. Ancestry
+   * subtrees must be in one of the following formats:     -
+   * “projects/&lt;project-id&gt;”, e.g. “projects/tokyo-rain-123”     -
+   * “folders/&lt;folder-id&gt;”, e.g. “folders/1234”     -
+   * “organizations/&lt;organization-id&gt;”, e.g. “organizations/1234” The
+   * `supports_under` field of the associated `Constraint`  defines whether
+   * ancestry prefixes can be used. You can set `allowed_values` and
+   * `denied_values` in the same `Policy` if `all_values` is
+   * `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all
+   * values. If `all_values` is set to either `ALLOW` or `DENY`,
+   * `allowed_values` and `denied_values` must be unset.
    */
   export interface Schema$ListPolicy {
     /**
-     * List of values allowed  at this resource. Can only be set if no values
-     * are set for `denied_values` and `all_values` is set to
-     * `ALL_VALUES_UNSPECIFIED`.
+     * List of values allowed  at this resource. Can only be set if `all_values`
+     * is set to `ALL_VALUES_UNSPECIFIED`.
      */
     allowedValues?: string[];
     /**
@@ -497,9 +514,8 @@ export namespace cloudresourcemanager_v1 {
      */
     allValues?: string;
     /**
-     * List of values denied at this resource. Can only be set if no values are
-     * set for `allowed_values` and `all_values` is set to
-     * `ALL_VALUES_UNSPECIFIED`.
+     * List of values denied at this resource. Can only be set if `all_values`
+     * is set to `ALL_VALUES_UNSPECIFIED`.
      */
     deniedValues?: string[];
     /**
@@ -522,41 +538,51 @@ export namespace cloudresourcemanager_v1 {
      * `Policy` is applied to a project below the Organization that has
      * `inherit_from_parent` set to `false` and field all_values set to DENY,
      * then an attempt to activate any API will be denied.  The following
-     * examples demonstrate different possible layerings:  Example 1 (no
-     * inherited values):   `organizations/foo` has a `Policy` with values:
-     * {allowed_values: “E1” allowed_values:”E2”}   ``projects/bar`` has
-     * `inherit_from_parent` `false` and values:     {allowed_values:
-     * &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at
-     * `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar`
-     * are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo`
-     * has a `Policy` with values:     {allowed_values: “E1”
-     * allowed_values:”E2”}   `projects/bar` has a `Policy` with values: {value:
-     * “E3” value: ”E4” inherit_from_parent: true} The accepted values at
-     * `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar`
-     * are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and
-     * denied values):   `organizations/foo` has a `Policy` with values:
-     * {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}
-     * `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;}
-     * The accepted values at `organizations/foo` are `E1`, `E2`. The value
-     * accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):
+     * examples demonstrate different possible layerings for `projects/bar`
+     * parented by `organizations/foo`:  Example 1 (no inherited values):
      * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
-     * allowed_values:”E2”}   `projects/bar` has a `Policy` with values:
-     * {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`,
-     * `E2`. The accepted values at `projects/bar` are either all or none
-     * depending on the value of `constraint_default` (if `ALLOW`, all; if
-     * `DENY`, none).  Example 5 (no policy inherits parent policy):
-     * `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy`
-     * set. The accepted values at both levels are either all or none depending
-     * on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).
-     * Example 6 (ListConstraint allowing all):   `organizations/foo` has a
-     * `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}
-     * `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values
-     * at `organizations/foo` are `E1`, E2`. Any value is accepted at
+     * allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false`
+     * and values:     {allowed_values: &quot;E3&quot; allowed_values:
+     * &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`,
+     * `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example
+     * 2 (inherited values):   `organizations/foo` has a `Policy` with values:
+     * {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a
+     * `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent:
+     * true} The accepted values at `organizations/foo` are `E1`, `E2`. The
+     * accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`. Example
+     * 3 (inheriting both allowed and denied values):   `organizations/foo` has
+     * a `Policy` with values:     {allowed_values: &quot;E1&quot;
+     * allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:
+     * {denied_values: &quot;E1&quot;} The accepted values at
+     * `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar`
+     * is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a
+     * `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}
+     * `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The
+     * accepted values at `organizations/foo` are `E1`, `E2`. The accepted
+     * values at `projects/bar` are either all or none depending on the value of
+     * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no
+     * policy inherits parent policy):   `organizations/foo` has no `Policy`
+     * set.   `projects/bar` has no `Policy` set. The accepted values at both
+     * levels are either all or none depending on the value of
+     * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6
+     * (ListConstraint allowing all):   `organizations/foo` has a `Policy` with
+     * values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar`
+     * has a `Policy` with:     {all: ALLOW} The accepted values at
+     * `organizations/foo` are `E1`, E2`. Any value is accepted at
      * `projects/bar`.  Example 7 (ListConstraint allowing none):
      * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
      * allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all:
      * DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value
-     * is accepted at `projects/bar`.
+     * is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees
+     * of Resource Manager hierarchy): Given the following resource hierarchy
+     * O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has
+     * a `Policy` with values:     {allowed_values:
+     * &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:
+     * {allowed_values: &quot;under:projects/P3&quot;}     {denied_values:
+     * &quot;under:folders/F2&quot;} The accepted values at `organizations/foo`
+     * are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`,
+     * `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are
+     * `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
     inheritFromParent?: boolean;
     /**
@@ -1171,7 +1197,8 @@ export namespace cloudresourcemanager_v1 {
      * @desc Gets the effective `Policy` on a resource. This is the result of
      * merging `Policies` in the resource hierarchy. The returned `Policy` will
      * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources.
+     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
+     * prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2196,6 +2223,70 @@ export namespace cloudresourcemanager_v1 {
 
 
     /**
+     * cloudresourcemanager.liens.get
+     * @desc Retrieve a Lien by `name`.  Callers of this method will require
+     * permission on the `parent` resource. For example, a Lien with a `parent`
+     * of `projects/1234` requires permission requires permission
+     * `resourcemanager.projects.get` or `resourcemanager.projects.updateLiens`.
+     * @alias cloudresourcemanager.liens.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name/identifier of the Lien.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Liens$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Lien>;
+    get(params: Params$Resource$Liens$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
+        callback: BodyResponseCallback<Schema$Lien>): void;
+    get(params: Params$Resource$Liens$Get,
+        callback: BodyResponseCallback<Schema$Lien>): void;
+    get(callback: BodyResponseCallback<Schema$Lien>): void;
+    get(paramsOrCallback?: Params$Resource$Liens$Get|
+        BodyResponseCallback<Schema$Lien>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
+        callback?: BodyResponseCallback<Schema$Lien>):
+        void|AxiosPromise<Schema$Lien> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Liens$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Liens$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Lien>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Lien>(parameters);
+      }
+    }
+
+
+    /**
      * cloudresourcemanager.liens.list
      * @desc List all Liens applied to the `parent` resource.  Callers of this
      * method will require permission on the `parent` resource. For example, a
@@ -2348,6 +2439,17 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * The name/identifier of the Lien to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Liens$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name/identifier of the Lien.
      */
     name?: string;
   }
@@ -2771,7 +2873,8 @@ export namespace cloudresourcemanager_v1 {
      * @desc Gets the effective `Policy` on a resource. This is the result of
      * merging `Policies` in the resource hierarchy. The returned `Policy` will
      * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources.
+     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
+     * prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4812,7 +4915,8 @@ export namespace cloudresourcemanager_v1 {
      * @desc Gets the effective `Policy` on a resource. This is the result of
      * merging `Policies` in the resource hierarchy. The returned `Policy` will
      * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources.
+     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
+     * prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
