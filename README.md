@@ -342,7 +342,7 @@ async function main() {
       mimeType: 'image/png'
     },
     media: {
-      mimeType: 'image/png',
+      mediaType: 'image/png',
       body: fs.createReadStream('awesome.png')
     }
   });
