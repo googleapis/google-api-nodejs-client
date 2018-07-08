@@ -24,7 +24,7 @@ clean:
 	gts clean
 
 coverage: build
-	nyc --cache mocha build/test -t 10000 -S -R spec --require intelli-espower-loader
+	nyc --cache mocha build/test -t 10000 -S -R spec
 	nyc report --reporter=html
 
 docs:

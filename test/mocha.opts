@@ -1,0 +1,4 @@
+--require hard-rejection/register
+--require intelli-espower-loader
+--require source-map-support/register
+--timeout 10000

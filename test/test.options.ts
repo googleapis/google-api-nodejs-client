@@ -12,11 +12,8 @@
 // limitations under the License.
 
 import assert from 'assert';
-import {AxiosResponse} from 'axios';
 import nock from 'nock';
-import * as url from 'url';
-
-import {drive_v2, drive_v3, GoogleApis} from '../src';
+import {GoogleApis} from '../src';
 
 import {Utils} from './utils';
 

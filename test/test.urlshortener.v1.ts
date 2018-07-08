@@ -14,7 +14,6 @@
 import assert from 'assert';
 import nock from 'nock';
 import * as path from 'path';
-import * as url from 'url';
 
 import {GoogleApis, urlshortener_v1} from '../src';
 

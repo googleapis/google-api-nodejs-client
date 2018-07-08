@@ -14,7 +14,6 @@
 import {AxiosResponse} from 'axios';
 import * as url from 'url';
 import {GoogleApis} from '../src';
-import {Endpoint} from '../src/shared/src/endpoint';
 
 export abstract class Utils {
   static getQs(res: AxiosResponse) {

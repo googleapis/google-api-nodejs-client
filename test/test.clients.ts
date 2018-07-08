@@ -12,19 +12,15 @@
 // limitations under the License.
 
 import assert from 'assert';
-import * as fs from 'fs';
 import nock from 'nock';
-import * as path from 'path';
-import * as url from 'url';
-
-import {datastore_v1, GoogleApis} from '../src';
+import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
   const query = qs ? `?${qs}` : '';
-  nock('https://datastore.googleapis.com')
+  return nock('https://datastore.googleapis.com')
       .post(`/v1/projects/test-project-id:lookup${query}`)
       .reply(200);
 }
