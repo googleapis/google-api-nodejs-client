@@ -17,7 +17,7 @@ import nock from 'nock';
 import * as path from 'path';
 import pify from 'pify';
 
-import {drive_v2, gmail_v1, GoogleApis, youtube_v3} from '../src';
+import {drive_v2, gmail_v1, GoogleApis} from '../src';
 
 import {Utils} from './utils';
 
@@ -102,7 +102,7 @@ describe('Media', () => {
     const google = new GoogleApis();
     const youtube = google.youtube('v3');
     const progressEvents = new Array<number>();
-    const res = await youtube.videos.insert(
+    await youtube.videos.insert(
         {
           part: 'id,snippet',
           notifySubscribers: false,
