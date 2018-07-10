@@ -52,10 +52,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - node9:
-          filters:
-            tags:
-              only: /.*/
       - node10:
           filters:
             tags:
@@ -64,7 +60,6 @@ workflows:
           requires:
             - node6
             - node8
-            - node9
             - node10
           filters:
             branches:
@@ -92,11 +87,6 @@ jobs:
         user: node
     <<: *unit_tests
     <<: *test_samples
-  node9:
-    docker:
-      - image: node:9
-        user: node
-    <<: *unit_tests
   node10:
     docker:
       - image: node:10
