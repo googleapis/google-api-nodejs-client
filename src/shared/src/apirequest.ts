@@ -21,12 +21,12 @@ import * as uuid from 'uuid';
 
 import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
+import {isWebpack} from './webpack';
 
 const maxContentLength = Math.pow(2, 31);
 
-// tslint:disable-next-line no-var-requires
-const pkg = require('../../../../package.json');
-const USER_AGENT = `google-api-nodejs-client/${pkg.version} (gzip)`;
+// TODO: USER_AGENT should include version, not sure how to do make it webpack'able
+const USER_AGENT = `google-api-nodejs-client (gzip)`;
 
 function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
@@ -228,7 +228,9 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // https://github.com/google/google-api-nodejs-client/issues/991
   options.maxContentLength = options.maxContentLength || maxContentLength;
   options.headers['Accept-Encoding'] = 'gzip';
-  options.headers['User-Agent'] = USER_AGENT;
+	if (!isWebpack()) {
+	  options.headers['User-Agent'] = USER_AGENT;
+	}
 
   // By default Axios treats any 2xx as valid, and all non 2xx status
   // codes as errors.  This is a problem for HTTP 304s when used along

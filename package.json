@@ -7,8 +7,11 @@
     ]
   },
   "license": "Apache-2.0",
+  "zzzz": {
+    "google-auth-library": "google/google-auth-library-nodejs#webbbpackkk"
+  },
   "dependencies": {
-    "google-auth-library": "google/google-auth-library-nodejs#webbbpackkk",
+    "google-auth-library": "^1.4.0",
     "pify": "^3.0.0",
     "qs": "^6.5.2",
     "url-template": "^2.0.8",
@@ -123,6 +126,7 @@
     "nconf": "^0.10.0",
     "ncp": "^2.0.0",
     "nock": "^9.2.5",
+    "null-loader": "^0.1.1",
     "nunjucks": "^3.1.2",
     "nyc": "^12.0.2",
     "opn": "^5.3.0",
@@ -132,7 +136,11 @@
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
+    "ts-loader": "^4.4.2",
     "typedoc": "^0.11.1",
-    "typescript": "~2.8.3"
+    "typescript": "~2.8.3",
+    "webpack": "^4.16.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.0.8"
   }
 }
