@@ -23,7 +23,7 @@ const analyticsreporting = google.analyticsreporting({
 
 async function runSample () {
   const res = await analyticsreporting.reports.batchGet({
-    resource: {
+    requestBody: {
       reportRequests: [{
         viewId: '65704806',
         dateRanges: [

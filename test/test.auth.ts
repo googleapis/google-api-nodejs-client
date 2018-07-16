@@ -11,12 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
+import assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
-import * as nock from 'nock';
+import nock from 'nock';
 import {GoogleApis} from '../src';
-import {APIEndpoint} from '../src/lib/api';
+import {APIEndpoint} from '../src/shared/src/api';
 import {Utils} from './utils';
+
+assert.rejects = require('assert-rejects');
 
 const googleapis = new GoogleApis();
 
@@ -59,14 +61,10 @@ describe('Compute client', () => {
   });
 });
 
-async function testNoTokens(
-    urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
-  try {
-    await urlshortener.url.get({shortUrl: '123', auth: oauth2client});
-    assert.fail('expected to throw');
-  } catch (e) {
-    assert.equal(e.message, 'No access, refresh token or API key is set.');
-  }
+async function testNoTokens(urlshortener: APIEndpoint, client: OAuth2Client) {
+  await assert.rejects(
+      urlshortener.url.get({shortUrl: '123', auth: client}),
+      /No access, refresh token or API key is set./);
 }
 
 async function testNoBearer(
@@ -259,8 +257,9 @@ describe('OAuth2 client', () => {
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       oauth2client.credentials = {access_token: 'abc', refresh_token: 'abc'};
       const res = await oauth2client.revokeCredentials();
+      scope.done();
       assert.equal(res.data.success, true);
-      assert.equal(JSON.stringify(oauth2client.credentials), '{}');
+      assert.deepEqual(oauth2client.credentials, {});
     });
 
     it('should clear credentials and return error if no access token to revoke',
@@ -268,13 +267,10 @@ describe('OAuth2 client', () => {
          const oauth2client =
              new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
          oauth2client.credentials = {refresh_token: 'abc'};
-         try {
-           const res = await oauth2client.revokeCredentials();
-           assert.fail('Expected to throw');
-         } catch (e) {
-           assert.equal(e, 'Error: No access token to revoke.');
-         }
-         assert.equal(JSON.stringify(oauth2client.credentials), '{}');
+         await assert.rejects(
+             oauth2client.revokeCredentials(),
+             /Error: No access token to revoke./);
+         assert.deepEqual(oauth2client.credentials, {});
        });
   });
 

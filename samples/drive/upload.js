@@ -25,8 +25,8 @@ const drive = google.drive({
 async function runSample (fileName) {
   const fileSize = fs.statSync(fileName).size;
   const res = await drive.files.create({
-    resource: {
-      // a resource element is required if you want to use multipart
+    requestBody: {
+      // a requestBody element is required if you want to use multipart
     },
     media: {
       body: fs.createReadStream(fileName)

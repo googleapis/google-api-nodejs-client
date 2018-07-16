@@ -11,13 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
+import assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
 import {GoogleApis} from '../src';
 import {APIS} from '../src/apis';
-import {APIEndpoint} from '../src/lib/api';
 
 describe('GoogleApis#discover', () => {
   it('should get a list of supported apis', () => {

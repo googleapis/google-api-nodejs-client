@@ -21,7 +21,7 @@ const analytics = google.analytics({
   auth: sampleClient.oAuth2Client
 });
 
-// Custom Goals must be exist prior to used as an objectiveMetric
+// Custom Goals must exist prior to being used as an objectiveMetric
 const objectiveMetric = 'ga:goal1Completions';
 
 // Serving frameworks listed below:
@@ -36,21 +36,18 @@ const variations = [
   {'name': 'variation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
 ];
 
-// Specify Experiment configuration
-const resourceBody = {
-  'name': 'Example Experiment',
-  'status': 'READY_TO_RUN',
-  'objectiveMetric': objectiveMetric,
-  'servingFramework': servingFramework,
-  'variations': variations
-};
-
 async function runSample () {
   const res = await analytics.management.experiments.insert({
     accountId: 'your-accountId',
     webPropertyId: 'your-webPropertyId',
     profileId: 'your-profileId',
-    resource: resourceBody
+    requestBody: {
+      'name': 'Example Experiment',
+      'status': 'READY_TO_RUN',
+      'objectiveMetric': objectiveMetric,
+      'servingFramework': servingFramework,
+      'variations': variations
+    }
   });
   console.log(res.data);
   return res.data;

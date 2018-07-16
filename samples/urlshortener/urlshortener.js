@@ -18,7 +18,11 @@ const path = require('path');
 const nconf = require('nconf');
 
 nconf.argv().env().file(path.join(__dirname, '../config.json'));
-const urlshortener = google.urlshortener('v1', nconf.get('api_key'));
+
+const urlshortener = google.urlshortener({
+  version: 'v1',
+  auth: nconf.get('api_key')
+});
 
 urlshortener.url.get({
   shortUrl: 'http://goo.gl/DdUKX'
@@ -30,7 +34,7 @@ urlshortener.url.get({
 });
 
 urlshortener.url.insert({
-  resource: {
+  requestBody: {
     longUrl: 'http://somelongurl.com'
   }
 }, (err, res) => {

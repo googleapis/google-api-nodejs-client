@@ -11,13 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
+import assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
-import * as nock from 'nock';
+import nock from 'nock';
 
-import {GoogleApis} from '../src';
-import {google} from '../src';
-import {APIEndpoint} from '../src/lib/api';
+import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
+import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 
@@ -49,9 +48,9 @@ async function testAuthKey(urlshortener: APIEndpoint) {
 }
 
 describe('API key', () => {
-  let localDrive: APIEndpoint;
+  let localDrive: drive_v2.Drive;
   let remoteDrive: APIEndpoint;
-  let localUrlshortener: APIEndpoint;
+  let localUrlshortener: urlshortener_v1.Urlshortener;
   let remoteUrlshortener: APIEndpoint;
   let authClient: OAuth2Client;
 

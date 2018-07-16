@@ -30,6 +30,7 @@
   * [Request Options](#request-options)
   * [Using a Proxy](#using-a-proxy)
   * [Supported APIs](#getting-supported-apis)
+  * [TypeScript](#typescript)
 * [License](#license)
 * [Contributing](#contributing)
 * [Questions/problems?](#questionsproblems)
@@ -101,7 +102,7 @@ runSample().catch(console.error);
 ```
 
 ### Samples
-There are a lot of [samples](samples/) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bug].
+There are a lot of [samples](https://github.com/google/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
 ### Reference API
 This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/).
@@ -175,6 +176,29 @@ oauth2Client.setCredentials(tokens);
 
 With the credentials set on your OAuth2 client - you're ready to go!
 
+#### Handling refresh tokens
+Access tokens expire. This library will automatically use a refresh token to obtain a new access token if it is about to expire. An easy way to make sure you always store the most recent tokens is to use the `tokens` event:
+
+```js
+oauth2client.on('tokens', (tokens) => {
+  if (tokens.refresh_token) {
+    // store the refresh_token in my database!
+    console.log(tokens.refresh_token);
+  }
+  console.log(tokens.access_token);
+});
+```
+
+To set the `refresh_token` at a later time, you can use the `setCredentials` method:
+
+```js
+oauth2client.setCredentials({
+  refresh_token: `STORED_REFRESH_TOKEN`
+});
+```
+
+Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API. You can use the `oauth2Client.refreshAccessToken()` method for this purpose, returning the tokens in the response.
+
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
 
@@ -188,7 +212,7 @@ const plus = google.plus({
 async function main() {
   const res = await plus.people.get({ userId: 'me' });
   console.log(`Hello ${res.data.displayName}!`);
-});
+};
 
 main().catch(console.error);
 ```
@@ -265,12 +289,12 @@ See the [Options section][options] for more information.
 
 ### Specifying request body
 
-The body of the request is specified in the `resource` parameter object of the request. The resource/body is specified as a JavaScript object with key/value pairs. For example, this sample creates a watcher that posts notifications to a Google Cloud Pub/Sub topic when emails are sent to a gmail account:
+The body of the request is specified in the `requestBody` parameter object of the request. The body is specified as a JavaScript object with key/value pairs. For example, this sample creates a watcher that posts notifications to a Google Cloud Pub/Sub topic when emails are sent to a gmail account:
 
 ```js
 const res = await gmail.users.watch({
   userId: 'me',
-  resource: {
+  requestBody: {
     // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
     topicName: `projects/el-gato/topics/gmail`
   }
@@ -279,7 +303,7 @@ console.log(res.data);
 ```
 
 ### Media uploads
-This client supports multipart media uploads. The resource parameters are specified in the `resource` parameter object, and the media itself is specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
+This client supports multipart media uploads. The resource parameters are specified in the `requestBody` parameter object, and the media itself is specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
 
 This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
@@ -290,7 +314,7 @@ const drive = google.drive({
 });
 
 const res = await drive.files.create({
-  resource: {
+  requestBody: {
     name: 'Test',
     mimeType: 'text/plain'
   },
@@ -313,7 +337,7 @@ const drive = google.drive({
 
 async function main() {
   const res = await drive.files.create({
-    resource: {
+    requestBody: {
       name: 'testimage.png',
       mimeType: 'image/png'
     },
@@ -461,7 +485,14 @@ const {google} = require('googleapis');
 const apis = google.getSupportedAPIs();
 ```
 
-This will return an object with the API name as object property names, and an array of version strings as the object values; 
+This will return an object with the API name as object property names, and an array of version strings as the object values;
+
+### TypeScript
+This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are are all available from the `drive_v3` namespace:
+
+```ts
+import { drive_v3 } from 'googleapis';
+```
 
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
@@ -473,8 +504,9 @@ This library is licensed under Apache 2.0. Full license text is available in [CO
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING][contributing].
 
 ## Questions/problems?
-* Ask your development related questions on [Ask a question on Stackoverflow][stackoverflow]
+* Ask your development related questions on [Stackoverflow][stackoverflow].
 * If you've found an bug/issue, please [file it on GitHub][bugs].
+
 
 [snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
 [snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
@@ -483,7 +515,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
 [circle]: https://circleci.com/gh/google/google-api-nodejs-client
-[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=svg
+[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=shield
 [releaselevel]: https://cloud.google.com/terms/launch-stages
 [releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
 [supported-list]: https://developers.google.com/apis-explorer/

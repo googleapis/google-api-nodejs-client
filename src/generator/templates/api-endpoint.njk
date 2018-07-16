@@ -1,0 +1,169 @@
+{% import "resource-partial.njk" as resource %}
+{% import "method-partial.njk" as method %}
+{% set lb = "{" %}
+{% set rb = "}" %}
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
+import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback } from '../../shared/src';
+import { AxiosPromise } from 'axios';
+
+// tslint:disable: no-any
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
+// tslint:disable: no-namespace
+
+export namespace {{api.name}}_{{api.version|replace('\.', '_')}} {
+
+{% set Name = api.name|capitalize %}
+{% if api.version %}
+{% set Version = api.version|replace('\.', '_')|capitalize %}
+{% endif %}
+{% set Namespace = [Name, Version]|join('') %}
+
+export interface Options extends GlobalOptions {
+  version: '{{api.version|replace('\.', '_')}}';
+}
+
+/**
+ * {{ api.title }}
+ *
+ * {{ api.description | oneLine }}
+ *
+ * @example
+ * const {google} = require('googleapis');
+ * const {{ api.name }} = google.{{ api.name }}('{{ api.version }}');
+ *
+ * @namespace {{ api.name }}
+ * @type {Function}
+ * @version {{ api.version }}
+ * @variation {{ api.version }}
+ * @param {object=} options Options for {{ Name }}
+ */
+export class {{ Name }} {
+
+  _options: GlobalOptions;
+  google?: GoogleConfigurable;
+  root = this;
+
+  {% if api.resources %}
+    {% for rname, r in api.resources|dictsort %}
+      {{ rname }}: Resource${{ rname|capitalize }};
+    {% endfor %}
+  {% endif %}
+
+  constructor(options: GlobalOptions, google?: GoogleConfigurable) {
+    this._options = options || {};
+    this.google = google;
+    this.getRoot.bind(this);
+
+    {% if api.resources %}
+      {% for rname, r in api.resources|dictsort %}
+        this.{{ rname }} = new Resource${{ rname|capitalize }}(this);
+      {% endfor %}
+    {% endif %}
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+{% if api.methods %}
+  {% for mname, m in api.methods|dictsort %}
+    {{ method.render(m, mname, api, api) }}
+  {% endfor %}
+{% endif %}
+
+}
+
+{% if api.schemas %}
+{% for schemaName, schema in api.schemas|dictsort %}
+{% if schema.description %}
+/**
+  * {{ schema.description | cleanPaths | oneLine }}
+  */
+{% endif %}
+export interface Schema${{ schema.id }} {
+{% if schema.properties %}
+{% for pname, p in schema.properties|dictsort %}
+  {% if p.description %}
+    /**
+     * {{ p.description | cleanPaths | oneLine }}
+     */
+  {% endif %}
+  {% if p.$ref %}
+    {{ pname|cleanPropertyName|safe }}?: Schema${{ p.$ref }};
+  {% elif p.items and p.items.$ref %}
+    {{ pname|cleanPropertyName|safe }}?: Schema${{ p.items.$ref }}[];
+  {% else %}
+    {{ pname|cleanPropertyName|safe }}?: {{ p|getType|safe }};
+  {% endif %}
+{% endfor %}
+{% endif %}
+}
+{% endfor %}
+{% endif %}
+
+{% if api.methods %}
+  {% for mname, m in api.methods|dictsort %}
+    export interface Params$${{ mname|capitalize }} {
+
+      /**
+       * Auth client or API Key for the request
+       */
+      auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+      {% if m.parameters %}
+        {% for pname, p in m.parameters|dictsort %}
+        /**
+         * {{ p.description|oneLine|cleanComments|safe }}
+         */
+        {{ pname|getSafeParamName }}?: {{ p.type }};
+        {% endfor %}
+      {% endif %}
+
+      {% if m.request %}
+        /**
+          * Request body metadata
+          */
+          requestBody?: Schema${{ m.request.$ref }};
+      {% endif %}
+
+      {% if m.supportsMediaUpload %}
+        /**
+          * Media metadata
+          */
+        media?: {
+          /**
+            * Media mime-type
+            */
+          mediaType?: string;
+
+          /**
+            * Media body contents
+            */
+          body?: any;
+        }
+      {% endif %}
+    }
+  {% endfor %}
+{% endif %}
+
+{{ resource.render(api, api, 'Resource$') }}
+
+}

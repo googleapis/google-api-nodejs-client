@@ -26,7 +26,7 @@ async function runSample (spreadsheetId, range) {
     spreadsheetId,
     range,
     valueInputOption: 'USER_ENTERED',
-    resource: {
+    requestBody: {
       values: [
         ['Justin', '1/1/2001', 'Website'],
         ['Node.js', '2018-03-14', 'Fun']

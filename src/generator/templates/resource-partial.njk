@@ -1,0 +1,84 @@
+{% import "method-partial.njk" as method %}
+{% macro render(api, rootApi, classPath) %}
+{% set rootName = rootApi.name|capitalize %}
+{% if api.resources %}
+  {% for rname, r in api.resources|dictsort %}
+    {% set ClassName = classPath + rname|capitalize %}
+    export class {{ ClassName }} {
+      root: {{ rootName }};
+      {% if r.resources %}
+        {% for rname, r2 in r.resources|dictsort %}
+          {% set innerClassName = ClassName + "$" + rname|capitalize %}
+          {{ rname }}: {{ innerClassName }};
+        {% endfor %}
+      {% endif %}
+      constructor(root: {{ rootName }}) {
+        this.root = root;
+        this.getRoot.bind(this);
+        {% if r.resources %}
+          {% for rname, r2 in r.resources|dictsort %}
+            {% set innerClassName = ClassName + "$" + rname|capitalize %}
+            this.{{ rname }} = new {{ innerClassName }}(root);
+          {% endfor %}
+        {% endif %}
+      }
+
+      getRoot() {
+        return this.root;
+      }
+
+      {% if r.methods %}
+        {% for mname, m in r.methods|dictsort %}
+          {{ method.render(m, mname, r, rootApi, ClassName) }}
+        {% endfor %}
+      {% endif %}
+    }
+
+    {% if r.methods %}
+      {% for mname, m in r.methods|dictsort %}
+        export interface Params${{ClassName}}${{ mname|capitalize }} {
+          /**
+           * Auth client or API Key for the request
+           */
+          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+          {% if m.parameters %}
+            {% for pname, p in m.parameters|dictsort %}
+              /**
+               * {{ p.description|oneLine|cleanComments|safe }}
+               */
+              {{ pname|cleanPropertyName|safe }}?: {{ p|getType }};
+            {% endfor %}
+          {% endif %}
+
+           {% if m.request %}
+            /**
+              * Request body metadata
+              */
+            requestBody?: Schema${{ m.request.$ref }};
+          {% endif %}
+
+          {% if m.supportsMediaUpload %}
+            /**
+              * Media metadata
+              */
+            media?: {
+              /**
+                * Media mime-type
+                */
+              mediaType?: string;
+
+              /**
+                * Media body contents
+                */
+              body?: any;
+            };
+          {% endif %}
+        }
+      {% endfor %}
+    {% endif %}
+
+    {{ render(r, rootApi, ClassName + "$") }}
+  {% endfor %}
+{% endif %}
+{% endmacro %}

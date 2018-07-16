@@ -11,13 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
+import assert from 'assert';
 import {AxiosResponse} from 'axios';
-import * as nock from 'nock';
-import * as url from 'url';
+import nock from 'nock';
 
 import {GoogleApis} from '../src';
-import {APIEndpoint} from '../src/lib/api';
+import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 

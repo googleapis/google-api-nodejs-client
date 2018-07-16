@@ -13,8 +13,7 @@
 
 import {AxiosResponse} from 'axios';
 import * as url from 'url';
-import {GoogleApis} from '../src/index';
-import {Endpoint} from '../src/lib/endpoint';
+import {GoogleApis} from '../src';
 
 export abstract class Utils {
   static getQs(res: AxiosResponse) {
@@ -31,9 +30,12 @@ export abstract class Utils {
         version + '/rest';
   }
 
-  static loadApi(
+  // tslint:disable-next-line no-any
+  static loadApi<T = any>(
       google: GoogleApis, name: string, version: string, options = {}) {
-    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options);
+    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options) as
+               // tslint:disable-next-line no-any
+               any as T;
   }
 
   static readonly noop = () => undefined;

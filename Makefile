@@ -4,6 +4,7 @@ PATH := $(shell npm bin):$(PATH)
 
 build:
 	tsc -v && tsc -p .
+	copyfiles src/apis/**/README.md src/apis/**/package.json build
 
 build-tools:
 	tsc -p tsconfig.tools.json
@@ -24,7 +25,7 @@ clean:
 	gts clean
 
 coverage: build
-	nyc --cache mocha build/test -t 10000 -S -R spec --require intelli-espower-loader
+	nyc --cache mocha build/test -t 10000 -S -R spec
 	nyc report --reporter=html
 
 docs:
@@ -39,7 +40,7 @@ fix-typescript:
 	gts fix
 
 generate: build-tools
-	node build/src/scripts/generate.js
+	node build/src/generator/generate.js
 	clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts
 
 install:

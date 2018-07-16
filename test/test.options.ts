@@ -11,11 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import {AxiosResponse} from 'axios';
-import * as nock from 'nock';
-import * as url from 'url';
+import assert from 'assert';
+import nock from 'nock';
 import {GoogleApis} from '../src';
+
 import {Utils} from './utils';
 
 function createNock(path?: string) {
@@ -53,7 +52,7 @@ describe('Options', () => {
     google.options({params: {hello: 'world'}});
     const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
     createNock('/drive/v2/files/123?hello=changed');
-    const res: AxiosResponse = await drive.files.get({fileId: '123'});
+    const res = await drive.files.get({fileId: '123'});
     assert.equal(res.config.params.hello, 'changed');
   });
 
@@ -168,7 +167,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     const drive = google.drive('v2');
     const res = await drive.files.list({}, {
-      validateStatus: (status: {}) => {
+      validateStatus: (status: number) => {
         return true;
       }
     });
