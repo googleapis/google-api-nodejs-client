@@ -112,7 +112,7 @@
     "copyfiles": "^2.0.0",
     "express": "^4.16.3",
     "gh-pages": "^1.1.0",
-    "gts": "^0.7.1",
+    "gts": "^0.8.0",
     "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^0.5.0",
