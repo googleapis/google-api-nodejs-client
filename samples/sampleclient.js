@@ -29,7 +29,7 @@ const path = require('path');
 const keyPath = path.join(__dirname, 'oauth2.keys.json');
 let keys = { redirect_uris: [''] };
 if (fs.existsSync(keyPath)) {
-  keys = require(keyPath).web;
+  keys = require(keyPath).installed;
 }
 
 class SampleClient {
