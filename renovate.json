@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "config:base",
+    "docker:disable"
+  ],
+  "pinVersions": false,
+  "rebaseStalePrs": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "recreateClosed": true
+  },
+  "gitAuthor": null
+}
