@@ -49,28 +49,28 @@ describe('Query params', () => {
   it('should not append ? with no query parameters', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res = await localDrive.files.get({fileId: 'ID'});
-    assert.equal(-1, res.config.url.indexOf('?'));
+    assert.strictEqual(-1, res.config.url.indexOf('?'));
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res2 = await remoteDrive.files.get({fileId: 'ID'});
-    assert.equal(-1, res2.config.url.indexOf('?'));
+    assert.strictEqual(-1, res2.config.url.indexOf('?'));
   });
 
   it('should be null if no object passed', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
     const res = await localDrive.files.list();
-    assert.equal(Utils.getQs(res), null);
+    assert.strictEqual(Utils.getQs(res), null);
     nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
     const res2 = await remoteDrive.files.list();
-    assert.equal(Utils.getQs(res2), null);
+    assert.strictEqual(Utils.getQs(res2), null);
   });
 
   it('should be null if params passed are in path', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res = await localDrive.files.get({fileId: '123'});
-    assert.equal(Utils.getQs(res), null);
+    assert.strictEqual(Utils.getQs(res), null);
     nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res2 = await remoteDrive.files.get({fileId: '123'});
-    assert.equal(Utils.getQs(res), null);
+    assert.strictEqual(Utils.getQs(res), null);
   });
 
   it('should be set if params passed are optional query params', async () => {
@@ -79,34 +79,34 @@ describe('Query params', () => {
         .reply(200);
     const res =
         await localDrive.files.get({fileId: '123', updateViewedDate: true});
-    assert.equal(Utils.getQs(res), 'updateViewedDate=true');
+    assert.strictEqual(Utils.getQs(res), 'updateViewedDate=true');
     nock(Utils.baseUrl)
         .get('/drive/v2/files/123?updateViewedDate=true')
         .reply(200);
     const res2 =
         await remoteDrive.files.get({fileId: '123', updateViewedDate: true});
-    assert.equal(Utils.getQs(res2), 'updateViewedDate=true');
+    assert.strictEqual(Utils.getQs(res2), 'updateViewedDate=true');
   });
 
   it('should be set if params passed are unknown params', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/123?madeThisUp=hello').reply(200);
     const res =
         await localDrive.files.get({fileId: '123', madeThisUp: 'hello'});
-    assert.equal(Utils.getQs(res), 'madeThisUp=hello');
+    assert.strictEqual(Utils.getQs(res), 'madeThisUp=hello');
     nock(Utils.baseUrl).get('/drive/v2/files/123?madeThisUp=hello').reply(200);
     const res2 =
         await remoteDrive.files.get({fileId: '123', madeThisUp: 'hello'});
-    assert.equal(Utils.getQs(res2), 'madeThisUp=hello');
+    assert.strictEqual(Utils.getQs(res2), 'madeThisUp=hello');
   });
 
   it('should be set if params passed are aliased names', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/123?resource=hello').reply(200);
     const res = await localDrive.files.get({fileId: '123', resource_: 'hello'});
-    assert.equal(Utils.getQs(res), 'resource=hello');
+    assert.strictEqual(Utils.getQs(res), 'resource=hello');
     nock(Utils.baseUrl).get('/drive/v2/files/123?resource=hello').reply(200);
     const res2 =
         await remoteDrive.files.get({fileId: '123', resource_: 'hello'});
-    assert.equal(Utils.getQs(res2), 'resource=hello');
+    assert.strictEqual(Utils.getQs(res2), 'resource=hello');
   });
 
   it('should be set if params passed are falsy', async () => {
@@ -121,7 +121,7 @@ describe('Query params', () => {
       autoDelete: false,
       deviceName: ''
     });
-    assert.equal(Utils.getQs(res), 'autoDelete=false&deviceName=');
+    assert.strictEqual(Utils.getQs(res), 'autoDelete=false&deviceName=');
     nock(Utils.baseUrl)
         .post(
             '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName=')
@@ -133,7 +133,7 @@ describe('Query params', () => {
       autoDelete: false,
       deviceName: ''
     });
-    assert.equal(Utils.getQs(res2), 'autoDelete=false&deviceName=');
+    assert.strictEqual(Utils.getQs(res2), 'autoDelete=false&deviceName=');
 
     nock(Utils.baseUrl)
         .post(
@@ -141,7 +141,7 @@ describe('Query params', () => {
         .reply(200);
     const res3 = await localCompute.instanceGroupManagers.resize(
         {project: '', zone: '', instanceGroupManager: '', size: 0});
-    assert.equal(Utils.getQs(res3), 'size=0');
+    assert.strictEqual(Utils.getQs(res3), 'size=0');
 
     nock(Utils.baseUrl)
         .post(
@@ -149,7 +149,7 @@ describe('Query params', () => {
         .reply(200);
     const res4 = await remoteCompute.instanceGroupManagers.resize(
         {project: '', zone: '', instanceGroupManager: '', size: 0});
-    assert.equal(Utils.getQs(res4), 'size=0');
+    assert.strictEqual(Utils.getQs(res4), 'size=0');
   });
 
   it('should chain together with & in order', async () => {
@@ -158,14 +158,14 @@ describe('Query params', () => {
         .reply(200);
     const res = await localDrive.files.get(
         {fileId: '123', madeThisUp: 'hello', thisToo: 'world'});
-    assert.equal(Utils.getQs(res), 'madeThisUp=hello&thisToo=world');
+    assert.strictEqual(Utils.getQs(res), 'madeThisUp=hello&thisToo=world');
 
     nock(Utils.baseUrl)
         .get('/drive/v2/files/123?madeThisUp=hello&thisToo=world')
         .reply(200);
     const res2 = await remoteDrive.files.get(
         {fileId: '123', madeThisUp: 'hello', thisToo: 'world'});
-    assert.equal(Utils.getQs(res2), 'madeThisUp=hello&thisToo=world');
+    assert.strictEqual(Utils.getQs(res2), 'madeThisUp=hello&thisToo=world');
   });
 
   it('should not include auth if auth is an OAuth2Client object', async () => {
@@ -175,12 +175,12 @@ describe('Query params', () => {
 
     nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res = await localDrive.files.get({fileId: '123', auth: oauth2client});
-    assert.equal(Utils.getQs(res), null);
+    assert.strictEqual(Utils.getQs(res), null);
 
     nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res2 =
         await remoteDrive.files.get({fileId: '123', auth: oauth2client});
-    assert.equal(Utils.getQs(res2), null);
+    assert.strictEqual(Utils.getQs(res2), null);
   });
 
   it('should handle multi-value query params properly', async () => {
@@ -190,7 +190,7 @@ describe('Query params', () => {
         .reply(200);
     const res = await localGmail.users.messages.get(
         {userId: 'me', id: 'abc123', metadataHeaders: ['To', 'Date']});
-    assert.equal(Utils.getQs(res), 'metadataHeaders=To&metadataHeaders=Date');
+    assert.strictEqual(Utils.getQs(res), 'metadataHeaders=To&metadataHeaders=Date');
 
     nock(Utils.baseUrl)
         .get(
@@ -198,7 +198,7 @@ describe('Query params', () => {
         .reply(200);
     const res2 = await remoteGmail.users.messages.get(
         {userId: 'me', id: 'abc123', metadataHeaders: ['To', 'Date']});
-    assert.equal(Utils.getQs(res2), 'metadataHeaders=To&metadataHeaders=Date');
+    assert.strictEqual(Utils.getQs(res2), 'metadataHeaders=To&metadataHeaders=Date');
   });
 
   after(() => {

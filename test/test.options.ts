@@ -32,7 +32,7 @@ describe('Options', () => {
 
   it('should be a function', () => {
     const google = new GoogleApis();
-    assert.equal(typeof google.options, 'function');
+    assert.strictEqual(typeof google.options, 'function');
   });
 
   it('should expose _options', () => {
@@ -53,7 +53,7 @@ describe('Options', () => {
     const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
     createNock('/drive/v2/files/123?hello=changed');
     const res = await drive.files.get({fileId: '123'});
-    assert.equal(res.config.params.hello, 'changed');
+    assert.strictEqual(res.config.params.hello, 'changed');
   });
 
   it('should support global request params', async () => {
@@ -91,7 +91,7 @@ describe('Options', () => {
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
-    assert.equal(Utils.getQs(res), 'key=apikey3');
+    assert.strictEqual(Utils.getQs(res), 'key=apikey3');
   });
 
   it('should apply google options to request object like timeout', async () => {
@@ -100,7 +100,7 @@ describe('Options', () => {
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
-    assert.equal(res.config.timeout, '12345');
+    assert.strictEqual(res.config.timeout, '12345');
   });
 
   it('should apply endpoint options to request object like timeout',
@@ -110,8 +110,8 @@ describe('Options', () => {
            google.drive({version: 'v2', auth: 'apikey2', timeout: 23456});
        createNock('/drive/v2/files/woot?key=apikey3');
        const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
-       assert.equal(res.config.timeout, 23456);
-       assert.equal(Utils.getQs(res), 'key=apikey3');
+       assert.strictEqual(res.config.timeout, 23456);
+       assert.strictEqual(Utils.getQs(res), 'key=apikey3');
      });
 
   it('should allow overriding endpoint options', async () => {
@@ -123,11 +123,11 @@ describe('Options', () => {
         {fileId: 'woot'},
         {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345});
 
-    assert.equal(
+    assert.strictEqual(
         res.request.path, '/drive/v3/files/woot',
         'Request used overridden url.');
-    assert.equal(res.request.headers.host, 'myproxy.com');
-    assert.equal(res.config.timeout, 12345, 'Axios used overridden timeout.');
+    assert.strictEqual(res.request.headers.host, 'myproxy.com');
+    assert.strictEqual(res.config.timeout, 12345, 'Axios used overridden timeout.');
   });
 
   it('should apply endpoint options like timeout to oauth transporter',
@@ -140,8 +140,8 @@ describe('Options', () => {
            google.drive({version: 'v2', auth: 'apikey2', timeout: 12345});
        createNock('/drive/v2/files/woot');
        const res = await drive.files.get({auth: authClient, fileId: 'woot'});
-       assert.equal(res.config.timeout, 12345);
-       assert.equal(res.config.headers.Authorization, 'Bearer abc');
+       assert.strictEqual(res.config.timeout, 12345);
+       assert.strictEqual(res.config.headers.Authorization, 'Bearer abc');
      });
 
   it('should allow overriding rootUrl via options', async () => {
@@ -151,13 +151,13 @@ describe('Options', () => {
     const rootUrl = 'https://myrooturl.com';
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get({fileId}, {rootUrl});
-    assert.equal(
+    assert.strictEqual(
         res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl with trailing slash.');
 
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     const res2 = await drive.files.get({fileId}, {rootUrl});
-    assert.equal(
+    assert.strictEqual(
         res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl.');
   });
@@ -171,7 +171,7 @@ describe('Options', () => {
         return true;
       }
     });
-    assert.equal(res.status, 500);
+    assert.strictEqual(res.status, 500);
   });
 
   after(() => {

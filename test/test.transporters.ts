@@ -22,7 +22,7 @@ async function testHeaders(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
   const res = await drive.comments.insert(
       {fileId: 'a', headers: {'If-None-Match': '12345'}});
-  assert.equal(res.config.headers['If-None-Match'], '12345');
+  assert.strictEqual(res.config.headers['If-None-Match'], '12345');
 }
 
 async function testContentType(drive: APIEndpoint) {
@@ -47,22 +47,22 @@ async function testGzip(drive: APIEndpoint) {
 async function testBody(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
   const res = await drive.files.list();
-  assert.equal(res.config.headers['content-type'], null);
-  assert.equal(res.request.body, null);
+  assert.strictEqual(res.config.headers['content-type'], null);
+  assert.strictEqual(res.request.body, null);
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
   nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
   const res = await drive.files.delete({fileId: 'test'});
-  assert.equal(res.config.headers['content-type'], null);
-  assert.equal(res.request.body, null);
+  assert.strictEqual(res.config.headers['content-type'], null);
+  assert.strictEqual(res.request.body, null);
 }
 
 function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {
   drive.files.list({q: 'hello'}, (err: NodeJS.ErrnoException) => {
     assert(err instanceof Error);
-    assert.equal(err.message, 'Error!');
-    assert.equal(err.code, 400);
+    assert.strictEqual(err.message, 'Error!');
+    assert.strictEqual(err.code, 400);
     cb();
   });
 }
@@ -70,8 +70,8 @@ function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {
 function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
   oauth2.tokeninfo({access_token: 'hello'}, (err: NodeJS.ErrnoException) => {
     assert(err instanceof Error);
-    assert.equal(err.message, 'invalid_grant');
-    assert.equal(err.code, 400);
+    assert.strictEqual(err.message, 'invalid_grant');
+    assert.strictEqual(err.code, 400);
     cb();
   });
 }
@@ -82,9 +82,9 @@ function testBackendError(
   urlshortener.url.insert(
       {resource: obj}, (err: NodeJS.ErrnoException, result: {}) => {
         assert(err instanceof Error);
-        assert.equal(err.code, 500);
-        assert.equal(err.message, 'There was an error!');
-        assert.equal(result, null);
+        assert.strictEqual(err.code, 500);
+        assert.strictEqual(err.message, 'There was an error!');
+        assert.strictEqual(result, null);
         cb();
       });
 }
@@ -196,7 +196,7 @@ describe('Transporters', () => {
   it('should return 304 responses as success', async () => {
     const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
     const res = await localDrive.files.list();
-    assert.equal(res.status, 304);
+    assert.strictEqual(res.status, 304);
   });
 
   it('should handle 5xx responses that include errors', (done) => {

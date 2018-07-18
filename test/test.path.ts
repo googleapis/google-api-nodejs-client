@@ -75,10 +75,10 @@ describe('Path params', () => {
      (done) => {
        localDrive.files.get({}, (err: Error, resp: {}) => {
          assert(err);
-         assert.equal(resp, null);
+         assert.strictEqual(resp, null);
          remoteDrive.files.get({}, (e: Error, resp2: {}) => {
            assert(e);
-           assert.equal(resp2, null);
+           assert.strictEqual(resp2, null);
            done();
          });
        });
@@ -86,17 +86,17 @@ describe('Path params', () => {
 
   it('should return null request object if not included and required', () => {
     let req = localDrive.files.get({}, Utils.noop);
-    assert.equal(req, null);
+    assert.strictEqual(req, null);
     req = remoteDrive.files.get({}, Utils.noop);
-    assert.equal(req, null);
+    assert.strictEqual(req, null);
   });
 
   it('should return null request object if not included and required and no callback',
      () => {
        let req = localDrive.files.get({}, Utils.noop);
-       assert.equal(req, null);
+       assert.strictEqual(req, null);
        req = remoteDrive.files.get({}, Utils.noop);
-       assert.equal(req, null);
+       assert.strictEqual(req, null);
      });
 
   it('should not be modifiable directly', () => {
@@ -118,14 +118,14 @@ describe('Path params', () => {
           if (err) {
             return done(err);
           }
-          assert.equal(res.config.url, Utils.baseUrl + p);
+          assert.strictEqual(res.config.url, Utils.baseUrl + p);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: 'abc123'}, (err2: Error, res2: AxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
-                assert.equal(res2.config.url, Utils.baseUrl + p);
+                assert.strictEqual(res2.config.url, Utils.baseUrl + p);
                 done();
               });
         });
@@ -139,14 +139,14 @@ describe('Path params', () => {
           if (err) {
             return done(err);
           }
-          assert.equal(Utils.getPath(res), p);
+          assert.strictEqual(Utils.getPath(res), p);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
-                assert.equal(Utils.getPath(res), p);
+                assert.strictEqual(Utils.getPath(res), p);
                 done();
               });
         });
@@ -161,7 +161,7 @@ describe('Path params', () => {
             return done(err);
           }
           const parm = Utils.getPath(res).split('/').pop();
-          assert.equal(decodeURIComponent(parm!), 'p@ram');
+          assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: 'p@ram'}, (err2: Error, res2: AxiosResponse) => {
@@ -169,7 +169,7 @@ describe('Path params', () => {
                   return done(err2);
                 }
                 const parm = Utils.getPath(res).split('/').pop();
-                assert.equal(decodeURIComponent(parm!), 'p@ram');
+                assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
                 done();
               });
         });
@@ -183,14 +183,14 @@ describe('Path params', () => {
           if (err) {
             return done(err);
           }
-          assert.equal(Utils.getQs(res), null);
+          assert.strictEqual(Utils.getQs(res), null);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
-                assert.equal(Utils.getQs(res2), null);
+                assert.strictEqual(Utils.getQs(res2), null);
                 done();
               });
         });
@@ -205,7 +205,7 @@ describe('Path params', () => {
           if (err) {
             return done(err);
           }
-          assert.equal(Utils.getQs(res), 'hello=world');
+          assert.strictEqual(Utils.getQs(res), 'hello=world');
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: '123abc', hello: 'world'},
@@ -213,7 +213,7 @@ describe('Path params', () => {
                 if (err2) {
                   return done(err2);
                 }
-                assert.equal(Utils.getQs(res), 'hello=world');
+                assert.strictEqual(Utils.getQs(res), 'hello=world');
                 done();
               });
         });

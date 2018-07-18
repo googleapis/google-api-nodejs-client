@@ -24,15 +24,15 @@ async function testSingleRequest(urlshortener: urlshortener_v1.Urlshortener) {
   const reqPath = '/urlshortener/v1/url';
   nock(Utils.baseUrl).post(reqPath, requestBody).reply(200);
   const res = await urlshortener.url.insert({requestBody});
-  assert.equal(res.config.method!.toLowerCase(), 'post');
+  assert.strictEqual(res.config.method!.toLowerCase(), 'post');
 }
 
 async function testParams(urlshortener: urlshortener_v1.Urlshortener) {
   const params = {shortUrl: 'a'};
   nock(Utils.baseUrl).get('/urlshortener/v1/url?shortUrl=a').reply(200);
   const res = await urlshortener.url.get(params);
-  assert.equal(Utils.getQs(res), 'shortUrl=a');
-  assert.equal(res.config.method!.toLowerCase(), 'get');
+  assert.strictEqual(Utils.getQs(res), 'shortUrl=a');
+  assert.strictEqual(res.config.method!.toLowerCase(), 'get');
 }
 
 async function testInsert(urlshortener: urlshortener_v1.Urlshortener) {
@@ -42,7 +42,7 @@ async function testInsert(urlshortener: urlshortener_v1.Urlshortener) {
   assert.notEqual(res.data, null);
   assert.notEqual(res.data.kind, null);
   assert.notEqual(res.data.id, null);
-  assert.equal(res.data.longUrl, 'http://google.com/');
+  assert.strictEqual(res.data.longUrl, 'http://google.com/');
   return res;
 }
 

@@ -30,9 +30,9 @@ async function testMultpart(drive: drive_v2.Drive) {
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
       {encoding: 'utf8'});
   const res = await drive.files.insert({requestBody, media});
-  assert.equal(res.config.method!.toLowerCase(), 'post');
-  assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
-  assert.equal(
+  assert.strictEqual(res.config.method!.toLowerCase(), 'post');
+  assert.strictEqual(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
+  assert.strictEqual(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
       res.request.headers['content-type'].replace(boundaryPrefix, '');
@@ -52,10 +52,10 @@ async function testMediaBody(drive: drive_v2.Drive) {
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
       {encoding: 'utf8'});
   const res = await drive.files.insert({requestBody, media});
-  assert.equal(res.config.method!.toLowerCase(), 'post');
-  assert.equal(res.config.maxContentLength, Math.pow(2, 31));
-  assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
-  assert.equal(
+  assert.strictEqual(res.config.method!.toLowerCase(), 'post');
+  assert.strictEqual(res.config.maxContentLength, Math.pow(2, 31));
+  assert.strictEqual(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
+  assert.strictEqual(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
       res.request.headers['content-type'].replace(boundaryPrefix, '');
@@ -121,7 +121,7 @@ describe('Media', () => {
           }
         });
     assert(progressEvents.length > 0);
-    assert.equal(progressEvents[0], fileSize);
+    assert.strictEqual(progressEvents[0], fileSize);
     scope.done();
   });
 
@@ -134,11 +134,11 @@ describe('Media', () => {
 
        const res = await localDrive.files.insert(
            {requestBody: {}, media: {body: 'hello'}});
-       assert.equal(
+       assert.strictEqual(
            JSON.stringify(res.data), JSON.stringify({fileId: 'abc123'}));
        const res2 = await remoteDrive.files.insert(
            {requestBody: {}, media: {body: 'hello'}});
-       assert.equal(
+       assert.strictEqual(
            JSON.stringify(res2.data), JSON.stringify({fileId: 'abc123'}));
      });
 
@@ -149,10 +149,10 @@ describe('Media', () => {
            .times(2)
            .reply(200, {fileId: 'abc123'});
        const res = await localDrive.files.insert({media: {body: 'hello'}});
-       assert.equal(
+       assert.strictEqual(
            JSON.stringify(res.data), JSON.stringify({fileId: 'abc123'}));
        const res2 = await remoteDrive.files.insert({media: {body: 'hello'}});
-       assert.equal(
+       assert.strictEqual(
            JSON.stringify(res2.data), JSON.stringify({fileId: 'abc123'}));
      });
 
@@ -167,13 +167,13 @@ describe('Media', () => {
            });
        const media = {body: 'hey'};
        const res = await localDrive.files.insert({media});
-       assert.equal(res.config.method!.toLowerCase(), 'post');
-       assert.equal(
+       assert.strictEqual(res.config.method!.toLowerCase(), 'post');
+       assert.strictEqual(
            res.request.path, '/upload/drive/v2/files?uploadType=media');
        assert.strictEqual(media.body, res.data);
        const res2 = await remoteDrive.files.insert({media});
-       assert.equal(res.config.method!.toLowerCase(), 'post');
-       assert.equal(
+       assert.strictEqual(res.config.method!.toLowerCase(), 'post');
+       assert.strictEqual(
            res.request.path, '/upload/drive/v2/files?uploadType=media');
        assert.strictEqual(media.body, res2.data);
      });
@@ -198,10 +198,10 @@ describe('Media', () => {
         .reply(200);
     const res = await localDrive.files.insert(
         {visibility: 'someValue', media: {body: 'wat'}});
-    assert.equal(Utils.getQs(res), 'visibility=someValue&uploadType=media');
+    assert.strictEqual(Utils.getQs(res), 'visibility=someValue&uploadType=media');
     const res2 = await remoteDrive.files.insert(
         {visibility: 'someValue', media: {body: 'wat'}});
-    assert.equal(Utils.getQs(res2), 'visibility=someValue&uploadType=media');
+    assert.strictEqual(Utils.getQs(res2), 'visibility=someValue&uploadType=media');
   });
 
   it('should not multipart upload if no media body given', async () => {
@@ -210,9 +210,9 @@ describe('Media', () => {
         .twice()
         .reply(200);
     const res = await localDrive.files.insert({visibility: 'someValue'});
-    assert.equal(Utils.getQs(res), 'visibility=someValue');
+    assert.strictEqual(Utils.getQs(res), 'visibility=someValue');
     const res2 = await remoteDrive.files.insert({visibility: 'someValue'});
-    assert.equal(Utils.getQs(res2), 'visibility=someValue');
+    assert.strictEqual(Utils.getQs(res2), 'visibility=someValue');
   });
 
   it('should set text/plain when passed a string as media body', async () => {
@@ -242,15 +242,15 @@ describe('Media', () => {
     const res = await localGmail.users.drafts.create(
         {userId: 'me', requestBody, media: {mimeType: 'message/rfc822'}} as
         gmail_v1.Params$Resource$Users$Drafts$Create);
-    assert.equal(
+    assert.strictEqual(
         res.request.headers['content-type'].indexOf('application/json'), 0);
-    assert.equal(JSON.stringify(res.data), JSON.stringify(requestBody));
+    assert.strictEqual(JSON.stringify(res.data), JSON.stringify(requestBody));
     const res2 = await remoteGmail.users.drafts.create(
         {userId: 'me', requestBody, media: {mimeType: 'message/rfc822'}} as
         gmail_v1.Params$Resource$Users$Drafts$Create);
-    assert.equal(
+    assert.strictEqual(
         res2.request.headers['content-type'].indexOf('application/json'), 0);
-    assert.equal(JSON.stringify(res2.data), JSON.stringify(requestBody));
+    assert.strictEqual(JSON.stringify(res2.data), JSON.stringify(requestBody));
   });
 
   it('should accept readable stream as media body without metadata',
@@ -269,7 +269,7 @@ describe('Media', () => {
        const res = await localGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}} as
            gmail_v1.Params$Resource$Users$Drafts$Create);
-       assert.equal(res.data, expectedBody);
+       assert.strictEqual(res.data, expectedBody);
        body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        expectedBody = fs.readFileSync(
@@ -277,7 +277,7 @@ describe('Media', () => {
        const res2 = await remoteGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}} as
            gmail_v1.Params$Resource$Users$Drafts$Create);
-       assert.equal(res2.data, expectedBody);
+       assert.strictEqual(res2.data, expectedBody);
      });
 
   it('should accept readable stream as media body with metadata', async () => {
@@ -354,10 +354,10 @@ describe('Media', () => {
        let media = {mimeType: 'message/rfc822', body};
        const res = await localGmail.users.drafts.create(
            {userId: 'me', requestBody, media});
-       assert.equal(typeof res.data, 'object');
+       assert.strictEqual(typeof res.data, 'object');
        // tslint:disable-next-line no-any
-       assert.equal((res.data as any).hello, 'world');
-       assert.equal(typeof res, 'object');
+       assert.strictEqual((res.data as any).hello, 'world');
+       assert.strictEqual(typeof res, 'object');
        requestBody = {
          message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
        };
@@ -366,10 +366,10 @@ describe('Media', () => {
        media = {mimeType: 'message/rfc822', body: body2};
        const res2 = await remoteGmail.users.drafts.create(
            {userId: 'me', requestBody, media});
-       assert.equal(typeof res2.data, 'object');
+       assert.strictEqual(typeof res2.data, 'object');
        // tslint:disable-next-line no-any
-       assert.equal((res2.data as any).hello, 'world');
-       assert.equal(typeof res2, 'object');
+       assert.strictEqual((res2.data as any).hello, 'world');
+       assert.strictEqual(typeof res2, 'object');
      });
 
   after(() => {
