@@ -14,10 +14,10 @@
 import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
-import minimist from 'minimist';
-import mkdirp from 'mkdirp';
+import * as minimist from 'minimist';
+import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import Q from 'p-queue';
+import * as Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';

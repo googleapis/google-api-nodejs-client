@@ -11,11 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
+import * as assert from 'assert';
 import * as fs from 'fs';
-import nock from 'nock';
+import * as nock from 'nock';
 import * as path from 'path';
-import pify from 'pify';
+import * as pify from 'pify';
 
 import {drive_v2, gmail_v1, GoogleApis} from '../src';
 
