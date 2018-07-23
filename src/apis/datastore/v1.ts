@@ -549,6 +549,81 @@ export namespace datastore_v1 {
     labels?: any;
   }
   /**
+   * A minimal index definition. Next tag: 8
+   */
+  export interface Schema$GoogleDatastoreAdminV1Index {
+    /**
+     * The index&#39;s ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     * Required.
+     */
+    ancestor?: string;
+    /**
+     * The resource ID of the index. Output only.
+     */
+    indexId?: string;
+    /**
+     * The entity kind to which this index applies. Required.
+     */
+    kind?: string;
+    /**
+     * Project ID. Output only.
+     */
+    projectId?: string;
+    /**
+     * An ordered sequence of property names and their index attributes.
+     * Required.
+     */
+    properties?: Schema$GoogleDatastoreAdminV1IndexedProperty[];
+    /**
+     * The state of the index. Output only.
+     */
+    state?: string;
+  }
+  /**
+   * Next tag: 3
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexedProperty {
+    /**
+     * The indexed property&#39;s direction.  Must not be DIRECTION_UNSPECIFIED.
+     * Required.
+     */
+    direction?: string;
+    /**
+     * The property name to index. Required.
+     */
+    name?: string;
+  }
+  /**
+   * Metadata for Index operations.
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexOperationMetadata {
+    /**
+     * Metadata common to all Datastore Admin operations.
+     */
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    /**
+     * The index resource ID that this operation is acting on.
+     */
+    indexId?: string;
+    /**
+     * An estimate of the number of entities processed.
+     */
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
+  }
+  /**
+   * The response for google.datastore.admin.v1.DatastoreAdmin.ListIndexes.
+   */
+  export interface Schema$GoogleDatastoreAdminV1ListIndexesResponse {
+    /**
+     * The indexes.
+     */
+    indexes?: Schema$GoogleDatastoreAdminV1Index[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * Measures the progress of a particular metric.
    */
   export interface Schema$GoogleDatastoreAdminV1Progress {
@@ -1226,10 +1301,12 @@ export namespace datastore_v1 {
 
   export class Resource$Projects {
     root: Datastore;
+    indexes: Resource$Projects$Indexes;
     operations: Resource$Projects$Operations;
     constructor(root: Datastore) {
       this.root = root;
       this.getRoot.bind(this);
+      this.indexes = new Resource$Projects$Indexes(root);
       this.operations = new Resource$Projects$Operations(root);
     }
 
@@ -1978,6 +2055,208 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$RunQueryRequest;
   }
+
+  export class Resource$Projects$Indexes {
+    root: Datastore;
+    constructor(root: Datastore) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * datastore.projects.indexes.get
+     * @desc Gets an index.
+     * @alias datastore.projects.indexes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.indexId The resource ID of the index to get.
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Indexes$Get, options?: MethodOptions):
+        AxiosPromise<Schema$GoogleDatastoreAdminV1Index>;
+    get(params: Params$Resource$Projects$Indexes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(params: Params$Resource$Projects$Indexes$Get,
+        callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Indexes$Get|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        callback?: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void|AxiosPromise<Schema$GoogleDatastoreAdminV1Index> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/projects/{projectId}/indexes/{indexId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'indexId'],
+        pathParams: ['indexId', 'projectId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(parameters);
+      }
+    }
+
+
+    /**
+     * datastore.projects.indexes.list
+     * @desc Lists the indexes that match the specified filters.  Datastore uses
+     * an eventually consistent query to fetch the list of indexes and may
+     * occasionally return stale results.
+     * @alias datastore.projects.indexes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter
+     * @param {integer=} params.pageSize The maximum number of items to return.  If zero, then all results will be returned.
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Indexes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>;
+    list(
+        params: Params$Resource$Projects$Indexes$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Indexes$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Indexes$List|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>):
+        void|AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/projects/{projectId}/indexes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Indexes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource ID of the index to get.
+     */
+    indexId?: string;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Indexes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return.  If zero, then all results will be
+     * returned.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+  }
+
 
   export class Resource$Projects$Operations {
     root: Datastore;

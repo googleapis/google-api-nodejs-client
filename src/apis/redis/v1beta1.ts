@@ -304,21 +304,6 @@ export namespace redis_v1beta1 {
     name?: string;
   }
   /**
-   * This location metadata represents additional configuration options for a
-   * given location where a Redis instance may be created. All fields are output
-   * only. It is returned as content of the
-   * `google.cloud.location.Location.metadata` field.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * Output only. The set of available zones in the location. The map is keyed
-     * by the lowercase ID of each zone, as defined by GCE. These keys can be
-     * specified in `location_id` or `alternative_location_id` fields when
-     * creating a Redis instance.
-     */
-    availableZones?: any;
-  }
-  /**
    * This resource represents a long-running operation that is the result of a
    * network API call.
    */
@@ -356,56 +341,6 @@ export namespace redis_v1beta1 {
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: any;
-  }
-  /**
-   * This operation metadata represents the state of operations that may have
-   * happened or are happening on the instance. All fields are output only. It
-   * is returned as content of the `google.longrunning.Operation.metadata`
-   * field. The `google.longrunning.Operation.name` field will be of the form
-   * `projects/{project_id}/locations/{location_id}/operations/{operation_id}`
-   * and the name for a `ListOperations` request will be of the form
-   * `projects/{project_id}/locations/{location_id}`  On a ListOperations
-   * request where {location_id} is &quot;-&quot;, all regions available to the
-   * {project_id} are queried and the results aggregated. If a location is not
-   * available, a dummy `google.longrunning.Operation` entry will be included in
-   * the `operations` field of the response, with the `name` field set to a
-   * value of the form
-   * `projects/{project_id}/locations/{location_id}/operations/-` and the `done`
-   * field will be set and the `result.error` field set with the `code` field
-   * set to `google.rpc.Code.DEADLINE_EXCEEDED` and the `message` field set to
-   * `location unavailable for ListOperations`. The Operation metadata` field
-   * will not be set for such a dummy operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string;
-    /**
-     * Output only. Detailed operation progress, if available.
-     */
-    detail?: string;
-    /**
-     * Output only. The time the operation was completed.
-     */
-    endTime?: string;
-    /**
-     * Output only. The operation type.
-     */
-    operationType?: string;
-    /**
-     * Output only. The time the operation was started.
-     */
-    startTime?: string;
-    /**
-     * Output only. The current state of the operation.
-     */
-    state?: string;
-    /**
-     * Output only. Server-defined resource path for the target of the
-     * operation.
-     */
-    target?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -460,11 +395,6 @@ export namespace redis_v1beta1 {
      */
     message?: string;
   }
-  /**
-   * Defines specific information for a particular zone. Currently empty and
-   * reserved for future use only.
-   */
-  export interface Schema$ZoneMetadata {}
 
 
   export class Resource$Projects {

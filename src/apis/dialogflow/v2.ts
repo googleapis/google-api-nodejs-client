@@ -313,11 +313,10 @@ export namespace dialogflow_v2 {
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
      * ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project
      * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
-     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note:
-     * Environments and users are under construction and will be available soon.
-     * The Context ID is always converted to lowercase. If &lt;Environment
-     * ID&gt; is not specified, we assume default &#39;draft&#39; environment.
-     * If &lt;User ID&gt; is not specified, we assume default &#39;-&#39; user.
+     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. The
+     * `Context ID` is always converted to lowercase. If `Environment ID` is not
+     * specified, we assume default &#39;draft&#39; environment. If `User ID` is
+     * not specified, we assume default &#39;-&#39; user.
      */
     name?: string;
     /**
@@ -402,14 +401,15 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentResponse {
     /**
      * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export&#39;\
+     * a command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
      * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \   -H &#39;Accept: application/json&#39; \   -H
-     * &#39;Content-Type: application/json&#39; \   --compressed \ --data-binary
-     * &#39;{}&#39; \ | grep agentContent | sed -e
-     * &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39;
-     * \ | base64 --decode &gt; &lt;agent zip file&gt;
+     * application-default   print-access-token) \   -H &#39;Accept:
+     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
+     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
+     * -e &#39;s/.*&quot;agentContent&quot;:
+     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
+     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -421,11 +421,12 @@ export namespace dialogflow_v2 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics. Next available field number: 22.
+   * sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
-     * Optional. The name of the action associated with the intent.
+     * Optional. The name of the action associated with the intent. Note: The
+     * action name must not contain whitespaces.
      */
     action?: string;
     /**
@@ -985,7 +986,15 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
      * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.
+     * field passed in the request.  This field is used for the telephony
+     * gateway. It should have a structure similar to this JSON message:
+     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
+     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be in [E.164
+     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
+     * standard tier agents. When the telephony gateway is used with a standard
+     * tier agent the `caller_id` field above will have a value of
+     * `REDACTED_IN_STANDARD_TIER_AGENT`.
      */
     payload?: any;
     /**
@@ -993,6 +1002,11 @@ export namespace dialogflow_v2 {
      * set by Dialogflow-owned servers.
      */
     source?: string;
+    /**
+     * Optional. The version of the protocol used for this request. This field
+     * is AoG-specific.
+     */
+    version?: string;
   }
   /**
    * Represents the result of conversational query or event processing.
@@ -1030,7 +1044,9 @@ export namespace dialogflow_v2 {
     intent?: Schema$GoogleCloudDialogflowV2beta1Intent;
     /**
      * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain).
+     * uncertain) to 1.0 (completely certain). If there are `multiple
+     * knowledge_answers` messages, this value is set to the greatest
+     * `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
@@ -1201,7 +1217,8 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2DetectIntentResponse {
     /**
-     * The results of the conversational query or event processing.
+     * The selected results of the conversational query or event processing. See
+     * `alternative_query_results` for additional potential results.
      */
     queryResult?: Schema$GoogleCloudDialogflowV2QueryResult;
     /**
@@ -1312,14 +1329,15 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2ExportAgentResponse {
     /**
      * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:export&#39;\
+     * a command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
      * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \   -H &#39;Accept: application/json&#39; \   -H
-     * &#39;Content-Type: application/json&#39; \   --compressed \ --data-binary
-     * &#39;{}&#39; \ | grep agentContent | sed -e
-     * &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39;
-     * \ | base64 --decode &gt; &lt;agent zip file&gt;
+     * application-default   print-access-token) \   -H &#39;Accept:
+     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
+     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
+     * -e &#39;s/.*&quot;agentContent&quot;:
+     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
+     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -1334,13 +1352,14 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2ImportAgentRequest {
     /**
      * The agent to import.  Example for how to import an agent via the command
-     * line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
+     * line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:import\
      * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-     * &#39;Content-Type: application/json&#39; \    --compressed \
-     * --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent
-     * zip file&gt; | base64 -w 0)&#39;    }&quot;
+     * application-default    print-access-token) \    -H &#39;Accept:
+     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
+     * --compressed \    --data-binary &quot;{       &#39;agentContent&#39;:
+     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
+     * }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -1383,11 +1402,12 @@ export namespace dialogflow_v2 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics. Next available field number: 22.
+   * sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**
-     * Optional. The name of the action associated with the intent.
+     * Optional. The name of the action associated with the intent. Note: The
+     * action name must not contain whitespaces.
      */
     action?: string;
     /**
@@ -1993,7 +2013,15 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
      * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.
+     * field passed in the request.  This field is used for the telephony
+     * gateway. It should have a structure similar to this JSON message:
+     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
+     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be in [E.164
+     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
+     * standard tier agents. When the telephony gateway is used with a standard
+     * tier agent the `caller_id` field above will have a value of
+     * `REDACTED_IN_STANDARD_TIER_AGENT`.
      */
     payload?: any;
     /**
@@ -2001,6 +2029,11 @@ export namespace dialogflow_v2 {
      * set by Dialogflow-owned servers.
      */
     source?: string;
+    /**
+     * Optional. The version of the protocol used for this request. This field
+     * is AoG-specific.
+     */
+    version?: string;
   }
   /**
    * Represents the query input. It can contain either:  1.  An audio config
@@ -2095,7 +2128,9 @@ export namespace dialogflow_v2 {
     intent?: Schema$GoogleCloudDialogflowV2Intent;
     /**
      * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain).
+     * uncertain) to 1.0 (completely certain). If there are `multiple
+     * knowledge_answers` messages, this value is set to the greatest
+     * `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
@@ -2151,13 +2186,14 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2RestoreAgentRequest {
     /**
      * The agent to restore.  Example for how to restore an agent via the
-     * command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
+     * command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:restore\
      * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-     * &#39;Content-Type: application/json&#39; \    --compressed \
-     * --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent
-     * zip file&gt; | base64 -w 0)&#39;    }&quot; \
+     * application-default    print-access-token) \    -H &#39;Accept:
+     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
+     * --compressed \    --data-binary &quot;{        &#39;agentContent&#39;:
+     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
+     * }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**

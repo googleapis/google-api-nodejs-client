@@ -218,7 +218,7 @@ export namespace chat_v1 {
      */
     eventTime?: string;
     /**
-     * The message that triggered the event.
+     * The message that triggered the event, if applicable.
      */
     message?: Schema$Message;
     /**

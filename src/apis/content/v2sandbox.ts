@@ -72,11 +72,11 @@ export namespace content_v2sandbox {
 
   export interface Schema$Amount {
     /**
-     * Value before taxes.
+     * [required] Value before taxes.
      */
     pretax?: Schema$Price;
     /**
-     * Tax value.
+     * [required] Tax value.
      */
     tax?: Schema$Price;
   }
@@ -120,27 +120,28 @@ export namespace content_v2sandbox {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * Customer balance on this invoice. A positive amount means the customer is
-     * paying, a negative one means the customer is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Customer balance on this invoice. A positive amount means the
+     * customer is paying, a negative one means the customer is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.
      */
     customerBalance?: Schema$Amount;
     /**
-     * Google balance on this invoice. A positive amount means Google is paying,
-     * a negative one means Google is receiving money. Note that it must always
-     * be true that merchant_balance + customer_balance + google_balance = 0.
+     * [required] Google balance on this invoice. A positive amount means Google
+     * is paying, a negative one means Google is receiving money. Note: the sum
+     * of merchant_balance, customer_balance and google_balance must always be
+     * zero.
      */
     googleBalance?: Schema$Amount;
     /**
-     * Merchant balance on this invoice. A positive amount means the merchant is
-     * paying, a negative one means the merchant is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Merchant balance on this invoice. A positive amount means the
+     * merchant is paying, a negative one means the merchant is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.
      */
     merchantBalance?: Schema$Amount;
     /**
-     * Total price for the product.
+     * [required] Total price for the product.
      */
     productTotal?: Schema$Amount;
     /**
@@ -150,11 +151,11 @@ export namespace content_v2sandbox {
   }
   export interface Schema$InvoiceSummaryAdditionalChargeSummary {
     /**
-     * Total additional charge for this type.
+     * [required] Total additional charge for this type.
      */
     totalAmount?: Schema$Amount;
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
@@ -353,23 +354,24 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -386,22 +388,23 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * Option to create a refund-only invoice. Exactly one of refund_option and
-     * return_option must be provided.
+     * Option to create a refund-only invoice. Exactly one of refundOnlyOption
+     * or returnOption must be provided.
      */
     refundOnlyOption?:
         Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption;
     /**
      * Option to create an invoice for a refund and mark all items within the
-     * invoice as returned. Exactly one of refund_option and return_option must
+     * invoice as returned. Exactly one of refundOnlyOption or returnOption must
      * be provided.
      */
     returnOption?:
@@ -428,7 +431,7 @@ export namespace content_v2sandbox {
      */
     description?: string;
     /**
-     * Reason for the refund.
+     * [required] Reason for the refund.
      */
     reason?: string;
   }
@@ -438,7 +441,7 @@ export namespace content_v2sandbox {
      */
     description?: string;
     /**
-     * Reason for the return.
+     * [required] Reason for the return.
      */
     reason?: string;
   }
@@ -1333,6 +1336,11 @@ export namespace content_v2sandbox {
      */
     carrier?: string;
     /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
+    /**
      * The ID of the shipment.
      */
     shipmentId?: string;
@@ -1420,7 +1428,7 @@ export namespace content_v2sandbox {
     creationDate?: string;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format.
-     * Present only if status is delievered
+     * Present only if status is delivered
      */
     deliveryDate?: string;
     /**
@@ -1821,6 +1829,11 @@ export namespace content_v2sandbox {
      */
     carrier?: string;
     /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
+    /**
      * The ID of the operation. Unique across all operations for a given order.
      */
     operationId?: string;
@@ -1860,26 +1873,26 @@ export namespace content_v2sandbox {
   }
   export interface Schema$Promotion {
     /**
-     * Amount of the promotion. The values here are the promotion applied to the
-     * unit price pretax and to the total of the tax amounts.
+     * [required] Amount of the promotion. The values here are the promotion
+     * applied to the unit price pretax and to the total of the tax amounts.
      */
     promotionAmount?: Schema$Amount;
     /**
-     * ID of the promotion.
+     * [required] ID of the promotion.
      */
     promotionId?: string;
   }
   export interface Schema$ShipmentInvoice {
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -1894,11 +1907,11 @@ export namespace content_v2sandbox {
      */
     productId?: string;
     /**
-     * Unit IDs to define specific units within the line item.
+     * [required] Unit IDs to define specific units within the line item.
      */
     shipmentUnitIds?: string[];
     /**
-     * Invoice details for a single unit.
+     * [required] Invoice details for a single unit.
      */
     unitInvoice?: Schema$UnitInvoice;
   }
@@ -2090,7 +2103,7 @@ export namespace content_v2sandbox {
      */
     promotions?: Schema$Promotion[];
     /**
-     * Price of the unit, before applying taxes.
+     * [required] Price of the unit, before applying taxes.
      */
     unitPricePretax?: Schema$Price;
     /**
@@ -2100,7 +2113,7 @@ export namespace content_v2sandbox {
   }
   export interface Schema$UnitInvoiceAdditionalCharge {
     /**
-     * Amount of the additional charge.
+     * [required] Amount of the additional charge.
      */
     additionalChargeAmount?: Schema$Amount;
     /**
@@ -2108,21 +2121,22 @@ export namespace content_v2sandbox {
      */
     additionalChargePromotions?: Schema$Promotion[];
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
   export interface Schema$UnitInvoiceTaxLine {
     /**
-     * Tax amount for the tax type.
+     * [required] Tax amount for the tax type.
      */
     taxAmount?: Schema$Price;
     /**
-     * Optional name of the tax type.
+     * Optional name of the tax type. This should only be provided if taxType is
+     * otherFeeTax.
      */
     taxName?: string;
     /**
-     * Type of the tax.
+     * [required] Type of the tax.
      */
     taxType?: string;
   }

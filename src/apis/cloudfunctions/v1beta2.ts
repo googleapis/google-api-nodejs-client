@@ -114,6 +114,11 @@ export namespace cloudfunctions_v1beta2 {
      */
     entryPoint?: string;
     /**
+     * **Beta Feature**  Environment variables that shall be available during
+     * function execution.
+     */
+    environmentVariables?: any;
+    /**
      * A source that fires events in response to a condition in another service.
      */
     eventTrigger?: Schema$EventTrigger;
@@ -132,10 +137,30 @@ export namespace cloudfunctions_v1beta2 {
      */
     latestOperation?: string;
     /**
+     * The limit on the maximum number of function instances that may coexist at
+     * a given time. This feature is currently in alpha, available only for
+     * whitelisted users.
+     */
+    maxInstances?: number;
+    /**
      * A user-defined name of the function. Function names must be unique
      * globally and match pattern `projects/x/locations/x/functions/x
      */
     name?: string;
+    /**
+     * The VPC Network that this cloud function can connect to. It can be either
+     * the fully-qualified URI, or the short name of the network resource. If
+     * the short network name is used, the network must belong to the same
+     * project. Otherwise, it must belong to a project within the same
+     * organization. The format of this field is either
+     * `projects/{project}/global/networks/{network}` or `{network}`, where
+     * {project} is a project id where the network is defined, and {network} is
+     * the short name of the network.  See [the VPC
+     * documentation](https://cloud.google.com/compute/docs/vpc) for more
+     * information on connecting Cloud projects.  This feature is currently in
+     * alpha, available only for whitelisted users.
+     */
+    network?: string;
     /**
      * The runtime in which the function is going to run. If empty, defaults to
      * Node.js 6.

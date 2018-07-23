@@ -52,6 +52,7 @@ export namespace cloudresourcemanager_v2beta1 {
     root = this;
 
     folders: Resource$Folders;
+    operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
@@ -59,6 +60,7 @@ export namespace cloudresourcemanager_v2beta1 {
       this.getRoot.bind(this);
 
       this.folders = new Resource$Folders(this);
+      this.operations = new Resource$Operations(this);
     }
 
     getRoot() {
@@ -143,7 +145,7 @@ export namespace cloudresourcemanager_v2beta1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -373,13 +375,12 @@ export namespace cloudresourcemanager_v2beta1 {
      * can be used along with the suffix wildcard symbol `*`.  The displayName
      * field in a query expression should use escaped quotes for values that
      * include whitespace to prevent unexpected behavior.  Some example queries
-     * are:  |Query | Description| |----- | -----------|
-     * |displayName=Test*|Folders whose display name starts with
-     * &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is
-     * ACTIVE.| |parent=folders/123|Folders whose parent is
-     * &quot;folders/123&quot;.| |parent=folders/123 AND
-     * lifecycleState=ACTIVE|Active folders whose parent is
-     * &quot;folders/123&quot;.| |displayName=\\&quot;Test
+     * are:  |Query | Description| |----- | -----------| |displayName=Test* |
+     * Folders whose display name starts with &quot;Test&quot;.|
+     * |lifecycleState=ACTIVE | Folders whose lifecycleState is ACTIVE.|
+     * |parent=folders/123 | Folders whose parent is &quot;folders/123&quot;.|
+     * |parent=folders/123 AND lifecycleState=ACTIVE | Active folders whose
+     * parent is &quot;folders/123&quot;.| |displayName=\\&quot;Test
      * String\\&quot;|Folders whose display name includes both &quot;Test&quot;
      * and &quot;String&quot;.|
      */
@@ -526,11 +527,11 @@ export namespace cloudresourcemanager_v2beta1 {
      * headroom when moving folders that contain deleted folders. + The addition
      * of the Folder must not cause the total number of Folders under its parent
      * to exceed 100.  If the operation fails due to a folder constraint
-     * violation, a PreconditionFailure explaining the violation will be
-     * returned. If the failure occurs synchronously then the
-     * PreconditionFailure will be returned via the Status.details field and if
-     * it occurs asynchronously then the PreconditionFailure will be returned
-     * via the the Operation.error field.  The caller must have
+     * violation, some errors may be returned by the CreateFolder request, with
+     * status code FAILED_PRECONDITION and an error description. Other folder
+     * constraint violations will be communicated in the Operation, with the
+     * specific PreconditionFailure returned via the details list in the
+     * Operation.error field.  The caller must have
      * `resourcemanager.folders.create` permission on the identified parent.
      * @alias cloudresourcemanager.folders.create
      * @memberOf! ()
@@ -578,7 +579,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -647,7 +648,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -711,7 +712,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -782,7 +783,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+resource}:getIamPolicy')
+              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -856,7 +857,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -934,8 +935,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+name}:move')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1011,7 +1011,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
             options),
@@ -1081,7 +1081,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders:search')
+              url: (rootUrl + '/v2/folders:search')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1153,7 +1153,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+resource}:setIamPolicy')
+              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1231,7 +1231,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+resource}:testIamPermissions')
+              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1305,7 +1305,7 @@ export namespace cloudresourcemanager_v2beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{+name}:undelete')
+              url: (rootUrl + '/v2/{+name}:undelete')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1511,5 +1511,94 @@ export namespace cloudresourcemanager_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteFolderRequest;
+  }
+
+
+  export class Resource$Operations {
+    root: Cloudresourcemanager;
+    constructor(root: Cloudresourcemanager) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudresourcemanager.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias cloudresourcemanager.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 }

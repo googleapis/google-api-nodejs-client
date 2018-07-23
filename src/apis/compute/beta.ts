@@ -91,6 +91,7 @@ export namespace compute_beta {
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionOperations: Resource$Regionoperations;
     regions: Resource$Regions;
+    resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
     routes: Resource$Routes;
     securityPolicies: Resource$Securitypolicies;
@@ -157,6 +158,7 @@ export namespace compute_beta {
       this.regionInstanceGroups = new Resource$Regioninstancegroups(this);
       this.regionOperations = new Resource$Regionoperations(this);
       this.regions = new Resource$Regions(this);
+      this.resourcePolicies = new Resource$Resourcepolicies(this);
       this.routers = new Resource$Routers(this);
       this.routes = new Resource$Routes(this);
       this.securityPolicies = new Resource$Securitypolicies(this);
@@ -688,7 +690,8 @@ export namespace compute_beta {
   export interface Schema$AttachedDiskInitializeParams {
     /**
      * Specifies the disk name. If not specified, the default is to use the name
-     * of the instance.
+     * of the instance. If the disk with the instance name exists already in the
+     * given zone/region, a new name will be automatically generated.
      */
     diskName?: string;
     /**
@@ -1205,7 +1208,7 @@ export namespace compute_beta {
      */
     bucketName?: string;
     /**
-     * Cloud CDN Coniguration for this BackendBucket.
+     * Cloud CDN configuration for this BackendBucket.
      */
     cdnPolicy?: Schema$BackendBucketCdnPolicy;
     /**
@@ -1249,18 +1252,17 @@ export namespace compute_beta {
    */
   export interface Schema$BackendBucketCdnPolicy {
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of
-     * any existing Cache-Control header. The actual headers served in responses
-     * will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend bucket.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1342,7 +1344,8 @@ export namespace compute_beta {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a BackendService. An up-to-date fingerprint must
-     * be provided in order to update the BackendService.
+     * be provided in order to update the BackendService.  To see the latest
+     * fingerprint, make a get() request to retrieve a BackendService.
      */
     fingerprint?: string;
     /**
@@ -1474,18 +1477,17 @@ export namespace compute_beta {
      */
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless
-     * of any existing Cache-Control header. The actual headers served in
-     * responses will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend service.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1562,10 +1564,10 @@ export namespace compute_beta {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently. This
-     * field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
      */
     condition?: Schema$Expr;
     /**
@@ -2006,6 +2008,10 @@ export namespace compute_beta {
      */
     replicaZones?: string[];
     /**
+     * Resource policies applied to this disk for automatic snapshot creations.
+     */
+    resourcePolicies?: string[];
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string;
@@ -2210,6 +2216,18 @@ export namespace compute_beta {
      */
     targetDisk?: string;
   }
+  export interface Schema$DisksAddResourcePoliciesRequest {
+    /**
+     * Resource policies to be added to this disk.
+     */
+    resourcePolicies?: string[];
+  }
+  export interface Schema$DisksRemoveResourcePoliciesRequest {
+    /**
+     * Resource policies to be removed from this disk.
+     */
+    resourcePolicies?: string[];
+  }
   export interface Schema$DisksResizeRequest {
     /**
      * The new size of the persistent disk, which is specified in GB.
@@ -2360,12 +2378,15 @@ export namespace compute_beta {
     warning?: any;
   }
   export interface Schema$DistributionPolicy {
+    /**
+     * Zones where the regional managed instance group will create and manage
+     * instances.
+     */
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
   export interface Schema$DistributionPolicyZoneConfiguration {
     /**
-     * URL of the zone where managed instance group is spawning instances (for
-     * regional resources). Zone has to belong to the region where managed
+     * The URL of the zone. The zone must exist in the region where the managed
      * instance group is located.
      */
     zone?: string;
@@ -2618,7 +2639,7 @@ export namespace compute_beta {
    */
   export interface Schema$ForwardingRule {
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
      */
@@ -2647,12 +2668,14 @@ export namespace compute_beta {
      * field is empty, an ephemeral IPv4 address from the same scope (global or
      * regional) will be assigned. A regional forwarding rule supports IPv4
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
-     * load balancing scheme is INTERNAL, this can only be an RFC 1918 IP
-     * address belonging to the network/subnet configured for the forwarding
-     * rule. By default, if this field is empty, an ephemeral internal IP
-     * address will be automatically allocated from the IP range of the subnet
-     * or network configured for this forwarding rule.  An address can be
-     * specified either by a literal IP address or a URL reference to an
+     * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
+     * reference to an existing Address resource ( internal regional static IP
+     * address).  When the load balancing scheme is INTERNAL, this can only be
+     * an RFC 1918 IP address belonging to the network/subnet configured for the
+     * forwarding rule. By default, if this field is empty, an ephemeral
+     * internal IP address will be automatically allocated from the IP range of
+     * the subnet or network configured for this forwarding rule.  An address
+     * can be specified either by a literal IP address or a URL reference to an
      * existing Address resource. The following examples are all valid:   -
      * 100.1.2.3  -
      * https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address
@@ -2663,13 +2686,14 @@ export namespace compute_beta {
     /**
      * The IP protocol to which this rule applies. Valid options are TCP, UDP,
      * ESP, AH, SCTP or ICMP.  When the load balancing scheme is INTERNAL, only
-     * TCP and UDP are valid.
+     * TCP and UDP are valid. When the load balancing scheme is
+     * INTERNAL_SELF_MANAGED, only TCPis valid.
      */
     IPProtocol?: string;
     /**
      * The IP Version that will be used by this forwarding rule. Valid options
-     * are IPV4 or IPV6. This can only be specified for a global forwarding
-     * rule.
+     * are IPV4 or IPV6. This can only be specified for an external global
+     * forwarding rule.
      */
     ipVersion?: string;
     /**
@@ -2695,10 +2719,12 @@ export namespace compute_beta {
     labels?: any;
     /**
      * This signifies what the ForwardingRule will be used for and can only take
-     * the following values: INTERNAL, EXTERNAL The value of INTERNAL means that
-     * this will be used for Internal Network Load Balancing (TCP, UDP). The
-     * value of EXTERNAL means that this will be used for External Load
-     * Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+     * the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The
+     * value of INTERNAL means that this will be used for Internal Network Load
+     * Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this
+     * will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means
+     * that this will be used for External Load Balancing (HTTP(S) LB, External
+     * TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
     /**
@@ -2712,10 +2738,10 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
-     * balancing, this field identifies the network that the load balanced IP
-     * should belong to for this Forwarding Rule. If this field is not
-     * specified, the default network will be used.
+     * This field is not used for external load balancing.  For INTERNAL and
+     * INTERNAL_SELF_MANAGED load balancing, this field identifies the network
+     * that the load balanced IP should belong to for this Forwarding Rule. If
+     * this field is not specified, the default network will be used.
      */
     network?: string;
     /**
@@ -2777,7 +2803,7 @@ export namespace compute_beta {
      */
     serviceName?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the subnetwork that the load balanced IP
      * should belong to for this Forwarding Rule.  If the network specified is
      * in auto subnet mode, this field is optional. However, if the network is
@@ -2789,7 +2815,8 @@ export namespace compute_beta {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object.
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
   }
@@ -2892,6 +2919,25 @@ export namespace compute_beta {
      * also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
      */
     labels?: any;
+  }
+  export interface Schema$GlobalSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
   }
   /**
    * Guest OS features.
@@ -3279,51 +3325,6 @@ export namespace compute_beta {
      */
     warning?: any;
   }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTPS health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTPS.
@@ -3398,6 +3399,51 @@ export namespace compute_beta {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTPS health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -3547,9 +3593,9 @@ export namespace compute_beta {
      */
     sourceDiskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * The ID value of the disk used to create this image. This value may be
-     * used to determine whether the image was taken from the current or a
-     * previous instance of a given disk name.
+     * [Output Only] The ID value of the disk used to create this image. This
+     * value may be used to determine whether the image was taken from the
+     * current or a previous instance of a given disk name.
      */
     sourceDiskId?: string;
     /**
@@ -3995,7 +4041,8 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * Policy valid only for regional managed instance groups.
+     * Policy specifying intended distribution of instances in regional managed
+     * instance group.
      */
     distributionPolicy?: Schema$DistributionPolicy;
     /**
@@ -4007,7 +4054,8 @@ export namespace compute_beta {
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager.
+     * InstanceGroupManager.  To see the latest fingerprint, make a get()
+     * request to retrieve an InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -5904,7 +5952,9 @@ export namespace compute_beta {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.
+     * up-to-date fingerprint hash in order to update or change metadata.  To
+     * see the latest fingerprint, make a get() request to retrieve the
+     * resource.
      */
     fingerprint?: string;
     /**
@@ -6011,9 +6061,9 @@ export namespace compute_beta {
   export interface Schema$NetworkEndpoint {
     /**
      * The name for a specific VM instance that the IP address belongs to. This
-     * is required for network endpoints of type GCE_VM_IP and GCE_VM_IP_PORT.
-     * The instance must be in the same zone of network endpoint group.  The
-     * name must be 1-63 characters long, and comply with RFC1035.
+     * is required for network endpoints of type GCE_VM_IP_PORT. The instance
+     * must be in the same zone of network endpoint group.  The name must be
+     * 1-63 characters long, and comply with RFC1035.
      */
     instance?: string;
     /**
@@ -6055,8 +6105,8 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * This field is only valid when the network endpoint group type is
-     * LOAD_BALANCING.
+     * This field is only valid when the network endpoint group is used for load
+     * balancing.
      */
     loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
     /**
@@ -6070,8 +6120,8 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * Type of network endpoints in this network endpoint group. Only supported
-     * values for LOAD_BALANCING are GCE_VM_IP or GCE_VM_IP_PORT.
+     * Type of network endpoints in this network endpoint group. Currently the
+     * only supported value is GCE_VM_IP_PORT.
      */
     networkEndpointType?: string;
     /**
@@ -6082,11 +6132,6 @@ export namespace compute_beta {
      * [Output only] Number of network endpoints in the network endpoint group.
      */
     size?: number;
-    /**
-     * Specify the type of this network endpoint group. Only LOAD_BALANCING is
-     * valid for now.
-     */
-    type?: string;
   }
   export interface Schema$NetworkEndpointGroupAggregatedList {
     /**
@@ -6121,14 +6166,12 @@ export namespace compute_beta {
     warning?: any;
   }
   /**
-   * Load balancing specific fields for network endpoint group of type
-   * LOAD_BALANCING.
+   * Load balancing specific fields for network endpoint group.
    */
   export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
     /**
      * The default port used if the port number is not specified in the network
-     * endpoint. If the network endpoint type is GCE_VM_IP, this field must not
-     * be specified.
+     * endpoint.
      */
     defaultPort?: number;
     /**
@@ -6456,7 +6499,8 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * [Output Only] A list of nodes in this node group.
+     * [Deprecated] Use nodeGroups.listNodes instead. [Output Only] A list of
+     * nodes in this node group.
      */
     nodes?: Schema$NodeGroupNode[];
     /**
@@ -6467,6 +6511,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The total number of nodes in the node group.
+     */
+    size?: number;
     status?: string;
     /**
      * [Output Only] The name of the zone where the node group resides, such as
@@ -6552,6 +6600,7 @@ export namespace compute_beta {
      * The type of this node.
      */
     nodeType?: string;
+    status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
     /**
@@ -6561,6 +6610,38 @@ export namespace compute_beta {
   }
   export interface Schema$NodeGroupsDeleteNodesRequest {
     nodes?: string[];
+  }
+  export interface Schema$NodeGroupsListNodes {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Node resources.
+     */
+    items?: Schema$NodeGroupNode[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute.nodeGroupsListNodes for the list of nodes in the specified node
+     * group.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   export interface Schema$NodeGroupsScopedList {
     /**
@@ -7416,6 +7497,18 @@ export namespace compute_beta {
      */
     warning?: any;
   }
+  export interface Schema$RegionDisksAddResourcePoliciesRequest {
+    /**
+     * Resource policies to be added to this disk.
+     */
+    resourcePolicies?: string[];
+  }
+  export interface Schema$RegionDisksRemoveResourcePoliciesRequest {
+    /**
+     * Resource policies to be removed from this disk.
+     */
+    resourcePolicies?: string[];
+  }
   export interface Schema$RegionDisksResizeRequest {
     /**
      * The new size of the regional persistent disk, which is specified in GB.
@@ -7730,6 +7823,243 @@ export namespace compute_beta {
      * service.
      */
     group?: string;
+  }
+  export interface Schema$ResourcePoliciesList {
+    etag?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] A list of ResourcePolicy resources.
+     */
+    items?: Schema$ResourcePolicy[];
+    /**
+     * [Output Only] Type of resource.Always compute#resourcePoliciesList for
+     * listsof resourcePolicies
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$ResourcePoliciesScopedList {
+    /**
+     * A list of resourcePolicies contained in this scope.
+     */
+    resourcePolicies?: Schema$ResourcePolicy[];
+    /**
+     * Informational warning which replaces the list of resourcePolicies when
+     * the list is empty.
+     */
+    warning?: any;
+  }
+  export interface Schema$ResourcePolicy {
+    /**
+     * Resource policy for persistent disks for creating snapshots.
+     */
+    backupSchedulePolicy?: Schema$ResourcePolicyBackupSchedulePolicy;
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of the resource. Always compute#resource_policies for
+     * resource policies.
+     */
+    kind?: string;
+    /**
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * with RFC1035. Specifically, the name must be 1-63 characters long and
+     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
+     * first character must be a lowercase letter, and all following characters
+     * must be a dash, lowercase letter, or digit, except the last character,
+     * which cannot be a dash.
+     */
+    name?: string;
+    region?: string;
+    /**
+     * [Output Only] Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string;
+  }
+  /**
+   * Contains a list of resourcePolicies.
+   */
+  export interface Schema$ResourcePolicyAggregatedList {
+    etag?: string;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of ResourcePolicy resources.
+     */
+    items?: any;
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * A backup schedule policy specifies when and how frequently snapshots are to
+   * be created for the target disk. Also specifies how many and how long these
+   * automatically created snapshot should be retained.
+   */
+  export interface Schema$ResourcePolicyBackupSchedulePolicy {
+    /**
+     * Retention policy applied to snapshots created by this resource policy.
+     */
+    retentionPolicy?: Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy;
+    /**
+     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance
+     * we are allowed to perform on this VM and when. Schedule that is applied
+     * to disks covered by this policy.
+     */
+    schedule?: Schema$ResourcePolicyBackupSchedulePolicySchedule;
+    /**
+     * Properties with which snapshots are created such as lables, encryption
+     * keys.
+     */
+    snapshotProperties?:
+        Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties;
+  }
+  /**
+   * Policy for retention of automatically created snapshots.
+   */
+  export interface Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy {
+    /**
+     * Maximum age of the snapshot that is allowed to be kept.
+     */
+    maxRetentionDays?: number;
+  }
+  /**
+   * A schedule for disks where the schedueled operations are performed.
+   */
+  export interface Schema$ResourcePolicyBackupSchedulePolicySchedule {
+    dailySchedule?: Schema$ResourcePolicyDailyCycle;
+    hourlySchedule?: Schema$ResourcePolicyHourlyCycle;
+    weeklySchedule?: Schema$ResourcePolicyWeeklyCycle;
+  }
+  /**
+   * Specified snapshot properties for automatic snapshots created by this
+   * policy.
+   */
+  export interface Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties {
+    /**
+     * Indication to perform a ?guest aware? snapshot.
+     */
+    guestFlush?: boolean;
+    /**
+     * Labels to apply to automatic snapshots. These can be later modified by
+     * the setLabels method. Label values may be empty.
+     */
+    labels?: any;
+    /**
+     * GCS bucket storage location of the auto snapshot (regional or
+     * multi-regional).
+     */
+    storageLocations?: string[];
+  }
+  /**
+   * Time window specified for daily operations.
+   */
+  export interface Schema$ResourcePolicyDailyCycle {
+    /**
+     * Allows to define schedule that runs every nth day of the month.
+     */
+    daysInCycle?: number;
+    /**
+     * [Output only] Duration of the time window, automatically chosen to be
+     * smallest possible in the given scenario.
+     */
+    duration?: string;
+    /**
+     * Time within the window to start the operations. It must be in format
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     */
+    startTime?: string;
+  }
+  /**
+   * Time window specified for hourly operations.
+   */
+  export interface Schema$ResourcePolicyHourlyCycle {
+    /**
+     * [Output only] Duration of the time window, automatically chosen to be
+     * smallest possible in the given scenario.
+     */
+    duration?: string;
+    /**
+     * Allows to define schedule that runs every nth hour.
+     */
+    hoursInCycle?: number;
+    /**
+     * Time within the window to start the operations. It must be in format
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     */
+    startTime?: string;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$ResourcePolicyWeeklyCycle {
+    /**
+     * Up to 7 intervals/windows, one for each day of the week.
+     */
+    dayOfWeeks?: Schema$ResourcePolicyWeeklyCycleDayOfWeek[];
+  }
+  export interface Schema$ResourcePolicyWeeklyCycleDayOfWeek {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string;
+    /**
+     * [Output only] Duration of the time window, automatically chosen to be
+     * smallest possible in the given scenario.
+     */
+    duration?: string;
+    /**
+     * Time within the window to start the operations. It must be in format
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     */
+    startTime?: string;
   }
   /**
    * Represents a Route resource. A route specifies how certain packets should
@@ -8316,7 +8646,8 @@ export namespace compute_beta {
   }
   /**
    * A security policy is comprised of one or more rules. It can also be
-   * associated with one or more &#39;targets&#39;. Next available tag: 11
+   * associated with one or more &#39;targets&#39;. Next available tag: 11 (==
+   * resource_for beta.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
@@ -8567,6 +8898,11 @@ export namespace compute_beta {
    */
   export interface Schema$Snapshot {
     /**
+     * [Output Only] Set to true if snapshots are autoamtically by applying
+     * resource policy on the target disk.
+     */
+    autoCreated?: boolean;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
@@ -8673,6 +9009,10 @@ export namespace compute_beta {
      * updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
      */
     storageBytesStatus?: string;
+    /**
+     * GCS bucket storage location of the snapshot (regional or multi-regional).
+     */
+    storageLocations?: string[];
   }
   /**
    * Contains a list of Snapshot resources.
@@ -8910,7 +9250,8 @@ export namespace compute_beta {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a SslPolicy. An up-to-date fingerprint must be
-     * provided in order to update the SslPolicy.
+     * provided in order to update the SslPolicy.  To see the latest
+     * fingerprint, make a get() request to retrieve an SslPolicy.
      */
     fingerprint?: string;
     /**
@@ -8999,7 +9340,8 @@ export namespace compute_beta {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a Subnetwork. An up-to-date fingerprint must be
-     * provided in order to update the Subnetwork.
+     * provided in order to update the Subnetwork.  To see the latest
+     * fingerprint, make a get() request to retrieve a Subnetwork.
      */
     fingerprint?: string;
     /**
@@ -9984,7 +10326,7 @@ export namespace compute_beta {
      * changes after every request to modify or update labels. You must always
      * provide an up-to-date fingerprint hash in order to update or change
      * labels.  To see the latest fingerprint, make a get() request to retrieve
-     * an TargetVpnGateway.
+     * a TargetVpnGateway.
      */
     labelFingerprint?: string;
     /**
@@ -10117,6 +10459,17 @@ export namespace compute_beta {
      */
     portName?: string;
     /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, TCP health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
      * Specifies the type of proxy header to append before sending data to the
      * backend, either NONE or PROXY_V1. The default is NONE.
      */
@@ -10201,7 +10554,8 @@ export namespace compute_beta {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a UrlMap. An up-to-date fingerprint must be
-     * provided in order to update the UrlMap.
+     * provided in order to update the UrlMap.  To see the latest fingerprint,
+     * make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
     /**
@@ -13964,7 +14318,8 @@ export namespace compute_beta {
 
     /**
      * compute.backendBuckets.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the backend bucket.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! ()
      *
@@ -14164,7 +14519,8 @@ export namespace compute_beta {
 
     /**
      * compute.backendBuckets.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the backend bucket.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -15172,7 +15528,8 @@ export namespace compute_beta {
 
     /**
      * compute.backendServices.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the specified backend service.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.addSignedUrlKey
      * @memberOf! ()
      *
@@ -15521,8 +15878,8 @@ export namespace compute_beta {
 
     /**
      * compute.backendServices.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the specified backend
-     * service.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -17064,6 +17421,81 @@ export namespace compute_beta {
 
 
     /**
+     * compute.disks.addResourcePolicies
+     * @desc Adds existing resource policies to a disk. You can only add one
+     * policy which will be applied to this disk for scheduling snapshot
+     * creation.
+     * @alias compute.disks.addResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().DisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addResourcePolicies(
+        params?: Params$Resource$Disks$Addresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addResourcePolicies(
+        params: Params$Resource$Disks$Addresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        params: Params$Resource$Disks$Addresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        paramsOrCallback?: Params$Resource$Disks$Addresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Addresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Addresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/addResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.disks.aggregatedList
      * @desc Retrieves an aggregated list of persistent disks.
      * @example
@@ -17598,6 +18030,77 @@ export namespace compute_beta {
 
 
     /**
+     * compute.disks.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.disks.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Disks$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Disks$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Disks$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Disks$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.disks.insert
      * @desc Creates a persistent disk in the specified project using the data
      * in the request. You can create a disk with a sourceImage, a
@@ -17872,6 +18375,80 @@ export namespace compute_beta {
 
 
     /**
+     * compute.disks.removeResourcePolicies
+     * @desc Removes resource policies from a disk.
+     * @alias compute.disks.removeResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().DisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeResourcePolicies(
+        params?: Params$Resource$Disks$Removeresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    removeResourcePolicies(
+        params: Params$Resource$Disks$Removeresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(
+        params: Params$Resource$Disks$Removeresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    removeResourcePolicies(
+        paramsOrCallback?: Params$Resource$Disks$Removeresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Disks$Removeresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Removeresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/removeResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.disks.resize
      * @desc Resizes the specified persistent disk. You can only increase the
      * size of the disk.
@@ -18002,6 +18579,78 @@ export namespace compute_beta {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.disks.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.disks.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Disks$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Disks$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Disks$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Disks$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -18279,6 +18928,43 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Disks$Addresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisksAddResourcePoliciesRequest;
+  }
   export interface Params$Resource$Disks$Aggregatedlist {
     /**
      * Auth client or API Key for the request
@@ -18425,6 +19111,25 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Disks$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Disks$Insert {
     /**
      * Auth client or API Key for the request
@@ -18520,6 +19225,43 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Disks$Removeresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisksRemoveResourcePoliciesRequest;
+  }
   export interface Params$Resource$Disks$Resize {
     /**
      * Auth client or API Key for the request
@@ -18556,6 +19298,30 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$DisksResizeRequest;
+  }
+  export interface Params$Resource$Disks$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
   }
   export interface Params$Resource$Disks$Setlabels {
     /**
@@ -28424,6 +29190,76 @@ export namespace compute_beta {
 
 
     /**
+     * compute.images.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.images.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Images$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Images$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Images$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Images$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Images$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/images/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.images.insert
      * @desc Creates an image in the specified project using the data included
      * in the request.
@@ -28685,6 +29521,77 @@ export namespace compute_beta {
         createAPIRequest<Schema$ImageList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$ImageList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.images.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.images.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Images$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Images$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Images$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Images$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Images$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/images/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -29044,6 +29951,21 @@ export namespace compute_beta {
      */
     project?: string;
   }
+  export interface Params$Resource$Images$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Images$Insert {
     /**
      * Auth client or API Key for the request
@@ -29130,6 +30052,26 @@ export namespace compute_beta {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Images$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Images$Setlabels {
     /**
@@ -30269,11 +31211,11 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31909,7 +32851,22 @@ export namespace compute_beta {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -31917,15 +32874,27 @@ export namespace compute_beta {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -35034,6 +36003,77 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instances.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instances$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instances$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instances$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instances$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.getSerialPortOutput
      * @desc Returns the specified instance's serial port output.
      * @example
@@ -35985,6 +37025,78 @@ export namespace compute_beta {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instances.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instances$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instances$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instances$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instances$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -38394,6 +39506,25 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Instances$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Instances$Getserialportoutput {
     /**
      * Auth client or API Key for the request
@@ -38695,6 +39826,30 @@ export namespace compute_beta {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Instances$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
   }
   export interface Params$Resource$Instances$Setlabels {
     /**
@@ -39561,6 +40716,76 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instanceTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instanceTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instancetemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceTemplates.insert
      * @desc Creates an instance template in the specified project using the
      * data that is included in the request. If you are creating a new template
@@ -39832,6 +41057,77 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instanceTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instanceTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instancetemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceTemplates.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
      * @example
@@ -40005,6 +41301,21 @@ export namespace compute_beta {
      */
     project?: string;
   }
+  export interface Params$Resource$Instancetemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Instancetemplates$Insert {
     /**
      * Auth client or API Key for the request
@@ -40087,6 +41398,26 @@ export namespace compute_beta {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instancetemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Instancetemplates$Testiampermissions {
     /**
@@ -46562,7 +47893,8 @@ export namespace compute_beta {
 
     /**
      * compute.nodeGroups.aggregatedList
-     * @desc Retrieves an aggregated list of node groups.
+     * @desc Retrieves an aggregated list of node groups. Note: use
+     * nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.aggregatedList
      * @memberOf! ()
      *
@@ -46781,7 +48113,8 @@ export namespace compute_beta {
     /**
      * compute.nodeGroups.get
      * @desc Returns the specified NodeGroup. Get a list of available NodeGroups
-     * by making a list() request.
+     * by making a list() request. Note: the "nodes" field should not be used.
+     * Use nodeGroups.listNodes instead.
      * @alias compute.nodeGroups.get
      * @memberOf! ()
      *
@@ -46991,6 +48324,7 @@ export namespace compute_beta {
     /**
      * compute.nodeGroups.list
      * @desc Retrieves a list of node groups available to the specified project.
+     * Note: use nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.list
      * @memberOf! ()
      *
@@ -47055,6 +48389,81 @@ export namespace compute_beta {
         createAPIRequest<Schema$NodeGroupList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$NodeGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.listNodes
+     * @desc Lists nodes in the node group.
+     * @alias compute.nodeGroups.listNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes you want to list.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNodes(
+        params?: Params$Resource$Nodegroups$Listnodes,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroupsListNodes>;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Listnodes|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback?: BodyResponseCallback<Schema$NodeGroupsListNodes>):
+        void|AxiosPromise<Schema$NodeGroupsListNodes> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Listnodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Listnodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupsListNodes>(parameters);
       }
     }
 
@@ -47546,6 +48955,68 @@ export namespace compute_beta {
      * (Default: 500)
      */
     maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Listnodes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the NodeGroup resource whose nodes you want to list.
+     */
+    nodeGroup?: string;
     /**
      * Sorts list results by a certain order. By default, results are returned
      * in alphanumerical order based on the resource name.  You can also sort
@@ -49693,10 +51164,10 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -49838,10 +51309,10 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {().ProjectsListXpnHostsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -50620,19 +52091,46 @@ export namespace compute_beta {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -50647,19 +52145,46 @@ export namespace compute_beta {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -54128,6 +55653,81 @@ export namespace compute_beta {
 
 
     /**
+     * compute.regionDisks.addResourcePolicies
+     * @desc Adds existing resource policies to a regional disk. You can only
+     * add one policy which will be applied to this disk for scheduling snapshot
+     * creation.
+     * @alias compute.regionDisks.addResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addResourcePolicies(
+        params?: Params$Resource$Regiondisks$Addresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Addresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Addresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Addresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/disks/{disk}/addResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.createSnapshot
      * @desc Creates a snapshot of this regional disk.
      * @alias compute.regionDisks.createSnapshot
@@ -54485,6 +56085,80 @@ export namespace compute_beta {
 
 
     /**
+     * compute.regionDisks.removeResourcePolicies
+     * @desc Removes resource policies from a regional disk.
+     * @alias compute.regionDisks.removeResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeResourcePolicies(
+        params?: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    removeResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Removeresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Removeresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Removeresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/disks/{disk}/removeResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.resize
      * @desc Resizes the specified regional persistent disk.
      * @alias compute.regionDisks.resize
@@ -54704,6 +56378,43 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Regiondisks$Addresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksAddResourcePoliciesRequest;
+  }
   export interface Params$Resource$Regiondisks$Createsnapshot {
     /**
      * Auth client or API Key for the request
@@ -54886,6 +56597,43 @@ export namespace compute_beta {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regiondisks$Removeresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksRemoveResourcePoliciesRequest;
   }
   export interface Params$Resource$Regiondisks$Resize {
     /**
@@ -56159,11 +57907,11 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -57597,7 +59345,22 @@ export namespace compute_beta {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -57605,15 +59368,27 @@ export namespace compute_beta {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -59682,6 +61457,682 @@ export namespace compute_beta {
      * Project ID for this request.
      */
     project?: string;
+  }
+
+
+  export class Resource$Resourcepolicies {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.resourcePolicies.aggregatedList
+     * @desc Retrieves an aggregated list of resource policies.
+     * @alias compute.resourcePolicies.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Resourcepolicies$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ResourcePolicyAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Resourcepolicies$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ResourcePolicyAggregatedList>,
+        callback: BodyResponseCallback<Schema$ResourcePolicyAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Resourcepolicies$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$ResourcePolicyAggregatedList>):
+        void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$ResourcePolicyAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Resourcepolicies$Aggregatedlist|
+        BodyResponseCallback<Schema$ResourcePolicyAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResourcePolicyAggregatedList>,
+        callback?: BodyResponseCallback<Schema$ResourcePolicyAggregatedList>):
+        void|AxiosPromise<Schema$ResourcePolicyAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resourcepolicies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/aggregated/resourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourcePolicyAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ResourcePolicyAggregatedList>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * compute.resourcePolicies.delete
+     * @desc Deletes the specified resource policy.
+     * @alias compute.resourcePolicies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resourcePolicy Name of the resource policy to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Resourcepolicies$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Resourcepolicies$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Resourcepolicies$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Resourcepolicies$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resourcePolicy'],
+        pathParams: ['project', 'region', 'resourcePolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.resourcePolicies.get
+     * @desc Retrieves all information of the specified resource policy.
+     * @alias compute.resourcePolicies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.resourcePolicy Name of the resource policy to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Resourcepolicies$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ResourcePolicy>;
+    get(params: Params$Resource$Resourcepolicies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ResourcePolicy>,
+        callback: BodyResponseCallback<Schema$ResourcePolicy>): void;
+    get(params: Params$Resource$Resourcepolicies$Get,
+        callback: BodyResponseCallback<Schema$ResourcePolicy>): void;
+    get(callback: BodyResponseCallback<Schema$ResourcePolicy>): void;
+    get(paramsOrCallback?: Params$Resource$Resourcepolicies$Get|
+        BodyResponseCallback<Schema$ResourcePolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResourcePolicy>,
+        callback?: BodyResponseCallback<Schema$ResourcePolicy>):
+        void|AxiosPromise<Schema$ResourcePolicy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resourcePolicy'],
+        pathParams: ['project', 'region', 'resourcePolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourcePolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ResourcePolicy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.resourcePolicies.insert
+     * @desc Creates a new resource policy.
+     * @alias compute.resourcePolicies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ResourcePolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Resourcepolicies$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Resourcepolicies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Resourcepolicies$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Resourcepolicies$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/resourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.resourcePolicies.list
+     * @desc A list all the resource policies that have been configured for the
+     * specified project in specified region.
+     * @alias compute.resourcePolicies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Resourcepolicies$List,
+        options?: MethodOptions): AxiosPromise<Schema$ResourcePoliciesList>;
+    list(
+        params: Params$Resource$Resourcepolicies$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ResourcePoliciesList>,
+        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+    list(
+        params: Params$Resource$Resourcepolicies$List,
+        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+    list(callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Resourcepolicies$List|
+        BodyResponseCallback<Schema$ResourcePoliciesList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResourcePoliciesList>,
+        callback?: BodyResponseCallback<Schema$ResourcePoliciesList>):
+        void|AxiosPromise<Schema$ResourcePoliciesList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/resourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourcePoliciesList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ResourcePoliciesList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.resourcePolicies.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.resourcePolicies.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Resourcepolicies$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Resourcepolicies$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Resourcepolicies$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Resourcepolicies$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resourcepolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/resourcePolicies/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Resourcepolicies$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Resourcepolicies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the resource policy to delete.
+     */
+    resourcePolicy?: string;
+  }
+  export interface Params$Resource$Resourcepolicies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the resource policy to retrieve.
+     */
+    resourcePolicy?: string;
+  }
+  export interface Params$Resource$Resourcepolicies$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResourcePolicy;
+  }
+  export interface Params$Resource$Resourcepolicies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Resourcepolicies$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -63937,6 +66388,76 @@ export namespace compute_beta {
 
 
     /**
+     * compute.snapshots.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.snapshots.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Snapshots$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Snapshots$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Snapshots$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Snapshots$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Snapshots$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/snapshots/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.snapshots.list
      * @desc Retrieves the list of Snapshot resources contained within the
      * specified project.
@@ -64069,6 +66590,77 @@ export namespace compute_beta {
         createAPIRequest<Schema$SnapshotList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$SnapshotList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.snapshots.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.snapshots.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Snapshots$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Snapshots$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Snapshots$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Snapshots$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Snapshots$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/snapshots/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -64381,6 +66973,21 @@ export namespace compute_beta {
      */
     snapshot?: string;
   }
+  export interface Params$Resource$Snapshots$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Snapshots$List {
     /**
      * Auth client or API Key for the request
@@ -64434,6 +67041,26 @@ export namespace compute_beta {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Snapshots$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Snapshots$Setlabels {
     /**

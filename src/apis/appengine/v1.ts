@@ -589,6 +589,15 @@ export namespace appengine_v1 {
     rolloutStrategy?: string;
   }
   /**
+   * The entrypoint for the application.
+   */
+  export interface Schema$Entrypoint {
+    /**
+     * The format should be a shell command that can be fed to bash -c.
+     */
+    shell?: string;
+  }
+  /**
    * Custom static error page to be served when an error occurs.
    */
   export interface Schema$ErrorHandler {
@@ -1674,7 +1683,8 @@ export namespace appengine_v1 {
      */
     authFailAction?: string;
     /**
-     * Level of login required to access this resource.
+     * Level of login required to access this resource. Not supported for
+     * Node.js in the App Engine standard environment.
      */
     login?: string;
     /**
@@ -1683,7 +1693,9 @@ export namespace appengine_v1 {
      */
     redirectHttpResponseCode?: string;
     /**
-     * Executes a script to handle the request that matches this URL pattern.
+     * Executes a script to handle the requests that match this URL pattern.
+     * Only the auto value is supported for Node.js in the App Engine standard
+     * environment, for example &quot;script&quot;: &quot;auto&quot;.
      */
     script?: Schema$ScriptHandler;
     /**
@@ -1762,6 +1774,10 @@ export namespace appengine_v1 {
      * implemented by the app.
      */
     endpointsApiService?: Schema$EndpointsApiService;
+    /**
+     * The entrypoint for the application.
+     */
+    entrypoint?: Schema$Entrypoint;
     /**
      * App Engine execution environment for this version.Defaults to standard.
      */

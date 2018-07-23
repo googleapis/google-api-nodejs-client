@@ -201,6 +201,64 @@ export namespace servicecontrol_v1 {
     status?: Schema$Status;
   }
   /**
+   * This message defines request authentication attributes. Terminology is
+   * based on the JSON Web Token (JWT) standard, but the terms also correlate to
+   * concepts in other standards.
+   */
+  export interface Schema$Auth {
+    /**
+     * A list of access level resource names that allow resources to be accessed
+     * by authenticated requester. It is part of Secure GCP processing for the
+     * incoming request. An access level string has the format:
+     * &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot;
+     * Example:
+     * &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
+     */
+    accessLevels?: string[];
+    /**
+     * The intended audience(s) for this authentication information. Reflects
+     * the audience (`aud`) claim within a JWT. The audience value(s) depends on
+     * the `issuer`, but typically include one or more of the following pieces
+     * of information:  *  The services intended to receive the credential such
+     * as    [&quot;pubsub.googleapis.com&quot;,
+     * &quot;storage.googleapis.com&quot;] *  A set of service-based scopes. For
+     * example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]
+     * *  The client id of an app, such as the Firebase project id for JWTs from
+     * Firebase Auth.  Consult the documentation for the credential issuer to
+     * determine the information provided.
+     */
+    audiences?: string[];
+    /**
+     * Structured claims presented with the credential. JWTs include `{key:
+     * value}` pairs for standard and private claims. The following is a subset
+     * of the standard required and optional claims that would typically be
+     * presented for a Google-based JWT:     {&#39;iss&#39;:
+     * &#39;accounts.google.com&#39;,     &#39;sub&#39;:
+     * &#39;113289723416554971153&#39;,     &#39;aud&#39;:
+     * [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;], &#39;azp&#39;:
+     * &#39;123456789012.apps.googleusercontent.com&#39;,     &#39;email&#39;:
+     * &#39;jsmith@example.com&#39;,     &#39;iat&#39;: 1353601026,
+     * &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but
+     * with an identity provider dependent structure.
+     */
+    claims?: any;
+    /**
+     * The authorized presenter of the credential. Reflects the optional
+     * Authorized Presenter (`azp`) claim within a JWT or the OAuth client id.
+     * For example, a Google Cloud Platform client id looks as follows:
+     * &quot;123456789012.apps.googleusercontent.com&quot;.
+     */
+    presenter?: string;
+    /**
+     * The authenticated principal. Reflects the issuer (`iss`) and subject
+     * (`sub`) claims within a JWT. The issuer and subject should be `/`
+     * delimited, with `/` percent-encoded within the subject fragment. For
+     * Google accounts, the principal format is:
+     * &quot;https://accounts.google.com/{id}&quot;
+     */
+    principal?: string;
+  }
+  /**
    * Authentication information for the operation.
    */
   export interface Schema$AuthenticationInfo {
@@ -240,6 +298,13 @@ export namespace servicecontrol_v1 {
      * bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
      */
     resource?: string;
+    /**
+     * Resource attributes used in IAM condition evaluation. This field contains
+     * resource attributes like resource type and resource name.  To get the
+     * whole view of the attributes used in IAM condition evaluation, the user
+     * must also look into `AuditLog.request_metadata.request_attributes`.
+     */
+    resourceAttributes?: Schema$Resource;
   }
   /**
    * Defines the errors to be returned in
@@ -980,6 +1045,78 @@ export namespace servicecontrol_v1 {
     serviceConfigId?: string;
   }
   /**
+   * This message defines attributes for an HTTP request. If the actual request
+   * is not an HTTP request, the runtime system should try to map the actual
+   * request to an equivalent HTTP request.
+   */
+  export interface Schema$Request {
+    /**
+     * The request authentication. May be absent for unauthenticated requests.
+     * Derived from the HTTP request `Authorization` header or equivalent.
+     */
+    auth?: Schema$Auth;
+    /**
+     * The HTTP URL fragment. No URL decoding is performed.
+     */
+    fragment?: string;
+    /**
+     * The HTTP request headers. If multiple headers share the same key, they
+     * must be merged according to the HTTP spec. All header keys must be
+     * lowercased, because HTTP header keys are case-insensitive.
+     */
+    headers?: any;
+    /**
+     * The HTTP request `Host` header value.
+     */
+    host?: string;
+    /**
+     * The unique ID for a request, which can be propagated to downstream
+     * systems. The ID should have low probability of collision within a single
+     * day for a specific service.
+     */
+    id?: string;
+    /**
+     * The HTTP request method, such as `GET`, `POST`.
+     */
+    method?: string;
+    /**
+     * The HTTP URL path.
+     */
+    path?: string;
+    /**
+     * The network protocol used with the request, such as &quot;http/1.1&quot;,
+     * &quot;spdy/3&quot;, &quot;h2&quot;, &quot;h2c&quot;, &quot;webrtc&quot;,
+     * &quot;tcp&quot;, &quot;udp&quot;, &quot;quic&quot;. See
+     * https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids
+     * for details.
+     */
+    protocol?: string;
+    /**
+     * The HTTP URL query in the format of `name1=value`&amp;name2=value2`, as
+     * it appears in the first line of the HTTP request. No decoding is
+     * performed.
+     */
+    query?: string;
+    /**
+     * A special parameter for request reason. It is used by security systems to
+     * associate auditing information with a request.
+     */
+    reason?: string;
+    /**
+     * The HTTP URL scheme, such as `http` and `https`.
+     */
+    scheme?: string;
+    /**
+     * The HTTP request size in bytes. If unknown, it must be -1.
+     */
+    size?: string;
+    /**
+     * The timestamp when the `destination` service receives the first byte of
+     * the request.
+     */
+    time?: string;
+  }
+  /**
    * Metadata about the request.
    */
   export interface Schema$RequestMetadata {
@@ -1013,6 +1150,50 @@ export namespace servicecontrol_v1 {
      * was made from the `my-project` App Engine app. NOLINT
      */
     callerSuppliedUserAgent?: string;
+    /**
+     * Request attributes used in IAM condition evaluation. This field contains
+     * request attributes like request time and access levels associated with
+     * the request.  To get the whole view of the attributes used in IAM
+     * condition evaluation, the user must also look into
+     * `AuditLog.authentication_info.resource_attributes`.
+     */
+    requestAttributes?: Schema$Request;
+  }
+  /**
+   * This message defines core attributes for a resource. A resource is an
+   * addressable (named) entity provided by the destination service. For
+   * example, a file stored on a network storage service.
+   */
+  export interface Schema$Resource {
+    /**
+     * The labels or tags on the resource, such as AWS resource tags and
+     * Kubernetes resource labels.
+     */
+    labels?: any;
+    /**
+     * The stable identifier (name) of a resource on the `service`. A resource
+     * can be logically identified as
+     * &quot;//{resource.service}/{resource.name}&quot;. The differences between
+     * a resource name and a URI are:  *   Resource name is a logical
+     * identifier, independent of network     protocol and API version. For
+     * example,     `//pubsub.googleapis.com/projects/123/topics/news-feed`. *
+     * URI often includes protocol and version information, so it can     be
+     * used directly by applications. For example,
+     * `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`.  See
+     * https://cloud.google.com/apis/design/resource_names for details.
+     */
+    name?: string;
+    /**
+     * The name of the service that this resource belongs to, such as
+     * `pubsub.googleapis.com`. The service may be different from the DNS
+     * hostname that actually serves the request.
+     */
+    service?: string;
+    /**
+     * The type of the resource. The scheme is platform-specific because
+     * different platforms define their resources differently.
+     */
+    type?: string;
   }
   /**
    * Describes a resource associated with this operation.
@@ -1025,6 +1206,13 @@ export namespace servicecontrol_v1 {
      * “organizations/&lt;organization-id&gt;”
      */
     resourceContainer?: string;
+    /**
+     * The location of the resource. If not empty, the resource will be checked
+     * against location policy. The value must be a valid zone, region or
+     * multiregion. For example: &quot;europe-west4&quot; or
+     * &quot;northamerica-northeast1-a&quot;
+     */
+    resourceLocation?: string;
     /**
      * Name of the resource. This is used for auditing purposes.
      */

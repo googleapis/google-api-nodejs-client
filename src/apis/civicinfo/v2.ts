@@ -229,6 +229,10 @@ export namespace civicinfo_v2 {
      */
     ballotPlacement?: string;
     /**
+     * The official title on the ballot for this contest, only where available.
+     */
+    ballotTitle?: string;
+    /**
      * The candidate choices for this contest.
      */
     candidates?: Schema$Candidate[];
@@ -489,6 +493,9 @@ export namespace civicinfo_v2 {
      */
     scope?: string;
   }
+  export interface Schema$FieldMetadataProto {
+    internal?: Schema$InternalFieldMetadataProto;
+  }
   /**
    * Describes a political geography.
    */
@@ -515,6 +522,38 @@ export namespace civicinfo_v2 {
      * absent) in the request.
      */
     officeIndices?: number[];
+  }
+  export interface Schema$InternalFieldMetadataProto {
+    isAuto?: boolean;
+    sourceSummary?: Schema$InternalSourceSummaryProto;
+  }
+  export interface Schema$InternalSourceSummaryProto {
+    dataset?: string;
+    provider?: string;
+  }
+  export interface Schema$LivegraphBacktraceRecordInfo {
+    dataSourcePublishMsec?: string;
+    expId?: string;
+    expInfo?: Schema$LivegraphBacktraceRecordInfoExpInfo;
+    isRecon?: boolean;
+    isWlmThrottled?: boolean;
+    numberOfTriples?: string;
+    priority?: string;
+    process?: string;
+    proxyReceiveMsec?: string;
+    proxySentMsec?: string;
+    recordId?: string;
+    shouldMonitorLatency?: boolean;
+    subscriberReceiveMsec?: string;
+    topicBuildFinishMsec?: string;
+    topicBuildStartMsec?: string;
+    version?: string;
+  }
+  export interface Schema$LivegraphBacktraceRecordInfoExpInfo {
+    deletedIns?: string[];
+  }
+  export interface Schema$MessageSet {
+    recordMessageSetExt?: Schema$LivegraphBacktraceRecordInfo;
   }
   /**
    * Information about an Office held by one or more Officials.
@@ -591,6 +630,12 @@ export namespace civicinfo_v2 {
      */
     urls?: string[];
   }
+  export interface Schema$PointProto {
+    latE7?: number;
+    lngE7?: number;
+    metadata?: Schema$FieldMetadataProto;
+    temporaryData?: Schema$MessageSet;
+  }
   /**
    * A location where a voter can vote. This may be an early vote site, an
    * election day voting location, or a drop off location for a completed
@@ -647,14 +692,7 @@ export namespace civicinfo_v2 {
     countryName?: string;
     countryNameCode?: string;
     dependentLocalityName?: string;
-    dependentThoroughfareLeadingType?: string;
     dependentThoroughfareName?: string;
-    dependentThoroughfarePostDirection?: string;
-    dependentThoroughfarePreDirection?: string;
-    dependentThoroughfaresConnector?: string;
-    dependentThoroughfaresIndicator?: string;
-    dependentThoroughfaresType?: string;
-    dependentThoroughfareTrailingType?: string;
     firmName?: string;
     isDisputed?: boolean;
     languageCode?: string;
@@ -667,12 +705,20 @@ export namespace civicinfo_v2 {
     sortingCode?: string;
     subAdministrativeAreaName?: string;
     subPremiseName?: string;
-    thoroughfareLeadingType?: string;
     thoroughfareName?: string;
     thoroughfareNumber?: string;
-    thoroughfarePostDirection?: string;
-    thoroughfarePreDirection?: string;
-    thoroughfareTrailingType?: string;
+  }
+  export interface Schema$Provenance {
+    collidedSegmentSource?: Schema$StreetSegmentList;
+    ctclContestUuid?: string;
+    ctclOfficeUuid?: string;
+    datasetId?: string;
+    precinctId?: string;
+    precinctSplitId?: string;
+    tsStreetSegmentId?: string;
+    vip5PrecinctId?: string;
+    vip5StreetSegmentId?: string;
+    vipStreetSegmentId?: string;
   }
   export interface Schema$RepresentativeInfoData {
     /**
@@ -771,6 +817,56 @@ export namespace civicinfo_v2 {
      */
     official?: boolean;
   }
+  export interface Schema$StreetSegment {
+    administrationRegionIds?: string[];
+    beforeGeocodeId?: string;
+    catalistUniquePrecinctCode?: string;
+    city?: string;
+    cityCouncilDistrict?: string;
+    congressionalDistrict?: string;
+    contestIds?: string[];
+    countyCouncilDistrict?: string;
+    countyFips?: string;
+    datasetId?: string;
+    earlyVoteSiteByIds?: string[];
+    endHouseNumber?: string;
+    geocodedPoint?: Schema$PointProto;
+    geographicDivisionOcdIds?: string[];
+    id?: string;
+    judicialDistrict?: string;
+    mailOnly?: boolean;
+    municipalDistrict?: string;
+    ncoaAddress?: string;
+    oddOrEvens?: string[];
+    originalId?: string;
+    pollinglocationByIds?: string[];
+    precinctName?: string;
+    precinctOcdId?: string;
+    provenances?: Schema$Provenance[];
+    published?: boolean;
+    schoolDistrict?: string;
+    startHouseNumber?: string;
+    startLatE7?: string;
+    startLngE7?: string;
+    state?: string;
+    stateHouseDistrict?: string;
+    stateSenateDistrict?: string;
+    streetName?: string;
+    subAdministrativeAreaName?: string;
+    surrogateId?: string;
+    targetsmartUniquePrecinctCode?: string;
+    townshipDistrict?: string;
+    unitNumber?: string;
+    unitType?: string;
+    vanPrecinctCode?: string;
+    voterGeographicDivisionOcdIds?: string[];
+    wardDistrict?: string;
+    wildcard?: boolean;
+    zip?: string;
+  }
+  export interface Schema$StreetSegmentList {
+    segments?: Schema$StreetSegment[];
+  }
   /**
    * A request for information about a voter.
    */
@@ -818,9 +914,16 @@ export namespace civicinfo_v2 {
      */
     normalizedInput?: Schema$SimpleAddressType;
     /**
-     * If no election ID was specified in the query, and there was more than one
-     * election with data for the given voter, this will contain information
-     * about the other elections that could apply.
+     * When there are multiple elections for a voter address, the otherElections
+     * field is populated in the API response and there are two
+     * possibilities: 1. If the earliest election is not the intended election,
+     * specify the election ID of the desired election in a second API request
+     * using the electionId field. 2. If these elections occur on the same day,
+     * the API doesn?t return any polling location, contest, or election
+     * official information to ensure that an additional query is made. For
+     * user-facing applications, we recommend displaying these elections to the
+     * user to disambiguate. A second API request using the electionId field
+     * should be made for the election that is relevant to the user.
      */
     otherElections?: Schema$Election[];
     /**
@@ -828,6 +931,7 @@ export namespace civicinfo_v2 {
      */
     pollingLocations?: Schema$PollingLocation[];
     precinctId?: string;
+    segments?: Schema$StreetSegment[];
     /**
      * Local Election Information for the state that the voter votes in. For the
      * US, there will only be one element in this array.
@@ -1033,7 +1137,7 @@ export namespace civicinfo_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.address The registered address of the voter to look up.
-     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
+     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
      * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      * @param {().VoterInfoRequest} params.resource Request body data
@@ -1121,7 +1225,10 @@ export namespace civicinfo_v2 {
     address?: string;
     /**
      * The unique ID of the election to look up. A list of election IDs can be
-     * obtained at https://www.googleapis.com/civicinfo/{version}/elections
+     * obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no
+     * election ID is specified in the query and there is more than one election
+     * with data for the given voter, the additional elections are provided in
+     * the otherElections response field.
      */
     electionId?: string;
     /**
