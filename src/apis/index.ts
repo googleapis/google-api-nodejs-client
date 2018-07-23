@@ -48,6 +48,7 @@ import * as clouderrorreporting from './clouderrorreporting';
 import * as cloudfunctions from './cloudfunctions';
 import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
+import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
@@ -84,7 +85,9 @@ import * as groupsmigration from './groupsmigration';
 import * as groupssettings from './groupssettings';
 import * as iam from './iam';
 import * as iamcredentials from './iamcredentials';
+import * as iap from './iap';
 import * as identitytoolkit from './identitytoolkit';
+import * as indexing from './indexing';
 import * as jobs from './jobs';
 import * as kgsearch from './kgsearch';
 import * as language from './language';
@@ -188,6 +191,7 @@ export const APIS: APIList = {
   cloudfunctions: cloudfunctions.VERSIONS,
   cloudiot: cloudiot.VERSIONS,
   cloudkms: cloudkms.VERSIONS,
+  cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
@@ -224,7 +228,9 @@ export const APIS: APIList = {
   groupssettings: groupssettings.VERSIONS,
   iam: iam.VERSIONS,
   iamcredentials: iamcredentials.VERSIONS,
+  iap: iap.VERSIONS,
   identitytoolkit: identitytoolkit.VERSIONS,
+  indexing: indexing.VERSIONS,
   jobs: jobs.VERSIONS,
   kgsearch: kgsearch.VERSIONS,
   language: language.VERSIONS,
@@ -325,6 +331,7 @@ export class GeneratedAPIs {
   cloudfunctions = cloudfunctions.cloudfunctions;
   cloudiot = cloudiot.cloudiot;
   cloudkms = cloudkms.cloudkms;
+  cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
@@ -361,7 +368,9 @@ export class GeneratedAPIs {
   groupssettings = groupssettings.groupssettings;
   iam = iam.iam;
   iamcredentials = iamcredentials.iamcredentials;
+  iap = iap.iap;
   identitytoolkit = identitytoolkit.identitytoolkit;
+  indexing = indexing.indexing;
   jobs = jobs.jobs;
   kgsearch = kgsearch.kgsearch;
   language = language.language;
@@ -460,6 +469,7 @@ export class GeneratedAPIs {
     this.cloudfunctions = this.cloudfunctions.bind(this);
     this.cloudiot = this.cloudiot.bind(this);
     this.cloudkms = this.cloudkms.bind(this);
+    this.cloudprofiler = this.cloudprofiler.bind(this);
     this.cloudresourcemanager = this.cloudresourcemanager.bind(this);
     this.cloudshell = this.cloudshell.bind(this);
     this.cloudtasks = this.cloudtasks.bind(this);
@@ -496,7 +506,9 @@ export class GeneratedAPIs {
     this.groupssettings = this.groupssettings.bind(this);
     this.iam = this.iam.bind(this);
     this.iamcredentials = this.iamcredentials.bind(this);
+    this.iap = this.iap.bind(this);
     this.identitytoolkit = this.identitytoolkit.bind(this);
+    this.indexing = this.indexing.bind(this);
     this.jobs = this.jobs.bind(this);
     this.kgsearch = this.kgsearch.bind(this);
     this.language = this.language.bind(this);

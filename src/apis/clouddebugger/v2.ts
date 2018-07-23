@@ -535,6 +535,12 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$SourceLocation {
     /**
+     * Column within a line. The first column in a line as the value `1`. Agents
+     * that do not support setting breakpoints on specific columns ignore this
+     * field.
+     */
+    column?: number;
+    /**
      * Line inside the file. The first line in the file has the value `1`.
      */
     line?: number;

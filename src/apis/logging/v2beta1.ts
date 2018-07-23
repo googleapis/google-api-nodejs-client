@@ -33,7 +33,7 @@ export namespace logging_v2beta1 {
   /**
    * Stackdriver Logging API
    *
-   * Writes log entries and manages your Stackdriver Logging configuration.
+   * Writes log entries and manages your Logging configuration.
    *
    * @example
    * const {google} = require('googleapis');
@@ -418,11 +418,11 @@ export namespace logging_v2beta1 {
     httpRequest?: Schema$HttpRequest;
     /**
      * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Stackdriver Logging considers other log entries in the same project,
-     * with the same timestamp, and with the same insert_id to be duplicates
-     * which can be removed. If omitted in new log entries, then Stackdriver
-     * Logging assigns its own unique identifier. The insert_id is also used to
-     * order log entries that have the same timestamp value.
+     * then Logging considers other log entries in the same project, with the
+     * same timestamp, and with the same insert_id to be duplicates which can be
+     * removed. If omitted in new log entries, then Logging assigns its own
+     * unique identifier. The insert_id is also used to order log entries that
+     * have the same timestamp value.
      */
     insertId?: string;
     /**
@@ -472,7 +472,7 @@ export namespace logging_v2beta1 {
      */
     protoPayload?: any;
     /**
-     * Output only. The time the log entry was received by Stackdriver Logging.
+     * Output only. The time the log entry was received by Logging.
      */
     receiveTimestamp?: string;
     /**
@@ -494,9 +494,9 @@ export namespace logging_v2beta1 {
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
      * Optional. The span ID within the trace associated with the log entry. For
-     * Stackdriver Trace spans, this is the same format that the Stackdriver
-     * Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte
-     * array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
+     * Trace spans, this is the same format that the Trace API v2 uses: a
+     * 16-character hexadecimal encoding of an 8-byte array, such as
+     * &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
      */
     spanId?: string;
     /**
@@ -507,13 +507,13 @@ export namespace logging_v2beta1 {
      * Optional. The time the event described by the log entry occurred. This
      * time is used to compute the log entry&#39;s age and to enforce the logs
      * retention period. If this field is omitted in a new log entry, then
-     * Stackdriver Logging assigns it the current time. Timestamps have
-     * nanosecond accuracy, but trailing zeros in the fractional seconds might
-     * be omitted when the timestamp is displayed.Incoming log entries should
-     * have timestamps that are no more than the logs retention period in the
-     * past, and no more than 24 hours in the future. Log entries outside those
-     * time boundaries will not be available when calling entries.list, but
-     * those log entries can still be exported with LogSinks.
+     * Logging assigns it the current time. Timestamps have nanosecond accuracy,
+     * but trailing zeros in the fractional seconds might be omitted when the
+     * timestamp is displayed.Incoming log entries should have timestamps that
+     * are no more than the logs retention period in the past, and no more than
+     * 24 hours in the future. Log entries outside those time boundaries will
+     * not be available when calling entries.list, but those log entries can
+     * still be exported with LogSinks.
      */
     timestamp?: string;
     /**
@@ -757,9 +757,9 @@ export namespace logging_v2beta1 {
     startTime?: string;
     /**
      * Output only. An IAM identity&amp;mdash;a service account or
-     * group&amp;mdash;under which Stackdriver Logging writes the exported log
-     * entries to the sink&#39;s destination. This field is set by sinks.create
-     * and sinks.update, based on the setting of unique_writer_identity in those
+     * group&amp;mdash;under which Logging writes the exported log entries to
+     * the sink&#39;s destination. This field is set by sinks.create and
+     * sinks.update, based on the setting of unique_writer_identity in those
      * methods.Until you grant this identity write-access to the destination,
      * log entry exports from this sink will fail. For more information, see
      * Granting access for a resource. Consult the destination service&#39;s
@@ -793,6 +793,10 @@ export namespace logging_v2beta1 {
      * latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
+    /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
     /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
@@ -841,6 +845,28 @@ export namespace logging_v2beta1 {
      * combinations of metric_kind and value_type might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * An object representing a resource that can be used for monitoring, logging,
@@ -921,19 +947,17 @@ export namespace logging_v2beta1 {
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
    * objects contain the minimum set of information to uniquely identify a
    * monitored resource instance. There is some other useful auxiliary metadata.
-   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
-   * extract metadata for cloud resources of all types , and stores the metadata
-   * in this message.
+   * Monitoring and Logging use an ingestion pipeline to extract metadata for
+   * cloud resources of all types, and store the metadata in this message.
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
      * Output only. Values for predefined system metadata labels. System labels
-     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
-     * determines what system labels are useful and how to obtain their values.
-     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
-     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
-     * System label values can be only strings, Boolean values, or a list of
-     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * are a kind of metadata extracted by Google, including
+     * &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;,
+     * &quot;security_group&quot;, &quot;name&quot;, etc. System label values
+     * can be only strings, Boolean values, or a list of strings. For example: {
+     * &quot;name&quot;: &quot;my-test-instance&quot;,
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
@@ -1146,23 +1170,22 @@ export namespace logging_v2beta1 {
      */
     dryRun?: boolean;
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of
-     * log entries in this list does not matter. Values supplied in this
-     * method&#39;s log_name, resource, and labels fields are copied into those
-     * log entries in this list that do not include values for their
-     * corresponding fields. For more information, see the LogEntry type.If the
-     * timestamp or insert_id fields are missing in log entries, then this
-     * method supplies the current time or a unique identifier, respectively.
-     * The supplied values are chosen so that, among the log entries that did
-     * not supply their own values, the entries earlier in the list will sort
-     * before the entries later in the list. See the entries.list method.Log
-     * entries with timestamps that are more than the logs retention period in
-     * the past or more than 24 hours in the future will not be available when
-     * calling entries.list. However, those log entries can still be exported
-     * with LogSinks.To improve throughput and to avoid exceeding the quota
-     * limit for calls to entries.write, you should try to include several log
-     * entries in this list, rather than calling this method for each individual
-     * log entry.
+     * Required. The log entries to send to Logging. The order of log entries in
+     * this list does not matter. Values supplied in this method&#39;s log_name,
+     * resource, and labels fields are copied into those log entries in this
+     * list that do not include values for their corresponding fields. For more
+     * information, see the LogEntry type.If the timestamp or insert_id fields
+     * are missing in log entries, then this method supplies the current time or
+     * a unique identifier, respectively. The supplied values are chosen so
+     * that, among the log entries that did not supply their own values, the
+     * entries earlier in the list will sort before the entries later in the
+     * list. See the entries.list method.Log entries with timestamps that are
+     * more than the logs retention period in the past or more than 24 hours in
+     * the future will not be available when calling entries.list. However,
+     * those log entries can still be exported with LogSinks.To improve
+     * throughput and to avoid exceeding the quota limit for calls to
+     * entries.write, you should try to include several log entries in this
+     * list, rather than calling this method for each individual log entry.
      */
     entries?: Schema$LogEntry[];
     /**
@@ -1567,7 +1590,7 @@ export namespace logging_v2beta1 {
     /**
      * logging.entries.list
      * @desc Lists log entries. Use this method to retrieve log entries from
-     * Stackdriver Logging. For ways to export log entries, see Exporting Logs.
+     * Logging. For ways to export log entries, see Exporting Logs.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1700,12 +1723,12 @@ export namespace logging_v2beta1 {
 
     /**
      * logging.entries.write
-     * @desc Writes log entries to Stackdriver Logging. This API method is the
-     * only way to send log entries to Stackdriver Logging. This method is used,
-     * directly or indirectly, by the Stackdriver Logging agent (fluentd) and
-     * all logging libraries configured to use Stackdriver Logging. A single
-     * request may contain log entries for a maximum of 1000 different resources
-     * (projects, organizations, billing accounts or folders)
+     * @desc Writes log entries to Logging. This API method is the only way to
+     * send log entries to Logging. This method is used, directly or indirectly,
+     * by the Logging agent (fluentd) and all logging libraries configured to
+     * use Logging. A single request may contain log entries for a maximum of
+     * 1000 different resources (projects, organizations, billing accounts or
+     * folders)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1863,8 +1886,7 @@ export namespace logging_v2beta1 {
 
     /**
      * logging.monitoredResourceDescriptors.list
-     * @desc Lists the descriptors for monitored resource types used by
-     * Stackdriver Logging.
+     * @desc Lists the descriptors for monitored resource types used by Logging.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3532,7 +3554,7 @@ export namespace logging_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4132,13 +4154,13 @@ export namespace logging_v2beta1 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 

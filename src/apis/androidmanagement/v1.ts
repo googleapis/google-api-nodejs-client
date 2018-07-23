@@ -359,6 +359,11 @@ export namespace androidmanagement_v1 {
      * NonComplianceDetail for the device.
      */
     nonComplianceDetailCondition?: Schema$NonComplianceDetailCondition;
+    /**
+     * If set, the rule includes a mitigating action to disable apps specified
+     * in the list, but app data is preserved.
+     */
+    packageNamesToDisable?: string[];
   }
   /**
    * A device owned by an enterprise. Unless otherwise noted, all fields are
@@ -441,6 +446,11 @@ export namespace androidmanagement_v1 {
      * The last time the device sent a status report.
      */
     lastStatusReportTime?: string;
+    /**
+     * The type of management mode Android Device Policy takes on the device.
+     * This influences which policy settings are supported.
+     */
+    managementMode?: string;
     /**
      * Events related to memory and storage measurements in chronological order.
      * This information is only available if memoryInfoEnabled is true in the
@@ -616,6 +626,11 @@ export namespace androidmanagement_v1 {
      * enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
      */
     name?: string;
+    /**
+     * Whether the enrollment token is for one time use only. If the flag is set
+     * to true, only one device can use it for registration.
+     */
+    oneTimeOnly?: boolean;
     /**
      * The name of the policy initially applied to the enrolled device, in the
      * form enterprises/{enterpriseId}/policies/{policyId}. If not specified,
@@ -1394,6 +1409,11 @@ export namespace androidmanagement_v1 {
      */
     passwordRequirements?: Schema$PasswordRequirements;
     /**
+     * Explicit permission or group grants or denials for all apps. These values
+     * override the default_permission_policy.
+     */
+    permissionGrants?: Schema$PermissionGrant[];
+    /**
      * If present, only the input methods provided by packages in this list are
      * permitted. If this field is present, but the list is empty, then only
      * system input methods are permitted.
@@ -1614,6 +1634,10 @@ export namespace androidmanagement_v1 {
      * Kernel version, for example, 2.6.32.9-g103d848.
      */
     deviceKernelVersion?: string;
+    /**
+     * An IETF BCP 47 language code for the primary locale on the device.
+     */
+    primaryLanguageCode?: string;
     /**
      * Security patch level, e.g. 2016-05-01.
      */
@@ -2192,6 +2216,7 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     * @param {string=} params.wipeDataFlags Optional flags that control the device wiping behavior.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2532,6 +2557,10 @@ export namespace androidmanagement_v1 {
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
+    /**
+     * Optional flags that control the device wiping behavior.
+     */
+    wipeDataFlags?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Get {
     /**

@@ -386,6 +386,23 @@ export namespace datastore_v1beta1 {
     progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
+   * Metadata for Index operations.
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexOperationMetadata {
+    /**
+     * Metadata common to all Datastore Admin operations.
+     */
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    /**
+     * The index resource ID that this operation is acting on.
+     */
+    indexId?: string;
+    /**
+     * An estimate of the number of entities processed.
+     */
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
+  }
+  /**
    * Measures the progress of a particular metric.
    */
   export interface Schema$GoogleDatastoreAdminV1Progress {

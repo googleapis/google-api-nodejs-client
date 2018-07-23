@@ -259,6 +259,22 @@ export namespace bigquery_v2 {
      */
     datasetReference?: Schema$DatasetReference;
     /**
+     * [Optional] The default partition expiration for all partitioned tables in
+     * the dataset, in milliseconds. Once this property is set, all
+     * newly-created partitioned tables in the dataset will have an expirationMs
+     * property in the timePartitioning settings set to this value, and changing
+     * the value will only affect new tables, not existing ones. The storage in
+     * a partition will have an expiration time of its partition time plus this
+     * value. Setting this property overrides the use of
+     * defaultTableExpirationMs for partitioned tables: only one of
+     * defaultTableExpirationMs and defaultPartitionExpirationMs will be used
+     * for any new partitioned table. If you provide an explicit
+     * timePartitioning.expirationMs when creating or updating a partitioned
+     * table, that value takes precedence over the default partition expiration
+     * time indicated by this property.
+     */
+    defaultPartitionExpirationMs?: string;
+    /**
      * [Optional] The default lifetime of all tables in the dataset, in
      * milliseconds. The minimum value is 3600000 milliseconds (one hour). Once
      * this property is set, all newly-created tables in the dataset will have
@@ -694,6 +710,37 @@ export namespace bigquery_v2 {
      * used to extract column names for the detected schema.
      */
     skipLeadingRows?: string;
+  }
+  export interface Schema$IterationResult {
+    /**
+     * [Output-only, Beta] Time taken to run the training iteration in
+     * milliseconds.
+     */
+    durationMs?: string;
+    /**
+     * [Output-only, Beta] Eval loss computed on the eval data at the end of the
+     * iteration. The eval loss is used for early stopping to avoid overfitting.
+     * No eval loss if eval_split_method option is specified as no_split or
+     * auto_split with input data size less than 500 rows.
+     */
+    evalLoss?: number;
+    /**
+     * [Output-only, Beta] Index of the ML training iteration, starting from
+     * zero for each training run.
+     */
+    index?: number;
+    /**
+     * [Output-only, Beta] Learning rate used for this iteration, it varies for
+     * different training iterations if learn_rate_strategy option is not
+     * constant.
+     */
+    learnRate?: number;
+    /**
+     * [Output-only, Beta] Training loss computed on the training data at the
+     * end of the iteration. The training loss function is defined by model
+     * type.
+     */
+    trainingLoss?: number;
   }
   export interface Schema$Job {
     /**
@@ -1294,6 +1341,18 @@ export namespace bigquery_v2 {
      */
     estimatedBytesProcessed?: string;
     /**
+     * [Output-only, Beta] Index of current ML training iteration. Updated
+     * during create model query job to show job progress.
+     */
+    modelTrainingCurrentIteration?: number;
+    /**
+     * [Output-only, Beta] Expected number of iterations for the create model
+     * query job specified as num_iterations in the input query. The actual
+     * total number of iterations may be less than this number due to early
+     * stop.
+     */
+    modelTrainingExpectedTotalIteration?: string;
+    /**
      * [Output-only] The number of rows affected by a DML statement. Present
      * only for DML statements INSERT, UPDATE or DELETE.
      */
@@ -1419,6 +1478,21 @@ export namespace bigquery_v2 {
    */
   export interface Schema$JsonObject {}
   export interface Schema$JsonValue {}
+  export interface Schema$ModelDefinition {
+    /**
+     * [Output-only, Beta] Model options used for the first training run. These
+     * options are immutable for subsequent training runs. Default values are
+     * used for any options not specified in the input query.
+     */
+    modelOptions?: any;
+    /**
+     * [Output-only, Beta] Information about ml training runs, each training run
+     * comprises of multiple iterations and there may be multiple training runs
+     * for the model if warm start is used or if a user decides to continue a
+     * previously cancelled query.
+     */
+    trainingRuns?: Schema$TrainingRun[];
+  }
   export interface Schema$ProjectList {
     /**
      * A hash of the page of results
@@ -1745,6 +1819,12 @@ export namespace bigquery_v2 {
      */
     location?: string;
     /**
+     * [Output-only, Beta] Present iff this table represents a ML model.
+     * Describes the training information for the model, and it is required to
+     * run &#39;PREDICT&#39; queries.
+     */
+    model?: Schema$ModelDefinition;
+    /**
      * [Output-only] The size of this table in bytes, excluding any data in the
      * streaming buffer.
      */
@@ -1969,6 +2049,33 @@ export namespace bigquery_v2 {
      * partition per day.
      */
     type?: string;
+  }
+  export interface Schema$TrainingRun {
+    /**
+     * [Output-only, Beta] List of each iteration results.
+     */
+    iterationResults?: Schema$IterationResult[];
+    /**
+     * [Output-only, Beta] Training run start time in milliseconds since the
+     * epoch.
+     */
+    startTime?: string;
+    /**
+     * [Output-only, Beta] Different state applicable for a training run. IN
+     * PROGRESS: Training run is in progress. FAILED: Training run ended due to
+     * a non-retryable failure. SUCCEEDED: Training run successfully completed.
+     * CANCELLED: Training run cancelled by the user.
+     */
+    state?: string;
+    /**
+     * [Output-only, Beta] Training options used by this training run. These
+     * options are mutable for subsequent training runs. Default values are
+     * explicitly stored for options not specified in the input query of the
+     * first training run. For subsequent training runs, any option not
+     * explicitly specified in the input query will be copied from the previous
+     * training run.
+     */
+    trainingOptions?: any;
   }
   export interface Schema$UserDefinedFunctionResource {
     /**

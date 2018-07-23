@@ -540,7 +540,7 @@ export namespace container_v1 {
     /**
      * The parent (project, location, cluster id) where the node pool will be
      * created. Specified in the format
-     * &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * &#39;projects/x/locations/x/clusters/*&#39;.
      */
     parent?: string;
     /**
@@ -3425,7 +3425,7 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().CreateNodePoolRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4064,8 +4064,7 @@ export namespace container_v1 {
 
     /**
      * The parent (project, location, cluster id) where the node pool will be
-     * created. Specified in the format
-     * 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * created. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     parent?: string;
 

@@ -1124,12 +1124,12 @@ export namespace dlp_v2 {
      */
     createTime?: string;
     /**
-     * The type of content that might have been found. Provided if requested by
-     * the `InspectConfig`.
+     * The type of content that might have been found. Provided if
+     * `excluded_types` is false.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
-     * Estimate of how likely it is that the `info_type` is correct.
+     * Confidence of how likely it is that the `info_type` is correct.
      */
     likelihood?: string;
     /**
@@ -1138,9 +1138,9 @@ export namespace dlp_v2 {
     location?: Schema$GooglePrivacyDlpV2Location;
     /**
      * The content that was found. Even if the content is not textual, it may be
-     * converted to a textual representation here. Provided if requested by the
-     * `InspectConfig` and the finding is less than or equal to 4096 bytes long.
-     * If the finding exceeds 4096 bytes in length, the quote may be omitted.
+     * converted to a textual representation here. Provided if `include_quote`
+     * is true and the finding is less than or equal to 4096 bytes long. If the
+     * finding exceeds 4096 bytes in length, the quote may be omitted.
      */
     quote?: string;
     /**
@@ -1377,7 +1377,10 @@ export namespace dlp_v2 {
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes
+     * or CustomInfoTypes are specified in a request, the system may
+     * automatically choose what detectors to run. By default this may be all
+     * types, but may change over time as detectors are updated.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -2250,6 +2253,11 @@ export namespace dlp_v2 {
      */
     imageRedactionConfigs?: Schema$GooglePrivacyDlpV2ImageRedactionConfig[];
     /**
+     * Whether the response should include findings along with the redacted
+     * image.
+     */
+    includeFindings?: boolean;
+    /**
      * Configuration for the inspector.
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
@@ -2264,6 +2272,10 @@ export namespace dlp_v2 {
      * found in the image.
      */
     extractedText?: string;
+    /**
+     * The findings. Populated when include_findings in the request is true.
+     */
+    inspectResult?: Schema$GooglePrivacyDlpV2InspectResult;
     /**
      * The redacted image. The type will be the same as the original image.
      */
@@ -3971,7 +3983,10 @@ export namespace dlp_v2 {
      * @desc De-identifies potentially sensitive info from a ContentItem. This
      * method has limits on input size and output size. See
      * https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn
-     * more.
+     * more.  When no InfoTypes or CustomInfoTypes are specified in this
+     * request, the system will automatically choose what detectors to run. By
+     * default this may be all types, but may change over time as detectors are
+     * updated.
      * @alias dlp.projects.content.deidentify
      * @memberOf! ()
      *
@@ -4049,8 +4064,11 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.content.inspect
      * @desc Finds potentially sensitive info in content. This method has limits
-     * on input size, processing time, and output size.  For how to guides, see
-     * https://cloud.google.com/dlp/docs/inspecting-images and
+     * on input size, processing time, and output size.  When no InfoTypes or
+     * CustomInfoTypes are specified in this request, the system will
+     * automatically choose what detectors to run. By default this may be all
+     * types, but may change over time as detectors are updated.  For how to
+     * guides, see https://cloud.google.com/dlp/docs/inspecting-images and
      * https://cloud.google.com/dlp/docs/inspecting-text,
      * @alias dlp.projects.content.inspect
      * @memberOf! ()
@@ -4823,6 +4841,9 @@ export namespace dlp_v2 {
      * @desc Creates a new job to inspect storage or calculate risk metrics. See
      * https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+     * system will automatically choose what detectors to run. By default this
+     * may be all types, but may change over time as detectors are updated.
      * @alias dlp.projects.dlpJobs.create
      * @memberOf! ()
      *
@@ -5223,7 +5244,10 @@ export namespace dlp_v2 {
      * @desc Redacts potentially sensitive info from an image. This method has
      * limits on input size, processing time, and output size. See
      * https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
-     * learn more.
+     * learn more.  When no InfoTypes or CustomInfoTypes are specified in this
+     * request, the system will automatically choose what detectors to run. By
+     * default this may be all types, but may change over time as detectors are
+     * updated.
      * @alias dlp.projects.image.redact
      * @memberOf! ()
      *

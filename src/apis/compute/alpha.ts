@@ -94,7 +94,9 @@ export namespace compute_alpha {
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionOperations: Resource$Regionoperations;
     regions: Resource$Regions;
+    regionSslCertificates: Resource$Regionsslcertificates;
     regionTargetHttpProxies: Resource$Regiontargethttpproxies;
+    regionTargetHttpsProxies: Resource$Regiontargethttpsproxies;
     regionUrlMaps: Resource$Regionurlmaps;
     resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
@@ -167,7 +169,10 @@ export namespace compute_alpha {
       this.regionInstanceGroups = new Resource$Regioninstancegroups(this);
       this.regionOperations = new Resource$Regionoperations(this);
       this.regions = new Resource$Regions(this);
+      this.regionSslCertificates = new Resource$Regionsslcertificates(this);
       this.regionTargetHttpProxies = new Resource$Regiontargethttpproxies(this);
+      this.regionTargetHttpsProxies =
+          new Resource$Regiontargethttpsproxies(this);
       this.regionUrlMaps = new Resource$Regionurlmaps(this);
       this.resourcePolicies = new Resource$Resourcepolicies(this);
       this.routers = new Resource$Routers(this);
@@ -723,7 +728,8 @@ export namespace compute_alpha {
   export interface Schema$AttachedDiskInitializeParams {
     /**
      * Specifies the disk name. If not specified, the default is to use the name
-     * of the instance.
+     * of the instance. If the disk with the instance name exists already in the
+     * given zone/region, a new name will be automatically generated.
      */
     diskName?: string;
     /**
@@ -787,6 +793,10 @@ export namespace compute_alpha {
      * this field will not be set.
      */
     sourceSnapshot?: string;
+    /**
+     * The customer-supplied encryption key of the source snapshot.
+     */
+    sourceSnapshotEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -1314,7 +1324,7 @@ export namespace compute_alpha {
      */
     bucketName?: string;
     /**
-     * Cloud CDN Coniguration for this BackendBucket.
+     * Cloud CDN configuration for this BackendBucket.
      */
     cdnPolicy?: Schema$BackendBucketCdnPolicy;
     /**
@@ -1358,18 +1368,17 @@ export namespace compute_alpha {
    */
   export interface Schema$BackendBucketCdnPolicy {
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of
-     * any existing Cache-Control header. The actual headers served in responses
-     * will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend bucket.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1462,7 +1471,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a BackendService. An up-to-date fingerprint must
-     * be provided in order to update the BackendService.
+     * be provided in order to update the BackendService.  To see the latest
+     * fingerprint, make a get() request to retrieve a BackendService.
      */
     fingerprint?: string;
     /**
@@ -1613,18 +1623,17 @@ export namespace compute_alpha {
      */
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless
-     * of any existing Cache-Control header. The actual headers served in
-     * responses will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend service.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1765,10 +1774,10 @@ export namespace compute_alpha {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently. This
-     * field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
      */
     condition?: Schema$Expr;
     /**
@@ -2593,12 +2602,15 @@ export namespace compute_alpha {
     warning?: any;
   }
   export interface Schema$DistributionPolicy {
+    /**
+     * Zones where the regional managed instance group will create and manage
+     * instances.
+     */
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
   export interface Schema$DistributionPolicyZoneConfiguration {
     /**
-     * URL of the zone where managed instance group is spawning instances (for
-     * regional resources). Zone has to belong to the region where managed
+     * The URL of the zone. The zone must exist in the region where the managed
      * instance group is located.
      */
     zone?: string;
@@ -2860,7 +2872,7 @@ export namespace compute_alpha {
      */
     allPorts?: boolean;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
      */
@@ -2898,12 +2910,14 @@ export namespace compute_alpha {
      * field is empty, an ephemeral IPv4 address from the same scope (global or
      * regional) will be assigned. A regional forwarding rule supports IPv4
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
-     * load balancing scheme is INTERNAL, this can only be an RFC 1918 IP
-     * address belonging to the network/subnet configured for the forwarding
-     * rule. By default, if this field is empty, an ephemeral internal IP
-     * address will be automatically allocated from the IP range of the subnet
-     * or network configured for this forwarding rule.  An address can be
-     * specified either by a literal IP address or a URL reference to an
+     * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
+     * reference to an existing Address resource ( internal regional static IP
+     * address).  When the load balancing scheme is INTERNAL, this can only be
+     * an RFC 1918 IP address belonging to the network/subnet configured for the
+     * forwarding rule. By default, if this field is empty, an ephemeral
+     * internal IP address will be automatically allocated from the IP range of
+     * the subnet or network configured for this forwarding rule.  An address
+     * can be specified either by a literal IP address or a URL reference to an
      * existing Address resource. The following examples are all valid:   -
      * 100.1.2.3  -
      * https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address
@@ -2914,13 +2928,14 @@ export namespace compute_alpha {
     /**
      * The IP protocol to which this rule applies. Valid options are TCP, UDP,
      * ESP, AH, SCTP or ICMP.  When the load balancing scheme is INTERNAL, only
-     * TCP and UDP are valid.
+     * TCP and UDP are valid. When the load balancing scheme is
+     * INTERNAL_SELF_MANAGED, only TCPis valid.
      */
     IPProtocol?: string;
     /**
      * The IP Version that will be used by this forwarding rule. Valid options
-     * are IPV4 or IPV6. This can only be specified for a global forwarding
-     * rule.
+     * are IPV4 or IPV6. This can only be specified for an external global
+     * forwarding rule.
      */
     ipVersion?: string;
     /**
@@ -2946,10 +2961,12 @@ export namespace compute_alpha {
     labels?: any;
     /**
      * This signifies what the ForwardingRule will be used for and can only take
-     * the following values: INTERNAL, EXTERNAL The value of INTERNAL means that
-     * this will be used for Internal Network Load Balancing (TCP, UDP). The
-     * value of EXTERNAL means that this will be used for External Load
-     * Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+     * the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The
+     * value of INTERNAL means that this will be used for Internal Network Load
+     * Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this
+     * will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means
+     * that this will be used for External Load Balancing (HTTP(S) LB, External
+     * TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
     /**
@@ -2963,10 +2980,10 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
-     * balancing, this field identifies the network that the load balanced IP
-     * should belong to for this Forwarding Rule. If this field is not
-     * specified, the default network will be used.
+     * This field is not used for external load balancing.  For INTERNAL and
+     * INTERNAL_SELF_MANAGED load balancing, this field identifies the network
+     * that the load balanced IP should belong to for this Forwarding Rule. If
+     * this field is not specified, the default network will be used.
      */
     network?: string;
     /**
@@ -3028,7 +3045,7 @@ export namespace compute_alpha {
      */
     serviceName?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the subnetwork that the load balanced IP
      * should belong to for this Forwarding Rule.  If the network specified is
      * in auto subnet mode, this field is optional. However, if the network is
@@ -3040,7 +3057,8 @@ export namespace compute_alpha {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object.
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
   }
@@ -3900,51 +3918,6 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTPS health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTPS.
@@ -4019,6 +3992,51 @@ export namespace compute_alpha {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTPS health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -4168,9 +4186,9 @@ export namespace compute_alpha {
      */
     sourceDiskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * The ID value of the disk used to create this image. This value may be
-     * used to determine whether the image was taken from the current or a
-     * previous instance of a given disk name.
+     * [Output Only] The ID value of the disk used to create this image. This
+     * value may be used to determine whether the image was taken from the
+     * current or a previous instance of a given disk name.
      */
     sourceDiskId?: string;
     /**
@@ -4625,7 +4643,6 @@ export namespace compute_alpha {
    * v1.regionInstanceGroupManagers ==)
    */
   export interface Schema$InstanceGroupManager {
-    activities?: Schema$InstanceGroupManagerActivities;
     /**
      * The autohealing policy for this managed instance group. You can specify
      * only one value.
@@ -4654,7 +4671,8 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * Policy valid only for regional managed instance groups.
+     * Policy specifying intended distribution of instances in regional managed
+     * instance group.
      */
     distributionPolicy?: Schema$DistributionPolicy;
     /**
@@ -4666,7 +4684,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager.
+     * InstanceGroupManager.  To see the latest fingerprint, make a get()
+     * request to retrieve an InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -4726,6 +4745,10 @@ export namespace compute_alpha {
      * Stateful configuration for this Instanced Group Manager
      */
     statefulPolicy?: Schema$StatefulPolicy;
+    /**
+     * [Output Only] The status of this managed instance group.
+     */
+    status?: Schema$InstanceGroupManagerStatus;
     /**
      * The URLs for all TargetPool resources to which instances in the
      * instanceGroup field are added. The target pools automatically apply to
@@ -4818,15 +4841,6 @@ export namespace compute_alpha {
      */
     verifying?: number;
   }
-  export interface Schema$InstanceGroupManagerActivities {
-    autohealing?: string;
-    autohealingHealthCheckBased?: string;
-    autoscalingDown?: string;
-    autoscalingUp?: string;
-    creatingInstances?: string;
-    deletingInstances?: string;
-    recreatingInstances?: string;
-  }
   export interface Schema$InstanceGroupManagerAggregatedList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -4881,10 +4895,6 @@ export namespace compute_alpha {
      * default, a percent value of 100% is used.
      */
     maxUnavailable?: Schema$FixedOrPercent;
-    /**
-     * Defines operating mode for this policy.
-     */
-    mode?: string;
   }
   /**
    * [Output Only] A list of managed instance groups.
@@ -5093,6 +5103,17 @@ export namespace compute_alpha {
      * in the group all receive these target pool settings.
      */
     targetPools?: string[];
+  }
+  export interface Schema$InstanceGroupManagerStatus {
+    /**
+     * [Output Only] A bit indicating whether the managed instance group is in a
+     * stable state. A stable state means that: none of the instances in the
+     * managed instance group is currently undergoing any type of change (for
+     * example, creation, restart, or deletion); no future changes are scheduled
+     * for instances in the managed instance group; and the managed instance
+     * group itself is not being modified.
+     */
+    isStable?: boolean;
   }
   /**
    * InstanceGroupManagers.updatePerInstanceConfigs
@@ -6063,6 +6084,77 @@ export namespace compute_alpha {
     googleDemarcId?: string;
   }
   /**
+   * Diagnostics information about interconnect, contains detailed and current
+   * technical information about Google?s side of the connection.
+   */
+  export interface Schema$InterconnectDiagnostics {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing individual
+     * neighbors currently seen by the Google router in the ARP cache for the
+     * Interconnect. This will be empty when the Interconnect is not bundled.
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * A list of InterconnectDiagnostics.LinkStatus objects, describing the
+     * status for each link on the Interconnect.
+     */
+    links?: Schema$InterconnectDiagnosticsLinkStatus[];
+    /**
+     * The MAC address of the Interconnect&#39;s bundle interface.
+     */
+    macAddress?: string;
+  }
+  /**
+   * Describing the ARP neighbor entries seen on this link
+   */
+  export interface Schema$InterconnectDiagnosticsARPEntry {
+    /**
+     * The IP address of this ARP neighbor.
+     */
+    ipAddress?: string;
+    /**
+     * The MAC address of this ARP neighbor.
+     */
+    macAddress?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
+    /**
+     * System ID of the port on Google?s side of the LACP exchange.
+     */
+    googleSystemId?: string;
+    /**
+     * System ID of the port on the neighbor?s side of the LACP exchange.
+     */
+    neighborSystemId?: string;
+    state?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    state?: string;
+    /**
+     * Value of the current optical power, read in dBm.
+     */
+    value?: number;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkStatus {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP
+     * neighbor entries seen on this link. This will be empty if the link is
+     * bundled
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * The unique ID for this link assigned during turn up by Google.
+     */
+    circuitId?: string;
+    /**
+     * The Demarc address assigned by Google and provided in the LoA.
+     */
+    googleDemarc?: string;
+    lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+  }
+  /**
    * Response to the list request, and contains a list of interconnects.
    */
   export interface Schema$InterconnectList {
@@ -6269,6 +6361,34 @@ export namespace compute_alpha {
      */
     state?: string;
   }
+  /**
+   * Response for the InterconnectsGetDiagnosticsRequest.
+   */
+  export interface Schema$InterconnectsGetDiagnosticsResponse {
+    result?: Schema$InterconnectDiagnostics;
+  }
+  export interface Schema$InternalIpAddress {
+    /**
+     * IP CIDR address or range.
+     */
+    cidr?: string;
+    /**
+     * The owner of the internal IP address.
+     */
+    owner?: string;
+    /**
+     * The purpose of the internal IP address if applicable.
+     */
+    purpose?: string;
+    /**
+     * The region of the internal IP address if applicable.
+     */
+    region?: string;
+    /**
+     * The type of the internal IP address.
+     */
+    type?: string;
+  }
   export interface Schema$InternalIpOwner {
     /**
      * IP CIDR range being owned.
@@ -6282,6 +6402,37 @@ export namespace compute_alpha {
      * Whether this IP CIDR range is reserved for system use.
      */
     systemOwned?: boolean;
+  }
+  export interface Schema$IpAddressesList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of InternalIpOwner resources.
+     */
+    items?: Schema$InternalIpAddress[];
+    /**
+     * [Output Only] Type of resource. Always compute#ipAddressesList for IP
+     * addresses lists.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * Contains a list of IP owners.
@@ -6791,7 +6942,9 @@ export namespace compute_alpha {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.
+     * up-to-date fingerprint hash in order to update or change metadata.  To
+     * see the latest fingerprint, make a get() request to retrieve the
+     * resource.
      */
     fingerprint?: string;
     /**
@@ -6906,9 +7059,9 @@ export namespace compute_alpha {
   export interface Schema$NetworkEndpoint {
     /**
      * The name for a specific VM instance that the IP address belongs to. This
-     * is required for network endpoints of type GCE_VM_IP and GCE_VM_IP_PORT.
-     * The instance must be in the same zone of network endpoint group.  The
-     * name must be 1-63 characters long, and comply with RFC1035.
+     * is required for network endpoints of type GCE_VM_IP_PORT. The instance
+     * must be in the same zone of network endpoint group.  The name must be
+     * 1-63 characters long, and comply with RFC1035.
      */
     instance?: string;
     /**
@@ -6950,8 +7103,8 @@ export namespace compute_alpha {
      */
     kind?: string;
     /**
-     * This field is only valid when the network endpoint group type is
-     * LOAD_BALANCING.
+     * This field is only valid when the network endpoint group is used for load
+     * balancing.
      */
     loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
     /**
@@ -6965,8 +7118,8 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * Type of network endpoints in this network endpoint group. Only supported
-     * values for LOAD_BALANCING are GCE_VM_IP or GCE_VM_IP_PORT.
+     * Type of network endpoints in this network endpoint group. Currently the
+     * only supported value is GCE_VM_IP_PORT.
      */
     networkEndpointType?: string;
     /**
@@ -7016,14 +7169,12 @@ export namespace compute_alpha {
     warning?: any;
   }
   /**
-   * Load balancing specific fields for network endpoint group of type
-   * LOAD_BALANCING.
+   * Load balancing specific fields for network endpoint group.
    */
   export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
     /**
      * The default port used if the port number is not specified in the network
-     * endpoint. If the network endpoint type is GCE_VM_IP, this field must not
-     * be specified.
+     * endpoint.
      */
     defaultPort?: number;
     /**
@@ -7367,7 +7518,8 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * [Output Only] A list of nodes in this node group.
+     * [Deprecated] Use nodeGroups.listNodes instead. [Output Only] A list of
+     * nodes in this node group.
      */
     nodes?: Schema$NodeGroupNode[];
     /**
@@ -7378,6 +7530,10 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The total number of nodes in the node group.
+     */
+    size?: number;
     status?: string;
     /**
      * [Output Only] The name of the zone where the node group resides, such as
@@ -7451,7 +7607,6 @@ export namespace compute_alpha {
     warning?: any;
   }
   export interface Schema$NodeGroupNode {
-    index?: number;
     /**
      * Instances scheduled on this node.
      */
@@ -7464,6 +7619,7 @@ export namespace compute_alpha {
      * The type of this node.
      */
     nodeType?: string;
+    status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
     /**
@@ -7472,11 +7628,39 @@ export namespace compute_alpha {
     additionalNodeCount?: number;
   }
   export interface Schema$NodeGroupsDeleteNodesRequest {
-    /**
-     * Indexes of the nodes to be deleted from the node group.
-     */
-    nodeIndexes?: number[];
     nodes?: string[];
+  }
+  export interface Schema$NodeGroupsListNodes {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Node resources.
+     */
+    items?: Schema$NodeGroupNode[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute.nodeGroupsListNodes for the list of nodes in the specified node
+     * group.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   export interface Schema$NodeGroupsScopedList {
     /**
@@ -8355,6 +8539,18 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
+  export interface Schema$RegionDisksAddResourcePoliciesRequest {
+    /**
+     * Resource policies to be added to this disk.
+     */
+    resourcePolicies?: string[];
+  }
+  export interface Schema$RegionDisksRemoveResourcePoliciesRequest {
+    /**
+     * Resource policies to be removed from this disk.
+     */
+    resourcePolicies?: string[];
+  }
   export interface Schema$RegionDisksResizeRequest {
     /**
      * The new size of the regional persistent disk, which is specified in GB.
@@ -8703,6 +8899,14 @@ export namespace compute_alpha {
      */
     policy?: Schema$Policy;
   }
+  export interface Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest {
+    /**
+     * New set of SslCertificate resources to associate with this
+     * TargetHttpsProxy resource. Currently exactly one SslCertificate resource
+     * must be specified.
+     */
+    sslCertificates?: string[];
+  }
   export interface Schema$RegionUrlMapsValidateRequest {
     /**
      * Content of the UrlMap to be validated.
@@ -8906,6 +9110,11 @@ export namespace compute_alpha {
      * the setLabels method. Label values may be empty.
      */
     labels?: any;
+    /**
+     * GCS bucket storage location of the auto snapshot (regional or
+     * multi-regional).
+     */
+    storageLocations?: string[];
   }
   /**
    * Time window specified for daily operations.
@@ -8946,11 +9155,6 @@ export namespace compute_alpha {
     startTime?: string;
   }
   export interface Schema$ResourcePolicyVmMaintenancePolicy {
-    /**
-     * A hint about the environment this VM belongs to (production vs
-     * develoment)
-     */
-    maintenanceEnvironment?: string;
     /**
      * Maintenance windows that are applied to VMs covered by this policy.
      */
@@ -9503,7 +9707,7 @@ export namespace compute_alpha {
      * valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;,
      * &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
      */
-    sourceIpRangesToNats?: string[];
+    sourceIpRangesToNat?: string[];
   }
   export interface Schema$RoutersPreviewResponse {
     /**
@@ -9719,7 +9923,8 @@ export namespace compute_alpha {
   }
   /**
    * A security policy is comprised of one or more rules. It can also be
-   * associated with one or more &#39;targets&#39;. Next available tag: 11
+   * associated with one or more &#39;targets&#39;. Next available tag: 11 (==
+   * resource_for beta.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
@@ -10209,6 +10414,11 @@ export namespace compute_alpha {
      */
     privateKey?: string;
     /**
+     * [Output Only] URL of the region where the regional SSL Certificate
+     * resides. This field is not applicable to global SSL Certificate.
+     */
+    region?: string;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -10228,6 +10438,37 @@ export namespace compute_alpha {
      * are used.
      */
     type?: string;
+  }
+  export interface Schema$SslCertificateAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of SslCertificatesScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] Type of resource. Always
+     * compute#sslCertificateAggregatedList for lists of SSL Certificates.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * Contains a list of SslCertificate resources.
@@ -10296,6 +10537,17 @@ export namespace compute_alpha {
      * this field.
      */
     privateKey?: string;
+  }
+  export interface Schema$SslCertificatesScopedList {
+    /**
+     * List of SslCertificates contained in this scope.
+     */
+    sslCertificates?: Schema$SslCertificate[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: any;
   }
   export interface Schema$SSLHealthCheck {
     /**
@@ -10402,7 +10654,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a SslPolicy. An up-to-date fingerprint must be
-     * provided in order to update the SslPolicy.
+     * provided in order to update the SslPolicy.  To see the latest
+     * fingerprint, make a get() request to retrieve an SslPolicy.
      */
     fingerprint?: string;
     /**
@@ -10479,6 +10732,13 @@ export namespace compute_alpha {
    */
   export interface Schema$Subnetwork {
     /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Toggles the aggregation interval for collecting flow logs. Increasing the
+     * interval time will reduce the amount of generated flow logs for long
+     * lasting connections. Default is an interval of 5 seconds per connection.
+     */
+    aggregationInterval?: string;
+    /**
      * Whether this subnetwork can conflict with static routes. Setting this to
      * true allows this subnetwork&#39;s primary and secondary ranges to
      * conflict with routes that have already been configured on the
@@ -10516,9 +10776,18 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a Subnetwork. An up-to-date fingerprint must be
-     * provided in order to update the Subnetwork.
+     * provided in order to update the Subnetwork.  To see the latest
+     * fingerprint, make a get() request to retrieve a Subnetwork.
      */
     fingerprint?: string;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * The value of the field must be in [0, 1]. Set the sampling rate of VPC
+     * flow logs within the subnetwork where 1.0 means all collected logs are
+     * reported and 0.0 means no logs are reported. Default is 0.5 which means
+     * half of all collected logs are reported.
+     */
+    flowSampling?: number;
     /**
      * [Output Only] The gateway address for default routes to reach destination
      * addresses outside this subnetwork.
@@ -10547,6 +10816,12 @@ export namespace compute_alpha {
      * Subnetwork resources.
      */
     kind?: string;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Configures whether metadata fields should be added to the reported VPC
+     * flow logs. Default is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string;
     /**
      * The name of the resource, provided by the client when initially creating
      * the resource. The name must be 1-63 characters long, and comply with
@@ -10602,6 +10877,15 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The state of the subnetwork, which can be one of READY or
+     * DRAINING. A subnetwork that is READY is ready to be used. The state of
+     * DRAINING is only applicable to subnetworks that have the purpose set to
+     * INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load
+     * balancer are being drained. A subnetwork that is draining cannot be used
+     * or modified until it reaches a status of READY.
+     */
+    state?: string;
   }
   export interface Schema$SubnetworkAggregatedList {
     /**
@@ -10855,6 +11139,17 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
+  export interface Schema$TargetHttpsProxiesScopedList {
+    /**
+     * A list of TargetHttpsProxies contained in this scope.
+     */
+    targetHttpsProxies?: Schema$TargetHttpsProxy[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: any;
+  }
   export interface Schema$TargetHttpsProxiesSetQuicOverrideRequest {
     /**
      * QUIC policy for the TargetHttpsProxy resource.
@@ -10915,6 +11210,11 @@ export namespace compute_alpha {
      */
     quicOverride?: string;
     /**
+     * [Output Only] URL of the region where the regional TargetHttpsProxy
+     * resides. This field is not applicable to global TargetHttpsProxies.
+     */
+    region?: string;
+    /**
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -10938,6 +11238,37 @@ export namespace compute_alpha {
      * - projects/project/global/urlMaps/url-map  - global/urlMaps/url-map
      */
     urlMap?: string;
+  }
+  export interface Schema$TargetHttpsProxyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of TargetHttpsProxiesScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] Type of resource. Always
+     * compute#targetHttpsProxyAggregatedList for lists of Target HTTP Proxies.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * Contains a list of TargetHttpsProxy resources.
@@ -11569,7 +11900,7 @@ export namespace compute_alpha {
      * changes after every request to modify or update labels. You must always
      * provide an up-to-date fingerprint hash in order to update or change
      * labels.  To see the latest fingerprint, make a get() request to retrieve
-     * an TargetVpnGateway.
+     * a TargetVpnGateway.
      */
     labelFingerprint?: string;
     /**
@@ -11797,7 +12128,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a UrlMap. An up-to-date fingerprint must be
-     * provided in order to update the UrlMap.
+     * provided in order to update the UrlMap.  To see the latest fingerprint,
+     * make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
     /**
@@ -11880,6 +12212,47 @@ export namespace compute_alpha {
   }
   export interface Schema$UrlMapReference {
     urlMap?: string;
+  }
+  export interface Schema$UrlMapsAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of UrlMapsScopedList resources.
+     */
+    items?: any;
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$UrlMapsScopedList {
+    /**
+     * A list of UrlMaps contained in this scope.
+     */
+    UrlMaps?: Schema$UrlMap[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: any;
   }
   export interface Schema$UrlMapsValidateRequest {
     /**
@@ -12021,6 +12394,78 @@ export namespace compute_alpha {
      * should conform to Cloud Storage object naming conventions.
      */
     reportNamePrefix?: string;
+  }
+  /**
+   * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
+   */
+  export interface Schema$VmEndpointNatMappings {
+    /**
+     * Name of the VM instance which the endpoint belongs to
+     */
+    instanceName?: string;
+    interfaceNatMappings?: Schema$VmEndpointNatMappingsInterfaceNatMappings[];
+  }
+  /**
+   * Contain information of Nat mapping for an interface of this endpoint.
+   */
+  export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
+    /**
+     * A list of all IP:port-range mappings assigned to this interface. These
+     * ranges are inclusive, that is, both the first and the last ports can be
+     * used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
+     * &quot;1.1.1.1:2234-2234&quot;].
+     */
+    natIpPortRanges?: string[];
+    /**
+     * Total number of ports across all NAT IPs allocated to this interface. It
+     * equals to the aggregated port number in the field nat_ip_port_ranges.
+     */
+    numTotalNatPorts?: number;
+    /**
+     * Alias IP range for this interface endpoint. It will be a private (RFC
+     * 1918) IP range. Examples: &quot;10.33.4.55/32&quot;, or
+     * &quot;192.168.5.0/24&quot;.
+     */
+    sourceAliasIpRange?: string;
+    /**
+     * Primary IP of the VM for this NIC.
+     */
+    sourceVirtualIp?: string;
+  }
+  /**
+   * Contains a list of VmEndpointNatMappings.
+   */
+  export interface Schema$VmEndpointNatMappingsList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vmEndpointNatMappingsList
+     * for lists of Nat mappings of VM endpoints.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] A list of Nat mapping information of VM endpoints.
+     */
+    result?: Schema$VmEndpointNatMappings[];
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * Represents a VPN gateway resource.
@@ -14603,7 +15048,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the backend bucket.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! ()
      *
@@ -14746,7 +15192,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the backend bucket.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -15717,7 +16164,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the specified backend service.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.addSignedUrlKey
      * @memberOf! ()
      *
@@ -15942,8 +16390,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the specified backend
-     * service.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -27654,11 +28102,11 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28941,7 +29389,22 @@ export namespace compute_alpha {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -28949,15 +29412,27 @@ export namespace compute_alpha {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -34913,6 +35388,76 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.instanceTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instanceTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instancetemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceTemplates.insert
      * @desc Creates an instance template in the specified project using the
      * data that is included in the request. If you are creating a new template
@@ -35063,6 +35608,77 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.instanceTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instanceTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instancetemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceTemplates.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.instanceTemplates.testIamPermissions
@@ -35178,6 +35794,21 @@ export namespace compute_alpha {
      */
     project?: string;
   }
+  export interface Params$Resource$Instancetemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Instancetemplates$Insert {
     /**
      * Auth client or API Key for the request
@@ -35260,6 +35891,26 @@ export namespace compute_alpha {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instancetemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Instancetemplates$Testiampermissions {
     /**
@@ -36853,6 +37504,88 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.interconnects.getDiagnostics
+     * @desc Returns the interconnectDiagnostics for the specified interconnect.
+     * @alias compute.interconnects.getDiagnostics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect resource to query.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getDiagnostics(
+        params?: Params$Resource$Interconnects$Getdiagnostics,
+        options?: MethodOptions):
+        AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        paramsOrCallback?: Params$Resource$Interconnects$Getdiagnostics|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void|AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Interconnects$Getdiagnostics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnects$Getdiagnostics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/interconnects/{interconnect}/getDiagnostics')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.interconnects.getIamPolicy
      * @desc Gets the access control policy for a resource. May be empty if no
      * such policy or resource exists.
@@ -37391,6 +38124,21 @@ export namespace compute_alpha {
 
     /**
      * Name of the interconnect to return.
+     */
+    interconnect?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Interconnects$Getdiagnostics {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the interconnect resource to query.
      */
     interconnect?: string;
     /**
@@ -40443,6 +41191,82 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.networks.listIpAddresses
+     * @desc Lists the internal IP addresses in the specified network.
+     * @alias compute.networks.listIpAddresses
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.network Name of the network for this request.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.types (Optional) types filter separate by comma, valid values are: SUBNETWORK, RESERVED, PEER_USED, PEER_RESERVED, REMOTE_USED, REMOTE_RESERVED.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listIpAddresses(
+        params?: Params$Resource$Networks$Listipaddresses,
+        options?: MethodOptions): AxiosPromise<Schema$IpAddressesList>;
+    listIpAddresses(
+        params: Params$Resource$Networks$Listipaddresses,
+        options: MethodOptions|BodyResponseCallback<Schema$IpAddressesList>,
+        callback: BodyResponseCallback<Schema$IpAddressesList>): void;
+    listIpAddresses(
+        params: Params$Resource$Networks$Listipaddresses,
+        callback: BodyResponseCallback<Schema$IpAddressesList>): void;
+    listIpAddresses(callback: BodyResponseCallback<Schema$IpAddressesList>):
+        void;
+    listIpAddresses(
+        paramsOrCallback?: Params$Resource$Networks$Listipaddresses|
+        BodyResponseCallback<Schema$IpAddressesList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$IpAddressesList>,
+        callback?: BodyResponseCallback<Schema$IpAddressesList>):
+        void|AxiosPromise<Schema$IpAddressesList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Networks$Listipaddresses;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Listipaddresses;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networks/{network}/listIpAddresses')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$IpAddressesList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$IpAddressesList>(parameters);
+      }
+    }
+
+
+    /**
      * compute.networks.listIpOwners
      * @desc Lists the internal IP owners in the specified network.
      * @alias compute.networks.listIpOwners
@@ -40969,6 +41793,69 @@ export namespace compute_alpha {
      */
     project?: string;
   }
+  export interface Params$Resource$Networks$Listipaddresses {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the network for this request.
+     */
+    network?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * (Optional) types filter separate by comma, valid values are: SUBNETWORK,
+     * RESERVED, PEER_USED, PEER_RESERVED, REMOTE_USED, REMOTE_RESERVED.
+     */
+    types?: string;
+  }
   export interface Params$Resource$Networks$Listipowners {
     /**
      * Auth client or API Key for the request
@@ -41250,7 +42137,8 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.aggregatedList
-     * @desc Retrieves an aggregated list of node groups.
+     * @desc Retrieves an aggregated list of node groups. Note: use
+     * nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.aggregatedList
      * @memberOf! ()
      *
@@ -41469,7 +42357,8 @@ export namespace compute_alpha {
     /**
      * compute.nodeGroups.get
      * @desc Returns the specified NodeGroup. Get a list of available NodeGroups
-     * by making a list() request.
+     * by making a list() request. Note: the "nodes" field should not be used.
+     * Use nodeGroups.listNodes instead.
      * @alias compute.nodeGroups.get
      * @memberOf! ()
      *
@@ -41679,6 +42568,7 @@ export namespace compute_alpha {
     /**
      * compute.nodeGroups.list
      * @desc Retrieves a list of node groups available to the specified project.
+     * Note: use nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.list
      * @memberOf! ()
      *
@@ -41743,6 +42633,81 @@ export namespace compute_alpha {
         createAPIRequest<Schema$NodeGroupList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$NodeGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.listNodes
+     * @desc Lists nodes in the node group.
+     * @alias compute.nodeGroups.listNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes you want to list.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNodes(
+        params?: Params$Resource$Nodegroups$Listnodes,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroupsListNodes>;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Listnodes|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback?: BodyResponseCallback<Schema$NodeGroupsListNodes>):
+        void|AxiosPromise<Schema$NodeGroupsListNodes> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Listnodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Listnodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupsListNodes>(parameters);
       }
     }
 
@@ -42234,6 +43199,68 @@ export namespace compute_alpha {
      * (Default: 500)
      */
     maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Listnodes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the NodeGroup resource whose nodes you want to list.
+     */
+    nodeGroup?: string;
     /**
      * Sorts list results by a certain order. By default, results are returned
      * in alphanumerical order based on the resource name.  You can also sort
@@ -43991,10 +45018,10 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -44066,10 +45093,10 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {().ProjectsListXpnHostsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44698,19 +45725,46 @@ export namespace compute_alpha {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -44725,19 +45779,46 @@ export namespace compute_alpha {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -47143,6 +48224,81 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.regionDisks.addResourcePolicies
+     * @desc Adds existing resource policies to a regional disk. You can only
+     * add one policy which will be applied to this disk for scheduling snapshot
+     * creation.
+     * @alias compute.regionDisks.addResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addResourcePolicies(
+        params?: Params$Resource$Regiondisks$Addresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Addresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Addresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Addresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/addResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.createSnapshot
      * @desc Creates a snapshot of this regional disk.
      * @alias compute.regionDisks.createSnapshot
@@ -47501,6 +48657,80 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.regionDisks.removeResourcePolicies
+     * @desc Removes resource policies from a regional disk.
+     * @alias compute.regionDisks.removeResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeResourcePolicies(
+        params?: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    removeResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Removeresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Removeresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Removeresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/removeResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.resize
      * @desc Resizes the specified regional persistent disk.
      * @alias compute.regionDisks.resize
@@ -47720,6 +48950,43 @@ export namespace compute_alpha {
     }
   }
 
+  export interface Params$Resource$Regiondisks$Addresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksAddResourcePoliciesRequest;
+  }
   export interface Params$Resource$Regiondisks$Createsnapshot {
     /**
      * Auth client or API Key for the request
@@ -47906,6 +49173,43 @@ export namespace compute_alpha {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regiondisks$Removeresourcepolicies {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksRemoveResourcePoliciesRequest;
   }
   export interface Params$Resource$Regiondisks$Resize {
     /**
@@ -49659,11 +50963,11 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -50482,6 +51786,7 @@ export namespace compute_alpha {
      * @param {string} params.instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request, should conform to RFC1035.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {().RegionInstanceGroupManagerUpdateInstanceConfigReq} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -50821,7 +52126,22 @@ export namespace compute_alpha {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -50829,15 +52149,27 @@ export namespace compute_alpha {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -51211,6 +52543,19 @@ export namespace compute_alpha {
      * Name of the region scoping this request, should conform to RFC1035.
      */
     region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -52459,6 +53804,551 @@ export namespace compute_alpha {
   }
 
 
+  export class Resource$Regionsslcertificates {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.regionSslCertificates.delete
+     * @desc Deletes the specified SslCertificate resource in the region.
+     * @alias compute.regionSslCertificates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Regionsslcertificates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Regionsslcertificates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Regionsslcertificates$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.get
+     * @desc Returns the specified SslCertificate resource in the specified
+     * region. Get a list of available SSL certificates by making a list()
+     * request.
+     * @alias compute.regionSslCertificates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Regionsslcertificates$Get,
+        options?: MethodOptions): AxiosPromise<Schema$SslCertificate>;
+    get(params: Params$Resource$Regionsslcertificates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SslCertificate>,
+        callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(params: Params$Resource$Regionsslcertificates$Get,
+        callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(paramsOrCallback?: Params$Resource$Regionsslcertificates$Get|
+        BodyResponseCallback<Schema$SslCertificate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificate>,
+        callback?: BodyResponseCallback<Schema$SslCertificate>):
+        void|AxiosPromise<Schema$SslCertificate> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionsslcertificates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificate>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.insert
+     * @desc Creates a SslCertificate resource in the specified project and
+     * region using the data included in the request
+     * @alias compute.regionSslCertificates.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().SslCertificate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Regionsslcertificates$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Regionsslcertificates$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Regionsslcertificates$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.list
+     * @desc Retrieves the list of SslCertificate resources available to the
+     * specified project in the specified region.
+     * @alias compute.regionSslCertificates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Regionsslcertificates$List,
+        options?: MethodOptions): AxiosPromise<Schema$SslCertificateList>;
+    list(
+        params: Params$Resource$Regionsslcertificates$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SslCertificateList>,
+        callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(
+        params: Params$Resource$Regionsslcertificates$List,
+        callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$List|
+        BodyResponseCallback<Schema$SslCertificateList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateList>,
+        callback?: BodyResponseCallback<Schema$SslCertificateList>):
+        void|AxiosPromise<Schema$SslCertificateList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificateList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource and
+     * region.
+     * @alias compute.regionSslCertificates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Regionsslcertificates$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Regionsslcertificates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Regionsslcertificates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Regionsslcertificates$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionsslcertificates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the SslCertificate resource to delete.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the SslCertificate resource to return.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SslCertificate;
+  }
+  export interface Params$Resource$Regionsslcertificates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
   export class Resource$Regiontargethttpproxies {
     root: Compute;
     constructor(root: Compute) {
@@ -53114,6 +55004,775 @@ export namespace compute_alpha {
   }
 
 
+  export class Resource$Regiontargethttpsproxies {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.delete
+     * @desc Deletes the specified TargetHttpsProxy resource.
+     * @alias compute.regionTargetHttpsProxies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Regiontargethttpsproxies$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Regiontargethttpsproxies$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Regiontargethttpsproxies$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.get
+     * @desc Returns the specified TargetHttpsProxy resource in the specified
+     * region. Gets a list of available target HTTP proxies by making a list()
+     * request.
+     * @alias compute.regionTargetHttpsProxies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Regiontargethttpsproxies$Get,
+        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxy>;
+    get(params: Params$Resource$Regiontargethttpsproxies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetHttpsProxy>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(params: Params$Resource$Regiontargethttpsproxies$Get,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Get|
+        BodyResponseCallback<Schema$TargetHttpsProxy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxy>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxy>):
+        void|AxiosPromise<Schema$TargetHttpsProxy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.insert
+     * @desc Creates a TargetHttpsProxy resource in the specified project and
+     * region using the data included in the request.
+     * @alias compute.regionTargetHttpsProxies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().TargetHttpsProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Regiontargethttpsproxies$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Regiontargethttpsproxies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Regiontargethttpsproxies$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.list
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the
+     * specified project in the specified region.
+     * @alias compute.regionTargetHttpsProxies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Regiontargethttpsproxies$List,
+        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxyList>;
+    list(
+        params: Params$Resource$Regiontargethttpsproxies$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(
+        params: Params$Resource$Regiontargethttpsproxies$List,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$List|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxyList>):
+        void|AxiosPromise<Schema$TargetHttpsProxyList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.setSslCertificates
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setSslCertificates
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param {().RegionTargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates(
+        params?: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setSslCertificates(
+        params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(
+        params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(
+        paramsOrCallback?:
+            Params$Resource$Regiontargethttpsproxies$Setsslcertificates|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.setUrlMap
+     * @desc Changes the URL map for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setUrlMap
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy to set a URL map for.
+     * @param {().UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setUrlMap(
+        params?: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setUrlMap(
+        params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+        params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Seturlmap|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Seturlmap;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Seturlmap;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.regionTargetHttpsProxies.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Regiontargethttpsproxies$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Regiontargethttpsproxies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regiontargethttpsproxies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to delete.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to return.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TargetHttpsProxy;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Setsslcertificates {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to set an SslCertificates resource
+     * for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Seturlmap {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy to set a URL map for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMapReference;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
   export class Resource$Regionurlmaps {
     root: Compute;
     constructor(root: Compute) {
@@ -53328,6 +55987,80 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionUrlMaps.invalidateCache
+     * @desc Initiates a cache invalidation operation, invalidating the
+     * specified path, scoped to the specified UrlMap.
+     * @alias compute.regionUrlMaps.invalidateCache
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap scoping this request.
+     * @param {().CacheInvalidationRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    invalidateCache(
+        params?: Params$Resource$Regionurlmaps$Invalidatecache,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    invalidateCache(
+        params: Params$Resource$Regionurlmaps$Invalidatecache,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(
+        params: Params$Resource$Regionurlmaps$Invalidatecache,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(
+        paramsOrCallback?: Params$Resource$Regionurlmaps$Invalidatecache|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionurlmaps$Invalidatecache;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Invalidatecache;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/urlMaps/{urlMap}/invalidateCache')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
         context: this.getRoot()
       };
       if (callback) {
@@ -53778,6 +56511,35 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$UrlMap;
+  }
+  export interface Params$Resource$Regionurlmaps$Invalidatecache {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support
+     * idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap scoping this request.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CacheInvalidationRule;
   }
   export interface Params$Resource$Regionurlmaps$List {
     /**
@@ -55030,6 +57792,85 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.routers.getNatMappingInfo
+     * @desc Retrieves runtime Nat mapping information of VM endpoints.
+     * @alias compute.routers.getNatMappingInfo
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query for Nat Mapping information of VM endpoints.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getNatMappingInfo(
+        params?: Params$Resource$Routers$Getnatmappinginfo,
+        options?: MethodOptions):
+        AxiosPromise<Schema$VmEndpointNatMappingsList>;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        paramsOrCallback?: Params$Resource$Routers$Getnatmappinginfo|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback?: BodyResponseCallback<Schema$VmEndpointNatMappingsList>):
+        void|AxiosPromise<Schema$VmEndpointNatMappingsList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Routers$Getnatmappinginfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Getnatmappinginfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmEndpointNatMappingsList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VmEndpointNatMappingsList>(parameters);
+      }
+    }
+
+
+    /**
      * compute.routers.getRouterStatus
      * @desc Retrieves runtime information of the specified router.
      * @alias compute.routers.getRouterStatus
@@ -55640,6 +58481,69 @@ export namespace compute_alpha {
     region?: string;
     /**
      * Name of the Router resource to return.
+     */
+    router?: string;
+  }
+  export interface Params$Resource$Routers$Getnatmappinginfo {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the Router resource to query for Nat Mapping information of VM
+     * endpoints.
      */
     router?: string;
   }
@@ -58317,6 +61221,88 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.sslCertificates.aggregatedList
+     * @desc Retrieves the list of all SslCertificate resources, regional and
+     * global, available to the specified project.
+     * @alias compute.sslCertificates.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Sslcertificates$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$SslCertificateAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Sslcertificates$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Sslcertificates$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Sslcertificates$Aggregatedlist|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        callback?: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void|AxiosPromise<Schema$SslCertificateAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Sslcertificates$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslcertificates$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/aggregated/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificateAggregatedList>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.sslCertificates.delete
      * @desc Deletes the specified SslCertificate resource.
      * @alias compute.sslCertificates.delete
@@ -58671,6 +61657,60 @@ export namespace compute_alpha {
     }
   }
 
+  export interface Params$Resource$Sslcertificates$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Sslcertificates$Delete {
     /**
      * Auth client or API Key for the request
@@ -60185,6 +63225,7 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.drainTimeoutSeconds The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -60783,6 +63824,17 @@ export namespace compute_alpha {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The drain timeout specifies the upper bound in seconds on the amount of
+     * time allowed to drain connections from the current ACTIVE subnetwork to
+     * the current BACKUP subnetwork. The drain timeout is only applicable when
+     * the following conditions are true: - the subnetwork being patched has
+     * purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has
+     * role = BACKUP - the patch request is setting the role to ACTIVE. Note
+     * that after this patch operation the roles of the ACTIVE and BACKUP
+     * subnetworks will be swapped.
+     */
+    drainTimeoutSeconds?: number;
     /**
      * Project ID for this request.
      */
@@ -61672,6 +64724,88 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.targetHttpsProxies.aggregatedList
+     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and
+     * global, available to the specified project.
+     * @alias compute.targetHttpsProxies.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TargetHttpsProxyAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Targethttpsproxies$Aggregatedlist|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void|AxiosPromise<Schema$TargetHttpsProxyAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Targethttpsproxies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targethttpsproxies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/aggregated/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.targetHttpsProxies.delete
      * @desc Deletes the specified TargetHttpsProxy resource.
      * @alias compute.targetHttpsProxies.delete
@@ -62322,6 +65456,60 @@ export namespace compute_alpha {
     }
   }
 
+  export interface Params$Resource$Targethttpsproxies$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Targethttpsproxies$Delete {
     /**
      * Auth client or API Key for the request
@@ -67072,6 +70260,81 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.urlMaps.aggregatedList
+     * @desc Retrieves the list of all UrlMap resources, regional and global,
+     * available to the specified project.
+     * @alias compute.urlMaps.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Urlmaps$Aggregatedlist,
+        options?: MethodOptions): AxiosPromise<Schema$UrlMapsAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Urlmaps$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Urlmaps$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Urlmaps$Aggregatedlist|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        callback?: BodyResponseCallback<Schema$UrlMapsAggregatedList>):
+        void|AxiosPromise<Schema$UrlMapsAggregatedList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Urlmaps$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlmaps$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/aggregated/urlMaps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMapsAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMapsAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
      * compute.urlMaps.delete
      * @desc Deletes the specified UrlMap resource.
      * @alias compute.urlMaps.delete
@@ -67704,6 +70967,60 @@ export namespace compute_alpha {
     }
   }
 
+  export interface Params$Resource$Urlmaps$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Urlmaps$Delete {
     /**
      * Auth client or API Key for the request

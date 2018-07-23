@@ -1096,6 +1096,10 @@ export namespace monitoring_v3 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
@@ -1114,11 +1118,28 @@ export namespace monitoring_v3 {
      */
     type?: string;
     /**
-     * Optional. The unit in which the metric value is reported. For example,
-     * kBy/s means kilobytes/sec, and 1 is the dimensionless unit. The supported
-     * units are a subset of The Unified Code for Units of Measure standard
-     * (http://unitsofmeasure.org/ucum.html).&lt;br&gt;&lt;br&gt; This field is
-     * part of the metric&#39;s documentation, but it is ignored by Stackdriver.
+     * The unit in which the metric value is reported. It is only applicable if
+     * the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are
+     * a subset of The Unified Code for Units of Measure
+     * (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit
+     * By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10**3)
+     * M mega (10**6) G giga (10**9) T tera (10**12) P peta (10**15) E exa
+     * (10**18) Z zetta (10**21) Y yotta (10**24) m milli (10**-3) u micro
+     * (10**-6) n nano (10**-9) p pico (10**-12) f femto (10**-15) a atto
+     * (10**-18) z zepto (10**-21) y yocto (10**-24) Ki kibi (2**10) Mi mebi
+     * (2**20) Gi gibi (2**30) Ti tebi (2**40)GrammarThe grammar also includes
+     * these connectors: / division (as an infix operator, e.g. 1/s). .
+     * multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit
+     * is as follows: Expression = Component { &quot;.&quot; Component } {
+     * &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT |
+     * &quot;%&quot; ) [ Annotation ]           | Annotation           |
+     * &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot;
+     * ; Notes: Annotation is just a comment if it follows a UNIT and is
+     * equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s,
+     * By{transmitted}/s == By/s. NAME is a sequence of non-blank printable
+     * ASCII characters not  containing &#39;{&#39; or &#39;}&#39;. 1 represents
+     * dimensionless value 1, such as in 1/s. % represents dimensionless value
+     * 1/100, and annotates values giving  a percentage.
      */
     unit?: string;
     /**
@@ -1126,6 +1147,28 @@ export namespace monitoring_v3 {
      * combinations of metric_kind and value_type might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * A condition type that compares a collection of time series against a
@@ -1290,19 +1333,17 @@ export namespace monitoring_v3 {
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
    * objects contain the minimum set of information to uniquely identify a
    * monitored resource instance. There is some other useful auxiliary metadata.
-   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
-   * extract metadata for cloud resources of all types , and stores the metadata
-   * in this message.
+   * Monitoring and Logging use an ingestion pipeline to extract metadata for
+   * cloud resources of all types, and store the metadata in this message.
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
      * Output only. Values for predefined system metadata labels. System labels
-     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
-     * determines what system labels are useful and how to obtain their values.
-     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
-     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
-     * System label values can be only strings, Boolean values, or a list of
-     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * are a kind of metadata extracted by Google, including
+     * &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;,
+     * &quot;security_group&quot;, &quot;name&quot;, etc. System label values
+     * can be only strings, Boolean values, or a list of strings. For example: {
+     * &quot;name&quot;: &quot;my-test-instance&quot;,
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */

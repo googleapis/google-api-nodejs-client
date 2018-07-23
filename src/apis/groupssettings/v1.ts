@@ -106,6 +106,10 @@ export namespace groupssettings_v1 {
      */
     email?: string;
     /**
+     * If favorite replies should be displayed above other replies.
+     */
+    favoriteRepliesOnTop?: string;
+    /**
      * Whether to include custom footer.
      */
     includeCustomFooter?: string;
@@ -172,11 +176,26 @@ export namespace groupssettings_v1 {
      */
     whoCanAdd?: string;
     /**
+     * Permission to add references to a topic. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanAddReferences?: string;
+    /**
+     * Permission to assign topics in a forum to another user. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanAssignTopics?: string;
+    /**
      * Permission to contact owner of the group via web UI. Possible values are:
      * ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT
      * ALL_MANAGERS_CAN_CONTACT
      */
     whoCanContactOwner?: string;
+    /**
+     * Permission to enter free form tags for topics in a forum. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanEnterFreeFormTags?: string;
     /**
      * Permissions to invite members. Possible values are:
      * ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE
@@ -195,11 +214,54 @@ export namespace groupssettings_v1 {
      */
     whoCanLeaveGroup?: string;
     /**
+     * Permission to mark a topic as a duplicate of another topic. Possible
+     * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkDuplicate?: string;
+    /**
+     * Permission to mark any other user&#39;s post as a favorite reply.
+     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkFavoriteReplyOnAnyTopic?: string;
+    /**
+     * Permission to mark a post for a topic they started as a favorite reply.
+     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkFavoriteReplyOnOwnTopic?: string;
+    /**
+     * Permission to mark a topic as not needing a response. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanMarkNoResponseNeeded?: string;
+    /**
+     * Permission to change tags and categories. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanModifyTagsAndCategories?: string;
+    /**
      * Permissions to post messages to the group. Possible values are:
      * NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST
      * ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
      */
     whoCanPostMessage?: string;
+    /**
+     * Permission to take topics in a forum. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanTakeTopics?: string;
+    /**
+     * Permission to unassign any topic in a forum. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanUnassignTopic?: string;
+    /**
+     * Permission to unmark any post from a favorite reply. Possible values are:
+     * NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanUnmarkFavoriteReplyOnAnyTopic?: string;
     /**
      * Permissions to view group. Possible values are: ANYONE_CAN_VIEW
      * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW

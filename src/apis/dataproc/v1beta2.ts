@@ -109,7 +109,7 @@ export namespace dataproc_v1beta2 {
     members?: string[];
     /**
      * Role that is assigned to members. For example, roles/viewer,
-     * roles/editor, or roles/owner. Required
+     * roles/editor, or roles/owner.
      */
     role?: string;
   }
@@ -594,8 +594,8 @@ export namespace dataproc_v1beta2 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Output only. The Compute Engine image resource used for cluster
-     * instances. Inferred from SoftwareConfig.image_version.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * It can be specified or may be inferred from SoftwareConfig.image_version.
      */
     imageUri?: string;
     /**
@@ -639,12 +639,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$InstantiateWorkflowTemplateRequest {
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -652,6 +647,15 @@ export namespace dataproc_v1beta2 {
      * those parameters.
      */
     parameters?: any;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
     /**
      * Optional. The version of workflow template to instantiate. If specified,
      * the workflow will be instantiated only if the current version of the

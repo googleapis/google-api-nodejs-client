@@ -223,12 +223,9 @@ export namespace cloudtasks_v2beta2 {
      * default service when the task is attempted.  If version is empty, then
      * the task will be sent to the version which is the default version when
      * the task is attempted.  If instance is empty, then the task will be sent
-     * to an instance which is available when the task is attempted.  When
-     * service is &quot;default&quot;, version is &quot;default&quot;, and
-     * instance is empty, host is shortened to just the
-     * `application_domain_name`.  If service, version, or instance is invalid,
-     * then the task will be sent to the default version of the default service
-     * when the task is attempted.
+     * to an instance which is available when the task is attempted.  If
+     * service, version, or instance is invalid, then the task will be sent to
+     * the default version of the default service when the task is attempted.
      */
     host?: string;
     /**
@@ -245,24 +242,22 @@ export namespace cloudtasks_v2beta2 {
     instance?: string;
     /**
      * App service.  By default, the task is sent to the service which is the
-     * default service when the task is attempted (&quot;default&quot;).  For
-     * some queues or tasks which were created using the App Engine Task Queue
-     * API, host is not parsable into service, version, and instance. For
-     * example, some tasks which were created using the App Engine SDK use a
-     * custom domain name; custom domains are not parsed by Cloud Tasks. If host
-     * is not parsable, then service, version, and instance are the empty
-     * string.
+     * default service when the task is attempted.  For some queues or tasks
+     * which were created using the App Engine Task Queue API, host is not
+     * parsable into service, version, and instance. For example, some tasks
+     * which were created using the App Engine SDK use a custom domain name;
+     * custom domains are not parsed by Cloud Tasks. If host is not parsable,
+     * then service, version, and instance are the empty string.
      */
     service?: string;
     /**
      * App version.  By default, the task is sent to the version which is the
-     * default version when the task is attempted (&quot;default&quot;).  For
-     * some queues or tasks which were created using the App Engine Task Queue
-     * API, host is not parsable into service, version, and instance. For
-     * example, some tasks which were created using the App Engine SDK use a
-     * custom domain name; custom domains are not parsed by Cloud Tasks. If host
-     * is not parsable, then service, version, and instance are the empty
-     * string.
+     * default version when the task is attempted.  For some queues or tasks
+     * which were created using the App Engine Task Queue API, host is not
+     * parsable into service, version, and instance. For example, some tasks
+     * which were created using the App Engine SDK use a custom domain name;
+     * custom domains are not parsed by Cloud Tasks. If host is not parsable,
+     * then service, version, and instance are the empty string.
      */
     version?: string;
   }
@@ -612,8 +607,9 @@ export namespace cloudtasks_v2beta2 {
      */
     appEngineHttpTarget?: Schema$AppEngineHttpTarget;
     /**
-     * The queue name.  The queue name must have the following format:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
+     * Caller-specified and required in CreateQueue, after which it becomes
+     * output only.  The queue name.  The queue name must have the following
+     * format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
      * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
      * (-), colons (:), or periods (.).    For more information, see
      * [Identifying
@@ -622,8 +618,7 @@ export namespace cloudtasks_v2beta2 {
      * list of available locations can be obtained by calling    ListLocations.
      * For more information, see https://cloud.google.com/about/locations/. *
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
-     * (-). The maximum length is 100 characters.  Caller-specified and required
-     * in CreateQueue, after which it becomes output only.
+     * (-). The maximum length is 100 characters.
      */
     name?: string;
     /**
@@ -920,7 +915,8 @@ export namespace cloudtasks_v2beta2 {
      */
     createTime?: string;
     /**
-     * The task name.  The task name must have the following format:
+     * Optionally caller-specified in CreateTask.  The task name.  The task name
+     * must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens
      * (-), colons (:), or periods (.).    For more information, see
@@ -932,8 +928,7 @@ export namespace cloudtasks_v2beta2 {
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
      * (-). The maximum length is 100 characters. * `TASK_ID` can contain only
      * letters ([A-Za-z]), numbers ([0-9]),   hyphens (-), or underscores (_).
-     * The maximum length is 500 characters.  Optionally caller-specified in
-     * CreateTask.
+     * The maximum length is 500 characters.
      */
     name?: string;
     /**
@@ -2068,7 +2063,7 @@ export namespace cloudtasks_v2beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.  Caller-specified and required in CreateQueue, after which it becomes output only.
+     * @param {string} params.name Caller-specified and required in CreateQueue, after which it becomes output only.  The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.
      * @param {string=} params.updateMask A mask used to specify which fields of the queue are being updated.  If empty, then all fields will be updated.
      * @param {().Queue} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2890,8 +2885,9 @@ export namespace cloudtasks_v2beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The queue name.  The queue name must have the following format:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
+     * Caller-specified and required in CreateQueue, after which it becomes
+     * output only.  The queue name.  The queue name must have the following
+     * format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
      * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
      * (-), colons (:), or periods (.).    For more information, see
      * [Identifying
@@ -2900,8 +2896,7 @@ export namespace cloudtasks_v2beta2 {
      * of available locations can be obtained by calling    ListLocations. For
      * more information, see https://cloud.google.com/about/locations/. *
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
-     * (-). The maximum length is 100 characters.  Caller-specified and required
-     * in CreateQueue, after which it becomes output only.
+     * (-). The maximum length is 100 characters.
      */
     name?: string;
     /**
@@ -3802,7 +3797,6 @@ export namespace cloudtasks_v2beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Sort order used for the query. The only fields supported for sorting are `schedule_time` and `pull_message.tag`. All results will be returned in approximately ascending order. The default ordering is by `schedule_time`.
      * @param {integer=} params.pageSize Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.
      * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListTasks method.  The page token is valid for only 2 hours.
      * @param {string} params.parent Required.  The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -4241,13 +4235,6 @@ export namespace cloudtasks_v2beta2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
-    /**
-     * Sort order used for the query. The only fields supported for sorting are
-     * `schedule_time` and `pull_message.tag`. All results will be returned in
-     * approximately ascending order. The default ordering is by
-     * `schedule_time`.
-     */
-    orderBy?: string;
     /**
      * Requested page size. Fewer tasks than requested might be returned.  The
      * maximum page size is 1000. If unspecified, the page size will be the

@@ -473,9 +473,9 @@ export namespace slides_v1 {
     objectId?: string;
   }
   /**
-   * Creates a video.  NOTE: Drive video creation requires that the requesting
-   * app have at least one of the drive, drive.readonly, or drive.file OAuth
-   * scopes.
+   * Creates a video.  NOTE: Creating a video from Google Drive requires that
+   * the requesting app have at least one of the drive, drive.readonly, or
+   * drive.file OAuth scopes.
    */
   export interface Schema$CreateVideoRequest {
     /**
@@ -490,7 +490,7 @@ export namespace slides_v1 {
     /**
      * The video source&#39;s unique identifier for this video.  e.g. For
      * YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is
-     * 7U3axjORYZ0. For Drive video
+     * 7U3axjORYZ0. For a Google Drive video
      * https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID
      * is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.
      */
@@ -1417,7 +1417,7 @@ export namespace slides_v1 {
      */
     spaceAbove?: Schema$Dimension;
     /**
-     * The amount of extra space above the paragraph. If unset, the value is
+     * The amount of extra space below the paragraph. If unset, the value is
      * inherited from the parent.
      */
     spaceBelow?: Schema$Dimension;
@@ -2379,9 +2379,9 @@ export namespace slides_v1 {
    * important to note that the cells specified by a table range do not
    * necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3
    * table where all the cells of the last row are merged together. The table
-   * looks like this:                [             ]  A table range with
+   * looks like this:                      [             ]  A table range with
    * location = (0, 0), row span = 3 and column span = 2 specifies the following
-   * cells:     x     x    [      x      ]
+   * cells:        x     x       [      x      ]
    */
   export interface Schema$TableRange {
     /**

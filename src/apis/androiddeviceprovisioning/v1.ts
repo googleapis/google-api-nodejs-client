@@ -126,8 +126,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     companyId?: string;
     /**
-     * Required. The name of the company. For example _XYZ Corp_. Characters
-     * allowed are: Latin letters, numerals, hyphens, and spaces. Displayed to
+     * Required. The name of the company. For example _XYZ Corp_. Displayed to
      * the customer&#39;s employees in the zero-touch enrollment portal.
      */
     companyName?: string;
@@ -358,6 +357,10 @@ export namespace androiddeviceprovisioning_v1 {
      */
     ownerCompanyId?: string;
     /**
+     * The ID of the reseller that claimed the device.
+     */
+    resellerId?: string;
+    /**
      * Output only. The type of claim made on the device.
      */
     sectionType?: string;
@@ -571,6 +574,35 @@ export namespace androiddeviceprovisioning_v1 {
      * List of customers related to this reseller partner.
      */
     customers?: Schema$Company[];
+  }
+  /**
+   * Response message to list customers of the vendor.
+   */
+  export interface Schema$ListVendorCustomersResponse {
+    /**
+     * List of customers of the vendor.
+     */
+    customers?: Schema$Company[];
+    /**
+     * A token to retrieve the next page of results. Omitted if no further
+     * results are available.
+     */
+    nextPageToken?: string;
+  }
+  /**
+   * Response message to list vendors of the partner.
+   */
+  export interface Schema$ListVendorsResponse {
+    /**
+     * A token to retrieve the next page of results. Omitted if no further
+     * results are available.
+     */
+    nextPageToken?: string;
+    /**
+     * List of vendors of the reseller partner. Fields `name`, `companyId` and
+     * `companyName` are populated to the Company object.
+     */
+    vendors?: Schema$Company[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1989,11 +2021,13 @@ export namespace androiddeviceprovisioning_v1 {
     root: Androiddeviceprovisioning;
     customers: Resource$Partners$Customers;
     devices: Resource$Partners$Devices;
+    vendors: Resource$Partners$Vendors;
     constructor(root: Androiddeviceprovisioning) {
       this.root = root;
       this.getRoot.bind(this);
       this.customers = new Resource$Partners$Customers(root);
       this.devices = new Resource$Partners$Devices(root);
+      this.vendors = new Resource$Partners$Vendors(root);
     }
 
     getRoot() {
@@ -2992,5 +3026,219 @@ export namespace androiddeviceprovisioning_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpdateDeviceMetadataInBatchRequest;
+  }
+
+
+  export class Resource$Partners$Vendors {
+    root: Androiddeviceprovisioning;
+    customers: Resource$Partners$Vendors$Customers;
+    constructor(root: Androiddeviceprovisioning) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.customers = new Resource$Partners$Vendors$Customers(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * androiddeviceprovisioning.partners.vendors.list
+     * @desc Lists vendors of the partner.
+     * @alias androiddeviceprovisioning.partners.vendors.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to be returned.
+     * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+     * @param {string} params.parent Required. The resource name in the format `partners/[PARTNER_ID]`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Partners$Vendors$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListVendorsResponse>;
+    list(
+        params: Params$Resource$Partners$Vendors$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListVendorsResponse>,
+        callback: BodyResponseCallback<Schema$ListVendorsResponse>): void;
+    list(
+        params: Params$Resource$Partners$Vendors$List,
+        callback: BodyResponseCallback<Schema$ListVendorsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVendorsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Partners$Vendors$List|
+        BodyResponseCallback<Schema$ListVendorsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListVendorsResponse>,
+        callback?: BodyResponseCallback<Schema$ListVendorsResponse>):
+        void|AxiosPromise<Schema$ListVendorsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Partners$Vendors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Vendors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://androiddeviceprovisioning.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/vendors')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListVendorsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListVendorsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Vendors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results to be returned.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results returned by the server.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name in the format `partners/[PARTNER_ID]`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Partners$Vendors$Customers {
+    root: Androiddeviceprovisioning;
+    constructor(root: Androiddeviceprovisioning) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * androiddeviceprovisioning.partners.vendors.customers.list
+     * @desc Lists the customers of the vendor.
+     * @alias androiddeviceprovisioning.partners.vendors.customers.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to be returned.
+     * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+     * @param {string} params.parent Required. The resource name in the format `partners/[PARTNER_ID]/vendors/[VENDOR_ID]`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Partners$Vendors$Customers$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListVendorCustomersResponse>;
+    list(
+        params: Params$Resource$Partners$Vendors$Customers$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListVendorCustomersResponse>,
+        callback: BodyResponseCallback<Schema$ListVendorCustomersResponse>):
+        void;
+    list(
+        params: Params$Resource$Partners$Vendors$Customers$List,
+        callback: BodyResponseCallback<Schema$ListVendorCustomersResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListVendorCustomersResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Partners$Vendors$Customers$List|
+        BodyResponseCallback<Schema$ListVendorCustomersResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListVendorCustomersResponse>,
+        callback?: BodyResponseCallback<Schema$ListVendorCustomersResponse>):
+        void|AxiosPromise<Schema$ListVendorCustomersResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Partners$Vendors$Customers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Vendors$Customers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://androiddeviceprovisioning.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/customers')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListVendorCustomersResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListVendorCustomersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Vendors$Customers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results to be returned.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results returned by the server.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name in the format
+     * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]`.
+     */
+    parent?: string;
   }
 }

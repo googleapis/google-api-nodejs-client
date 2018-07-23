@@ -225,6 +225,13 @@ export namespace genomics_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -242,7 +249,7 @@ export namespace genomics_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -355,6 +362,17 @@ export namespace genomics_v1 {
      * The availability zone in which the instance resides.
      */
     zone?: string;
+  }
+  /**
+   * This event is generated when a container is forcibly terminated by the
+   * worker.  Currently, this only occurs when the container outlives the user
+   * specified timeout.
+   */
+  export interface Schema$ContainerKilledEvent {
+    /**
+     * The numeric ID of the action that started the container.
+     */
+    actionId?: number;
   }
   /**
    * This event is generated when a container starts.
@@ -596,6 +614,35 @@ export namespace genomics_v1 {
      * will also own the resulting export job.
      */
     projectId?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   export interface Schema$ExternalId {
     /**
