@@ -1477,6 +1477,23 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
+   * JSON template for a hash Client Id request resource.
+   */
+  export interface Schema$HashClientIdRequest {
+    clientId?: string;
+    kind?: string;
+    webPropertyId?: string;
+  }
+  /**
+   * JSON template for a hash Client Id response resource.
+   */
+  export interface Schema$HashClientIdResponse {
+    clientId?: string;
+    hashedClientId?: string;
+    kind?: string;
+    webPropertyId?: string;
+  }
+  /**
    * JSON template for an Analytics Remarketing Include Conditions.
    */
   export interface Schema$IncludeConditions {
@@ -3071,6 +3088,7 @@ export namespace analytics_v3 {
     accounts: Resource$Management$Accounts;
     accountSummaries: Resource$Management$Accountsummaries;
     accountUserLinks: Resource$Management$Accountuserlinks;
+    clientId: Resource$Management$Clientid;
     customDataSources: Resource$Management$Customdatasources;
     customDimensions: Resource$Management$Customdimensions;
     customMetrics: Resource$Management$Custommetrics;
@@ -3093,6 +3111,7 @@ export namespace analytics_v3 {
       this.accounts = new Resource$Management$Accounts(root);
       this.accountSummaries = new Resource$Management$Accountsummaries(root);
       this.accountUserLinks = new Resource$Management$Accountuserlinks(root);
+      this.clientId = new Resource$Management$Clientid(root);
       this.customDataSources = new Resource$Management$Customdatasources(root);
       this.customDimensions = new Resource$Management$Customdimensions(root);
       this.customMetrics = new Resource$Management$Custommetrics(root);
@@ -3680,6 +3699,101 @@ export namespace analytics_v3 {
      * Request body metadata
      */
     requestBody?: Schema$EntityUserLink;
+  }
+
+
+  export class Resource$Management$Clientid {
+    root: Analytics;
+    constructor(root: Analytics) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * analytics.management.clientId.hashClientId
+     * @desc Hashes the given Client ID.
+     * @alias analytics.management.clientId.hashClientId
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().HashClientIdRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    hashClientId(
+        params?: Params$Resource$Management$Clientid$Hashclientid,
+        options?: MethodOptions): AxiosPromise<Schema$HashClientIdResponse>;
+    hashClientId(
+        params: Params$Resource$Management$Clientid$Hashclientid,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$HashClientIdResponse>,
+        callback: BodyResponseCallback<Schema$HashClientIdResponse>): void;
+    hashClientId(
+        params: Params$Resource$Management$Clientid$Hashclientid,
+        callback: BodyResponseCallback<Schema$HashClientIdResponse>): void;
+    hashClientId(callback: BodyResponseCallback<Schema$HashClientIdResponse>):
+        void;
+    hashClientId(
+        paramsOrCallback?: Params$Resource$Management$Clientid$Hashclientid|
+        BodyResponseCallback<Schema$HashClientIdResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$HashClientIdResponse>,
+        callback?: BodyResponseCallback<Schema$HashClientIdResponse>):
+        void|AxiosPromise<Schema$HashClientIdResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Clientid$Hashclientid;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Clientid$Hashclientid;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/analytics/v3/management/clientId:hashClientId')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$HashClientIdResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HashClientIdResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Management$Clientid$Hashclientid {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HashClientIdRequest;
   }
 
 

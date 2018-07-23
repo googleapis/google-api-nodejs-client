@@ -313,11 +313,10 @@ export namespace dialogflow_v2beta1 {
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
      * ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project
      * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
-     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note:
-     * Environments and users are under construction and will be available soon.
-     * The Context ID is always converted to lowercase. If &lt;Environment
-     * ID&gt; is not specified, we assume default &#39;draft&#39; environment.
-     * If &lt;User ID&gt; is not specified, we assume default &#39;-&#39; user.
+     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. The
+     * `Context ID` is always converted to lowercase. If `Environment ID` is not
+     * specified, we assume default &#39;draft&#39; environment. If `User ID` is
+     * not specified, we assume default &#39;-&#39; user.
      */
     name?: string;
     /**
@@ -354,7 +353,8 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse {
     /**
-     * The results of the conversational query or event processing.
+     * The selected results of the conversational query or event processing. See
+     * `alternative_query_results` for additional potential results.
      */
     queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
     /**
@@ -465,14 +465,15 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentResponse {
     /**
      * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export&#39;\
+     * a command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
      * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \   -H &#39;Accept: application/json&#39; \   -H
-     * &#39;Content-Type: application/json&#39; \   --compressed \ --data-binary
-     * &#39;{}&#39; \ | grep agentContent | sed -e
-     * &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39;
-     * \ | base64 --decode &gt; &lt;agent zip file&gt;
+     * application-default   print-access-token) \   -H &#39;Accept:
+     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
+     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
+     * -e &#39;s/.*&quot;agentContent&quot;:
+     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
+     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -487,13 +488,14 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest {
     /**
      * The agent to import.  Example for how to import an agent via the command
-     * line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
+     * line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:import\
      * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-     * &#39;Content-Type: application/json&#39; \    --compressed \
-     * --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent
-     * zip file&gt; | base64 -w 0)&#39;    }&quot;
+     * application-default    print-access-token) \    -H &#39;Accept:
+     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
+     * --compressed \    --data-binary &quot;{       &#39;agentContent&#39;:
+     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
+     * }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -536,11 +538,12 @@ export namespace dialogflow_v2beta1 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics. Next available field number: 22.
+   * sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
-     * Optional. The name of the action associated with the intent.
+     * Optional. The name of the action associated with the intent. Note: The
+     * action name must not contain whitespaces.
      */
     action?: string;
     /**
@@ -1169,7 +1172,15 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
      * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.
+     * field passed in the request.  This field is used for the telephony
+     * gateway. It should have a structure similar to this JSON message:
+     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
+     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be in [E.164
+     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
+     * standard tier agents. When the telephony gateway is used with a standard
+     * tier agent the `caller_id` field above will have a value of
+     * `REDACTED_IN_STANDARD_TIER_AGENT`.
      */
     payload?: any;
     /**
@@ -1177,6 +1188,11 @@ export namespace dialogflow_v2beta1 {
      * set by Dialogflow-owned servers.
      */
     source?: string;
+    /**
+     * Optional. The version of the protocol used for this request. This field
+     * is AoG-specific.
+     */
+    version?: string;
   }
   /**
    * Represents the query input. It can contain either:  1.  An audio config
@@ -1271,7 +1287,9 @@ export namespace dialogflow_v2beta1 {
     intent?: Schema$GoogleCloudDialogflowV2beta1Intent;
     /**
      * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain).
+     * uncertain) to 1.0 (completely certain). If there are `multiple
+     * knowledge_answers` messages, this value is set to the greatest
+     * `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
@@ -1327,13 +1345,14 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest {
     /**
      * The agent to restore.  Example for how to restore an agent via the
-     * command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\
+     * command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:restore\
      * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-     * &#39;Content-Type: application/json&#39; \    --compressed \
-     * --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent
-     * zip file&gt; | base64 -w 0)&#39;    }&quot; \
+     * application-default    print-access-token) \    -H &#39;Accept:
+     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
+     * --compressed \    --data-binary &quot;{        &#39;agentContent&#39;:
+     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
+     * }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -1379,12 +1398,10 @@ export namespace dialogflow_v2beta1 {
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
      * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or
      * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
-     * ID&gt;/users/&lt;User ID&gt;/sessions /&lt;Session
-     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note: Environments
-     * and users are under construction and will be available soon. If
-     * &lt;Environment ID&gt; is not specified, we assume default
-     * &#39;draft&#39; environment. If &lt;User ID&gt; is not specified, we
-     * assume default &#39;-&#39; user.
+     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. If `Environment ID`
+     * is not specified, we assume default &#39;draft&#39; environment. If `User
+     * ID` is not specified, we assume default &#39;-&#39; user.
      */
     name?: string;
   }
@@ -1578,14 +1595,15 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2ExportAgentResponse {
     /**
      * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line:  curl \
-     * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:export&#39;\
+     * a command line: &lt;pre&gt;curl \
+     * &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
      * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * print-access-token) \   -H &#39;Accept: application/json&#39; \   -H
-     * &#39;Content-Type: application/json&#39; \   --compressed \ --data-binary
-     * &#39;{}&#39; \ | grep agentContent | sed -e
-     * &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39;
-     * \ | base64 --decode &gt; &lt;agent zip file&gt;
+     * application-default   print-access-token) \   -H &#39;Accept:
+     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
+     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
+     * -e &#39;s/.*&quot;agentContent&quot;:
+     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
+     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
@@ -1597,11 +1615,12 @@ export namespace dialogflow_v2beta1 {
   /**
    * Represents an intent. Intents convert a number of user expressions or
    * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics. Next available field number: 22.
+   * sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**
-     * Optional. The name of the action associated with the intent.
+     * Optional. The name of the action associated with the intent. Note: The
+     * action name must not contain whitespaces.
      */
     action?: string;
     /**
@@ -2138,7 +2157,15 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
      * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.
+     * field passed in the request.  This field is used for the telephony
+     * gateway. It should have a structure similar to this JSON message:
+     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
+     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be in [E.164
+     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
+     * standard tier agents. When the telephony gateway is used with a standard
+     * tier agent the `caller_id` field above will have a value of
+     * `REDACTED_IN_STANDARD_TIER_AGENT`.
      */
     payload?: any;
     /**
@@ -2146,6 +2173,11 @@ export namespace dialogflow_v2beta1 {
      * set by Dialogflow-owned servers.
      */
     source?: string;
+    /**
+     * Optional. The version of the protocol used for this request. This field
+     * is AoG-specific.
+     */
+    version?: string;
   }
   /**
    * Represents the result of conversational query or event processing.
@@ -2183,7 +2215,9 @@ export namespace dialogflow_v2beta1 {
     intent?: Schema$GoogleCloudDialogflowV2Intent;
     /**
      * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain).
+     * uncertain) to 1.0 (completely certain). If there are `multiple
+     * knowledge_answers` messages, this value is set to the greatest
+     * `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
@@ -4044,7 +4078,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4120,7 +4154,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID> and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It’s up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4208,10 +4242,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -4225,13 +4257,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session this query is sent to. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`, or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we are using "-". It’s up to the API caller to choose an
-     * appropriate <Session ID> and <User Id>. They can be a random numbers or
-     * some type of user and session identifiers (preferably hashed). The length
-     * of the <Session ID> and <User ID> must not exceed 36 characters.
+     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we
+     * assume default 'draft' environment. If `User ID` is not specified, we are
+     * using "-". It’s up to the API caller to choose an appropriate `Session
+     * ID` and `User Id`. They can be a random numbers or some type of user and
+     * session identifiers (preferably hashed). The length of the `Session ID`
+     * and `User ID` must not exceed 36 characters.
      */
     session?: string;
 
@@ -4261,7 +4292,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4347,7 +4378,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4418,7 +4449,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4499,7 +4530,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4583,7 +4614,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. The Context ID is always converted to lowercase. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The `Context ID` is always converted to lowercase. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4670,10 +4701,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a context for. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified, we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -4692,10 +4721,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context to delete. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and
-     * users are under construction and will be available soon. If <Environment
-     * ID> is not specified, we assume default 'draft' environment. If <User ID>
-     * is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     * not specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -4709,10 +4737,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and
-     * users are under construction and will be available soon. If <Environment
-     * ID> is not specified, we assume default 'draft' environment. If <User ID>
-     * is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     * not specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -4736,10 +4763,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified, we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -4753,10 +4778,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note:
-     * Environments and users are under construction and will be available soon.
-     * The Context ID is always converted to lowercase. If <Environment ID> is
-     * not specified, we assume default 'draft' environment. If <User ID> is not
+     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The
+     * `Context ID` is always converted to lowercase. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
      * specified, we assume default '-' user.
      */
     name?: string;
@@ -4792,7 +4816,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4875,7 +4899,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4947,7 +4971,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/ entityTypes/<Entity Type Display Name>`. Note: Environments and users re under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5027,7 +5051,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5116,7 +5140,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions /<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5201,10 +5225,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a session entity type for. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we assume default '-' user.
+     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we assume
+     * default '-' user.
      */
     parent?: string;
 
@@ -5224,9 +5247,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users
-     * are under construction and will be available soon. If <Environment ID> is
-     * not specified, we assume default 'draft' environment. If <User ID> is not
+     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
      * specified, we assume default '-' user.
      */
     name?: string;
@@ -5241,10 +5263,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session entity type. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`
      * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/ entityTypes/<Entity Type Display Name>`. Note:
-     * Environments and users re under construction and will be available soon.
-     * If <Environment ID> is not specified, we assume default 'draft'
-     * environment. If <User ID> is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If
+     * `Environment ID` is not specified, we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -5268,10 +5289,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all session entity types from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we assume default '-' user.
+     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we assume
+     * default '-' user.
      */
     parent?: string;
   }
@@ -5285,11 +5305,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>`, or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions
-     * /<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments
-     * and users are under construction and will be available soon. If
-     * <Environment ID> is not specified, we assume default 'draft' environment.
-     * If <User ID> is not specified, we assume default '-' user.
+     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -6045,7 +6064,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6117,7 +6136,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we are using "-". It’s up to the API caller to choose an appropriate <Session ID> and <User Id>. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the <Session ID> and <User ID> must not exceed 36 characters.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It’s up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6200,10 +6219,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -6217,13 +6234,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session this query is sent to. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`, or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we are using "-". It’s up to the API caller to choose an
-     * appropriate <Session ID> and <User Id>. They can be a random numbers or
-     * some type of user and session identifiers (preferably hashed). The length
-     * of the <Session ID> and <User ID> must not exceed 36 characters.
+     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we
+     * assume default 'draft' environment. If `User ID` is not specified, we are
+     * using "-". It’s up to the API caller to choose an appropriate `Session
+     * ID` and `User Id`. They can be a random numbers or some type of user and
+     * session identifiers (preferably hashed). The length of the `Session ID`
+     * and `User ID` must not exceed 36 characters.
      */
     session?: string;
 
@@ -6252,7 +6268,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6333,7 +6349,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6400,7 +6416,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6475,7 +6491,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6554,7 +6570,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and users are under construction and will be available soon. The Context ID is always converted to lowercase. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The `Context ID` is always converted to lowercase. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6637,10 +6653,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a context for. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified, we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -6659,10 +6673,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context to delete. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and
-     * users are under construction and will be available soon. If <Environment
-     * ID> is not specified, we assume default 'draft' environment. If <User ID>
-     * is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     * not specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6676,10 +6689,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
      * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Environments and
-     * users are under construction and will be available soon. If <Environment
-     * ID> is not specified, we assume default 'draft' environment. If <User ID>
-     * is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
+     * not specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6703,10 +6715,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. Note: Environments and users are under construction and will be
-     * available soon. If <Environment ID> is not specified, we assume default
-     * 'draft' environment. If <User ID> is not specified, we assume default '-'
-     * user.
+     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -6720,10 +6730,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. Note:
-     * Environments and users are under construction and will be available soon.
-     * The Context ID is always converted to lowercase. If <Environment ID> is
-     * not specified, we assume default 'draft' environment. If <User ID> is not
+     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The
+     * `Context ID` is always converted to lowercase. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
      * specified, we assume default '-' user.
      */
     name?: string;
@@ -6758,7 +6767,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6837,7 +6846,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6905,7 +6914,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/ entityTypes/<Entity Type Display Name>`. Note: Environments and users re under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6980,7 +6989,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7064,7 +7073,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions /<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users are under construction and will be available soon. If <Environment ID> is not specified, we assume default 'draft' environment. If <User ID> is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7146,10 +7155,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a session entity type for. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we assume default '-' user.
+     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we assume
+     * default '-' user.
      */
     parent?: string;
 
@@ -7169,9 +7177,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. Note: Environments and users
-     * are under construction and will be available soon. If <Environment ID> is
-     * not specified, we assume default 'draft' environment. If <User ID> is not
+     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
      * specified, we assume default '-' user.
      */
     name?: string;
@@ -7186,10 +7193,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session entity type. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`
      * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/ entityTypes/<Entity Type Display Name>`. Note:
-     * Environments and users re under construction and will be available soon.
-     * If <Environment ID> is not specified, we assume default 'draft'
-     * environment. If <User ID> is not specified, we assume default '-' user.
+     * ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If
+     * `Environment ID` is not specified, we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -7213,10 +7219,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all session entity types from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
      * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. Note: Environments and users are under
-     * construction and will be available soon. If <Environment ID> is not
-     * specified, we assume default 'draft' environment. If <User ID> is not
-     * specified, we assume default '-' user.
+     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we assume
+     * default '-' user.
      */
     parent?: string;
   }
@@ -7230,11 +7235,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>`, or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions
-     * /<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Environments
-     * and users are under construction and will be available soon. If
-     * <Environment ID> is not specified, we assume default 'draft' environment.
-     * If <User ID> is not specified, we assume default '-' user.
+     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
+     * specified, we assume default 'draft' environment. If `User ID` is not
+     * specified, we assume default '-' user.
      */
     name?: string;
     /**

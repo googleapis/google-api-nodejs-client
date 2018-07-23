@@ -750,6 +750,11 @@ export namespace drive_v2 {
      */
     copyable?: boolean;
     /**
+     * Whether the options to copy, print, or download this file, should be
+     * disabled for readers and commenters.
+     */
+    copyRequiresWriterPermission?: boolean;
+    /**
      * Create time for this file (formatted RFC 3339 timestamp).
      */
     createdDate?: string;
@@ -1500,8 +1505,8 @@ export namespace drive_v2 {
      */
     createdDate?: string;
     /**
-     * The ID of this Team Drive which is also the ID of the top level folder
-     * for this Team Drive.
+     * The ID of this Team Drive which is also the ID of the top level folder of
+     * this Team Drive.
      */
     id?: string;
     /**
@@ -1512,6 +1517,11 @@ export namespace drive_v2 {
      * The name of this Team Drive.
      */
     name?: string;
+    /**
+     * A set of restrictions that apply to this Team Drive or items inside this
+     * Team Drive.
+     */
+    restrictions?: any;
     /**
      * The ID of the theme from which the background image and color will be
      * set. The set of possible teamDriveThemes can be retrieved from a
@@ -5172,7 +5182,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5241,7 +5251,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5375,7 +5385,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {().Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5447,7 +5457,7 @@ export namespace drive_v2 {
      * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5517,7 +5527,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {().Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5590,7 +5600,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {().Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5671,9 +5681,9 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -5696,9 +5706,9 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -5737,9 +5747,9 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -5774,9 +5784,9 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -5808,9 +5818,9 @@ export namespace drive_v2 {
      */
     transferOwnership?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -5847,9 +5857,9 @@ export namespace drive_v2 {
      */
     transferOwnership?: boolean;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the item belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the item belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -7667,7 +7677,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7799,7 +7809,7 @@ export namespace drive_v2 {
      * @param {integer=} params.maxResults Maximum number of Team Drives to return.
      * @param {string=} params.pageToken Page token for Team Drives.
      * @param {string=} params.q Query string for searching Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7865,6 +7875,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
      * @param {().TeamDrive} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7946,10 +7957,9 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then the requester will be granted access
-     * if they are an administrator of the domain to which the Team Drive
-     * belongs.
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the Team Drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -7992,9 +8002,9 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * Whether the request should be treated as if it was issued by a domain
-     * administrator; if set to true, then all Team Drives of the domain in
-     * which the requester is an administrator are returned.
+     * Issue the request as a domain administrator; if set to true, then all
+     * Team Drives of the domain in which the requester is an administrator are
+     * returned.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -8008,6 +8018,12 @@ export namespace drive_v2 {
      * The ID of the Team Drive
      */
     teamDriveId?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the Team Drive belongs.
+     */
+    useDomainAdminAccess?: boolean;
 
     /**
      * Request body metadata

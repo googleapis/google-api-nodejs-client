@@ -143,7 +143,7 @@ export namespace cloudkms_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -1897,7 +1897,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
-     * @desc Update the version of a CryptoKey that will be used in Encrypt
+     * @desc Update the version of a CryptoKey that will be used in Encrypt.
      * @alias
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @memberOf! ()

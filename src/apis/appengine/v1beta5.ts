@@ -375,6 +375,11 @@ export namespace appengine_v1beta5 {
      */
     configId?: string;
     /**
+     * Enable or disable trace sampling. By default, this is set to false for
+     * enabled.
+     */
+    disableTraceSampling?: boolean;
+    /**
      * Endpoints service name which is the name of the &quot;service&quot;
      * resource in the Service Management API. For example
      * &quot;myapi.endpoints.myproject.cloud.goog&quot;

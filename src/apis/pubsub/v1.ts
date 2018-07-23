@@ -98,7 +98,7 @@ export namespace pubsub_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -109,6 +109,11 @@ export namespace pubsub_v1 {
    * for production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$CreateSnapshotRequest {
+    /**
+     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
     /**
      * The subscription whose backlog the snapshot retains. Specifically, the
      * created snapshot is guaranteed to retain:  (a) The existing backlog on
@@ -353,10 +358,10 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PullResponse {
     /**
-     * Received Pub/Sub messages. The Pub/Sub system will return zero messages
-     * if there are no more available in the backlog. The Pub/Sub system may
-     * return fewer than the `maxMessages` requested even if there are more
-     * messages available in the backlog.
+     * Received Pub/Sub messages. The list will be empty if there are no more
+     * messages available in the backlog. For JSON, the response can be entirely
+     * empty. The Pub/Sub system may return fewer than the `maxMessages`
+     * requested even if there are more messages available in the backlog.
      */
     receivedMessages?: Schema$ReceivedMessage[];
   }
@@ -463,6 +468,11 @@ export namespace pubsub_v1 {
      */
     expireTime?: string;
     /**
+     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
+    /**
      * The name of the snapshot.
      */
     name?: string;
@@ -493,6 +503,11 @@ export namespace pubsub_v1 {
      * system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number;
+    /**
+     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
     /**
      * How long to retain unacknowledged messages in the subscription&#39;s
      * backlog, from the moment a message is published. If
@@ -565,6 +580,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
+     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
+    /**
      * The name of the topic. It must have the format
      * `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start
      * with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`),
@@ -602,6 +622,23 @@ export namespace pubsub_v1 {
     /**
      * Indicates which fields in the provided subscription to update. Must be
      * specified and non-empty.
+     */
+    updateMask?: string;
+  }
+  /**
+   * Request for the UpdateTopic method.
+   */
+  export interface Schema$UpdateTopicRequest {
+    /**
+     * The updated topic object.
+     */
+    topic?: Schema$Topic;
+    /**
+     * Indicates which fields in the provided topic to update. Must be specified
+     * and non-empty. Note that if `update_mask` contains
+     * &quot;message_storage_policy&quot; then the new value will be determined
+     * based on the policy configured at the project or organization level. The
+     * `message_storage_policy` must not be set in the `topic` provided above.
      */
     updateMask?: string;
   }
@@ -2618,8 +2655,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.pull
-     * @desc Pulls messages from the server. Returns an empty list if there are
-     * no messages available in the backlog. The server may return `UNAVAILABLE`
+     * @desc Pulls messages from the server. The server may return `UNAVAILABLE`
      * if there are too many concurrent pull requests pending for the given
      * subscription.
      * @example
@@ -3951,6 +3987,73 @@ export namespace pubsub_v1 {
 
 
     /**
+     * pubsub.projects.topics.patch
+     * @desc Updates an existing topic. Note that certain properties of a topic
+     * are not modifiable.
+     * @alias pubsub.projects.topics.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * @param {().UpdateTopicRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Topics$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Topic>;
+    patch(
+        params: Params$Resource$Projects$Topics$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    patch(
+        params: Params$Resource$Projects$Topics$Patch,
+        callback: BodyResponseCallback<Schema$Topic>): void;
+    patch(callback: BodyResponseCallback<Schema$Topic>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Topics$Patch|
+        BodyResponseCallback<Schema$Topic>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+        callback?: BodyResponseCallback<Schema$Topic>):
+        void|AxiosPromise<Schema$Topic> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Topics$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Topics$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Topic>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Topic>(parameters);
+      }
+    }
+
+
+    /**
      * pubsub.projects.topics.publish
      * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the
      * topic does not exist. The message payload must not be empty; it must
@@ -4421,6 +4524,27 @@ export namespace pubsub_v1 {
      * `projects/{project}`.
      */
     project?: string;
+  }
+  export interface Params$Resource$Projects$Topics$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the topic. It must have the format
+     * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a
+     * letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes
+     * (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or
+     * percent signs (`%`). It must be between 3 and 255 characters in length,
+     * and it must not start with `"goog"`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateTopicRequest;
   }
   export interface Params$Resource$Projects$Topics$Publish {
     /**

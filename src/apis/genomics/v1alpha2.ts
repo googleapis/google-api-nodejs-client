@@ -94,6 +94,17 @@ export namespace genomics_v1alpha2 {
     zone?: string;
   }
   /**
+   * This event is generated when a container is forcibly terminated by the
+   * worker.  Currently, this only occurs when the container outlives the user
+   * specified timeout.
+   */
+  export interface Schema$ContainerKilledEvent {
+    /**
+     * The numeric ID of the action that started the container.
+     */
+    actionId?: number;
+  }
+  /**
    * This event is generated when a container starts.
    */
   export interface Schema$ContainerStartedEvent {

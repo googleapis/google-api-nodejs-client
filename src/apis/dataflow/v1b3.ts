@@ -191,6 +191,44 @@ export namespace dataflow_v1b3 {
     maxNumWorkers?: number;
   }
   /**
+   * Metadata for a BigQuery connector used by the job.
+   */
+  export interface Schema$BigQueryIODetails {
+    /**
+     * Dataset accessed in the connection.
+     */
+    dataset?: string;
+    /**
+     * Project accessed in the connection.
+     */
+    projectId?: string;
+    /**
+     * Query used to access data in the connection.
+     */
+    query?: string;
+    /**
+     * Table accessed in the connection.
+     */
+    table?: string;
+  }
+  /**
+   * Metadata for a BigTable connector used by the job.
+   */
+  export interface Schema$BigTableIODetails {
+    /**
+     * InstanceId accessed in the connection.
+     */
+    instanceId?: string;
+    /**
+     * ProjectId accessed in the connection.
+     */
+    projectId?: string;
+    /**
+     * TableId accessed in the connection.
+     */
+    tableId?: string;
+  }
+  /**
    * Description of an interstitial value between transforms in an execution
    * stage.
    */
@@ -501,6 +539,19 @@ export namespace dataflow_v1b3 {
     vmInstance?: string;
   }
   /**
+   * Metadata for a Datastore connector used by the job.
+   */
+  export interface Schema$DatastoreIODetails {
+    /**
+     * Namespace used in the connection.
+     */
+    namespace?: string;
+    /**
+     * ProjectId accessed in the connection.
+     */
+    projectId?: string;
+  }
+  /**
    * Specification of one of the bundles produced as a result of splitting a
    * Source (e.g. when executing a SourceSplitRequest, or when splitting an
    * active task using WorkItemStatus.dynamic_source_split), relative to the
@@ -779,6 +830,15 @@ export namespace dataflow_v1b3 {
     name?: string;
   }
   /**
+   * Metadata for a File connector used by the job.
+   */
+  export interface Schema$FileIODetails {
+    /**
+     * File Pattern used to access files by the connector.
+     */
+    filePattern?: string;
+  }
+  /**
    * An instruction that copies its inputs (zero or more) to its (single)
    * output.
    */
@@ -1005,6 +1065,12 @@ export namespace dataflow_v1b3 {
      */
     id?: string;
     /**
+     * This field is populated by the Dataflow service to support filtering jobs
+     * by the metadata values provided here. Populated for ListJobs and all
+     * GetJob views SUMMARY and higher.
+     */
+    jobMetadata?: Schema$JobMetadata;
+    /**
      * User-defined labels for this job.  The labels map can contain no more
      * than 64 entries.  Entries of the labels map are UTF8 strings that comply
      * with the following restrictions:  * Keys must conform to regexp:
@@ -1126,6 +1192,40 @@ export namespace dataflow_v1b3 {
      * The timestamp of the message.
      */
     time?: string;
+  }
+  /**
+   * Metadata available primarily for filtering jobs. Will be included in the
+   * ListJob response and Job SUMMARY view+.
+   */
+  export interface Schema$JobMetadata {
+    /**
+     * Identification of a BigQuery source used in the Dataflow job.
+     */
+    bigqueryDetails?: Schema$BigQueryIODetails[];
+    /**
+     * Identification of a BigTable source used in the Dataflow job.
+     */
+    bigTableDetails?: Schema$BigTableIODetails[];
+    /**
+     * Identification of a Datastore source used in the Dataflow job.
+     */
+    datastoreDetails?: Schema$DatastoreIODetails[];
+    /**
+     * Identification of a File source used in the Dataflow job.
+     */
+    fileDetails?: Schema$FileIODetails[];
+    /**
+     * Identification of a PubSub source used in the Dataflow job.
+     */
+    pubsubDetails?: Schema$PubSubIODetails[];
+    /**
+     * The SDK version used to run the job.
+     */
+    sdkVersion?: Schema$SdkVersion;
+    /**
+     * Identification of a Spanner source used in the Dataflow job.
+     */
+    spannerDetails?: Schema$SpannerIODetails[];
   }
   /**
    * JobMetrics contains a collection of metrics descibing the detailed progress
@@ -1677,6 +1777,19 @@ export namespace dataflow_v1b3 {
     shufflePosition?: string;
   }
   /**
+   * Metadata for a PubSub connector used by the job.
+   */
+  export interface Schema$PubSubIODetails {
+    /**
+     * Subscription used in the connection.
+     */
+    subscription?: string;
+    /**
+     * Topic accessed in the connection.
+     */
+    topic?: string;
+  }
+  /**
    * Identifies a pubsub location to use for transferring data into or out of a
    * streaming Dataflow job.
    */
@@ -1843,6 +1956,23 @@ export namespace dataflow_v1b3 {
      * for launching worker instances to run your pipeline.
      */
     zone?: string;
+  }
+  /**
+   * The version of the SDK used to run the jobl
+   */
+  export interface Schema$SdkVersion {
+    /**
+     * The support status for this SDK version.
+     */
+    sdkSupportStatus?: string;
+    /**
+     * The version of the SDK used to run the job.
+     */
+    version?: string;
+    /**
+     * A readable string describing the version of the sdk.
+     */
+    versionDisplayName?: string;
   }
   /**
    * Request to send encoded debug information.
@@ -2209,6 +2339,23 @@ export namespace dataflow_v1b3 {
      * DEPRECATED
      */
     source?: Schema$Source;
+  }
+  /**
+   * Metadata for a Spanner connector used by the job.
+   */
+  export interface Schema$SpannerIODetails {
+    /**
+     * DatabaseId accessed in the connection.
+     */
+    databaseId?: string;
+    /**
+     * InstanceId accessed in the connection.
+     */
+    instanceId?: string;
+    /**
+     * ProjectId accessed in the connection.
+     */
+    projectId?: string;
   }
   /**
    * A representation of an int64, n, that is immune to precision loss when
