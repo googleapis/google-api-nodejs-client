@@ -11,14 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
+import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
-import nock from 'nock';
+import * as nock from 'nock';
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/shared/src/api';
 import {Utils} from './utils';
 
-assert.rejects = require('assert-rejects');
+const assertRejects = require('assert-rejects');
 
 const googleapis = new GoogleApis();
 
@@ -62,7 +62,7 @@ describe('Compute client', () => {
 });
 
 async function testNoTokens(urlshortener: APIEndpoint, client: OAuth2Client) {
-  await assert.rejects(
+  await assertRejects(
       urlshortener.url.get({shortUrl: '123', auth: client}),
       /No access, refresh token or API key is set./);
 }
@@ -266,7 +266,7 @@ describe('OAuth2 client', () => {
          const oauth2client =
              new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
          oauth2client.credentials = {refresh_token: 'abc'};
-         await assert.rejects(
+         await assertRejects(
              oauth2client.revokeCredentials(),
              /Error: No access token to revoke./);
          assert.deepEqual(oauth2client.credentials, {});
