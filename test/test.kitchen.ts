@@ -15,9 +15,9 @@
  */
 
 import * as cp from 'child_process';
-import mv from 'mv';
+import * as mv from 'mv';
 import {ncp} from 'ncp';
-import pify from 'pify';
+import * as pify from 'pify';
 import * as tmp from 'tmp';
 
 const mvp = pify(mv);

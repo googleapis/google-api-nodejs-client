@@ -15,7 +15,7 @@
  */
 
 import * as path from 'path';
-import rimraf from 'rimraf';
+import * as rimraf from 'rimraf';
 import {install} from 'source-map-support';
 import * as util from 'util';
 

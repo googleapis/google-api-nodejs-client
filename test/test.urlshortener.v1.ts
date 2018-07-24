@@ -11,8 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
-import nock from 'nock';
+import * as assert from 'assert';
+import * as nock from 'nock';
 import * as path from 'path';
 
 import {GoogleApis, urlshortener_v1} from '../src';
