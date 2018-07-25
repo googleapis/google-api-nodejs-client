@@ -493,14 +493,19 @@ export namespace jobs_v2 {
    */
   export interface Schema$CreateJobRequest {
     /**
-     * If set to `true`, the service will not attempt to resolve a more precise
-     * address for the job.
+     * Deprecated. Please use processing_options. This flag is ignored if
+     * processing_options is set.  Optional.  If set to `true`, the service does
+     * not attempt to resolve a more precise address for the job.
      */
     disableStreetAddressResolution?: boolean;
     /**
      * Required.  The Job to be created.
      */
     job?: Schema$Job;
+    /**
+     * Optional.  Options for job processing.
+     */
+    processingOptions?: Schema$JobProcessingOptions;
   }
   /**
    * Custom attribute values that are either filterable or non-filterable.
@@ -537,9 +542,9 @@ export namespace jobs_v2 {
   export interface Schema$CustomAttributeHistogramRequest {
     /**
      * Required.  Specifies the custom field key to perform a histogram on. If
-     * specified without `long_value_buckets` or `long_value_min_max`, a
-     * histogram on string values of the given `key` is triggered, otherwise
-     * histogram is performed on long values.
+     * specified without `long_value_histogram_bucketing_option`, histogram on
+     * string values of the given `key` is triggered, otherwise histogram is
+     * performed on long values.
      */
     key?: string;
     /**
@@ -1116,10 +1121,9 @@ export namespace jobs_v2 {
      * structured fields. For the best search experience, use of the structured
      * rather than custom fields is recommended.  Data stored in these custom
      * fields fields are indexed and searched against by keyword searches (see
-     * SearchJobsRequest.custom_field_filters][]). To list jobs by custom
-     * fields, see ListCustomFieldsRequest.field_id.  The map key must be a
-     * number between 1-20. If an invalid key is provided on job create or
-     * update, an error is returned.
+     * SearchJobsRequest.custom_field_filters][]).  The map key must be a number
+     * between 1-20. If an invalid key is provided on job create or update, an
+     * error is returned.
      */
     filterableCustomFields?: any;
     /**
@@ -1417,6 +1421,24 @@ export namespace jobs_v2 {
     radiusMeters?: number;
   }
   /**
+   * Input only.  Options for job processing.
+   */
+  export interface Schema$JobProcessingOptions {
+    /**
+     * Optional.  If set to `true`, the service does not attempt to resolve a
+     * more precise address for the job.
+     */
+    disableStreetAddressResolution?: boolean;
+    /**
+     * Optional.  Option for job HTML content sanitization. Applied fields are:
+     * * description * applicationInstruction * incentives * qualifications *
+     * responsibilities  HTML tags in these fields may be stripped if
+     * sanitiazation is not disabled.  Defaults to
+     * HtmlSanitization.SIMPLE_FORMATTING_ONLY.
+     */
+    htmlSanitization?: string;
+  }
+  /**
    * Input only.  The query required to perform a search query or histogram.
    */
   export interface Schema$JobQuery {
@@ -1484,9 +1506,9 @@ export namespace jobs_v2 {
     /**
      * Optional.  The employment type filter specifies the employment type of
      * jobs to search against, such as EmploymentType.FULL_TIME.  If a value is
-     * not specified, jobs in the search results includes any employment type.
-     * If multiple values are specified, jobs in the search results include any
-     * of the specified employment types.
+     * not specified, jobs in the search results include any employment type. If
+     * multiple values are specified, jobs in the search results include any of
+     * the specified employment types.
      */
     employmentTypes?: string[];
     /**
@@ -1502,7 +1524,7 @@ export namespace jobs_v2 {
     /**
      * Optional.  The location filter specifies geo-regions containing the jobs
      * to search against. See LocationFilter for more information.  If a
-     * location value isn&#39;tt specified, jobs fitting the other search
+     * location value isn&#39;t specified, jobs fitting the other search
      * criteria are retrieved regardless of where they&#39;re located.  If
      * multiple values are specified, jobs are retrieved from any of the
      * specified locations, and, if different values are specified for the
@@ -1608,8 +1630,9 @@ export namespace jobs_v2 {
    */
   export interface Schema$LocationFilter {
     /**
-     * Optional.  The distance from the address in miles to search. The default
-     * distance is 20 miles and maximum distance is 5,000 miles.
+     * Optional.   The distance_in_miles is applied when the location being
+     * searched for is identified as a city or smaller. When the location being
+     * searched for is a state or larger, this field is ignored.
      */
     distanceInMiles?: number;
     /**
@@ -1870,8 +1893,8 @@ export namespace jobs_v2 {
      * www.bar.com, then this field is set to &quot;foo.com&quot; for use on the
      * job board, and &quot;bar.com&quot; for use on the career site.  If this
      * field is not available for some reason, send &quot;UNKNOWN&quot;. Note
-     * that any improvements to the {{ api_name }} model for a particular tenant
-     * site, rely on this field being set correctly to some domain.
+     * that any improvements to the service model for a particular tenant site
+     * rely on this field being set correctly to some domain.
      */
     domain?: string;
     /**
@@ -1879,9 +1902,9 @@ export namespace jobs_v2 {
      * as the duration of an end user&#39;s interaction with the service over a
      * period. Obfuscate this field for privacy concerns before providing it to
      * the API.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
-     * model for a particular tenant site, rely on this field being set
-     * correctly to some unique session_id.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the service model for
+     * a particular tenant site, rely on this field being set correctly to some
+     * unique session_id.
      */
     sessionId?: string;
     /**
@@ -1890,9 +1913,9 @@ export namespace jobs_v2 {
      * this value in order to have the strongest positive impact on search
      * quality. Obfuscate this field for privacy concerns before providing it to
      * the service.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
-     * model for a particular tenant site, rely on this field being set
-     * correctly to some unique user_id.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the service model for
+     * a particular tenant site, rely on this field being set correctly to some
+     * unique user_id.
      */
     userId?: string;
   }
@@ -2102,14 +2125,21 @@ export namespace jobs_v2 {
    */
   export interface Schema$UpdateJobRequest {
     /**
-     * If set to `true`, the service will not attempt resolve a more precise
-     * address for the job.
+     * Deprecated. Please use processing_options. This flag is ignored if
+     * processing_options is set.  Optional.  If set to `true`, the service does
+     * not attempt resolve a more precise address for the job.
      */
     disableStreetAddressResolution?: boolean;
     /**
      * Required.  The Job to be updated.
      */
     job?: Schema$Job;
+    /**
+     * Optional.  Options for job processing.
+     * UpdateJobRequest.disable_street_address_resolution is ignored if this
+     * flag is set.
+     */
+    processingOptions?: Schema$JobProcessingOptions;
     /**
      * Optional but strongly recommended to be provided for the best service
      * experience.  If update_job_fields is provided, only the specified fields

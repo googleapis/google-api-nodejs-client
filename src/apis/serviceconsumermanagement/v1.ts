@@ -1257,6 +1257,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
@@ -1309,6 +1313,28 @@ export namespace serviceconsumermanagement_v1 {
      * combinations of `metric_kind` and `value_type` might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that
@@ -2095,8 +2121,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$TenantProjectConfig {
     /**
-     * Billing account properties. It might be specified explicitly, or created
-     * from the specified group during provisioning
+     * Billing account properties.  Billing account must be specified.
      */
     billingConfig?: Schema$BillingConfig;
     /**

@@ -233,8 +233,7 @@ export namespace content_v2 {
      */
     account?: Schema$Account;
     /**
-     * The ID of the targeted account. Only defined if the method is get, delete
-     * or claimwebsite.
+     * The ID of the targeted account. Only defined if the method is not insert.
      */
     accountId?: string;
     /**
@@ -247,15 +246,36 @@ export namespace content_v2 {
      */
     force?: boolean;
     /**
+     * Details about the link request.
+     */
+    linkRequest?: Schema$AccountsCustomBatchRequestEntryLinkRequest;
+    /**
      * The ID of the managing account.
      */
     merchantId?: string;
+    /**
+     * The method of the batch entry.
+     */
     method?: string;
     /**
      * Only applicable if the method is claimwebsite. Indicates whether or not
      * to take the claim from another account in case there is a conflict.
      */
     overwrite?: boolean;
+  }
+  export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
+    /**
+     * Action to perform for this link.
+     */
+    action?: string;
+    /**
+     * The ID of the linked account.
+     */
+    linkedAccountId?: string;
+    /**
+     * Type of the link between the two accounts.
+     */
+    linkType?: string;
   }
   export interface Schema$AccountsCustomBatchResponse {
     /**
@@ -274,7 +294,7 @@ export namespace content_v2 {
   export interface Schema$AccountsCustomBatchResponseEntry {
     /**
      * The retrieved, created, or updated account. Not defined if the method was
-     * delete or claimwebsite.
+     * delete, claimwebsite or link.
      */
     account?: Schema$Account;
     /**
@@ -288,6 +308,31 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#accountsCustomBatchResponseEntry&quot;.
+     */
+    kind?: string;
+    /**
+     * The status of the updated link. Only defined if the method is link.
+     */
+    linkStatus?: string;
+  }
+  export interface Schema$AccountsLinkRequest {
+    /**
+     * Action to perform for this link.
+     */
+    action?: string;
+    /**
+     * The ID of the linked account.
+     */
+    linkedAccountId?: string;
+    /**
+     * Type of the link between the two accounts.
+     */
+    linkType?: string;
+  }
+  export interface Schema$AccountsLinkResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#accountsLinkResponse&quot;.
      */
     kind?: string;
   }
@@ -652,11 +697,11 @@ export namespace content_v2 {
   }
   export interface Schema$Amount {
     /**
-     * Value before taxes.
+     * [required] Value before taxes.
      */
     pretax?: Schema$Price;
     /**
-     * Tax value.
+     * [required] Tax value.
      */
     tax?: Schema$Price;
   }
@@ -1528,27 +1573,28 @@ export namespace content_v2 {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * Customer balance on this invoice. A positive amount means the customer is
-     * paying, a negative one means the customer is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Customer balance on this invoice. A positive amount means the
+     * customer is paying, a negative one means the customer is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.
      */
     customerBalance?: Schema$Amount;
     /**
-     * Google balance on this invoice. A positive amount means Google is paying,
-     * a negative one means Google is receiving money. Note that it must always
-     * be true that merchant_balance + customer_balance + google_balance = 0.
+     * [required] Google balance on this invoice. A positive amount means Google
+     * is paying, a negative one means Google is receiving money. Note: the sum
+     * of merchant_balance, customer_balance and google_balance must always be
+     * zero.
      */
     googleBalance?: Schema$Amount;
     /**
-     * Merchant balance on this invoice. A positive amount means the merchant is
-     * paying, a negative one means the merchant is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Merchant balance on this invoice. A positive amount means the
+     * merchant is paying, a negative one means the merchant is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.
      */
     merchantBalance?: Schema$Amount;
     /**
-     * Total price for the product.
+     * [required] Total price for the product.
      */
     productTotal?: Schema$Amount;
     /**
@@ -1558,11 +1604,11 @@ export namespace content_v2 {
   }
   export interface Schema$InvoiceSummaryAdditionalChargeSummary {
     /**
-     * Total additional charge for this type.
+     * [required] Total additional charge for this type.
      */
     totalAmount?: Schema$Amount;
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
@@ -2034,23 +2080,24 @@ export namespace content_v2 {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -2067,22 +2114,23 @@ export namespace content_v2 {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * Option to create a refund-only invoice. Exactly one of refund_option and
-     * return_option must be provided.
+     * Option to create a refund-only invoice. Exactly one of refundOnlyOption
+     * or returnOption must be provided.
      */
     refundOnlyOption?:
         Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption;
     /**
      * Option to create an invoice for a refund and mark all items within the
-     * invoice as returned. Exactly one of refund_option and return_option must
+     * invoice as returned. Exactly one of refundOnlyOption or returnOption must
      * be provided.
      */
     returnOption?:
@@ -2109,7 +2157,7 @@ export namespace content_v2 {
      */
     description?: string;
     /**
-     * Reason for the refund.
+     * [required] Reason for the refund.
      */
     reason?: string;
   }
@@ -2119,7 +2167,7 @@ export namespace content_v2 {
      */
     description?: string;
     /**
-     * Reason for the return.
+     * [required] Reason for the return.
      */
     reason?: string;
   }
@@ -3014,6 +3062,11 @@ export namespace content_v2 {
      */
     carrier?: string;
     /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
+    /**
      * The ID of the shipment.
      */
     shipmentId?: string;
@@ -3101,7 +3154,7 @@ export namespace content_v2 {
     creationDate?: string;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format.
-     * Present only if status is delievered
+     * Present only if status is delivered
      */
     deliveryDate?: string;
     /**
@@ -3501,6 +3554,11 @@ export namespace content_v2 {
      * acceptable values.
      */
     carrier?: string;
+    /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
@@ -4014,6 +4072,10 @@ export namespace content_v2 {
      */
     contentLanguage?: string;
     /**
+     * Cost of goods sold. Used for gross profit reporting.
+     */
+    costOfGoodsSold?: Schema$Price;
+    /**
      * A list of custom (merchant-provided) attributes. It can also be used for
      * submitting any attribute of the feed specification in its generic form
      * (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;type&quot;:
@@ -4145,9 +4207,17 @@ export namespace content_v2 {
      */
     material?: string;
     /**
+     * The energy efficiency class as defined in EU directive 2010/30/EU.
+     */
+    maxEnergyEfficiencyClass?: string;
+    /**
      * Maximal product handling time (in business days).
      */
     maxHandlingTime?: string;
+    /**
+     * The energy efficiency class as defined in EU directive 2010/30/EU.
+     */
+    minEnergyEfficiencyClass?: string;
     /**
      * Minimal product handling time (in business days).
      */
@@ -4728,12 +4798,12 @@ export namespace content_v2 {
   }
   export interface Schema$Promotion {
     /**
-     * Amount of the promotion. The values here are the promotion applied to the
-     * unit price pretax and to the total of the tax amounts.
+     * [required] Amount of the promotion. The values here are the promotion
+     * applied to the unit price pretax and to the total of the tax amounts.
      */
     promotionAmount?: Schema$Amount;
     /**
-     * ID of the promotion.
+     * [required] ID of the promotion.
      */
     promotionId?: string;
   }
@@ -4823,15 +4893,15 @@ export namespace content_v2 {
   }
   export interface Schema$ShipmentInvoice {
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -4846,11 +4916,11 @@ export namespace content_v2 {
      */
     productId?: string;
     /**
-     * Unit IDs to define specific units within the line item.
+     * [required] Unit IDs to define specific units within the line item.
      */
     shipmentUnitIds?: string[];
     /**
-     * Invoice details for a single unit.
+     * [required] Invoice details for a single unit.
      */
     unitInvoice?: Schema$UnitInvoice;
   }
@@ -5177,7 +5247,7 @@ export namespace content_v2 {
      */
     promotions?: Schema$Promotion[];
     /**
-     * Price of the unit, before applying taxes.
+     * [required] Price of the unit, before applying taxes.
      */
     unitPricePretax?: Schema$Price;
     /**
@@ -5187,7 +5257,7 @@ export namespace content_v2 {
   }
   export interface Schema$UnitInvoiceAdditionalCharge {
     /**
-     * Amount of the additional charge.
+     * [required] Amount of the additional charge.
      */
     additionalChargeAmount?: Schema$Amount;
     /**
@@ -5195,21 +5265,22 @@ export namespace content_v2 {
      */
     additionalChargePromotions?: Schema$Promotion[];
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
   export interface Schema$UnitInvoiceTaxLine {
     /**
-     * Tax amount for the tax type.
+     * [required] Tax amount for the tax type.
      */
     taxAmount?: Schema$Price;
     /**
-     * Optional name of the tax type.
+     * Optional name of the tax type. This should only be provided if taxType is
+     * otherFeeTax.
      */
     taxName?: string;
     /**
-     * Type of the tax.
+     * [required] Type of the tax.
      */
     taxType?: string;
   }
@@ -5685,6 +5756,76 @@ export namespace content_v2 {
 
 
     /**
+     * content.accounts.link
+     * @desc Performs an action on a link between a Merchant Center account and
+     * another account.
+     * @alias content.accounts.link
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account that should be linked.
+     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     * @param {().AccountsLinkRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    link(params?: Params$Resource$Accounts$Link, options?: MethodOptions):
+        AxiosPromise<Schema$AccountsLinkResponse>;
+    link(
+        params: Params$Resource$Accounts$Link,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(
+        params: Params$Resource$Accounts$Link,
+        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(
+        paramsOrCallback?: Params$Resource$Accounts$Link|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        callback?: BodyResponseCallback<Schema$AccountsLinkResponse>):
+        void|AxiosPromise<Schema$AccountsLinkResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Link;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Link;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/accounts/{accountId}/link')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountsLinkResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AccountsLinkResponse>(parameters);
+      }
+    }
+
+
+    /**
      * content.accounts.list
      * @desc Lists the sub-accounts in your Merchant Center account.
      * @alias content.accounts.list
@@ -5992,6 +6133,28 @@ export namespace content_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Account;
+  }
+  export interface Params$Resource$Accounts$Link {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that should be linked.
+     */
+    accountId?: string;
+    /**
+     * The ID of the managing account. If this parameter is not the same as
+     * accountId, then this account must be a multi-client account and accountId
+     * must be the ID of a sub-account of this account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountsLinkRequest;
   }
   export interface Params$Resource$Accounts$List {
     /**

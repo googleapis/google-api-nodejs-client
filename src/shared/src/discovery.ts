@@ -13,7 +13,7 @@
 
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
-import pify from 'pify';
+import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 import {GlobalOptions, ServiceOptions} from './api';

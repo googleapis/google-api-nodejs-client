@@ -1142,6 +1142,10 @@ export namespace serviceuser_v1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
@@ -1194,6 +1198,28 @@ export namespace serviceuser_v1 {
      * combinations of `metric_kind` and `value_type` might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that
@@ -2075,7 +2101,7 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to disable for that consumer.  The Service User implementation accepts the following forms for consumer: - "project:<project_id>"  A valid path would be: - /v1/projects/my-project/services/servicemanagement.googleapis.com:disable
+     * @param {string} params.name Name of the consumer and the service to disable for that consumer.  The Service User implementation accepts the following forms for consumer: - "project:<project_id>"  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
      * @param {().DisableServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2145,7 +2171,7 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to enable for that consumer.  A valid path would be: - /v1/projects/my-project/services/servicemanagement.googleapis.com:enable
+     * @param {string} params.name Name of the consumer and the service to enable for that consumer.  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
      * @param {().EnableServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2291,7 +2317,7 @@ export namespace serviceuser_v1 {
      * Name of the consumer and the service to disable for that consumer.  The
      * Service User implementation accepts the following forms for consumer: -
      * "project:<project_id>"  A valid path would be: -
-     * /v1/projects/my-project/services/servicemanagement.googleapis.com:disable
+     * projects/my-project/services/servicemanagement.googleapis.com
      */
     name?: string;
 
@@ -2309,7 +2335,7 @@ export namespace serviceuser_v1 {
     /**
      * Name of the consumer and the service to enable for that consumer.  A
      * valid path would be: -
-     * /v1/projects/my-project/services/servicemanagement.googleapis.com:enable
+     * projects/my-project/services/servicemanagement.googleapis.com
      */
     name?: string;
 

@@ -85,7 +85,7 @@ export namespace cloudbuild_v1 {
      */
     paths?: string[];
     /**
-     * Stores timing information for pushing all artifact objects. @OutputOnly
+     * Output only. Stores timing information for pushing all artifact objects.
      */
     timing?: Schema$TimeSpan;
   }
@@ -149,22 +149,22 @@ export namespace cloudbuild_v1 {
      */
     artifacts?: Schema$Artifacts;
     /**
-     * The ID of the `BuildTrigger` that triggered this build, if it was
-     * triggered automatically. @OutputOnly
+     * Output only. The ID of the `BuildTrigger` that triggered this build, if
+     * it was triggered automatically.
      */
     buildTriggerId?: string;
     /**
-     * Time at which the request to create the build was received. @OutputOnly
+     * Output only. Time at which the request to create the build was received.
      */
     createTime?: string;
     /**
-     * Time at which execution of the build was finished.  The difference
-     * between finish_time and start_time is the duration of the build&#39;s
-     * execution. @OutputOnly
+     * Output only. Time at which execution of the build was finished.  The
+     * difference between finish_time and start_time is the duration of the
+     * build&#39;s execution.
      */
     finishTime?: string;
     /**
-     * Unique identifier of the build. @OutputOnly
+     * Output only. Unique identifier of the build.
      */
     id?: string;
     /**
@@ -184,7 +184,7 @@ export namespace cloudbuild_v1 {
      */
     logsBucket?: string;
     /**
-     * URL to logs for this build in Google Cloud Console. @OutputOnly
+     * Output only. URL to logs for this build in Google Cloud Console.
      */
     logUrl?: string;
     /**
@@ -192,11 +192,11 @@ export namespace cloudbuild_v1 {
      */
     options?: Schema$BuildOptions;
     /**
-     * ID of the project. @OutputOnly.
+     * Output only. ID of the project.
      */
     projectId?: string;
     /**
-     * Results of the build. @OutputOnly
+     * Output only. Results of the build.
      */
     results?: Schema$Results;
     /**
@@ -208,19 +208,19 @@ export namespace cloudbuild_v1 {
      */
     source?: Schema$Source;
     /**
-     * A permanent fixed identifier for source. @OutputOnly
+     * Output only. A permanent fixed identifier for source.
      */
     sourceProvenance?: Schema$SourceProvenance;
     /**
-     * Time at which execution of the build was started. @OutputOnly
+     * Output only. Time at which execution of the build was started.
      */
     startTime?: string;
     /**
-     * Status of the build. @OutputOnly
+     * Output only. Status of the build.
      */
     status?: string;
     /**
-     * Customer-readable message about the current status. @OutputOnly
+     * Output only. Customer-readable message about the current status.
      */
     statusDetail?: string;
     /**
@@ -242,10 +242,10 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string;
     /**
-     * Stores timing information for phases of the build. Valid keys are:  *
-     * BUILD: time to execute all build steps * PUSH: time to push all specified
-     * images. * FETCHSOURCE: time to fetch source.  If the build does not
-     * specify source or images, these keys will not be included. @OutputOnly
+     * Output only. Stores timing information for phases of the build. Valid
+     * keys are:  * BUILD: time to execute all build steps * PUSH: time to push
+     * all specified images. * FETCHSOURCE: time to fetch source.  If the build
+     * does not specify source or images, these keys will not be included.
      */
     timing?: any;
   }
@@ -357,9 +357,9 @@ export namespace cloudbuild_v1 {
      */
     secretEnv?: string[];
     /**
-     * Status of the build step. At this time, build step status is only updated
-     * on build completion; step status is not updated in real-time as the build
-     * progresses. @OutputOnly
+     * Output only. Status of the build step. At this time, build step status is
+     * only updated on build completion; step status is not updated in real-time
+     * as the build progresses.
      */
     status?: string;
     /**
@@ -369,7 +369,7 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string;
     /**
-     * Stores timing information for executing this build step. @OutputOnly
+     * Output only. Stores timing information for executing this build step.
      */
     timing?: Schema$TimeSpan;
     /**
@@ -399,7 +399,7 @@ export namespace cloudbuild_v1 {
      */
     build?: Schema$Build;
     /**
-     * Time when the trigger was created.  @OutputOnly
+     * Output only. Time when the trigger was created.
      */
     createTime?: string;
     /**
@@ -416,7 +416,7 @@ export namespace cloudbuild_v1 {
      */
     filename?: string;
     /**
-     * Unique identifier of the trigger.  @OutputOnly
+     * Output only. Unique identifier of the trigger.
      */
     id?: string;
     /**
@@ -445,7 +445,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string;
     /**
-     * Stores timing information for pushing the specified image. @OutputOnly
+     * Output only. Stores timing information for pushing the specified image.
      */
     pushTiming?: Schema$TimeSpan;
   }
@@ -660,14 +660,13 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$SourceProvenance {
     /**
-     * Hash(es) of the build source, which can be used to verify that the
-     * original source integrity was maintained in the build. Note that
-     * `FileHashes` will only be populated if `BuildOptions` has requested a
+     * Output only. Hash(es) of the build source, which can be used to verify
+     * that the originalsource integrity was maintained in the build. Note that
+     * `FileHashes` willonly be populated if `BuildOptions` has requested a
      * `SourceProvenanceHash`.  The keys to this map are file paths used as
      * build source and the values contain the hash values for those files.  If
      * the build source came in a single package such as a gzipped tarfile
      * (`.tar.gz`), the `FileHash` will be for the single path to that file.
-     * @OutputOnly
      */
     fileHashes?: any;
     /**

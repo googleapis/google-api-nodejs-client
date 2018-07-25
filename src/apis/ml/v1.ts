@@ -275,9 +275,28 @@ export namespace ml_v1 {
      */
     errorMessage?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a job from overwriting each other. It is
+     * strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform job updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetJob`, and
+     * systems are expected to put that etag in the request to `UpdateJob` to
+     * ensure that their change will be applied to the same version of the job.
+     */
+    etag?: string;
+    /**
      * Required. The user-specified id of the job.
      */
     jobId?: string;
+    /**
+     * Optional. One or more labels that you can add, to organize your jobs.
+     * Each label is a key-value pair, where both the key and the value are
+     * arbitrary strings that you supply. For more information, see the
+     * documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
     /**
      * Input parameters to create a prediction job.
      */
@@ -393,6 +412,25 @@ export namespace ml_v1 {
      */
     description?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a model from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform model updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetModel`, and
+     * systems are expected to put that etag in the request to `UpdateModel` to
+     * ensure that their change will be applied to the model as intended.
+     */
+    etag?: string;
+    /**
+     * Optional. One or more labels that you can add, to organize your models.
+     * Each label is a key-value pair, where both the key and the value are
+     * arbitrary strings that you supply. For more information, see the
+     * documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
+    /**
      * Required. The name specified for the model when it was created.  The
      * model name must be unique within the project it is created in.
      */
@@ -431,6 +469,11 @@ export namespace ml_v1 {
      * Indicates whether a request to cancel this operation has been made.
      */
     isCancellationRequested?: boolean;
+    /**
+     * The user labels, inherited from the model or the model version being
+     * operated on.
+     */
+    labels?: any;
     /**
      * Contains the name of the model associated with the operation.
      */
@@ -664,8 +707,7 @@ export namespace ml_v1 {
      * NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the
      * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
-     * Cloud TPU. The availability of Cloud TPU is in   &lt;i&gt;Beta&lt;/i&gt;
-     * launch stage. See more about   &lt;a
+     * Cloud TPU. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to
      * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You must set
      * this value when `scaleTier` is set to `CUSTOM`.
@@ -800,6 +842,16 @@ export namespace ml_v1 {
      */
     errorMessage?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a model from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform model updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetVersion`, and
+     * systems are expected to put that etag in the request to `UpdateVersion`
+     * to ensure that their change will be applied to the model as intended.
+     */
+    etag?: string;
+    /**
      * Optional. The machine learning framework Cloud ML Engine uses to train
      * this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`,
      * and `XGBOOST`. If you do not specify a framework, Cloud ML Engine uses
@@ -815,18 +867,25 @@ export namespace ml_v1 {
      */
     isDefault?: boolean;
     /**
+     * Optional. One or more labels that you can add, to organize your model
+     * versions. Each label is a key-value pair, where both the key and the
+     * value are arbitrary strings that you supply. For more information, see
+     * the documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: any;
+    /**
      * Output only. The time the version was last used for prediction.
      */
     lastUseTime?: string;
     /**
      * Optional. The type of machine on which to serve the model. Currently only
-     * applies to online prediction service. Naming design doc for CMLE online
-     * prediction Machine Types:
-     * https://docs.google.com/document/d/1V3tko3VJ64PcpsmNxCXiPoPGccL9_K8gX1YjC8UofzQ/edit#heading=h.7lvy6owfx4eh.
-     * The following are currently supported and will be deprecated in Beta
-     * release.   mls1-highmem-1    1 core    2 Gb RAM   mls1-highcpu-4    4
-     * core    2 Gb RAM The following are available in Beta:   mls1-c1-m2 1 core
-     * 2 Gb RAM   Default   mls1-c4-m2        1 core    4 Gb RAM
+     * applies to online prediction service. The following are currently
+     * supported and will be deprecated in Beta release.   mls1-highmem-1    1
+     * core    2 Gb RAM   mls1-highcpu-4    4 core    2 Gb RAM The following are
+     * available in Beta:   mls1-c1-m2        1 core    2 Gb RAM   Default
+     * mls1-c4-m2        4 core    2 Gb RAM
      */
     machineType?: string;
     /**
@@ -937,7 +996,7 @@ export namespace ml_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -3246,13 +3305,13 @@ export namespace ml_v1 {
     /**
      * ml.projects.models.versions.patch
      * @desc Updates the specified Version resource.  Currently the only
-     * supported field to update is `description`.
+     * update-able fields are `description` and `autoScaling.minNodes`.
      * @alias ml.projects.models.versions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the model.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     }  Currently the only supported update mask is`description`.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     }  Currently the only supported update mask fields are `description` and `autoScaling.minNodes`.
      * @param {().GoogleCloudMlV1__Version} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3477,7 +3536,8 @@ export namespace ml_v1 {
      * description of a version to "foo", the `update_mask` parameter would be
      * specified as `description`, and the `PATCH` request body would specify
      * the new value, as follows:     {       "description": "foo"     }
-     * Currently the only supported update mask is`description`.
+     * Currently the only supported update mask fields are `description` and
+     * `autoScaling.minNodes`.
      */
     updateMask?: string;
 

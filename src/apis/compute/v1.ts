@@ -77,6 +77,9 @@ export namespace compute_v1 {
     licenses: Resource$Licenses;
     machineTypes: Resource$Machinetypes;
     networks: Resource$Networks;
+    nodeGroups: Resource$Nodegroups;
+    nodeTemplates: Resource$Nodetemplates;
+    nodeTypes: Resource$Nodetypes;
     projects: Resource$Projects;
     regionAutoscalers: Resource$Regionautoscalers;
     regionBackendServices: Resource$Regionbackendservices;
@@ -137,6 +140,9 @@ export namespace compute_v1 {
       this.licenses = new Resource$Licenses(this);
       this.machineTypes = new Resource$Machinetypes(this);
       this.networks = new Resource$Networks(this);
+      this.nodeGroups = new Resource$Nodegroups(this);
+      this.nodeTemplates = new Resource$Nodetemplates(this);
+      this.nodeTypes = new Resource$Nodetypes(this);
       this.projects = new Resource$Projects(this);
       this.regionAutoscalers = new Resource$Regionautoscalers(this);
       this.regionBackendServices = new Resource$Regionbackendservices(this);
@@ -337,6 +343,15 @@ export namespace compute_v1 {
      */
     natIP?: string;
     /**
+     * This signifies the networking tier used for configuring this access
+     * configuration and can only take the following values: PREMIUM, STANDARD.
+     * If an AccessConfig is specified without a valid external IP address, an
+     * ephemeral IP will be created with this networkTier.  If an AccessConfig
+     * with a valid external IP address is specified, it must match that of the
+     * networkTier associated with the Address resource owning that IP.
+     */
+    networkTier?: string;
+    /**
      * The DNS domain name for the public PTR record. This field can only be set
      * when the set_public_ptr field is enabled.
      */
@@ -399,6 +414,12 @@ export namespace compute_v1 {
      * dash.
      */
     name?: string;
+    /**
+     * This signifies the networking tier used for configuring this Address and
+     * can only take the following values: PREMIUM , STANDARD.  If this field is
+     * not specified, it is assumed to be PREMIUM.
+     */
+    networkTier?: string;
     /**
      * [Output Only] URL of the region where the regional address resides. This
      * field is not applicable to global addresses. You must specify this field
@@ -635,7 +656,8 @@ export namespace compute_v1 {
   export interface Schema$AttachedDiskInitializeParams {
     /**
      * Specifies the disk name. If not specified, the default is to use the name
-     * of the instance.
+     * of the instance. If the disk with the instance name exists already in the
+     * given zone/region, a new name will be automatically generated.
      */
     diskName?: string;
     /**
@@ -1028,6 +1050,10 @@ export namespace compute_v1 {
      */
     bucketName?: string;
     /**
+     * Cloud CDN configuration for this BackendBucket.
+     */
+    cdnPolicy?: Schema$BackendBucketCdnPolicy;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
@@ -1062,6 +1088,25 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+  }
+  /**
+   * Message containing Cloud CDN configuration for a backend bucket.
+   */
+  export interface Schema$BackendBucketCdnPolicy {
+    /**
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
+     */
+    signedUrlCacheMaxAgeSec?: string;
+    /**
+     * [Output Only] Names of the keys for signing request URLs.
+     */
+    signedUrlKeyNames?: string[];
   }
   /**
    * Contains a list of BackendBucket resources.
@@ -1137,7 +1182,8 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a BackendService. An up-to-date fingerprint must
-     * be provided in order to update the BackendService.
+     * be provided in order to update the BackendService.  To see the latest
+     * fingerprint, make a get() request to retrieve a BackendService.
      */
     fingerprint?: string;
     /**
@@ -1263,6 +1309,20 @@ export namespace compute_v1 {
      * The CacheKeyPolicy for this CdnPolicy.
      */
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
+    /**
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
+     */
+    signedUrlCacheMaxAgeSec?: string;
+    /**
+     * [Output Only] Names of the keys for signing request URLs.
+     */
+    signedUrlKeyNames?: string[];
   }
   export interface Schema$BackendServiceGroupHealth {
     healthStatus?: Schema$HealthStatus[];
@@ -2048,6 +2108,20 @@ export namespace compute_v1 {
      */
     warning?: any;
   }
+  export interface Schema$DistributionPolicy {
+    /**
+     * Zones where the regional managed instance group will create and manage
+     * instances.
+     */
+    zones?: Schema$DistributionPolicyZoneConfiguration[];
+  }
+  export interface Schema$DistributionPolicyZoneConfiguration {
+    /**
+     * The URL of the zone. The zone must exist in the region where the managed
+     * instance group is located.
+     */
+    zone?: string;
+  }
   /**
    * Represents a Firewall resource.
    */
@@ -2230,7 +2304,7 @@ export namespace compute_v1 {
    */
   export interface Schema$ForwardingRule {
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
      */
@@ -2259,12 +2333,14 @@ export namespace compute_v1 {
      * field is empty, an ephemeral IPv4 address from the same scope (global or
      * regional) will be assigned. A regional forwarding rule supports IPv4
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
-     * load balancing scheme is INTERNAL, this can only be an RFC 1918 IP
-     * address belonging to the network/subnet configured for the forwarding
-     * rule. By default, if this field is empty, an ephemeral internal IP
-     * address will be automatically allocated from the IP range of the subnet
-     * or network configured for this forwarding rule.  An address can be
-     * specified either by a literal IP address or a URL reference to an
+     * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
+     * reference to an existing Address resource ( internal regional static IP
+     * address).  When the load balancing scheme is INTERNAL, this can only be
+     * an RFC 1918 IP address belonging to the network/subnet configured for the
+     * forwarding rule. By default, if this field is empty, an ephemeral
+     * internal IP address will be automatically allocated from the IP range of
+     * the subnet or network configured for this forwarding rule.  An address
+     * can be specified either by a literal IP address or a URL reference to an
      * existing Address resource. The following examples are all valid:   -
      * 100.1.2.3  -
      * https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address
@@ -2275,13 +2351,14 @@ export namespace compute_v1 {
     /**
      * The IP protocol to which this rule applies. Valid options are TCP, UDP,
      * ESP, AH, SCTP or ICMP.  When the load balancing scheme is INTERNAL, only
-     * TCP and UDP are valid.
+     * TCP and UDP are valid. When the load balancing scheme is
+     * INTERNAL_SELF_MANAGED, only TCPis valid.
      */
     IPProtocol?: string;
     /**
      * The IP Version that will be used by this forwarding rule. Valid options
-     * are IPV4 or IPV6. This can only be specified for a global forwarding
-     * rule.
+     * are IPV4 or IPV6. This can only be specified for an external global
+     * forwarding rule.
      */
     ipVersion?: string;
     /**
@@ -2291,10 +2368,12 @@ export namespace compute_v1 {
     kind?: string;
     /**
      * This signifies what the ForwardingRule will be used for and can only take
-     * the following values: INTERNAL, EXTERNAL The value of INTERNAL means that
-     * this will be used for Internal Network Load Balancing (TCP, UDP). The
-     * value of EXTERNAL means that this will be used for External Load
-     * Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+     * the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The
+     * value of INTERNAL means that this will be used for Internal Network Load
+     * Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this
+     * will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means
+     * that this will be used for External Load Balancing (HTTP(S) LB, External
+     * TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
     /**
@@ -2308,12 +2387,21 @@ export namespace compute_v1 {
      */
     name?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
-     * balancing, this field identifies the network that the load balanced IP
-     * should belong to for this Forwarding Rule. If this field is not
-     * specified, the default network will be used.
+     * This field is not used for external load balancing.  For INTERNAL and
+     * INTERNAL_SELF_MANAGED load balancing, this field identifies the network
+     * that the load balanced IP should belong to for this Forwarding Rule. If
+     * this field is not specified, the default network will be used.
      */
     network?: string;
+    /**
+     * This signifies the networking tier used for configuring this load
+     * balancer and can only take the following values: PREMIUM , STANDARD.  For
+     * regional ForwardingRule, the valid values are PREMIUM and STANDARD. For
+     * GlobalForwardingRule, the valid value is PREMIUM.  If this field is not
+     * specified, it is assumed to be PREMIUM. If IPAddress is specified, this
+     * value must be equal to the networkTier of the Address.
+     */
+    networkTier?: string;
     /**
      * This field is used along with the target field for TargetHttpProxy,
      * TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
@@ -2348,7 +2436,7 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the subnetwork that the load balanced IP
      * should belong to for this Forwarding Rule.  If the network specified is
      * in auto subnet mode, this field is optional. However, if the network is
@@ -2360,7 +2448,8 @@ export namespace compute_v1 {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object.
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
   }
@@ -3012,9 +3101,9 @@ export namespace compute_v1 {
      */
     sourceDiskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * The ID value of the disk used to create this image. This value may be
-     * used to determine whether the image was taken from the current or a
-     * previous instance of a given disk name.
+     * [Output Only] The ID value of the disk used to create this image. This
+     * value may be used to determine whether the image was taken from the
+     * current or a previous instance of a given disk name.
      */
     sourceDiskId?: string;
     /**
@@ -3453,10 +3542,16 @@ export namespace compute_v1 {
      */
     description?: string;
     /**
+     * Policy specifying intended distribution of instances in regional managed
+     * instance group.
+     */
+    distributionPolicy?: Schema$DistributionPolicy;
+    /**
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager.
+     * InstanceGroupManager.  To see the latest fingerprint, make a get()
+     * request to retrieve an InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -5074,7 +5169,9 @@ export namespace compute_v1 {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.
+     * up-to-date fingerprint hash in order to update or change metadata.  To
+     * see the latest fingerprint, make a get() request to retrieve the
+     * resource.
      */
     fingerprint?: string;
     /**
@@ -5350,6 +5447,480 @@ export namespace compute_v1 {
     name?: string;
   }
   /**
+   * A NodeGroup resource.
+   */
+  export interface Schema$NodeGroup {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] The type of the resource. Always compute#nodeGroup for node
+     * group.
+     */
+    kind?: string;
+    /**
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * with RFC1035. Specifically, the name must be 1-63 characters long and
+     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
+     * first character must be a lowercase letter, and all following characters
+     * must be a dash, lowercase letter, or digit, except the last character,
+     * which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * The URL of the node template to which this node group belongs.
+     */
+    nodeTemplate?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] The total number of nodes in the node group.
+     */
+    size?: number;
+    status?: string;
+    /**
+     * [Output Only] The name of the zone where the node group resides, such as
+     * us-central1-a.
+     */
+    zone?: string;
+  }
+  export interface Schema$NodeGroupAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeGroupsScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] Type of resource.Always compute#nodeGroupAggregatedList for
+     * aggregated lists of node groups.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * Contains a list of nodeGroups.
+   */
+  export interface Schema$NodeGroupList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeGroup resources.
+     */
+    items?: Schema$NodeGroup[];
+    /**
+     * [Output Only] Type of resource.Always compute#nodeGroupList for lists of
+     * node groups.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NodeGroupNode {
+    /**
+     * Instances scheduled on this node.
+     */
+    instances?: string[];
+    /**
+     * The name of the node.
+     */
+    name?: string;
+    /**
+     * The type of this node.
+     */
+    nodeType?: string;
+    status?: string;
+  }
+  export interface Schema$NodeGroupsAddNodesRequest {
+    /**
+     * Count of additional nodes to be added to the node group.
+     */
+    additionalNodeCount?: number;
+  }
+  export interface Schema$NodeGroupsDeleteNodesRequest {
+    nodes?: string[];
+  }
+  export interface Schema$NodeGroupsListNodes {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Node resources.
+     */
+    items?: Schema$NodeGroupNode[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute.nodeGroupsListNodes for the list of nodes in the specified node
+     * group.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NodeGroupsScopedList {
+    /**
+     * [Output Only] A list of node groups contained in this scope.
+     */
+    nodeGroups?: Schema$NodeGroup[];
+    /**
+     * [Output Only] An informational warning that appears when the nodeGroup
+     * list is empty.
+     */
+    warning?: any;
+  }
+  export interface Schema$NodeGroupsSetNodeTemplateRequest {
+    /**
+     * Full or partial URL of the node template resource to be updated for this
+     * node group.
+     */
+    nodeTemplate?: string;
+  }
+  /**
+   * A Node Template resource.
+   */
+  export interface Schema$NodeTemplate {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] The type of the resource. Always compute#nodeTemplate for
+     * node templates.
+     */
+    kind?: string;
+    /**
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * with RFC1035. Specifically, the name must be 1-63 characters long and
+     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
+     * first character must be a lowercase letter, and all following characters
+     * must be a dash, lowercase letter, or digit, except the last charaicter,
+     * which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * Labels to use for node affinity, which will be used in instance
+     * scheduling.
+     */
+    nodeAffinityLabels?: any;
+    /**
+     * The node type to use for nodes group that are created from this template.
+     */
+    nodeType?: string;
+    /**
+     * The flexible properties of the desired node type. Node groups that use
+     * this node template will create nodes of a type that matches these
+     * properties.  This field is mutually exclusive with the node_type
+     * property; you can only define one or the other, but not both.
+     */
+    nodeTypeFlexibility?: Schema$NodeTemplateNodeTypeFlexibility;
+    /**
+     * [Output Only] The name of the region where the node template resides,
+     * such as us-central1.
+     */
+    region?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] The status of the node template. One of the following
+     * values: CREATING, READY, and DELETING.
+     */
+    status?: string;
+    /**
+     * [Output Only] An optional, human-readable explanation of the status.
+     */
+    statusMessage?: string;
+  }
+  export interface Schema$NodeTemplateAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeTemplatesScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] Type of resource.Always compute#nodeTemplateAggregatedList
+     * for aggregated lists of node templates.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * Contains a list of node templates.
+   */
+  export interface Schema$NodeTemplateList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeTemplate resources.
+     */
+    items?: Schema$NodeTemplate[];
+    /**
+     * [Output Only] Type of resource.Always compute#nodeTemplateList for lists
+     * of node templates.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NodeTemplateNodeTypeFlexibility {
+    cpus?: string;
+    localSsd?: string;
+    memory?: string;
+  }
+  export interface Schema$NodeTemplatesScopedList {
+    /**
+     * [Output Only] A list of node templates contained in this scope.
+     */
+    nodeTemplates?: Schema$NodeTemplate[];
+    /**
+     * [Output Only] An informational warning that appears when the node
+     * templates list is empty.
+     */
+    warning?: any;
+  }
+  /**
+   * A Node Type resource.
+   */
+  export interface Schema$NodeType {
+    /**
+     * [Output Only] The CPU platform used by this node type.
+     */
+    cpuPlatform?: string;
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * [Output Only] The deprecation status associated with this node type.
+     */
+    deprecated?: Schema$DeprecationStatus;
+    /**
+     * [Output Only] An optional textual description of the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The number of virtual CPUs that are available to the node
+     * type.
+     */
+    guestCpus?: number;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] The type of the resource. Always compute#nodeType for node
+     * types.
+     */
+    kind?: string;
+    /**
+     * [Output Only] Local SSD available to the node type, defined in GB.
+     */
+    localSsdGb?: number;
+    /**
+     * [Output Only] The amount of physical memory available to the node type,
+     * defined in MB.
+     */
+    memoryMb?: number;
+    /**
+     * [Output Only] Name of the resource.
+     */
+    name?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] The name of the zone where the node type resides, such as
+     * us-central1-a.
+     */
+    zone?: string;
+  }
+  export interface Schema$NodeTypeAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeTypesScopedList resources.
+     */
+    items?: any;
+    /**
+     * [Output Only] Type of resource.Always compute#nodeTypeAggregatedList for
+     * aggregated lists of node types.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * Contains a list of node types.
+   */
+  export interface Schema$NodeTypeList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of NodeType resources.
+     */
+    items?: Schema$NodeType[];
+    /**
+     * [Output Only] Type of resource.Always compute#nodeTypeList for lists of
+     * node types.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$NodeTypesScopedList {
+    /**
+     * [Output Only] A list of node types contained in this scope.
+     */
+    nodeTypes?: Schema$NodeType[];
+    /**
+     * [Output Only] An informational warning that appears when the node types
+     * list is empty.
+     */
+    warning?: any;
+  }
+  /**
    * An Operation resource, used to manage asynchronous API requests. (==
    * resource_for v1.globalOperations ==) (== resource_for beta.globalOperations
    * ==) (== resource_for v1.regionOperations ==) (== resource_for
@@ -5620,6 +6191,12 @@ export namespace compute_v1 {
      */
     creationTimestamp?: string;
     /**
+     * This signifies the default network tier used for configuring resources of
+     * the project and can only take the following values: PREMIUM, STANDARD.
+     * Initially the default network tier is PREMIUM.
+     */
+    defaultNetworkTier?: string;
+    /**
      * [Output Only] Default service account used by VMs running in this
      * project.
      */
@@ -5705,6 +6282,12 @@ export namespace compute_v1 {
      * inferred from the project.
      */
     organization?: string;
+  }
+  export interface Schema$ProjectsSetDefaultNetworkTierRequest {
+    /**
+     * Default network tier to be set.
+     */
+    networkTier?: string;
   }
   /**
    * A quotas entry.
@@ -6614,6 +7197,10 @@ export namespace compute_v1 {
      */
     automaticRestart?: boolean;
     /**
+     * A set of node affinity and anti-affinity.
+     */
+    nodeAffinities?: Schema$SchedulingNodeAffinity[];
+    /**
      * Defines the maintenance behavior for this instance. For standard
      * instances, the default behavior is MIGRATE. For preemptible instances,
      * the default and only possible behavior is TERMINATE. For more
@@ -6626,6 +7213,24 @@ export namespace compute_v1 {
      * been created.
      */
     preemptible?: boolean;
+  }
+  /**
+   * Node Affinity: the configuration of desired nodes onto which this Instance
+   * could be scheduled.
+   */
+  export interface Schema$SchedulingNodeAffinity {
+    /**
+     * Corresponds to the label key of Node resource.
+     */
+    key?: string;
+    /**
+     * Defines the operation of node selection.
+     */
+    operator?: string;
+    /**
+     * Corresponds to the label values of Node resource.
+     */
+    values?: string[];
   }
   /**
    * An instance&#39;s serial console output.
@@ -6670,6 +7275,25 @@ export namespace compute_v1 {
      * The list of scopes to be made available for this service account.
      */
     scopes?: string[];
+  }
+  /**
+   * Represents a customer-supplied Signing Key used by Cloud CDN Signed URLs
+   */
+  export interface Schema$SignedUrlKey {
+    /**
+     * Name of the key. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    keyName?: string;
+    /**
+     * 128-bit key value used for signing the URL. The key value must be a valid
+     * RFC 4648 Section 5 base64url encoded string.
+     */
+    keyValue?: string;
   }
   /**
    * A persistent disk snapshot resource. (== resource_for beta.snapshots ==)
@@ -7009,7 +7633,8 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a SslPolicy. An up-to-date fingerprint must be
-     * provided in order to update the SslPolicy.
+     * provided in order to update the SslPolicy.  To see the latest
+     * fingerprint, make a get() request to retrieve an SslPolicy.
      */
     fingerprint?: string;
     /**
@@ -7084,7 +7709,8 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a Subnetwork. An up-to-date fingerprint must be
-     * provided in order to update the Subnetwork.
+     * provided in order to update the Subnetwork.  To see the latest
+     * fingerprint, make a get() request to retrieve a Subnetwork.
      */
     fingerprint?: string;
     /**
@@ -8248,7 +8874,8 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a UrlMap. An up-to-date fingerprint must be
-     * provided in order to update the UrlMap.
+     * provided in order to update the UrlMap.  To see the latest fingerprint,
+     * make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
     /**
@@ -8371,6 +8998,77 @@ export namespace compute_v1 {
      * false, &#39;testFailures&#39;s indicate the reason of failure.
      */
     testPassed?: boolean;
+  }
+  /**
+   * Subnetwork which the current user has compute.subnetworks.use permission
+   * on.
+   */
+  export interface Schema$UsableSubnetwork {
+    /**
+     * The range of internal addresses that are owned by this subnetwork.
+     */
+    ipCidrRange?: string;
+    /**
+     * Network URL.
+     */
+    network?: string;
+    /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * Subnetwork URL.
+     */
+    subnetwork?: string;
+  }
+  export interface Schema$UsableSubnetworksAggregatedList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output] A list of usable subnetwork URLs.
+     */
+    items?: Schema$UsableSubnetwork[];
+    /**
+     * [Output Only] Type of resource. Always
+     * compute#usableSubnetworksAggregatedList for aggregated lists of usable
+     * subnetworks.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance. The name must be 1-63
+     * characters long, and comply with RFC1035. The name must be unique within
+     * the subnetwork.
+     */
+    rangeName?: string;
   }
   /**
    * The location in Cloud Storage and naming method of the daily usage report.
@@ -11381,6 +12079,79 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.backendBuckets.addSignedUrlKey
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend bucket.
+     * @alias compute.backendBuckets.addSignedUrlKey
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().SignedUrlKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addSignedUrlKey(
+        params?: Params$Resource$Backendbuckets$Addsignedurlkey,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addSignedUrlKey(
+        params: Params$Resource$Backendbuckets$Addsignedurlkey,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(
+        params: Params$Resource$Backendbuckets$Addsignedurlkey,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(
+        paramsOrCallback?: Params$Resource$Backendbuckets$Addsignedurlkey|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Backendbuckets$Addsignedurlkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backendbuckets$Addsignedurlkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.backendBuckets.delete
      * @desc Deletes the specified BackendBucket resource.
      * @example
@@ -11497,6 +12268,79 @@ export namespace compute_v1 {
             options),
         params,
         requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.backendBuckets.deleteSignedUrlKey
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend bucket.
+     * @alias compute.backendBuckets.deleteSignedUrlKey
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.keyName The name of the Signed URL Key to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSignedUrlKey(
+        params?: Params$Resource$Backendbuckets$Deletesignedurlkey,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    deleteSignedUrlKey(
+        params: Params$Resource$Backendbuckets$Deletesignedurlkey,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(
+        params: Params$Resource$Backendbuckets$Deletesignedurlkey,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(
+        paramsOrCallback?: Params$Resource$Backendbuckets$Deletesignedurlkey|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Backendbuckets$Deletesignedurlkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backendbuckets$Deletesignedurlkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket', 'keyName'],
         pathParams: ['backendBucket', 'project'],
         context: this.getRoot()
       };
@@ -12171,6 +13015,40 @@ export namespace compute_v1 {
     }
   }
 
+  export interface Params$Resource$Backendbuckets$Addsignedurlkey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the BackendBucket resource to which the Signed URL Key should be
+     * added. The name should conform to RFC1035.
+     */
+    backendBucket?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SignedUrlKey;
+  }
   export interface Params$Resource$Backendbuckets$Delete {
     /**
      * Auth client or API Key for the request
@@ -12181,6 +13059,39 @@ export namespace compute_v1 {
      * Name of the BackendBucket resource to delete.
      */
     backendBucket?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Backendbuckets$Deletesignedurlkey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the BackendBucket resource to which the Signed URL Key should be
+     * added. The name should conform to RFC1035.
+     */
+    backendBucket?: string;
+    /**
+     * The name of the Signed URL Key to delete.
+     */
+    keyName?: string;
     /**
      * Project ID for this request.
      */
@@ -12374,6 +13285,79 @@ export namespace compute_v1 {
 
     getRoot() {
       return this.root;
+    }
+
+
+    /**
+     * compute.backendServices.addSignedUrlKey
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend service.
+     * @alias compute.backendServices.addSignedUrlKey
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().SignedUrlKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addSignedUrlKey(
+        params?: Params$Resource$Backendservices$Addsignedurlkey,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addSignedUrlKey(
+        params: Params$Resource$Backendservices$Addsignedurlkey,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(
+        params: Params$Resource$Backendservices$Addsignedurlkey,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(callback: BodyResponseCallback<Schema$Operation>): void;
+    addSignedUrlKey(
+        paramsOrCallback?: Params$Resource$Backendservices$Addsignedurlkey|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Backendservices$Addsignedurlkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backendservices$Addsignedurlkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
 
@@ -12642,6 +13626,79 @@ export namespace compute_v1 {
             options),
         params,
         requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.backendServices.deleteSignedUrlKey
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend service.
+     * @alias compute.backendServices.deleteSignedUrlKey
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.keyName The name of the Signed URL Key to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSignedUrlKey(
+        params?: Params$Resource$Backendservices$Deletesignedurlkey,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    deleteSignedUrlKey(
+        params: Params$Resource$Backendservices$Deletesignedurlkey,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(
+        params: Params$Resource$Backendservices$Deletesignedurlkey,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSignedUrlKey(
+        paramsOrCallback?: Params$Resource$Backendservices$Deletesignedurlkey|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Backendservices$Deletesignedurlkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backendservices$Deletesignedurlkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
         context: this.getRoot()
       };
@@ -13458,6 +14515,40 @@ export namespace compute_v1 {
     }
   }
 
+  export interface Params$Resource$Backendservices$Addsignedurlkey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the BackendService resource to which the Signed URL Key should be
+     * added. The name should conform to RFC1035.
+     */
+    backendService?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SignedUrlKey;
+  }
   export interface Params$Resource$Backendservices$Aggregatedlist {
     /**
      * Auth client or API Key for the request
@@ -13522,6 +14613,39 @@ export namespace compute_v1 {
      * Name of the BackendService resource to delete.
      */
     backendService?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Backendservices$Deletesignedurlkey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the BackendService resource to which the Signed URL Key should be
+     * added. The name should conform to RFC1035.
+     */
+    backendService?: string;
+    /**
+     * The name of the Signed URL Key to delete.
+     */
+    keyName?: string;
     /**
      * Project ID for this request.
      */
@@ -25059,11 +26183,11 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25991,7 +27115,22 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -25999,15 +27138,27 @@ export namespace compute_v1 {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -37815,6 +38966,1977 @@ export namespace compute_v1 {
   }
 
 
+  export class Resource$Nodegroups {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.nodeGroups.addNodes
+     * @desc Adds specified number of nodes to the node group.
+     * @alias compute.nodeGroups.addNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().NodeGroupsAddNodesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addNodes(
+        params?: Params$Resource$Nodegroups$Addnodes,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addNodes(
+        params: Params$Resource$Nodegroups$Addnodes,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addNodes(
+        params: Params$Resource$Nodegroups$Addnodes,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addNodes(callback: BodyResponseCallback<Schema$Operation>): void;
+    addNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Addnodes|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Addnodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Addnodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/addNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.aggregatedList
+     * @desc Retrieves an aggregated list of node groups. Note: use
+     * nodeGroups.listNodes for more details about each group.
+     * @alias compute.nodeGroups.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Nodegroups$Aggregatedlist,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroupAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Nodegroups$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupAggregatedList>,
+        callback: BodyResponseCallback<Schema$NodeGroupAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Nodegroups$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$NodeGroupAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$NodeGroupAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Nodegroups$Aggregatedlist|
+        BodyResponseCallback<Schema$NodeGroupAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupAggregatedList>,
+        callback?: BodyResponseCallback<Schema$NodeGroupAggregatedList>):
+        void|AxiosPromise<Schema$NodeGroupAggregatedList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/aggregated/nodeGroups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.delete
+     * @desc Deletes the specified NodeGroup resource.
+     * @alias compute.nodeGroups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Nodegroups$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Nodegroups$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Nodegroups$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Nodegroups$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.deleteNodes
+     * @desc Deletes specified nodes from the node group.
+     * @alias compute.nodeGroups.deleteNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().NodeGroupsDeleteNodesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteNodes(
+        params?: Params$Resource$Nodegroups$Deletenodes,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    deleteNodes(
+        params: Params$Resource$Nodegroups$Deletenodes,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteNodes(
+        params: Params$Resource$Nodegroups$Deletenodes,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteNodes(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Deletenodes|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Deletenodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Deletenodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/deleteNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.get
+     * @desc Returns the specified NodeGroup. Get a list of available NodeGroups
+     * by making a list() request. Note: the "nodes" field should not be used.
+     * Use nodeGroups.listNodes instead.
+     * @alias compute.nodeGroups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the node group to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Nodegroups$Get,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroup>;
+    get(params: Params$Resource$Nodegroups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroup>,
+        callback: BodyResponseCallback<Schema$NodeGroup>): void;
+    get(params: Params$Resource$Nodegroups$Get,
+        callback: BodyResponseCallback<Schema$NodeGroup>): void;
+    get(callback: BodyResponseCallback<Schema$NodeGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Nodegroups$Get|
+        BodyResponseCallback<Schema$NodeGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroup>,
+        callback?: BodyResponseCallback<Schema$NodeGroup>):
+        void|AxiosPromise<Schema$NodeGroup> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodegroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroup>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.insert
+     * @desc Creates a NodeGroup resource in the specified project using the
+     * data included in the request.
+     * @alias compute.nodeGroups.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer} params.initialNodeCount Initial count of nodes in the node group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().NodeGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(params?: Params$Resource$Nodegroups$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Nodegroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Nodegroups$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Nodegroups$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/zones/{zone}/nodeGroups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'initialNodeCount'],
+        pathParams: ['project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.list
+     * @desc Retrieves a list of node groups available to the specified project.
+     * Note: use nodeGroups.listNodes for more details about each group.
+     * @alias compute.nodeGroups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Nodegroups$List, options?: MethodOptions):
+        AxiosPromise<Schema$NodeGroupList>;
+    list(
+        params: Params$Resource$Nodegroups$List,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroupList>,
+        callback: BodyResponseCallback<Schema$NodeGroupList>): void;
+    list(
+        params: Params$Resource$Nodegroups$List,
+        callback: BodyResponseCallback<Schema$NodeGroupList>): void;
+    list(callback: BodyResponseCallback<Schema$NodeGroupList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Nodegroups$List|
+        BodyResponseCallback<Schema$NodeGroupList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupList>,
+        callback?: BodyResponseCallback<Schema$NodeGroupList>):
+        void|AxiosPromise<Schema$NodeGroupList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodegroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/zones/{zone}/nodeGroups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.listNodes
+     * @desc Lists nodes in the node group.
+     * @alias compute.nodeGroups.listNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes you want to list.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNodes(
+        params?: Params$Resource$Nodegroups$Listnodes,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroupsListNodes>;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Listnodes|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback?: BodyResponseCallback<Schema$NodeGroupsListNodes>):
+        void|AxiosPromise<Schema$NodeGroupsListNodes> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Listnodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Listnodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupsListNodes>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.setNodeTemplate
+     * @desc Updates the node template of the node group.
+     * @alias compute.nodeGroups.setNodeTemplate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().NodeGroupsSetNodeTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setNodeTemplate(
+        params?: Params$Resource$Nodegroups$Setnodetemplate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setNodeTemplate(
+        params: Params$Resource$Nodegroups$Setnodetemplate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setNodeTemplate(
+        params: Params$Resource$Nodegroups$Setnodetemplate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setNodeTemplate(callback: BodyResponseCallback<Schema$Operation>): void;
+    setNodeTemplate(
+        paramsOrCallback?: Params$Resource$Nodegroups$Setnodetemplate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodegroups$Setnodetemplate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Setnodetemplate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/setNodeTemplate')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodegroups$Addnodes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the NodeGroup resource to delete.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroupsAddNodesRequest;
+  }
+  export interface Params$Resource$Nodegroups$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Nodegroups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the NodeGroup resource to delete.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Deletenodes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the NodeGroup resource to delete.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroupsDeleteNodesRequest;
+  }
+  export interface Params$Resource$Nodegroups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the node group to return.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Initial count of nodes in the node group.
+     */
+    initialNodeCount?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroup;
+  }
+  export interface Params$Resource$Nodegroups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Listnodes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the NodeGroup resource whose nodes you want to list.
+     */
+    nodeGroup?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Setnodetemplate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the NodeGroup resource to delete.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroupsSetNodeTemplateRequest;
+  }
+
+
+  export class Resource$Nodetemplates {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.nodeTemplates.aggregatedList
+     * @desc Retrieves an aggregated list of node templates.
+     * @alias compute.nodeTemplates.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Nodetemplates$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$NodeTemplateAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Nodetemplates$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
+        callback: BodyResponseCallback<Schema$NodeTemplateAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Nodetemplates$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$NodeTemplateAggregatedList>):
+        void;
+    aggregatedList(callback:
+                       BodyResponseCallback<Schema$NodeTemplateAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Aggregatedlist|
+        BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
+        callback?: BodyResponseCallback<Schema$NodeTemplateAggregatedList>):
+        void|AxiosPromise<Schema$NodeTemplateAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodetemplates$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/aggregated/nodeTemplates')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeTemplateAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeTemplateAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTemplates.delete
+     * @desc Deletes the specified NodeTemplate resource.
+     * @alias compute.nodeTemplates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeTemplate Name of the NodeTemplate resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Nodetemplates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Nodetemplates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Nodetemplates$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'nodeTemplate'],
+        pathParams: ['nodeTemplate', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTemplates.get
+     * @desc Returns the specified node template. Gets a list of available node
+     * templates by making a list() request.
+     * @alias compute.nodeTemplates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeTemplate Name of the node template to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Nodetemplates$Get,
+        options?: MethodOptions): AxiosPromise<Schema$NodeTemplate>;
+    get(params: Params$Resource$Nodetemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeTemplate>,
+        callback: BodyResponseCallback<Schema$NodeTemplate>): void;
+    get(params: Params$Resource$Nodetemplates$Get,
+        callback: BodyResponseCallback<Schema$NodeTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$NodeTemplate>): void;
+    get(paramsOrCallback?: Params$Resource$Nodetemplates$Get|
+        BodyResponseCallback<Schema$NodeTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeTemplate>,
+        callback?: BodyResponseCallback<Schema$NodeTemplate>):
+        void|AxiosPromise<Schema$NodeTemplate> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'nodeTemplate'],
+        pathParams: ['nodeTemplate', 'project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeTemplate>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTemplates.insert
+     * @desc Creates a NodeTemplate resource in the specified project using the
+     * data included in the request.
+     * @alias compute.nodeTemplates.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().NodeTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Nodetemplates$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Nodetemplates$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Nodetemplates$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTemplates.list
+     * @desc Retrieves a list of node templates available to the specified
+     * project.
+     * @alias compute.nodeTemplates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Nodetemplates$List, options?: MethodOptions):
+        AxiosPromise<Schema$NodeTemplateList>;
+    list(
+        params: Params$Resource$Nodetemplates$List,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeTemplateList>,
+        callback: BodyResponseCallback<Schema$NodeTemplateList>): void;
+    list(
+        params: Params$Resource$Nodetemplates$List,
+        callback: BodyResponseCallback<Schema$NodeTemplateList>): void;
+    list(callback: BodyResponseCallback<Schema$NodeTemplateList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Nodetemplates$List|
+        BodyResponseCallback<Schema$NodeTemplateList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeTemplateList>,
+        callback?: BodyResponseCallback<Schema$NodeTemplateList>):
+        void|AxiosPromise<Schema$NodeTemplateList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodetemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeTemplateList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeTemplateList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodetemplates$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Nodetemplates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the NodeTemplate resource to delete.
+     */
+    nodeTemplate?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Nodetemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the node template to return.
+     */
+    nodeTemplate?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Nodetemplates$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeTemplate;
+  }
+  export interface Params$Resource$Nodetemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+  }
+
+
+  export class Resource$Nodetypes {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.nodeTypes.aggregatedList
+     * @desc Retrieves an aggregated list of node types.
+     * @alias compute.nodeTypes.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Nodetypes$Aggregatedlist,
+        options?: MethodOptions): AxiosPromise<Schema$NodeTypeAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Nodetypes$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NodeTypeAggregatedList>,
+        callback: BodyResponseCallback<Schema$NodeTypeAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Nodetypes$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$NodeTypeAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$NodeTypeAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Nodetypes$Aggregatedlist|
+        BodyResponseCallback<Schema$NodeTypeAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeTypeAggregatedList>,
+        callback?: BodyResponseCallback<Schema$NodeTypeAggregatedList>):
+        void|AxiosPromise<Schema$NodeTypeAggregatedList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodetypes$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetypes$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/aggregated/nodeTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeTypeAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeTypeAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTypes.get
+     * @desc Returns the specified node type. Gets a list of available node
+     * types by making a list() request.
+     * @alias compute.nodeTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeType Name of the node type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Nodetypes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$NodeType>;
+    get(params: Params$Resource$Nodetypes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeType>,
+        callback: BodyResponseCallback<Schema$NodeType>): void;
+    get(params: Params$Resource$Nodetypes$Get,
+        callback: BodyResponseCallback<Schema$NodeType>): void;
+    get(callback: BodyResponseCallback<Schema$NodeType>): void;
+    get(paramsOrCallback?: Params$Resource$Nodetypes$Get|
+        BodyResponseCallback<Schema$NodeType>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$NodeType>,
+        callback?: BodyResponseCallback<Schema$NodeType>):
+        void|AxiosPromise<Schema$NodeType> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodetypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeTypes/{nodeType}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeType'],
+        pathParams: ['nodeType', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeType>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeType>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTypes.list
+     * @desc Retrieves a list of node types available to the specified project.
+     * @alias compute.nodeTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Nodetypes$List, options?: MethodOptions):
+        AxiosPromise<Schema$NodeTypeList>;
+    list(
+        params: Params$Resource$Nodetypes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeTypeList>,
+        callback: BodyResponseCallback<Schema$NodeTypeList>): void;
+    list(
+        params: Params$Resource$Nodetypes$List,
+        callback: BodyResponseCallback<Schema$NodeTypeList>): void;
+    list(callback: BodyResponseCallback<Schema$NodeTypeList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Nodetypes$List|
+        BodyResponseCallback<Schema$NodeTypeList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeTypeList>,
+        callback?: BodyResponseCallback<Schema$NodeTypeList>):
+        void|AxiosPromise<Schema$NodeTypeList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodetypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/zones/{zone}/nodeTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeTypeList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeTypeList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodetypes$Aggregatedlist {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Nodetypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the node type to return.
+     */
+    nodeType?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodetypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+
+
   export class Resource$Projects {
     root: Compute;
     constructor(root: Compute) {
@@ -38634,10 +41756,10 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -38778,10 +41900,10 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {().ProjectsListXpnHostsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39224,6 +42346,79 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.projects.setDefaultNetworkTier
+     * @desc Sets the default network tier of the project. The default network
+     * tier is used when an address/forwardingRule/instance is created without
+     * specifying the network tier field.
+     * @alias compute.projects.setDefaultNetworkTier
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ProjectsSetDefaultNetworkTierRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setDefaultNetworkTier(
+        params?: Params$Resource$Projects$Setdefaultnetworktier,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setDefaultNetworkTier(
+        params: Params$Resource$Projects$Setdefaultnetworktier,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setDefaultNetworkTier(
+        params: Params$Resource$Projects$Setdefaultnetworktier,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setDefaultNetworkTier(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    setDefaultNetworkTier(
+        paramsOrCallback?: Params$Resource$Projects$Setdefaultnetworktier|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Setdefaultnetworktier;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Setdefaultnetworktier;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/setDefaultNetworkTier')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.projects.setUsageExportBucket
      * @desc Enables the usage export feature and sets the usage export bucket
      * where reports are stored. If you provide an empty request body using this
@@ -39486,19 +42681,46 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -39513,19 +42735,46 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -39624,6 +42873,35 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Metadata;
+  }
+  export interface Params$Resource$Projects$Setdefaultnetworktier {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProjectsSetDefaultNetworkTierRequest;
   }
   export interface Params$Resource$Projects$Setusageexportbucket {
     /**
@@ -44658,11 +47936,11 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45533,7 +48811,22 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -45541,15 +48834,27 @@ export namespace compute_v1 {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -52299,6 +55604,88 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.subnetworks.listUsable
+     * @desc Retrieves an aggregated list of usable subnetworks.
+     * @alias compute.subnetworks.listUsable
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listUsable(
+        params?: Params$Resource$Subnetworks$Listusable,
+        options?: MethodOptions):
+        AxiosPromise<Schema$UsableSubnetworksAggregatedList>;
+    listUsable(
+        params: Params$Resource$Subnetworks$Listusable,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>,
+        callback: BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>):
+        void;
+    listUsable(
+        params: Params$Resource$Subnetworks$Listusable,
+        callback: BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>):
+        void;
+    listUsable(
+        callback: BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>):
+        void;
+    listUsable(
+        paramsOrCallback?: Params$Resource$Subnetworks$Listusable|
+        BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>,
+        callback?:
+            BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>):
+        void|AxiosPromise<Schema$UsableSubnetworksAggregatedList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subnetworks$Listusable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subnetworks$Listusable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/aggregated/subnetworks/listUsable')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UsableSubnetworksAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UsableSubnetworksAggregatedList>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.subnetworks.patch
      * @desc Patches the specified subnetwork with the data included in the
      * request. Only the following fields within the subnetwork resource can be
@@ -52742,6 +56129,60 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Subnetworks$Listusable {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
   }
   export interface Params$Resource$Subnetworks$Patch {
     /**

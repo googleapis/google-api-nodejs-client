@@ -230,9 +230,9 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$CloneContext {
     /**
-     * Binary log coordinates, if specified, indentify the the position up to
-     * which the source instance should be cloned. If not specified, the source
-     * instance is cloned up to the most recent binary log coordintes.
+     * Binary log coordinates, if specified, identify the position up to which
+     * the source instance should be cloned. If not specified, the source
+     * instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
     /**
@@ -538,20 +538,24 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ExportContext {
     /**
-     * Options for exporting data as CSV.
+     * Options for exporting data as CSV. Exporting in CSV format using the
+     * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
     csvExportOptions?: any;
     /**
-     * Databases (for example, guestbook) from which the export is made. If
-     * fileType is SQL and no database is specified, all databases are exported.
-     * If fileType is CSV, you can optionally specify at most one database to
-     * export. If csvExportOptions.selectQuery also specifies the database, this
-     * field will be ignored.
+     * Databases to be exported. MySQL instances: If fileType is SQL and no
+     * database is specified, all databases are exported, except for the mysql
+     * system database. If fileType is CSV, you can specify one database, either
+     * by using this property or by using the csvExportOptions.selectQuery
+     * property, which takes precedence over this property. PostgreSQL
+     * instances: If fileType is SQL, you must specify one database to be
+     * exported. A fileType of CSV is not supported for PostgreSQL instances.
      */
     databases?: string[];
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * statements. CSV: The file contains CSV data. CSV is not supported for
+     * PostgreSQL instances.
      */
     fileType?: string;
     /**
@@ -646,24 +650,26 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ImportContext {
     /**
-     * Options for importing data as CSV.
+     * Options for importing data as CSV. Importing CSV data using the Cloud SQL
+     * Admin API is not supported for PostgreSQL instances.
      */
     csvImportOptions?: any;
     /**
-     * The database (for example, guestbook) to which the import is made. If
-     * fileType is SQL and no database is specified, it is assumed that the
-     * database is specified in the file to be imported. If fileType is CSV, it
-     * must be specified.
+     * The target database for the import. If fileType is SQL, this field is
+     * required only if the import file does not specify a database, and is
+     * overridden by any database specification in the import file. If fileType
+     * is CSV, one database must be specified.
      */
     database?: string;
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * statements. CSV: The file contains CSV data. Importing CSV data using the
+     * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
     fileType?: string;
     /**
      * The PostgreSQL user for this import operation. Defaults to
-     * cloudsqlsuperuser. Used only for PostgreSQL instances.
+     * cloudsqlsuperuser. PostgreSQL instances only.
      */
     importUser?: string;
     /**
@@ -671,9 +677,9 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * A path to the file in Google Cloud Storage from which the import is made.
-     * The URI is in the form gs://bucketName/fileName. Compressed gzip files
-     * (.gz) are supported when fileType is SQL.
+     * A path to the file in Cloud Storage from which the import is made. The
+     * URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz)
+     * are supported when fileType is SQL.
      */
     uri?: string;
   }
@@ -795,6 +801,10 @@ export namespace sqladmin_v1beta4 {
      * Whether the instance should be assigned an IP address or not.
      */
     ipv4Enabled?: boolean;
+    /**
+     * Reserved for future use.
+     */
+    privateNetwork?: string;
     /**
      * Whether SSL connections over IP should be enforced or not.
      */
@@ -938,10 +948,9 @@ export namespace sqladmin_v1beta4 {
     kind?: string;
   }
   /**
-   * An Operations resource contains information about database instance
-   * operations such as create, delete, and restart. Operations resources are
-   * created in response to operations that were initiated; you never create
-   * them directly.
+   * An Operation resource. For successful operations that return an Operation
+   * resource, only the fields relevant to the operation are populated in the
+   * resource.
    */
   export interface Schema$Operation {
     /**
@@ -1311,8 +1320,7 @@ export namespace sqladmin_v1beta4 {
   export interface Schema$SslCertsInsertRequest {
     /**
      * User supplied name. Must be a distinct name from the other certificates
-     * for this instance. New certificates will not be usable until the instance
-     * is restarted.
+     * for this instance.
      */
     commonName?: string;
   }
@@ -1375,8 +1383,8 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string[];
     /**
-     * An identifier for the service tier, for example D1, D2 etc. For related
-     * information, see Pricing.
+     * An identifier for the machine type, for example, db-n1-standard-1. For
+     * related information, see Pricing.
      */
     tier?: string;
   }
@@ -2069,7 +2077,7 @@ export namespace sqladmin_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2341,7 +2349,7 @@ export namespace sqladmin_v1beta4 {
      */
     instance?: string;
     /**
-     * Project ID of the project for which to list Cloud SQL instances.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
   }
@@ -2409,7 +2417,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.flags.list
-     * @desc List all available database flags for Google Cloud SQL instances.
+     * @desc List all available database flags for Cloud SQL instances.
      * @alias sql.flags.list
      * @memberOf! ()
      *
@@ -2503,7 +2511,7 @@ export namespace sqladmin_v1beta4 {
      * @desc Add a new trusted Certificate Authority (CA) version for the
      * specified instance. Required to prepare for a certificate rotation. If a
      * CA version was previously added but never used in a certificate rotation,
-     * this operation replaces that version. There can not be more than one CA
+     * this operation replaces that version. There cannot be more than one CA
      * version waiting to be rotated in.
      * @alias sql.instances.addServerCa
      * @memberOf! ()
@@ -2574,8 +2582,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.clone
-     * @desc Creates a Cloud SQL instance as a clone of the source instance. The
-     * API is not ready for Second Generation instances yet.
+     * @desc Creates a Cloud SQL instance as a clone of the source instance.
      * @alias sql.instances.clone
      * @memberOf! ()
      *
@@ -2711,7 +2718,8 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.demoteMaster
-     * @desc Reserved for future use.
+     * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for
+     * an external database server.
      * @alias sql.instances.demoteMaster
      * @memberOf! ()
      *
@@ -2782,8 +2790,8 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.export
-     * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
-     * bucket as a MySQL dump file.
+     * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as
+     * a SQL dump or CSV file.
      * @alias sql.instances.export
      * @memberOf! ()
      *
@@ -2988,7 +2996,7 @@ export namespace sqladmin_v1beta4 {
 
 /**
  * sql.instances.import
- * @desc Imports data into a Cloud SQL instance from a MySQL dump file in Google
+ * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in
  * Cloud Storage.
  * @alias sql.instances.import
  * @memberOf! ()
@@ -3387,9 +3395,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * sql.instances.resetSslConfig
      * @desc Deletes all client certificates and generates a new server SSL
-     * certificate for the instance. The changes will not take effect until the
-     * instance is restarted. Existing instances without a server certificate
-     * will need to call this once to set a server certificate.
+     * certificate for the instance.
      * @alias sql.instances.resetSslConfig
      * @memberOf! ()
      *
@@ -4606,14 +4612,14 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
     /**
      * sql.sslCerts.delete
-     * @desc Deletes the SSL certificate. The change will not take effect until
-     * the instance is restarted.
+     * @desc Deletes the SSL certificate. For First Generation instances, the
+     * certificate remains valid until the instance is restarted.
      * @alias sql.sslCerts.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4751,7 +4757,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().SslCertsInsertRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4821,7 +4827,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4913,7 +4919,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     instance?: string;
     /**
-     * Project ID of the project that contains the instance to be deleted.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
     /**
@@ -4951,8 +4957,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     instance?: string;
     /**
-     * Project ID of the project to which the newly created Cloud SQL instances
-     * should belong.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
 
@@ -4972,7 +4977,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     instance?: string;
     /**
-     * Project ID of the project for which to list Cloud SQL instances.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
   }
@@ -4992,8 +4997,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
     /**
      * sql.tiers.list
-     * @desc Lists all available service tiers for Google Cloud SQL, for example
-     * D1, D2. For related information, see Pricing.
+     * @desc Lists all available machine types (tiers) for Cloud SQL, for
+     * example, db-n1-standard-1. For related information, see Pricing.
      * @alias sql.tiers.list
      * @memberOf! ()
      *

@@ -180,6 +180,14 @@ export namespace adsense_v1_4 {
      */
     adCode?: string;
     /**
+     * The ad code snippet that goes in the body of an AMP page.
+     */
+    ampBody?: string;
+    /**
+     * The ad code snippet that goes in the head of an AMP page.
+     */
+    ampHead?: string;
+    /**
      * Kind this is, in this case adsense#adCode.
      */
     kind?: string;
@@ -801,6 +809,75 @@ export namespace adsense_v1_4 {
 
 
     /**
+     * adsense.accounts.adclients.getAdCode
+     * @desc Get ad code for a given ad client.
+     * @alias adsense.accounts.adclients.getAdCode
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Account which contains the ad client.
+     * @param {string} params.adClientId Ad client to get the code for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAdCode(
+        params?: Params$Resource$Accounts$Adclients$Getadcode,
+        options?: MethodOptions): AxiosPromise<Schema$AdCode>;
+    getAdCode(
+        params: Params$Resource$Accounts$Adclients$Getadcode,
+        options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
+        callback: BodyResponseCallback<Schema$AdCode>): void;
+    getAdCode(
+        params: Params$Resource$Accounts$Adclients$Getadcode,
+        callback: BodyResponseCallback<Schema$AdCode>): void;
+    getAdCode(callback: BodyResponseCallback<Schema$AdCode>): void;
+    getAdCode(
+        paramsOrCallback?: Params$Resource$Accounts$Adclients$Getadcode|
+        BodyResponseCallback<Schema$AdCode>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
+        callback?: BodyResponseCallback<Schema$AdCode>):
+        void|AxiosPromise<Schema$AdCode> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Adclients$Getadcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Getadcode;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adcode')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['accountId', 'adClientId'],
+        pathParams: ['accountId', 'adClientId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdCode>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AdCode>(parameters);
+      }
+    }
+
+
+    /**
      * adsense.accounts.adclients.list
      * @desc List all ad clients in the specified account.
      * @alias adsense.accounts.adclients.list
@@ -869,6 +946,21 @@ export namespace adsense_v1_4 {
     }
   }
 
+  export interface Params$Resource$Accounts$Adclients$Getadcode {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account which contains the ad client.
+     */
+    accountId?: string;
+    /**
+     * Ad client to get the code for.
+     */
+    adClientId?: string;
+  }
   export interface Params$Resource$Accounts$Adclients$List {
     /**
      * Auth client or API Key for the request

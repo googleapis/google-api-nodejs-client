@@ -33,14 +33,7 @@ export namespace script_v1 {
   /**
    * Apps Script API
    *
-   * An API for managing and executing Google Apps Script projects. &lt;aside
-   * class=&quot;note&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: In order to use this API
-   * in your apps, you must &lt;a
-   * href=&quot;/apps-script/api/how-tos/enable#using_the_apps_script_api_in_your_app&quot;&gt;
-   * enable it for use&lt;/a&gt;. To allow other apps to manage your scripts,
-   * you must &lt;a
-   * href=&quot;/apps-script/api/how-tos/enable#granting_third-party_applications_access_to_your_script_projects&quot;&gt;
-   * grant them access&lt;/a&gt;.&lt;/aside&gt;
+   * An API for managing and executing Google Apps Script projects.
    *
    * @example
    * const {google} = require('googleapis');
@@ -375,7 +368,7 @@ export namespace script_v1 {
    * Representation of a single script process execution that was started from
    * the script editor, a trigger, an application, or using the Apps Script API.
    * This is distinct from the `Operation` resource, which only represents
-   * exeuctions started via the Apps Script API.
+   * executions started via the Apps Script API.
    */
   export interface Schema$GoogleAppsScriptTypeProcess {
     /**

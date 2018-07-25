@@ -675,6 +675,29 @@ export namespace androidpublisher_v2 {
     expectedExpiryTimeMillis?: string;
   }
   /**
+   * Contains the price change information for a subscription that can be used
+   * to control the user journey for the price change in the app. This can be in
+   * the form of seeking confirmation from the user or tailoring the experience
+   * for a successful conversion.
+   */
+  export interface Schema$SubscriptionPriceChange {
+    /**
+     * The new price the subscription will renew with if the price change is
+     * accepted by the user.
+     */
+    newPrice?: Schema$Price;
+    /**
+     * The current state of the price change. Possible values are:   -
+     * Outstanding: State for a pending price change waiting for the user to
+     * agree. In this state, you can optionally seek confirmation from the user
+     * using the In-App API.  - Accepted: State for an accepted price change
+     * that the subscription will renew with unless it&#39;s canceled. The price
+     * change takes effect on a future date when the subscription renews. Note
+     * that the change might not occur when the subscription is renewed next.
+     */
+    state?: number;
+  }
+  /**
    * A SubscriptionPurchase resource indicates the status of a user&#39;s
    * subscription purchase.
    */
@@ -762,6 +785,13 @@ export namespace androidpublisher_v2 {
      * price_amount_micros is 1990000.
      */
     priceAmountMicros?: string;
+    /**
+     * The latest price change information available. This is present only when
+     * there is an upcoming price change for the subscription yet to be applied.
+     * Once the subscription renews with the new price or the subscription is
+     * canceled, no price change information will be returned.
+     */
+    priceChange?: Schema$SubscriptionPriceChange;
     /**
      * ISO 4217 currency code for the subscription price. For example, if the
      * price is specified in British pounds sterling, price_currency_code is

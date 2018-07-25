@@ -77,6 +77,12 @@ export namespace texttospeech_v1beta1 {
      */
     audioEncoding?: string;
     /**
+     * An identifier which selects &#39;audio effects&#39; profiles that are
+     * applied on (post synthesized) text to speech. Effects are applied on top
+     * of each other in the order they are given.
+     */
+    effectsProfileId?: string[];
+    /**
      * Optional speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20
      * semitones from the original pitch. -20 means decrease 20 semitones from
      * the original pitch.

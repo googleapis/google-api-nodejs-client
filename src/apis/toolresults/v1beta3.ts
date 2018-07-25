@@ -1131,6 +1131,10 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$TestIssue {
     /**
+     * Category of issue. Required.
+     */
+    category?: string;
+    /**
      * A brief human-readable message describing the issue. Required.
      */
     errorMessage?: string;

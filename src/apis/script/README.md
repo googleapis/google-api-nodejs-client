@@ -2,7 +2,7 @@
 
 # @google/script
 
-> An API for managing and executing Google Apps Script projects. Note: In order to use this API in your apps, you must  enable it for use. To allow other apps to manage your scripts, you must  grant them access.
+> An API for managing and executing Google Apps Script projects.
 
 ## Installation
 

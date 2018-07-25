@@ -182,6 +182,13 @@ export namespace genomics_v2alpha1 {
      * ContainerStartedEvent in the operation metadata.
      */
     portMappings?: any;
+    /**
+     * The maximum amount of time to give the action to complete.  If the action
+     * fails to complete before the timeout, it will be terminated and the exit
+     * status will be non-zero.  The pipeline will continue or terminate based
+     * on the rules defined by the ALWAYS_RUN and IGNORE_EXIT_STATUS flags.
+     */
+    timeout?: string;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -241,6 +248,17 @@ export namespace genomics_v2alpha1 {
      * The availability zone in which the instance resides.
      */
     zone?: string;
+  }
+  /**
+   * This event is generated when a container is forcibly terminated by the
+   * worker.  Currently, this only occurs when the container outlives the user
+   * specified timeout.
+   */
+  export interface Schema$ContainerKilledEvent {
+    /**
+     * The numeric ID of the action that started the container.
+     */
+    actionId?: number;
   }
   /**
    * This event is generated when a container starts.
@@ -307,7 +325,9 @@ export namespace genomics_v2alpha1 {
     metrics?: string[];
   }
   /**
-   * Carries information about a disk that can be attached to a VM.
+   * Carries information about a disk that can be attached to a VM.  See
+   * https://cloud.google.com/compute/docs/disks/performance for more
+   * information about disk type, size and performance considerations.
    */
   export interface Schema$Disk {
     /**
@@ -317,10 +337,12 @@ export namespace genomics_v2alpha1 {
      */
     name?: string;
     /**
-     * The size, in gigabytes, of the disk to attach.  Note that this value is
-     * not configurable for some disk types such as local-ssd.  If the size is
-     * not specified, a size of at least 500gb is used to ensure reasonable I/O
-     * performance.
+     * The size, in gigabytes, of the disk to attach.  If the size is not
+     * specified, a default is chosen to ensure reasonable I/O performance.  If
+     * the disk type is specified as `local-ssd`, multiple local drives are
+     * automatically combined to provide the requested size.  Note, however,
+     * that each physical SSD is 375GB in size, and no more than 8 drives can be
+     * attached to a single instance.
      */
     sizeGb?: number;
     /**
@@ -328,7 +350,7 @@ export namespace genomics_v2alpha1 {
      */
     sourceImage?: string;
     /**
-     * The Compute Engine disk type.  If unspecified, &#39;standard-pd&#39; is
+     * The Compute Engine disk type.  If unspecified, &#39;pd-standard&#39; is
      * used.
      */
     type?: string;

@@ -11,8 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
-import nock from 'nock';
+import * as assert from 'assert';
+import * as nock from 'nock';
 import * as path from 'path';
 
 import {Utils} from './../utils';
@@ -45,7 +45,7 @@ describe('YouTube samples', () => {
             .reply(200, {kind: 'youtube#video'});
     const data = await samples.upload.runSample(someFile);
     assert(data);
-    assert.equal(data.kind, 'youtube#video');
+    assert.strictEqual(data.kind, 'youtube#video');
     scope.done();
   });
 });
