@@ -45,7 +45,7 @@ describe('YouTube samples', () => {
             .reply(200, {kind: 'youtube#video'});
     const data = await samples.upload.runSample(someFile);
     assert(data);
-    assert.equal(data.kind, 'youtube#video');
+    assert.strictEqual(data.kind, 'youtube#video');
     scope.done();
   });
 });
