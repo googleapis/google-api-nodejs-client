@@ -38,13 +38,13 @@ describe('Options', () => {
   it('should expose _options', () => {
     const google = new GoogleApis();
     google.options({params: {hello: 'world'}});
-    assert.deepEqual(google._options, {params: {hello: 'world'}});
+    assert.deepStrictEqual(google._options, {params: {hello: 'world'}});
   });
 
   it('should expose _options values', () => {
     const google = new GoogleApis();
     google.options({params: {hello: 'world'}});
-    assert.deepEqual(google._options.params.hello, 'world');
+    assert.deepStrictEqual(google._options.params.hello, 'world');
   });
 
   it('should promote endpoint options over global options', async () => {
@@ -100,7 +100,7 @@ describe('Options', () => {
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
-    assert.strictEqual(res.config.timeout, '12345');
+    assert.strictEqual(res.config.timeout, 12345);
   });
 
   it('should apply endpoint options to request object like timeout',
@@ -127,7 +127,8 @@ describe('Options', () => {
         res.request.path, '/drive/v3/files/woot',
         'Request used overridden url.');
     assert.strictEqual(res.request.headers.host, 'myproxy.com');
-    assert.strictEqual(res.config.timeout, 12345, 'Axios used overridden timeout.');
+    assert.strictEqual(
+        res.config.timeout, 12345, 'Axios used overridden timeout.');
   });
 
   it('should apply endpoint options like timeout to oauth transporter',

@@ -38,14 +38,14 @@ describe('JWT client', () => {
   it('should create scoped JWT', () => {
     const jwt = new googleapis.auth.JWT(
         'someone@somewhere.com', 'file1', 'key1', undefined, 'subject1');
-    assert.strictEqual(jwt.scopes, null);
+    assert.strictEqual(jwt.scopes, undefined);
     assert.strictEqual(jwt.createScopedRequired(), true);
 
     // Create a scoped version of the token now.
     const jwt2 = jwt.createScoped('scope1');
 
     // The original token should be unchanged.
-    assert.strictEqual(jwt.scopes, null);
+    assert.strictEqual(jwt.scopes, undefined);
     assert.strictEqual(jwt.createScopedRequired(), true);
 
     // The new token should have scopes.
@@ -198,12 +198,13 @@ describe('OAuth2 client', () => {
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await localDrive.files.get({fileId: 'wat', auth: oauth2client});
-    assert.strictEqual(JSON.stringify(oauth2client.credentials), JSON.stringify({
-      access_token: 'abc123',
-      refresh_token: 'abc',
-      expiry_date: tenMinutesFromNow,
-      token_type: 'Bearer'
-    }));
+    assert.strictEqual(
+        JSON.stringify(oauth2client.credentials), JSON.stringify({
+          access_token: 'abc123',
+          refresh_token: 'abc',
+          expiry_date: tenMinutesFromNow,
+          token_type: 'Bearer'
+        }));
 
     assert.throws(() => {
       scope.done();
@@ -220,12 +221,13 @@ describe('OAuth2 client', () => {
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await remoteDrive.files.get({fileId: 'wat', auth: oauth2client});
-    assert.strictEqual(JSON.stringify(oauth2client.credentials), JSON.stringify({
-      access_token: 'abc123',
-      refresh_token: 'abc',
-      expiry_date: tenMinutesFromNow,
-      token_type: 'Bearer'
-    }));
+    assert.strictEqual(
+        JSON.stringify(oauth2client.credentials), JSON.stringify({
+          access_token: 'abc123',
+          refresh_token: 'abc',
+          expiry_date: tenMinutesFromNow,
+          token_type: 'Bearer'
+        }));
 
     assert.throws(() => {
       scope.done();
@@ -258,7 +260,7 @@ describe('OAuth2 client', () => {
       const res = await oauth2client.revokeCredentials();
       scope.done();
       assert.strictEqual(res.data.success, true);
-      assert.deepEqual(oauth2client.credentials, {});
+      assert.deepStrictEqual(oauth2client.credentials, {});
     });
 
     it('should clear credentials and return error if no access token to revoke',
@@ -269,7 +271,7 @@ describe('OAuth2 client', () => {
          await assertRejects(
              oauth2client.revokeCredentials(),
              /Error: No access token to revoke./);
-         assert.deepEqual(oauth2client.credentials, {});
+         assert.deepStrictEqual(oauth2client.credentials, {});
        });
   });
 

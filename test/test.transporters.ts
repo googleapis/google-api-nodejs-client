@@ -39,23 +39,25 @@ async function testGzip(drive: APIEndpoint) {
           {reqheaders: {'Accept-Encoding': 'gzip'}})
       .reply(200, {});
   const res = await drive.files.list();
-  assert.deepEqual(res.data, {});
+  assert.deepStrictEqual(res.data, {});
   // note: axios strips the `content-encoding` header from the response,
   // so that cannot be checked here.
 }
 
 async function testBody(drive: APIEndpoint) {
-  nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
+  const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
   const res = await drive.files.list();
-  assert.strictEqual(res.config.headers['content-type'], null);
-  assert.strictEqual(res.request.body, null);
+  scope.done();
+  assert.strictEqual(res.config.headers['content-type'], undefined);
+  assert.strictEqual(res.request.body, undefined);
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
-  nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
+  const scope = nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
   const res = await drive.files.delete({fileId: 'test'});
-  assert.strictEqual(res.config.headers['content-type'], null);
-  assert.strictEqual(res.request.body, null);
+  scope.done();
+  assert.strictEqual(res.config.headers['content-type'], undefined);
+  assert.strictEqual(res.request.body, undefined);
 }
 
 function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {
@@ -71,7 +73,7 @@ function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
   oauth2.tokeninfo({access_token: 'hello'}, (err: NodeJS.ErrnoException) => {
     assert(err instanceof Error);
     assert.strictEqual(err.message, 'invalid_grant');
-    assert.strictEqual(err.code, 400);
+    assert.strictEqual(err.code, '400');
     cb();
   });
 }
@@ -82,9 +84,9 @@ function testBackendError(
   urlshortener.url.insert(
       {resource: obj}, (err: NodeJS.ErrnoException, result: {}) => {
         assert(err instanceof Error);
-        assert.strictEqual(err.code, 500);
+        assert.strictEqual(Number(err.code), 500);
         assert.strictEqual(err.message, 'There was an error!');
-        assert.strictEqual(result, null);
+        assert.strictEqual(result, undefined);
         cb();
       });
 }

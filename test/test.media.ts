@@ -31,7 +31,8 @@ async function testMultpart(drive: drive_v2.Drive) {
       {encoding: 'utf8'});
   const res = await drive.files.insert({requestBody, media});
   assert.strictEqual(res.config.method!.toLowerCase(), 'post');
-  assert.strictEqual(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
+  assert.strictEqual(
+      res.request.path, '/upload/drive/v2/files?uploadType=multipart');
   assert.strictEqual(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
@@ -54,7 +55,8 @@ async function testMediaBody(drive: drive_v2.Drive) {
   const res = await drive.files.insert({requestBody, media});
   assert.strictEqual(res.config.method!.toLowerCase(), 'post');
   assert.strictEqual(res.config.maxContentLength, Math.pow(2, 31));
-  assert.strictEqual(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
+  assert.strictEqual(
+      res.request.path, '/upload/drive/v2/files?uploadType=multipart');
   assert.strictEqual(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
@@ -198,10 +200,12 @@ describe('Media', () => {
         .reply(200);
     const res = await localDrive.files.insert(
         {visibility: 'someValue', media: {body: 'wat'}});
-    assert.strictEqual(Utils.getQs(res), 'visibility=someValue&uploadType=media');
+    assert.strictEqual(
+        Utils.getQs(res), 'visibility=someValue&uploadType=media');
     const res2 = await remoteDrive.files.insert(
         {visibility: 'someValue', media: {body: 'wat'}});
-    assert.strictEqual(Utils.getQs(res2), 'visibility=someValue&uploadType=media');
+    assert.strictEqual(
+        Utils.getQs(res2), 'visibility=someValue&uploadType=media');
   });
 
   it('should not multipart upload if no media body given', async () => {
@@ -237,7 +241,7 @@ describe('Media', () => {
                            // testing purposes
         });
     const requestBody = {
-      message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
+      message: {raw: Buffer.from('hello', 'binary').toString('base64')}
     };
     const res = await localGmail.users.drafts.create(
         {userId: 'me', requestBody, media: {mimeType: 'message/rfc822'}} as
@@ -265,7 +269,7 @@ describe('Media', () => {
        let body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        let expectedBody = fs.readFileSync(
-           path.join(__dirname, '../../test/fixtures/mediabody.txt'));
+           path.join(__dirname, '../../test/fixtures/mediabody.txt'), 'utf8');
        const res = await localGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}} as
            gmail_v1.Params$Resource$Users$Drafts$Create);
@@ -273,7 +277,7 @@ describe('Media', () => {
        body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        expectedBody = fs.readFileSync(
-           path.join(__dirname, '../../test/fixtures/mediabody.txt'));
+           path.join(__dirname, '../../test/fixtures/mediabody.txt'), 'utf8');
        const res2 = await remoteGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}} as
            gmail_v1.Params$Resource$Users$Drafts$Create);
@@ -290,7 +294,7 @@ describe('Media', () => {
         });
 
     let requestBody = {
-      message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
+      message: {raw: Buffer.from('hello', 'binary').toString('base64')}
     };
     let body = fs.createReadStream(
         path.join(__dirname, '../../test/fixtures/mediabody.txt'));
@@ -313,7 +317,7 @@ describe('Media', () => {
                        .trim();
     assert.strictEqual(expectedBody, res.data);
     requestBody = {
-      message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
+      message: {raw: Buffer.from('hello', 'binary').toString('base64')}
     };
     body = fs.createReadStream(
         path.join(__dirname, '../../test/fixtures/mediabody.txt'));
@@ -347,7 +351,7 @@ describe('Media', () => {
            });
 
        let requestBody = {
-         message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
+         message: {raw: Buffer.from('hello', 'binary').toString('base64')}
        };
        const body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
@@ -359,7 +363,7 @@ describe('Media', () => {
        assert.strictEqual((res.data as any).hello, 'world');
        assert.strictEqual(typeof res, 'object');
        requestBody = {
-         message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
+         message: {raw: Buffer.from('hello', 'binary').toString('base64')}
        };
        const body2 = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));

@@ -75,10 +75,10 @@ describe('Path params', () => {
      (done) => {
        localDrive.files.get({}, (err: Error, resp: {}) => {
          assert(err);
-         assert.strictEqual(resp, null);
+         assert.strictEqual(resp, undefined);
          remoteDrive.files.get({}, (e: Error, resp2: {}) => {
            assert(e);
-           assert.strictEqual(resp2, null);
+           assert.strictEqual(resp2, undefined);
            done();
          });
        });
@@ -86,17 +86,17 @@ describe('Path params', () => {
 
   it('should return null request object if not included and required', () => {
     let req = localDrive.files.get({}, Utils.noop);
-    assert.strictEqual(req, null);
+    assert.strictEqual(req, undefined);
     req = remoteDrive.files.get({}, Utils.noop);
-    assert.strictEqual(req, null);
+    assert.strictEqual(req, undefined);
   });
 
   it('should return null request object if not included and required and no callback',
      () => {
        let req = localDrive.files.get({}, Utils.noop);
-       assert.strictEqual(req, null);
+       assert.strictEqual(req, undefined);
        req = remoteDrive.files.get({}, Utils.noop);
-       assert.strictEqual(req, null);
+       assert.strictEqual(req, undefined);
      });
 
   it('should not be modifiable directly', () => {

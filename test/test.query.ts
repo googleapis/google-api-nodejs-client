@@ -190,7 +190,8 @@ describe('Query params', () => {
         .reply(200);
     const res = await localGmail.users.messages.get(
         {userId: 'me', id: 'abc123', metadataHeaders: ['To', 'Date']});
-    assert.strictEqual(Utils.getQs(res), 'metadataHeaders=To&metadataHeaders=Date');
+    assert.strictEqual(
+        Utils.getQs(res), 'metadataHeaders=To&metadataHeaders=Date');
 
     nock(Utils.baseUrl)
         .get(
@@ -198,7 +199,8 @@ describe('Query params', () => {
         .reply(200);
     const res2 = await remoteGmail.users.messages.get(
         {userId: 'me', id: 'abc123', metadataHeaders: ['To', 'Date']});
-    assert.strictEqual(Utils.getQs(res2), 'metadataHeaders=To&metadataHeaders=Date');
+    assert.strictEqual(
+        Utils.getQs(res2), 'metadataHeaders=To&metadataHeaders=Date');
   });
 
   after(() => {

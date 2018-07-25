@@ -44,7 +44,8 @@ async function testAuthKey(urlshortener: APIEndpoint) {
       .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
       .reply(200);
   const res = await urlshortener.url.list({auth: 'YOUR API KEY'});
-  assert.strictEqual(Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
+  assert.strictEqual(
+      Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
 }
 
 describe('API key', () => {
