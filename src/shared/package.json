@@ -25,7 +25,7 @@
     "@types/url-template": "^2.0.28",
     "@types/uuid": "^3.4.3",
     "gts": "^0.8.0",
-    "typescript": "~2.9.0"
+    "typescript": "~3.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
