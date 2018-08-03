@@ -4,7 +4,6 @@
 
 [![Release Level][releaselevelimg]][releaselevel]
 [![CircleCI][circleimg]][circle]
-[![Greenkeeper][greenkeeperimg]][greenkeeper]
 [![npm version][npmimg]][npm]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
@@ -543,5 +542,3 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://nodei.co/npm/googleapis/
-[greenkeeperimg]: https://badges.greenkeeper.io/google/google-api-nodejs-client.svg
-[greenkeeper]: https://greenkeeper.io/
