@@ -42,7 +42,7 @@ Documentation for the Google Compute Engine Metadata API in
 
 <table>
   <tr>
-    <td><a href="coordinate">samples/compute</a></td>
+    <td><a href="compute">samples/compute</a></td>
     <td>Demonstrates how to use the Google Compute Engine Metadata API</td>
   </tr>
 </table>
