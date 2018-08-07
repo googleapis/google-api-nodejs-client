@@ -1,22 +1,9 @@
 ---
 # "Include" for unit tests definition.
 
-remove_package_lock: &remove_package_lock
-  name: Remove package-lock.json if needed.
-  command: |
-    WORKFLOW_NAME=`python .circleci/get_workflow_name.py`
-    echo "Workflow name: $WORKFLOW_NAME"
-    if [ "$WORKFLOW_NAME" = "nightly" ]; then
-      echo "Nightly build detected, removing package-lock.json"
-      rm -f package-lock.json
-    else
-      echo "Not a nightly build, skipping this step."
-    fi
-
 unit_tests: &unit_tests
   steps:
     - checkout
-    - run: *remove_package_lock
     - run: npm install
     - run: npm test
     - run:
@@ -32,7 +19,6 @@ unit_tests: &unit_tests
 test_samples: &test_samples
   steps:
     - checkout
-    - run: *remove_package_lock
     - run: npm install
     - run: mkdir ~/.npm-packages
     - run: echo "prefix = $HOME/.npm-packages" >> ~/.npmrc
