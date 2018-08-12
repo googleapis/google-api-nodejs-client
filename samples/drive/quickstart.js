@@ -20,7 +20,7 @@ const opn = require('opn');
 const path = require('path');
 const fs = require('fs');
 
-const keyfile = path.join(__dirname, 'credentials.json');
+const keyfile = path.join(__dirname, '../oauth2.keys.json');
 const keys = JSON.parse(fs.readFileSync(keyfile));
 const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
 
