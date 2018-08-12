@@ -4,7 +4,7 @@ This samples allows you to download a single file from Google Drive.
 
 ## Running the samples
 
-Set the following values in `secret.json` (up one directory):
+Set the following values in `oauth2.keys.json` (up one directory):
 
 * `client_id`
 * `project_id`
