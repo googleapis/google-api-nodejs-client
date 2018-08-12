@@ -52,38 +52,38 @@ $ npm install googleapis
 ```
 
 ### First example
-This is a very simple example. This creates a URL Shortener client and retrieves the long url of the given short url:
+This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
 
 ``` js
 const {google} = require('googleapis');
 
 // Each API may support multiple version. With this sample, we're getting
-// v1 of the urlshortener API, and using an API key to authenticate.
-const urlshortener = google.urlshortener({
-  version: 'v1',
+// v3 of the blogger API, and using an API key to authenticate.
+const blogger = google.blogger({
+  version: 'v3',
   auth: 'YOUR API KEY'
 });
 
 const params = {
-  shortUrl: 'http://goo.gl/xKbRu3'
+  blogId: 3213900
 };
 
-// get the long url of a shortened url
-urlshortener.url.get(params, (err, res) => {
+// get the blog details
+blogger.blogs.get(params, (err, res) => {
   if (err) {
     console.error(err);
     throw err;
   }
-  console.log(`Long url is ${res.data.longUrl}`);
+  console.log(`The blog url is ${res.data.url}`);
 });
 ```
 
 Instead of using callbacks you can also use promises!
 
 ``` js
-urlshortener.url.get(params)
+blogger.blogs.get(params)
   .then(res => {
-    console.log(`Long url is ${res.data.longUrl}`);
+    console.log(`The blog url is ${res.data.url}`);
   })
   .catch(error => {
     console.error(error);
@@ -94,8 +94,8 @@ Or async/await:
 
 ``` js
 async function runSample() {
-  const res = await urlshortener.url.get(params);
-  console.log(`Long url is ${res.data.longUrl}`);
+  const res = await blogger.blogs.get(params);
+  console.log(`The blog url is ${res.data.url}`);
 }
 runSample().catch(console.error);
 ```
@@ -390,8 +390,8 @@ google.options({
 You can also specify options when creating a service client.
 
 ```js
-const urlshortener = google.urlshortener({
-  version: 'v1',
+const blogger = google.blogger({
+  version: 'v3',
   // All requests made with this object will use the specified auth.
   auth: 'API KEY';
 });
@@ -404,16 +404,16 @@ By doing this, every API call made with this service client will use `'API KEY'`
 Similar to the examples above, you can also modify the parameters used for every call of a given service:
 
 ```js
-const urlshortener = google.urlshortener({
-  version: 'v1',
+const blogger = google.blogger({
+  version: 'v3',
   // All requests made with this service client will contain the
-  // quotaUser query parameter unless overridden in individual API calls.
+  // blogId query parameter unless overridden in individual API calls.
   params: {
-    quotaUser: 'user123@example.com'
+    blogId: 3213900
   }
 });
 
-// Calls with this drive client will NOT contain the quotaUser query parameter.
+// Calls with this drive client will NOT contain the blogId query parameter.
 const drive = google.drive('v3');
 ...
 
@@ -522,7 +522,6 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
-[urlshort]: https://developers.google.com/url-shortener/
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
 [contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
