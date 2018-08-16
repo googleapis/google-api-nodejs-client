@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^1.4.0",
-    "pify": "^3.0.0",
+    "pify": "^4.0.0",
     "qs": "^6.5.2",
     "url-template": "^2.0.8",
     "uuid": "^3.2.1"
