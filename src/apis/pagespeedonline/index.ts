@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {pagespeedonline_v1} from './v1';
 import {pagespeedonline_v2} from './v2';
 import {pagespeedonline_v4} from './v4';

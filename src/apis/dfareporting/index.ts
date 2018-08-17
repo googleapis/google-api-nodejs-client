@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dfareporting_v2_8} from './v2.8';
 import {dfareporting_v3_0} from './v3.0';
 import {dfareporting_v3_1} from './v3.1';

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {admin_datatransfer_v1} from './datatransfer_v1';
 import {admin_directory_v1} from './directory_v1';
 import {admin_reports_v1} from './reports_v1';

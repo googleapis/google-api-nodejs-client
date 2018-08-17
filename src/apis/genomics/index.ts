@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {genomics_v1} from './v1';
 import {genomics_v1alpha2} from './v1alpha2';
 import {genomics_v2alpha1} from './v2alpha1';

@@ -13,10 +13,10 @@
 
 import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
+import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 
 import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
-import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 

@@ -12,10 +12,10 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 
 import {drive_v2, GoogleApis} from '../src';
-import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 
