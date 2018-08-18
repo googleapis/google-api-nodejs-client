@@ -14,6 +14,7 @@
 import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from 'googleapis-common';
 import * as minimist from 'minimist';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
@@ -21,8 +22,6 @@ import * as Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
-
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../shared/src';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;

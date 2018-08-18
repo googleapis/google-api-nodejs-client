@@ -13,8 +13,6 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, ServiceOptions} from '../shared/src';
-
 import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
 import * as adexchangebuyer from './adexchangebuyer';

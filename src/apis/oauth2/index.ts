@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {oauth2_v1} from './v1';
 import {oauth2_v2} from './v2';
 

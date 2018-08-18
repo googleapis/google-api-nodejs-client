@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adsensehost_v4_1} from './v4.1';
 
 export const VERSIONS = {

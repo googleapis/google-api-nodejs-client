@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {spectrum_v1explorer} from './v1explorer';
 
 export const VERSIONS = {

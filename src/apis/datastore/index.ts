@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {datastore_v1} from './v1';
 import {datastore_v1beta1} from './v1beta1';
 import {datastore_v1beta3} from './v1beta3';

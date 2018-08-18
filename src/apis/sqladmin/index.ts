@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {sqladmin_v1beta3} from './v1beta3';
 import {sqladmin_v1beta4} from './v1beta4';
 

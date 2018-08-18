@@ -13,9 +13,11 @@
 
 import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
+import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
+
 import {GoogleApis} from '../src';
-import {APIEndpoint} from '../src/shared/src/api';
+
 import {Utils} from './utils';
 
 const assertRejects = require('assert-rejects');

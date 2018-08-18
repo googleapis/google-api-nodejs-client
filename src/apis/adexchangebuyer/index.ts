@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adexchangebuyer_v1_2} from './v1.2';
 import {adexchangebuyer_v1_3} from './v1.3';
 import {adexchangebuyer_v1_4} from './v1.4';
