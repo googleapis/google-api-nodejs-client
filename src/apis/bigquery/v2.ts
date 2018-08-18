@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -73,6 +72,20 @@ export namespace bigquery_v2 {
     }
   }
 
+  export interface Schema$BigQueryModelTraining {
+    /**
+     * [Output-only, Beta] Index of current ML training iteration. Updated
+     * during create model query job to show job progress.
+     */
+    currentIteration?: number;
+    /**
+     * [Output-only, Beta] Expected number of iterations for the create model
+     * query job specified as num_iterations in the input query. The actual
+     * total number of iterations may be less than this number due to early
+     * stop.
+     */
+    expectedTotalIterations?: string;
+  }
   export interface Schema$BigtableColumn {
     /**
      * [Optional] The encoding of the values when the type is not STRING.
@@ -185,9 +198,10 @@ export namespace bigquery_v2 {
   export interface Schema$Clustering {
     /**
      * [Repeated] One or more fields on which data should be clustered. Only
-     * top-level, non-repeated, simple-type fields are supported. The order of
-     * the fields will determine how clusters will be generated, so it is
-     * important.
+     * top-level, non-repeated, simple-type fields are supported. When you
+     * cluster a table using multiple columns, the order of columns you specify
+     * is important. The order of the specified columns determines the sort
+     * order of the data.
      */
     fields?: string[];
   }
@@ -313,7 +327,8 @@ export namespace bigquery_v2 {
     /**
      * The labels associated with this dataset. You can use these to organize
      * and group your datasets. You can set this property when inserting or
-     * updating a dataset. See Labeling Datasets for more information.
+     * updating a dataset. See Creating and Updating Dataset Labels for more
+     * information.
      */
     labels?: any;
     /**
@@ -581,9 +596,10 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when reading data. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid. This setting is ignored for
-     * Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
+     * invalid error is returned in the job result. This is only valid for CSV,
+     * JSON, and Google Sheets. The default value is 0, which requires that all
+     * records are valid. This setting is ignored for Google Cloud Bigtable,
+     * Google Cloud Datastore backups and Avro formats.
      */
     maxBadRecords?: number;
     /**
@@ -692,7 +708,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$GoogleSheetsOptions {
     /**
-     * [Experimental] [Optional] Range of a sheet to query from. Only used when
+     * [Beta] [Optional] Range of a sheet to query from. Only used when
      * non-empty. Typical format: !:
      */
     range?: string;
@@ -890,9 +906,9 @@ export namespace bigquery_v2 {
      */
     autodetect?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -913,8 +929,8 @@ export namespace bigquery_v2 {
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Experimental] [Optional] Properties with which to create the destination
-     * table if it is new.
+     * [Beta] [Optional] Properties with which to create the destination table
+     * if it is new.
      */
     destinationTableProperties?: Schema$DestinationTableProperties;
     /**
@@ -947,8 +963,9 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when running the job. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid.
+     * invalid error is returned in the job result. This is only valid for CSV
+     * and JSON. The default value is 0, which requires that all records are
+     * valid.
      */
     maxBadRecords?: number;
     /**
@@ -1064,9 +1081,9 @@ export namespace bigquery_v2 {
      */
     allowLargeResults?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1260,8 +1277,8 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location of the job. Required except for US
-     * and EU. See details at
+     * The geographic location of the job. Required except for US and EU. See
+     * details at
      * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
@@ -1272,7 +1289,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics {
     /**
-     * [Experimental] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
+     * [TrustedTester] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
      * EXTRACT jobs.
      */
     completionRatio?: number;
@@ -1299,6 +1316,10 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobStatistics2;
     /**
+     * [Output-only] Quotas which delayed this job&#39;s start time.
+     */
+    quotaDeferments?: string[];
+    /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
      * state to either RUNNING or DONE.
@@ -1320,20 +1341,20 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean;
     /**
-     * [Output-only, Experimental] The DDL operation performed, possibly
-     * dependent on the pre-existence of the DDL target. Possible values (new
-     * values might be added in the future): &quot;CREATE&quot;: The query
-     * created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query
-     * is CREATE TABLE IF NOT EXISTS while the table already exists, or the
-     * query is DROP TABLE IF EXISTS while the table does not exist.
-     * &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the
-     * query is CREATE OR REPLACE TABLE, and the table already exists.
-     * &quot;DROP&quot;: The query deleted the DDL target.
+     * [Output-only, Beta] The DDL operation performed, possibly dependent on
+     * the pre-existence of the DDL target. Possible values (new values might be
+     * added in the future): &quot;CREATE&quot;: The query created the DDL
+     * target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE
+     * IF NOT EXISTS while the table already exists, or the query is DROP TABLE
+     * IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query
+     * replaced the DDL target. Example case: the query is CREATE OR REPLACE
+     * TABLE, and the table already exists. &quot;DROP&quot;: The query deleted
+     * the DDL target.
      */
     ddlOperationPerformed?: string;
     /**
-     * [Output-only, Experimental] The DDL target table. Present only for
-     * CREATE/DROP TABLE/VIEW queries.
+     * [Output-only, Beta] The DDL target table. Present only for CREATE/DROP
+     * TABLE/VIEW queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
@@ -1341,15 +1362,15 @@ export namespace bigquery_v2 {
      */
     estimatedBytesProcessed?: string;
     /**
-     * [Output-only, Beta] Index of current ML training iteration. Updated
-     * during create model query job to show job progress.
+     * [Output-only, Beta] Information about create model query job progress.
+     */
+    modelTraining?: Schema$BigQueryModelTraining;
+    /**
+     * [Output-only, Beta] Deprecated; do not use.
      */
     modelTrainingCurrentIteration?: number;
     /**
-     * [Output-only, Beta] Expected number of iterations for the create model
-     * query job specified as num_iterations in the input query. The actual
-     * total number of iterations may be less than this number due to early
-     * stop.
+     * [Output-only, Beta] Deprecated; do not use.
      */
     modelTrainingExpectedTotalIteration?: string;
     /**
@@ -1376,9 +1397,9 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only, Experimental] The type of query statement, if valid.
-     * Possible values (new values might be added in the future):
-     * &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see
+     * [Output-only, Beta] The type of query statement, if valid. Possible
+     * values (new values might be added in the future): &quot;SELECT&quot;:
+     * SELECT query. &quot;INSERT&quot;: INSERT query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;UPDATE&quot;: UPDATE query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
@@ -1394,7 +1415,7 @@ export namespace bigquery_v2 {
      */
     statementType?: string;
     /**
-     * [Output-only] [Experimental] Describes a timeline of job execution.
+     * [Output-only] [Beta] Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
@@ -1415,7 +1436,7 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
     /**
-     * [Output-only, Experimental] Standard SQL only: list of undeclared query
+     * [Output-only, Beta] Standard SQL only: list of undeclared query
      * parameters detected during a dry run validation.
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
@@ -1587,8 +1608,8 @@ export namespace bigquery_v2 {
      */
     kind?: string;
     /**
-     * [Experimental] The geographic location where the job should run. Required
-     * except for US and EU.
+     * The geographic location where the job should run. Required except for US
+     * and EU.
      */
     location?: string;
     /**
@@ -1751,9 +1772,9 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * [Experimental] Clustering specification for the table. Must be specified
-     * with time-based partitioning, data in the table will be first partitioned
-     * and subsequently clustered.
+     * [Beta] Clustering specification for the table. Must be specified with
+     * time-based partitioning, data in the table will be first partitioned and
+     * subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1770,7 +1791,10 @@ export namespace bigquery_v2 {
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Output-only] A hash of this resource.
+     * [Output-only] A hash of the table metadata. Used to ensure there were no
+     * concurrent modifications to the resource when attempting an update. Not
+     * guaranteed to change when the table contents or the fields numRows,
+     * numBytes, numLongTermBytes or lastModifiedTime change.
      */
     etag?: string;
     /**
@@ -2031,16 +2055,16 @@ export namespace bigquery_v2 {
      */
     expirationMs?: string;
     /**
-     * [Experimental] [Optional] If not set, the table is partitioned by pseudo
-     * column, referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type,
-     * or &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the
-     * table is instead partitioned by this field. The field must be a top-level
+     * [Beta] [Optional] If not set, the table is partitioned by pseudo column,
+     * referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type, or
+     * &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the table
+     * is instead partitioned by this field. The field must be a top-level
      * TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string;
     /**
-     * [Experimental] [Optional] If set to true, queries over this table require
-     * a partition filter that can be used for partition elimination to be
+     * [Beta] [Optional] If set to true, queries over this table require a
+     * partition filter that can be used for partition elimination to be
      * specified.
      */
     requirePartitionFilter?: boolean;
@@ -2185,9 +2209,12 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of dataset being deleted
-     * @param {boolean=} params.deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
+     * @param {boolean=} params.deleteContents If True, delete all the tables in
+     *     the dataset. If False and the dataset contains tables, the request
+     *     will fail. Default is False
      * @param {string} params.projectId Project ID of the dataset being deleted
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2308,7 +2335,8 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested dataset
      * @param {string} params.projectId Project ID of the requested dataset
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2428,7 +2456,8 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the new dataset
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2558,12 +2587,20 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.all Whether to list all datasets, including hidden ones
-     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
-     * @param {integer=} params.maxResults The maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {boolean=} params.all Whether to list all datasets, including
+     *     hidden ones
+     * @param {string=} params.filter An expression for filtering the results of
+     *     the request by label. The syntax is "labels.<name>[:<value>]".
+     *     Multiple filters can be ANDed together by connecting with a space.
+     *     Example: "labels.department:receiving labels.active". See Filtering
+     *     datasets using labels for details.
+     * @param {integer=} params.maxResults The maximum number of results to
+     *     return
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, to request the next page of results
      * @param {string} params.projectId Project ID of the datasets to be listed
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2695,7 +2732,8 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2826,7 +2864,8 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3087,9 +3126,13 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the job to cancel
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.location [Experimental] The geographic location
+     *     of the job. Required except for US and EU. See details at
+     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string} params.projectId [Required] Project ID of the job to
+     *     cancel
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3213,9 +3256,13 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the requested job
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.location [Experimental] The geographic location
+     *     of the job. Required except for US and EU. See details at
+     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string} params.projectId [Required] Project ID of the requested
+     *     job
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3345,13 +3392,21 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string=} params.location [Experimental] The geographic location
+     *     where the job should run. Required except for US and EU. See details
+     *     at
+     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      * @param {integer=} params.maxResults Maximum number of results to read
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, to request the next page of results
      * @param {string} params.projectId [Required] Project ID of the query job
      * @param {string=} params.startIndex Zero-based index of the starting row
-     * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.timeoutMs How long to wait for the query to
+     *     complete, in milliseconds, before returning. Default is 10 seconds.
+     *     If the timeout passes before the job completes, the 'jobComplete'
+     *     field in the response will be false
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3484,12 +3539,14 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project that will be billed for the job
+     * @param {string} params.projectId Project ID of the project that will be
+     *     billed for the job
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3624,15 +3681,23 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
-     * @param {string=} params.maxCreationTime Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
+     * @param {boolean=} params.allUsers Whether to display jobs owned by all
+     *     users in the project. Default false
+     * @param {string=} params.maxCreationTime Max value for job creation time,
+     *     in milliseconds since the POSIX epoch. If set, only jobs created
+     *     before or at this timestamp are returned
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string=} params.minCreationTime Min value for job creation time,
+     *     in milliseconds since the POSIX epoch. If set, only jobs created
+     *     after or at this timestamp are returned
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, to request the next page of results
      * @param {string} params.projectId Project ID of the jobs to list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields
+     * @param {string=} params.projection Restrict information returned to a set
+     *     of selected fields
      * @param {string=} params.stateFilter Filter for job state
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3753,9 +3818,11 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project billed for the query
+     * @param {string} params.projectId Project ID of the project billed for the
+     *     query
      * @param {().QueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4058,8 +4125,10 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID for which the service account is requested.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Project ID for which the service account
+     *     is requested.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4194,8 +4263,10 @@ export namespace bigquery_v2 {
      *
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, to request the next page of results
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4368,7 +4439,8 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the destination table.
      * @param {string} params.tableId Table ID of the destination table.
      * @param {().TableDataInsertAllRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4517,12 +4589,16 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the table to read
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, identifying the result set
      * @param {string} params.projectId Project ID of the table to read
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
-     * @param {string=} params.startIndex Zero-based index of the starting row to read
+     * @param {string=} params.selectedFields List of fields to return
+     *     (comma-separated). If unspecified, all fields are returned
+     * @param {string=} params.startIndex Zero-based index of the starting row
+     *     to read
      * @param {string} params.tableId Table ID of the table to read
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4722,7 +4798,8 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the table to delete
      * @param {string} params.projectId Project ID of the table to delete
      * @param {string} params.tableId Table ID of the table to delete
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4849,9 +4926,11 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested table
      * @param {string} params.projectId Project ID of the requested table
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
+     * @param {string=} params.selectedFields List of fields to return
+     *     (comma-separated). If unspecified, all fields are returned
      * @param {string} params.tableId Table ID of the requested table
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4976,7 +5055,8 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the new table
      * @param {string} params.projectId Project ID of the new table
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5113,9 +5193,11 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the tables to list
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string=} params.pageToken Page token, returned by a previous
+     *     call, to request the next page of results
      * @param {string} params.projectId Project ID of the tables to list
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5253,7 +5335,8 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5389,7 +5472,8 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

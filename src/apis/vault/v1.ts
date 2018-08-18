@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -66,6 +65,53 @@ export namespace vault_v1 {
   }
 
   /**
+   * Accounts to search
+   */
+  export interface Schema$AccountInfo {
+    /**
+     * A set of accounts to search.
+     */
+    emails?: string[];
+  }
+  /**
+   * A status detailing the status of each account creation, and the
+   * HeldAccount, if successful.
+   */
+  export interface Schema$AddHeldAccountResult {
+    /**
+     * If present, this account was successfully created.
+     */
+    account?: Schema$HeldAccount;
+    /**
+     * This represents the success status. If failed, check message.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * Add a list of accounts to a hold.
+   */
+  export interface Schema$AddHeldAccountsRequest {
+    /**
+     * Account ids to identify which accounts to add. Only account_ids or only
+     * emails should be specified, but not both.
+     */
+    accountIds?: string[];
+    /**
+     * Emails to identify which accounts to add. Only emails or only account_ids
+     * should be specified, but not both.
+     */
+    emails?: string[];
+  }
+  /**
+   * Response for batch create held accounts.
+   */
+  export interface Schema$AddHeldAccountsResponse {
+    /**
+     * The list of responses, in the same order as the batch request.
+     */
+    responses?: Schema$AddHeldAccountResult[];
+  }
+  /**
    * Add an account with the permission specified. The role cannot be owner. If
    * an account already has a role in the matter, it will be overwritten.
    */
@@ -99,6 +145,38 @@ export namespace vault_v1 {
     matter?: Schema$Matter;
   }
   /**
+   * An export file on cloud storage
+   */
+  export interface Schema$CloudStorageFile {
+    /**
+     * The cloud storage bucket name of this export file. Can be used in cloud
+     * storage JSON/XML API.
+     */
+    bucketName?: string;
+    /**
+     * The md5 hash of the file.
+     */
+    md5Hash?: string;
+    /**
+     * The cloud storage object name of this export file. Can be used in cloud
+     * storage JSON/XML API.
+     */
+    objectName?: string;
+    /**
+     * The size of the export file.
+     */
+    size?: string;
+  }
+  /**
+   * Export sink for cloud storage files.
+   */
+  export interface Schema$CloudStorageSink {
+    /**
+     * Output only. The exported files on cloud storage.
+     */
+    files?: Schema$CloudStorageFile[];
+  }
+  /**
    * Corpus specific queries.
    */
   export interface Schema$CorpusQuery {
@@ -121,6 +199,31 @@ export namespace vault_v1 {
     mailQuery?: Schema$HeldMailQuery;
   }
   /**
+   * The options for Drive export.
+   */
+  export interface Schema$DriveExportOptions {
+    /**
+     * Set to true to include access level information for users with &lt;a
+     * href=&quot;https://support.google.com/vault/answer/6099459#metadata&quot;&gt;indirect
+     * access&lt;/a&gt; to files.
+     */
+    includeAccessInfo?: boolean;
+  }
+  /**
+   * Drive search advanced options
+   */
+  export interface Schema$DriveOptions {
+    /**
+     * Set to true to include Team Drive.
+     */
+    includeTeamDrives?: boolean;
+    /**
+     * Search the versions of the Drive file as of the reference date. These
+     * timestamps are in GMT and rounded down to the given date.
+     */
+    versionDate?: string;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -128,6 +231,125 @@ export namespace vault_v1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * An export
+   */
+  export interface Schema$Export {
+    /**
+     * Output only. Export sink for cloud storage files.
+     */
+    cloudStorageSink?: Schema$CloudStorageSink;
+    /**
+     * Output only. The time when the export was created.
+     */
+    createTime?: string;
+    /**
+     * Advanced options of the export.
+     */
+    exportOptions?: Schema$ExportOptions;
+    /**
+     * Output only. The generated export ID.
+     */
+    id?: string;
+    /**
+     * Output only. The matter ID.
+     */
+    matterId?: string;
+    /**
+     * The export name.
+     */
+    name?: string;
+    /**
+     * The search query being exported.
+     */
+    query?: Schema$Query;
+    /**
+     * Output only. The requester of the export.
+     */
+    requester?: Schema$UserInfo;
+    /**
+     * Output only. Export statistics.
+     */
+    stats?: Schema$ExportStats;
+    /**
+     * Output only. The export status.
+     */
+    status?: string;
+  }
+  /**
+   * Export advanced options
+   */
+  export interface Schema$ExportOptions {
+    /**
+     * Option available for Drive export.
+     */
+    driveOptions?: Schema$DriveExportOptions;
+    /**
+     * Option available for groups export.
+     */
+    groupsOptions?: Schema$GroupsExportOptions;
+    /**
+     * Option available for hangouts chat export.
+     */
+    hangoutsChatOptions?: Schema$HangoutsChatExportOptions;
+    /**
+     * Option available for mail export.
+     */
+    mailOptions?: Schema$MailExportOptions;
+  }
+  /**
+   * Stats of an export.
+   */
+  export interface Schema$ExportStats {
+    /**
+     * The number of documents already processed by the export.
+     */
+    exportedArtifactCount?: string;
+    /**
+     * The size of export in bytes.
+     */
+    sizeInBytes?: string;
+    /**
+     * The number of documents to be exported.
+     */
+    totalArtifactCount?: string;
+  }
+  /**
+   * The options for groups export.
+   */
+  export interface Schema$GroupsExportOptions {
+    /**
+     * The export format for groups export.
+     */
+    exportFormat?: string;
+  }
+  /**
+   * The options for hangouts chat export.
+   */
+  export interface Schema$HangoutsChatExportOptions {
+    /**
+     * The export format for hangouts chat export.
+     */
+    exportFormat?: string;
+  }
+  /**
+   * Accounts to search
+   */
+  export interface Schema$HangoutsChatInfo {
+    /**
+     * A set of rooms to search.
+     */
+    roomId?: string[];
+  }
+  /**
+   * Hangouts chat search advanced options
+   */
+  export interface Schema$HangoutsChatOptions {
+    /**
+     * Set to true to include rooms.
+     */
+    includeRooms?: boolean;
+  }
   /**
    * An account being held in a particular hold. This structure is immutable.
    * This can be either a single user or a google group, depending on the
@@ -256,6 +478,19 @@ export namespace vault_v1 {
     updateTime?: string;
   }
   /**
+   * The holds for a matter.
+   */
+  export interface Schema$ListExportsResponse {
+    /**
+     * The list of exports.
+     */
+    exports?: Schema$Export[];
+    /**
+     * Page token to retrieve the next page of results in the list.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * Returns a list of held accounts for a hold.
    */
   export interface Schema$ListHeldAccountsResponse {
@@ -290,6 +525,24 @@ export namespace vault_v1 {
      * Page token to retrieve the next page of results in the list.
      */
     nextPageToken?: string;
+  }
+  /**
+   * The options for mail export.
+   */
+  export interface Schema$MailExportOptions {
+    /**
+     * The export file format.
+     */
+    exportFormat?: string;
+  }
+  /**
+   * Mail search advanced options
+   */
+  export interface Schema$MailOptions {
+    /**
+     * Set to true to exclude drafts.
+     */
+    excludeDrafts?: boolean;
   }
   /**
    * Represents a matter.
@@ -336,6 +589,108 @@ export namespace vault_v1 {
     role?: string;
   }
   /**
+   * Org Unit to search
+   */
+  export interface Schema$OrgUnitInfo {
+    /**
+     * Org unit to search, as provided by the &lt;a
+     * href=&quot;https://developers.google.com/admin-sdk/directory/&quot;&gt;Admin
+     * SDK Directory API&lt;/a&gt;.
+     */
+    orgUnitId?: string;
+  }
+  /**
+   * A query definition relevant for search &amp; export.
+   */
+  export interface Schema$Query {
+    /**
+     * When &#39;ACCOUNT&#39; is chosen as search method, account_info needs to
+     * be specified.
+     */
+    accountInfo?: Schema$AccountInfo;
+    /**
+     * The corpus to search.
+     */
+    corpus?: string;
+    /**
+     * The data source to search from.
+     */
+    dataScope?: string;
+    /**
+     * For Drive search, specify more options in this field.
+     */
+    driveOptions?: Schema$DriveOptions;
+    /**
+     * The end time range for the search query. These timestamps are in GMT and
+     * rounded down to the start of the given date.
+     */
+    endTime?: string;
+    /**
+     * When &#39;ROOM&#39; is chosen as search method, hangout_chats_info needs
+     * to be specified. (read-only)
+     */
+    hangoutsChatInfo?: Schema$HangoutsChatInfo;
+    /**
+     * For hangouts chat search, specify more options in this field. (read-only)
+     */
+    hangoutsChatOptions?: Schema$HangoutsChatOptions;
+    /**
+     * For mail search, specify more options in this field.
+     */
+    mailOptions?: Schema$MailOptions;
+    /**
+     * When &#39;ORG_UNIT&#39; is chosen as as search method, org_unit_info
+     * needs to be specified.
+     */
+    orgUnitInfo?: Schema$OrgUnitInfo;
+    /**
+     * The search method to use.
+     */
+    searchMethod?: string;
+    /**
+     * The start time range for the search query. These timestamps are in GMT
+     * and rounded down to the start of the given date.
+     */
+    startTime?: string;
+    /**
+     * When &#39;TEAM_DRIVE&#39; is chosen as search method, team_drive_info
+     * needs to be specified.
+     */
+    teamDriveInfo?: Schema$TeamDriveInfo;
+    /**
+     * The corpus-specific &lt;a
+     * href=&quot;https://support.google.com/vault/answer/2474474&quot;&gt;search
+     * operators&lt;/a&gt; used to generate search results.
+     */
+    terms?: string;
+    /**
+     * The time zone name. It should be an IANA TZ name, such as
+     * &quot;America/Los_Angeles&quot;. For more information, see &lt;a
+     * href=&quot;https://en.wikipedia.org/wiki/List_of_tz_database_time_zones&quot;&gt;Time
+     * Zone&lt;/a&gt;.
+     */
+    timeZone?: string;
+  }
+  /**
+   * Remove a list of accounts from a hold.
+   */
+  export interface Schema$RemoveHeldAccountsRequest {
+    /**
+     * Account ids to identify HeldAccounts to remove.
+     */
+    accountIds?: string[];
+  }
+  /**
+   * Response for batch delete held accounts.
+   */
+  export interface Schema$RemoveHeldAccountsResponse {
+    /**
+     * A list of statuses for deleted accounts. Results have the same order as
+     * the request.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
    * Remove an account as a matter collaborator.
    */
   export interface Schema$RemoveMatterPermissionsRequest {
@@ -358,17 +713,96 @@ export namespace vault_v1 {
     matter?: Schema$Matter;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for
+   * different programming environments, including REST APIs and RPC APIs. It is
+   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
+   * - Simple to use and understand for most users - Flexible enough to meet
+   * unexpected needs  # Overview  The `Status` message contains three pieces of
+   * data: error code, error message, and error details. The error code should
+   * be an enum value of google.rpc.Code, but it may accept additional error
+   * codes if needed.  The error message should be a developer-facing English
+   * message that helps developers *understand* and *resolve* the error. If a
+   * localized user-facing error message is needed, put the localized message in
+   * the error details or localize it in the client. The optional error details
+   * may contain arbitrary information about the error. There is a predefined
+   * set of error detail types in the package `google.rpc` that can be used for
+   * common error conditions.  # Language mapping  The `Status` message is the
+   * logical representation of the error model, but it is not necessarily the
+   * actual wire format. When the `Status` message is exposed in different
+   * client libraries and different wire protocols, it can be mapped
+   * differently. For example, it will likely be mapped to some exceptions in
+   * Java, but more likely mapped to some error codes in C.  # Other uses  The
+   * error model and the `Status` message can be used in a variety of
+   * environments, either with or without APIs, to provide a consistent
+   * developer experience across different environments.  Example uses of this
+   * error model include:  - Partial errors. If a service needs to return
+   * partial errors to the client,     it may embed the `Status` in the normal
+   * response to indicate the partial     errors.  - Workflow errors. A typical
+   * workflow has multiple steps. Each step may     have a `Status` message for
+   * error reporting.  - Batch operations. If a client uses batch request and
+   * batch response, the     `Status` message should be used directly inside
+   * batch response, one for     each error sub-response.  - Asynchronous
+   * operations. If an API call embeds asynchronous operation     results in its
+   * response, the status of those operations should be     represented directly
+   * using the `Status` message.  - Logging. If some API errors are stored in
+   * logs, the message `Status` could     be used directly after any stripping
+   * needed for security/privacy reasons.
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number;
+    /**
+     * A list of messages that carry the error details.  There is a common set
+     * of message types for APIs to use.
+     */
+    details?: any[];
+    /**
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string;
+  }
+  /**
+   * Team Drives to search
+   */
+  export interface Schema$TeamDriveInfo {
+    /**
+     * List of Team Drive ids, as provided by &lt;a
+     * href=&quot;https://developers.google.com/drive&quot;&gt;Drive
+     * API&lt;/a&gt;.
+     */
+    teamDriveIds?: string[];
+  }
+  /**
    * Undelete a matter by ID.
    */
   export interface Schema$UndeleteMatterRequest {}
+  /**
+   * User&#39;s information.
+   */
+  export interface Schema$UserInfo {
+    /**
+     * The displayed name of the user.
+     */
+    displayName?: string;
+    /**
+     * The email address of the user.
+     */
+    email?: string;
+  }
 
 
   export class Resource$Matters {
     root: Vault;
+    exports: Resource$Matters$Exports;
     holds: Resource$Matters$Holds;
     constructor(root: Vault) {
       this.root = root;
       this.getRoot.bind(this);
+      this.exports = new Resource$Matters$Exports(root);
       this.holds = new Resource$Matters$Holds(root);
     }
 
@@ -386,7 +820,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().AddMatterPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -455,7 +890,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().CloseMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -522,7 +958,8 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Matter} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -585,7 +1022,8 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -649,8 +1087,10 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {string=} params.view Specifies which parts of the Matter to return in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.view Specifies which parts of the Matter to
+     *     return in the response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -710,11 +1150,16 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
-     * @param {string=} params.pageToken The pagination token as returned in the response.
-     * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
-     * @param {string=} params.view Specifies which parts of the matter to return in response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The number of matters to return in the
+     *     response. Default and maximum are 100.
+     * @param {string=} params.pageToken The pagination token as returned in the
+     *     response.
+     * @param {string=} params.state If set, list only matters with that
+     *     specific state. The default is listing matters of all states.
+     * @param {string=} params.view Specifies which parts of the matter to
+     *     return in response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -778,8 +1223,10 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveMatterPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().RemoveMatterPermissionsRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -846,7 +1293,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().ReopenMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -913,7 +1361,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().UndeleteMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -981,7 +1430,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().Matter} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1197,6 +1647,357 @@ export namespace vault_v1 {
     requestBody?: Schema$Matter;
   }
 
+  export class Resource$Matters$Exports {
+    root: Vault;
+    constructor(root: Vault) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vault.matters.exports.create
+     * @desc Creates an Export.
+     * @alias vault.matters.exports.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter ID.
+     * @param {().Export} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Matters$Exports$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Export>;
+    create(
+        params: Params$Resource$Matters$Exports$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Export>,
+        callback: BodyResponseCallback<Schema$Export>): void;
+    create(
+        params: Params$Resource$Matters$Exports$Create,
+        callback: BodyResponseCallback<Schema$Export>): void;
+    create(callback: BodyResponseCallback<Schema$Export>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Matters$Exports$Create|
+        BodyResponseCallback<Schema$Export>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
+        callback?: BodyResponseCallback<Schema$Export>):
+        void|AxiosPromise<Schema$Export> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Exports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/exports')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['matterId'],
+        pathParams: ['matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Export>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Export>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.exports.delete
+     * @desc Deletes an Export.
+     * @alias vault.matters.exports.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.exportId The export ID.
+     * @param {string} params.matterId The matter ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Matters$Exports$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Matters$Exports$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Matters$Exports$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Matters$Exports$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Exports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/exports/{exportId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'exportId'],
+        pathParams: ['exportId', 'matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.exports.get
+     * @desc Gets an Export.
+     * @alias vault.matters.exports.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.exportId The export ID.
+     * @param {string} params.matterId The matter ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Matters$Exports$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Export>;
+    get(params: Params$Resource$Matters$Exports$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Export>,
+        callback: BodyResponseCallback<Schema$Export>): void;
+    get(params: Params$Resource$Matters$Exports$Get,
+        callback: BodyResponseCallback<Schema$Export>): void;
+    get(callback: BodyResponseCallback<Schema$Export>): void;
+    get(paramsOrCallback?: Params$Resource$Matters$Exports$Get|
+        BodyResponseCallback<Schema$Export>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
+        callback?: BodyResponseCallback<Schema$Export>):
+        void|AxiosPromise<Schema$Export> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Exports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/exports/{exportId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'exportId'],
+        pathParams: ['exportId', 'matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Export>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Export>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.exports.list
+     * @desc Lists Exports.
+     * @alias vault.matters.exports.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter ID.
+     * @param {integer=} params.pageSize The number of exports to return in the
+     *     response.
+     * @param {string=} params.pageToken The pagination token as returned in the
+     *     response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Matters$Exports$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListExportsResponse>;
+    list(
+        params: Params$Resource$Matters$Exports$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListExportsResponse>,
+        callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
+    list(
+        params: Params$Resource$Matters$Exports$List,
+        callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Matters$Exports$List|
+        BodyResponseCallback<Schema$ListExportsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListExportsResponse>,
+        callback?: BodyResponseCallback<Schema$ListExportsResponse>):
+        void|AxiosPromise<Schema$ListExportsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Exports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/exports')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['matterId'],
+        pathParams: ['matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExportsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListExportsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Matters$Exports$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Export;
+  }
+  export interface Params$Resource$Matters$Exports$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The export ID.
+     */
+    exportId?: string;
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+  }
+  export interface Params$Resource$Matters$Exports$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The export ID.
+     */
+    exportId?: string;
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+  }
+  export interface Params$Resource$Matters$Exports$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+    /**
+     * The number of exports to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * The pagination token as returned in the response.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Matters$Holds {
     root: Vault;
     accounts: Resource$Matters$Holds$Accounts;
@@ -1212,6 +2013,81 @@ export namespace vault_v1 {
 
 
     /**
+     * vault.matters.holds.addHeldAccounts
+     * @desc Adds HeldAccounts to a hold. Returns a list of accounts that have
+     * been successfully added. Accounts can only be added to an existing
+     * account-based hold.
+     * @alias vault.matters.holds.addHeldAccounts
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.holdId The hold ID.
+     * @param {string} params.matterId The matter ID.
+     * @param {().AddHeldAccountsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addHeldAccounts(
+        params?: Params$Resource$Matters$Holds$Addheldaccounts,
+        options?: MethodOptions): AxiosPromise<Schema$AddHeldAccountsResponse>;
+    addHeldAccounts(
+        params: Params$Resource$Matters$Holds$Addheldaccounts,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+    addHeldAccounts(
+        params: Params$Resource$Matters$Holds$Addheldaccounts,
+        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+    addHeldAccounts(
+        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+    addHeldAccounts(
+        paramsOrCallback?: Params$Resource$Matters$Holds$Addheldaccounts|
+        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>):
+        void|AxiosPromise<Schema$AddHeldAccountsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Matters$Holds$Addheldaccounts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Holds$Addheldaccounts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/matters/{matterId}/holds/{holdId}:addHeldAccounts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'holdId'],
+        pathParams: ['holdId', 'matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddHeldAccountsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AddHeldAccountsResponse>(parameters);
+      }
+    }
+
+
+    /**
      * vault.matters.holds.create
      * @desc Creates a hold in the given matter.
      * @alias vault.matters.holds.create
@@ -1220,7 +2096,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().Hold} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1288,7 +2165,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1356,7 +2234,8 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1419,10 +2298,14 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
-     * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
+     * @param {integer=} params.pageSize The number of holds to return in the
+     *     response, between 0 and 100 inclusive. Leaving this empty, or as 0,
+     *     is the same as page_size = 100.
+     * @param {string=} params.pageToken The pagination token as returned in the
+     *     response. An empty token means start from the beginning.
      * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1481,6 +2364,86 @@ export namespace vault_v1 {
 
 
     /**
+     * vault.matters.holds.removeHeldAccounts
+     * @desc Removes HeldAccounts from a hold. Returns a list of statuses in the
+     * same order as the request. If this request leaves the hold with no held
+     * accounts, the hold will not apply to any accounts.
+     * @alias vault.matters.holds.removeHeldAccounts
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.holdId The hold ID.
+     * @param {string} params.matterId The matter ID.
+     * @param {().RemoveHeldAccountsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeHeldAccounts(
+        params?: Params$Resource$Matters$Holds$Removeheldaccounts,
+        options?: MethodOptions):
+        AxiosPromise<Schema$RemoveHeldAccountsResponse>;
+    removeHeldAccounts(
+        params: Params$Resource$Matters$Holds$Removeheldaccounts,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
+        void;
+    removeHeldAccounts(
+        params: Params$Resource$Matters$Holds$Removeheldaccounts,
+        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
+        void;
+    removeHeldAccounts(
+        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
+        void;
+    removeHeldAccounts(
+        paramsOrCallback?: Params$Resource$Matters$Holds$Removeheldaccounts|
+        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
+        void|AxiosPromise<Schema$RemoveHeldAccountsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Matters$Holds$Removeheldaccounts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Holds$Removeheldaccounts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'holdId'],
+        pathParams: ['holdId', 'matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveHeldAccountsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$RemoveHeldAccountsResponse>(parameters);
+      }
+    }
+
+
+    /**
      * vault.matters.holds.update
      * @desc Updates the OU and/or query parameters of a hold. You cannot add
      * accounts to a hold that covers an OU, nor can you add OUs to a hold that
@@ -1492,7 +2455,8 @@ export namespace vault_v1 {
      * @param {string} params.holdId The ID of the hold.
      * @param {string} params.matterId The matter ID.
      * @param {().Hold} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1550,6 +2514,26 @@ export namespace vault_v1 {
     }
   }
 
+  export interface Params$Resource$Matters$Holds$Addheldaccounts {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The hold ID.
+     */
+    holdId?: string;
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddHeldAccountsRequest;
+  }
   export interface Params$Resource$Matters$Holds$Create {
     /**
      * Auth client or API Key for the request
@@ -1625,6 +2609,26 @@ export namespace vault_v1 {
      */
     view?: string;
   }
+  export interface Params$Resource$Matters$Holds$Removeheldaccounts {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The hold ID.
+     */
+    holdId?: string;
+    /**
+     * The matter ID.
+     */
+    matterId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveHeldAccountsRequest;
+  }
   export interface Params$Resource$Matters$Holds$Update {
     /**
      * Auth client or API Key for the request
@@ -1670,7 +2674,8 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {().HeldAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1737,10 +2742,12 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account to remove from the hold.
+     * @param {string} params.accountId The ID of the account to remove from the
+     *     hold.
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1812,7 +2819,8 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

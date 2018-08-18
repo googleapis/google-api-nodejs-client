@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -866,10 +865,11 @@ export namespace logging_v2 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded. All user-defined custom metric types have the DNS name
-     * custom.googleapis.com. Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded. All user-defined metric types have the DNS name
+     * custom.googleapis.com or external.googleapis.com. Metric types should use
+     * a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -988,8 +988,8 @@ export namespace logging_v2 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;
-     * where {type} is the value of the type field in this object and
-     * {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the type field in this object
+     * and {project_id} is a project ID that provides API-specific context for
      * accessing the type. APIs that do not use project information can use the
      * resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */
@@ -1161,6 +1161,11 @@ export namespace logging_v2 {
      */
     traceId?: string;
     /**
+     * If true, the value in the &#39;trace_id&#39; field was sampled for
+     * storage in a trace backend.
+     */
+    traceSampled?: boolean;
+    /**
      * File or class that handled the request.
      */
     urlMapEntry?: string;
@@ -1329,9 +1334,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {string} params.parent Required. The parent resource in which to
+     *     create the exclusion: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1397,8 +1407,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion to delete:
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1462,8 +1479,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1524,10 +1547,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose
+     *     exclusions are to be listed. "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1594,10 +1628,22 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {string=} params.updateMask Required. A nonempty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     * @param {string} params.name Required. The resource name of the exclusion
+     *     to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {string=} params.updateMask Required. A nonempty list of fields to
+     *     change in the existing exclusion. New values for the fields are taken
+     *     from the corresponding fields in the LogExclusion included in this
+     *     request. Fields not mentioned in update_mask are not changed and are
+     *     ignored in the request.For example, to change the filter and
+     *     description of an exclusion, specify an update_mask of
+     *     "filter,description".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1785,8 +1831,16 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.logName Required. The resource name of the log to
+     *     delete: "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     *     example, "projects/my-project-id/logs/syslog",
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     *     For more information about log names, see LogEntry.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1851,10 +1905,20 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The resource name that owns the
+     *     logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1981,10 +2045,24 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {string} params.parent Required. The resource in which to create
+     *     the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the
+     *     kind of IAM identity returned as writer_identity in the new sink. If
+     *     this value is omitted or set to false, and if the sink's parent is a
+     *     project, then the value returned as writer_identity is the same group
+     *     or service account used by Logging before the addition of writer
+     *     identities to this API. The sink's destination must be in the same
+     *     project as the sink itself.If this field is set to true, or if the
+     *     sink is owned by a non-project resource such as an organization, then
+     *     the value of writer_identity will be a unique service account used
+     *     only for exports from the new sink. For more information, see
+     *     writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2050,8 +2128,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to delete, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2115,8 +2200,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The resource name of the sink:
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2176,10 +2267,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks
+     *     are to be listed: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2248,11 +2350,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2319,11 +2445,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2587,7 +2737,8 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ListLogEntriesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2657,7 +2808,8 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().WriteLogEntriesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2762,9 +2914,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {string} params.parent Required. The parent resource in which to
+     *     create the exclusion: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2829,8 +2986,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion to delete:
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2893,8 +3057,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2954,10 +3124,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose
+     *     exclusions are to be listed. "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3022,10 +3203,22 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {string=} params.updateMask Required. A nonempty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     * @param {string} params.name Required. The resource name of the exclusion
+     *     to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {string=} params.updateMask Required. A nonempty list of fields to
+     *     change in the existing exclusion. New values for the fields are taken
+     *     from the corresponding fields in the LogExclusion included in this
+     *     request. Fields not mentioned in update_mask are not changed and are
+     *     ignored in the request.For example, to change the filter and
+     *     description of an exclusion, specify an update_mask of
+     *     "filter,description".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3230,9 +3423,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {string} params.parent Required. The parent resource in which to
+     *     create the exclusion: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3298,8 +3496,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion to delete:
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3363,8 +3568,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3425,10 +3636,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose
+     *     exclusions are to be listed. "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3495,10 +3717,22 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {string=} params.updateMask Required. A nonempty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     * @param {string} params.name Required. The resource name of the exclusion
+     *     to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {string=} params.updateMask Required. A nonempty list of fields to
+     *     change in the existing exclusion. New values for the fields are taken
+     *     from the corresponding fields in the LogExclusion included in this
+     *     request. Fields not mentioned in update_mask are not changed and are
+     *     ignored in the request.For example, to change the filter and
+     *     description of an exclusion, specify an update_mask of
+     *     "filter,description".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3686,8 +3920,16 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.logName Required. The resource name of the log to
+     *     delete: "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     *     example, "projects/my-project-id/logs/syslog",
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     *     For more information about log names, see LogEntry.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3752,10 +3994,20 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The resource name that owns the
+     *     logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3881,10 +4133,24 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {string} params.parent Required. The resource in which to create
+     *     the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the
+     *     kind of IAM identity returned as writer_identity in the new sink. If
+     *     this value is omitted or set to false, and if the sink's parent is a
+     *     project, then the value returned as writer_identity is the same group
+     *     or service account used by Logging before the addition of writer
+     *     identities to this API. The sink's destination must be in the same
+     *     project as the sink itself.If this field is set to true, or if the
+     *     sink is owned by a non-project resource such as an organization, then
+     *     the value of writer_identity will be a unique service account used
+     *     only for exports from the new sink. For more information, see
+     *     writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3950,8 +4216,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to delete, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4015,8 +4288,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The resource name of the sink:
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4076,10 +4355,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks
+     *     are to be listed: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4147,11 +4437,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4218,11 +4532,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4486,8 +4824,16 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.logName Required. The resource name of the log to
+     *     delete: "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     *     example, "projects/my-project-id/logs/syslog",
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     *     For more information about log names, see LogEntry.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4550,10 +4896,20 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The resource name that owns the
+     *     logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4675,9 +5031,17 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4806,9 +5170,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {string} params.parent Required. The parent resource in which to
+     *     create the exclusion: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4874,8 +5243,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion to delete:
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4939,8 +5315,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5001,10 +5383,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose
+     *     exclusions are to be listed. "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5071,10 +5464,22 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {string=} params.updateMask Required. A nonempty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     * @param {string} params.name Required. The resource name of the exclusion
+     *     to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {string=} params.updateMask Required. A nonempty list of fields to
+     *     change in the existing exclusion. New values for the fields are taken
+     *     from the corresponding fields in the LogExclusion included in this
+     *     request. Fields not mentioned in update_mask are not changed and are
+     *     ignored in the request.For example, to change the filter and
+     *     description of an exclusion, specify an update_mask of
+     *     "filter,description".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5262,8 +5667,16 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.logName Required. The resource name of the log to
+     *     delete: "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     *     example, "projects/my-project-id/logs/syslog",
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     *     For more information about log names, see LogEntry.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5328,10 +5741,20 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The resource name that owns the
+     *     logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5458,10 +5881,24 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {string} params.parent Required. The resource in which to create
+     *     the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the
+     *     kind of IAM identity returned as writer_identity in the new sink. If
+     *     this value is omitted or set to false, and if the sink's parent is a
+     *     project, then the value returned as writer_identity is the same group
+     *     or service account used by Logging before the addition of writer
+     *     identities to this API. The sink's destination must be in the same
+     *     project as the sink itself.If this field is set to true, or if the
+     *     sink is owned by a non-project resource such as an organization, then
+     *     the value of writer_identity will be a unique service account used
+     *     only for exports from the new sink. For more information, see
+     *     writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5527,8 +5964,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to delete, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5592,8 +6036,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The resource name of the sink:
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5653,10 +6103,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks
+     *     are to be listed: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5725,11 +6186,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5796,11 +6281,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6085,9 +6594,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {string} params.parent Required. The parent resource in which to
+     *     create the exclusion: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6153,8 +6667,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion to delete:
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6218,8 +6739,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of an existing
+     *     exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6280,10 +6807,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose
+     *     exclusions are to be listed. "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6350,10 +6888,22 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
-     * @param {string=} params.updateMask Required. A nonempty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     * @param {string} params.name Required. The resource name of the exclusion
+     *     to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
+     *     "projects/my-project-id/exclusions/my-exclusion-id".
+     * @param {string=} params.updateMask Required. A nonempty list of fields to
+     *     change in the existing exclusion. New values for the fields are taken
+     *     from the corresponding fields in the LogExclusion included in this
+     *     request. Fields not mentioned in update_mask are not changed and are
+     *     ignored in the request.For example, to change the filter and
+     *     description of an exclusion, specify an update_mask of
+     *     "filter,description".
      * @param {().LogExclusion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6541,8 +7091,16 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.logName Required. The resource name of the log to
+     *     delete: "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
+     *     example, "projects/my-project-id/logs/syslog",
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
+     *     For more information about log names, see LogEntry.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6607,10 +7165,20 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The resource name that owns the
+     *     logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6733,9 +7301,12 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     * @param {string} params.parent The resource name of the project in which
+     *     to create the metric: "projects/[PROJECT_ID]" The new metric must be
+     *     provided in the request.
      * @param {().LogMetric} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6801,8 +7372,10 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.metricName The resource name of the metric to
+     *     delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6867,8 +7440,10 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.metricName The resource name of the desired
+     *     metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6930,10 +7505,19 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The name of the project containing the metrics: "projects/[PROJECT_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The name of the project
+     *     containing the metrics: "projects/[PROJECT_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7000,9 +7584,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     * @param {string} params.metricName The resource name of the metric to
+     *     update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated
+     *     metric must be provided in the request and it's name field must be
+     *     the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID],
+     *     then a new metric is created.
      * @param {().LogMetric} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7171,10 +7760,24 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {string} params.parent Required. The resource in which to create
+     *     the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the
+     *     kind of IAM identity returned as writer_identity in the new sink. If
+     *     this value is omitted or set to false, and if the sink's parent is a
+     *     project, then the value returned as writer_identity is the same group
+     *     or service account used by Logging before the addition of writer
+     *     identities to this API. The sink's destination must be in the same
+     *     project as the sink itself.If this field is set to true, or if the
+     *     sink is owned by a non-project resource such as an organization, then
+     *     the value of writer_identity will be a unique service account used
+     *     only for exports from the new sink. For more information, see
+     *     writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7240,8 +7843,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to delete, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7305,8 +7915,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The resource name of the sink:
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7366,10 +7982,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks
+     *     are to be listed: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7437,11 +8064,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7508,11 +8159,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7777,10 +8452,24 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {string} params.parent Required. The resource in which to create
+     *     the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     *     Examples: "projects/my-logging-project", "organizations/123456789".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the
+     *     kind of IAM identity returned as writer_identity in the new sink. If
+     *     this value is omitted or set to false, and if the sink's parent is a
+     *     project, then the value returned as writer_identity is the same group
+     *     or service account used by Logging before the addition of writer
+     *     identities to this API. The sink's destination must be in the same
+     *     project as the sink itself.If this field is set to true, or if the
+     *     sink is owned by a non-project resource such as an organization, then
+     *     the value of writer_identity will be a unique service account used
+     *     only for exports from the new sink. For more information, see
+     *     writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7844,8 +8533,15 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to delete, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7907,8 +8603,14 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sinkName Required. The resource name of the sink:
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7967,10 +8669,21 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return from this request. Non-positive values are ignored. The
+     *     presence of nextPageToken in the response indicates that more results
+     *     might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the
+     *     next batch of results from the preceding call to this method.
+     *     pageToken must be the value of nextPageToken from the previous
+     *     response. The values of other method parameters should be identical
+     *     to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks
+     *     are to be listed: "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8037,11 +8750,35 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string} params.sinkName Required. The full resource name of the
+     *     sink to update, including the parent resource and the sink
+     *     identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
+     *     "projects/my-project-id/sinks/my-sink-id".
+     * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create
+     *     for a description of this field. When updating a sink, the effect of
+     *     this field on the value of writer_identity in the updated sink
+     *     depends on both the old and new values of this field: If the old and
+     *     new values of this field are both false or both true, then there is
+     *     no change to the sink's writer_identity. If the old value is false
+     *     and the new value is true, then writer_identity is changed to a
+     *     unique service account. It is an error if the old value is true and
+     *     the new value is set to false or defaulted to false.
+     * @param {string=} params.updateMask Optional. Field mask that specifies
+     *     the fields in sink that need an update. A sink field will be
+     *     overwritten if, and only if, it is in the update mask. name and
+     *     output only fields cannot be updated.An empty updateMask is
+     *     temporarily treated as using the following mask for backwards
+     *     compatibility purposes:  destination,filter,includeChildren At some
+     *     point in the future, behavior will be removed and specifying an empty
+     *     updateMask will be an error.For a detailed FieldMask definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     *     updateMask=filter.
      * @param {().LogSink} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

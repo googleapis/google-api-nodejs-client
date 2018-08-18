@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1196,6 +1195,12 @@ export namespace servicemanagement_v1 {
      */
     put?: string;
     /**
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP body of response. Other response fields are ignored. When not set,
+     * the response message will be used as HTTP body of response.
+     */
+    responseBody?: string;
+    /**
      * Selects methods to which this rule applies.  Refer to selector for syntax
      * details.
      */
@@ -1520,10 +1525,11 @@ export namespace servicemanagement_v1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1683,8 +1689,8 @@ export namespace servicemanagement_v1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
-     * where {type} is the value of the `type` field in this object and
-     * {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the `type` field in this object
+     * and {project_id} is a project ID that provides API-specific context for
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
@@ -2610,7 +2616,8 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2672,11 +2679,28 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations.   The following filter fields are supported&#58;    * serviceName&#58; Required. Only `=` operator is allowed.   * startTime&#58; The time this job was started, in ISO 8601 format.     Allowed operators are `>=`,  `>`, `<=`, and `<`.   * status&#58; Can be `done`, `in_progress`, or `failed`. Allowed     operators are `=`, and `!=`.    Filter expression supports conjunction (AND) and disjunction (OR)   logical operators. However, the serviceName restriction must be at the   top-level and can only be combined with other restrictions via the AND   logical operator.    Examples&#58;    * `serviceName={some-service}.googleapis.com`   * `serviceName={some-service}.googleapis.com AND startTime>="2017-02-01"`   * `serviceName={some-service}.googleapis.com AND status=done`   * `serviceName={some-service}.googleapis.com AND (status=done OR startTime>="2017-02-01")`
+     * @param {string=} params.filter A string for filtering Operations.   The
+     *     following filter fields are supported&#58;    * serviceName&#58;
+     *     Required. Only `=` operator is allowed.   * startTime&#58; The time
+     *     this job was started, in ISO 8601 format.     Allowed operators are
+     *     `>=`,  `>`, `<=`, and `<`.   * status&#58; Can be `done`,
+     *     `in_progress`, or `failed`. Allowed     operators are `=`, and `!=`.
+     *     Filter expression supports conjunction (AND) and disjunction (OR)
+     *     logical operators. However, the serviceName restriction must be at
+     *     the   top-level and can only be combined with other restrictions via
+     *     the AND   logical operator.    Examples&#58;    *
+     *     `serviceName={some-service}.googleapis.com`   *
+     *     `serviceName={some-service}.googleapis.com AND
+     *     startTime>="2017-02-01"`   *
+     *     `serviceName={some-service}.googleapis.com AND status=done`   *
+     *     `serviceName={some-service}.googleapis.com AND (status=done OR
+     *     startTime>="2017-02-01")`
      * @param {string=} params.name Not used.
-     * @param {integer=} params.pageSize The maximum number of operations to return. If unspecified, defaults to 50. The maximum value is 100.
+     * @param {integer=} params.pageSize The maximum number of operations to
+     *     return. If unspecified, defaults to 50. The maximum value is 100.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2811,7 +2835,8 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().ManagedService} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2879,8 +2904,11 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2948,9 +2976,11 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service to disable. Specifying an unknown service name will cause the request to fail.
+     * @param {string} params.serviceName Name of the service to disable.
+     *     Specifying an unknown service name will cause the request to fail.
      * @param {().DisableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3017,9 +3047,11 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service to enable. Specifying an unknown service name will cause the request to fail.
+     * @param {string} params.serviceName Name of the service to enable.
+     *     Specifying an unknown service name will cause the request to fail.
      * @param {().EnableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3094,7 +3126,8 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().GenerateConfigReportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3170,8 +3203,11 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     `ServiceManager` overview for naming requirements.  For example:
+     *     `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3233,10 +3269,15 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.configId The id of the service configuration resource.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.configId The id of the service configuration
+     *     resource.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {string=} params.view Specifies which parts of the Service Config
+     *     should be returned in the response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3303,9 +3344,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3376,11 +3420,17 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.consumerId Include services consumed by the specified consumer.  The Google Service Management implementation accepts the following forms: - project:<project_id>
-     * @param {integer=} params.pageSize Requested size of the next page of data.
-     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
-     * @param {string=} params.producerProjectId Include services produced by the specified project.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.consumerId Include services consumed by the
+     *     specified consumer.  The Google Service Management implementation
+     *     accepts the following forms: - project:<project_id>
+     * @param {integer=} params.pageSize Requested size of the next page of
+     *     data.
+     * @param {string=} params.pageToken Token identifying which result to start
+     *     with; returned by a previous list call.
+     * @param {string=} params.producerProjectId Include services produced by
+     *     the specified project.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3446,9 +3496,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3518,9 +3571,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3597,8 +3653,11 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service. See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3877,9 +3936,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
      * @param {().Service} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3945,10 +4007,15 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.configId The id of the service configuration resource.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.configId The id of the service configuration
+     *     resource.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {string=} params.view Specifies which parts of the Service Config
+     *     should be returned in the response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4011,10 +4078,14 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {integer=} params.pageSize The max number of items to include in
+     *     the response list.
      * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4094,9 +4165,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
      * @param {().SubmitConfigSourceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4257,9 +4331,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4326,9 +4403,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4398,9 +4478,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4549,9 +4632,12 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
      * @param {().Rollout} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4619,8 +4705,11 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.rolloutId The id of the rollout resource.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4683,11 +4772,21 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {string=} params.filter Use `filter` to return subset of rollouts.
+     *     The following filters are supported:   -- To limit the results to
+     *     only those in [status](google.api.servicemanagement.v1.RolloutStatus)
+     *     'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results
+     *     to those in [status](google.api.servicemanagement.v1.RolloutStatus)
+     *     'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR
+     *     status=FAILED'
+     * @param {integer=} params.pageSize The max number of items to include in
+     *     the response list.
      * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.serviceName The name of the service.  See the
+     *     [overview](/service-management/overview) for naming requirements. For
+     *     example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

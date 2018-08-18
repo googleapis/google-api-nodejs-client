@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -92,6 +91,13 @@ export namespace dataproc_v1beta2 {
    * Associates members with a role.
    */
   export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * members can have the following values: allUsers: A special identifier
@@ -404,6 +410,35 @@ export namespace dataproc_v1beta2 {
      * instances in the cluster.
      */
     gcePdKmsKeyName?: string;
+  }
+  /**
+   * Represents an expression text. Example: title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.The application context of the containing message determines which
+     * well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Common config settings for resources of Compute Engine cluster instances,
@@ -1221,8 +1256,8 @@ export namespace dataproc_v1beta2 {
   export interface Schema$RegexValidation {
     /**
      * Required. RE2 regular expressions used to validate the parameter&#39;s
-     * value. The provided value must match the regexes in its entirety, e.g.
-     * substring matches are not enough.
+     * value. The value must match the regex in its entirety (substring matches
+     * are not sufficient).
      */
     regexes?: string[];
   }
@@ -1415,56 +1450,51 @@ export namespace dataproc_v1beta2 {
   }
   /**
    * A configurable parameter that replaces one or more fields in the template.
+   * Parameterizable fields: - Labels - File uris - Job properties - Job
+   * arguments - Script variables - Main class (in HadoopJob and SparkJob) -
+   * Zone (in ClusterSelector)
    */
   export interface Schema$TemplateParameter {
     /**
-     * Optional. User-friendly description of the parameter. Must not exceed
-     * 1024 characters.
+     * Optional. Brief description of the parameter. Must not exceed 1024
+     * characters.
      */
     description?: string;
     /**
-     * Required. Paths to all fields that this parameter replaces. Each field
-     * may appear in at most one Parameter&#39;s fields list.Field path syntax:A
-     * field path is similar to a FieldMask. For example, a field path that
-     * references the zone field of the template&#39;s cluster selector would
-     * look like:placement.clusterSelector.zoneThe only differences between
-     * field paths and standard field masks are that: Values in maps can be
-     * referenced by key.Example:
-     * placement.clusterSelector.clusterLabels&#39;key&#39; Jobs in the jobs
-     * list can be referenced by step id.Example:
-     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri Items in repeated fields
-     * can be referenced by zero-based index.Example:
-     * jobs&#39;step-id&#39;.sparkJob.args0NOTE: Maps and repeated fields may
-     * not be parameterized in their entirety. Only individual map values and
-     * items in repeated fields may be referenced. For example, the following
-     * field paths are invalid: - placement.clusterSelector.clusterLabels -
-     * jobs&#39;step-id&#39;.sparkJob.argsParameterizable fields:Only certain
-     * types of fields may be parameterized, specifically: - Labels - File uris
-     * - Job properties - Job arguments - Script variables - Main class (in
-     * HadoopJob and SparkJob) - Zone (in ClusterSelector)Examples of
-     * parameterizable fields:Labels:labels&#39;key&#39;
+     * Required. Paths to all fields that the parameter replaces. A field is
+     * allowed to appear in at most one parameter&#39;s list of field paths.A
+     * field path is similar in syntax to a google.protobuf.FieldMask. For
+     * example, a field path that references the zone field of a workflow
+     * template&#39;s cluster selector would be specified as
+     * &lt;code&gt;placement.clusterSelector.zone&lt;/code&gt;.Also, field paths
+     * can reference fields using the following syntax: Values in maps can be
+     * referenced by key. Examples&lt;br&gt; labels&#39;key&#39;
+     * placement.clusterSelector.clusterLabels&#39;key&#39;
      * placement.managedCluster.labels&#39;key&#39;
      * placement.clusterSelector.clusterLabels&#39;key&#39;
-     * jobs&#39;step-id&#39;.labels&#39;key&#39;File
-     * uris:jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
-     * jobs&#39;step-id&#39;.hiveJob.queryFileUri
-     * jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri
-     * jobs&#39;step-id&#39;.hadoopJob.jarFileUris0
-     * jobs&#39;step-id&#39;.hadoopJob.archiveUris0
-     * jobs&#39;step-id&#39;.hadoopJob.fileUris0
-     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0Other:jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
-     * jobs&#39;step-id&#39;.hadoopJob.args0
-     * jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39;
-     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
-     * placement.clusterSelector.zone
+     * jobsstep-id.labels&#39;key&#39; Jobs in the jobs list can be referenced
+     * by step-id. Examples:&lt;br&gt; jobsstep-id.hadoopJob.mainJarFileUri
+     * jobsstep-id.hiveJob.queryFileUri jobsstep-id.pySparkJob.mainPythonFileUri
+     * jobsstep-id.hadoopJob.jarFileUris0 jobsstep-id.hadoopJob.archiveUris0
+     * jobsstep-id.hadoopJob.fileUris0 jobsstep-id.pySparkJob.pythonFileUris0
+     * Items in repeated fields can be referenced by a zero-based index.
+     * Example:&lt;br&gt; jobsstep-id.sparkJob.args0 Other examples:
+     * jobsstep-id.hadoopJob.properties&#39;key&#39; jobsstep-id.hadoopJob.args0
+     * jobsstep-id.hiveJob.scriptVariables&#39;key&#39;
+     * jobsstep-id.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may
+     * not be possible to parameterize maps and repeated fields in their
+     * entirety since only individual map values and individual items in
+     * repeated fields can be referenced. For example, the following field paths
+     * are invalid: placement.clusterSelector.clusterLabels
+     * jobsstep-id.sparkJob.args
      */
     fields?: string[];
     /**
-     * Required. User-friendly parameter name. This name is used as a key when
-     * providing a value for this parameter when the template is instantiated.
-     * Must contain only capital letters (A-Z), numbers (0-9), and underscores
-     * (_), and must not start with a number. The maximum length is 40
-     * characters.
+     * Required. Parameter name. The parameter name is used as the key, and
+     * paired with the parameter value, which are passed to the template when
+     * the template is instantiated. The name must contain only capital letters
+     * (A-Z), numbers (0-9), and underscores (_), and must not start with a
+     * number. The maximum length is 40 characters.
      */
     name?: string;
     /**
@@ -1499,7 +1529,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$ValueValidation {
     /**
-     * Required. List of allowed values for this parameter.
+     * Required. List of allowed values for the parameter.
      */
     values?: string[];
   }
@@ -1611,8 +1641,8 @@ export namespace dataproc_v1beta2 {
     name?: string;
     /**
      * Optional. Template parameters whose values are substituted into the
-     * template. Values for these parameters must be provided when the template
-     * is instantiated.
+     * template. Values for parameters must be provided when the template is
+     * instantiated.
      */
     parameters?: Schema$TemplateParameter[];
     /**
@@ -1731,9 +1761,13 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The "resource name" of the
+     *     region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1802,9 +1836,15 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow
+     *     template to delete. If specified, will only delete the template if
+     *     the current server version matches specified version.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1871,9 +1911,15 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow
+     *     template to retrieve. Only previously instatiated versions can be
+     *     retrieved.If unspecified, retrieves the current version.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1936,8 +1982,11 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2013,9 +2062,14 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2094,10 +2148,20 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.instanceId Optional. A tag that prevents multiple
+     *     concurrent workflow instances with the same tag from running. This
+     *     mitigates risk of concurrent instances started due to retries.It is
+     *     recommended to always set this value to a UUID
+     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag
+     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     *     and hyphens (-). The maximum length is 40 characters.
+     * @param {string} params.parent Required. The "resource name" of the
+     *     workflow template region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2169,10 +2233,16 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
-     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a
+     *     previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the
+     *     region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2248,9 +2318,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2324,9 +2397,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2405,9 +2481,13 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Output only. The "resource name" of the
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2698,11 +2778,21 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify
+     *     the request. If the server receives two CreateClusterRequest requests
+     *     with the same id, then the second request will be ignored and the
+     *     first google.longrunning.Operation created and stored in the backend
+     *     is returned.It is recommended to always set this value to a UUID
+     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
+     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     *     and hyphens (-). The maximum length is 40 characters.
      * @param {().Cluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2770,11 +2860,23 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid
+     *     means the RPC should fail (with error NOT_FOUND) if cluster with
+     *     specified UUID does not exist.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify
+     *     the request. If the server receives two DeleteClusterRequest requests
+     *     with the same id, then the second request will be ignored and the
+     *     first google.longrunning.Operation created and stored in the backend
+     *     is returned.It is recommended to always set this value to a UUID
+     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
+     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     *     and hyphens (-). The maximum length is 40 characters.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2844,10 +2946,13 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
      * @param {().DiagnoseClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2916,9 +3021,12 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2982,8 +3090,11 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3049,12 +3160,27 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
+     * @param {string=} params.filter Optional. A filter constraining the
+     *     clusters to list. Filters are case-sensitive and have the following
+     *     syntax:field = value AND field = value ...where field is one of
+     *     status.state, clusterName, or labels.[KEY], and [KEY] is a label key.
+     *     value can be * to match all values. status.state can be one of the
+     *     following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or
+     *     UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states.
+     *     INACTIVE contains the DELETING and ERROR states. clusterName is the
+     *     name of the cluster provided at creation time. Only the logical AND
+     *     operator is supported; space-separated items are treated as having an
+     *     implicit AND operator.Example filter:status.state = ACTIVE AND
+     *     clusterName = mycluster AND labels.env = staging AND labels.starred =
+     *     *
      * @param {integer=} params.pageSize Optional. The standard List page size.
      * @param {string=} params.pageToken Optional. The standard List page token.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3123,13 +3249,54 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> currently only the following fields can be updated: <table> <tr> <td><strong>Mask</strong></td><td><strong>Purpose</strong></td> </tr> <tr> <td>labels</td><td>Updates labels</td> </tr> <tr> <td>config.worker_config.num_instances</td><td>Resize primary worker group</td> </tr> <tr> <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td> </tr> <tr> <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td> </tr> <tr> <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td> </tr> <tr> <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td> </tr> </table>
+     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for
+     *     graceful YARN decomissioning. Graceful decommissioning allows
+     *     removing nodes from the cluster without interrupting jobs in
+     *     progress. Timeout specifies how long to wait for jobs in progress to
+     *     finish before forcefully removing nodes (and potentially interrupting
+     *     jobs). Default timeout is 0 (for forceful decommission), and the
+     *     maximum allowed timeout is 1 day.Only supported on Dataproc image
+     *     versions 1.2 and higher.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify
+     *     the request. If the server receives two UpdateClusterRequest requests
+     *     with the same id, then the second request will be ignored and the
+     *     first google.longrunning.Operation created and stored in the backend
+     *     is returned.It is recommended to always set this value to a UUID
+     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
+     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     *     and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.updateMask Required. Specifies the path, relative
+     *     to Cluster, of the field to update. For example, to change the number
+     *     of workers in a cluster to 5, the update_mask parameter would be
+     *     specified as config.worker_config.num_instances, and the PATCH
+     *     request body would specify the new value, as follows: {   "config":{
+     *     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to
+     *     change the number of preemptible workers in a cluster to 5, the
+     *     update_mask parameter would be
+     *     config.secondary_worker_config.num_instances, and the PATCH request
+     *     body would be set as follows: {   "config":{
+     *     "secondaryWorkerConfig":{       "numInstances":"5"     }   } }
+     *     <strong>Note:</strong> currently only the following fields can be
+     *     updated: <table> <tr>
+     *     <td><strong>Mask</strong></td><td><strong>Purpose</strong></td> </tr>
+     *     <tr> <td>labels</td><td>Updates labels</td> </tr> <tr>
+     *     <td>config.worker_config.num_instances</td><td>Resize primary worker
+     *     group</td> </tr> <tr>
+     *     <td>config.secondary_worker_config.num_instances</td><td>Resize
+     *     secondary worker group</td> </tr> <tr>
+     *     <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     *     duration</td> </tr> <tr>
+     *     <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     *     deletion timestamp</td> </tr> <tr>
+     *     <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     *     duration</td> </tr> </table>
      * @param {().Cluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3198,9 +3365,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3270,9 +3440,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3634,10 +3807,13 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
      * @param {().CancelJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3706,9 +3882,12 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3776,9 +3955,12 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3842,8 +4024,11 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3908,14 +4093,29 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterName Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
-     * @param {string=} params.filter Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
-     * @param {string=} params.jobStateMatcher Optional. Specifies enumerated categories of jobs to list. (default = match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
-     * @param {integer=} params.pageSize Optional. The number of results to return in each response.
-     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterName Optional. If set, the returned jobs
+     *     list includes only jobs that were submitted to the named cluster.
+     * @param {string=} params.filter Optional. A filter constraining the jobs
+     *     to list. Filters are case-sensitive and have the following
+     *     syntax:field = value AND field = value ...where field is status.state
+     *     or labels.[KEY], and [KEY] is a label key. value can be * to match
+     *     all values. status.state can be either ACTIVE or NON_ACTIVE. Only the
+     *     logical AND operator is supported; space-separated items are treated
+     *     as having an implicit AND operator.Example filter:status.state =
+     *     ACTIVE AND labels.env = staging AND labels.starred = *
+     * @param {string=} params.jobStateMatcher Optional. Specifies enumerated
+     *     categories of jobs to list. (default = match ALL jobs).If filter is
+     *     provided, jobStateMatcher will be ignored.
+     * @param {integer=} params.pageSize Optional. The number of results to
+     *     return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a
+     *     previous call, to request the next page of results.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3983,11 +4183,19 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
+     * @param {string=} params.updateMask Required. Specifies the path, relative
+     *     to <code>Job</code>, of the field to update. For example, to update
+     *     the labels of a Job the <code>update_mask</code> parameter would be
+     *     specified as <code>labels</code>, and the PATCH request body would
+     *     specify the new value. <strong>Note:</strong> Currently,
+     *     <code>labels</code> is the only field that can be updated.
      * @param {().Job} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4055,9 +4263,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4122,10 +4333,13 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud
+     *     Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in
+     *     which to handle the request.
      * @param {().SubmitJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4196,9 +4410,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4506,8 +4723,10 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4575,8 +4794,10 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4643,7 +4864,8 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4705,8 +4927,11 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4784,7 +5009,8 @@ export namespace dataproc_v1beta2 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4851,9 +5077,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4923,9 +5152,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5116,9 +5348,13 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The "resource name" of the
+     *     region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5187,9 +5423,15 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow
+     *     template to delete. If specified, will only delete the template if
+     *     the current server version matches specified version.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5256,9 +5498,15 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow
+     *     template to retrieve. Only previously instatiated versions can be
+     *     retrieved.If unspecified, retrieves the current version.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5321,8 +5569,11 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5396,9 +5647,14 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The "resource name" of the workflow
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5474,10 +5730,20 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.instanceId Optional. A tag that prevents multiple
+     *     concurrent workflow instances with the same tag from running. This
+     *     mitigates risk of concurrent instances started due to retries.It is
+     *     recommended to always set this value to a UUID
+     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag
+     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     *     and hyphens (-). The maximum length is 40 characters.
+     * @param {string} params.parent Required. The "resource name" of the
+     *     workflow template region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5549,10 +5815,16 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
-     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results
+     *     to return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a
+     *     previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the
+     *     region, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5627,9 +5899,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5701,9 +5976,12 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5782,9 +6060,13 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Output only. The "resource name" of the
+     *     template, as described in
+     *     https://cloud.google.com/apis/design/resource_names of the form
+     *     projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      * @param {().WorkflowTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

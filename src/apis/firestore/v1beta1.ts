@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -620,6 +619,40 @@ export namespace firestore_v1beta1 {
     mode?: string;
   }
   /**
+   * Metadata for index operations. This metadata populates the metadata field
+   * of google.longrunning.Operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1beta1IndexOperationMetadata {
+    /**
+     * True if the [google.longrunning.Operation] was cancelled. If the
+     * cancellation is in progress, cancelled will be true but
+     * google.longrunning.Operation.done will be false.
+     */
+    cancelled?: boolean;
+    /**
+     * Progress of the existing operation, measured in number of documents.
+     */
+    documentProgress?: Schema$GoogleFirestoreAdminV1beta1Progress;
+    /**
+     * The time the operation ended, either successfully or otherwise. Unset if
+     * the operation is still active.
+     */
+    endTime?: string;
+    /**
+     * The index resource that this operation is acting on. For example:
+     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     */
+    index?: string;
+    /**
+     * The type of index operation.
+     */
+    operationType?: string;
+    /**
+     * The time that work began on the operation.
+     */
+    startTime?: string;
+  }
+  /**
    * The response for FirestoreAdmin.ListIndexes.
    */
   export interface Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse {
@@ -650,127 +683,6 @@ export namespace firestore_v1beta1 {
      * estimate is unavailable. May change as work progresses.
      */
     workEstimated?: string;
-  }
-  /**
-   * Metadata for google.longrunning.Operation results from
-   * FirestoreAdmin.UpdateField.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2FieldOperationMetadata {
-    /**
-     * The progress, in bytes, of this operation.
-     */
-    bytesProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The progress, in documents, of this operation.
-     */
-    documentProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The time this operation completed. Will be unset if operation still in
-     * progress.
-     */
-    endTime?: string;
-    /**
-     * The field resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     */
-    field?: string;
-    /**
-     * A list of IndexConfigDelta, which describe the intent of this operation.
-     */
-    indexConfigDeltas?: Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta[];
-    /**
-     * The time this operation started.
-     */
-    startTime?: string;
-    /**
-     * The state of the operation.
-     */
-    state?: string;
-  }
-  /**
-   * Cloud Firestore indexes enable simple and complex queries against documents
-   * in a database.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Index {
-    /**
-     * The fields supported by this index.  For composite indexes, this is
-     * always 2 or more fields. The last field entry is always for the field
-     * path `__name__`. If, on creation, `__name__` was not specified as the
-     * last field, it will be added automatically with the same direction as
-     * that of the last field defined. If the final field in a composite index
-     * is not directional, the `__name__` will be ordered ASCENDING (unless
-     * explicitly specified).  For single field indexes, this will always be
-     * exactly one entry with a field path equal to the field path of the
-     * associated field.
-     */
-    fields?: Schema$GoogleFirestoreAdminV1beta2IndexField[];
-    /**
-     * Output only. A server defined name for this index. The form of this name
-     * for composite indexes will be:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
-     * For single field indexes, this field will be empty.
-     */
-    name?: string;
-    /**
-     * Indexes with a collection query scope specified allow queries against a
-     * collection that is the child of a specific document, specified at query
-     * time, and that has the same collection id.  Indexes with a collection
-     * group query scope specified allow queries against all collections
-     * descended from a specific document, specified at query time, and that
-     * have the same collection id as this index.
-     */
-    queryScope?: string;
-    /**
-     * Output only. The serving state of the index.
-     */
-    state?: string;
-  }
-  /**
-   * Information about an index configuration change.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta {
-    /**
-     * Specifies how the index is changing.
-     */
-    changeType?: string;
-    /**
-     * The index being changed.
-     */
-    index?: Schema$GoogleFirestoreAdminV1beta2Index;
-  }
-  /**
-   * A field in an index. The field_path describes which field is indexed, the
-   * value_mode describes how the field value is indexed.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexField {
-    /**
-     * Indicates that this field supports operations on `array_value`s.
-     */
-    arrayConfig?: string;
-    /**
-     * Can be __name__. For single field indexes, this must match the name of
-     * the field or may be omitted.
-     */
-    fieldPath?: string;
-    /**
-     * Indicates that this field supports ordering by the specified order or
-     * comparing using =, &lt;, &lt;=, &gt;, &gt;=.
-     */
-    order?: string;
-  }
-  /**
-   * Describes the progress of the operation. Unit of work is generic and must
-   * be interpreted based on where Progress is used.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Progress {
-    /**
-     * The amount of work completed.
-     */
-    completedWork?: string;
-    /**
-     * The amount of work estimated.
-     */
-    estimatedWork?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1473,9 +1385,12 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta1ExportDocumentsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Database to export. Should be of the form:
+     *     `projects/{project_id}/databases/{database_id}`.
+     * @param {().GoogleFirestoreAdminV1beta1ExportDocumentsRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1553,9 +1468,12 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta1ImportDocumentsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Database to import into. Should be of the
+     *     form: `projects/{project_id}/databases/{database_id}`.
+     * @param {().GoogleFirestoreAdminV1beta1ImportDocumentsRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1676,9 +1594,11 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`.
      * @param {().BatchGetDocumentsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1749,9 +1669,11 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`.
      * @param {().BeginTransactionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1821,9 +1743,11 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`.
      * @param {().CommitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1889,12 +1813,19 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`.
-     * @param {string=} params.documentId The client-assigned document ID to use for this document.  Optional. If not specified, an ID will be assigned by the service.
-     * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
-     * @param {string} params.parent The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     * @param {string} params.collectionId The collection ID, relative to
+     *     `parent`, to list. For example: `chatrooms`.
+     * @param {string=} params.documentId The client-assigned document ID to use
+     *     for this document.  Optional. If not specified, an ID will be
+     *     assigned by the service.
+     * @param {string=} params.mask.fieldPaths The list of field paths in the
+     *     mask. See Document.fields for a field path syntax reference.
+     * @param {string} params.parent The parent resource. For example:
+     *     `projects/{project_id}/databases/{database_id}/documents` or
+     *     `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      * @param {().Document} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1961,10 +1892,16 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.currentDocument.exists When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
-     * @param {string=} params.currentDocument.updateTime When set, the target document must exist and have been last updated at that time.
-     * @param {string} params.name The resource name of the Document to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.currentDocument.exists When set to `true`, the
+     *     target document must exist. When set to `false`, the target document
+     *     must not exist.
+     * @param {string=} params.currentDocument.updateTime When set, the target
+     *     document must exist and have been last updated at that time.
+     * @param {string} params.name The resource name of the Document to delete.
+     *     In the format:
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2028,11 +1965,16 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
-     * @param {string} params.name The resource name of the Document to get. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param {string=} params.readTime Reads the version of the document at the given time. This may not be older than 60 seconds.
+     * @param {string=} params.mask.fieldPaths The list of field paths in the
+     *     mask. See Document.fields for a field path syntax reference.
+     * @param {string} params.name The resource name of the Document to get. In
+     *     the format:
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param {string=} params.readTime Reads the version of the document at the
+     *     given time. This may not be older than 60 seconds.
      * @param {string=} params.transaction Reads the document in a transaction.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2092,16 +2034,32 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
-     * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
-     * @param {string=} params.orderBy The order to sort results by. For example: `priority desc, name`.
-     * @param {integer=} params.pageSize The maximum number of documents to return.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param {string=} params.readTime Reads documents as they were at the given time. This may not be older than 60 seconds.
-     * @param {boolean=} params.showMissing If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set.  Requests with `show_missing` may not specify `where` or `order_by`.
+     * @param {string} params.collectionId The collection ID, relative to
+     *     `parent`, to list. For example: `chatrooms` or `messages`.
+     * @param {string=} params.mask.fieldPaths The list of field paths in the
+     *     mask. See Document.fields for a field path syntax reference.
+     * @param {string=} params.orderBy The order to sort results by. For
+     *     example: `priority desc, name`.
+     * @param {integer=} params.pageSize The maximum number of documents to
+     *     return.
+     * @param {string=} params.pageToken The `next_page_token` value returned
+     *     from a previous List request, if any.
+     * @param {string} params.parent The parent resource name. In the format:
+     *     `projects/{project_id}/databases/{database_id}/documents` or
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     For example: `projects/my-project/databases/my-database/documents` or
+     *     `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param {string=} params.readTime Reads documents as they were at the
+     *     given time. This may not be older than 60 seconds.
+     * @param {boolean=} params.showMissing If the list should show missing
+     *     documents. A missing document is a document that does not exist but
+     *     has sub-documents. These documents will be returned with a key but
+     *     will not have fields, Document.create_time, or Document.update_time
+     *     set.  Requests with `show_missing` may not specify `where` or
+     *     `order_by`.
      * @param {string=} params.transaction Reads documents in a transaction.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2168,9 +2126,13 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param {string} params.parent The parent document. In the format:
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     For example:
+     *     `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param {().ListCollectionIdsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2242,9 +2204,11 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`.
      * @param {().ListenRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2310,13 +2274,21 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.currentDocument.exists When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
-     * @param {string=} params.currentDocument.updateTime When set, the target document must exist and have been last updated at that time.
-     * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
-     * @param {string} params.name The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param {string=} params.updateMask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
+     * @param {boolean=} params.currentDocument.exists When set to `true`, the
+     *     target document must exist. When set to `false`, the target document
+     *     must not exist.
+     * @param {string=} params.currentDocument.updateTime When set, the target
+     *     document must exist and have been last updated at that time.
+     * @param {string=} params.mask.fieldPaths The list of field paths in the
+     *     mask. See Document.fields for a field path syntax reference.
+     * @param {string} params.name The resource name of the document, for
+     *     example
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param {string=} params.updateMask.fieldPaths The list of field paths in
+     *     the mask. See Document.fields for a field path syntax reference.
      * @param {().Document} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2380,9 +2352,11 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`.
      * @param {().RollbackRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2448,9 +2422,14 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param {string} params.parent The parent resource name. In the format:
+     *     `projects/{project_id}/databases/{database_id}/documents` or
+     *     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     For example: `projects/my-project/databases/my-database/documents` or
+     *     `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param {().RunQueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2517,9 +2496,12 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.
+     * @param {string} params.database The database name. In the format:
+     *     `projects/{project_id}/databases/{database_id}`. This is only
+     *     required in the first message.
      * @param {().WriteRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2922,9 +2904,13 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`
-     * @param {().GoogleFirestoreAdminV1beta1Index} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The name of the database this index will
+     *     apply to. For example:
+     *     `projects/{project_id}/databases/{database_id}`
+     * @param {().GoogleFirestoreAdminV1beta1Index} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2996,8 +2982,10 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The index name. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The index name. For example:
+     *     `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3061,8 +3049,10 @@ export namespace firestore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the index. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the index. For example:
+     *     `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3137,8 +3127,10 @@ export namespace firestore_v1beta1 {
      * @param {string=} params.filter
      * @param {integer=} params.pageSize The standard List page size.
      * @param {string=} params.pageToken The standard List page token.
-     * @param {string} params.parent The database name. For example: `projects/{project_id}/databases/{database_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The database name. For example:
+     *     `projects/{project_id}/databases/{database_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

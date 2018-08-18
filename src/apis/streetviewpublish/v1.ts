@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -473,7 +472,8 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Photo} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -540,7 +540,8 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.photoId Required. ID of the Photo.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -610,8 +611,10 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.photoId Required. ID of the Photo.
-     * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.view Specifies if a download URL for the photo
+     *     bytes should be returned in the Photo response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -685,7 +688,8 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Empty} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -764,9 +768,21 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Required. A unique identifier for a photo.
-     * @param {string=} params.updateMask Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata will be entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> Repeated fields in updateMask mean the entire set of repeated values will be replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections will be removed.</aside>
+     * @param {string=} params.updateMask Mask that identifies fields on the
+     *     photo metadata to update. If not present, the old Photo metadata will
+     *     be entirely replaced with the new Photo metadata in this request. The
+     *     update fails if invalid fields are specified. Multiple fields can be
+     *     specified in a comma-delimited list.  The following fields are valid:
+     *     * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` *
+     *     `pose.level` * `pose.altitude` * `connections` * `places`   <aside
+     *     class="note"><b>Note:</b> Repeated fields in updateMask mean the
+     *     entire set of repeated values will be replaced with the new contents.
+     *     For example, if updateMask contains `connections` and
+     *     `UpdatePhotoRequest.photo.connections` is empty, all connections will
+     *     be removed.</aside>
      * @param {().Photo} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -931,7 +947,8 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().BatchDeletePhotosRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1006,9 +1023,13 @@ export namespace streetviewpublish_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.photoIds Required. IDs of the Photos. For HTTP GET requests, the URL query parameter should be `photoIds=<id1>&photoIds=<id2>&...`.
-     * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.photoIds Required. IDs of the Photos. For HTTP
+     *     GET requests, the URL query parameter should be
+     *     `photoIds=<id1>&photoIds=<id2>&...`.
+     * @param {string=} params.view Specifies if a download URL for the photo
+     *     bytes should be returned in the Photo response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1087,7 +1108,8 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().BatchUpdatePhotosRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1159,11 +1181,20 @@ export namespace streetviewpublish_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
-     * @param {integer=} params.pageSize The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 will be used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
-     * @param {string=} params.pageToken The nextPageToken value returned from a previous ListPhotos request, if any.
-     * @param {string=} params.view Specifies if a download URL for the photos bytes should be returned in the Photos response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter The filter expression. For example:
+     *     `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at
+     *     the moment is `placeId`.
+     * @param {integer=} params.pageSize The maximum number of photos to return.
+     *     `pageSize` must be non-negative. If `pageSize` is zero or is not
+     *     provided, the default page size of 100 will be used. The number of
+     *     photos returned in the response may be less than `pageSize` if the
+     *     number of photos that belong to the user is less than `pageSize`.
+     * @param {string=} params.pageToken The nextPageToken value returned from a
+     *     previous ListPhotos request, if any.
+     * @param {string=} params.view Specifies if a download URL for the photos
+     *     bytes should be returned in the Photos response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

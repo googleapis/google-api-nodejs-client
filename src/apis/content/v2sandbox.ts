@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -120,22 +119,24 @@ export namespace content_v2sandbox {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * [required] Customer balance on this invoice. A positive amount means the
-     * customer is paying, a negative one means the customer is receiving money.
+     * [required] Customer balance on this invoice. A negative amount means the
+     * customer is paying, a positive one means the customer is receiving money.
      * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.
+     * must always be zero.  Furthermore the absolute value of this amount is
+     * expected to be equal to the sum of product amount and additional charges,
+     * minus promotions.
      */
     customerBalance?: Schema$Amount;
     /**
-     * [required] Google balance on this invoice. A positive amount means Google
-     * is paying, a negative one means Google is receiving money. Note: the sum
+     * [required] Google balance on this invoice. A negative amount means Google
+     * is paying, a positive one means Google is receiving money. Note: the sum
      * of merchant_balance, customer_balance and google_balance must always be
      * zero.
      */
     googleBalance?: Schema$Amount;
     /**
-     * [required] Merchant balance on this invoice. A positive amount means the
-     * merchant is paying, a negative one means the merchant is receiving money.
+     * [required] Merchant balance on this invoice. A negative amount means the
+     * merchant is paying, a positive one means the merchant is receiving money.
      * Note: the sum of merchant_balance, customer_balance and google_balance
      * must always be zero.
      */
@@ -272,8 +273,9 @@ export namespace content_v2sandbox {
      */
     recipientName?: string;
     /**
-     * Top-level administrative subdivision of the country (e.g.
-     * &quot;CA&quot;).
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
      */
     region?: string;
     /**
@@ -875,9 +877,7 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersCancelLineItemRequest {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -954,6 +954,13 @@ export namespace content_v2sandbox {
     kind?: string;
   }
   export interface Schema$OrdersCreateTestOrderRequest {
+    /**
+     * The  CLDR territory code of the country of the test order to create.
+     * Affects the currency and addresses of orders created via template_name,
+     * or the addresses of orders created via test_order.  Acceptable values
+     * are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
+     */
+    country?: string;
     /**
      * The test order template to use. Specify as an alternative to testOrder as
      * a shortcut for retrieving a template and then creating an order using
@@ -1072,9 +1079,7 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersCustomBatchRequestEntryCancelLineItem {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -1144,7 +1149,7 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefund {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -1215,8 +1220,9 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersCustomBatchRequestEntryReturnRefundLineItem {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -1374,8 +1380,9 @@ export namespace content_v2sandbox {
      */
     errors?: Schema$Errors;
     /**
-     * The status of the execution. Only defined if the method is not get or
-     * getByMerchantOrderId and if the request was successful.
+     * The status of the execution. Only defined if   - the request was
+     * successful; and  - the method is not get, getByMerchantOrderId, or one of
+     * the test methods.
      */
     executionStatus?: string;
     /**
@@ -1525,7 +1532,7 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersRefundRequest {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -1641,8 +1648,9 @@ export namespace content_v2sandbox {
   }
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -2162,10 +2170,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrderinvoicesCreateChargeInvoiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrderinvoicesCreateChargeInvoiceRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2237,15 +2248,21 @@ export namespace content_v2sandbox {
     /**
      * content.orderinvoices.createrefundinvoice
      * @desc Creates a refund invoice for one or more shipment groups, and
-     * triggers a refund for non-facilitated payment orders.
+     * triggers a refund for non-facilitated payment orders. This can only be
+     * used for line items that have previously been charged using
+     * createChargeInvoice. All amounts (except for the summary) are incremental
+     * with respect to the previous invoice.
      * @alias content.orderinvoices.createrefundinvoice
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrderinvoicesCreateRefundInvoiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrderinvoicesCreateRefundInvoiceRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2378,10 +2395,14 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for for which payment authorization is happening.
-     * @param {().OrderpaymentsNotifyAuthApprovedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order for for which payment
+     *     authorization is happening.
+     * @param {().OrderpaymentsNotifyAuthApprovedRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2457,10 +2478,14 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which payment authorization was declined.
-     * @param {().OrderpaymentsNotifyAuthDeclinedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order for which payment
+     *     authorization was declined.
+     * @param {().OrderpaymentsNotifyAuthDeclinedRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2536,10 +2561,14 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyChargeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order for which charge is
+     *     happening.
+     * @param {().OrderpaymentsNotifyChargeRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2619,10 +2648,14 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyRefundRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order for which charge is
+     *     happening.
+     * @param {().OrderpaymentsNotifyRefundRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2800,10 +2833,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {().OrdersAcknowledgeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2875,9 +2910,11 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the test order to modify.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2953,10 +2990,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to cancel.
      * @param {().OrdersCancelRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3022,10 +3061,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {().OrdersCancelLineItemRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3101,9 +3142,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
-     * @param {().OrdersCreateTestOrderRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that should
+     *     manage the order. This cannot be a multi-client account.
+     * @param {().OrdersCreateTestOrderRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3178,7 +3222,8 @@ export namespace content_v2sandbox {
      *
      * @param {object} params Parameters for request
      * @param {().OrdersCustomBatchRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3247,9 +3292,11 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3310,9 +3357,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.merchantOrderId The merchant order id to be looked for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.merchantOrderId The merchant order id to be looked
+     *     for.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3393,9 +3443,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
+     * @param {string=} params.country The country of the template to retrieve.
+     *     Defaults to US.
+     * @param {string} params.merchantId The ID of the account that should
+     *     manage the order. This cannot be a multi-client account.
      * @param {string} params.templateName The name of the template to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3475,10 +3529,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersInStoreRefundLineItemRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersInStoreRefundLineItemRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3558,15 +3615,40 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
-     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
-     * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.acknowledged Obtains orders that match the
+     *     acknowledgement status. When set to true, obtains orders that have
+     *     been acknowledged. When false, obtains orders that have not been
+     *     acknowledged. We recommend using this filter set to false, in
+     *     conjunction with the acknowledge call, such that only un-acknowledged
+     *     orders are returned.
+     * @param {integer=} params.maxResults The maximum number of orders to
+     *     return in the response, used for paging. The default value is 25
+     *     orders per page, and the maximum allowed value is 250 orders per
+     *     page. Known issue: All List calls will return all Orders without
+     *     limit regardless of the value of this field.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string=} params.orderBy The ordering of the returned list. The
+     *     only supported value are placedDate desc and placedDate asc for now,
+     *     which returns orders sorted by placement date. "placedDate desc"
+     *     stands for listing orders by placement date, from oldest to most
+     *     recent. "placedDate asc" stands for listing orders by placement date,
+     *     from most recent to oldest. In future releases we'll support other
+     *     sorting criteria.
+     * @param {string=} params.pageToken The token returned by the previous
+     *     request.
+     * @param {string=} params.placedDateEnd Obtains orders placed before this
+     *     date (exclusively), in ISO 8601 format.
+     * @param {string=} params.placedDateStart Obtains orders placed after this
+     *     date (inclusively), in ISO 8601 format.
+     * @param {string=} params.statuses Obtains orders that match any of the
+     *     specified statuses. Multiple values can be specified with comma
+     *     separation. Additionally, please note that active is a shortcut for
+     *     pendingShipment and partiallyShipped, and completed is a shortcut for
+     *     shipped , partiallyDelivered, delivered, partiallyReturned, returned,
+     *     and canceled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3625,15 +3707,17 @@ export namespace content_v2sandbox {
 
     /**
      * content.orders.refund
-     * @desc Refund a portion of the order, up to the full amount paid.
+     * @desc Deprecated, please use returnRefundLineItem instead.
      * @alias content.orders.refund
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to refund.
      * @param {().OrdersRefundRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3699,10 +3783,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersRejectReturnLineItemRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersRejectReturnLineItemRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3782,10 +3869,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {().OrdersReturnLineItemRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3862,10 +3951,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersReturnRefundLineItemRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersReturnRefundLineItemRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3945,10 +4037,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersSetLineItemMetadataRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersSetLineItemMetadataRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4028,10 +4123,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {().OrdersShipLineItemsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4105,10 +4202,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersUpdateLineItemShippingDetailsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersUpdateLineItemShippingDetailsRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4186,10 +4286,13 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().OrdersUpdateMerchantOrderIdRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4269,10 +4372,12 @@ export namespace content_v2sandbox {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {().OrdersUpdateShipmentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4487,6 +4592,10 @@ export namespace content_v2sandbox {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The country of the template to retrieve. Defaults to US.
+     */
+    country?: string;
     /**
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.

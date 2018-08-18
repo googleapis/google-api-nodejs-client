@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -66,6 +65,45 @@ export namespace cloudkms_v1 {
     }
   }
 
+  /**
+   * Request message for KeyManagementService.AsymmetricDecrypt.
+   */
+  export interface Schema$AsymmetricDecryptRequest {
+    /**
+     * Required. The data encrypted with the named CryptoKeyVersion&#39;s public
+     * key using OAEP.
+     */
+    ciphertext?: string;
+  }
+  /**
+   * Response message for KeyManagementService.AsymmetricDecrypt.
+   */
+  export interface Schema$AsymmetricDecryptResponse {
+    /**
+     * The decrypted data originally encrypted with the matching public key.
+     */
+    plaintext?: string;
+  }
+  /**
+   * Request message for KeyManagementService.AsymmetricSign.
+   */
+  export interface Schema$AsymmetricSignRequest {
+    /**
+     * Required. The digest of the data to sign. The digest must be produced
+     * with the same digest algorithm as specified by the key version&#39;s
+     * algorithm.
+     */
+    digest?: Schema$Digest;
+  }
+  /**
+   * Response message for KeyManagementService.AsymmetricSign.
+   */
+  export interface Schema$AsymmetricSignResponse {
+    /**
+     * The created signature.
+     */
+    signature?: string;
+  }
   /**
    * Specifies the audit configuration for a service. The configuration
    * determines which permission types are logged, and what identities, if any,
@@ -126,6 +164,13 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -171,38 +216,59 @@ export namespace cloudkms_v1 {
      * At next_rotation_time, the Key Management Service will automatically:  1.
      * Create a new version of this CryptoKey. 2. Mark the new version as
      * primary.  Key rotations performed manually via CreateCryptoKeyVersion and
-     * UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.
+     * UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.  Keys
+     * with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys,
+     * this field must be omitted.
      */
     nextRotationTime?: string;
     /**
      * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will
      * be used by Encrypt when this CryptoKey is given in EncryptRequest.name.
      * The CryptoKey&#39;s primary version can be updated via
-     * UpdateCryptoKeyPrimaryVersion.
+     * UpdateCryptoKeyPrimaryVersion.  All keys with purpose ENCRYPT_DECRYPT
+     * have a primary. For other keys, this field will be omitted.
      */
     primary?: Schema$CryptoKeyVersion;
     /**
-     * The immutable purpose of this CryptoKey. Currently, the only acceptable
-     * purpose is ENCRYPT_DECRYPT.
+     * The immutable purpose of this CryptoKey.
      */
     purpose?: string;
     /**
      * next_rotation_time will be advanced by this period when the service
      * automatically rotates a key. Must be at least one day.  If
-     * rotation_period is set, next_rotation_time must also be set.
+     * rotation_period is set, next_rotation_time must also be set.  Keys with
+     * purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this
+     * field must be omitted.
      */
     rotationPeriod?: string;
+    /**
+     * A template describing settings for new CryptoKeyVersion instances. The
+     * properties of new CryptoKeyVersion instances created by either
+     * CreateCryptoKeyVersion or auto-rotation are controlled by this template.
+     */
+    versionTemplate?: Schema$CryptoKeyVersionTemplate;
   }
   /**
    * A CryptoKeyVersion represents an individual cryptographic key, and the
-   * associated key material.  It can be used for cryptographic operations
-   * either directly, or via its parent CryptoKey, in which case the server will
-   * choose the appropriate version for the operation.  For security reasons,
-   * the raw cryptographic key material represented by a CryptoKeyVersion can
-   * never be viewed or exported. It can only be used to encrypt or decrypt data
-   * when an authorized user or application invokes Cloud KMS.
+   * associated key material.  An ENABLED version can be used for cryptographic
+   * operations.  For security reasons, the raw cryptographic key material
+   * represented by a CryptoKeyVersion can never be viewed or exported. It can
+   * only be used to encrypt, decrypt, or sign data when an authorized user or
+   * application invokes Cloud KMS.
    */
   export interface Schema$CryptoKeyVersion {
+    /**
+     * Output only. The CryptoKeyVersionAlgorithm that this CryptoKeyVersion
+     * supports.
+     */
+    algorithm?: string;
+    /**
+     * Output only. Statement that was generated and signed by the HSM at key
+     * creation time. Use this statement to verify attributes of the key as
+     * stored on the HSM, independently of Google. Only provided for key
+     * versions with protection_level HSM.
+     */
+    attestation?: Schema$KeyOperationAttestation;
     /**
      * Output only. The time at which this CryptoKeyVersion was created.
      */
@@ -218,14 +284,43 @@ export namespace cloudkms_v1 {
      */
     destroyTime?: string;
     /**
+     * Output only. The time this CryptoKeyVersion&#39;s key material was
+     * generated.
+     */
+    generateTime?: string;
+    /**
      * Output only. The resource name for this CryptoKeyVersion in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
      */
     name?: string;
     /**
+     * Output only. The ProtectionLevel describing how crypto operations are
+     * performed with this CryptoKeyVersion.
+     */
+    protectionLevel?: string;
+    /**
      * The current state of the CryptoKeyVersion.
      */
     state?: string;
+  }
+  /**
+   * A CryptoKeyVersionTemplate specifies the properties to use when creating a
+   * new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or
+   * automatically as a result of auto-rotation.
+   */
+  export interface Schema$CryptoKeyVersionTemplate {
+    /**
+     * Required. Algorithm to use when creating a CryptoKeyVersion based on this
+     * template.  For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is
+     * implied if both this field is omitted and CryptoKey.purpose is
+     * ENCRYPT_DECRYPT.
+     */
+    algorithm?: string;
+    /**
+     * ProtectionLevel to use when creating a CryptoKeyVersion based on this
+     * template. Immutable. Defaults to SOFTWARE.
+     */
+    protectionLevel?: string;
   }
   /**
    * Request message for KeyManagementService.Decrypt.
@@ -256,17 +351,41 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$DestroyCryptoKeyVersionRequest {}
   /**
+   * A Digest holds a cryptographic message digest.
+   */
+  export interface Schema$Digest {
+    /**
+     * A message digest produced with the SHA-256 algorithm.
+     */
+    sha256?: string;
+    /**
+     * A message digest produced with the SHA-384 algorithm.
+     */
+    sha384?: string;
+    /**
+     * A message digest produced with the SHA-512 algorithm.
+     */
+    sha512?: string;
+  }
+  /**
    * Request message for KeyManagementService.Encrypt.
    */
   export interface Schema$EncryptRequest {
     /**
      * Optional data that, if specified, must also be provided during decryption
-     * through DecryptRequest.additional_authenticated_data.  Must be no larger
-     * than 64KiB.
+     * through DecryptRequest.additional_authenticated_data.  The maximum size
+     * depends on the key version&#39;s protection_level. For SOFTWARE keys, the
+     * AAD must be no larger than 64KiB. For HSM keys, the combined length of
+     * the plaintext and additional_authenticated_data fields must be no larger
+     * than 8KiB.
      */
     additionalAuthenticatedData?: string;
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.
+     * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum
+     * size depends on the key version&#39;s protection_level. For SOFTWARE
+     * keys, the plaintext must be no larger than 64KiB. For HSM keys, the
+     * combined length of the plaintext and additional_authenticated_data fields
+     * must be no larger than 8KiB.
      */
     plaintext?: string;
   }
@@ -282,6 +401,49 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKeyVersion used in encryption.
      */
     name?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
+   * Contains an HSM-generated attestation about a key operation.
+   */
+  export interface Schema$KeyOperationAttestation {
+    /**
+     * Output only. The attestation data provided by the HSM when the key
+     * operation was performed.
+     */
+    content?: string;
+    /**
+     * Output only. The format of the attestation data.
+     */
+    format?: string;
   }
   /**
    * A KeyRing is a toplevel logical grouping of CryptoKeys.
@@ -395,6 +557,16 @@ export namespace cloudkms_v1 {
     name?: string;
   }
   /**
+   * Cloud KMS metadata for the given google.cloud.location.Location.
+   */
+  export interface Schema$LocationMetadata {
+    /**
+     * Indicates that CryptoKeys with protection_level HSM can be created in
+     * this location.
+     */
+    hsmAvailable?: boolean;
+  }
+  /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
    * consists of a list of `bindings`. A `binding` binds a list of `members` to
@@ -440,6 +612,19 @@ export namespace cloudkms_v1 {
      * Deprecated.
      */
     version?: number;
+  }
+  /**
+   * The public key for a given CryptoKeyVersion. Obtained via GetPublicKey.
+   */
+  export interface Schema$PublicKey {
+    /**
+     * The public key, encoded in PEM format. For more information, see the [RFC
+     * 7468](https://tools.ietf.org/html/rfc7468) sections for [General
+     * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
+     * [Textual Encoding of Subject Public Key Info]
+     * (https://tools.ietf.org/html/rfc7468#section-13).
+     */
+    pem?: string;
   }
   /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
@@ -534,7 +719,8 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -595,10 +781,12 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
+     * @param {string} params.name The resource that owns the locations
+     *     collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -715,10 +903,13 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.keyRingId Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
-     * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
+     * @param {string=} params.keyRingId Required. It must be unique within a
+     *     location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+     * @param {string} params.parent Required. The resource name of the location
+     *     associated with the KeyRings, in the format `projects/x/locations/x`.
      * @param {().KeyRing} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -784,7 +975,8 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the KeyRing to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -845,8 +1037,11 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -912,10 +1107,17 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
-     * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional limit on the number of
+     *     KeyRings to include in the response.  Further KeyRings can
+     *     subsequently be obtained by including the
+     *     ListKeyRingsResponse.next_page_token in a subsequent request.  If
+     *     unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional pagination token, returned
+     *     earlier via ListKeyRingsResponse.next_page_token.
+     * @param {string} params.parent Required. The resource name of the location
+     *     associated with the KeyRings, in the format `projects/x/locations/x`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -983,9 +1185,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1055,9 +1260,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1248,16 +1456,19 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.create
-     * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose is
-     * required.
+     * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and
+     * CryptoKey.version_template.algorithm are required.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cryptoKeyId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
-     * @param {string} params.parent Required. The name of the KeyRing associated with the CryptoKeys.
+     * @param {string=} params.cryptoKeyId Required. It must be unique within a
+     *     KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+     * @param {string} params.parent Required. The name of the KeyRing
+     *     associated with the CryptoKeys.
      * @param {().CryptoKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1320,14 +1531,18 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
-     * @desc Decrypts data that was protected by Encrypt.
+     * @desc Decrypts data that was protected by Encrypt. The CryptoKey.purpose
+     * must be ENCRYPT_DECRYPT.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
+     * @param {string} params.name Required. The resource name of the CryptoKey
+     *     to use for decryption. The server will choose the appropriate
+     *     version.
      * @param {().DecryptRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1391,14 +1606,17 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @desc Encrypts data, so that it can only be recovered by a call to
-     * Decrypt.
+     * Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
+     * @param {string} params.name Required. The resource name of the CryptoKey
+     *     or CryptoKeyVersion to use for encryption.  If a CryptoKey is
+     *     specified, the server will use its primary version.
      * @param {().EncryptRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1468,7 +1686,8 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the CryptoKey to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1532,8 +1751,11 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1603,10 +1825,19 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
-     * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional limit on the number of
+     *     CryptoKeys to include in the response.  Further CryptoKeys can
+     *     subsequently be obtained by including the
+     *     ListCryptoKeysResponse.next_page_token in a subsequent request.  If
+     *     unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional pagination token, returned
+     *     earlier via ListCryptoKeysResponse.next_page_token.
+     * @param {string} params.parent Required. The resource name of the KeyRing
+     *     to list, in the format `projects/x/locations/x/keyRings/x`.
+     * @param {string=} params.versionView The fields of the primary version to
+     *     include in the response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1675,10 +1906,14 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string} params.name Output only. The resource name for this
+     *     CryptoKey in the format
+     *     `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * @param {string=} params.updateMask Required list of fields to be updated
+     *     in this request.
      * @param {().CryptoKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1746,9 +1981,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1822,9 +2060,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1898,14 +2139,17 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @desc Update the version of a CryptoKey that will be used in Encrypt.
+     * Returns an error if called on an asymmetric key.
      * @alias
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the CryptoKey to update.
-     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2072,6 +2316,10 @@ export namespace cloudkms_v1 {
      * `projects/x/locations/x/keyRings/x`.
      */
     parent?: string;
+    /**
+     * The fields of the primary version to include in the response.
+     */
+    versionView?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch {
     /**
@@ -2159,6 +2407,168 @@ export namespace cloudkms_v1 {
 
 
     /**
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
+     * @desc Decrypts data that was encrypted with a public key retrieved from
+     * GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose
+     * ASYMMETRIC_DECRYPT.
+     * @alias
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the
+     *     CryptoKeyVersion to use for decryption.
+     * @param {().AsymmetricDecryptRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asymmetricDecrypt(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
+        options?: MethodOptions):
+        AxiosPromise<Schema$AsymmetricDecryptResponse>;
+    asymmetricDecrypt(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
+        callback: BodyResponseCallback<Schema$AsymmetricDecryptResponse>): void;
+    asymmetricDecrypt(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
+        callback: BodyResponseCallback<Schema$AsymmetricDecryptResponse>): void;
+    asymmetricDecrypt(
+        callback: BodyResponseCallback<Schema$AsymmetricDecryptResponse>): void;
+    asymmetricDecrypt(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt|
+        BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
+        callback?: BodyResponseCallback<Schema$AsymmetricDecryptResponse>):
+        void|AxiosPromise<Schema$AsymmetricDecryptResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:asymmetricDecrypt')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AsymmetricDecryptResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AsymmetricDecryptResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
+     * @desc Signs data using a CryptoKeyVersion with CryptoKey.purpose
+     * ASYMMETRIC_SIGN, producing a signature that can be verified with the
+     * public key retrieved from GetPublicKey.
+     * @alias
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the
+     *     CryptoKeyVersion to use for signing.
+     * @param {().AsymmetricSignRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asymmetricSign(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
+        options?: MethodOptions): AxiosPromise<Schema$AsymmetricSignResponse>;
+    asymmetricSign(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AsymmetricSignResponse>,
+        callback: BodyResponseCallback<Schema$AsymmetricSignResponse>): void;
+    asymmetricSign(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
+        callback: BodyResponseCallback<Schema$AsymmetricSignResponse>): void;
+    asymmetricSign(
+        callback: BodyResponseCallback<Schema$AsymmetricSignResponse>): void;
+    asymmetricSign(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign|
+        BodyResponseCallback<Schema$AsymmetricSignResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AsymmetricSignResponse>,
+        callback?: BodyResponseCallback<Schema$AsymmetricSignResponse>):
+        void|AxiosPromise<Schema$AsymmetricSignResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:asymmetricSign')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$AsymmetricSignResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AsymmetricSignResponse>(parameters);
+      }
+    }
+
+
+    /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will
      * assign the next sequential id. If unset, state will be set to ENABLED.
@@ -2167,9 +2577,11 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the CryptoKey associated with the CryptoKeyVersions.
+     * @param {string} params.parent Required. The name of the CryptoKey
+     *     associated with the CryptoKeyVersions.
      * @param {().CryptoKeyVersion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2246,9 +2658,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to destroy.
-     * @param {().DestroyCryptoKeyVersionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the CryptoKeyVersion to
+     *     destroy.
+     * @param {().DestroyCryptoKeyVersionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2321,7 +2736,8 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the CryptoKeyVersion to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2381,6 +2797,82 @@ export namespace cloudkms_v1 {
 
 
     /**
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
+     * @desc Returns the public key for the given CryptoKeyVersion. The
+     * CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.
+     * @alias
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the CryptoKeyVersion public key
+     *     to get.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPublicKey(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
+        options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
+    getPublicKey(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
+        options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+        callback: BodyResponseCallback<Schema$PublicKey>): void;
+    getPublicKey(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
+        callback: BodyResponseCallback<Schema$PublicKey>): void;
+    getPublicKey(callback: BodyResponseCallback<Schema$PublicKey>): void;
+    getPublicKey(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey|
+        BodyResponseCallback<Schema$PublicKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PublicKey>,
+        callback?: BodyResponseCallback<Schema$PublicKey>):
+        void|AxiosPromise<Schema$PublicKey> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/publicKey')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$PublicKey>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PublicKey>(parameters);
+      }
+    }
+
+
+    /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @desc Lists CryptoKeyVersions.
      * @alias
@@ -2388,10 +2880,19 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
-     * @param {string} params.parent Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional limit on the number of
+     *     CryptoKeyVersions to include in the response. Further
+     *     CryptoKeyVersions can subsequently be obtained by including the
+     *     ListCryptoKeyVersionsResponse.next_page_token in a subsequent
+     *     request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional pagination token, returned
+     *     earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     * @param {string} params.parent Required. The resource name of the
+     *     CryptoKey to list, in the format
+     *     `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * @param {string=} params.view The fields to include in the response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2472,10 +2973,14 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string} params.name Output only. The resource name for this
+     *     CryptoKeyVersion in the format
+     *     `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     * @param {string=} params.updateMask Required list of fields to be updated
+     *     in this request.
      * @param {().CryptoKeyVersion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2548,9 +3053,12 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to restore.
-     * @param {().RestoreCryptoKeyVersionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the CryptoKeyVersion to
+     *     restore.
+     * @param {().RestoreCryptoKeyVersionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2614,6 +3122,39 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the CryptoKeyVersion to use for
+     * decryption.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AsymmetricDecryptRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the CryptoKeyVersion to use for signing.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AsymmetricSignRequest;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create {
     /**
      * Auth client or API Key for the request
@@ -2658,6 +3199,17 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the CryptoKeyVersion public key to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List {
     /**
      * Auth client or API Key for the request
@@ -2682,6 +3234,10 @@ export namespace cloudkms_v1 {
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     parent?: string;
+    /**
+     * The fields to include in the response.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch {
     /**

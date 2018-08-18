@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -232,8 +231,10 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.applicationId ID of the application resource to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.applicationId ID of the application resource to be
+     *     retrieved.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -295,10 +296,13 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+     * @param {string=} params.customerId Immutable ID of the Google Apps
+     *     account.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     *     Default is 100.
      * @param {string=} params.pageToken Token to specify next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -408,8 +412,10 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.dataTransferId ID of the resource to be retrieved.
+     *     This is returned in the response from the insert method.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -472,7 +478,8 @@ export namespace admin_datatransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().DataTransfer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -537,13 +544,17 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+     * @param {string=} params.customerId Immutable ID of the Google Apps
+     *     account.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     *     Default is 100.
      * @param {string=} params.newOwnerUserId Destination user's profile ID.
      * @param {string=} params.oldOwnerUserId Source user's profile ID.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
+     * @param {string=} params.pageToken Token to specify the next page in the
+     *     list.
      * @param {string=} params.status Status of the transfer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -65,138 +64,6 @@ export namespace firestore_v1beta2 {
     }
   }
 
-  /**
-   * Metadata for ExportDocuments operations.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsMetadata {
-    /**
-     * Which collection ids are being exported.
-     */
-    collectionIds?: string[];
-    /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
-     */
-    endTime?: string;
-    /**
-     * The state of the export operation.
-     */
-    operationState?: string;
-    /**
-     * Where the entities are being exported to.
-     */
-    outputUriPrefix?: string;
-    /**
-     * An estimate of the number of bytes processed.
-     */
-    progressBytes?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * An estimate of the number of documents processed.
-     */
-    progressDocuments?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
-  }
-  /**
-   * Returned in the google.longrunning.Operation response field.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsResponse {
-    /**
-     * Location of the output files. This can be used to begin an import into
-     * Cloud Firestore (this project or another project) after the operation
-     * completes successfully.
-     */
-    outputUriPrefix?: string;
-  }
-  /**
-   * Metadata for ImportDocuments operations.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1ImportDocumentsMetadata {
-    /**
-     * Which collection ids are being imported.
-     */
-    collectionIds?: string[];
-    /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
-     */
-    endTime?: string;
-    /**
-     * The location of the documents being imported.
-     */
-    inputUriPrefix?: string;
-    /**
-     * The state of the import operation.
-     */
-    operationState?: string;
-    /**
-     * An estimate of the number of bytes processed.
-     */
-    progressBytes?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * An estimate of the number of documents processed.
-     */
-    progressDocuments?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
-  }
-  /**
-   * Metadata for index operations. This metadata populates the metadata field
-   * of google.longrunning.Operation.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1IndexOperationMetadata {
-    /**
-     * True if the [google.longrunning.Operation] was cancelled. If the
-     * cancellation is in progress, cancelled will be true but
-     * google.longrunning.Operation.done will be false.
-     */
-    cancelled?: boolean;
-    /**
-     * Progress of the existing operation, measured in number of documents.
-     */
-    documentProgress?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
-     */
-    endTime?: string;
-    /**
-     * The index resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
-     */
-    index?: string;
-    /**
-     * The type of index operation.
-     */
-    operationType?: string;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
-  }
-  /**
-   * The metadata message for google.cloud.location.Location.metadata.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1LocationMetadata {}
-  /**
-   * Measures the progress of a particular metric.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1Progress {
-    /**
-     * An estimate of how much work has been completed. Note that this may be
-     * greater than `work_estimated`.
-     */
-    workCompleted?: string;
-    /**
-     * An estimate of how much work needs to be performed. Zero if the work
-     * estimate is unavailable. May change as work progresses.
-     */
-    workEstimated?: string;
-  }
   /**
    * Represents a single field in the database.  Fields are grouped by their
    * &quot;Collection Group&quot;, which represent all collections in the
@@ -558,8 +425,10 @@ export namespace firestore_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A name of the form `/projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name A name of the form
+     *     `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -637,11 +506,19 @@ export namespace firestore_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
+     * @param {string=} params.filter The filter to apply to list results.
+     *     Currently, FirestoreAdmin.ListFields only supports listing fields
+     *     that have been explicitly overridden. To issue this query, call
+     *     FirestoreAdmin.ListFields with the filter set to
+     *     `indexConfig.usesAncestorConfig:false`.
      * @param {integer=} params.pageSize The number of results to return.
-     * @param {string=} params.pageToken A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results.
-     * @param {string} params.parent A parent name of the form `/projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken A page token, returned from a previous
+     *     call to FirestoreAdmin.ListFields, that may be used to get the next
+     *     page of results.
+     * @param {string} params.parent A parent name of the form
+     *     `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -723,15 +600,37 @@ export namespace firestore_v1beta2 {
      * field update. The metadata for the operation will be the type
      * FieldOperationMetadata.  To configure the default field settings for the
      * database, use the special `Field` with resource name:
-     * `/projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`.
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`.
      * @alias firestore.projects.databases.collectionGroups.fields.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
-     * @param {string=} params.updateMask A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
-     * @param {().GoogleFirestoreAdminV1beta2Field} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name A field name of the form
+     *     `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
+     *     A field path may be a simple field name, e.g. `address` or a path to
+     *     fields within map_value , e.g. `address.city`, or a special field
+     *     path. The only valid special field is `*`, which represents any
+     *     field.  Field paths may be quoted using ` (backtick). The only
+     *     character that needs to be escaped within a quoted field path is the
+     *     backtick character itself, escaped using a backslash. Special
+     *     characters in field paths that must be quoted include: `*`, `.`, ```
+     *     (backtick), `[`, `]`, as well as any ascii symbolic characters.
+     *     Examples: (Note: Comments here are written in markdown syntax, so
+     *     there is an  additional layer of backticks to represent a code block)
+     *     `\`address.city\`` represents a field named `address.city`, not the
+     *     map key `city` in the field `address`. `\`*\`` represents a field
+     *     named `*`, not any field.  A special `Field` contains the default
+     *     indexing settings for all fields. This field's resource name is:
+     *     `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`
+     *     Indexes defined on this `Field` will be applied to all fields which
+     *     do not have their own `Field` index configuration.
+     * @param {string=} params.updateMask A mask, relative to the field. If
+     *     specified, only configuration specified by this field_mask will be
+     *     updated in the field.
+     * @param {().GoogleFirestoreAdminV1beta2Field} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -808,7 +707,7 @@ export namespace firestore_v1beta2 {
 
     /**
      * A name of the form
-     * `/projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
      */
     name?: string;
   }
@@ -836,7 +735,7 @@ export namespace firestore_v1beta2 {
     pageToken?: string;
     /**
      * A parent name of the form
-     * `/projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      */
     parent?: string;
   }

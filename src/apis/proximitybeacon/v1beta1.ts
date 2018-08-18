@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -591,8 +590,10 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetInfoForObservedBeaconsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().GetInfoForObservedBeaconsRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -707,9 +708,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be activated. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to activate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Beacon that should be activated. A
+     *     beacon name has the format "beacons/N!beaconId" where the beaconId is
+     *     the base16 ID broadcast by the beacon and N is a code for the
+     *     beacon's type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to
+     *     activate. If the project id is not specified then the project making
+     *     the request is used. The project id must match the project that owns
+     *     the beacon. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -781,9 +792,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be deactivated. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to deactivate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Beacon that should be deactivated. A
+     *     beacon name has the format "beacons/N!beaconId" where the beaconId is
+     *     the base16 ID broadcast by the beacon and N is a code for the
+     *     beacon's type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to
+     *     deactivate. If the project id is not specified then the project
+     *     making the request is used. The project id must match the project
+     *     that owns the beacon. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -855,9 +876,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be decommissioned. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID of the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to decommission. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Beacon that should be decommissioned. A
+     *     beacon name has the format "beacons/N!beaconId" where the beaconId is
+     *     the base16 ID broadcast by the beacon and N is a code for the
+     *     beacon's type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID of the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to
+     *     decommission. If the project id is not specified then the project
+     *     making the request is used. The project id must match the project
+     *     that owns the beacon. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -929,9 +960,18 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to delete. If not provided, the project that is making the request is used. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Beacon that should be deleted. A beacon
+     *     name has the format "beacons/N!beaconId" where the beaconId is the
+     *     base16 ID broadcast by the beacon and N is a code for the beacon's
+     *     type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to delete.
+     *     If not provided, the project that is making the request is used.
+     *     Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1004,9 +1044,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to request. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Resource name of this beacon. A beacon
+     *     name has the format "beacons/N!beaconId" where the beaconId is the
+     *     base16 ID broadcast by the beacon and N is a code for the beacon's
+     *     type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to
+     *     request. If the project id is not specified then the project making
+     *     the request is used. The project id must match the project that owns
+     *     the beacon. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1072,11 +1122,70 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of records to return for this request, up to a server-defined upper limit.
-     * @param {string=} params.pageToken A pagination token obtained from a previous request to list beacons.
-     * @param {string=} params.projectId The project id to list beacons under. If not present then the project credential that made the request is used as the project. Optional.
-     * @param {string=} params.q Filter query string that supports the following field filters:  * **description:`"<string>"`**   For example: **description:"Room 3"**   Returns beacons whose description matches tokens in the string "Room 3"   (not necessarily that exact string).   The string must be double-quoted. * **status:`<enum>`**   For example: **status:active**   Returns beacons whose status matches the given value. Values must be   one of the Beacon.Status enum values (case insensitive). Accepts   multiple filters which will be combined with OR logic. * **stability:`<enum>`**   For example: **stability:mobile**   Returns beacons whose expected stability matches the given value.   Values must be one of the Beacon.Stability enum values (case   insensitive). Accepts multiple filters which will be combined with   OR logic. * **place\_id:`"<string>"`**   For example: **place\_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="**   Returns beacons explicitly registered at the given place, expressed as   a Place ID obtained from [Google Places API](/places/place-id). Does not   match places inside the given place. Does not consider the beacon's   actual location (which may be different from its registered place).   Accepts multiple filters that will be combined with OR logic. The place   ID must be double-quoted. * **registration\_time`[<|>|<=|>=]<integer>`**   For example: **registration\_time>=1433116800**   Returns beacons whose registration time matches the given filter.   Supports the operators: <, >, <=, and >=. Timestamp must be expressed as   an integer number of seconds since midnight January 1, 1970 UTC. Accepts   at most two filters that will be combined with AND logic, to support   "between" semantics. If more than two are supplied, the latter ones are   ignored. * **lat:`<double> lng:<double> radius:<integer>`**   For example: **lat:51.1232343 lng:-1.093852 radius:1000**   Returns beacons whose registered location is within the given circle.   When any of these fields are given, all are required. Latitude and   longitude must be decimal degrees between -90.0 and 90.0 and between   -180.0 and 180.0 respectively. Radius must be an integer number of   meters between 10 and 1,000,000 (1000 km). * **property:`"<string>=<string>"`**   For example: **property:"battery-type=CR2032"**   Returns beacons which have a property of the given name and value.   Supports multiple filters which will be combined with OR logic.   The entire name=value string must be double-quoted as one string. * **attachment\_type:`"<string>"`**   For example: **attachment_type:"my-namespace/my-type"**   Returns beacons having at least one attachment of the given namespaced   type. Supports "any within this namespace" via the partial wildcard   syntax: "my-namespace/x". Supports multiple filters which will be   combined with OR logic. The string must be double-quoted. * **indoor\_level:`"<string>"`**   For example: **indoor\_level:"1"**   Returns beacons which are located on the given indoor level. Accepts   multiple filters that will be combined with OR logic.  Multiple filters on the same field are combined with OR logic (except registration_time which is combined with AND logic). Multiple filters on different fields are combined with AND logic. Filters should be separated by spaces.  As with any HTTP query string parameter, the whole filter expression must be URL-encoded.  Example REST request: `GET /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of records to return
+     *     for this request, up to a server-defined upper limit.
+     * @param {string=} params.pageToken A pagination token obtained from a
+     *     previous request to list beacons.
+     * @param {string=} params.projectId The project id to list beacons under.
+     *     If not present then the project credential that made the request is
+     *     used as the project. Optional.
+     * @param {string=} params.q Filter query string that supports the following
+     *     field filters:  * **description:`"<string>"`**   For example:
+     *     **description:"Room 3"**   Returns beacons whose description matches
+     *     tokens in the string "Room 3"   (not necessarily that exact string).
+     *     The string must be double-quoted. * **status:`<enum>`**   For
+     *     example: **status:active**   Returns beacons whose status matches the
+     *     given value. Values must be   one of the Beacon.Status enum values
+     *     (case insensitive). Accepts   multiple filters which will be combined
+     *     with OR logic. * **stability:`<enum>`**   For example:
+     *     **stability:mobile**   Returns beacons whose expected stability
+     *     matches the given value.   Values must be one of the Beacon.Stability
+     *     enum values (case   insensitive). Accepts multiple filters which will
+     *     be combined with   OR logic. * **place\_id:`"<string>"`**   For
+     *     example: **place\_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="**   Returns
+     *     beacons explicitly registered at the given place, expressed as   a
+     *     Place ID obtained from [Google Places API](/places/place-id). Does
+     *     not   match places inside the given place. Does not consider the
+     *     beacon's   actual location (which may be different from its
+     *     registered place).   Accepts multiple filters that will be combined
+     *     with OR logic. The place   ID must be double-quoted. *
+     *     **registration\_time`[<|>|<=|>=]<integer>`**   For example:
+     *     **registration\_time>=1433116800**   Returns beacons whose
+     *     registration time matches the given filter.   Supports the operators:
+     *     <, >, <=, and >=. Timestamp must be expressed as   an integer number
+     *     of seconds since midnight January 1, 1970 UTC. Accepts   at most two
+     *     filters that will be combined with AND logic, to support   "between"
+     *     semantics. If more than two are supplied, the latter ones are
+     *     ignored. * **lat:`<double> lng:<double> radius:<integer>`**   For
+     *     example: **lat:51.1232343 lng:-1.093852 radius:1000**   Returns
+     *     beacons whose registered location is within the given circle.   When
+     *     any of these fields are given, all are required. Latitude and
+     *     longitude must be decimal degrees between -90.0 and 90.0 and between
+     *     -180.0 and 180.0 respectively. Radius must be an integer number of
+     *     meters between 10 and 1,000,000 (1000 km). *
+     *     **property:`"<string>=<string>"`**   For example:
+     *     **property:"battery-type=CR2032"**   Returns beacons which have a
+     *     property of the given name and value.   Supports multiple filters
+     *     which will be combined with OR logic.   The entire name=value string
+     *     must be double-quoted as one string. *
+     *     **attachment\_type:`"<string>"`**   For example:
+     *     **attachment_type:"my-namespace/my-type"**   Returns beacons having
+     *     at least one attachment of the given namespaced   type. Supports "any
+     *     within this namespace" via the partial wildcard   syntax:
+     *     "my-namespace/x". Supports multiple filters which will be   combined
+     *     with OR logic. The string must be double-quoted. *
+     *     **indoor\_level:`"<string>"`**   For example: **indoor\_level:"1"**
+     *     Returns beacons which are located on the given indoor level. Accepts
+     *     multiple filters that will be combined with OR logic.  Multiple
+     *     filters on the same field are combined with OR logic (except
+     *     registration_time which is combined with AND logic). Multiple filters
+     *     on different fields are combined with AND logic. Filters should be
+     *     separated by spaces.  As with any HTTP query string parameter, the
+     *     whole filter expression must be URL-encoded.  Example REST request:
+     *     `GET
+     *     /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1145,9 +1254,12 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the project the beacon will be registered to. If the project id is not specified then the project making the request is used. Optional.
+     * @param {string=} params.projectId The project id of the project the
+     *     beacon will be registered to. If the project id is not specified then
+     *     the project making the request is used. Optional.
      * @param {().Beacon} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1221,10 +1333,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.  This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
-     * @param {string=} params.projectId The project id of the beacon to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.beaconName Resource name of this beacon. A beacon
+     *     name has the format "beacons/N!beaconId" where the beaconId is the
+     *     base16 ID broadcast by the beacon and N is a code for the beacon's
+     *     type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5`
+     *     for AltBeacon.  This field must be left empty when registering. After
+     *     reading a beacon, clients can use the name for future operations.
+     * @param {string=} params.projectId The project id of the beacon to update.
+     *     If the project id is not specified then the project making the
+     *     request is used. The project id must match the project that owns the
+     *     beacon. Optional.
      * @param {().Beacon} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1537,10 +1658,24 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
-     * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName The beacon whose attachments should be
+     *     deleted. A beacon name has the format "beacons/N!beaconId" where the
+     *     beaconId is the base16 ID broadcast by the beacon and N is a code for
+     *     the beacon's type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.namespacedType Specifies the namespace and type
+     *     of attachments to delete in `namespace/type` format. Accepts `x/x` to
+     *     specify "all types in all namespaces". Optional.
+     * @param {string=} params.projectId The project id to delete beacon
+     *     attachments under. This field can be used when "*" is specified to
+     *     mean all attachment namespaces. Projects may have multiple
+     *     attachments with multiple namespaces. If "*" is specified and the
+     *     projectId string is empty, then the project making the request is
+     *     used. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1621,10 +1756,19 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
+     * @param {string} params.beaconName Beacon on which the attachment should
+     *     be created. A beacon name has the format "beacons/N!beaconId" where
+     *     the beaconId is the base16 ID broadcast by the beacon and N is a code
+     *     for the beacon's type. Possible values are `3` for Eddystone-UID, `4`
+     *     for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the project the
+     *     attachment will belong to. If the project id is not specified then
+     *     the project making the request is used. Optional.
      * @param {().BeaconAttachment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1698,9 +1842,16 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.attachmentName The attachment name (`attachmentName`) of the attachment to remove. For example: `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738`. For Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be the beacon's current EID, or its "stable" Eddystone-UID. Required.
-     * @param {string=} params.projectId The project id of the attachment to delete. If not provided, the project that is making the request is used. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.attachmentName The attachment name
+     *     (`attachmentName`) of the attachment to remove. For example:
+     *     `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738`. For
+     *     Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be
+     *     the beacon's current EID, or its "stable" Eddystone-UID. Required.
+     * @param {string=} params.projectId The project id of the attachment to
+     *     delete. If not provided, the project that is making the request is
+     *     used. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1774,10 +1925,24 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon whose attachments should be fetched. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in <var>namespace/type</var> format. Accepts `x/x` to specify "all types in all namespaces".
-     * @param {string=} params.projectId The project id to list beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.beaconName Beacon whose attachments should be
+     *     fetched. A beacon name has the format "beacons/N!beaconId" where the
+     *     beaconId is the base16 ID broadcast by the beacon and N is a code for
+     *     the beacon's type. Possible values are `3` for Eddystone-UID, `4` for
+     *     Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For
+     *     Eddystone-EID beacons, you may use either the current EID or the
+     *     beacon's "stable" UID. Required.
+     * @param {string=} params.namespacedType Specifies the namespace and type
+     *     of attachment to include in response in <var>namespace/type</var>
+     *     format. Accepts `x/x` to specify "all types in all namespaces".
+     * @param {string=} params.projectId The project id to list beacon
+     *     attachments under. This field can be used when "*" is specified to
+     *     mean all attachment namespaces. Projects may have multiple
+     *     attachments with multiple namespaces. If "*" is specified and the
+     *     projectId string is empty, then the project making the request is
+     *     used. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1978,12 +2143,20 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
+     * @param {string=} params.alertFilter Requests only beacons that have the
+     *     given alert. For example, to find beacons that have low batteries use
+     *     `alert_filter=LOW_BATTERY`.
      * @param {string} params.beaconName Beacon that the diagnostics are for.
-     * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
-     * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
-     * @param {string=} params.projectId Requests only diagnostic records for the given project id. If not set, then the project making the request will be used for looking up diagnostic records. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Specifies the maximum number of results
+     *     to return. Defaults to 10. Maximum 1000. Optional.
+     * @param {string=} params.pageToken Requests results that occur after the
+     *     `page_token`, obtained from the response to a previous request.
+     *     Optional.
+     * @param {string=} params.projectId Requests only diagnostic records for
+     *     the given project id. If not set, then the project making the request
+     *     will be used for looking up diagnostic records. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2104,8 +2277,10 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id to list namespaces under. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.projectId The project id to list namespaces
+     *     under. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2172,10 +2347,16 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
-     * @param {string=} params.projectId The project id of the namespace to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.namespaceName Resource name of this namespace.
+     *     Namespaces names have the format:
+     *     <code>namespaces/<var>namespace</var></code>.
+     * @param {string=} params.projectId The project id of the namespace to
+     *     update. If the project id is not specified then the project making
+     *     the request is used. The project id must match the project that owns
+     *     the beacon. Optional.
      * @param {().Namespace} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2295,7 +2476,8 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

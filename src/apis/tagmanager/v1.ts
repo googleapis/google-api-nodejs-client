@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1036,7 +1035,8 @@ export namespace tagmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1096,7 +1096,8 @@ export namespace tagmanager_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1162,9 +1163,11 @@ export namespace tagmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the account in storage.
      * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1298,7 +1301,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {().Container} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1366,7 +1370,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1434,7 +1439,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1499,7 +1505,8 @@ export namespace tagmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1568,9 +1575,11 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the container in storage.
      * @param {().Container} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1736,7 +1745,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1808,7 +1818,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.environmentId The GTM Environment ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1878,7 +1889,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.environmentId The GTM Environment ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1944,7 +1956,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2017,9 +2030,11 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.environmentId The GTM Environment ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the environment in storage.
      * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2091,9 +2106,11 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.environmentId The GTM Environment ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the environment in storage.
      * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2312,7 +2329,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {().Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2382,7 +2400,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2451,7 +2470,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2516,7 +2536,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2586,10 +2607,12 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the folder in storage.
      * @param {string} params.folderId The GTM Folder ID.
      * @param {().Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2774,7 +2797,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.folderId The GTM Folder ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2883,9 +2907,11 @@ export namespace tagmanager_v1 {
      * @param {string} params.folderId The GTM Folder ID.
      * @param {string=} params.tagId The tags to be moved to the folder.
      * @param {string=} params.triggerId The triggers to be moved to the folder.
-     * @param {string=} params.variableId The variables to be moved to the folder.
+     * @param {string=} params.variableId The variables to be moved to the
+     *     folder.
      * @param {().Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3006,7 +3032,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.environmentId The GTM Environment ID.
      * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3120,7 +3147,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {().Tag} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3190,7 +3218,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.tagId The GTM Tag ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3259,7 +3288,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.tagId The GTM Tag ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3324,7 +3354,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3394,10 +3425,12 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the tag in storage.
      * @param {string} params.tagId The GTM Tag ID.
      * @param {().Tag} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3583,7 +3616,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {().Trigger} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3653,7 +3687,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.triggerId The GTM Trigger ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3722,7 +3757,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.triggerId The GTM Trigger ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3787,7 +3823,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3858,10 +3895,12 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the trigger in storage.
      * @param {string} params.triggerId The GTM Trigger ID.
      * @param {().Trigger} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4047,7 +4086,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {().Variable} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4117,7 +4157,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.variableId The GTM Variable ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4186,7 +4227,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.variableId The GTM Variable ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4251,7 +4293,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4322,10 +4365,12 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the variable in storage.
      * @param {string} params.variableId The GTM Variable ID.
      * @param {().Variable} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4510,8 +4555,10 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {().CreateContainerVersionRequestVersionOptions} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().CreateContainerVersionRequestVersionOptions} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4590,7 +4637,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4658,8 +4706,10 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.containerVersionId The GTM Container Version ID.
+     *     Specify published to retrieve the currently published version.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4726,8 +4776,10 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {boolean=} params.headers Retrieve headers only when true.
-     * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeDeleted Also retrieve deleted (archived)
+     *     versions when true.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4805,8 +4857,10 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the container version in storage.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4889,7 +4943,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4960,7 +5015,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5032,9 +5088,11 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
      * @param {string} params.containerVersionId The GTM Container Version ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+     * @param {string=} params.fingerprint When provided, this fingerprint must
+     *     match the fingerprint of the container version in storage.
      * @param {().ContainerVersion} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5292,7 +5350,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {().UserAccess} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5361,7 +5420,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.permissionId The GTM User ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5429,7 +5489,8 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.permissionId The GTM User ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5494,8 +5555,10 @@ export namespace tagmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID. @required tagmanager.accounts.permissions.list
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.accountId The GTM Account ID. @required
+     *     tagmanager.accounts.permissions.list
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5565,7 +5628,8 @@ export namespace tagmanager_v1 {
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.permissionId The GTM User ID.
      * @param {().UserAccess} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

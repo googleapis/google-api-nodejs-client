@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -134,6 +133,19 @@ export namespace dlp_v2 {
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
+   * Message defining a field of a BigQuery table.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryField {
+    /**
+     * Designated field in the BigQuery table.
+     */
+    field?: Schema$GooglePrivacyDlpV2FieldId;
+    /**
+     * Source table of the field.
+     */
+    table?: Schema$GooglePrivacyDlpV2BigQueryTable;
+  }
+  /**
    * Row key for identifying a record in BigQuery table.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryKey {
@@ -159,9 +171,18 @@ export namespace dlp_v2 {
     /**
      * Max number of rows to scan. If the table has more rows than this value,
      * the rest of the rows are omitted. If not set, or if set to 0, all rows
-     * will be scanned. Cannot be used in conjunction with TimespanConfig.
+     * will be scanned. Only one of rows_limit and rows_limit_percent can be
+     * specified. Cannot be used in conjunction with TimespanConfig.
      */
     rowsLimit?: string;
+    /**
+     * Max percentage of rows to scan. The rest are omitted. The number of rows
+     * scanned is rounded down. Must be between 0 and 100, inclusively. Both 0
+     * and 100 means no limit. Defaults to 0. Only one of rows_limit and
+     * rows_limit_percent can be specified. Cannot be used in conjunction with
+     * TimespanConfig.
+     */
+    rowsLimitPercent?: number;
     sampleMethod?: string;
     /**
      * Complete BigQuery table reference.
@@ -354,15 +375,34 @@ export namespace dlp_v2 {
     commonCharactersToIgnore?: string;
   }
   /**
+   * Message representing a set of files in Cloud Storage.
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudStorageFileSet {
+    /**
+     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
+     * wildcard in the path is allowed.
+     */
+    url?: string;
+  }
+  /**
    * Options defining a file or a set of files (path ending with *) within a
    * Google Cloud Storage bucket.
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
      * Max number of bytes to scan from a file. If a scanned file&#39;s size is
-     * bigger than this value then the rest of the bytes are omitted.
+     * bigger than this value then the rest of the bytes are omitted. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be
+     * specified.
      */
     bytesLimitPerFile?: string;
+    /**
+     * Max percentage of bytes to scan from a file. The rest are omitted. The
+     * number of bytes scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of
+     * bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     */
+    bytesLimitPerFilePercent?: number;
     fileSet?: Schema$GooglePrivacyDlpV2FileSet;
     /**
      * Limits the number of files to scan to this percentage of the input
@@ -555,6 +595,22 @@ export namespace dlp_v2 {
     triggerId?: string;
   }
   /**
+   * Request message for CreateStoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest {
+    /**
+     * Configuration of the storedInfoType to create.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
+    /**
+     * The storedInfoType ID can contain uppercase and lowercase letters,
+     * numbers, and hyphens; that is, it must match the regular expression:
+     * `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to
+     * allow the system to generate one.
+     */
+    storedInfoTypeId?: string;
+  }
+  /**
    * Pseudonymization method that generates surrogates via cryptographic
    * hashing. Uses SHA-256. The key size must be either 32 or 64 bytes. Outputs
    * a 32 byte digest as an uppercase hex string (for example,
@@ -675,6 +731,11 @@ export namespace dlp_v2 {
      * Regular expression based CustomInfoType.
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
+    /**
+     * Load an existing `StoredInfoType` resource for use in
+     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     */
+    storedType?: Schema$GooglePrivacyDlpV2StoredType;
     /**
      * Message for detecting output from deidentification transformations that
      * support reversing.
@@ -965,7 +1026,11 @@ export namespace dlp_v2 {
    * letters of the text &quot;jen123&quot; but will return no matches for
    * &quot;jennifer&quot;.  Dictionary words containing a large number of
    * characters that are not letters or digits may result in unexpected findings
-   * because such characters are treated as whitespace.
+   * because such characters are treated as whitespace. The
+   * [limits](https://cloud.google.com/dlp/limits) page contains details about
+   * the size limits of dictionaries. For dictionaries that do not fit within
+   * these constraints, consider using `LargeCustomDictionaryConfig` in the
+   * `StoredInfoType` API.
    */
   export interface Schema$GooglePrivacyDlpV2Dictionary {
     /**
@@ -1380,7 +1445,11 @@ export namespace dlp_v2 {
      * https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes
      * or CustomInfoTypes are specified in a request, the system may
      * automatically choose what detectors to run. By default this may be all
-     * types, but may change over time as detectors are updated.
+     * types, but may change over time as detectors are updated.  The special
+     * InfoType name &quot;ALL_BASIC&quot; can be used to trigger all detectors,
+     * but may change over time as new InfoTypes are added. If you need precise
+     * control and predictability as to what detectors are run you should
+     * specify specific InfoTypes listed in the reference.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -1767,6 +1836,31 @@ export namespace dlp_v2 {
     wrappedKey?: string;
   }
   /**
+   * Configuration for a custom dictionary created from a data source of any
+   * size up to the maximum size defined in the
+   * [limits](https://cloud.google.com/dlp/limits) page. The artifacts of
+   * dictionary creation are stored in the specified Google Cloud Storage
+   * location. Consider using `CustomInfoType.Dictionary` for smaller
+   * dictionaries that satisfy the size requirements.
+   */
+  export interface Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig {
+    /**
+     * Field in a BigQuery table where each cell represents a dictionary phrase.
+     */
+    bigQueryField?: Schema$GooglePrivacyDlpV2BigQueryField;
+    /**
+     * Set of files containing newline-delimited lists of dictionary phrases.
+     */
+    cloudStorageFileSet?: Schema$GooglePrivacyDlpV2CloudStorageFileSet;
+    /**
+     * Location to store dictionary artifacts in Google Cloud Storage. These
+     * files will only be accessible by project owners and the DLP API. If any
+     * of these artifacts are modified, the dictionary is considered invalid and
+     * can no longer be used.
+     */
+    outputPath?: Schema$GooglePrivacyDlpV2CloudStoragePath;
+  }
+  /**
    * l-diversity metric, used for analysis of reidentification risk.
    */
   export interface Schema$GooglePrivacyDlpV2LDiversityConfig {
@@ -1922,6 +2016,20 @@ export namespace dlp_v2 {
      * following ListJobTriggers request.
      */
     nextPageToken?: string;
+  }
+  /**
+   * Response message for ListStoredInfoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse {
+    /**
+     * If the next page is available then the next page token to be used in
+     * following ListStoredInfoTypes request.
+     */
+    nextPageToken?: string;
+    /**
+     * List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
+     */
+    storedInfoTypes?: Schema$GooglePrivacyDlpV2StoredInfoType[];
   }
   /**
    * Specifies the location of the finding.
@@ -2465,6 +2573,93 @@ export namespace dlp_v2 {
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
   }
   /**
+   * StoredInfoType resource message that contains information about the current
+   * version and any pending updates.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoType {
+    /**
+     * Current version of the stored info type.
+     */
+    currentVersion?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion;
+    /**
+     * Resource name.
+     */
+    name?: string;
+    /**
+     * Pending versions of the stored info type. Empty if no versions are
+     * pending.
+     */
+    pendingVersions?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion[];
+  }
+  /**
+   * Configuration for a StoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoTypeConfig {
+    /**
+     * Description of the StoredInfoType (max 256 characters).
+     */
+    description?: string;
+    /**
+     * Display name of the StoredInfoType (max 256 characters).
+     */
+    displayName?: string;
+    /**
+     * StoredInfoType where findings are defined by a dictionary of phrases.
+     */
+    largeCustomDictionary?:
+        Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig;
+  }
+  /**
+   * Version of a StoredInfoType, including the configuration used to build it,
+   * create timestamp, and current state.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoTypeVersion {
+    /**
+     * StoredInfoType configuration.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
+    /**
+     * Create timestamp of the version. Read-only, determined by the system when
+     * the version is created.
+     */
+    createTime?: string;
+    /**
+     * Errors that occurred when creating this storedInfoType version, or
+     * anomalies detected in the storedInfoType data that render it unusable.
+     * Only the five most recent errors will be displayed, with the most recent
+     * error appearing first. &lt;p&gt;For example, some of the data for stored
+     * custom dictionaries is put in the user&#39;s Google Cloud Storage bucket,
+     * and if this data is modified or deleted by the user or another system,
+     * the dictionary becomes invalid. &lt;p&gt;If any errors occur, fix the
+     * problem indicated by the error message and use the UpdateStoredInfoType
+     * API method to create another version of the storedInfoType to continue
+     * using it, reusing the same `config` if it was not the source of the
+     * error.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * Stored info type version state. Read-only, updated by the system during
+     * dictionary creation.
+     */
+    state?: string;
+  }
+  /**
+   * A reference to a StoredInfoType to use with scanning.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredType {
+    /**
+     * Timestamp indicating when the version of the `StoredInfoType` used for
+     * inspection was created. Output-only field, populated by the system.
+     */
+    createTime?: string;
+    /**
+     * Resource name of the requested `StoredInfoType`, for example
+     * `organizations/433245324/storedInfoTypes/432452342` or
+     * `projects/project-id/storedInfoTypes/432452342`.
+     */
+    name?: string;
+  }
+  /**
    * A collection that informs the user the number of times a particular
    * `TransformationResultCode` and error details occurred.
    */
@@ -2550,20 +2745,22 @@ export namespace dlp_v2 {
      */
     enableAutoPopulationOfTimespanConfig?: boolean;
     /**
-     * Exclude files newer than this value. If set to zero, no upper time limit
-     * is applied.
+     * Exclude files or rows newer than this value. If set to zero, no upper
+     * time limit is applied.
      */
     endTime?: string;
     /**
-     * Exclude files older than this value.
+     * Exclude files or rows older than this value.
      */
     startTime?: string;
     /**
      * Specification of the field containing the timestamp of scanned items.
-     * Required for data sources like Datastore or BigQuery. The valid data
-     * types of the timestamp field are: for BigQuery - timestamp, date,
-     * datetime; for Datastore - timestamp. Datastore entity will be scanned if
-     * the timestamp property does not exist or its value is empty or invalid.
+     * Used for data sources like Datastore or BigQuery. If not specified for
+     * BigQuery, table last modification timestamp is checked against given time
+     * span. The valid data types of the timestamp field are: for BigQuery -
+     * timestamp, date, datetime; for Datastore - timestamp. Datastore entity
+     * will be scanned if the timestamp property does not exist or its value is
+     * empty or invalid.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
@@ -2688,6 +2885,21 @@ export namespace dlp_v2 {
      * New JobTrigger value.
      */
     jobTrigger?: Schema$GooglePrivacyDlpV2JobTrigger;
+    /**
+     * Mask to control which fields get updated.
+     */
+    updateMask?: string;
+  }
+  /**
+   * Request message for UpdateStoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest {
+    /**
+     * Updated configuration for the storedInfoType. If not provided, a new
+     * version of the storedInfoType will be created with the existing
+     * configuration.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
     /**
      * Mask to control which fields get updated.
      */
@@ -2871,9 +3083,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
-     * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Optional filter to only return infoTypes
+     *     supported by certain parts of the API. Defaults to
+     *     supported_by=INSPECT.
+     * @param {string=} params.languageCode Optional BCP-47 language code for
+     *     localized infoType friendly names. If omitted, or if localized
+     *     strings are not available, en-US strings will be returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2960,12 +3177,14 @@ export namespace dlp_v2 {
     root: Dlp;
     deidentifyTemplates: Resource$Organizations$Deidentifytemplates;
     inspectTemplates: Resource$Organizations$Inspecttemplates;
+    storedInfoTypes: Resource$Organizations$Storedinfotypes;
     constructor(root: Dlp) {
       this.root = root;
       this.getRoot.bind(this);
       this.deidentifyTemplates =
           new Resource$Organizations$Deidentifytemplates(root);
       this.inspectTemplates = new Resource$Organizations$Inspecttemplates(root);
+      this.storedInfoTypes = new Resource$Organizations$Storedinfotypes(root);
     }
 
     getRoot() {
@@ -2995,9 +3214,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3077,8 +3299,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     deidentify template to be deleted, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3145,8 +3371,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     deidentify template to be read, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3220,10 +3450,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3302,9 +3536,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and deidentify
+     *     template to be updated, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3481,9 +3720,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3562,8 +3804,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     inspectTemplate to be deleted, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3630,8 +3876,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     inspectTemplate to be read, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3704,10 +3954,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3783,9 +4037,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and
+     *     inspectTemplate to be updated, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3939,6 +4198,508 @@ export namespace dlp_v2 {
   }
 
 
+  export class Resource$Organizations$Storedinfotypes {
+    root: Dlp;
+    constructor(root: Dlp) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.create
+     * @desc Creates a pre-built stored infoType to be used for inspection. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Organizations$Storedinfotypes$Create,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+        params: Params$Resource$Organizations$Storedinfotypes$Create,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        params: Params$Resource$Organizations$Storedinfotypes$Create,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Create|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.delete
+     * @desc Deletes a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and
+     *     storedInfoType to be deleted, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Organizations$Storedinfotypes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+        params: Params$Resource$Organizations$Storedinfotypes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        params: Params$Resource$Organizations$Storedinfotypes$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Delete|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.get
+     * @desc Gets a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and
+     *     storedInfoType to be read, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Organizations$Storedinfotypes$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(params: Params$Resource$Organizations$Storedinfotypes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(params: Params$Resource$Organizations$Storedinfotypes$Get,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Get|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.list
+     * @desc Lists stored infoTypes. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Organizations$Storedinfotypes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+        params: Params$Resource$Organizations$Storedinfotypes$List,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        params: Params$Resource$Organizations$Storedinfotypes$List,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$List|
+        BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.patch
+     * @desc Updates the stored infoType by creating a new version. The existing
+     * version will continue to be used until the new version is ready. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of organization and
+     *     storedInfoType to be updated, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Organizations$Storedinfotypes$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+        params: Params$Resource$Organizations$Storedinfotypes$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        params: Params$Resource$Organizations$Storedinfotypes$Patch,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(callback:
+              BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Patch|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Storedinfotypes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be deleted, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be read, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional size of the page, can be limited by server. If zero server
+     * returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional page token to continue retrieval. Comes from previous call to
+     * `ListStoredInfoTypes`.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of organization and storedInfoType to be updated, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest;
+  }
+
+
 
   export class Resource$Projects {
     root: Dlp;
@@ -3948,6 +4709,7 @@ export namespace dlp_v2 {
     image: Resource$Projects$Image;
     inspectTemplates: Resource$Projects$Inspecttemplates;
     jobTriggers: Resource$Projects$Jobtriggers;
+    storedInfoTypes: Resource$Projects$Storedinfotypes;
     constructor(root: Dlp) {
       this.root = root;
       this.getRoot.bind(this);
@@ -3958,6 +4720,7 @@ export namespace dlp_v2 {
       this.image = new Resource$Projects$Image(root);
       this.inspectTemplates = new Resource$Projects$Inspecttemplates(root);
       this.jobTriggers = new Resource$Projects$Jobtriggers(root);
+      this.storedInfoTypes = new Resource$Projects$Storedinfotypes(root);
     }
 
     getRoot() {
@@ -3991,9 +4754,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4074,9 +4840,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4153,8 +4922,10 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent resource name.
-     * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4293,9 +5064,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4374,8 +5148,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     deidentify template to be deleted, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4441,8 +5219,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     deidentify template to be read, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4515,10 +5297,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4596,9 +5382,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and deidentify
+     *     template to be updated, for example
+     *     `organizations/433245324/deidentifyTemplates/432452342` or
+     *     projects/project-id/deidentifyTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4775,9 +5566,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the DlpJob resource to be cancelled.
-     * @param {().GooglePrivacyDlpV2CancelDlpJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the DlpJob resource to be
+     *     cancelled.
+     * @param {().GooglePrivacyDlpV2CancelDlpJobRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4848,9 +5642,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4922,8 +5719,10 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the DlpJob resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the DlpJob resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4991,7 +5790,8 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the DlpJob resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5055,12 +5855,29 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Optional. Allows filtering.  Supported
+     *     syntax:  * Filter expressions are made up of one or more
+     *     restrictions. * Restrictions can be combined by `AND` or `OR` logical
+     *     operators. A sequence of restrictions implicitly uses `AND`. * A
+     *     restriction has the form of `<field> <operator> <value>`. * Supported
+     *     fields/values for inspect jobs:     - `state` -
+     *     PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` -
+     *     DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource
+     *     name of the trigger that created job. * Supported fields for risk
+     *     analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The
+     *     operator must be `=` or `!=`.  Examples:  * inspected_storage =
+     *     cloud_storage AND state = done * inspected_storage = cloud_storage OR
+     *     inspected_storage = bigquery * inspected_storage = cloud_storage AND
+     *     (state = done OR state = canceled)  The length of this field should
+     *     be no more than 500 characters.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {string=} params.type The type of job. Defaults to `DlpJobType.INSPECT`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {string=} params.type The type of job. Defaults to
+     *     `DlpJobType.INSPECT`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5252,9 +6069,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5364,9 +6184,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5444,8 +6267,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     inspectTemplate to be deleted, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5511,8 +6338,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and
+     *     inspectTemplate to be read, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5585,10 +6416,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5664,9 +6499,14 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and
+     *     inspectTemplate to be updated, for example
+     *     `organizations/433245324/inspectTemplates/432452342` or
+     *     projects/project-id/inspectTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5841,9 +6681,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5917,8 +6760,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the
+     *     triggeredJob, for example
+     *     `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5984,8 +6830,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the
+     *     triggeredJob, for example
+     *     `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6054,11 +6903,23 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the triggeredJob was created. - `update_time`: corresponds to time the triggeredJob was last updated. - `name`: corresponds to JobTrigger's name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
-     * @param {string} params.parent The parent resource name, for example `projects/my-project-id`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of
+     *     triggeredJob fields to order by, followed by `asc` or `desc` postfix.
+     *     This list is case-insensitive, default sorting order is ascending,
+     *     redundant space characters are insignificant.  Example: `name
+     *     asc,update_time, create_time desc`  Supported fields are:  -
+     *     `create_time`: corresponds to time the triggeredJob was created. -
+     *     `update_time`: corresponds to time the triggeredJob was last updated.
+     *     - `name`: corresponds to JobTrigger's name.
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by a server.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to ListJobTriggers. `order_by`
+     *     field must not change for subsequent calls.
+     * @param {string} params.parent The parent resource name, for example
+     *     `projects/my-project-id`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6133,9 +6994,13 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {().GooglePrivacyDlpV2UpdateJobTriggerRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the
+     *     triggeredJob, for example
+     *     `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {().GooglePrivacyDlpV2UpdateJobTriggerRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6287,5 +7152,507 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
+  }
+
+
+  export class Resource$Projects$Storedinfotypes {
+    root: Dlp;
+    constructor(root: Dlp) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.create
+     * @desc Creates a pre-built stored infoType to be used for inspection. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Storedinfotypes$Create,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+        params: Params$Resource$Projects$Storedinfotypes$Create,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        params: Params$Resource$Projects$Storedinfotypes$Create,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Create|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.delete
+     * @desc Deletes a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and
+     *     storedInfoType to be deleted, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Storedinfotypes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+        params: Params$Resource$Projects$Storedinfotypes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        params: Params$Resource$Projects$Storedinfotypes$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Delete|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.get
+     * @desc Gets a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and
+     *     storedInfoType to be read, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Storedinfotypes$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(params: Params$Resource$Projects$Storedinfotypes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(params: Params$Resource$Projects$Storedinfotypes$Get,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Get|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.list
+     * @desc Lists stored infoTypes. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional size of the page, can be
+     *     limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue
+     *     retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example
+     *     projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Storedinfotypes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+        params: Params$Resource$Projects$Storedinfotypes$List,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Storedinfotypes$List,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$List|
+        BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.patch
+     * @desc Updates the stored infoType by creating a new version. The existing
+     * version will continue to be used until the new version is ready. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of organization and
+     *     storedInfoType to be updated, for example
+     *     `organizations/433245324/storedInfoTypes/432452342` or
+     *     projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Storedinfotypes$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+        params: Params$Resource$Projects$Storedinfotypes$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        params: Params$Resource$Projects$Storedinfotypes$Patch,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(callback:
+              BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Patch|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Storedinfotypes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be deleted, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be read, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional size of the page, can be limited by server. If zero server
+     * returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional page token to continue retrieval. Comes from previous call to
+     * `ListStoredInfoTypes`.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of organization and storedInfoType to be updated, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest;
   }
 }

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -237,12 +236,11 @@ export namespace cloudtrace_v2 {
     childSpanCount?: number;
     /**
      * A description of the span&#39;s operation (up to 128 bytes). Stackdriver
-     * Trace displays the description in the {% dynamic print
-     * site_values.console_name %}. For example, the display name can be a
-     * qualified method name or a file name and a line number where the
-     * operation is called. A best practice is to use the same display name
-     * within an application and at the same call point. This makes it easier to
-     * correlate spans in different traces.
+     * Trace displays the description in the Google Cloud Platform Console. For
+     * example, the display name can be a qualified method name or a file name
+     * and a line number where the operation is called. A best practice is to
+     * use the same display name within an application and at the same call
+     * point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
@@ -519,9 +517,11 @@ export namespace cloudtrace_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
+     * @param {string} params.name Required. The name of the project where the
+     *     spans belong. The format is `projects/[PROJECT_ID]`.
      * @param {().BatchWriteSpansRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -616,9 +616,16 @@ export namespace cloudtrace_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * @param {string} params.name The resource name of the span in the
+     *     following format:
+     *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique
+     *     identifier for a trace within a project; it is a 32-character
+     *     hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique
+     *     identifier for a span within a trace; it is a 16-character
+     *     hexadecimal encoding of an 8-byte array.
      * @param {().Span} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

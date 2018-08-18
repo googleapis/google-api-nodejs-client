@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -211,7 +210,8 @@ export namespace urlshortener_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.projection Additional information to return.
      * @param {string} params.shortUrl The short URL, including the protocol.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -272,7 +272,8 @@ export namespace urlshortener_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Url} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -336,8 +337,10 @@ export namespace urlshortener_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.projection Additional information to return.
-     * @param {string=} params.start-token Token for requesting successive pages of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.start-token Token for requesting successive pages
+     *     of results.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

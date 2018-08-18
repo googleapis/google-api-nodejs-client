@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1139,7 +1138,8 @@ export namespace testing_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().FileReference} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1256,7 +1256,8 @@ export namespace testing_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId Cloud project that owns the test.
      * @param {string} params.testMatrixId Test matrix that will be canceled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1332,10 +1333,15 @@ export namespace testing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The GCE project under which this job will run.
-     * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended.  Optional, but strongly recommended.
+     * @param {string} params.projectId The GCE project under which this job
+     *     will run.
+     * @param {string=} params.requestId A string id used to detect duplicated
+     *     requests. Ids are automatically scoped to a project, so users should
+     *     ensure the ID is unique per-project. A UUID is recommended. Optional,
+     *     but strongly recommended.
      * @param {().TestMatrix} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1405,8 +1411,10 @@ export namespace testing_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Cloud project that owns the test matrix.
-     * @param {string} params.testMatrixId Unique test matrix id which was assigned by the service.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.testMatrixId Unique test matrix id which was
+     *     assigned by the service.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1539,9 +1547,12 @@ export namespace testing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.environmentType The type of environment that should be listed. Required
-     * @param {string=} params.projectId For authorization, the cloud project requesting the TestEnvironmentCatalog. Optional
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.environmentType The type of environment that
+     *     should be listed. Required
+     * @param {string=} params.projectId For authorization, the cloud project
+     *     requesting the TestEnvironmentCatalog. Optional
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -536,8 +535,11 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -603,8 +605,11 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -668,7 +673,8 @@ export namespace storage_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -735,7 +741,8 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -804,9 +811,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -873,9 +883,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1057,9 +1070,14 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1122,10 +1140,16 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1186,9 +1210,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the bucket resource specifies acl or
+     *     defaultObjectAcl properties, when it defaults to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1252,10 +1279,13 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of buckets to return.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
      * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1319,11 +1349,17 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1387,11 +1423,17 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1621,7 +1663,8 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1711,8 +1754,11 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1779,8 +1825,11 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1845,7 +1894,8 @@ export namespace storage_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1912,9 +1962,14 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
-     * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch If present, only return
+     *     default ACL listing if the bucket's current metageneration matches
+     *     this value.
+     * @param {string=} params.ifMetagenerationNotMatch If present, only return
+     *     default ACL listing if the bucket's current metageneration does not
+     *     match the given value.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1983,9 +2038,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2053,9 +2111,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2249,10 +2310,15 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2319,10 +2385,15 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2386,10 +2457,13 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2456,9 +2530,12 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2527,11 +2604,16 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2599,11 +2681,16 @@ export namespace storage_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2840,12 +2927,17 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
+     * @param {string} params.destinationBucket Name of the bucket in which to
+     *     store the new object.
      * @param {string} params.destinationObject Name of the new object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
      * @param {().ComposeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2911,22 +3003,48 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's generation does not match the given value.
-     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
-     * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
+     * @param {string} params.destinationBucket Name of the bucket in which to
+     *     store the new object. Overrides the provided object metadata's bucket
+     *     value, if any.
+     * @param {string} params.destinationObject Name of the new object. Required
+     *     when the object metadata is not otherwise provided. Overrides the
+     *     object metadata's name value, if any.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the destination object's current generation matches the
+     *     given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the destination object's current generation
+     *     does not match the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.ifSourceGenerationMatch Makes the operation
+     *     conditional on whether the source object's generation matches the
+     *     given value.
+     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation
+     *     conditional on whether the source object's generation does not match
+     *     the given value.
+     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation
+     *     conditional on whether the source object's current metageneration
+     *     matches the given value.
+     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the
+     *     operation conditional on whether the source object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the object resource specifies the acl property, when
+     *     it defaults to full.
+     * @param {string} params.sourceBucket Name of the bucket in which to find
+     *     the source object.
+     * @param {string=} params.sourceGeneration If present, selects a specific
+     *     revision of the source object (as opposed to the latest version, the
+     *     default).
      * @param {string} params.sourceObject Name of the source object.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2999,14 +3117,25 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, permanently deletes a
+     *     specific revision of this object (as opposed to the latest version,
+     *     the default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3068,15 +3197,27 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's generation matches the given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's generation does not match the
+     *     given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3136,18 +3277,32 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param {string} params.bucket Name of the bucket in which to store the
+     *     new object. Overrides the provided object metadata's bucket value, if
+     *     any.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string=} params.name Name of the object. Required when the object
+     *     metadata is not otherwise provided. Overrides the object metadata's
+     *     name value, if any.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the object resource specifies the acl property, when
+     *     it defaults to full.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3212,14 +3367,26 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {boolean=} params.versions If true, lists all versions of a file as distinct results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which to look for
+     *     objects.
+     * @param {string=} params.delimiter Returns results in a directory-like
+     *     mode. items will contain only objects whose names, aside from the
+     *     prefix, do not contain delimiter. Objects whose names, aside from the
+     *     prefix, contain delimiter will have their name, truncated after the
+     *     delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {integer=} params.maxResults Maximum number of items plus prefixes
+     *     to return. As duplicate prefixes are omitted, fewer total results may
+     *     be returned than requested.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names
+     *     begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {boolean=} params.versions If true, lists all versions of a file
+     *     as distinct results.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3283,16 +3450,28 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3355,16 +3534,28 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3427,15 +3618,27 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {boolean=} params.versions If true, lists all versions of a file as distinct results.
+     * @param {string} params.bucket Name of the bucket in which to look for
+     *     objects.
+     * @param {string=} params.delimiter Returns results in a directory-like
+     *     mode. items will contain only objects whose names, aside from the
+     *     prefix, do not contain delimiter. Objects whose names, aside from the
+     *     prefix, contain delimiter will have their name, truncated after the
+     *     delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {integer=} params.maxResults Maximum number of items plus prefixes
+     *     to return. As duplicate prefixes are omitted, fewer total results may
+     *     be returned than requested.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names
+     *     begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {boolean=} params.versions If true, lists all versions of a file
+     *     as distinct results.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -617,8 +616,8 @@ export namespace clouddebugger_v2 {
    * Captured variable         name: &quot;x&quot;,         type: &quot;T&quot;,
    * members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot;
    * },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type:
-   * &quot;int&quot; }     }  3) A pointer where the pointee was captured: T x =
-   * { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name:
+   * &quot;int&quot; }     }  3) A pointer where the pointee was captured: T x
+   * = { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name:
    * &quot;p&quot;,         type: &quot;T*&quot;,         value:
    * &quot;0x00500500&quot;,         members { name: &quot;m1&quot;, value:
    * &quot;3&quot;, type: &quot;int&quot; },         members { name:
@@ -799,7 +798,8 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().RegisterDebuggeeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -954,9 +954,19 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.debuggeeId Identifies the debuggee.
-     * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
-     * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.successOnTimeout If set to `true` (recommended),
+     *     returns `google.rpc.Code.OK` status and sets the `wait_expired`
+     *     response field to `true` when the server-selected timeout has
+     *     expired.  If set to `false` (deprecated), returns
+     *     `google.rpc.Code.ABORTED` status when the server-selected timeout has
+     *     expired.
+     * @param {string=} params.waitToken A token that, if specified, blocks the
+     *     method call until the list of active breakpoints has changed, or a
+     *     server-selected timeout has expired. The value should be set from the
+     *     `next_wait_token` field in the last response. The initial value
+     *     should be set to `"init"`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1099,9 +1109,12 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.debuggeeId Identifies the debuggee being debugged.
-     * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
-     * @param {().UpdateActiveBreakpointRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.id Breakpoint identifier, unique in the scope of
+     *     the debuggee.
+     * @param {().UpdateActiveBreakpointRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1277,8 +1290,8 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.list(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.list(request, function(err,
+     * response) { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1304,10 +1317,15 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
-     * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.clientVersion The client version making the call.
+     *     Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {boolean=} params.includeInactive When set to `true`, the result
+     *     includes all debuggees. Otherwise, the result includes only debuggees
+     *     that are active.
+     * @param {string=} params.project Project number of a Google Cloud project
+     *     whose debuggees to list.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1461,9 +1479,12 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.breakpointId ID of the breakpoint to delete.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.clientVersion The client version making the call.
+     *     Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to
+     *     delete.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1587,9 +1608,12 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.breakpointId ID of the breakpoint to get.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.clientVersion The client version making the call.
+     *     Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to
+     *     get.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1706,14 +1730,28 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
-     * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
-     * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
-     * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
-     * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.action.value Only breakpoints with the specified
+     *     action will pass the filter.
+     * @param {string=} params.clientVersion The client version making the call.
+     *     Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to
+     *     list.
+     * @param {boolean=} params.includeAllUsers When set to `true`, the response
+     *     includes the list of breakpoints set by any user. Otherwise, it
+     *     includes only breakpoints set by the caller.
+     * @param {boolean=} params.includeInactive When set to `true`, the response
+     *     includes active and inactive breakpoints. Otherwise, it includes only
+     *     active breakpoints.
+     * @param {boolean=} params.stripResults This field is deprecated. The
+     *     following fields are always stripped out of the result:
+     *     `stack_frames`, `evaluated_expressions` and `variable_table`.
+     * @param {string=} params.waitToken A wait token that, if specified, blocks
+     *     the call until the breakpoints list has changed, or a server selected
+     *     timeout has expired.  The value should be set from the last response.
+     *     The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait
+     *     timeout, which should be called again with the same `wait_token`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1836,10 +1874,13 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
+     * @param {string=} params.clientVersion The client version making the call.
+     *     Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId ID of the debuggee where the breakpoint
+     *     is to be set.
      * @param {().Breakpoint} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

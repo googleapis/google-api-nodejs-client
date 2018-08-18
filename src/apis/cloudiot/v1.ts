@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -70,6 +69,13 @@ export namespace cloudiot_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
@@ -350,6 +356,35 @@ export namespace cloudiot_v1 {
      * telemetry events; subfolders are not supported for state changes.
      */
     subfolderMatches?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -684,10 +719,12 @@ export namespace cloudiot_v1 {
   export class Resource$Projects$Locations$Registries {
     root: Cloudiot;
     devices: Resource$Projects$Locations$Registries$Devices;
+    groups: Resource$Projects$Locations$Registries$Groups;
     constructor(root: Cloudiot) {
       this.root = root;
       this.getRoot.bind(this);
       this.devices = new Resource$Projects$Locations$Registries$Devices(root);
+      this.groups = new Resource$Projects$Locations$Registries$Groups(root);
     }
 
     getRoot() {
@@ -702,9 +739,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project and cloud region where this device registry must be created. For example, `projects/example-project/locations/us-central1`.
+     * @param {string} params.parent The project and cloud region where this
+     *     device registry must be created. For example,
+     *     `projects/example-project/locations/us-central1`.
      * @param {().DeviceRegistry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -770,8 +810,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device registry. For example,
+     *     `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -835,8 +877,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device registry. For example,
+     *     `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -898,9 +942,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -967,10 +1014,19 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of registries to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
-     * @param {string=} params.pageToken The value returned by the last `ListDeviceRegistriesResponse`; indicates that this is a continuation of a prior `ListDeviceRegistries` call, and that the system should return the next page of data.
-     * @param {string} params.parent The project and cloud region path. For example, `projects/example-project/locations/us-central1`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of registries to
+     *     return in the response. If this value is zero, the service will
+     *     select a default size. A call may return fewer objects than
+     *     requested, but if there is a non-empty `page_token`, it indicates
+     *     that more entries are available.
+     * @param {string=} params.pageToken The value returned by the last
+     *     `ListDeviceRegistriesResponse`; indicates that this is a continuation
+     *     of a prior `ListDeviceRegistries` call, and that the system should
+     *     return the next page of data.
+     * @param {string} params.parent The project and cloud region path. For
+     *     example, `projects/example-project/locations/us-central1`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1043,10 +1099,16 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {string=} params.updateMask Only updates the `device_registry` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `event_notification_config`, `http_config`, `mqtt_config`, and `state_notification_config`.
+     * @param {string} params.name The resource path name. For example,
+     *     `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {string=} params.updateMask Only updates the `device_registry`
+     *     fields indicated by this mask. The field mask must not be empty, and
+     *     it must not contain fields that are immutable or only set by the
+     *     server. Mutable top-level fields: `event_notification_config`,
+     *     `http_config`, `mqtt_config`, and `state_notification_config`.
      * @param {().DeviceRegistry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1112,9 +1174,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1183,9 +1248,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1426,9 +1494,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {string} params.parent The name of the device registry where this
+     *     device should be created. For example,
+     *     `projects/example-project/locations/us-central1/registries/my-registry`.
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1495,8 +1566,12 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1562,9 +1637,15 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
-     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to
+     *     be returned in the response. If the field mask is unset or empty, all
+     *     fields are returned.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1626,13 +1707,29 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
-     * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
-     * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.deviceIds A list of device string identifiers. If
+     *     empty, it will ignore this field. For example, `['device0',
+     *     'device12']`. This field cannot hold more than 10,000 entries.
+     * @param {string=} params.deviceNumIds A list of device numerical ids. If
+     *     empty, it will ignore this field. This field cannot hold more than
+     *     10,000 entries.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to
+     *     be returned in the response. The fields `id`, and `num_id` are always
+     *     returned by default, along with any other fields specified.
+     * @param {integer=} params.pageSize The maximum number of devices to return
+     *     in the response. If this value is zero, the service will select a
+     *     default size. A call may return fewer objects than requested, but if
+     *     there is a non-empty `page_token`, it indicates that more entries are
+     *     available.
+     * @param {string=} params.pageToken The value returned by the last
+     *     `ListDevicesResponse`; indicates that this is a continuation of a
+     *     prior `ListDevices` call, and that the system should return the next
+     *     page of data.
+     * @param {string} params.parent The device registry path. Required. For
+     *     example,
+     *     `projects/my-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1703,9 +1800,14 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1777,10 +1879,19 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
-     * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * @param {string} params.name The resource path name. For example,
+     *     `projects/p1/locations/us-central1/registries/registry0/devices/dev0`
+     *     or
+     *     `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     When `name` is populated as a response from the service, it always
+     *     ends in the device numeric ID.
+     * @param {string=} params.updateMask Only updates the `device` fields
+     *     indicated by this mask. The field mask must not be empty, and it must
+     *     not contain fields that are immutable or only set by the server.
+     *     Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1999,9 +2110,16 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numVersions The number of versions to list.
+     *     Versions are listed in decreasing order of the version number. The
+     *     maximum number of versions retained is 10. If this value is zero, it
+     *     will return all the versions available.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2118,9 +2236,16 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numStates The number of states to list. States
+     *     are listed in descending order of update time. The maximum number of
+     *     states retained is 10. If this value is zero, it will return all the
+     *     states available.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2186,6 +2311,1013 @@ export namespace cloudiot_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Registries$Devices$States$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of states to list. States are listed in descending order of
+     * update time. The maximum number of states retained is 10. If this value
+     * is zero, it will return all the states available.
+     */
+    numStates?: number;
+  }
+
+
+
+  export class Resource$Projects$Locations$Registries$Groups {
+    root: Cloudiot;
+    devices: Resource$Projects$Locations$Registries$Groups$Devices;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.devices =
+          new Resource$Projects$Locations$Registries$Groups$Devices(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias cloudiot.projects.locations.registries.groups.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias cloudiot.projects.locations.registries.groups.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.
+     * @alias cloudiot.projects.locations.registries.groups.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Registries$Groups$Devices {
+    root: Cloudiot;
+    configVersions:
+        Resource$Projects$Locations$Registries$Groups$Devices$Configversions;
+    states: Resource$Projects$Locations$Registries$Groups$Devices$States;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.configVersions =
+          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions(
+              root);
+      this.states =
+          new Resource$Projects$Locations$Registries$Groups$Devices$States(
+              root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.get
+     * @desc Gets details about a device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fieldMask The fields of the `Device` resource to
+     *     be returned in the response. If the field mask is unset or empty, all
+     *     fields are returned.
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
+    get(params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(callback: BodyResponseCallback<Schema$Device>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback?: BodyResponseCallback<Schema$Device>):
+        void|AxiosPromise<Schema$Device> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Device>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Device>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.list
+     * @desc List devices in a device registry.
+     * @alias cloudiot.projects.locations.registries.groups.devices.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.deviceIds A list of device string identifiers. If
+     *     empty, it will ignore this field. For example, `['device0',
+     *     'device12']`. This field cannot hold more than 10,000 entries.
+     * @param {string=} params.deviceNumIds A list of device numerical ids. If
+     *     empty, it will ignore this field. This field cannot hold more than
+     *     10,000 entries.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to
+     *     be returned in the response. The fields `id`, and `num_id` are always
+     *     returned by default, along with any other fields specified.
+     * @param {integer=} params.pageSize The maximum number of devices to return
+     *     in the response. If this value is zero, the service will select a
+     *     default size. A call may return fewer objects than requested, but if
+     *     there is a non-empty `page_token`, it indicates that more entries are
+     *     available.
+     * @param {string=} params.pageToken The value returned by the last
+     *     `ListDevicesResponse`; indicates that this is a continuation of a
+     *     prior `ListDevices` call, and that the system should return the next
+     *     page of data.
+     * @param {string} params.parent The device registry path. Required. For
+     *     example,
+     *     `projects/my-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$List|
+        BodyResponseCallback<Schema$ListDevicesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDevicesResponse>,
+        callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
+        void|AxiosPromise<Schema$ListDevicesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/devices')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDevicesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
+     * @desc Modifies the configuration for the device, which is eventually sent
+     * from the Cloud IoT Core servers. Returns the modified configuration
+     * version and its metadata.
+     * @alias
+     * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    modifyCloudToDeviceConfig(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        options?: MethodOptions): AxiosPromise<Schema$DeviceConfig>;
+    modifyCloudToDeviceConfig(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceConfig>,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig|
+        BodyResponseCallback<Schema$DeviceConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceConfig>,
+        callback?: BodyResponseCallback<Schema$DeviceConfig>):
+        void|AxiosPromise<Schema$DeviceConfig> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:modifyCloudToDeviceConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$DeviceConfig>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.patch
+     * @desc Updates a device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource path name. For example,
+     *     `projects/p1/locations/us-central1/registries/registry0/devices/dev0`
+     *     or
+     *     `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     When `name` is populated as a response from the service, it always
+     *     ends in the device numeric ID.
+     * @param {string=} params.updateMask Only updates the `device` fields
+     *     indicated by this mask. The field mask must not be empty, and it must
+     *     not contain fields that are immutable or only set by the server.
+     *     Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * @param {().Device} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
+    patch(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback?: BodyResponseCallback<Schema$Device>):
+        void|AxiosPromise<Schema$Device> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Device>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Device>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fields of the `Device` resource to be returned in the response. If
+     * the field mask is unset or empty, all fields are returned.
+     */
+    fieldMask?: string;
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A list of device string identifiers. If empty, it will ignore this field.
+     * For example, `['device0', 'device12']`. This field cannot hold more than
+     * 10,000 entries.
+     */
+    deviceIds?: string;
+    /**
+     * A list of device numerical ids. If empty, it will ignore this field. This
+     * field cannot hold more than 10,000 entries.
+     */
+    deviceNumIds?: string;
+    /**
+     * The fields of the `Device` resource to be returned in the response. The
+     * fields `id`, and `num_id` are always returned by default, along with any
+     * other fields specified.
+     */
+    fieldMask?: string;
+    /**
+     * The maximum number of devices to return in the response. If this value is
+     * zero, the service will select a default size. A call may return fewer
+     * objects than requested, but if there is a non-empty `page_token`, it
+     * indicates that more entries are available.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListDevicesResponse`; indicates that this
+     * is a continuation of a prior `ListDevices` call, and that the system
+     * should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The device registry path. Required. For example,
+     * `projects/my-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyCloudToDeviceConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource path name. For example,
+     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * When `name` is populated as a response from the service, it always ends
+     * in the device numeric ID.
+     */
+    name?: string;
+    /**
+     * Only updates the `device` fields indicated by this mask. The field mask
+     * must not be empty, and it must not contain fields that are immutable or
+     * only set by the server. Mutable top-level fields: `credentials`,
+     * `blocked`, and `metadata`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Device;
+  }
+
+  export class
+      Resource$Projects$Locations$Registries$Groups$Devices$Configversions {
+    root: Cloudiot;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.configVersions.list
+     * @desc Lists the last few versions of the device configuration in
+     * descending order (i.e.: newest first).
+     * @alias
+     * cloudiot.projects.locations.registries.groups.devices.configVersions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numVersions The number of versions to list.
+     *     Versions are listed in decreasing order of the version number. The
+     *     maximum number of versions retained is 10. If this value is zero, it
+     *     will return all the versions available.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        callback:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        callback:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void|AxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/configVersions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of versions to list. Versions are listed in decreasing order
+     * of the version number. The maximum number of versions retained is 10. If
+     * this value is zero, it will return all the versions available.
+     */
+    numVersions?: number;
+  }
+
+
+  export class Resource$Projects$Locations$Registries$Groups$Devices$States {
+    root: Cloudiot;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.states.list
+     * @desc Lists the last few versions of the device state in descending order
+     * (i.e.: newest first).
+     * @alias cloudiot.projects.locations.registries.groups.devices.states.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example,
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     *     or
+     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numStates The number of states to list. States
+     *     are listed in descending order of update time. The maximum number of
+     *     states retained is 10. If this value is zero, it will return all the
+     *     states available.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDeviceStatesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>):
+        void|AxiosPromise<Schema$ListDeviceStatesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/states')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDeviceStatesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List {
     /**
      * Auth client or API Key for the request
      */

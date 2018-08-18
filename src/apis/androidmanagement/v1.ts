@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1149,7 +1148,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$PermissionGrant {
     /**
-     * The android permission or group, e.g. android.permission.READ_CALENDAR or
+     * The Android permission or group, e.g. android.permission.READ_CALENDAR or
      * android.permission_group.CALENDAR.
      */
     permission?: string;
@@ -1847,11 +1846,15 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.enterpriseToken The enterprise token appended to the callback URL.
-     * @param {string=} params.projectId The ID of the Google Cloud Platform project which will own the enterprise.
-     * @param {string=} params.signupUrlName The name of the SignupUrl used to sign up for the enterprise.
+     * @param {string=} params.enterpriseToken The enterprise token appended to
+     *     the callback URL.
+     * @param {string=} params.projectId The ID of the Google Cloud Platform
+     *     project which will own the enterprise.
+     * @param {string=} params.signupUrlName The name of the SignupUrl used to
+     *     sign up for the enterprise.
      * @param {().Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1917,8 +1920,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1979,10 +1984,13 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     * @param {string} params.name The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
+     * @param {string=} params.updateMask The field mask indicating the fields
+     *     to update. If not set, all modifiable fields will be modified.
      * @param {().Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2117,9 +2125,13 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
-     * @param {string} params.name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.languageCode The preferred language for localized
+     *     application info, as a BCP47 tag (e.g. "en-US", "de"). If not
+     *     specified the default language of the application will be used.
+     * @param {string} params.name The name of the application in the form
+     *     enterprises/{enterpriseId}/applications/{package_name}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2215,9 +2227,12 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-     * @param {string=} params.wipeDataFlags Optional flags that control the device wiping behavior.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device in the form
+     *     enterprises/{enterpriseId}/devices/{deviceId}.
+     * @param {string=} params.wipeDataFlags Optional flags that control the
+     *     device wiping behavior.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2282,8 +2297,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device in the form
+     *     enterprises/{enterpriseId}/devices/{deviceId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2346,9 +2363,11 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+     * @param {string} params.name The name of the device in the form
+     *     enterprises/{enterpriseId}/devices/{deviceId}.
      * @param {().Command} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2415,10 +2434,14 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-     * @param {string=} params.pageToken A token identifying a page of results returned by the server.
-     * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The requested page size. The actual
+     *     page size may be fixed to a min or max value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     returned by the server.
+     * @param {string} params.parent The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2485,10 +2508,13 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-     * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     * @param {string} params.name The name of the device in the form
+     *     enterprises/{enterpriseId}/devices/{deviceId}.
+     * @param {string=} params.updateMask The field mask indicating the fields
+     *     to update. If not set, all modifiable fields will be modified.
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2661,8 +2687,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2732,8 +2760,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2802,7 +2832,8 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2876,7 +2907,8 @@ export namespace androidmanagement_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3014,9 +3046,11 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+     * @param {string} params.parent The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
      * @param {().EnrollmentToken} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3084,8 +3118,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the enrollment token in the form
+     *     enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3193,8 +3229,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the policy in the form
+     *     enterprises/{enterpriseId}/policies/{policyId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3259,8 +3297,10 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the policy in the form
+     *     enterprises/{enterpriseId}/policies/{policyId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3321,10 +3361,14 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-     * @param {string=} params.pageToken A token identifying a page of results returned by the server.
-     * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The requested page size. The actual
+     *     page size may be fixed to a min or max value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     returned by the server.
+     * @param {string} params.parent The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3392,10 +3436,13 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-     * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+     * @param {string} params.name The name of the policy in the form
+     *     enterprises/{enterpriseId}/policies/{policyId}.
+     * @param {string=} params.updateMask The field mask indicating the fields
+     *     to update. If not set, all modifiable fields will be modified.
      * @param {().Policy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3541,9 +3588,11 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+     * @param {string} params.parent The name of the enterprise in the form
+     *     enterprises/{enterpriseId}.
      * @param {().WebToken} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3640,9 +3689,17 @@ export namespace androidmanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.callbackUrl The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
-     * @param {string=} params.projectId The ID of the Google Cloud Platform project which will own the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.callbackUrl The callback URL that the admin will
+     *     be redirected to after successfully creating an enterprise. Before
+     *     redirecting there the system will add a query parameter to this URL
+     *     named enterpriseToken which will contain an opaque token to be used
+     *     for the create enterprise request. The URL will be parsed then
+     *     reformatted in order to add the enterpriseToken parameter, so there
+     *     may be some minor formatting changes.
+     * @param {string=} params.projectId The ID of the Google Cloud Platform
+     *     project which will own the enterprise.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

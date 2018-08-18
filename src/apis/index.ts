@@ -13,6 +13,8 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
+import {getAPI, ServiceOptions} from 'googleapis-common';
+
 import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
 import * as adexchangebuyer from './adexchangebuyer';
@@ -33,6 +35,7 @@ import * as appsactivity from './appsactivity';
 import * as appstate from './appstate';
 import * as bigquery from './bigquery';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
+import * as binaryauthorization from './binaryauthorization';
 import * as blogger from './blogger';
 import * as books from './books';
 import * as calendar from './calendar';
@@ -125,7 +128,6 @@ import * as siteVerification from './siteVerification';
 import * as slides from './slides';
 import * as sourcerepo from './sourcerepo';
 import * as spanner from './spanner';
-import * as spectrum from './spectrum';
 import * as speech from './speech';
 import * as sqladmin from './sqladmin';
 import * as storage from './storage';
@@ -176,6 +178,7 @@ export const APIS: APIList = {
   appstate: appstate.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
+  binaryauthorization: binaryauthorization.VERSIONS,
   blogger: blogger.VERSIONS,
   books: books.VERSIONS,
   calendar: calendar.VERSIONS,
@@ -268,7 +271,6 @@ export const APIS: APIList = {
   slides: slides.VERSIONS,
   sourcerepo: sourcerepo.VERSIONS,
   spanner: spanner.VERSIONS,
-  spectrum: spectrum.VERSIONS,
   speech: speech.VERSIONS,
   sqladmin: sqladmin.VERSIONS,
   storage: storage.VERSIONS,
@@ -316,6 +318,7 @@ export class GeneratedAPIs {
   appstate = appstate.appstate;
   bigquery = bigquery.bigquery;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
+  binaryauthorization = binaryauthorization.binaryauthorization;
   blogger = blogger.blogger;
   books = books.books;
   calendar = calendar.calendar;
@@ -409,7 +412,6 @@ export class GeneratedAPIs {
   slides = slides.slides;
   sourcerepo = sourcerepo.sourcerepo;
   spanner = spanner.spanner;
-  spectrum = spectrum.spectrum;
   speech = speech.speech;
   sqladmin = sqladmin.sqladmin;
   storage = storage.storage;
@@ -454,6 +456,7 @@ export class GeneratedAPIs {
     this.appstate = this.appstate.bind(this);
     this.bigquery = this.bigquery.bind(this);
     this.bigquerydatatransfer = this.bigquerydatatransfer.bind(this);
+    this.binaryauthorization = this.binaryauthorization.bind(this);
     this.blogger = this.blogger.bind(this);
     this.books = this.books.bind(this);
     this.calendar = this.calendar.bind(this);
@@ -546,7 +549,6 @@ export class GeneratedAPIs {
     this.slides = this.slides.bind(this);
     this.sourcerepo = this.sourcerepo.bind(this);
     this.spanner = this.spanner.bind(this);
-    this.spectrum = this.spectrum.bind(this);
     this.speech = this.speech.bind(this);
     this.sqladmin = this.sqladmin.bind(this);
     this.storage = this.storage.bind(this);

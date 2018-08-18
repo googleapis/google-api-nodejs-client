@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -481,6 +480,15 @@ export namespace classroom_v1 {
     workType?: string;
   }
   /**
+   * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+   */
+  export interface Schema$CourseWorkChangesInfo {
+    /**
+     * The `course_id` of the course to subscribe to work changes for.
+     */
+    courseId?: string;
+  }
+  /**
    * Represents a whole calendar date, e.g. date of birth. The time of day and
    * time zone are either specified elsewhere or are not significant. The date
    * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
@@ -562,6 +570,11 @@ export namespace classroom_v1 {
      * This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
      */
     courseRosterChangesInfo?: Schema$CourseRosterChangesInfo;
+    /**
+     * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+     * This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`.
+     */
+    courseWorkChangesInfo?: Schema$CourseWorkChangesInfo;
     /**
      * The type of feed.
      */
@@ -1325,7 +1338,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Course} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1390,8 +1404,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.id Identifier of the course to delete. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1456,8 +1473,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.id Identifier of the course to return. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1521,12 +1541,28 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.courseStates Restricts returned courses to those in one of the specified states The default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string=} params.studentId Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {string=} params.teacherId Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.courseStates Restricts returned courses to those
+     *     in one of the specified states The default value is ACTIVE, ARCHIVED,
+     *     PROVISIONED, DECLINED.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {string=} params.studentId Restricts returned courses to those
+     *     having a student with the specified identifier. The identifier can be
+     *     one of the following:  * the numeric identifier for the user * the
+     *     email address of the user * the string literal `"me"`, indicating the
+     *     requesting user
+     * @param {string=} params.teacherId Restricts returned courses to those
+     *     having a teacher with the specified identifier. The identifier can be
+     *     one of the following:  * the numeric identifier for the user * the
+     *     email address of the user * the string literal `"me"`, indicating the
+     *     requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1595,10 +1631,21 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId`  Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete.  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
+     * @param {string} params.id Identifier of the course to update. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
+     * @param {string=} params.updateMask Mask that identifies which fields on
+     *     the course to update. This field is required to do an update. The
+     *     update will fail if invalid fields are specified. The following
+     *     fields are valid:  * `name` * `section` * `descriptionHeading` *
+     *     `description` * `room` * `courseState` * `ownerId`  Note: patches to
+     *     ownerId are treated as being effective immediately, but in practice
+     *     it may take some time for the ownership transfer of all affected
+     *     resources to complete.  When set in a query parameter, this field
+     *     should be specified as  `updateMask=<field1>,<field2>,...`
      * @param {().Course} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1664,9 +1711,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the course to update. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
      * @param {().Course} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1866,9 +1916,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course to alias. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
      * @param {().CourseAlias} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1939,9 +1992,13 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.alias Alias to delete. This may not be the Classroom-assigned identifier.
-     * @param {string} params.courseId Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.alias Alias to delete. This may not be the
+     *     Classroom-assigned identifier.
+     * @param {string} params.courseId Identifier of the course whose alias
+     *     should be deleted. This identifier can be either the
+     *     Classroom-assigned identifier or an alias.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2009,10 +2066,18 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId The identifier of the course. This
+     *     identifier can be either the Classroom-assigned identifier or an
+     *     alias.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2158,9 +2223,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {().Announcement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2234,9 +2301,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.id Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the announcement to delete. This
+     *     identifier is a Classroom-assigned identifier.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2305,9 +2375,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the announcement.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2375,12 +2447,25 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.announcementStates Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.announcementStates Restriction on the `state` of
+     *     announcements returned. If this argument is left unspecified, the
+     *     default value is `PUBLISHED`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string=} params.orderBy Optional sort ordering for results. A
+     *     comma-separated list of fields with an optional sort direction
+     *     keyword. Supported field is `updateTime`. Supported direction
+     *     keywords are `asc` and `desc`. If not specified, `updateTime desc` is
+     *     the default behavior. Examples: `updateTime asc`, `updateTime`
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2456,10 +2541,13 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the announcement.
-     * @param {().ModifyAnnouncementAssigneesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().ModifyAnnouncementAssigneesRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2533,11 +2621,21 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the announcement.
-     * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
+     * @param {string=} params.updateMask Mask that identifies which fields on
+     *     the announcement to update. This field is required to do an update.
+     *     The update fails if invalid fields are specified. If a field supports
+     *     empty values, it can be cleared by specifying it in the update mask
+     *     and not in the Announcement object. If a field that does not support
+     *     empty values is included in the update mask and not set in the
+     *     Announcement object, an `INVALID_ARGUMENT` error will be returned.
+     *     The following fields may be specified by teachers:  * `text` *
+     *     `state` * `scheduled_time`
      * @param {().Announcement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2771,9 +2869,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {().CourseWork} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2847,9 +2947,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.id Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.id Identifier of the course work to delete. This
+     *     identifier is a Classroom-assigned identifier.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2918,9 +3021,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the course work.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2988,12 +3093,26 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string=} params.courseWorkStates Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
-     * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string=} params.courseWorkStates Restriction on the work status
+     *     to return. Only courseWork that matches is returned. If unspecified,
+     *     items with a work status of `PUBLISHED` is returned.
+     * @param {string=} params.orderBy Optional sort ordering for results. A
+     *     comma-separated list of fields with an optional sort direction
+     *     keyword. Supported fields are `updateTime` and `dueDate`. Supported
+     *     direction keywords are `asc` and `desc`. If not specified,
+     *     `updateTime desc` is the default behavior. Examples: `dueDate
+     *     asc,updateTime desc`, `updateTime,dueDate desc`
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3066,10 +3185,13 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the coursework.
-     * @param {().ModifyCourseWorkAssigneesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().ModifyCourseWorkAssigneesRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3148,11 +3270,22 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the course work.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
+     * @param {string=} params.updateMask Mask that identifies which fields on
+     *     the course work to update. This field is required to do an update.
+     *     The update fails if invalid fields are specified. If a field supports
+     *     empty values, it can be cleared by specifying it in the update mask
+     *     and not in the CourseWork object. If a field that does not support
+     *     empty values is included in the update mask and not set in the
+     *     CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The
+     *     following fields may be specified by teachers:  * `title` *
+     *     `description` * `state` * `due_date` * `due_time` * `max_points` *
+     *     `scheduled_time` * `submission_modification_mode`
      * @param {().CourseWork} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3377,10 +3510,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3455,14 +3590,31 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.courseWorkId Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
-     * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string=} params.states Requested submission states. If specified, returned student submissions match one of the specified submission states.
-     * @param {string=} params.userId Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseWorkId Identifier of the student work to
+     *     request. This may be set to the string literal `"-"` to request
+     *     student work for all course work in the specified course.
+     * @param {string=} params.late Requested lateness value. If specified,
+     *     returned student submissions are restricted by the requested value.
+     *     If unspecified, submissions are returned regardless of `late` value.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {string=} params.states Requested submission states. If specified,
+     *     returned student submissions match one of the specified submission
+     *     states.
+     * @param {string=} params.userId Optional argument to restrict returned
+     *     student work to those owned by the student with the specified
+     *     identifier. The identifier can be one of the following:  * the
+     *     numeric identifier for the user * the email address of the user * the
+     *     string literal `"me"`, indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3550,11 +3702,13 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
      * @param {().ModifyAttachmentsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3639,12 +3793,18 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
-     * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers:  * `draft_grade` * `assigned_grade`
+     * @param {string=} params.updateMask Mask that identifies which fields on
+     *     the student submission to update. This field is required to do an
+     *     update. The update fails if invalid fields are specified.  The
+     *     following fields may be specified by teachers:  * `draft_grade` *
+     *     `assigned_grade`
      * @param {().StudentSubmission} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3727,11 +3887,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
-     * @param {().ReclaimStudentSubmissionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().ReclaimStudentSubmissionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3813,11 +3976,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
-     * @param {().ReturnStudentSubmissionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().ReturnStudentSubmissionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3897,11 +4063,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.courseWorkId Identifier of the course work.
      * @param {string} params.id Identifier of the student submission.
-     * @param {().TurnInStudentSubmissionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().TurnInStudentSubmissionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4193,10 +4362,16 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
+     * @param {string} params.courseId Identifier of the course to create the
+     *     student in. This identifier can be either the Classroom-assigned
+     *     identifier or an alias.
+     * @param {string=} params.enrollmentCode Enrollment code of the course to
+     *     create the student in. This code is required if userId corresponds to
+     *     the requesting user; it may be omitted if the requesting user has
+     *     administrative permissions to create students for any user.
      * @param {().Student} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4265,9 +4440,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.userId Identifier of the student to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.userId Identifier of the student to delete. The
+     *     identifier can be one of the following:  * the numeric identifier for
+     *     the user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4336,9 +4516,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.userId Identifier of the student to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.userId Identifier of the student to return. The
+     *     identifier can be one of the following:  * the numeric identifier for
+     *     the user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4402,10 +4587,17 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     means no maximum.  The server may return fewer than the specified
+     *     number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4577,9 +4769,11 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
      * @param {().Teacher} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4649,9 +4843,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.userId Identifier of the teacher to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.userId Identifier of the teacher to delete. The
+     *     identifier can be one of the following:  * the numeric identifier for
+     *     the user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4720,9 +4919,14 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {string} params.userId Identifier of the teacher to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {string} params.userId Identifier of the teacher to return. The
+     *     identifier can be one of the following:  * the numeric identifier for
+     *     the user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4786,10 +4990,17 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.courseId Identifier of the course. This identifier
+     *     can be either the Classroom-assigned identifier or an alias.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     means no maximum.  The server may return fewer than the specified
+     *     number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4956,7 +5167,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to accept.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5030,7 +5242,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Invitation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5099,7 +5312,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5168,7 +5382,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5233,11 +5448,21 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.courseId Restricts returned invitations to those for a course with the specified identifier.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string=} params.userId Restricts returned invitations to those for a specific user. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.courseId Restricts returned invitations to those
+     *     for a course with the specified identifier.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     means no maximum.  The server may return fewer than the specified
+     *     number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {string=} params.userId Restricts returned invitations to those
+     *     for a specific user. The identifier can be one of the following:  *
+     *     the numeric identifier for the user * the email address of the user *
+     *     the string literal `"me"`, indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5411,7 +5636,8 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Registration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5478,8 +5704,10 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.registrationId The `registration_id` of the `Registration` to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.registrationId The `registration_id` of the
+     *     `Registration` to be deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5589,8 +5817,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId Identifier of the profile to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId Identifier of the profile to return. The
+     *     identifier can be one of the following:  * the numeric identifier for
+     *     the user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5702,7 +5934,8 @@ export namespace classroom_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.studentId ID of the student (in standard format)
      * @param {().GuardianInvitation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5780,9 +6013,12 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.invitationId The `id` field of the `GuardianInvitation` being requested.
-     * @param {string} params.studentId The ID of the student whose guardian invitation is being requested.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.invitationId The `id` field of the
+     *     `GuardianInvitation` being requested.
+     * @param {string} params.studentId The ID of the student whose guardian
+     *     invitation is being requested.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5858,12 +6094,27 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.invitedEmailAddress If specified, only results with the specified `invited_email_address` will be returned.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string=} params.states If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
-     * @param {string} params.studentId The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for   all students that the requesting user is permitted to view guardian   invitations.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.invitedEmailAddress If specified, only results
+     *     with the specified `invited_email_address` will be returned.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {string=} params.states If specified, only results with the
+     *     specified `state` values will be returned. Otherwise, results with a
+     *     `state` of `PENDING` will be returned.
+     * @param {string} params.studentId The ID of the student whose guardian
+     *     invitations are to be returned. The identifier can be one of the
+     *     following:  * the numeric identifier for the user * the email address
+     *     of the user * the string literal `"me"`, indicating the requesting
+     *     user * the string literal `"-"`, indicating that results should be
+     *     returned for   all students that the requesting user is permitted to
+     *     view guardian   invitations.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5953,11 +6204,18 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.invitationId The `id` field of the `GuardianInvitation` to be modified.
-     * @param {string} params.studentId The ID of the student whose guardian invitation is to be modified.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
+     * @param {string} params.invitationId The `id` field of the
+     *     `GuardianInvitation` to be modified.
+     * @param {string} params.studentId The ID of the student whose guardian
+     *     invitation is to be modified.
+     * @param {string=} params.updateMask Mask that identifies which fields on
+     *     the course to update. This field is required to do an update. The
+     *     update will fail if invalid fields are specified. The following
+     *     fields are valid:  * `state`  When set in a query parameter, this
+     *     field should be specified as  `updateMask=<field1>,<field2>,...`
      * @param {().GuardianInvitation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6150,8 +6408,12 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.guardianId The `id` field from a `Guardian`.
-     * @param {string} params.studentId The student whose guardian is to be deleted. One of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.studentId The student whose guardian is to be
+     *     deleted. One of the following:  * the numeric identifier for the user
+     *     * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6228,8 +6490,12 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.guardianId The `id` field from a `Guardian`.
-     * @param {string} params.studentId The student whose guardian is being requested. One of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.studentId The student whose guardian is being
+     *     requested. One of the following:  * the numeric identifier for the
+     *     user * the email address of the user * the string literal `"me"`,
+     *     indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6306,11 +6572,24 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.invitedEmailAddress Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-     * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string} params.studentId Filter results by the student who the guardian is linked to. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for   all students that the requesting user has access to view.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.invitedEmailAddress Filter results by the email
+     *     address that the original invitation was sent to, resulting in this
+     *     guardian link. This filter can only be used by domain administrators.
+     * @param {integer=} params.pageSize Maximum number of items to return. Zero
+     *     or unspecified indicates that the server may assign a maximum.  The
+     *     server may return fewer than the specified number of results.
+     * @param {string=} params.pageToken nextPageToken value returned from a
+     *     previous list call, indicating that the subsequent page of results
+     *     should be returned.  The list request must be otherwise identical to
+     *     the one that resulted in this token.
+     * @param {string} params.studentId Filter results by the student who the
+     *     guardian is linked to. The identifier can be one of the following:  *
+     *     the numeric identifier for the user * the email address of the user *
+     *     the string literal `"me"`, indicating the requesting user * the
+     *     string literal `"-"`, indicating that results should be returned for
+     *     all students that the requesting user has access to view.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

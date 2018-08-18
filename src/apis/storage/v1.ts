@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -884,9 +883,13 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1010,9 +1013,13 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1132,9 +1139,11 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1254,8 +1263,10 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1387,10 +1398,14 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1521,10 +1536,14 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1786,10 +1805,14 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch If set, only deletes the bucket if its metageneration matches this value.
-     * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the bucket if its metageneration does not match this value.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch If set, only deletes the
+     *     bucket if its metageneration matches this value.
+     * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the
+     *     bucket if its metageneration does not match this value.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1905,11 +1928,18 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2023,8 +2053,10 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2146,13 +2178,19 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this bucket.
+     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set
+     *     of default object access controls to this bucket.
      * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the bucket resource specifies acl or
+     *     defaultObjectAcl properties, when it defaults to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2280,13 +2318,20 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to buckets whose names begin with this prefix.
+     * @param {integer=} params.maxResults Maximum number of buckets to return
+     *     in a single response. The service will use this parameter or 1,000
+     *     items, whichever is smaller.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to buckets whose names
+     *     begin with this prefix.
      * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2349,9 +2394,13 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.ifMetagenerationMatch Makes the operation conditional on whether bucket's current metageneration matches the given value.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether bucket's current metageneration matches the
+     *     given value.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2478,14 +2527,23 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this bucket.
+     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set
+     *     of default object access controls to this bucket.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2608,9 +2666,11 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Policy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2734,8 +2794,10 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2870,14 +2932,23 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.ifMetagenerationMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the
+     *     bucket metadata conditional on whether the bucket's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this bucket.
+     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set
+     *     of default object access controls to this bucket.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3292,7 +3363,8 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3437,9 +3509,13 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3562,9 +3638,13 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3683,9 +3763,11 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3803,10 +3885,16 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
-     * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.ifMetagenerationMatch If present, only return
+     *     default ACL listing if the bucket's current metageneration matches
+     *     this value.
+     * @param {string=} params.ifMetagenerationNotMatch If present, only return
+     *     default ACL listing if the bucket's current metageneration does not
+     *     match the given value.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3936,10 +4024,14 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4069,10 +4161,14 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4349,8 +4445,10 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification ID of the notification to delete.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4473,8 +4571,10 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification Notification ID
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4595,9 +4695,11 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Notification} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4717,8 +4819,10 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a Google Cloud Storage bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4936,11 +5040,19 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5069,11 +5181,19 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5198,11 +5318,17 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5327,10 +5453,16 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5467,12 +5599,20 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5608,12 +5748,20 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.entity The entity holding the permission. Can be
+     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
+     *     allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5949,15 +6097,30 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
-     * @param {string} params.destinationObject Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.destinationBucket Name of the bucket in which to
+     *     store the new object.
+     * @param {string} params.destinationObject Name of the new object. For
+     *     information about how to URL encode object names to be path safe, see
+     *     Encoding URI Path Parts.
+     * @param {string=} params.destinationPredefinedAcl Apply a predefined set
+     *     of access controls to the destination object.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of
+     *     the form
+     *     projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     *     that will be used to encrypt the object. Overrides the object
+     *     metadata's kms_key_name value, if any.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().ComposeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6099,24 +6262,58 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
-     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
-     * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.destinationBucket Name of the bucket in which to
+     *     store the new object. Overrides the provided object metadata's bucket
+     *     value, if any.For information about how to URL encode object names to
+     *     be path safe, see Encoding URI Path Parts.
+     * @param {string} params.destinationObject Name of the new object. Required
+     *     when the object metadata is not otherwise provided. Overrides the
+     *     object metadata's name value, if any.
+     * @param {string=} params.destinationPredefinedAcl Apply a predefined set
+     *     of access controls to the destination object.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the destination object's current generation matches the
+     *     given value. Setting to 0 makes the operation succeed only if there
+     *     are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the destination object's current generation
+     *     does not match the given value. If no live object exists, the
+     *     precondition fails. Setting to 0 makes the operation succeed only if
+     *     there is a live version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.ifSourceGenerationMatch Makes the operation
+     *     conditional on whether the source object's current generation matches
+     *     the given value.
+     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation
+     *     conditional on whether the source object's current generation does
+     *     not match the given value.
+     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation
+     *     conditional on whether the source object's current metageneration
+     *     matches the given value.
+     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the
+     *     operation conditional on whether the source object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the object resource specifies the acl property, when
+     *     it defaults to full.
+     * @param {string} params.sourceBucket Name of the bucket in which to find
+     *     the source object.
+     * @param {string=} params.sourceGeneration If present, selects a specific
+     *     revision of the source object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.sourceObject Name of the source object. For
+     *     information about how to URL encode object names to be path safe, see
+     *     Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6244,15 +6441,33 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, permanently deletes a
+     *     specific revision of this object (as opposed to the latest version,
+     *     the default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6376,16 +6591,35 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6503,11 +6737,18 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6638,22 +6879,52 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string=} params.contentEncoding If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any. Limited availability; usable only by enabled projects.
-     * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.bucket Name of the bucket in which to store the
+     *     new object. Overrides the provided object metadata's bucket value, if
+     *     any.
+     * @param {string=} params.contentEncoding If set, sets the contentEncoding
+     *     property of the final object to this value. Setting this parameter is
+     *     equivalent to setting the contentEncoding metadata property. This can
+     *     be useful when uploading an object with uploadType=media to indicate
+     *     the encoding of the content being uploaded.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of
+     *     the form
+     *     projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     *     that will be used to encrypt the object. Overrides the object
+     *     metadata's kms_key_name value, if any. Limited availability; usable
+     *     only by enabled projects.
+     * @param {string=} params.name Name of the object. Required when the object
+     *     metadata is not otherwise provided. Overrides the object metadata's
+     *     name value, if any. For information about how to URL encode object
+     *     names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this object.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the object resource specifies the acl property, when
+     *     it defaults to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6784,16 +7055,33 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which to look for
+     *     objects.
+     * @param {string=} params.delimiter Returns results in a directory-like
+     *     mode. items will contain only objects whose names, aside from the
+     *     prefix, do not contain delimiter. Objects whose names, aside from the
+     *     prefix, contain delimiter will have their name, truncated after the
+     *     delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {boolean=} params.includeTrailingDelimiter If true, objects that
+     *     end in exactly one instance of delimiter will have their metadata
+     *     included in items in addition to prefixes.
+     * @param {integer=} params.maxResults Maximum number of items plus prefixes
+     *     to return in a single page of responses. As duplicate prefixes are
+     *     omitted, fewer total results may be returned than requested. The
+     *     service will use this parameter or 1,000 items, whichever is smaller.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names
+     *     begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {boolean=} params.versions If true, lists all versions of an
+     *     object as distinct results. The default is false. For more
+     *     information, see Object Versioning.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6920,18 +7208,38 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this object.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request, for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7071,27 +7379,77 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
-     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param {string=} params.maxBytesRewrittenPerCall The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.rewriteToken Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
-     * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
-     * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.destinationBucket Name of the bucket in which to
+     *     store the new object. Overrides the provided object metadata's bucket
+     *     value, if any.
+     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud
+     *     KMS key, of the form
+     *     projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     *     that will be used to encrypt the object. Overrides the object
+     *     metadata's kms_key_name value, if any.
+     * @param {string} params.destinationObject Name of the new object. Required
+     *     when the object metadata is not otherwise provided. Overrides the
+     *     object metadata's name value, if any. For information about how to
+     *     URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.destinationPredefinedAcl Apply a predefined set
+     *     of access controls to the destination object.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration matches the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the destination object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.ifSourceGenerationMatch Makes the operation
+     *     conditional on whether the source object's current generation matches
+     *     the given value.
+     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation
+     *     conditional on whether the source object's current generation does
+     *     not match the given value.
+     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation
+     *     conditional on whether the source object's current metageneration
+     *     matches the given value.
+     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the
+     *     operation conditional on whether the source object's current
+     *     metageneration does not match the given value.
+     * @param {string=} params.maxBytesRewrittenPerCall The maximum number of
+     *     bytes that will be rewritten per rewrite request. Most callers
+     *     shouldn't need to specify this parameter - it is primarily in place
+     *     to support testing. If specified the value must be an integral
+     *     multiple of 1 MiB (1048576). Also, this only applies to requests
+     *     where the source and destination span locations and/or storage
+     *     classes. Finally, this value must not change across rewrite calls
+     *     else you'll get an error that the rewriteToken is invalid.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl, unless the object resource specifies the acl property, when
+     *     it defaults to full.
+     * @param {string=} params.rewriteToken Include this field (from the
+     *     previous rewrite response) on each rewrite request after the first
+     *     one, until the rewrite response 'done' flag is true. Calls that
+     *     provide a rewriteToken can omit all other request fields, but if
+     *     included those fields must match the values provided in the first
+     *     rewrite request.
+     * @param {string} params.sourceBucket Name of the bucket in which to find
+     *     the source object.
+     * @param {string=} params.sourceGeneration If present, selects a specific
+     *     revision of the source object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.sourceObject Name of the source object. For
+     *     information about how to URL encode object names to be path safe, see
+     *     Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7227,12 +7585,19 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Policy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7359,12 +7724,19 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
      * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7502,18 +7874,38 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string} params.bucket Name of the bucket in which the object
+     *     resides.
+     * @param {string=} params.generation If present, selects a specific
+     *     revision of this object (as opposed to the latest version, the
+     *     default).
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional
+     *     on whether the object's current generation matches the given value.
+     *     Setting to 0 makes the operation succeed only if there are no live
+     *     versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation
+     *     conditional on whether the object's current generation does not match
+     *     the given value. If no live object exists, the precondition fails.
+     *     Setting to 0 makes the operation succeed only if there is a live
+     *     version of the object.
+     * @param {string=} params.ifMetagenerationMatch Makes the operation
+     *     conditional on whether the object's current metageneration matches
+     *     the given value.
+     * @param {string=} params.ifMetagenerationNotMatch Makes the operation
+     *     conditional on whether the object's current metageneration does not
+     *     match the given value.
+     * @param {string} params.object Name of the object. For information about
+     *     how to URL encode object names to be path safe, see Encoding URI Path
+     *     Parts.
+     * @param {string=} params.predefinedAcl Apply a predefined set of access
+     *     controls to this object.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to full.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7633,17 +8025,34 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
+     * @param {string} params.bucket Name of the bucket in which to look for
+     *     objects.
+     * @param {string=} params.delimiter Returns results in a directory-like
+     *     mode. items will contain only objects whose names, aside from the
+     *     prefix, do not contain delimiter. Objects whose names, aside from the
+     *     prefix, contain delimiter will have their name, truncated after the
+     *     delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {boolean=} params.includeTrailingDelimiter If true, objects that
+     *     end in exactly one instance of delimiter will have their metadata
+     *     included in items in addition to prefixes.
+     * @param {integer=} params.maxResults Maximum number of items plus prefixes
+     *     to return in a single page of responses. As duplicate prefixes are
+     *     omitted, fewer total results may be returned than requested. The
+     *     service will use this parameter or 1,000 items, whichever is smaller.
+     * @param {string=} params.pageToken A previously-returned page token
+     *     representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names
+     *     begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults
+     *     to noAcl.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request. Required for Requester Pays buckets.
+     * @param {boolean=} params.versions If true, lists all versions of an
+     *     object as distinct results. The default is false. For more
+     *     information, see Object Versioning.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8570,8 +8979,10 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.userProject The project to be billed for this
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

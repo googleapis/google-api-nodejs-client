@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -555,6 +554,90 @@ export namespace servicecontrol_v1 {
     scale?: number;
   }
   /**
+   * A common proto for logging HTTP requests. Only contains semantics defined
+   * by the HTTP specification. Product-specific logging information MUST be
+   * defined in a separate message.  This is an exact copy of HttpRequest
+   * message defined in Stackdriver.
+   */
+  export interface Schema$HttpRequest {
+    /**
+     * The number of HTTP response bytes inserted into cache. Set only when a
+     * cache fill was attempted.
+     */
+    cacheFillBytes?: string;
+    /**
+     * Whether or not an entity was served from cache (with or without
+     * validation).
+     */
+    cacheHit?: boolean;
+    /**
+     * Whether or not a cache lookup was attempted.
+     */
+    cacheLookup?: boolean;
+    /**
+     * Whether or not the response was validated with the origin server before
+     * being served from cache. This field is only meaningful if `cache_hit` is
+     * True.
+     */
+    cacheValidatedWithOriginServer?: boolean;
+    /**
+     * The request processing latency on the server, from the time the request
+     * was received until the response was sent.
+     */
+    latency?: string;
+    /**
+     * Protocol used for the request. Examples: &quot;HTTP/1.1&quot;,
+     * &quot;HTTP/2&quot;, &quot;websocket&quot;
+     */
+    protocol?: string;
+    /**
+     * The referer URL of the request, as defined in [HTTP/1.1 Header Field
+     * Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     */
+    referer?: string;
+    /**
+     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request.
+     * Examples: `&quot;192.168.1.1&quot;`,
+     * `&quot;FE80::0202:B3FF:FE1E:8329&quot;`.
+     */
+    remoteIp?: string;
+    /**
+     * The request method. Examples: `&quot;GET&quot;`, `&quot;HEAD&quot;`,
+     * `&quot;PUT&quot;`, `&quot;POST&quot;`.
+     */
+    requestMethod?: string;
+    /**
+     * The size of the HTTP request message in bytes, including the request
+     * headers and the request body.
+     */
+    requestSize?: string;
+    /**
+     * The scheme (http, https), the host name, the path and the query portion
+     * of the URL that was requested. Example:
+     * `&quot;http://example.com/some/info?color=red&quot;`.
+     */
+    requestUrl?: string;
+    /**
+     * The size of the HTTP response message sent back to the client, in bytes,
+     * including the response headers and the response body.
+     */
+    responseSize?: string;
+    /**
+     * The IP address (IPv4 or IPv6) of the origin server that the request was
+     * sent to.
+     */
+    serverIp?: string;
+    /**
+     * The response code indicating the status of response. Examples: 200, 404.
+     */
+    status?: number;
+    /**
+     * The user agent sent by the client. Example: `&quot;Mozilla/4.0
+     * (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)&quot;`.
+     */
+    userAgent?: string;
+  }
+  /**
    * Describing buckets with constant width.
    */
   export interface Schema$LinearBuckets {
@@ -582,6 +665,11 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$LogEntry {
     /**
+     * Optional. Information about the HTTP request associated with this log
+     * entry, if applicable.
+     */
+    httpRequest?: Schema$HttpRequest;
+    /**
      * A unique ID for the log entry used for deduplication. If omitted, the
      * implementation will generate one based on operation_id.
      */
@@ -596,6 +684,11 @@ export namespace servicecontrol_v1 {
      * `&quot;syslog&quot;`, `&quot;book_log&quot;`.
      */
     name?: string;
+    /**
+     * Optional. Information about an operation associated with the log entry,
+     * if applicable.
+     */
+    operation?: Schema$LogEntryOperation;
     /**
      * The log entry payload, represented as a protocol buffer that is expressed
      * as a JSON object. The only accepted type currently is AuditLog.
@@ -620,6 +713,41 @@ export namespace servicecontrol_v1 {
      * defaults to operation start time.
      */
     timestamp?: string;
+    /**
+     * Optional. Resource name of the trace associated with the log entry, if
+     * any. If it contains a relative resource name, the name is assumed to be
+     * relative to `//tracing.googleapis.com`. Example:
+     * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
+     */
+    trace?: string;
+  }
+  /**
+   * Additional information about a potentially long-running operation with
+   * which a log entry is associated.
+   */
+  export interface Schema$LogEntryOperation {
+    /**
+     * Optional. Set this to True if this is the first log entry in the
+     * operation.
+     */
+    first?: boolean;
+    /**
+     * Optional. An arbitrary operation identifier. Log entries with the same
+     * identifier are assumed to be part of the same operation.
+     */
+    id?: string;
+    /**
+     * Optional. Set this to True if this is the last log entry in the
+     * operation.
+     */
+    last?: boolean;
+    /**
+     * Optional. An arbitrary producer identifier. The combination of `id` and
+     * `producer` must be globally unique.  Examples for `producer`:
+     * `&quot;MyDivision.MyBigCompany.com&quot;`,
+     * `&quot;github.com/MyProject/MyApplication&quot;`.
+     */
+    producer?: string;
   }
   /**
    * Represents a single metric value.
@@ -802,6 +930,43 @@ export namespace servicecontrol_v1 {
      * allowed.
      */
     userLabels?: any;
+  }
+  /**
+   * This message defines attributes for a node that handles a network request.
+   * The node can be either a service or an application that sends, forwards, or
+   * receives the request. Service peers should fill in the `service`,
+   * `principal`, and `labels` as appropriate.
+   */
+  export interface Schema$Peer {
+    /**
+     * The IP address of the peer.
+     */
+    ip?: string;
+    /**
+     * The labels associated with the peer.
+     */
+    labels?: any;
+    /**
+     * The network port of the peer.
+     */
+    port?: string;
+    /**
+     * The identity of this peer. Similar to `Request.auth.principal`, but
+     * relative to the peer instead of the request. For example, the idenity
+     * associated with a load balancer that forwared the request.
+     */
+    principal?: string;
+    /**
+     * The CLDR country/region code associated with the above IP address. If the
+     * IP address is private, the `region_code` should reflect the physical
+     * location where this peer is running.
+     */
+    regionCode?: string;
+    /**
+     * The canonical service name of the peer.  NOTE: different systems may have
+     * different service naming schemes.
+     */
+    service?: string;
   }
   /**
    * Represents error information for QuotaOperation.
@@ -1151,6 +1316,14 @@ export namespace servicecontrol_v1 {
      */
     callerSuppliedUserAgent?: string;
     /**
+     * The destination of a network activity, such as accepting a TCP
+     * connection. In a multi hop network activity, the destination represents
+     * the receiver of the last hop. Only two fields are used in this message,
+     * Peer.port and Peer.ip. These fields are optionally populated by those
+     * services utilizing the IAM condition feature.
+     */
+    destinationAttributes?: Schema$Peer;
+    /**
      * Request attributes used in IAM condition evaluation. This field contains
      * request attributes like request time and access levels associated with
      * the request.  To get the whole view of the attributes used in IAM
@@ -1353,9 +1526,12 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in
+     *     the service configuration. For example, `"pubsub.googleapis.com"`.
+     *     See google.api.Service for the definition of a service name.
      * @param {().AllocateQuotaRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1434,9 +1610,13 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its
+     *     service configuration. For example, `"pubsub.googleapis.com"`.  See
+     *     [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
+     *     for the definition of a service name.
      * @param {().CheckRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1505,9 +1685,12 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in
+     *     the service configuration. For example, `"pubsub.googleapis.com"`.
+     *     See google.api.Service for the definition of a service name.
      * @param {().EndReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1584,9 +1767,12 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in
+     *     the service configuration. For example, `"pubsub.googleapis.com"`.
+     *     See google.api.Service for the definition of a service name.
      * @param {().ReleaseQuotaRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1665,9 +1851,13 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its
+     *     service configuration. For example, `"pubsub.googleapis.com"`.  See
+     *     [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
+     *     for the definition of a service name.
      * @param {().ReportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1752,9 +1942,12 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in
+     *     the service configuration. For example, `"pubsub.googleapis.com"`.
+     *     See google.api.Service for the definition of a service name.
      * @param {().StartReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

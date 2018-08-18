@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1221,6 +1220,12 @@ export namespace serviceusage_v1beta1 {
      */
     put?: string;
     /**
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP body of response. Other response fields are ignored. When not set,
+     * the response message will be used as HTTP body of response.
+     */
+    responseBody?: string;
+    /**
      * DO NOT USE. This is an experimental field.  Optional. The REST collection
      * name is by default derived from the URL pattern. If specified, this field
      * overrides the default collection name. Example:      rpc
@@ -1531,10 +1536,11 @@ export namespace serviceusage_v1beta1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1694,8 +1700,8 @@ export namespace serviceusage_v1beta1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
-     * where {type} is the value of the `type` field in this object and
-     * {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the `type` field in this object
+     * and {project_id} is a project ID that provides API-specific context for
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
@@ -2321,7 +2327,8 @@ export namespace serviceusage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2393,7 +2400,8 @@ export namespace serviceusage_v1beta1 {
      * @param {string=} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2508,9 +2516,13 @@ export namespace serviceusage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Parent to enable services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).  The `BatchEnableServices` method currently only supports projects.
+     * @param {string} params.parent Parent to enable services on.  An example
+     *     name would be: `projects/123` where `123` is the project number (not
+     *     project ID).  The `BatchEnableServices` method currently only
+     *     supports projects.
      * @param {().BatchEnableServicesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2581,9 +2593,14 @@ export namespace serviceusage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
+     * @param {string} params.name Name of the consumer and service to disable
+     *     the service on.  The enable and disable methods currently only
+     *     support projects.  An example name would be:
+     *     `projects/123/services/serviceusage.googleapis.com` where `123` is
+     *     the project number (not project ID).
      * @param {().DisableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2648,9 +2665,16 @@ export namespace serviceusage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
+     * @param {string} params.name Name of the consumer and service to enable
+     *     the service on.  The `EnableService` and `DisableService` methods
+     *     currently only support projects.  Enabling a service requires that
+     *     the service is public or is shared with the user enabling the
+     *     service.  An example name would be:
+     *     `projects/123/services/serviceusage.googleapis.com` where `123` is
+     *     the project number (not project ID).
      * @param {().EnableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2715,8 +2739,12 @@ export namespace serviceusage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and service to get the `ConsumerState` for.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Name of the consumer and service to get the
+     *     `ConsumerState` for.  An example name would be:
+     *     `projects/123/services/serviceusage.googleapis.com` where `123` is
+     *     the project number (not project ID).
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2781,11 +2809,19 @@ export namespace serviceusage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Only list services that conform to the given filter. The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
-     * @param {integer=} params.pageSize Requested size of the next page of data. Requested page size cannot exceed 200.  If not set, the default page size is 50.
-     * @param {string=} params.pageToken Token identifying which result to start with, which is returned by a previous list call.
-     * @param {string} params.parent Parent to search for services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Only list services that conform to the
+     *     given filter. The allowed filter strings are `state:ENABLED` and
+     *     `state:DISABLED`.
+     * @param {integer=} params.pageSize Requested size of the next page of
+     *     data. Requested page size cannot exceed 200.  If not set, the default
+     *     page size is 50.
+     * @param {string=} params.pageToken Token identifying which result to start
+     *     with, which is returned by a previous list call.
+     * @param {string} params.parent Parent to search for services on.  An
+     *     example name would be: `projects/123` where `123` is the project
+     *     number (not project ID).
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

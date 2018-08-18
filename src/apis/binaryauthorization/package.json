@@ -1,7 +1,7 @@
 {
-  "name": "@google/spectrum",
+  "name": "@google/binaryauthorization",
   "version": "0.1.0",
-  "description": "spectrum",
+  "description": "binaryauthorization",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": ["google"],

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -191,8 +190,10 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique ID for the user in format `users/{user}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The unique ID for the user in format
+     *     `users/{user}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -260,10 +261,13 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The unique ID for the user in format `users/{user}`.
-     * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
+     * @param {string} params.parent The unique ID for the user in format
+     *     `users/{user}`.
+     * @param {string=} params.projectId The project ID of the Google Cloud
+     *     Platform project.
      * @param {().SshPublicKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -380,8 +384,12 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name A reference to the POSIX account to update.
+     *     POSIX accounts are identified by the project ID they are associated
+     *     with. A reference to the POSIX account is in format
+     *     `users/{user}/projects/{project}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -472,8 +480,12 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The fingerprint of the public key to update.
+     *     Public keys are identified by their SHA-256 fingerprint. The
+     *     fingerprint of the public key is in format
+     *     `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -537,8 +549,12 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The fingerprint of the public key to
+     *     retrieve. Public keys are identified by their SHA-256 fingerprint.
+     *     The fingerprint of the public key is in format
+     *     `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -600,10 +616,15 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
+     * @param {string} params.name The fingerprint of the public key to update.
+     *     Public keys are identified by their SHA-256 fingerprint. The
+     *     fingerprint of the public key is in format
+     *     `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string=} params.updateMask Mask to control which fields get
+     *     updated. Updates all if not present.
      * @param {().SshPublicKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

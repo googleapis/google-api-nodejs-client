@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -189,6 +188,11 @@ export namespace websecurityscanner_v1alpha {
      */
     violatingResource?: Schema$ViolatingResource;
     /**
+     * Output only. An addon containing information about vulnerable or missing
+     * HTTP headers.
+     */
+    vulnerableHeaders?: Schema$VulnerableHeaders;
+    /**
      * Output only. An addon containing information about request parameters
      * which were found to be vulnerable.
      */
@@ -225,6 +229,19 @@ export namespace websecurityscanner_v1alpha {
      * Required. The user name of the Google account.
      */
     username?: string;
+  }
+  /**
+   * Describes a HTTP Header.
+   */
+  export interface Schema$Header {
+    /**
+     * Header name.
+     */
+    name?: string;
+    /**
+     * Header value.
+     */
+    value?: string;
   }
   /**
    * Response for the `ListCrawledUrls` method.
@@ -449,6 +466,19 @@ export namespace websecurityscanner_v1alpha {
     resourceUrl?: string;
   }
   /**
+   * Information about vulnerable or missing HTTP Headers.
+   */
+  export interface Schema$VulnerableHeaders {
+    /**
+     * List of vulnerable headers.
+     */
+    headers?: Schema$Header[];
+    /**
+     * List of missing headers.
+     */
+    missingHeaders?: Schema$Header[];
+  }
+  /**
    * Information about vulnerable request parameters.
    */
   export interface Schema$VulnerableParameters {
@@ -508,9 +538,12 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name where the scan is created, which should be a project resource name in the format 'projects/{projectId}'.
+     * @param {string} params.parent Required. The parent resource name where
+     *     the scan is created, which should be a project resource name in the
+     *     format 'projects/{projectId}'.
      * @param {().ScanConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -577,8 +610,11 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ScanConfig to be deleted. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of the ScanConfig
+     *     to be deleted. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -643,8 +679,11 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ScanConfig to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of the ScanConfig
+     *     to be returned. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -706,10 +745,18 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of ScanConfigs to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     * @param {string} params.parent Required. The parent resource name, which should be a project resource name in the format 'projects/{projectId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of ScanConfigs to
+     *     return, can be limited by server. If not specified or not positive,
+     *     the implementation will select a reasonable value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     to be returned. This should be a `next_page_token` value returned
+     *     from a previous List request. If unspecified, the first page of
+     *     results is returned.
+     * @param {string} params.parent Required. The parent resource name, which
+     *     should be a project resource name in the format
+     *     'projects/{projectId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -778,10 +825,16 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ScanConfig. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are generated by the system.
-     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param {string} params.name The resource name of the ScanConfig. The name
+     *     follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs
+     *     are generated by the system.
+     * @param {string=} params.updateMask Required. The update mask applies to
+     *     the resource. For the `FieldMask` definition, see
+     *     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      * @param {().ScanConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -847,9 +900,12 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ScanConfig to be used. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * @param {string} params.name Required. The resource name of the ScanConfig
+     *     to be used. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * @param {().StartScanRunRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1042,8 +1098,11 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ScanRun to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of the ScanRun to
+     *     be returned. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1105,10 +1164,18 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of ScanRuns to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     * @param {string} params.parent Required. The parent resource name, which should be a scan resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of ScanRuns to
+     *     return, can be limited by server. If not specified or not positive,
+     *     the implementation will select a reasonable value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     to be returned. This should be a `next_page_token` value returned
+     *     from a previous List request. If unspecified, the first page of
+     *     results is returned.
+     * @param {string} params.parent Required. The parent resource name, which
+     *     should be a scan resource name in the format
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1176,9 +1243,12 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ScanRun to be stopped. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * @param {string} params.name Required. The resource name of the ScanRun to
+     *     be stopped. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      * @param {().StopScanRunRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1312,10 +1382,18 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     * @param {string} params.parent Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of CrawledUrls to
+     *     return, can be limited by server. If not specified or not positive,
+     *     the implementation will select a reasonable value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     to be returned. This should be a `next_page_token` value returned
+     *     from a previous List request. If unspecified, the first page of
+     *     results is returned.
+     * @param {string} params.parent Required. The parent resource name, which
+     *     should be a scan run resource name in the format
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1424,8 +1502,11 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of the Finding to
+     *     be returned. The name follows the format of
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1488,11 +1569,21 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. The expression must be in the format: <field> <operator> <value>. Supported field: 'finding_type'. Supported operator: '='.
-     * @param {integer=} params.pageSize The maximum number of Findings to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     * @param {string} params.parent Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter The filter expression. The expression must
+     *     be in the format: <field> <operator> <value>. Supported field:
+     *     'finding_type'. Supported operator: '='.
+     * @param {integer=} params.pageSize The maximum number of Findings to
+     *     return, can be limited by server. If not specified or not positive,
+     *     the implementation will select a reasonable value.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     to be returned. This should be a `next_page_token` value returned
+     *     from a previous List request. If unspecified, the first page of
+     *     results is returned.
+     * @param {string} params.parent Required. The parent resource name, which
+     *     should be a scan run resource name in the format
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1621,8 +1712,11 @@ export namespace websecurityscanner_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The parent resource name, which
+     *     should be a scan run resource name in the format
+     *     'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
