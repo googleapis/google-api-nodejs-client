@@ -5924,7 +5924,10 @@ export namespace sheets_v4 {
      * value.
      *
      *     // The A1 notation of the values to retrieve.
-     *     ranges: [],  // TODO: Update placeholder value.
+     *     ranges: [
+     *       'SOMETAB!A1:B',
+     *       'SomeOtherTab!A2:C9'
+     *     ],  // TODO: Update placeholder value.
      *
      *     // How values should be represented in the output.
      *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6983,7 +6986,7 @@ export namespace sheets_v4 {
     /**
      * The A1 notation of the values to retrieve.
      */
-    ranges?: string;
+    ranges?: string[];
     /**
      * The ID of the spreadsheet to retrieve data from.
      */
