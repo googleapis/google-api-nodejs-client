@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -620,6 +620,9 @@ export namespace serviceusage_v1beta1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Provides error messages for the failing services.
+   */
   export interface Schema$EnableFailure {
     /**
      * An error message describing why the service could not be enabled.
@@ -941,6 +944,16 @@ export namespace serviceusage_v1beta1 {
      * Configuration controlling usage of this service.
      */
     usage?: Schema$Usage;
+  }
+  /**
+   * The operation metadata returned for the batchend services operation.
+   */
+  export interface Schema$GoogleApiServiceusageV1OperationMetadata {
+    /**
+     * The full name of the resources that this operation is directly associated
+     * with.
+     */
+    resourceNames?: string[];
   }
   /**
    * A service that is available for use by the consumer.
@@ -1503,6 +1516,10 @@ export namespace serviceusage_v1beta1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
@@ -1555,6 +1572,28 @@ export namespace serviceusage_v1beta1 {
      * combinations of `metric_kind` and `value_type` might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that
@@ -1787,26 +1826,14 @@ export namespace serviceusage_v1beta1 {
     response?: any;
   }
   /**
-   * The metadata associated with a long running operation resource.
+   * The operation metadata returned for the batchend services operation.
    */
   export interface Schema$OperationMetadata {
-    /**
-     * Percentage of completion of this operation, ranging from 0 to 100.
-     */
-    progressPercentage?: number;
     /**
      * The full name of the resources that this operation is directly associated
      * with.
      */
     resourceNames?: string[];
-    /**
-     * The start time of the operation.
-     */
-    startTime?: string;
-    /**
-     * Detailed status information for each step. The order is undetermined.
-     */
-    steps?: Schema$Step[];
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -2117,19 +2144,6 @@ export namespace serviceusage_v1beta1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
-  }
-  /**
-   * Represents the status of one operation step.
-   */
-  export interface Schema$Step {
-    /**
-     * The short description of the step.
-     */
-    description?: string;
-    /**
-     * The status code.
-     */
-    status?: string;
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as

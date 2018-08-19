@@ -1,0 +1,24 @@
+{
+  "name": "@google/indexing",
+  "version": "0.1.0",
+  "description": "indexing",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "keywords": ["google"],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/google/google-api-nodejs-client",
+  "bugs": {
+    "url" : "https://github.com/google/google-api-nodejs-client/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/google/google-api-nodejs-client.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "googleapis-common": "^0.2.0"
+  }
+}

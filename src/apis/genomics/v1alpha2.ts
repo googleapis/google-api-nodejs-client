@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -92,6 +92,17 @@ export namespace genomics_v1alpha2 {
      * The availability zone in which the instance resides.
      */
     zone?: string;
+  }
+  /**
+   * This event is generated when a container is forcibly terminated by the
+   * worker.  Currently, this only occurs when the container outlives the user
+   * specified timeout.
+   */
+  export interface Schema$ContainerKilledEvent {
+    /**
+     * The numeric ID of the action that started the container.
+     */
+    actionId?: number;
   }
   /**
    * This event is generated when a container starts.

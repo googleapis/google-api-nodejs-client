@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -144,7 +144,7 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidInstrumentationTest {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
     /**
@@ -291,7 +291,7 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidRoboTest {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
     /**
@@ -333,7 +333,7 @@ export namespace testing_v1 {
     startingIntents?: Schema$RoboStartingIntent[];
   }
   /**
-   * Configuration that can be selected at the time a test is run.
+   * Android configuration that can be selected at the time a test is run.
    */
   export interface Schema$AndroidRuntimeConfiguration {
     /**
@@ -352,7 +352,7 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidTestLoop {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
     /**

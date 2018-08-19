@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {pubsub_v1} from './v1';
 import {pubsub_v1beta1a} from './v1beta1a';
 import {pubsub_v1beta2} from './v1beta2';

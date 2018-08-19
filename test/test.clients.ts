@@ -11,20 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
-import * as fs from 'fs';
-import nock from 'nock';
-import * as path from 'path';
-import * as url from 'url';
+import * as assert from 'assert';
+import {APIEndpoint} from 'googleapis-common';
+import * as nock from 'nock';
 
-import {datastore_v1, GoogleApis} from '../src';
-import {APIEndpoint} from '../src/shared/src/api';
+import {GoogleApis} from '../src';
 
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
   const query = qs ? `?${qs}` : '';
-  nock('https://datastore.googleapis.com')
+  return nock('https://datastore.googleapis.com')
       .post(`/v1/projects/test-project-id:lookup${query}`)
       .reply(200);
 }
@@ -54,40 +51,40 @@ describe('Clients', () => {
   it('should create request helpers according to resource on discovery API response',
      () => {
        let plus = localPlus;
-       assert.equal(typeof plus.people.get, 'function');
-       assert.equal(typeof plus.activities.search, 'function');
-       assert.equal(typeof plus.comments.list, 'function');
+       assert.strictEqual(typeof plus.people.get, 'function');
+       assert.strictEqual(typeof plus.activities.search, 'function');
+       assert.strictEqual(typeof plus.comments.list, 'function');
        plus = remotePlus;
-       assert.equal(typeof plus.people.get, 'function');
-       assert.equal(typeof plus.activities.search, 'function');
-       assert.equal(typeof plus.comments.list, 'function');
+       assert.strictEqual(typeof plus.people.get, 'function');
+       assert.strictEqual(typeof plus.activities.search, 'function');
+       assert.strictEqual(typeof plus.comments.list, 'function');
      });
 
   it('should be able to gen top level methods', () => {
-    assert.equal(typeof localOauth2.tokeninfo, 'function');
-    assert.equal(typeof remoteOauth2.tokeninfo, 'function');
+    assert.strictEqual(typeof localOauth2.tokeninfo, 'function');
+    assert.strictEqual(typeof remoteOauth2.tokeninfo, 'function');
   });
 
   it('should be able to gen top level methods and resources', () => {
     let oauth2 = localOauth2;
-    assert.equal(typeof oauth2.tokeninfo, 'function');
-    assert.equal(typeof oauth2.userinfo, 'object');
+    assert.strictEqual(typeof oauth2.tokeninfo, 'function');
+    assert.strictEqual(typeof oauth2.userinfo, 'object');
     oauth2 = remoteOauth2;
-    assert.equal(typeof oauth2.tokeninfo, 'function');
-    assert.equal(typeof oauth2.userinfo, 'object');
+    assert.strictEqual(typeof oauth2.tokeninfo, 'function');
+    assert.strictEqual(typeof oauth2.userinfo, 'object');
   });
 
   it('should be able to gen nested resources and methods', () => {
     let oauth2 = localOauth2;
-    assert.equal(typeof oauth2.userinfo, 'object');
-    assert.equal(typeof oauth2.userinfo.v2, 'object');
-    assert.equal(typeof oauth2.userinfo.v2.me, 'object');
-    assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
+    assert.strictEqual(typeof oauth2.userinfo, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2.me, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2.me.get, 'function');
     oauth2 = remoteOauth2;
-    assert.equal(typeof oauth2.userinfo, 'object');
-    assert.equal(typeof oauth2.userinfo.v2, 'object');
-    assert.equal(typeof oauth2.userinfo.v2.me, 'object');
-    assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
+    assert.strictEqual(typeof oauth2.userinfo, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2.me, 'object');
+    assert.strictEqual(typeof oauth2.userinfo.v2.me.get, 'function');
   });
 
   it('should support default params', async () => {

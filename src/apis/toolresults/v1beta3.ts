@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1130,6 +1130,10 @@ export namespace toolresults_v1beta3 {
    * An issue detected occurring during a test execution.
    */
   export interface Schema$TestIssue {
+    /**
+     * Category of issue. Required.
+     */
+    category?: string;
     /**
      * A brief human-readable message describing the issue. Required.
      */

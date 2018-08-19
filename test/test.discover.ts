@@ -11,19 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
+import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
 import {GoogleApis} from '../src';
 import {APIS} from '../src/apis';
-import {APIEndpoint} from '../src/shared/src/api';
 
 describe('GoogleApis#discover', () => {
   it('should get a list of supported apis', () => {
     const google = new GoogleApis();
     const apis = google.getSupportedAPIs();
-    assert.equal(Object.keys(apis).length, Object.keys(APIS).length);
+    assert.strictEqual(Object.keys(apis).length, Object.keys(APIS).length);
     assert(apis.drive.indexOf('v2') > -1);
   });
 
@@ -34,8 +33,8 @@ describe('GoogleApis#discover', () => {
     const g2 = google as any;
     const localDrive = google.drive('v2');
 
-    assert.equal(typeof google.drive, 'function');
-    assert.equal(typeof localDrive, 'object');
+    assert.strictEqual(typeof google.drive, 'function');
+    assert.strictEqual(typeof localDrive, 'object');
 
     localApis.splice(localApis.indexOf('index.ts'), 1);
     localApis.splice(localApis.indexOf('index.d.ts'), 1);
@@ -48,7 +47,7 @@ describe('GoogleApis#discover', () => {
       g2[name] = null;
     });
 
-    assert.equal(google.drive, null);
+    assert.strictEqual(google.drive, null);
 
     google.discover('https://www.googleapis.com/discovery/v1/apis', (err) => {
       if (err) {
@@ -67,8 +66,8 @@ describe('GoogleApis#discover', () => {
       });
 
       const remoteDrive = google.drive('v2');
-      assert.equal(typeof google.drive, 'function');
-      assert.equal(typeof remoteDrive, 'object');
+      assert.strictEqual(typeof google.drive, 'function');
+      assert.strictEqual(typeof remoteDrive, 'object');
 
       for (const key in localDrive) {
         if (localDrive.hasOwnProperty(key)) {

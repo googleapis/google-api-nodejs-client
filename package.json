@@ -8,11 +8,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^1.4.0",
-    "pify": "^3.0.0",
-    "qs": "^6.5.2",
-    "url-template": "^2.0.8",
-    "uuid": "^3.2.1"
+    "google-auth-library": "^1.6.0",
+    "googleapis-common": "^0.2.0"
   },
   "files": [
     "LICENSE",
@@ -105,13 +102,15 @@
     "@types/tmp": "^0.0.33",
     "@types/url-template": "^2.0.28",
     "@types/uuid": "^3.4.3",
+    "assert-rejects": "^1.0.0",
     "axios": "^0.18.0",
     "clang-format": "^1.2.3",
     "codecov": "^3.0.2",
     "copyfiles": "^2.0.0",
     "express": "^4.16.3",
     "gh-pages": "^1.1.0",
-    "gts": "^0.6.0",
+    "gts": "^0.8.0",
+    "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^0.5.0",
     "minimist": "^1.2.0",
@@ -125,12 +124,14 @@
     "nyc": "^12.0.2",
     "opn": "^5.3.0",
     "p-queue": "^2.4.2",
+    "pify": "^4.0.0",
     "rimraf": "^2.6.2",
     "semistandard": "^12.0.1",
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
-    "typedoc": "^0.11.1",
-    "typescript": "~2.8.3"
+    "typedoc": "^0.12.0",
+    "typescript": "~3.0.0",
+    "uuid": "^3.2.1"
   }
 }

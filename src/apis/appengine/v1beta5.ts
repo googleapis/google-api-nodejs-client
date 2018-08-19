@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -374,6 +374,11 @@ export namespace appengine_v1beta5 {
      * specify RolloutStrategy.MANAGED and omit config_id.
      */
     configId?: string;
+    /**
+     * Enable or disable trace sampling. By default, this is set to false for
+     * enabled.
+     */
+    disableTraceSampling?: boolean;
     /**
      * Endpoints service name which is the name of the &quot;service&quot;
      * resource in the Service Management API. For example

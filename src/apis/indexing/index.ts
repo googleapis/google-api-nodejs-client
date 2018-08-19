@@ -11,9 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export {APIEndpoint, APIRequestContext, APIRequestParams, BodyResponseCallback, GlobalOptions, GoogleConfigurable, MethodOptions, ServiceOptions} from './api';
-export {getAPI} from './apiIndex';
-export {createAPIRequest} from './apirequest';
-export {Discovery, DiscoveryOptions, EndpointCreator} from './discovery';
-export {Endpoint, Target} from './endpoint';
-export {FragmentResponse, HttpMethod, ParameterFormat, Schema, SchemaItem, SchemaItems, SchemaMethod, SchemaMethods, SchemaParameter, SchemaParameters, SchemaResource, SchemaResources, Schemas, SchemaType} from './schema';
+/*! THIS FILE IS AUTO-GENERATED */
+
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {indexing_v3} from './v3';
+
+export const VERSIONS = {
+  'v3': indexing_v3.Indexing,
+};
+
+export function indexing(version: 'v3'): indexing_v3.Indexing;
+export function indexing(options: indexing_v3.Options): indexing_v3.Indexing;
+export function indexing<T = indexing_v3.Indexing>(
+    this: GoogleConfigurable, versionOrOptions: 'v3'|indexing_v3.Options) {
+  return getAPI<T>('indexing', versionOrOptions, VERSIONS, this);
+}

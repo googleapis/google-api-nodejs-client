@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -530,8 +530,8 @@ export namespace dataproc_v1 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Output only. The Compute Engine image resource used for cluster
-     * instances. Inferred from SoftwareConfig.image_version.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * It can be specified or may be inferred from SoftwareConfig.image_version.
      */
     imageUri?: string;
     /**

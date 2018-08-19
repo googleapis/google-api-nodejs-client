@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -94,8 +94,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationType?: string;
     /**
-     * Data source client id which should be used to receive refresh token. When
-     * not supplied, no offline credentials are populated for data transfer.
+     * Data source client id which should be used to receive refresh token.
      */
     clientId?: string;
     /**
@@ -149,10 +148,9 @@ export namespace bigquerydatatransfer_v1 {
      */
     parameters?: Schema$DataSourceParameter[];
     /**
-     * Api auth scopes for which refresh token needs to be obtained. Only valid
-     * when `client_id` is specified. Ignored otherwise. These are scopes needed
-     * by a data source to prepare data and ingest them into BigQuery, e.g.,
-     * https://www.googleapis.com/auth/bigquery
+     * Api auth scopes for which refresh token needs to be obtained. These are
+     * scopes needed by a data source to prepare data and ingest them into
+     * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      */
     scopes?: string[];
     /**

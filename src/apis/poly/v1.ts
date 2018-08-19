@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -390,14 +390,14 @@ export namespace poly_v1 {
     z?: number;
   }
   /**
-   * A response message from a request to list. This is returned in the response
-   * field of the Operation.
+   * A response message from a request to startImport. This is returned in the
+   * response field of the Operation.
    */
   export interface Schema$StartAssetImportResponse {
     /**
      * The id of newly created asset. If this is empty when the operation is
      * complete it means the import failed. Please refer to the
-     * asset_import_message field to understand what went wrong.
+     * assetImportMessages field to understand what went wrong.
      */
     assetId?: string;
     /**

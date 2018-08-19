@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -231,13 +231,6 @@ export namespace speech_v1 {
    * and phrases in the results.
    */
   export interface Schema$SpeechContext {
-    /**
-     * Strength of biasing to use (strong, medium or weak). If you use strong
-     * biasing option then more likely to see those phrases in the results. If
-     * biasing streangth is not specified then by default medium biasing would
-     * be used.
-     */
-    biasingStrength?: string;
     /**
      * *Optional* A list of strings containing words and phrases
      * &quot;hints&quot; so that the speech recognition is more likely to

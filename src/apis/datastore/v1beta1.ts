@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -380,6 +380,23 @@ export namespace datastore_v1beta1 {
      * An estimate of the number of bytes processed.
      */
     progressBytes?: Schema$GoogleDatastoreAdminV1Progress;
+    /**
+     * An estimate of the number of entities processed.
+     */
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
+  }
+  /**
+   * Metadata for Index operations.
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexOperationMetadata {
+    /**
+     * Metadata common to all Datastore Admin operations.
+     */
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    /**
+     * The index resource ID that this operation is acting on.
+     */
+    indexId?: string;
     /**
      * An estimate of the number of entities processed.
      */

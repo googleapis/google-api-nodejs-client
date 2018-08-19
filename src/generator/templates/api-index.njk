@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 {% for versionName, version in api %}
   import { {{ name }}_{{ version|replace('.','_') }} } from './{{ version }}';
 {% endfor %}

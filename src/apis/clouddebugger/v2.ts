@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -534,6 +534,12 @@ export namespace clouddebugger_v2 {
    * Represents a location in the source code.
    */
   export interface Schema$SourceLocation {
+    /**
+     * Column within a line. The first column in a line as the value `1`. Agents
+     * that do not support setting breakpoints on specific columns ignore this
+     * field.
+     */
+    column?: number;
     /**
      * Line inside the file. The first line in the file has the value `1`.
      */

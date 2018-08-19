@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -334,7 +334,7 @@ export namespace adexchangebuyer2_v2beta1 {
     type?: string;
   }
   /**
-   * A creative and its classification data.  Next ID: 35
+   * A creative and its classification data.  Next ID: 36
    */
   export interface Schema$Creative {
     /**
@@ -1241,9 +1241,15 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     contexts?: Schema$ServingContext[];
     /**
-     * Any disapprovals bound to this restriction. Only present if
+     * Disapproval bound to this restriction. Only present if
      * status=DISAPPROVED. Can be used to filter the response of the
      * creatives.list method.
+     */
+    disapproval?: Schema$Disapproval;
+    /**
+     * Any disapprovals bound to this restriction. Only present if
+     * status=DISAPPROVED. Can be used to filter the response of the
+     * creatives.list method. Deprecated; please use disapproval field instead.
      */
     disapprovalReasons?: Schema$Disapproval[];
     /**

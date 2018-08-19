@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dns_v1} from './v1';
 import {dns_v1beta2} from './v1beta2';
 import {dns_v2beta1} from './v2beta1';

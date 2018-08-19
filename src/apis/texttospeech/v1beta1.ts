@@ -17,7 +17,7 @@
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -76,6 +76,12 @@ export namespace texttospeech_v1beta1 {
      * Required. The format of the requested audio byte stream.
      */
     audioEncoding?: string;
+    /**
+     * An identifier which selects &#39;audio effects&#39; profiles that are
+     * applied on (post synthesized) text to speech. Effects are applied on top
+     * of each other in the order they are given.
+     */
+    effectsProfileId?: string[];
     /**
      * Optional speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20
      * semitones from the original pitch. -20 means decrease 20 semitones from

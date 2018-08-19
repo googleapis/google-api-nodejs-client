@@ -1,28 +1,11 @@
 ---
 # "Include" for unit tests definition.
 
-remove_package_lock: &remove_package_lock
-  name: Remove package-lock.json if needed.
-  command: |
-    WORKFLOW_NAME=`python .circleci/get_workflow_name.py`
-    echo "Workflow name: $WORKFLOW_NAME"
-    if [ "$WORKFLOW_NAME" = "nightly" ]; then
-      echo "Nightly build detected, removing package-lock.json"
-      rm -f package-lock.json
-    else
-      echo "Not a nightly build, skipping this step."
-    fi
-
 unit_tests: &unit_tests
   steps:
     - checkout
-    - run: *remove_package_lock
-    - run:
-        name: Install modules and dependencies.
-        command: npm install
-    - run:
-        name: Run unit tests.
-        command: npm test
+    - run: npm install
+    - run: npm test
     - run:
         name: Submit coverage data to codecov.
         command: node_modules/.bin/codecov
@@ -36,7 +19,6 @@ unit_tests: &unit_tests
 test_samples: &test_samples
   steps:
     - checkout
-    - run: *remove_package_lock
     - run: npm install
     - run: mkdir ~/.npm-packages
     - run: echo "prefix = $HOME/.npm-packages" >> ~/.npmrc
@@ -56,10 +38,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - node9:
-          filters:
-            tags:
-              only: /.*/
       - node10:
           filters:
             tags:
@@ -68,7 +46,6 @@ workflows:
           requires:
             - node6
             - node8
-            - node9
             - node10
           filters:
             branches:
@@ -96,11 +73,6 @@ jobs:
         user: node
     <<: *unit_tests
     <<: *test_samples
-  node9:
-    docker:
-      - image: node:9
-        user: node
-    <<: *unit_tests
   node10:
     docker:
       - image: node:10
@@ -113,15 +85,11 @@ jobs:
         user: node
     steps:
       - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: npm install
+      - run: npm install
       - run:
           name: Build
           command: make build
-      - run:
-          name: Set NPM authentication.
-          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run:
          name: Publish the module to npm.
          command: npm publish --access=public

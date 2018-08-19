@@ -42,7 +42,7 @@ Documentation for the Google Compute Engine Metadata API in
 
 <table>
   <tr>
-    <td><a href="coordinate">samples/compute</a></td>
+    <td><a href="compute">samples/compute</a></td>
     <td>Demonstrates how to use the Google Compute Engine Metadata API</td>
   </tr>
 </table>
@@ -75,21 +75,6 @@ Documentation for the Glass Mirror API in
     <td>Obtains a list of locations from glass data</td>
   </tr>
 </table>
-
-## ![](http://www.google.com/images/icons/product/shortlinks-32.png) URL Shortener API
-
-Lets you create, inspect, and manage `goo.gl` short URLs.
-
-Documentation for the URL Shortener API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_urlshortener_v1_.urlshortener.html).
-
-<table>
-  <tr>
-    <td><a href="urlshortener">samples/urlshortener</a></td>
-    <td>Shortens a URL with the URL Shortener API</td>
-  </tr>
-</table>
-
 
 ## ![](http://www.google.com/images/icons/product/youtube-32.png) YouTube API
 
