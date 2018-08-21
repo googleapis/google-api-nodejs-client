@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -362,10 +361,6 @@ export namespace tpu_v1 {
      */
     tensorflowVersion?: string;
   }
-  /**
-   * Request for ResetNode.
-   */
-  export interface Schema$ResetNodeRequest {}
   export interface Schema$SchedulingConfig {
     preemptible?: boolean;
   }
@@ -490,7 +485,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -551,10 +547,12 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
+     * @param {string} params.name The resource that owns the locations
+     *     collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -669,7 +667,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -734,9 +733,11 @@ export namespace tpu_v1 {
      * @param {string=} params.filter List filter.
      * @param {string=} params.orderBy Sort results.
      * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string=} params.pageToken The next_page_token value returned from
+     *     a previous List request, if any.
      * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -865,7 +866,8 @@ export namespace tpu_v1 {
      * @param {string=} params.nodeId The unqualified resource name.
      * @param {string} params.parent The parent resource name.
      * @param {().Node} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -932,7 +934,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -998,7 +1001,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1059,9 +1063,11 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string=} params.pageToken The next_page_token value returned from
+     *     a previous List request, if any.
      * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1129,7 +1135,8 @@ export namespace tpu_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
      * @param {().ReimageNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1189,74 +1196,6 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.nodes.reset
-     * @desc Resets a node, which stops and starts the VM.
-     * @alias tpu.projects.locations.nodes.reset
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().ResetNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    reset(
-        params?: Params$Resource$Projects$Locations$Nodes$Reset,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    reset(
-        params: Params$Resource$Projects$Locations$Nodes$Reset,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    reset(
-        params: Params$Resource$Projects$Locations$Nodes$Reset,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    reset(callback: BodyResponseCallback<Schema$Operation>): void;
-    reset(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Reset|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Reset;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Reset;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
      * tpu.projects.locations.nodes.start
      * @desc Starts a node.
      * @alias tpu.projects.locations.nodes.start
@@ -1265,7 +1204,8 @@ export namespace tpu_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
      * @param {().StartNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1333,7 +1273,8 @@ export namespace tpu_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
      * @param {().StopNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1468,22 +1409,6 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$ReimageNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reset {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ResetNodeRequest;
-  }
   export interface Params$Resource$Projects$Locations$Nodes$Start {
     /**
      * Auth client or API Key for the request
@@ -1545,8 +1470,10 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1614,8 +1541,10 @@ export namespace tpu_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1682,7 +1611,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1755,7 +1685,8 @@ export namespace tpu_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1893,7 +1824,8 @@ export namespace tpu_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1959,9 +1891,11 @@ export namespace tpu_v1 {
      * @param {string=} params.filter List filter.
      * @param {string=} params.orderBy Sort results.
      * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string=} params.pageToken The next_page_token value returned from
+     *     a previous List request, if any.
      * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

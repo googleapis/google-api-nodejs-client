@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -537,9 +536,12 @@ export namespace datastore_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Project ID against which to make the
+     *     request.
+     * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest}
+     *     params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -612,9 +614,12 @@ export namespace datastore_v1beta1 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {string} params.projectId Project ID against which to make the request.
- * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {string} params.projectId Project ID against which to make the
+ *     request.
+ * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource
+ *     Request body data
+ * @param {object} [options] Optionally override request options, such as `url`,
+ *     `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */

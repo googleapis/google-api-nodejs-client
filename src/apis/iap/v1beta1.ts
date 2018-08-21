@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -50,7 +49,6 @@ export namespace iap_v1beta1 {
     google?: GoogleConfigurable;
     root = this;
 
-    oauth: Resource$Oauth;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -58,7 +56,6 @@ export namespace iap_v1beta1 {
       this.google = google;
       this.getRoot.bind(this);
 
-      this.oauth = new Resource$Oauth(this);
       this.projects = new Resource$Projects(this);
     }
 
@@ -155,14 +152,6 @@ export namespace iap_v1beta1 {
      */
     role?: string;
   }
-  /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
-   */
-  export interface Schema$Empty {}
   /**
    * Represents an expression text. Example:      title: &quot;User account
    * presence&quot;     description: &quot;Determines whether the request has a
@@ -286,156 +275,6 @@ export namespace iap_v1beta1 {
   }
 
 
-  export class Resource$Oauth {
-    root: Iap;
-    clientIds: Resource$Oauth$Clientids;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clientIds = new Resource$Oauth$Clientids(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Oauth$Clientids {
-    root: Iap;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * iap.oauth.clientIds.handleRedirect
-     * @desc This endpoint is only meant to serve redirects from the OAuth flow,
-     * and should never be called explicitly. Any other calls will simply be
-     * rejected with BAD_REQUEST.  Handles a redirect from Google's
-     * Authentication server after completing the login & consent flow of OAuth
-     * handshake. Note that this does not terminate the OAuth flow, it is a hop
-     * that will always return a 302 to continue to Identity-Aware Proxy
-     * servers, where the OAuth flow is terminated.
-     * @alias iap.oauth.clientIds.handleRedirect
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.authuser Auth user parameter passed back by Google's OAuth 2.0 API.
-     * @param {string} params.clientId The client_id against which the OAuth flow was initiated.
-     * @param {string=} params.code Authentication code obtained after OAuth login & consent flow. https://tools.ietf.org/html/rfc6749#section-1.3.1
-     * @param {string=} params.hd Hosted Domain parameter passed back by Google's OAuth 2.0 API. More information can be found at: https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
-     * @param {string=} params.prompt Prompt parameter passed back by Google's OAuth 2.0 API. More information can be found at: https://developers.google.com/identity/protocols/OpenIDConnect#prompt
-     * @param {string=} params.sessionState Session state parameter passed back by Google's OAuth 2.0 API.
-     * @param {string=} params.state State parameter passed back to the service provider from authentication server in OAuth flow. https://tools.ietf.org/html/rfc6749#section-4.1.1
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    handleRedirect(
-        params?: Params$Resource$Oauth$Clientids$Handleredirect,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    handleRedirect(
-        params: Params$Resource$Oauth$Clientids$Handleredirect,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    handleRedirect(
-        params: Params$Resource$Oauth$Clientids$Handleredirect,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    handleRedirect(callback: BodyResponseCallback<Schema$Empty>): void;
-    handleRedirect(
-        paramsOrCallback?: Params$Resource$Oauth$Clientids$Handleredirect|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Oauth$Clientids$Handleredirect;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Clientids$Handleredirect;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta1/oauth/clientIds/{+clientId}:handleRedirect')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['clientId'],
-        pathParams: ['clientId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Oauth$Clientids$Handleredirect {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Auth user parameter passed back by Google's OAuth 2.0 API.
-     */
-    authuser?: string;
-    /**
-     * The client_id against which the OAuth flow was initiated.
-     */
-    clientId?: string;
-    /**
-     * Authentication code obtained after OAuth login & consent flow.
-     * https://tools.ietf.org/html/rfc6749#section-1.3.1
-     */
-    code?: string;
-    /**
-     * Hosted Domain parameter passed back by Google's OAuth 2.0 API. More
-     * information can be found at:
-     * https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
-     */
-    hd?: string;
-    /**
-     * Prompt parameter passed back by Google's OAuth 2.0 API. More information
-     * can be found at:
-     * https://developers.google.com/identity/protocols/OpenIDConnect#prompt
-     */
-    prompt?: string;
-    /**
-     * Session state parameter passed back by Google's OAuth 2.0 API.
-     */
-    sessionState?: string;
-    /**
-     * State parameter passed back to the service provider from authentication
-     * server in OAuth flow. https://tools.ietf.org/html/rfc6749#section-4.1.1
-     */
-    state?: string;
-  }
-
-
-
   export class Resource$Projects {
     root: Iap;
     iap_web: Resource$Projects$Iap_web;
@@ -475,9 +314,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -545,9 +387,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -617,9 +462,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -761,9 +609,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -832,9 +683,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -905,9 +759,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1049,9 +906,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1122,9 +982,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1197,9 +1060,12 @@ export namespace iap_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

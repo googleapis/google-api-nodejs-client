@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -853,17 +852,9 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$StackTrace {
     /**
-     * Exception cluster ID
-     */
-    clusterId?: string;
-    /**
      * The stack trace message.  Required
      */
     exception?: string;
-    /**
-     * Exception report ID
-     */
-    reportId?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1263,17 +1254,17 @@ export namespace toolresults_v1beta3 {
    * Mapping  In JSON format, the Timestamp type is encoded as a string in the
    * [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
    * format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot;
-   * where {year} is always expressed using four digits while {month}, {day},
-   * {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
-   * seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
-   * are optional. The &quot;Z&quot; suffix indicates the timezone
-   * (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer
-   * should always use UTC (as indicated by &quot;Z&quot;) when printing the
-   * Timestamp type and a proto3 JSON parser should be able to accept both UTC
-   * and other timezones (as indicated by an offset).  For example,
-   * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
-   * January 15, 2017.  In JavaScript, one can convert a Date object to this
-   * format using the standard
+   * where {year} is always expressed using four digits
+   * while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two
+   * digits each. The fractional seconds, which can go up to 9 digits (i.e. up
+   * to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix
+   * indicates the timezone (&quot;UTC&quot;); the timezone is required. A
+   * proto3 JSON serializer should always use UTC (as indicated by
+   * &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser
+   * should be able to accept both UTC and other timezones (as indicated by an
+   * offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01
+   * seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert
+   * a Date object to this format using the standard
    * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using
@@ -1402,7 +1393,8 @@ export namespace toolresults_v1beta3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1489,7 +1481,8 @@ export namespace toolresults_v1beta3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1600,9 +1593,12 @@ export namespace toolresults_v1beta3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to
+     *     detect duplicated requests. For example, a UUID.  Optional, but
+     *     strongly recommended.
      * @param {().History} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1673,7 +1669,8 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1741,11 +1738,17 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filterByName If set, only return histories with the given name.  Optional.
-     * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {string=} params.filterByName If set, only return histories with
+     *     the given name.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Histories to
+     *     fetch.  Default value: 20. The server will use this default if the
+     *     field is not set or has a value of 0. Any value greater than 100 will
+     *     be treated as 100.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the
+     *     query at the next item.  Optional.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1897,9 +1900,12 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to
+     *     detect duplicated requests. For example, a UUID.  Optional, but
+     *     strongly recommended.
      * @param {().Execution} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1973,7 +1979,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId An Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2043,10 +2050,14 @@ export namespace toolresults_v1beta3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Executions to
+     *     fetch.  Default value: 25. The server will use this default if the
+     *     field is not set or has a value of 0.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the
+     *     query at the next item.  Optional.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2123,9 +2134,12 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId Required.
      * @param {string} params.historyId Required.
      * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to
+     *     detect duplicated requests. For example, a UUID.  Optional, but
+     *     strongly recommended.
      * @param {().Execution} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2308,7 +2322,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId An Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2383,7 +2398,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId An Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2537,9 +2553,12 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId A Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to
+     *     detect duplicated requests. For example, a UUID.  Optional, but
+     *     strongly recommended.
      * @param {().Step} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2615,7 +2634,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
      * @param {string} params.stepId A Step id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2686,7 +2706,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A tool results history ID.
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2769,10 +2790,14 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.executionId A Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Steps to fetch.
+     *     Default value: 25. The server will use this default if the field is
+     *     not set or has a value of 0.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the
+     *     query at the next item.  Optional.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2850,10 +2875,13 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId A Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to
+     *     detect duplicated requests. For example, a UUID.  Optional, but
+     *     strongly recommended.
      * @param {string} params.stepId A Step id.  Required.
      * @param {().Step} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2931,9 +2959,11 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId A Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a
+     *     TestExecutionStep.  Required.
      * @param {().PublishXunitXmlFilesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3190,7 +3220,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
      * @param {().PerfMetricsSummary} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3318,7 +3349,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
      * @param {().PerfSampleSeries} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3398,7 +3430,8 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId The cloud project
      * @param {string} params.sampleSeriesId A sample series id
      * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3477,11 +3510,13 @@ export namespace toolresults_v1beta3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.executionId A tool results execution ID.
-     * @param {string=} params.filter Specify one or more PerfMetricType values such as CPU to filter the result
+     * @param {string=} params.filter Specify one or more PerfMetricType values
+     *     such as CPU to filter the result
      * @param {string} params.historyId A tool results history ID.
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3671,8 +3706,10 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId The cloud project
      * @param {string} params.sampleSeriesId A sample series id
      * @param {string} params.stepId A tool results step ID.
-     * @param {().BatchCreatePerfSamplesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().BatchCreatePerfSamplesRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3768,12 +3805,16 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.executionId A tool results execution ID.
      * @param {string} params.historyId A tool results history ID.
-     * @param {integer=} params.pageSize The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
-     * @param {string=} params.pageToken Optional, the next_page_token returned in the previous response
+     * @param {integer=} params.pageSize The default page size is 500 samples,
+     *     and the maximum size is 5000. If the page_size is greater than 5000,
+     *     the effective page size will be 5000
+     * @param {string=} params.pageToken Optional, the next_page_token returned
+     *     in the previous response
      * @param {string} params.projectId The cloud project
      * @param {string} params.sampleSeriesId A sample series id
      * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3940,11 +3981,15 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.executionId An Execution id.  Required.
      * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of thumbnails to fetch.  Default value: 50. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {integer=} params.pageSize The maximum number of thumbnails to
+     *     fetch.  Default value: 50. The server will use this default if the
+     *     field is not set or has a value of 0.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the
+     *     query at the next item.  Optional.
      * @param {string} params.projectId A Project id.  Required.
      * @param {string} params.stepId A Step id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -249,17 +248,28 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
-     * @param {string} params.applicationName Application name for which the events are to be retrieved.
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string=} params.endTime Return events which occurred at or before this time.
+     * @param {string=} params.actorIpAddress IP Address of host where the event
+     *     was performed. Supports both IPv4 and IPv6 addresses.
+     * @param {string} params.applicationName Application name for which the
+     *     events are to be retrieved.
+     * @param {string=} params.customerId Represents the customer for which the
+     *     data is to be fetched.
+     * @param {string=} params.endTime Return events which occurred at or before
+     *     this time.
      * @param {string=} params.eventName Name of the event being queried.
-     * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-     * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+     * @param {string=} params.filters Event parameters in the form [parameter1
+     *     name][operator][parameter1 value],[parameter2
+     *     name][operator][parameter2 value],...
+     * @param {integer=} params.maxResults Number of activity records to be
+     *     shown in each page.
      * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.startTime Return events which occurred at or after this time.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.startTime Return events which occurred at or
+     *     after this time.
+     * @param {string} params.userKey Represents the profile id or the user
+     *     email for which the data should be filtered. When 'all' is specified
+     *     as the userKey, it returns usageReports for all users.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -325,18 +335,29 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
-     * @param {string} params.applicationName Application name for which the events are to be retrieved.
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string=} params.endTime Return events which occurred at or before this time.
+     * @param {string=} params.actorIpAddress IP Address of host where the event
+     *     was performed. Supports both IPv4 and IPv6 addresses.
+     * @param {string} params.applicationName Application name for which the
+     *     events are to be retrieved.
+     * @param {string=} params.customerId Represents the customer for which the
+     *     data is to be fetched.
+     * @param {string=} params.endTime Return events which occurred at or before
+     *     this time.
      * @param {string=} params.eventName Name of the event being queried.
-     * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-     * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+     * @param {string=} params.filters Event parameters in the form [parameter1
+     *     name][operator][parameter1 value],[parameter2
+     *     name][operator][parameter2 value],...
+     * @param {integer=} params.maxResults Number of activity records to be
+     *     shown in each page.
      * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.startTime Return events which occurred at or after this time.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+     * @param {string=} params.startTime Return events which occurred at or
+     *     after this time.
+     * @param {string} params.userKey Represents the profile id or the user
+     *     email for which the data should be filtered. When 'all' is specified
+     *     as the userKey, it returns usageReports for all users.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -523,7 +544,8 @@ export namespace admin_reports_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -613,11 +635,16 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
+     * @param {string=} params.customerId Represents the customer for which the
+     *     data is to be fetched.
+     * @param {string} params.date Represents the date in yyyy-mm-dd format for
+     *     which the data is to be fetched.
      * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.parameters Represents the application name,
+     *     parameter name pairs to fetch in csv as app_name1:param_name1,
+     *     app_name2:param_name2.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -719,15 +746,24 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string} params.entityKey Represents the key of object for which the data should be filtered.
-     * @param {string} params.entityType Type of object. Should be one of - gplus_communities.
-     * @param {string=} params.filters Represents the set of filters including parameter operator value.
-     * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
+     * @param {string=} params.customerId Represents the customer for which the
+     *     data is to be fetched.
+     * @param {string} params.date Represents the date in yyyy-mm-dd format for
+     *     which the data is to be fetched.
+     * @param {string} params.entityKey Represents the key of object for which
+     *     the data should be filtered.
+     * @param {string} params.entityType Type of object. Should be one of -
+     *     gplus_communities.
+     * @param {string=} params.filters Represents the set of filters including
+     *     parameter operator value.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     *     Maximum allowed is 1000
      * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.parameters Represents the application name,
+     *     parameter name pairs to fetch in csv as app_name1:param_name1,
+     *     app_name2:param_name2.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -847,14 +883,22 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string=} params.filters Represents the set of filters including parameter operator value.
-     * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
+     * @param {string=} params.customerId Represents the customer for which the
+     *     data is to be fetched.
+     * @param {string} params.date Represents the date in yyyy-mm-dd format for
+     *     which the data is to be fetched.
+     * @param {string=} params.filters Represents the set of filters including
+     *     parameter operator value.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     *     Maximum allowed is 1000
      * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.parameters Represents the application name,
+     *     parameter name pairs to fetch in csv as app_name1:param_name1,
+     *     app_name2:param_name2.
+     * @param {string} params.userKey Represents the profile id or the user
+     *     email for which the data should be filtered.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

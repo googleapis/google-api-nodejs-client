@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -962,6 +961,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     put?: string;
     /**
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP body of response. Other response fields are ignored. When not set,
+     * the response message will be used as HTTP body of response.
+     */
+    responseBody?: string;
+    /**
      * DO NOT USE. This is an experimental field.  Optional. The REST collection
      * name is by default derived from the URL pattern. If specified, this field
      * overrides the default collection name. Example:      rpc
@@ -1272,10 +1277,11 @@ export namespace serviceconsumermanagement_v1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1435,8 +1441,8 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
-     * where {type} is the value of the `type` field in this object and
-     * {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the `type` field in this object
+     * and {project_id} is a project ID that provides API-specific context for
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
@@ -2301,9 +2307,11 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
      * @param {().CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2371,8 +2379,10 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2439,7 +2449,8 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2512,7 +2523,8 @@ export namespace serviceconsumermanagement_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2654,11 +2666,33 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If page_size is not provided or the size provided is a number larger than 1000, it will be automatically set to 1000.  Optional.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
-     * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with given resource name 'projects/123456', use query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of results returned
+     *     by this request. Currently, the default maximum is set to 1000. If
+     *     page_size is not provided or the size provided is a number larger
+     *     than 1000, it will be automatically set to 1000.  Optional.
+     * @param {string=} params.pageToken The continuation token, which is used
+     *     to page through large result sets. To get the next page of results,
+     *     set this parameter to the value of `nextPageToken` from the previous
+     *     response.  Optional.
+     * @param {string} params.parent Service for which search is performed.
+     *     services/{service} {service} the name of a service, for example
+     *     'service.googleapis.com'.
+     * @param {string=} params.query Set a query `{expression}` for querying
+     *     tenancy units. Your `{expression}` must be in the format:
+     *     `field_name=literal_string`. The `field_name` is the name of the
+     *     field you want to compare. Supported fields are
+     *     `tenant_resources.tag` and `tenant_resources.resource`.  For example,
+     *     to search tenancy units that contain at least one tenant resource
+     *     with given tag 'xyz', use query `tenant_resources.tag=xyz`. To search
+     *     tenancy units that contain at least one tenant resource with given
+     *     resource name 'projects/123456', use query
+     *     `tenant_resources.resource=projects/123456`.  Multiple expressions
+     *     can be joined with `AND`s. Tenancy units must match all expressions
+     *     to be included in the result set. For example,
+     *     `tenant_resources.tag=xyz AND
+     *     tenant_resources.resource=projects/123456`  Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2787,7 +2821,8 @@ export namespace serviceconsumermanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Name of the tenancy unit.
      * @param {().AddTenantProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2854,9 +2889,16 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, for example 'service.googleapis.com'. Enabled service binding using the new tenancy unit.
+     * @param {string} params.parent services/{service}/{collection
+     *     id}/{resource id} {collection id} is the cloud resource collection
+     *     type representing the service consumer, for example 'projects', or
+     *     'organizations'. {resource id} is the consumer numeric id, such as
+     *     project number: '123456'. {service} the name of a service, for
+     *     example 'service.googleapis.com'. Enabled service binding using the
+     *     new tenancy unit.
      * @param {().CreateTenancyUnitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2925,7 +2967,8 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2994,11 +3037,22 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter expression over tenancy resources field. Optional.
-     * @param {integer=} params.pageSize The maximum number of results returned by this request.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.parent Service and consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Filter expression over tenancy resources
+     *     field. Optional.
+     * @param {integer=} params.pageSize The maximum number of results returned
+     *     by this request.
+     * @param {string=} params.pageToken The continuation token, which is used
+     *     to page through large result sets. To get the next page of results,
+     *     set this parameter to the value of `nextPageToken` from the previous
+     *     response.
+     * @param {string} params.parent Service and consumer. Required.
+     *     services/{service}/{collection id}/{resource id} {collection id} is
+     *     the cloud resource collection type representing the service consumer,
+     *     for example 'projects', or 'organizations'. {resource id} is the
+     *     consumer numeric id, such as project number: '123456'. {service} the
+     *     name of a service, for example 'service.googleapis.com'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3069,9 +3123,11 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {string} params.name Name of the tenancy unit. Such as
+     *     'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      * @param {().RemoveTenantProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

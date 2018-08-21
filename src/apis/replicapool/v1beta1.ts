@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -598,11 +597,13 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.poolName The name of the replica pool for this
+     *     request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {().PoolsDeleteRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -666,10 +667,12 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.poolName The name of the replica pool for this
+     *     request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -734,7 +737,8 @@ export namespace replicapool_v1beta1 {
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {().Pool} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -799,11 +803,15 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param {integer=} params.maxResults Maximum count of results to be
+     *     returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Set this to the nextPageToken value
+     *     returned by a previous list request to obtain the next page of
+     *     results from the previous list request.
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -871,11 +879,16 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.numReplicas The desired number of replicas to resize to. If this number is larger than the existing number of replicas, new replicas will be added. If the number is smaller, then existing replicas will be deleted.
-     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {integer=} params.numReplicas The desired number of replicas to
+     *     resize to. If this number is larger than the existing number of
+     *     replicas, new replicas will be added. If the number is smaller, then
+     *     existing replicas will be deleted.
+     * @param {string} params.poolName The name of the replica pool for this
+     *     request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -940,11 +953,13 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.poolName The name of the replica pool for this request.
+     * @param {string} params.poolName The name of the replica pool for this
+     *     request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {().Template} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1163,10 +1178,12 @@ export namespace replicapool_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.poolName The replica pool name for this request.
      * @param {string} params.projectName The project ID for this request.
-     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.replicaName The name of the replica for this
+     *     request.
      * @param {string} params.zone The zone where the replica lives.
      * @param {().ReplicasDeleteRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1233,9 +1250,11 @@ export namespace replicapool_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.poolName The replica pool name for this request.
      * @param {string} params.projectName The project ID for this request.
-     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.replicaName The name of the replica for this
+     *     request.
      * @param {string} params.zone The zone where the replica lives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1297,12 +1316,16 @@ export namespace replicapool_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-     * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+     * @param {integer=} params.maxResults Maximum count of results to be
+     *     returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+     * @param {string=} params.pageToken Set this to the nextPageToken value
+     *     returned by a previous list request to obtain the next page of
+     *     results from the previous list request.
      * @param {string} params.poolName The replica pool name for this request.
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.zone The zone where the replica pool lives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1371,9 +1394,11 @@ export namespace replicapool_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.poolName The replica pool name for this request.
      * @param {string} params.projectName The project ID for this request.
-     * @param {string} params.replicaName The name of the replica for this request.
+     * @param {string} params.replicaName The name of the replica for this
+     *     request.
      * @param {string} params.zone The zone where the replica lives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

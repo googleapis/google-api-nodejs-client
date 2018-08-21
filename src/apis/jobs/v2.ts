@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,9 +30,9 @@ export namespace jobs_v2 {
   }
 
   /**
-   * Cloud Job Discovery
+   * Cloud Talent Solution API
    *
-   * Cloud Job Discovery provides the capability to create, read, update, and
+   * Cloud Talent Solution provides the capability to create, read, update, and
    * delete job postings, as well as search jobs based on keywords and filters.
    *
    * @example
@@ -857,8 +856,8 @@ export namespace jobs_v2 {
      * Required.  A list of facets that specify the histogram data to be
      * calculated against and returned.  Histogram response times can be slow,
      * and counts can be approximations. This call may be temporarily or
-     * permanently removed prior to the production release of Cloud Job
-     * Discovery.
+     * permanently removed prior to the production release of Cloud Talent
+     * Solution.
      */
     searchTypes?: string[];
   }
@@ -2179,7 +2178,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().Company} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2241,8 +2241,11 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the company to be deleted, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the company
+     *     to be deleted, such as,
+     *     "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2304,8 +2307,10 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  Resource name of the company to retrieve, such as "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  Resource name of the company to
+     *     retrieve, such as "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2359,15 +2364,23 @@ export namespace jobs_v2 {
 
     /**
      * jobs.companies.list
-     * @desc Lists all companies associated with a Cloud Job Discovery account.
+     * @desc Lists all companies associated with a Cloud Talent Solution
+     * account.
      * @alias jobs.companies.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.mustHaveOpenJobs Optional.  Set to true if the companies request must have open jobs.  Defaults to false.  If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
-     * @param {integer=} params.pageSize Optional.  The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
-     * @param {string=} params.pageToken Optional.  The starting indicator from which to return results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.mustHaveOpenJobs Optional.  Set to true if the
+     *     companies request must have open jobs.  Defaults to false.  If true,
+     *     at most page_size of companies are fetched, among which only those
+     *     with open jobs are returned.
+     * @param {integer=} params.pageSize Optional.  The maximum number of
+     *     companies to be returned, at most 100. Default is 100 if a
+     *     non-positive number is provided.
+     * @param {string=} params.pageToken Optional.  The starting indicator from
+     *     which to return results.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2433,10 +2446,23 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during company update.  The resource name for a company. This is generated by the service when a company is created, for example, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
-     * @param {string=} params.updateCompanyFields Optional but strongly recommended to be provided for the best service experience.  If update_company_fields is provided, only the specified fields in company are updated. Otherwise all the fields are updated.  A field mask to specify the company fields to update. Valid values are:  * displayName * website * imageUrl * companySize * distributorBillingCompanyId * companyInfoSources * careerPageLink * hiringAgency * hqLocation * eeoText * keywordSearchableCustomAttributes * title (deprecated) * keywordSearchableCustomFields (deprecated)
+     * @param {string} params.name Required during company update.  The resource
+     *     name for a company. This is generated by the service when a company
+     *     is created, for example,
+     *     "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     * @param {string=} params.updateCompanyFields Optional but strongly
+     *     recommended to be provided for the best service experience.  If
+     *     update_company_fields is provided, only the specified fields in
+     *     company are updated. Otherwise all the fields are updated.  A field
+     *     mask to specify the company fields to update. Valid values are:  *
+     *     displayName * website * imageUrl * companySize *
+     *     distributorBillingCompanyId * companyInfoSources * careerPageLink *
+     *     hiringAgency * hqLocation * eeoText *
+     *     keywordSearchableCustomAttributes * title (deprecated) *
+     *     keywordSearchableCustomFields (deprecated)
      * @param {().Company} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2599,13 +2625,28 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.companyName Required.  The resource name of the company that owns the jobs to be listed, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
-     * @param {boolean=} params.idsOnly Optional.  If set to `true`, only job ID, job requisition ID and language code will be returned.  A typical use is to synchronize job repositories.  Defaults to false.
-     * @param {boolean=} params.includeJobsCount Deprecated. Please DO NOT use this field except for small companies. Suggest counting jobs page by page instead.  Optional.  Set to true if the total number of open jobs is to be returned.  Defaults to false.
-     * @param {string=} params.jobRequisitionId Optional.  The requisition ID, also known as posting ID, assigned by the company to the job.  The maximum number of allowable characters is 225.
-     * @param {integer=} params.pageSize Optional.  The maximum number of jobs to be returned per page of results.  If ids_only is set to true, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
-     * @param {string=} params.pageToken Optional.  The starting point of a query result.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.companyName Required.  The resource name of the
+     *     company that owns the jobs to be listed, such as,
+     *     "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     * @param {boolean=} params.idsOnly Optional.  If set to `true`, only job
+     *     ID, job requisition ID and language code will be returned.  A typical
+     *     use is to synchronize job repositories.  Defaults to false.
+     * @param {boolean=} params.includeJobsCount Deprecated. Please DO NOT use
+     *     this field except for small companies. Suggest counting jobs page by
+     *     page instead.  Optional.  Set to true if the total number of open
+     *     jobs is to be returned.  Defaults to false.
+     * @param {string=} params.jobRequisitionId Optional.  The requisition ID,
+     *     also known as posting ID, assigned by the company to the job.  The
+     *     maximum number of allowable characters is 225.
+     * @param {integer=} params.pageSize Optional.  The maximum number of jobs
+     *     to be returned per page of results.  If ids_only is set to true, the
+     *     maximum allowed page size is 1000. Otherwise, the maximum allowed
+     *     page size is 100.  Default is 100 if empty or a number < 1 is
+     *     specified.
+     * @param {string=} params.pageToken Optional.  The starting point of a
+     *     query result.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2727,7 +2768,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().BatchDeleteJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2793,7 +2835,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().CreateJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2856,9 +2899,15 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.disableFastProcess Deprecated. This field is not working anymore.  Optional.  If set to true, this call waits for all processing steps to complete before the job is cleaned up. Otherwise, the call returns while some steps are still taking place asynchronously, hence faster.
-     * @param {string} params.name Required.  The resource name of the job to be deleted, such as "jobs/11111111".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.disableFastProcess Deprecated. This field is not
+     *     working anymore.  Optional.  If set to true, this call waits for all
+     *     processing steps to complete before the job is cleaned up. Otherwise,
+     *     the call returns while some steps are still taking place
+     *     asynchronously, hence faster.
+     * @param {string} params.name Required.  The resource name of the job to be
+     *     deleted, such as "jobs/11111111".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2924,7 +2973,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().DeleteJobsByFilterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2990,8 +3040,10 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the job to retrieve, such as "jobs/11111111".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the job to
+     *     retrieve, such as "jobs/11111111".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3058,7 +3110,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().GetHistogramRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3124,11 +3177,25 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required.  The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "companies/123" * companyName = "companies/123" AND requisitionId = "req-1"
-     * @param {boolean=} params.idsOnly Optional.  If set to `true`, only Job.name, Job.requisition_id and Job.language_code will be returned.  A typical use case is to synchronize job repositories.  Defaults to false.
-     * @param {integer=} params.pageSize Optional.  The maximum number of jobs to be returned per page of results.  If ids_only is set to true, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
-     * @param {string=} params.pageToken Optional.  The starting point of a query result.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Required.  The filter string specifies the
+     *     jobs to be enumerated.  Supported operator: =, AND  The fields
+     *     eligible for filtering are:  * `companyName` (Required) *
+     *     `requisitionId` (Optional)  Sample Query:  * companyName =
+     *     "companies/123" * companyName = "companies/123" AND requisitionId =
+     *     "req-1"
+     * @param {boolean=} params.idsOnly Optional.  If set to `true`, only
+     *     Job.name, Job.requisition_id and Job.language_code will be returned.
+     *     A typical use case is to synchronize job repositories.  Defaults to
+     *     false.
+     * @param {integer=} params.pageSize Optional.  The maximum number of jobs
+     *     to be returned per page of results.  If ids_only is set to true, the
+     *     maximum allowed page size is 1000. Otherwise, the maximum allowed
+     *     page size is 100.  Default is 100 if empty or a number < 1 is
+     *     specified.
+     * @param {string=} params.pageToken Optional.  The starting point of a
+     *     query result.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3192,9 +3259,13 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during job update.  Resource name assigned to a job by the API, for example, "/jobs/foo". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
+     * @param {string} params.name Required during job update.  Resource name
+     *     assigned to a job by the API, for example, "/jobs/foo". Use of this
+     *     field in job queries and API calls is preferred over the use of
+     *     requisition_id since this value is unique.
      * @param {().UpdateJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3259,7 +3330,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3329,7 +3401,8 @@ export namespace jobs_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3564,13 +3637,27 @@ export namespace jobs_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.companyName Optional.  If provided, restricts completion to the specified company.
-     * @param {string=} params.languageCode Required.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_code are returned.  For CompletionType.COMBINED type, only open jobs with same language_code or companies having open jobs with same language_code are returned.
-     * @param {integer=} params.pageSize Required.  Completion result count. The maximum allowed page size is 10.
-     * @param {string=} params.query Required.  The query used to generate suggestions.
-     * @param {string=} params.scope Optional.  The scope of the completion. The defaults is CompletionScope.PUBLIC.
-     * @param {string=} params.type Optional.  The completion topic. The default is CompletionType.COMBINED.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.companyName Optional.  If provided, restricts
+     *     completion to the specified company.
+     * @param {string=} params.languageCode Required.  The language of the
+     *     query. This is the BCP-47 language code, such as "en-US" or
+     *     "sr-Latn". For more information, see [Tags for Identifying
+     *     Languages](https://tools.ietf.org/html/bcp47).  For
+     *     CompletionType.JOB_TITLE type, only open jobs with same language_code
+     *     are returned.  For CompletionType.COMPANY_NAME type, only companies
+     *     having open jobs with same language_code are returned.  For
+     *     CompletionType.COMBINED type, only open jobs with same language_code
+     *     or companies having open jobs with same language_code are returned.
+     * @param {integer=} params.pageSize Required.  Completion result count. The
+     *     maximum allowed page size is 10.
+     * @param {string=} params.query Required.  The query used to generate
+     *     suggestions.
+     * @param {string=} params.scope Optional.  The scope of the completion. The
+     *     defaults is CompletionScope.PUBLIC.
+     * @param {string=} params.type Optional.  The completion topic. The default
+     *     is CompletionType.COMBINED.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

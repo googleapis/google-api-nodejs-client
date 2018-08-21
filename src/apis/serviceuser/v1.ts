@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -886,6 +885,12 @@ export namespace serviceuser_v1 {
      */
     put?: string;
     /**
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP body of response. Other response fields are ignored. When not set,
+     * the response message will be used as HTTP body of response.
+     */
+    responseBody?: string;
+    /**
      * Selects methods to which this rule applies.  Refer to selector for syntax
      * details.
      */
@@ -1157,10 +1162,11 @@ export namespace serviceuser_v1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1320,8 +1326,8 @@ export namespace serviceuser_v1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
-     * where {type} is the value of the `type` field in this object and
-     * {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the `type` field in this object
+     * and {project_id} is a project ID that provides API-specific context for
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
@@ -2101,9 +2107,14 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to disable for that consumer.  The Service User implementation accepts the following forms for consumer: - "project:<project_id>"  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
+     * @param {string} params.name Name of the consumer and the service to
+     *     disable for that consumer.  The Service User implementation accepts
+     *     the following forms for consumer: - "project:<project_id>"  A valid
+     *     path would be: -
+     *     projects/my-project/services/servicemanagement.googleapis.com
      * @param {().DisableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2171,9 +2182,12 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to enable for that consumer.  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
+     * @param {string} params.name Name of the consumer and the service to
+     *     enable for that consumer.  A valid path would be: -
+     *     projects/my-project/services/servicemanagement.googleapis.com
      * @param {().EnableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2239,10 +2253,14 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested size of the next page of data.
-     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
-     * @param {string} params.parent List enabled services for the specified parent.  An example valid parent would be: - projects/my-project
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested size of the next page of
+     *     data.
+     * @param {string=} params.pageToken Token identifying which result to start
+     *     with; returned by a previous list call.
+     * @param {string} params.parent List enabled services for the specified
+     *     parent.  An example valid parent would be: - projects/my-project
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2390,9 +2408,12 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested size of the next page of data.
-     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested size of the next page of
+     *     data.
+     * @param {string=} params.pageToken Token identifying which result to start
+     *     with; returned by a previous list call.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

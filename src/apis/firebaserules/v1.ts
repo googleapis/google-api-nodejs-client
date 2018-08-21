@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -495,9 +494,14 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Tests may either provide `source` or a `Ruleset` resource name.  For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}`  For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`
+     * @param {string} params.name Tests may either provide `source` or a
+     *     `Ruleset` resource name.  For tests against `source`, the resource
+     *     name must refer to the project: Format: `projects/{project_id}`  For
+     *     tests against a `Ruleset`, this must be the `Ruleset` resource name:
+     *     Format: `projects/{project_id}/rulesets/{ruleset_id}`
      * @param {().TestRulesetRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -608,9 +612,11 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
+     * @param {string} params.name Resource name for the project which owns this
+     *     `Release`.  Format: `projects/{project_id}`
      * @param {().Release} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -676,8 +682,10 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the `Release` to delete.  Format: `projects/{project_id}/releases/{release_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name for the `Release` to delete.
+     *     Format: `projects/{project_id}/releases/{release_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -742,8 +750,10 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the `Release`.  Format:
+     *     `projects/{project_id}/releases/{release_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -804,9 +814,12 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1
-     * @param {string} params.name Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.executableVersion The requested runtime
+     *     executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1
+     * @param {string} params.name Resource name of the `Release`.  Format:
+     *     `projects/{project_id}/releases/{release_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -883,11 +896,36 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`
-     * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
-     * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
-     * @param {string=} params.pageToken Next page token for the next batch of `Release` instances.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter `Release` filter. The list method supports
+     *     filters with restrictions on the `Release.name`,
+     *     `Release.ruleset_name`, and `Release.test_suite_name`.  Example 1: A
+     *     filter of 'name=prod*' might return `Release`s with names within
+     *     'projects/foo' prefixed with 'prod':  Name                          |
+     *     Ruleset Name ------------------------------|-------------
+     *     projects/foo/releases/prod    | projects/foo/rulesets/uuid1234
+     *     projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234
+     *     projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888
+     *     Example 2: A filter of `name=prod* ruleset_name=uuid1234` would
+     *     return only `Release` instances for 'projects/foo' with names
+     *     prefixed with 'prod' referring to the same `Ruleset` name of
+     *     'uuid1234':  Name                          | Ruleset Name
+     *     ------------------------------|-------------
+     *     projects/foo/releases/prod    | projects/foo/rulesets/1234
+     *     projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the
+     *     examples, the filter parameters refer to the search filters are
+     *     relative to the project. Fully qualified prefixed may also be used.
+     *     e.g. `test_suite_name=projects/foo/testsuites/uuid1`
+     * @param {string} params.name Resource name for the project.  Format:
+     *     `projects/{project_id}`
+     * @param {integer=} params.pageSize Page size to load. Maximum of 100.
+     *     Defaults to 10. Note: `page_size` is just a hint and the service may
+     *     choose to load fewer than `page_size` results due to the size of the
+     *     output. To traverse all of the releases, the caller should iterate
+     *     until the `page_token` on the response is empty.
+     * @param {string=} params.pageToken Next page token for the next batch of
+     *     `Release` instances.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -957,9 +995,11 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
+     * @param {string} params.name Resource name for the project which owns this
+     *     `Release`.  Format: `projects/{project_id}`
      * @param {().UpdateReleaseRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1161,9 +1201,11 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
+     * @param {string} params.name Resource name for Project which owns this
+     *     `Ruleset`.  Format: `projects/{project_id}`
      * @param {().Ruleset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1230,8 +1272,10 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the ruleset to delete.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name for the ruleset to delete.
+     *     Format: `projects/{project_id}/rulesets/{ruleset_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1296,8 +1340,10 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the ruleset to get.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name for the ruleset to get. Format:
+     *     `projects/{project_id}/rulesets/{ruleset_id}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1360,11 +1406,22 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01") AND name=UUID-*`
-     * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
-     * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
-     * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter `Ruleset` filter. The list method supports
+     *     filters with restrictions on `Ruleset.name`.  Filters on
+     *     `Ruleset.create_time` should use the `date` function which parses
+     *     strings that conform to the RFC 3339 date/time specifications.
+     *     Example: `create_time > date("2017-01-01") AND name=UUID-*`
+     * @param {string} params.name Resource name for the project.  Format:
+     *     `projects/{project_id}`
+     * @param {integer=} params.pageSize Page size to load. Maximum of 100.
+     *     Defaults to 10. Note: `page_size` is just a hint and the service may
+     *     choose to load less than `page_size` due to the size of the output.
+     *     To traverse all of the releases, caller should iterate until the
+     *     `page_token` is empty.
+     * @param {string=} params.pageToken Next page token for loading the next
+     *     batch of `Ruleset` instances.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

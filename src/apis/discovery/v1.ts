@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -400,7 +399,8 @@ export namespace discovery_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.api The name of the API.
      * @param {string} params.version The version of the API.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -465,8 +465,10 @@ export namespace discovery_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.name Only include APIs with the given name.
-     * @param {boolean=} params.preferred Return only the preferred version of an API.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.preferred Return only the preferred version of
+     *     an API.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

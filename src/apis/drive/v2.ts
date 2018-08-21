@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1601,10 +1600,17 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeSubscribed Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
-     * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
-     * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeSubscribed Whether to count changes
+     *     outside the My Drive hierarchy. When set to false, changes to files
+     *     such as those in the Application Data folder or shared files which
+     *     have not been added to My Drive will be omitted from the
+     *     maxChangeIdCount.
+     * @param {string=} params.maxChangeIdCount Maximum number of remaining
+     *     change IDs to count
+     * @param {string=} params.startChangeId Change ID to start counting from
+     *     when calculating number of remaining change IDs
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1701,7 +1707,8 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appId The ID of the app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1761,10 +1768,21 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
-     * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.appFilterExtensions A comma-separated list of
+     *     file extensions for open with filtering. All apps within the given
+     *     app query scope which can open any of the given file extensions will
+     *     be included in the response. If appFilterMimeTypes are provided as
+     *     well, the result is a union of the two resulting app lists.
+     * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME
+     *     types for open with filtering. All apps within the given app query
+     *     scope which can open any of the given MIME types will be included in
+     *     the response. If appFilterExtensions are provided as well, the result
+     *     is a union of the two resulting app lists.
+     * @param {string=} params.languageCode A language or locale code, as
+     *     defined by BCP 47, with some extensions from Unicode's LDML format
+     *     (http://www.unicode.org/reports/tr35/).
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1880,9 +1898,12 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.changeId The ID of the change.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The Team Drive from which the change will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which the change
+     *     will be returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1942,9 +1963,13 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The ID of the Team Drive for which the starting pageToken for listing future changes from that Team Drive will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {string=} params.teamDriveId The ID of the Team Drive for which
+     *     the starting pageToken for listing future changes from that Team
+     *     Drive will be returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2011,17 +2036,37 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+     * @param {boolean=} params.includeCorpusRemovals Whether changes should
+     *     include the file resource if the file is still accessible by the user
+     *     at the time of the request, even when a file was removed from the
+     *     list of changes and there will be no further change entries for this
+     *     file.
+     * @param {boolean=} params.includeDeleted Whether to include changes
+     *     indicating that items have been removed from the list of changes, for
+     *     example by deletion or loss of access.
+     * @param {boolean=} params.includeSubscribed Whether to include changes
+     *     outside the My Drive hierarchy in the result. When set to false,
+     *     changes to files such as those in the Application Data folder or
+     *     shared files which have not been added to My Drive will be omitted
+     *     from the result.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files
+     *     or changes should be included in results.
      * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {string=} params.pageToken The token for continuing a previous
+     *     list request on the next page. This should be set to the value of
+     *     'nextPageToken' from the previous response or to the response from
+     *     the getStartPageToken method.
+     * @param {string=} params.spaces A comma-separated list of spaces to query.
+     *     Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which changes
+     *     will be returned. If specified the change IDs will be reflective of
+     *     the Team Drive; use the combined Team Drive ID and change ID as an
+     *     identifier.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2085,18 +2130,38 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+     * @param {boolean=} params.includeCorpusRemovals Whether changes should
+     *     include the file resource if the file is still accessible by the user
+     *     at the time of the request, even when a file was removed from the
+     *     list of changes and there will be no further change entries for this
+     *     file.
+     * @param {boolean=} params.includeDeleted Whether to include changes
+     *     indicating that items have been removed from the list of changes, for
+     *     example by deletion or loss of access.
+     * @param {boolean=} params.includeSubscribed Whether to include changes
+     *     outside the My Drive hierarchy in the result. When set to false,
+     *     changes to files such as those in the Application Data folder or
+     *     shared files which have not been added to My Drive will be omitted
+     *     from the result.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files
+     *     or changes should be included in results.
      * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {string=} params.pageToken The token for continuing a previous
+     *     list request on the next page. This should be set to the value of
+     *     'nextPageToken' from the previous response or to the response from
+     *     the getStartPageToken method.
+     * @param {string=} params.spaces A comma-separated list of spaces to query.
+     *     Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which changes
+     *     will be returned. If specified the change IDs will be reflective of
+     *     the Team Drive; use the combined Team Drive ID and change ID as an
+     *     identifier.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2332,7 +2397,8 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2422,7 +2488,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2486,7 +2553,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2548,9 +2616,11 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {().ChildReference} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2616,10 +2686,18 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
      * @param {integer=} params.maxResults Maximum number of children to return.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.orderBy A comma-separated list of sort keys.
+     *     Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate',
+     *     'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency',
+     *     'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending
+     *     by default, but may be reversed with the 'desc' modifier. Example
+     *     usage: ?orderBy=folder,modifiedDate desc,title. Please note that
+     *     there is a current limitation for users with approximately one
+     *     million files in which the requested sort order is ignored.
      * @param {string=} params.pageToken Page token for children.
      * @param {string=} params.q Query string for searching children.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2782,7 +2860,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2846,8 +2925,10 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeDeleted If set, this will succeed when
+     *     retrieving a deleted comment, and will include any deleted replies.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2909,7 +2990,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {().Comment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2973,11 +3055,19 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
-     * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeDeleted If set, all comments and replies,
+     *     including deleted comments and replies (with content stripped) will
+     *     be returned.
+     * @param {integer=} params.maxResults The maximum number of discussions to
+     *     include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page
+     *     through large result sets. To get the next page of results, set this
+     *     parameter to the value of "nextPageToken" from the previous response.
+     * @param {string=} params.updatedMin Only discussions that were updated
+     *     after this timestamp will be returned. Formatted as an RFC 3339
+     *     timestamp.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3044,7 +3134,8 @@ export namespace drive_v2 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {().Comment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3110,7 +3201,8 @@ export namespace drive_v2 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {().Comment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3310,17 +3402,25 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
+     * @param {boolean=} params.convert Whether to convert this file to the
+     *     corresponding Google Docs format.
      * @param {string} params.fileId The ID of the file to copy.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif,
+     *     or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language
+     *     to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the
+     *     new copy. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     * @param {string=} params.visibility The visibility of the new file. This
+     *     parameter is only relevant when the source is not a native Google Doc
+     *     and convert=false.
      * @param {().File} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3386,8 +3486,10 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to delete.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3449,7 +3551,8 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3515,8 +3618,10 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {string} params.mimeType The MIME type of the format requested for this export.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.mimeType The MIME type of the format requested for
+     *     this export.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3580,8 +3685,10 @@ export namespace drive_v2 {
      *
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of IDs to return.
-     * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.space The space in which the IDs can be used to
+     *     create new files. Supported values are 'drive' and 'appDataFolder'.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3647,13 +3754,21 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     * @param {boolean=} params.acknowledgeAbuse Whether the user is
+     *     acknowledging the risk of downloading known malware or other abusive
+     *     files.
      * @param {string} params.fileId The ID for the file in question.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
-     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.projection This parameter is deprecated and has
+     *     no function.
+     * @param {string=} params.revisionId Specifies the Revision ID that should
+     *     be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update
+     *     with modifiedDateBehavior=noChange, updateViewedDate=true and an
+     *     empty request body.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3713,20 +3828,28 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.convert Whether to convert this file to the
+     *     corresponding Google Docs format.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif,
+     *     or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language
+     *     to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the head revision of the
+     *     uploaded file. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when convert=false.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the
+     *     content as indexable text.
+     * @param {string=} params.visibility The visibility of the new file. This
+     *     parameter is only relevant when convert=false.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3790,18 +3913,39 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'default'; all other values must be used in isolation. Prefer 'default' or 'teamDrive' to 'allTeamDrives' for efficiency.
-     * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
-     * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.corpora Comma-separated list of bodies of items
+     *     (files/documents) to which the query applies. Supported bodies are
+     *     'default', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives'
+     *     must be combined with 'default'; all other values must be used in
+     *     isolation. Prefer 'default' or 'teamDrive' to 'allTeamDrives' for
+     *     efficiency.
+     * @param {string=} params.corpus The body of items (files/documents) to
+     *     which the query applies. Deprecated: use 'corpora' instead.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items
+     *     should be included in results.
+     * @param {integer=} params.maxResults The maximum number of files to return
+     *     per page. Partial or empty result pages are possible even before the
+     *     end of the files list has been reached.
+     * @param {string=} params.orderBy A comma-separated list of sort keys.
+     *     Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate',
+     *     'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency',
+     *     'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key
+     *     sorts ascending by default, but may be reversed with the 'desc'
+     *     modifier. Example usage: ?orderBy=folder,modifiedDate desc,title.
+     *     Please note that there is a current limitation for users with
+     *     approximately one million files in which the requested sort order is
+     *     ignored.
      * @param {string=} params.pageToken Page token for files.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
+     * @param {string=} params.projection This parameter is deprecated and has
+     *     no function.
      * @param {string=} params.q Query string for searching files.
-     * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.spaces A comma-separated list of spaces to query.
+     *     Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {string=} params.teamDriveId ID of Team Drive to search.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3864,23 +4008,44 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean=} params.convert This parameter is deprecated and has no function.
+     * @param {string=} params.addParents Comma-separated list of parent IDs to
+     *     add.
+     * @param {boolean=} params.convert This parameter is deprecated and has no
+     *     function.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
-     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.modifiedDateBehavior Determines the behavior in
+     *     which modifiedDate is updated. This overrides setModifiedDate.
+     * @param {boolean=} params.newRevision Whether a blob upload should create
+     *     a new revision. If false, the blob data in the current head revision
+     *     is replaced. If true or not set, a new blob is created as head
+     *     revision, and previous unpinned revisions are preserved for a short
+     *     period of time. Pinned revisions are stored indefinitely, using
+     *     additional storage quota, up to a maximum of 200 revisions. For
+     *     details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif,
+     *     or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language
+     *     to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file
+     *     can have a maximum of 200 pinned revisions.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs
+     *     to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date
+     *     using the value supplied in the request body. Setting this field to
+     *     true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false
+     *     is equivalent to modifiedDateBehavior=now. To prevent any changes to
+     *     the modified date set modifiedDateBehavior=noChange.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date
+     *     after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the
+     *     content as indexable text.
      * @param {().File} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3944,8 +4109,10 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4010,8 +4177,10 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4075,8 +4244,10 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4139,26 +4310,47 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.addParents Comma-separated list of parent IDs to add.
-     * @param {boolean=} params.convert This parameter is deprecated and has no function.
+     * @param {string=} params.addParents Comma-separated list of parent IDs to
+     *     add.
+     * @param {boolean=} params.convert This parameter is deprecated and has no
+     *     function.
      * @param {string} params.fileId The ID of the file to update.
-     * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
-     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
-     * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-     * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.modifiedDateBehavior Determines the behavior in
+     *     which modifiedDate is updated. This overrides setModifiedDate.
+     * @param {boolean=} params.newRevision Whether a blob upload should create
+     *     a new revision. If false, the blob data in the current head revision
+     *     is replaced. If true or not set, a new blob is created as head
+     *     revision, and previous unpinned revisions are preserved for a short
+     *     period of time. Pinned revisions are stored indefinitely, using
+     *     additional storage quota, up to a maximum of 200 revisions. For
+     *     details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif,
+     *     or .pdf uploads.
+     * @param {string=} params.ocrLanguage If ocr is true, hints at the language
+     *     to use. Valid values are BCP 47 codes.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file
+     *     can have a maximum of 200 pinned revisions.
+     * @param {string=} params.removeParents Comma-separated list of parent IDs
+     *     to remove.
+     * @param {boolean=} params.setModifiedDate Whether to set the modified date
+     *     using the value supplied in the request body. Setting this field to
+     *     true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false
+     *     is equivalent to modifiedDateBehavior=now. To prevent any changes to
+     *     the modified date set modifiedDateBehavior=noChange.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
-     * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
-     * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
+     * @param {boolean=} params.updateViewedDate Whether to update the view date
+     *     after successfully updating the file.
+     * @param {boolean=} params.useContentAsIndexableText Whether to use the
+     *     content as indexable text.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4223,14 +4415,22 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
+     * @param {boolean=} params.acknowledgeAbuse Whether the user is
+     *     acknowledging the risk of downloading known malware or other abusive
+     *     files.
      * @param {string} params.fileId The ID for the file in question.
-     * @param {string=} params.projection This parameter is deprecated and has no function.
-     * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     * @param {string=} params.projection This parameter is deprecated and has
+     *     no function.
+     * @param {string=} params.revisionId Specifies the Revision ID that should
+     *     be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.updateViewedDate Deprecated: Use files.update
+     *     with modifiedDateBehavior=noChange, updateViewedDate=true and an
+     *     empty request body.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4847,7 +5047,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4911,7 +5112,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4973,9 +5175,11 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
      * @param {().ParentReference} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5040,7 +5244,8 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5181,9 +5386,14 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5250,9 +5460,14 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5314,8 +5529,10 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.email The email address for which to return a permission ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.email The email address for which to return a
+     *     permission ID
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5381,13 +5598,21 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.emailMessage A plain text custom message to include in notification emails.
+     * @param {string=} params.emailMessage A plain text custom message to
+     *     include in notification emails.
      * @param {string} params.fileId The ID for the file or Team Drive.
-     * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.sendNotificationEmails Whether to send
+     *     notification emails when sharing to users or groups. This parameter
+     *     is ignored and an email is sent if the role is owner.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
      * @param {().Permission} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5454,11 +5679,21 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or Team Drive.
-     * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of permissions to
+     *     return per page. When not set for files in a Team Drive, at most 100
+     *     results will be returned. When not set for files that are not in a
+     *     Team Drive, the entire list will be returned.
+     * @param {string=} params.pageToken The token for continuing a previous
+     *     list request on the next page. This should be set to the value of
+     *     'nextPageToken' from the previous response.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5524,12 +5759,20 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.removeExpiration Whether to remove the
+     *     expiration date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.transferOwnership Whether changing a role to
+     *     'owner' downgrades the current owners to writers. Does nothing if the
+     *     specified role is not 'owner'.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
      * @param {().Permission} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5597,12 +5840,20 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.removeExpiration Whether to remove the
+     *     expiration date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting
+     *     application supports Team Drives.
+     * @param {boolean=} params.transferOwnership Whether changing a role to
+     *     'owner' downgrades the current owners to writers. Does nothing if the
+     *     specified role is not 'owner'.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the item belongs.
      * @param {().Permission} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5892,7 +6143,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5959,7 +6211,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6022,7 +6275,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {().Property} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6087,7 +6341,8 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6153,9 +6408,11 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
+     * @param {string=} params.visibility The visibility of the property.
+     *     Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
      * @param {().Property} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6221,9 +6478,11 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
-     * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
+     * @param {string=} params.visibility The visibility of the property.
+     *     Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
      * @param {().Property} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6418,9 +6677,14 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
-     * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.fileId The ID of the file that the Realtime API
+     *     data model is associated with.
+     * @param {integer=} params.revision The revision of the Realtime API data
+     *     model to export. Revisions start at 1 (the initial empty data model)
+     *     and are incremented with each change. If this parameter is excluded,
+     *     the most recent data model will be returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6480,12 +6744,18 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.baseRevision The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
-     * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
+     * @param {string=} params.baseRevision The revision of the model to diff
+     *     the uploaded model against. If set, the uploaded model is diffed
+     *     against the provided revision and those differences are merged with
+     *     any changes made to the model after the provided revision. If not
+     *     set, the uploaded model replaces the current model on the server.
+     * @param {string} params.fileId The ID of the file that the Realtime API
+     *     data model is associated with.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6618,7 +6888,8 @@ export namespace drive_v2 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6684,9 +6955,11 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
+     * @param {boolean=} params.includeDeleted If set, this will succeed when
+     *     retrieving a deleted reply.
      * @param {string} params.replyId The ID of the reply.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6752,7 +7025,8 @@ export namespace drive_v2 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {().CommentReply} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6819,10 +7093,15 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
-     * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
-     * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeDeleted If set, all replies, including
+     *     deleted replies (with content stripped) will be returned.
+     * @param {integer=} params.maxResults The maximum number of replies to
+     *     include in the response, used for paging.
+     * @param {string=} params.pageToken The continuation token, used to page
+     *     through large result sets. To get the next page of results, set this
+     *     parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6891,7 +7170,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {().CommentReply} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6961,7 +7241,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {().CommentReply} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7184,7 +7465,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7248,7 +7530,8 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7309,9 +7592,13 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {integer=} params.maxResults Maximum number of revisions to return.
-     * @param {string=} params.pageToken Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of revisions to
+     *     return.
+     * @param {string=} params.pageToken Page token for revisions. To get the
+     *     next page of results, set this parameter to the value of
+     *     "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7378,7 +7665,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {().Revision} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7444,7 +7732,8 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {().Revision} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7613,7 +7902,8 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7677,8 +7967,12 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the Team Drive belongs.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7739,9 +8033,15 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     * @param {string} params.requestId An ID, such as a random UUID, which
+     *     uniquely identifies this user's request for idempotent creation of a
+     *     Team Drive. A repeated request by the same user and with the same
+     *     request ID will avoid creating duplicates by attempting to create the
+     *     same Team Drive. If the Team Drive already exists a 409 error will be
+     *     returned.
      * @param {().TeamDrive} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7806,11 +8106,15 @@ export namespace drive_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of Team Drives to return.
+     * @param {integer=} params.maxResults Maximum number of Team Drives to
+     *     return.
      * @param {string=} params.pageToken Page token for Team Drives.
      * @param {string=} params.q Query string for searching Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then all Team Drives of the
+     *     domain in which the requester is an administrator are returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7875,9 +8179,13 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a
+     *     domain administrator; if set to true, then the requester will be
+     *     granted access if they are an administrator of the domain to which
+     *     the Team Drive belongs.
      * @param {().TeamDrive} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

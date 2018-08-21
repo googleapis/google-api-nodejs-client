@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -354,10 +353,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -425,10 +427,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -492,10 +497,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
      * @param {().RollingUpdate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -564,12 +572,19 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
-     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param {string} params.project The Google Developers Console project name.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Optional. Filter expression for filtering
+     *     listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to
+     *     be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous
+     *     list request truncated by maxResults. Used to continue a previous
+     *     list request.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -636,13 +651,20 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
-     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string=} params.filter Optional. Filter expression for filtering
+     *     listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to
+     *     be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous
+     *     list request truncated by maxResults. Used to continue a previous
+     *     list request.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -712,10 +734,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -784,10 +809,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -856,10 +884,13 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The Google Developers Console project name.
+     * @param {string} params.project The Google Developers Console project
+     *     name.
      * @param {string} params.rollingUpdate The name of the update.
-     * @param {string} params.zone The name of the zone in which the update's target resides.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.zone The name of the zone in which the update's
+     *     target resides.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1118,10 +1149,12 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.operation Name of the operation resource to return.
+     * @param {string} params.operation Name of the operation resource to
+     *     return.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1186,12 +1219,17 @@ export namespace replicapoolupdater_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter expression for filtering listed resources.
-     * @param {integer=} params.maxResults Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 500.
-     * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+     * @param {string=} params.filter Optional. Filter expression for filtering
+     *     listed resources.
+     * @param {integer=} params.maxResults Optional. Maximum count of results to
+     *     be returned. Maximum value is 500 and default value is 500.
+     * @param {string=} params.pageToken Optional. Tag returned by a previous
+     *     list request truncated by maxResults. Used to continue a previous
+     *     list request.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

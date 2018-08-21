@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,9 +30,9 @@ export namespace cloudbuild_v1 {
   }
 
   /**
-   * Cloud Container Builder
+   * Cloud Build API
    *
-   * Builds container images in the cloud.
+   * Creates and manages builds on Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -130,7 +129,7 @@ export namespace cloudbuild_v1 {
     objects?: Schema$ArtifactObjects;
   }
   /**
-   * A build resource in the Container Builder API.  At a high level, a `Build`
+   * A build resource in the Cloud Build API.  At a high level, a `Build`
    * describes where to find source code, how to build it (for example, the
    * builder image to run on the source), and where to store the built
    * artifacts.  Fields can include the following variables, which will be
@@ -420,6 +419,25 @@ export namespace cloudbuild_v1 {
      */
     id?: string;
     /**
+     * ignored_files and included_files are file glob matches using
+     * http://godoc/pkg/path/filepath#Match extended with support for
+     * &quot;**&quot;.  If ignored_files and changed files are both empty, then
+     * they are not used to determine whether or not to trigger a build.  If
+     * ignored_files is not empty, then we ignore any files that match any of
+     * the ignored_file globs. If the change has no files that are outside of
+     * the ignored_files globs, then we do not trigger a build.
+     */
+    ignoredFiles?: string[];
+    /**
+     * If any of the files altered in the commit pass the ignored_files filter
+     * and included_files is empty, then as far as this filter is concerned, we
+     * should trigger the build.  If any of the files altered in the commit pass
+     * the ignored_files filter and included_files is not empty, then we make
+     * sure that at least one of those files matches a included_files glob. If
+     * not, then we do not trigger a build.
+     */
+    includedFiles?: string[];
+    /**
      * Substitutions data for Build resource.
      */
     substitutions?: any;
@@ -609,6 +627,14 @@ export namespace cloudbuild_v1 {
      * indices.
      */
     buildStepImages?: string[];
+    /**
+     * List of build step outputs, produced by builder images, in the order
+     * corresponding to build step indices.  [Cloud
+     * Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can
+     * produce this output by writing to `$BUILDER_OUTPUT/output`. Only the
+     * first 4KB of data is stored.
+     */
+    buildStepOutputs?: string[];
     /**
      * Container images that were built as a part of the build.
      */
@@ -813,9 +839,11 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
      * @param {().CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -882,7 +910,8 @@ export namespace cloudbuild_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -954,7 +983,8 @@ export namespace cloudbuild_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1102,7 +1132,8 @@ export namespace cloudbuild_v1 {
      * @param {string} params.id ID of the build.
      * @param {string} params.projectId ID of the project.
      * @param {().CancelBuildRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1172,7 +1203,8 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId ID of the project.
      * @param {().Build} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1242,7 +1274,8 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id ID of the build.
      * @param {string} params.projectId ID of the project.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1305,11 +1338,15 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The raw filter text to constrain the results.
-     * @param {integer=} params.pageSize Number of results to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+     * @param {string=} params.filter The raw filter text to constrain the
+     *     results.
+     * @param {integer=} params.pageSize Number of results to return in the
+     *     list.
+     * @param {string=} params.pageToken Token to provide to skip to a
+     *     particular spot in the list.
      * @param {string} params.projectId ID of the project.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1394,7 +1431,8 @@ export namespace cloudbuild_v1 {
      * @param {string} params.id Build ID of the original build.
      * @param {string} params.projectId ID of the project.
      * @param {().RetryBuildRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1568,9 +1606,11 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project for which to configure automatic builds.
+     * @param {string} params.projectId ID of the project for which to configure
+     *     automatic builds.
      * @param {().BuildTrigger} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1639,7 +1679,8 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId ID of the project that owns the trigger.
      * @param {string} params.triggerId ID of the `BuildTrigger` to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1707,7 +1748,8 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId ID of the project that owns the trigger.
      * @param {string} params.triggerId ID of the `BuildTrigger` to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1769,8 +1811,10 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project for which to list BuildTriggers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId ID of the project for which to list
+     *     BuildTriggers.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1844,7 +1888,8 @@ export namespace cloudbuild_v1 {
      * @param {string} params.projectId ID of the project that owns the trigger.
      * @param {string} params.triggerId ID of the `BuildTrigger` to update.
      * @param {().BuildTrigger} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1913,7 +1958,8 @@ export namespace cloudbuild_v1 {
      * @param {string} params.projectId ID of the project.
      * @param {string} params.triggerId ID of the trigger.
      * @param {().RepoSource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

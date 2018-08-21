@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -33,8 +32,11 @@ export namespace poly_v1 {
   /**
    * Poly API
    *
-   * The Poly API provides read-only access to assets hosted on &lt;a
-   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt;.
+   * The Poly API provides read access to assets hosted on &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; to
+   * all, and upload access to &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; for
+   * whitelisted accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -125,6 +127,10 @@ export namespace poly_v1 {
      * immutable; the author of an asset may change them post-publication.
      */
     presentationParams?: Schema$PresentationParams;
+    /**
+     * The remix info for the asset.
+     */
+    remixInfo?: Schema$RemixInfo;
     /**
      * The thumbnail image for the asset.
      */
@@ -390,6 +396,17 @@ export namespace poly_v1 {
     z?: number;
   }
   /**
+   * Info about the sources of this asset (i.e. assets that were remixed to
+   * create this asset).
+   */
+  export interface Schema$RemixInfo {
+    /**
+     * Resource ids for the sources of this remix, of the form:
+     * `assets/{ASSET_ID}`
+     */
+    sourceAsset?: string[];
+  }
+  /**
    * A response message from a request to startImport. This is returned in the
    * response field of the Operation.
    */
@@ -446,8 +463,10 @@ export namespace poly_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. An asset's name in the form `assets/{ASSET_ID}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. An asset's name in the form
+     *     `assets/{ASSET_ID}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -507,15 +526,34 @@ export namespace poly_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.category Filter assets based on the specified category. Supported values are: `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and `transport`.
-     * @param {boolean=} params.curated Return only assets that have been curated by the Poly team.
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
-     * @param {string=} params.keywords One or more search terms to be matched against all text that Poly has indexed for assets, which includes display_name, description, and tags. Multiple keywords should be separated by spaces.
-     * @param {string=} params.maxComplexity Returns assets that are of the specified complexity or less. Defaults to COMPLEX. For example, a request for MEDIUM assets also includes SIMPLE assets.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.category Filter assets based on the specified
+     *     category. Supported values are: `animals`, `architecture`, `art`,
+     *     `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and
+     *     `transport`.
+     * @param {boolean=} params.curated Return only assets that have been
+     *     curated by the Poly team.
+     * @param {string=} params.format Return only assets with the matching
+     *     format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`,
+     *     `OBJ`, `TILT`.
+     * @param {string=} params.keywords One or more search terms to be matched
+     *     against all text that Poly has indexed for assets, which includes
+     *     display_name, description, and tags. Multiple keywords should be
+     *     separated by spaces.
+     * @param {string=} params.maxComplexity Returns assets that are of the
+     *     specified complexity or less. Defaults to COMPLEX. For example, a
+     *     request for MEDIUM assets also includes SIMPLE assets.
+     * @param {string=} params.orderBy Specifies an ordering for assets.
+     *     Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to
+     *     `BEST`, which ranks assets based on a combination of popularity and
+     *     other features.
+     * @param {integer=} params.pageSize The maximum number of assets to be
+     *     returned. This value must be between `1` and `100`. Defaults to `20`.
+     * @param {string=} params.pageToken Specifies a continuation token from a
+     *     previous search whose results were split into multiple pages. To get
+     *     the next page, submit the same request specifying the value from
+     *     next_page_token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -674,13 +712,28 @@ export namespace poly_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
-     * @param {string} params.name A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {string=} params.visibility The visibility of the assets to be returned. Defaults to VISIBILITY_UNSPECIFIED which returns all assets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.format Return only assets with the matching
+     *     format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`,
+     *     `OBJ`, and `TILT`.
+     * @param {string} params.name A valid user id. Currently, only the special
+     *     value 'me', representing the currently-authenticated user is
+     *     supported. To use 'me', you must pass an OAuth token with the
+     *     request.
+     * @param {string=} params.orderBy Specifies an ordering for assets.
+     *     Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to
+     *     `BEST`, which ranks assets based on a combination of popularity and
+     *     other features.
+     * @param {integer=} params.pageSize The maximum number of assets to be
+     *     returned. This value must be between `1` and `100`. Defaults to `20`.
+     * @param {string=} params.pageToken Specifies a continuation token from a
+     *     previous search whose results were split into multiple pages. To get
+     *     the next page, submit the same request specifying the value from
+     *     next_page_token.
+     * @param {string=} params.visibility The visibility of the assets to be
+     *     returned. Defaults to VISIBILITY_UNSPECIFIED which returns all
+     *     assets.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -802,12 +855,25 @@ export namespace poly_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
-     * @param {string} params.name A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which ranks assets based on how recently they were liked.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.format Return only assets with the matching
+     *     format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`,
+     *     `OBJ`, `TILT`.
+     * @param {string} params.name A valid user id. Currently, only the special
+     *     value 'me', representing the currently-authenticated user is
+     *     supported. To use 'me', you must pass an OAuth token with the
+     *     request.
+     * @param {string=} params.orderBy Specifies an ordering for assets.
+     *     Acceptable values are: `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'.
+     *     Defaults to `LIKED_TIME`, which ranks assets based on how recently
+     *     they were liked.
+     * @param {integer=} params.pageSize The maximum number of assets to be
+     *     returned. This value must be between `1` and `100`. Defaults to `20`.
+     * @param {string=} params.pageToken Specifies a continuation token from a
+     *     previous search whose results were split into multiple pages. To get
+     *     the next page, submit the same request specifying the value from
+     *     next_page_token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

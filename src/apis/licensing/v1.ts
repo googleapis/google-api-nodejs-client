@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -157,7 +156,8 @@ export namespace licensing_v1 {
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku
      * @param {string} params.userId email id or unique Id of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -226,7 +226,8 @@ export namespace licensing_v1 {
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku
      * @param {string} params.userId email id or unique Id of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -293,7 +294,8 @@ export namespace licensing_v1 {
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku
      * @param {().LicenseAssignmentInsert} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -360,11 +362,15 @@ export namespace licensing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+     * @param {string} params.customerId CustomerId represents the customer for
+     *     whom licenseassignments are queried
+     * @param {integer=} params.maxResults Maximum number of campaigns to return
+     *     at one time. Must be positive. Optional. Default value is 100.
+     * @param {string=} params.pageToken Token to fetch the next page.Optional.
+     *     By default server will return first page
      * @param {string} params.productId Name for product
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -432,12 +438,16 @@ export namespace licensing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+     * @param {string} params.customerId CustomerId represents the customer for
+     *     whom licenseassignments are queried
+     * @param {integer=} params.maxResults Maximum number of campaigns to return
+     *     at one time. Must be positive. Optional. Default value is 100.
+     * @param {string=} params.pageToken Token to fetch the next page.Optional.
+     *     By default server will return first page
      * @param {string} params.productId Name for product
      * @param {string} params.skuId Name for sku
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -508,10 +518,12 @@ export namespace licensing_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
+     * @param {string} params.skuId Name for sku for which license would be
+     *     revoked
      * @param {string} params.userId email id or unique Id of the user
      * @param {().LicenseAssignment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -580,10 +592,12 @@ export namespace licensing_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
+     * @param {string} params.skuId Name for sku for which license would be
+     *     revoked
      * @param {string} params.userId email id or unique Id of the user
      * @param {().LicenseAssignment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1417,16 +1416,39 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer analytics than requested. If unspecified or set to 0, default value is 30. Specifies the number of days in the date range when querying analytics. The `page_token` represents the end date of the date range and the start date is calculated using the `page_size` as the number of days BEFORE the end date. Must be a non-negative integer.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListAnalyticsResponse.next_page_token` returned from the previous call to ListAnalytics. Will be a date string in `YYYY-MM-DD` format representing the end date of the date range of results to return. If unspecified or set to "", default value is the current date.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested page size. Server may return
+     *     fewer analytics than requested. If unspecified or set to 0, default
+     *     value is 30. Specifies the number of days in the date range when
+     *     querying analytics. The `page_token` represents the end date of the
+     *     date range and the start date is calculated using the `page_size` as
+     *     the number of days BEFORE the end date. Must be a non-negative
+     *     integer.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     that the server returns. Typically, this is the value of
+     *     `ListAnalyticsResponse.next_page_token` returned from the previous
+     *     call to ListAnalytics. Will be a date string in `YYYY-MM-DD` format
+     *     representing the end date of the date range of results to return. If
+     *     unspecified or set to "", default value is the current date.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1563,7 +1585,8 @@ export namespace partners_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().LogMessageRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1653,19 +1676,40 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.address The address to use for sorting the company's addresses by proximity. If not given, the geo-located address of the request is used. Used when order_by is set.
+     * @param {string=} params.address The address to use for sorting the
+     *     company's addresses by proximity. If not given, the geo-located
+     *     address of the request is used. Used when order_by is set.
      * @param {string} params.companyId The ID of the company to retrieve.
-     * @param {string=} params.currencyCode If the company's budget is in a different currency code than this one, then the converted budget is converted to this currency code.
-     * @param {string=} params.orderBy How to order addresses within the returned company. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.view The view of `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.currencyCode If the company's budget is in a
+     *     different currency code than this one, then the converted budget is
+     *     converted to this currency code.
+     * @param {string=} params.orderBy How to order addresses within the
+     *     returned company. Currently, only `address` and `address desc` is
+     *     supported which will sorted by closest to farthest in distance from
+     *     given address and farthest to closest distance from given address
+     *     respectively.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string=} params.view The view of `Company` resource to be
+     *     returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1726,32 +1770,86 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.address The address to use when searching for companies. If not given, the geo-located address of the request is used.
+     * @param {string=} params.address The address to use when searching for
+     *     companies. If not given, the geo-located address of the request is
+     *     used.
      * @param {string=} params.companyName Company name to search for.
-     * @param {string=} params.gpsMotivations List of reasons for using Google Partner Search to get companies.
-     * @param {string=} params.industries List of industries the company can help with.
-     * @param {string=} params.languageCodes List of language codes that company can support. Only primary language subtags are accepted as defined by <a href="https://tools.ietf.org/html/bcp47">BCP 47</a> (IETF BCP 47, "Tags for Identifying Languages").
-     * @param {string=} params.maxMonthlyBudget.currencyCode The 3-letter currency code defined in ISO 4217.
-     * @param {integer=} params.maxMonthlyBudget.nanos Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     * @param {string=} params.maxMonthlyBudget.units The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     * @param {string=} params.minMonthlyBudget.currencyCode The 3-letter currency code defined in ISO 4217.
-     * @param {integer=} params.minMonthlyBudget.nanos Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     * @param {string=} params.minMonthlyBudget.units The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     * @param {string=} params.orderBy How to order addresses within the returned companies. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer companies than requested. If unspecified, server picks an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListCompaniesResponse.next_page_token` returned from the previous call to ListCompanies.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.services List of services that the returned agencies should provide. If this is not empty, any returned agency must have at least one of these services, or one of the specializations in the "specializations" field.
-     * @param {string=} params.specializations List of specializations that the returned agencies should provide. If this is not empty, any returned agency must have at least one of these specializations, or one of the services in the "services" field.
-     * @param {string=} params.view The view of the `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
-     * @param {string=} params.websiteUrl Website URL that will help to find a better matched company. .
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.gpsMotivations List of reasons for using Google
+     *     Partner Search to get companies.
+     * @param {string=} params.industries List of industries the company can
+     *     help with.
+     * @param {string=} params.languageCodes List of language codes that company
+     *     can support. Only primary language subtags are accepted as defined by
+     *     <a href="https://tools.ietf.org/html/bcp47">BCP 47</a> (IETF BCP 47,
+     *     "Tags for Identifying Languages").
+     * @param {string=} params.maxMonthlyBudget.currencyCode The 3-letter
+     *     currency code defined in ISO 4217.
+     * @param {integer=} params.maxMonthlyBudget.nanos Number of nano (10^-9)
+     *     units of the amount. The value must be between -999,999,999 and
+     *     +999,999,999 inclusive. If `units` is positive, `nanos` must be
+     *     positive or zero. If `units` is zero, `nanos` can be positive, zero,
+     *     or negative. If `units` is negative, `nanos` must be negative or
+     *     zero. For example $-1.75 is represented as `units`=-1 and
+     *     `nanos`=-750,000,000.
+     * @param {string=} params.maxMonthlyBudget.units The whole units of the
+     *     amount. For example if `currencyCode` is `"USD"`, then 1 unit is one
+     *     US dollar.
+     * @param {string=} params.minMonthlyBudget.currencyCode The 3-letter
+     *     currency code defined in ISO 4217.
+     * @param {integer=} params.minMonthlyBudget.nanos Number of nano (10^-9)
+     *     units of the amount. The value must be between -999,999,999 and
+     *     +999,999,999 inclusive. If `units` is positive, `nanos` must be
+     *     positive or zero. If `units` is zero, `nanos` can be positive, zero,
+     *     or negative. If `units` is negative, `nanos` must be negative or
+     *     zero. For example $-1.75 is represented as `units`=-1 and
+     *     `nanos`=-750,000,000.
+     * @param {string=} params.minMonthlyBudget.units The whole units of the
+     *     amount. For example if `currencyCode` is `"USD"`, then 1 unit is one
+     *     US dollar.
+     * @param {string=} params.orderBy How to order addresses within the
+     *     returned companies. Currently, only `address` and `address desc` is
+     *     supported which will sorted by closest to farthest in distance from
+     *     given address and farthest to closest distance from given address
+     *     respectively.
+     * @param {integer=} params.pageSize Requested page size. Server may return
+     *     fewer companies than requested. If unspecified, server picks an
+     *     appropriate default.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     that the server returns. Typically, this is the value of
+     *     `ListCompaniesResponse.next_page_token` returned from the previous
+     *     call to ListCompanies.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string=} params.services List of services that the returned
+     *     agencies should provide. If this is not empty, any returned agency
+     *     must have at least one of these services, or one of the
+     *     specializations in the "specializations" field.
+     * @param {string=} params.specializations List of specializations that the
+     *     returned agencies should provide. If this is not empty, any returned
+     *     agency must have at least one of these specializations, or one of the
+     *     services in the "services" field.
+     * @param {string=} params.view The view of the `Company` resource to be
+     *     returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
+     * @param {string=} params.websiteUrl Website URL that will help to find a
+     *     better matched company. .
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2032,7 +2130,8 @@ export namespace partners_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.companyId The ID of the company to contact.
      * @param {().CreateLeadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2130,17 +2229,35 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy How to order Leads. Currently, only `create_time` and `create_time desc` are supported
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer leads than requested. If unspecified, server picks an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListLeadsResponse.next_page_token` returned from the previous call to ListLeads.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy How to order Leads. Currently, only
+     *     `create_time` and `create_time desc` are supported
+     * @param {integer=} params.pageSize Requested page size. Server may return
+     *     fewer leads than requested. If unspecified, server picks an
+     *     appropriate default.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     that the server returns. Typically, this is the value of
+     *     `ListLeadsResponse.next_page_token` returned from the previous call
+     *     to ListLeads.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2273,14 +2390,26 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2395,18 +2524,36 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.entireCompany if true, show history for the entire company.  Requires user to be admin.
-     * @param {string=} params.orderBy Comma-separated list of fields to order by, e.g.: "foo,bar,baz". Use "foo desc" to sort descending. List of valid field names is: name, offer_code, expiration_time, status,     last_modified_time, sender_name, creation_time, country_code,     offer_type.
-     * @param {integer=} params.pageSize Maximum number of rows to return per page.
+     * @param {boolean=} params.entireCompany if true, show history for the
+     *     entire company.  Requires user to be admin.
+     * @param {string=} params.orderBy Comma-separated list of fields to order
+     *     by, e.g.: "foo,bar,baz". Use "foo desc" to sort descending. List of
+     *     valid field names is: name, offer_code, expiration_time, status,
+     *     last_modified_time, sender_name, creation_time, country_code,
+     *     offer_type.
+     * @param {integer=} params.pageSize Maximum number of rows to return per
+     *     page.
      * @param {string=} params.pageToken Token to retrieve a specific page.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2547,7 +2694,8 @@ export namespace partners_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().LogUserEventRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2636,16 +2784,29 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string} params.userId The ID of the user. Can be set to
+     *     <code>me</code> to mean the currently authenticated user.
      * @param {().CompanyRelation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2713,15 +2874,28 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string} params.userId The ID of the user. Can be set to
+     *     <code>me</code> to mean the currently authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2786,16 +2960,30 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string} params.userId Identifier of the user. Can be set to <code>me</code> to mean the currently authenticated user.
-     * @param {string=} params.userView Specifies what parts of the user information to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string} params.userId Identifier of the user. Can be set to
+     *     <code>me</code> to mean the currently authenticated user.
+     * @param {string=} params.userView Specifies what parts of the user
+     *     information to return.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2856,15 +3044,27 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
      * @param {().UserProfile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3125,14 +3325,26 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3249,14 +3461,26 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3326,16 +3550,30 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string=} params.updateMask Standard field mask for the set of
+     *     fields to be updated. Required with at least 1 value in FieldMask's
+     *     paths.
      * @param {().Company} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3399,16 +3637,31 @@ export namespace partners_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths. Only `state` and `adwords_customer_id` are currently supported.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the
+     *     current request belongs to.
+     * @param {string=} params.requestMetadata.locale Locale to use for the
+     *     current request.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners
+     *     session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId
+     *     Identifier to indicate where the traffic comes from. An identifier
+     *     has multiple letters created by a team which redirected the traffic
+     *     to us.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second
+     *     level identifier to indicate where the traffic comes from. An
+     *     identifier has multiple letters created by a team which redirected
+     *     the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP
+     *     address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in
+     *     user ID to impersonate instead of the user's ID.
+     * @param {string=} params.updateMask Standard field mask for the set of
+     *     fields to be updated. Required with at least 1 value in FieldMask's
+     *     paths. Only `state` and `adwords_customer_id` are currently
+     *     supported.
      * @param {().Lead} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

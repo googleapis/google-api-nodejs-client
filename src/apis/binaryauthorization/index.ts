@@ -14,17 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {spectrum_v1explorer} from './v1explorer';
+import {binaryauthorization_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1explorer': spectrum_v1explorer.Spectrum,
+  'v1beta1': binaryauthorization_v1beta1.Binaryauthorization,
 };
 
-export function spectrum(version: 'v1explorer'): spectrum_v1explorer.Spectrum;
-export function spectrum(options: spectrum_v1explorer.Options):
-    spectrum_v1explorer.Spectrum;
-export function spectrum<T = spectrum_v1explorer.Spectrum>(
+export function binaryauthorization(version: 'v1beta1'):
+    binaryauthorization_v1beta1.Binaryauthorization;
+export function binaryauthorization(
+    options: binaryauthorization_v1beta1.Options):
+    binaryauthorization_v1beta1.Binaryauthorization;
+export function
+binaryauthorization<T = binaryauthorization_v1beta1.Binaryauthorization>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1explorer'|spectrum_v1explorer.Options) {
-  return getAPI<T>('spectrum', versionOrOptions, VERSIONS, this);
+    versionOrOptions: 'v1beta1'|binaryauthorization_v1beta1.Options) {
+  return getAPI<T>('binaryauthorization', versionOrOptions, VERSIONS, this);
 }

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -128,6 +127,13 @@ export namespace cloudresourcemanager_v2beta1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -150,6 +156,35 @@ export namespace cloudresourcemanager_v2beta1 {
     role?: string;
   }
   /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * A Folder in an Organization&#39;s resource hierarchy, used to organize that
    * Organization&#39;s resources.
    */
@@ -165,7 +200,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * display name. The display name must start and end with a letter or digit,
      * may contain letters, digits, spaces, hyphens and underscores and can be
      * no longer than 30 characters. This is captured by the regular expression:
-     * [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+     * [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
      */
     displayName?: string;
     /**
@@ -537,9 +572,12 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param {string=} params.parent The resource name of the new Folder's
+     *     parent. Must be of the form `folders/{folder_id}` or
+     *     `organizations/{org_id}`.
      * @param {().Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -608,8 +646,10 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name the resource name of the Folder to be
+     *     deleted. Must be of the form `folders/{folder_id}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -675,8 +715,10 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the Folder to retrieve.
+     *     Must be of the form `folders/{folder_id}`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -740,9 +782,12 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -813,11 +858,21 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of Folders to return in the response. This field is optional.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from. This field is optional.
-     * @param {string=} params.parent The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
-     * @param {boolean=} params.showDeleted Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false. This field is optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of Folders to return
+     *     in the response. This field is optional.
+     * @param {string=} params.pageToken A pagination token returned from a
+     *     previous call to `ListFolders` that indicates where this listing
+     *     should continue from. This field is optional.
+     * @param {string=} params.parent The resource name of the Organization or
+     *     Folder whose Folders are being listed. Must be of the form
+     *     `folders/{folder_id}` or `organizations/{org_id}`. Access to this
+     *     method is controlled by checking the `resourcemanager.folders.list`
+     *     permission on the `parent`.
+     * @param {boolean=} params.showDeleted Controls whether Folders in the
+     *     DELETE_REQUESTED state should be returned. Defaults to false. This
+     *     field is optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -893,9 +948,11 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     * @param {string} params.name The resource name of the Folder to move. Must
+     *     be of the form folders/{folder_id}
      * @param {().MoveFolderRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -960,7 +1017,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * documentation.  The Folder's display name must start and end with a
      * letter or digit, may contain letters, digits, spaces, hyphens and
      * underscores and can be no longer than 30 characters. This is captured by
-     * the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+     * the regular expression: [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
      * The caller must have `resourcemanager.folders.update` permission on the
      * identified folder.  If the update fails due to the unique name constraint
      * then a PreconditionFailure explaining this violation will be returned in
@@ -969,10 +1026,13 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
-     * @param {string=} params.updateMask Fields to be updated. Only the `display_name` can be updated.
+     * @param {string} params.name Output only. The resource name of the Folder.
+     *     Its format is `folders/{folder_id}`, for example: "folders/1234".
+     * @param {string=} params.updateMask Fields to be updated. Only the
+     *     `display_name` can be updated.
      * @param {().Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1040,7 +1100,8 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchFoldersRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1110,9 +1171,12 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1181,9 +1245,12 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1263,9 +1330,11 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
+     * @param {string} params.name The resource name of the Folder to undelete.
+     *     Must be of the form `folders/{folder_id}`.
      * @param {().UndeleteFolderRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1536,7 +1605,8 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

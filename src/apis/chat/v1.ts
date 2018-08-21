@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -621,8 +620,10 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Resource name of the space, in the
+     *     form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -681,9 +682,13 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested page size. The value is
+     *     capped at 1000. Server may return fewer results than requested. If
+     *     unspecified, server will default to 100.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     the server should return.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -787,8 +792,11 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Resource name of the membership to
+     *     be retrieved, in the form "spaces/x/members/x".  Example:
+     *     spaces/AAAAMpdlehY/members/105115627578887013105
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -849,10 +857,16 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.
-     * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested page size. The value is
+     *     capped at 1000. Server may return fewer results than requested. If
+     *     unspecified, server will default to 100.
+     * @param {string=} params.pageToken A token identifying a page of results
+     *     the server should return.
+     * @param {string} params.parent Required. The resource name of the space
+     *     for which membership list is to be fetched, in the form "spaces/x".
+     *     Example: spaces/AAAAMpdlehY
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -966,10 +980,19 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-     * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * @param {string} params.parent Required. Space resource name, in the form
+     *     "spaces/x". Example: spaces/AAAAMpdlehY
+     * @param {string=} params.threadKey Opaque thread identifier string that
+     *     can be specified to group messages into a single thread. If this is
+     *     the first message with a given thread identifier, a new thread is
+     *     created. Subsequent messages with the same thread identifier will be
+     *     posted into the same thread. This relieves bots and webhooks from
+     *     having to store the Hangouts Chat thread ID of a thread (created
+     *     earlier by them) to post further updates to it.  Has no effect if
+     *     thread field, corresponding to an existing thread, is set in message.
      * @param {().Message} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1034,8 +1057,11 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Resource name of the message to be
+     *     deleted, in the form "spaces/x/messages/x"  Example:
+     *     spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1099,8 +1125,11 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Resource name of the message to be
+     *     retrieved, in the form "spaces/x/messages/x".  Example:
+     *     spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1160,10 +1189,14 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {string=} params.updateMask Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
+     * @param {string} params.name Resource name, in the form
+     *     "spaces/x/messages/x".  Example:
+     *     spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {string=} params.updateMask Required. The field paths to be
+     *     updated.  Currently supported field paths: "text", "cards".
      * @param {().Message} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

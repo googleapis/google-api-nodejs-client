@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1323,9 +1322,11 @@ export namespace datastore_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().AllocateIdsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1392,9 +1393,11 @@ export namespace datastore_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().BeginTransactionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1463,9 +1466,11 @@ export namespace datastore_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().CommitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1536,9 +1541,12 @@ export namespace datastore_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1ExportEntitiesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Project ID against which to make the
+     *     request.
+     * @param {().GoogleDatastoreAdminV1ExportEntitiesRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1611,9 +1619,12 @@ export namespace datastore_v1 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {string} params.projectId Project ID against which to make the request.
- * @param {().GoogleDatastoreAdminV1ImportEntitiesRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {string} params.projectId Project ID against which to make the
+ *     request.
+ * @param {().GoogleDatastoreAdminV1ImportEntitiesRequest} params.resource
+ *     Request body data
+ * @param {object} [options] Optionally override request options, such as `url`,
+ *     `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -1714,9 +1725,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().ReserveIdsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1782,9 +1795,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().RollbackRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1850,9 +1865,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId The ID of the project against which to
+     *     make the request.
      * @param {().RunQueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2076,8 +2093,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {string} params.indexId The resource ID of the index to get.
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Project ID against which to make the
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2147,10 +2166,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter
-     * @param {integer=} params.pageSize The maximum number of items to return.  If zero, then all results will be returned.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of items to return.
+     *     If zero, then all results will be returned.
+     * @param {string=} params.pageToken The next_page_token value returned from
+     *     a previous List request, if any.
+     * @param {string} params.projectId Project ID against which to make the
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2285,8 +2308,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2354,8 +2379,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2422,7 +2449,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2501,7 +2529,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

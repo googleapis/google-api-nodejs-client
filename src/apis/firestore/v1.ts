@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -66,257 +65,68 @@ export namespace firestore_v1 {
   }
 
   /**
-   * Metadata for ExportDocuments operations.
+   * A generic empty message that you can re-use to avoid defining duplicated
+   * empty messages in your APIs. A typical example is to use it as the request
+   * or the response type of an API method. For instance:      service Foo { rpc
+   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+   * representation for `Empty` is empty JSON object `{}`.
    */
-  export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsMetadata {
+  export interface Schema$Empty {}
+  /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$GoogleLongrunningCancelOperationRequest {}
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
     /**
-     * Which collection ids are being exported.
+     * The standard List next-page token.
      */
-    collectionIds?: string[];
+    nextPageToken?: string;
     /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
+     * A list of operations that matches the specified filter in the request.
      */
-    endTime?: string;
-    /**
-     * The state of the export operation.
-     */
-    operationState?: string;
-    /**
-     * Where the entities are being exported to.
-     */
-    outputUriPrefix?: string;
-    /**
-     * An estimate of the number of bytes processed.
-     */
-    progressBytes?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * An estimate of the number of documents processed.
-     */
-    progressDocuments?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
+    operations?: Schema$GoogleLongrunningOperation[];
   }
   /**
-   * Returned in the google.longrunning.Operation response field.
+   * This resource represents a long-running operation that is the result of a
+   * network API call.
    */
-  export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsResponse {
+  export interface Schema$GoogleLongrunningOperation {
     /**
-     * Location of the output files. This can be used to begin an import into
-     * Cloud Firestore (this project or another project) after the operation
-     * completes successfully.
+     * If the value is `false`, it means the operation is still in progress. If
+     * `true`, the operation is completed, and either `error` or `response` is
+     * available.
      */
-    outputUriPrefix?: string;
-  }
-  /**
-   * Metadata for ImportDocuments operations.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1ImportDocumentsMetadata {
+    done?: boolean;
     /**
-     * Which collection ids are being imported.
+     * The error result of the operation in case of failure or cancellation.
      */
-    collectionIds?: string[];
+    error?: Schema$Status;
     /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
+     * Service-specific metadata associated with the operation.  It typically
+     * contains progress information and common metadata such as create time.
+     * Some services might not provide such metadata.  Any method that returns a
+     * long-running operation should document the metadata type, if any.
      */
-    endTime?: string;
+    metadata?: any;
     /**
-     * The location of the documents being imported.
-     */
-    inputUriPrefix?: string;
-    /**
-     * The state of the import operation.
-     */
-    operationState?: string;
-    /**
-     * An estimate of the number of bytes processed.
-     */
-    progressBytes?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * An estimate of the number of documents processed.
-     */
-    progressDocuments?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
-  }
-  /**
-   * Metadata for index operations. This metadata populates the metadata field
-   * of google.longrunning.Operation.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1IndexOperationMetadata {
-    /**
-     * True if the [google.longrunning.Operation] was cancelled. If the
-     * cancellation is in progress, cancelled will be true but
-     * google.longrunning.Operation.done will be false.
-     */
-    cancelled?: boolean;
-    /**
-     * Progress of the existing operation, measured in number of documents.
-     */
-    documentProgress?: Schema$GoogleFirestoreAdminV1beta1Progress;
-    /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
-     */
-    endTime?: string;
-    /**
-     * The index resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
-     */
-    index?: string;
-    /**
-     * The type of index operation.
-     */
-    operationType?: string;
-    /**
-     * The time that work began on the operation.
-     */
-    startTime?: string;
-  }
-  /**
-   * The metadata message for google.cloud.location.Location.metadata.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1LocationMetadata {}
-  /**
-   * Measures the progress of a particular metric.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta1Progress {
-    /**
-     * An estimate of how much work has been completed. Note that this may be
-     * greater than `work_estimated`.
-     */
-    workCompleted?: string;
-    /**
-     * An estimate of how much work needs to be performed. Zero if the work
-     * estimate is unavailable. May change as work progresses.
-     */
-    workEstimated?: string;
-  }
-  /**
-   * Metadata for google.longrunning.Operation results from
-   * FirestoreAdmin.UpdateField.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2FieldOperationMetadata {
-    /**
-     * The progress, in bytes, of this operation.
-     */
-    bytesProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The progress, in documents, of this operation.
-     */
-    documentProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The time this operation completed. Will be unset if operation still in
-     * progress.
-     */
-    endTime?: string;
-    /**
-     * The field resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     */
-    field?: string;
-    /**
-     * A list of IndexConfigDelta, which describe the intent of this operation.
-     */
-    indexConfigDeltas?: Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta[];
-    /**
-     * The time this operation started.
-     */
-    startTime?: string;
-    /**
-     * The state of the operation.
-     */
-    state?: string;
-  }
-  /**
-   * Cloud Firestore indexes enable simple and complex queries against documents
-   * in a database.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Index {
-    /**
-     * The fields supported by this index.  For composite indexes, this is
-     * always 2 or more fields. The last field entry is always for the field
-     * path `__name__`. If, on creation, `__name__` was not specified as the
-     * last field, it will be added automatically with the same direction as
-     * that of the last field defined. If the final field in a composite index
-     * is not directional, the `__name__` will be ordered ASCENDING (unless
-     * explicitly specified).  For single field indexes, this will always be
-     * exactly one entry with a field path equal to the field path of the
-     * associated field.
-     */
-    fields?: Schema$GoogleFirestoreAdminV1beta2IndexField[];
-    /**
-     * Output only. A server defined name for this index. The form of this name
-     * for composite indexes will be:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
-     * For single field indexes, this field will be empty.
+     * The server-assigned name, which is only unique within the same service
+     * that originally returns it. If you use the default HTTP mapping, the
+     * `name` should have the format of `operations/some/unique/name`.
      */
     name?: string;
     /**
-     * Indexes with a collection query scope specified allow queries against a
-     * collection that is the child of a specific document, specified at query
-     * time, and that has the same collection id.  Indexes with a collection
-     * group query scope specified allow queries against all collections
-     * descended from a specific document, specified at query time, and that
-     * have the same collection id as this index.
+     * The normal response of the operation in case of success.  If the original
+     * method returns no data on success, such as `Delete`, the response is
+     * `google.protobuf.Empty`.  If the original method is standard
+     * `Get`/`Create`/`Update`, the response should be the resource.  For other
+     * methods, the response should have the type `XxxResponse`, where `Xxx` is
+     * the original method name.  For example, if the original method name is
+     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    queryScope?: string;
-    /**
-     * Output only. The serving state of the index.
-     */
-    state?: string;
-  }
-  /**
-   * Information about an index configuration change.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta {
-    /**
-     * Specifies how the index is changing.
-     */
-    changeType?: string;
-    /**
-     * The index being changed.
-     */
-    index?: Schema$GoogleFirestoreAdminV1beta2Index;
-  }
-  /**
-   * A field in an index. The field_path describes which field is indexed, the
-   * value_mode describes how the field value is indexed.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexField {
-    /**
-     * Indicates that this field supports operations on `array_value`s.
-     */
-    arrayConfig?: string;
-    /**
-     * Can be __name__. For single field indexes, this must match the name of
-     * the field or may be omitted.
-     */
-    fieldPath?: string;
-    /**
-     * Indicates that this field supports ordering by the specified order or
-     * comparing using =, &lt;, &lt;=, &gt;, &gt;=.
-     */
-    order?: string;
-  }
-  /**
-   * Describes the progress of the operation. Unit of work is generic and must
-   * be interpreted based on where Progress is used.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Progress {
-    /**
-     * The amount of work completed.
-     */
-    completedWork?: string;
-    /**
-     * The amount of work estimated.
-     */
-    estimatedWork?: string;
+    response?: any;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -360,14 +170,69 @@ export namespace firestore_v1 {
      */
     name?: string;
   }
+  /**
+   * The `Status` type defines a logical error model that is suitable for
+   * different programming environments, including REST APIs and RPC APIs. It is
+   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
+   * - Simple to use and understand for most users - Flexible enough to meet
+   * unexpected needs  # Overview  The `Status` message contains three pieces of
+   * data: error code, error message, and error details. The error code should
+   * be an enum value of google.rpc.Code, but it may accept additional error
+   * codes if needed.  The error message should be a developer-facing English
+   * message that helps developers *understand* and *resolve* the error. If a
+   * localized user-facing error message is needed, put the localized message in
+   * the error details or localize it in the client. The optional error details
+   * may contain arbitrary information about the error. There is a predefined
+   * set of error detail types in the package `google.rpc` that can be used for
+   * common error conditions.  # Language mapping  The `Status` message is the
+   * logical representation of the error model, but it is not necessarily the
+   * actual wire format. When the `Status` message is exposed in different
+   * client libraries and different wire protocols, it can be mapped
+   * differently. For example, it will likely be mapped to some exceptions in
+   * Java, but more likely mapped to some error codes in C.  # Other uses  The
+   * error model and the `Status` message can be used in a variety of
+   * environments, either with or without APIs, to provide a consistent
+   * developer experience across different environments.  Example uses of this
+   * error model include:  - Partial errors. If a service needs to return
+   * partial errors to the client,     it may embed the `Status` in the normal
+   * response to indicate the partial     errors.  - Workflow errors. A typical
+   * workflow has multiple steps. Each step may     have a `Status` message for
+   * error reporting.  - Batch operations. If a client uses batch request and
+   * batch response, the     `Status` message should be used directly inside
+   * batch response, one for     each error sub-response.  - Asynchronous
+   * operations. If an API call embeds asynchronous operation     results in its
+   * response, the status of those operations should be     represented directly
+   * using the `Status` message.  - Logging. If some API errors are stored in
+   * logs, the message `Status` could     be used directly after any stripping
+   * needed for security/privacy reasons.
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number;
+    /**
+     * A list of messages that carry the error details.  There is a common set
+     * of message types for APIs to use.
+     */
+    details?: any[];
+    /**
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string;
+  }
 
 
   export class Resource$Projects {
     root: Firestore;
+    databases: Resource$Projects$Databases;
     locations: Resource$Projects$Locations;
     constructor(root: Firestore) {
       this.root = root;
       this.getRoot.bind(this);
+      this.databases = new Resource$Projects$Databases(root);
       this.locations = new Resource$Projects$Locations(root);
     }
 
@@ -375,6 +240,403 @@ export namespace firestore_v1 {
       return this.root;
     }
   }
+
+
+  export class Resource$Projects$Databases {
+    root: Firestore;
+    operations: Resource$Projects$Databases$Operations;
+    constructor(root: Firestore) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.operations = new Resource$Projects$Databases$Operations(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Databases$Operations {
+    root: Firestore;
+    constructor(root: Firestore) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * firestore.projects.databases.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The
+     * server makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
+     * or other methods to check whether the cancellation succeeded or whether
+     * the operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with an
+     * Operation.error value with a google.rpc.Status.code of 1, corresponding
+     * to `Code.CANCELLED`.
+     * @alias firestore.projects.databases.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {().GoogleLongrunningCancelOperationRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+        params?: Params$Resource$Projects$Databases$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(
+        params: Params$Resource$Projects$Databases$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Databases$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:cancel')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * firestore.projects.databases.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the
+     * client is no longer interested in the operation result. It does not
+     * cancel the operation. If the server doesn't support this method, it
+     * returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias firestore.projects.databases.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Databases$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Databases$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Databases$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * firestore.projects.databases.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias firestore.projects.databases.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Databases$Operations$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(params: Params$Resource$Projects$Databases$Operations$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    get(params: Params$Resource$Projects$Databases$Operations$Get,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Databases$Operations$Get|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+
+    /**
+     * firestore.projects.databases.operations.list
+     * @desc Lists operations that match the specified filter in the request. If
+     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
+     * the `name` binding allows API services to override the binding to use
+     * different resource name schemes, such as `users/x/operations`. To
+     * override the binding, API services can add a binding such as
+     * `"/v1/{name=users/x}/operations"` to their service configuration. For
+     * backwards compatibility, the default name includes the operations
+     * collection id, however overriding users must ensure the name binding is
+     * the parent resource, without the operations collection id.
+     * @alias firestore.projects.databases.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Databases$Operations$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Databases$Operations$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        callback: BodyResponseCallback<
+            Schema$GoogleLongrunningListOperationsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Databases$Operations$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleLongrunningListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleLongrunningListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Operations$List|
+        BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleLongrunningListOperationsResponse>):
+        void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/operations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
 
   export class Resource$Projects$Locations {
@@ -397,7 +659,8 @@ export namespace firestore_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -458,10 +721,12 @@ export namespace firestore_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
+     * @param {string} params.name The resource that owns the locations
+     *     collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

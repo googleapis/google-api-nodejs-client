@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -733,21 +732,21 @@ export namespace spanner_v1 {
      * merged because they are strings.     [&quot;a&quot;, [&quot;b&quot;,
      * &quot;c&quot;]], [[&quot;d&quot;], &quot;e&quot;] =&gt; [&quot;a&quot;,
      * [&quot;b&quot;, &quot;cd&quot;], &quot;e&quot;]      # Non-overlapping
-     * object fields are combined.     {&quot;a&quot;: &quot;1&quot;},
-     * {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;1&quot;,
-     * &quot;b&quot;: 2&quot;}      # Overlapping object fields are merged.
-     * {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;: &quot;2&quot;} =&gt;
-     * {&quot;a&quot;: &quot;12&quot;}      # Examples of merging objects
-     * containing lists of strings.     {&quot;a&quot;: [&quot;1&quot;]},
-     * {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;: [&quot;12&quot;]}
-     * For a more complete example, suppose a streaming SQL query is yielding a
-     * result set whose rows contain a single string field. The following
-     * `PartialResultSet`s might be yielded:      {       &quot;metadata&quot;:
-     * { ... }       &quot;values&quot;: [&quot;Hello&quot;, &quot;W&quot;]
-     * &quot;chunked_value&quot;: true       &quot;resume_token&quot;:
-     * &quot;Af65...&quot;     }     {       &quot;values&quot;:
-     * [&quot;orl&quot;]       &quot;chunked_value&quot;: true
-     * &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {
+     * object fields are combined.     {&quot;a&quot;:
+     * &quot;1&quot;}, {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;:
+     * &quot;1&quot;, &quot;b&quot;: 2&quot;}      # Overlapping object fields
+     * are merged.     {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;:
+     * &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;12&quot;}      # Examples of
+     * merging objects containing lists of strings.     {&quot;a&quot;:
+     * [&quot;1&quot;]}, {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;:
+     * [&quot;12&quot;]}  For a more complete example, suppose a streaming SQL
+     * query is yielding a result set whose rows contain a single string field.
+     * The following `PartialResultSet`s might be yielded:      {
+     * &quot;metadata&quot;: { ... }       &quot;values&quot;:
+     * [&quot;Hello&quot;, &quot;W&quot;]       &quot;chunked_value&quot;: true
+     * &quot;resume_token&quot;: &quot;Af65...&quot;     }     {
+     * &quot;values&quot;: [&quot;orl&quot;]       &quot;chunked_value&quot;:
+     * true       &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {
      * &quot;values&quot;: [&quot;d&quot;]       &quot;resume_token&quot;:
      * &quot;Zx1B...&quot;     }  This sequence of `PartialResultSet`s encodes
      * two rows, one containing the field value `&quot;Hello&quot;`, and a
@@ -1677,8 +1676,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the requested instance configuration. Values are of the form `projects/<project>/instanceConfigs/<config>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the requested instance
+     *     configuration. Values are of the form
+     *     `projects/<project>/instanceConfigs/<config>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1739,10 +1741,17 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Number of instance configurations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListInstanceConfigsResponse.
-     * @param {string} params.parent Required. The name of the project for which a list of supported instance configurations is requested. Values are of the form `projects/<project>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Number of instance configurations to be
+     *     returned in the response. If 0 or less, defaults to the server's
+     *     maximum allowed page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should
+     *     contain a next_page_token from a previous
+     *     ListInstanceConfigsResponse.
+     * @param {string} params.parent Required. The name of the project for which
+     *     a list of supported instance configurations is requested. Values are
+     *     of the form `projects/<project>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1885,9 +1894,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the project in which to create the instance. Values are of the form `projects/<project>`.
+     * @param {string} params.parent Required. The name of the project in which
+     *     to create the instance. Values are of the form `projects/<project>`.
      * @param {().CreateInstanceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1957,8 +1968,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the instance to be deleted. Values are of the form `projects/<project>/instances/<instance>`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the instance to be
+     *     deleted. Values are of the form
+     *     `projects/<project>/instances/<instance>`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2022,8 +2036,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the requested instance. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the requested instance.
+     *     Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2085,9 +2101,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which the policy is being retrieved. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for database resources.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2152,11 +2173,29 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `name`   * `display_name`   * `labels.key` where key is the name of a label  Some examples of using filters are:    * `name:*` --> The instance has a name.   * `name:Howl` --> The instance's name contains the string "howl".   * `name:HOWL` --> Equivalent to above.   * `NAME:howl` --> Equivalent to above.   * `labels.env:*` --> The instance has the label "env".   * `labels.env:dev` --> The instance has the label "env" and the value of                        the label contains the string "dev".   * `name:howl labels.env:dev` --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
-     * @param {integer=} params.pageSize Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse.
-     * @param {string} params.parent Required. The name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.filter An expression for filtering the results of
+     *     the request. Filter rules are case insensitive. The fields eligible
+     *     for filtering are:    * `name`   * `display_name`   * `labels.key`
+     *     where key is the name of a label  Some examples of using filters are:
+     *     * `name:*` --> The instance has a name.   * `name:Howl` --> The
+     *     instance's name contains the string "howl".   * `name:HOWL` -->
+     *     Equivalent to above.   * `NAME:howl` --> Equivalent to above.   *
+     *     `labels.env:*` --> The instance has the label "env".   *
+     *     `labels.env:dev` --> The instance has the label "env" and the value
+     *     of                        the label contains the string "dev".   *
+     *     `name:howl labels.env:dev` --> The instance's name contains "howl"
+     *     and                                  it has the label "env" with its
+     *     value                                  containing "dev".
+     * @param {integer=} params.pageSize Number of instances to be returned in
+     *     the response. If 0 or less, defaults to the server's maximum allowed
+     *     page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should
+     *     contain a next_page_token from a previous ListInstancesResponse.
+     * @param {string} params.parent Required. The name of the project for which
+     *     a list of instances is requested. Values are of the form
+     *     `projects/<project>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2245,9 +2284,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 6 and 30 characters in length.
+     * @param {string} params.name Required. A unique identifier for the
+     *     instance, which cannot be changed after the instance is created.
+     *     Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`.
+     *     The final segment of the name must be between 6 and 30 characters in
+     *     length.
      * @param {().UpdateInstanceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2314,9 +2358,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which the policy is being set. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for databases resources.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2385,9 +2434,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which permissions are being tested. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for database resources.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2637,9 +2691,12 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the instance that will serve the new database. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.parent Required. The name of the instance that
+     *     will serve the new database. Values are of the form
+     *     `projects/<project>/instances/<instance>`.
      * @param {().CreateDatabaseRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2706,7 +2763,8 @@ export namespace spanner_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database Required. The database to be dropped.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2772,8 +2830,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the requested database. Values are of the form `projects/<project>/instances/<instance>/databases/<database>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the requested database.
+     *     Values are of the form
+     *     `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2835,8 +2896,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Required. The database whose schema we wish to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.database Required. The database whose schema we
+     *     wish to get.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2906,9 +2969,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which the policy is being retrieved. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for database resources.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2975,10 +3043,16 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse.
-     * @param {string} params.parent Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Number of databases to be returned in
+     *     the response. If 0 or less, defaults to the server's maximum allowed
+     *     page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should
+     *     contain a next_page_token from a previous ListDatabasesResponse.
+     * @param {string} params.parent Required. The instance whose databases
+     *     should be listed. Values are of the form
+     *     `projects/<project>/instances/<instance>`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3047,9 +3121,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which the policy is being set. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for databases resources.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3120,9 +3199,14 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+     * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for
+     *     which permissions are being tested. The format is `projects/<project
+     *     ID>/instances/<instance ID>` for instance resources and
+     *     `projects/<project ID>/instances/<instance ID>/databases/<database
+     *     ID>` for database resources.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3205,7 +3289,8 @@ export namespace spanner_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.database Required. The database to update.
      * @param {().UpdateDatabaseDdlRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3439,8 +3524,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3510,8 +3597,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3580,7 +3669,8 @@ export namespace spanner_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3655,7 +3745,8 @@ export namespace spanner_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3794,9 +3885,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the transaction runs.
+     * @param {string} params.session Required. The session in which the
+     *     transaction runs.
      * @param {().BeginTransactionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3872,9 +3965,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the transaction to be committed is running.
+     * @param {string} params.session Required. The session in which the
+     *     transaction to be committed is running.
      * @param {().CommitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3954,9 +4049,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Required. The database in which the new session is created.
+     * @param {string} params.database Required. The database in which the new
+     *     session is created.
      * @param {().CreateSessionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4024,7 +4121,8 @@ export namespace spanner_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the session to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4097,9 +4195,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the SQL query should be performed.
+     * @param {string} params.session Required. The session in which the SQL
+     *     query should be performed.
      * @param {().ExecuteSqlRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4173,9 +4273,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the SQL query should be performed.
+     * @param {string} params.session Required. The session in which the SQL
+     *     query should be performed.
      * @param {().ExecuteSqlRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4248,8 +4350,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the session to
+     *     retrieve.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4311,11 +4415,22 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Required. The database in which to list sessions.
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `labels.key` where key is the name of a label  Some examples of using filters are:    * `labels.env:*` --> The session has the label "env".   * `labels.env:dev` --> The session has the label "env" and the value of                        the label contains the string "dev".
-     * @param {integer=} params.pageSize Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.database Required. The database in which to list
+     *     sessions.
+     * @param {string=} params.filter An expression for filtering the results of
+     *     the request. Filter rules are case insensitive. The fields eligible
+     *     for filtering are:    * `labels.key` where key is the name of a label
+     *     Some examples of using filters are:    * `labels.env:*` --> The
+     *     session has the label "env".   * `labels.env:dev` --> The session has
+     *     the label "env" and the value of                        the label
+     *     contains the string "dev".
+     * @param {integer=} params.pageSize Number of sessions to be returned in
+     *     the response. If 0 or less, defaults to the server's maximum allowed
+     *     page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should
+     *     contain a next_page_token from a previous ListSessionsResponse.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4391,9 +4506,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session used to create the partitions.
+     * @param {string} params.session Required. The session used to create the
+     *     partitions.
      * @param {().PartitionQueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4472,9 +4589,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session used to create the partitions.
+     * @param {string} params.session Required. The session used to create the
+     *     partitions.
      * @param {().PartitionReadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4553,9 +4672,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the read should be performed.
+     * @param {string} params.session Required. The session in which the read
+     *     should be performed.
      * @param {().ReadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4628,9 +4749,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the transaction to roll back is running.
+     * @param {string} params.session Required. The session in which the
+     *     transaction to roll back is running.
      * @param {().RollbackRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4700,9 +4823,11 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The session in which the read should be performed.
+     * @param {string} params.session Required. The session in which the read
+     *     should be performed.
      * @param {().ReadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5010,8 +5135,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5079,8 +5206,10 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5147,7 +5276,8 @@ export namespace spanner_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5220,7 +5350,8 @@ export namespace spanner_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
