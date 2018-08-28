@@ -33,9 +33,9 @@ if (fs.existsSync(keyPath)) {
   keys = keyFile.installed || keyFile.web;
 }
 
-const invalidRedirectUri = `The provided keyfile does not define a valid 
+const invalidRedirectUri = `The provided keyfile does not define a valid
 redirect URI. There must be at least one redirect URI defined, and this sample
-assumes it redirects to 'http://localhost:3000/oauth2callback'.  Please edit 
+assumes it redirects to 'http://localhost:3000/oauth2callback'.  Please edit
 your keyfile, and add a 'redirect_uris' section.  For example:
 
 "redirect_uris": [
@@ -53,7 +53,7 @@ class SampleClient {
     }
     const redirectUri = keys.redirect_uris[keys.redirect_uris.length - 1];
     const parts = url.parse(redirectUri, false);
-    if (redirectUri.length > 0 && parts.port !== '3000' || parts.hostname !== 'localhost' || parts.path !== '/oauth2callback') {
+    if (redirectUri.length === 0 || parts.port !== '3000' || parts.hostname !== 'localhost' || parts.path !== '/oauth2callback') {
       throw new Error(invalidRedirectUri);
     }
 
