@@ -34,7 +34,5 @@ shell.run("npm install".split(), cwd=repository)
 log.debug("Generating all libraries.")
 shell.run("make generate".split(), cwd=repository)
 
-# copy src, test, samples directories
-s.copy(repository / "src")
-s.copy(repository / "test")
-s.copy(repository / "samples")
+# copy src directory
+s.copy(library / "src")
