@@ -37,29 +37,11 @@ describe('JWT client', () => {
     assert.strictEqual(jwt.scopes, 'scope1');
     assert.strictEqual(jwt.subject, 'subject1');
   });
-  it('should create scoped JWT', () => {
-    const jwt = new googleapis.auth.JWT(
-        'someone@somewhere.com', 'file1', 'key1', undefined, 'subject1');
-    assert.strictEqual(jwt.scopes, undefined);
-    assert.strictEqual(jwt.createScopedRequired(), true);
-
-    // Create a scoped version of the token now.
-    const jwt2 = jwt.createScoped('scope1');
-
-    // The original token should be unchanged.
-    assert.strictEqual(jwt.scopes, undefined);
-    assert.strictEqual(jwt.createScopedRequired(), true);
-
-    // The new token should have scopes.
-    assert.strictEqual(jwt2.scopes, 'scope1');
-    assert.strictEqual(jwt2.createScopedRequired(), false);
-  });
 });
 
 describe('Compute client', () => {
   it('should create a computeclient', () => {
     const compute = new googleapis.auth.Compute();
-    assert.strictEqual(compute.createScopedRequired(), false);
   });
 });
 
@@ -159,8 +141,8 @@ describe('OAuth2 client', () => {
   });
 
   it('should refresh if access token is expired', async () => {
-    const scope = nock('https://www.googleapis.com')
-                      .post('/oauth2/v4/token')
+    const scope = nock('https://oauth2.googleapis.com')
+                      .post('/token')
                       .times(2)
                       .reply(200, {access_token: 'abc123', expires_in: 1});
     let oauth2client =
@@ -237,8 +219,8 @@ describe('OAuth2 client', () => {
   });
 
   it('should refresh if have refresh token but no access token', async () => {
-    const scope = nock('https://www.googleapis.com')
-                      .post('/oauth2/v4/token')
+    const scope = nock('https://oauth2.googleapis.com')
+                      .post('/token')
                       .times(2)
                       .reply(200, {access_token: 'abc123', expires_in: 1});
     const oauth2client =
@@ -253,8 +235,8 @@ describe('OAuth2 client', () => {
 
   describe('revokeCredentials()', () => {
     it('should revoke credentials if access token present', async () => {
-      const scope = nock('https://accounts.google.com')
-                        .get('/o/oauth2/revoke?token=abc')
+      const scope = nock('https://oauth2.googleapis.com')
+                        .get('/revoke?token=abc')
                         .reply(200, {success: true});
       const oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -281,11 +263,11 @@ describe('OAuth2 client', () => {
     it('should return expiry_date', async () => {
       const now = (new Date()).getTime();
       const scope =
-          nock('https://www.googleapis.com')
-              .post('/oauth2/v4/token')
-              .reply(
-                  200,
-                  {access_token: 'abc', refresh_token: '123', expires_in: 10});
+          nock('https://oauth2.googleapis.com').post('/token').reply(200, {
+            access_token: 'abc',
+            refresh_token: '123',
+            expires_in: 10
+          });
       const oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       const res = await oauth2client.getToken('code here');
