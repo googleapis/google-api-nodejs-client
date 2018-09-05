@@ -149,21 +149,24 @@ jobs:
           name: Decrypt credentials.
           command: |
             if ! [[ -z "${SYSTEM_TESTS_ENCRYPTION_KEY}" ]]; then
-              openssl aes-256-cbc -d -in .circleci/key.json.enc \
-                -out .circleci/key.json \
-                -k "${SYSTEM_TESTS_ENCRYPTION_KEY}"
+              for encrypted_key in .circleci/*.json.enc; do
+                openssl aes-256-cbc -d -in $encrypted_key \
+                  -out $(echo $encrypted_key | sed 's/\.enc//') \
+                  -k "${SYSTEM_TESTS_ENCRYPTION_KEY}"
+              done
             fi
       - run: *npm_install_and_link
       - run:
           name: Run system tests.
           command: npm run system-test
           environment:
+            GCLOUD_PROJECT: long-door-651
             GOOGLE_APPLICATION_CREDENTIALS: .circleci/key.json
       - run:
           name: Remove unencrypted key.
           command: |
             if ! [[ -z "${SYSTEM_TESTS_ENCRYPTION_KEY}" ]]; then
-              rm .circleci/key.json
+              rm .circleci/*.json
             fi
           when: always
   publish_npm:

@@ -4,9 +4,9 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - ps: (new-object net.webclient).DownloadFile('https://github.com/mbuilov/gnumake-windows/raw/master/gnumake-4.2.1-x64.exe', 'C:\projects\google-api-nodejs-client\make.exe')
+  - npm install -g npm # Force using the latest npm to get dedupe during install
   - set PATH=%APPDATA%\npm;%PATH%
-  - npm install
+  - npm install --force --ignore-scripts
 
 test_script:
   - node --version
