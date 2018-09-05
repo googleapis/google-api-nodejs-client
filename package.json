@@ -31,10 +31,7 @@
       "it"
     ]
   },
-  "repository": {
-    "url": "https://github.com/google/google-api-nodejs-client.git",
-    "type": "git"
-  },
+  "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
   "contributors": [
     {
@@ -68,7 +65,21 @@
   ],
   "version": "33.0.0",
   "scripts": {
-    "test": "make test -j 4"
+    "pretest": "npm run compile",
+    "test": "nyc mocha build/test",
+    "docs": "echo no docs 👻 # typedoc --out docs src && touch docs/.nojekyll",
+    "system-test": "echo no system tests 👻",
+    "samples-test": "cd samples && npm link ../ && npm install && cd ../ && mocha build/test/samples",
+    "lint": "gts check && semistandard 'samples/**/*.js'",
+    "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
+    "build-tools": "tsc -p tsconfig.tools.json",
+    "clean": "gts clean",
+    "codecov": "nyc --cache mocha build/test -t 10000 -S -R spec && nyc report --reporter=html",
+    "fix": "semistandard --fix 'samples/**/*.js' && gts fix",
+    "pregenerate": "npm run build-tools",
+    "generate": "node build/src/generator/generate.js",
+    "postgenerate": "npm run fix",
+    "publish-docs": "gh-pages --dotfiles --dist docs --remote upstream"
   },
   "author": "Google Inc.",
   "keywords": [

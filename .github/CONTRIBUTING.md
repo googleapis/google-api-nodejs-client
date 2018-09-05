@@ -7,10 +7,10 @@ Install all dependencies including development requirements by running:
 $ npm install
 ```
 
-Builds or tests require the installation of [`make`](https://www.gnu.org/software/make/), which is likely already installed if you develop on Linux or OSX.  To perform the first build, go ahead and run it!
+This library uses TypeScript.  To compile the code, run:
 
 ``` sh
-$ make
+$ npm run compile
 ```
 
 Next, go ahead and run the tests:
@@ -22,7 +22,7 @@ $ npm test
 This looks for tests in the `test/` directory.  In addition to running the tests, this also checks code formatting.  Code formatting (and other issues) can be fixed automatically by running:
 
 ```sh
-$ make fix
+$ npm run fix
 ```
 
 The repo owner reviews your request. They can approve and merge your change. If your change needs additional work, they follow up with comments.
@@ -31,7 +31,7 @@ The repo owner reviews your request. They can approve and merge your change. If 
 If you're a developer interested in contributing to this library, the following section will be useful for you. Each of the files in `src/apis/` is generated from the discovery docs available online. You can generate these files by running the following command:
 
 ``` sh
-$ make generate
+$ npm run generate
 ```
 
 You can pass in custom Discovery URLs or paths to discovery docs:
@@ -44,7 +44,7 @@ $ node build/src/scripts/generate http://discoveryurl.example.com /path/to/disco
 You can generate the documentation for the APIs by running:
 
 ``` sh
-make docs
+npm run docs
 ```
 
 Documentation will be generated in `docs/`.

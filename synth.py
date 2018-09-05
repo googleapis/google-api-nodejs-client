@@ -12,27 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This script is used to synthesize generated parts of this library."""
-
-from synthtool import _tracked_paths
 import synthtool as s
 import synthtool.log as log
 import synthtool.shell as shell
 import synthtool.sources.git as git
+import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-repository_url = "https://github.com/google/google-api-nodejs-client.git"
+logging.basicConfig(level=logging.DEBUG)
+common_templates = gcp.CommonTemplates()
+templates = common_templates.node_library()
+s.copy(templates, excludes=[".github/CONTRIBUTING.md"])
 
+repository_url = "https://github.com/google/google-api-nodejs-client.git"
 log.debug(f"Cloning {repository_url}.")
 repository = git.clone(repository_url, depth=1)
-
 log.debug("Installing dependencies.")
-shell.run("npm install".split(), cwd=repository)
-
-log.debug("Generating all libraries.")
-shell.run("make generate".split(), cwd=repository)
-
-# copy src directory
-s.copy(library / "src")
+shell.run(["npm", "install"], cwd=repository)
+log.debug("Generating all libraries...")
+shell.run(["npm", "run", "generate"], cwd=repository)
+s.copy(repository / "src")
