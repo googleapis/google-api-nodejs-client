@@ -61,7 +61,7 @@ describe('kitchen sink', async () => {
     await mvp(tarball, `${stagingPath}/googleapis.tgz`);
     await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
     await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
-  }).timeout(40000);
+  }).timeout(80000);
 });
 
 /**
