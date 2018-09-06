@@ -66,10 +66,11 @@
   "version": "33.0.0",
   "scripts": {
     "pretest": "npm run compile",
+    "prepare": "npm run compile",
     "test": "nyc mocha build/test",
     "docs": "echo no docs 👻 # typedoc --out docs src && touch docs/.nojekyll",
     "system-test": "echo no system tests 👻",
-    "samples-test": "cd samples && npm link ../ && npm install && cd ../ && mocha build/test/samples",
+    "samples-test": "cd samples && npm link ../ && pwd && npm test",
     "lint": "gts check && semistandard 'samples/**/*.js'",
     "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
     "build-tools": "tsc -p tsconfig.tools.json",
