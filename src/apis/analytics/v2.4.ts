@@ -87,31 +87,17 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dimensions A comma-separated list of Analytics
-     *     dimensions. E.g., 'ga:browser,ga:city'.
-     * @param {string} params.end-date End date for fetching report data. All
-     *     requests should specify an end date formatted as YYYY-MM-DD.
-     * @param {string=} params.filters A comma-separated list of dimension or
-     *     metric filters to be applied to the report data.
-     * @param {string} params.ids Unique table ID for retrieving report data.
-     *     Table ID is of the form ga:XXXX, where XXXX is the Analytics view
-     *     (profile) ID.
-     * @param {integer=} params.max-results The maximum number of entries to
-     *     include in this feed.
-     * @param {string} params.metrics A comma-separated list of Analytics
-     *     metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must
-     *     be specified to retrieve a valid Analytics report.
-     * @param {string=} params.segment An Analytics advanced segment to be
-     *     applied to the report data.
-     * @param {string=} params.sort A comma-separated list of dimensions or
-     *     metrics that determine the sort order for the report data.
-     * @param {string} params.start-date Start date for fetching report data.
-     *     All requests should specify a start date formatted as YYYY-MM-DD.
-     * @param {integer=} params.start-index An index of the first entity to
-     *     retrieve. Use this parameter as a pagination mechanism along with the
-     *     max-results parameter.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.dimensions A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
+     * @param {string} params.end-date End date for fetching report data. All requests should specify an end date formatted as YYYY-MM-DD.
+     * @param {string=} params.filters A comma-separated list of dimension or metric filters to be applied to the report data.
+     * @param {string} params.ids Unique table ID for retrieving report data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * @param {integer=} params.max-results The maximum number of entries to include in this feed.
+     * @param {string} params.metrics A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified to retrieve a valid Analytics report.
+     * @param {string=} params.segment An Analytics advanced segment to be applied to the report data.
+     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for the report data.
+     * @param {string} params.start-date Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
+     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -262,13 +248,9 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.max-results The maximum number of accounts to
-     *     include in this response.
-     * @param {integer=} params.start-index An index of the first account to
-     *     retrieve. Use this parameter as a pagination mechanism along with the
-     *     max-results parameter.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.max-results The maximum number of accounts to include in this response.
+     * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -362,22 +344,12 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve goals for. Can
-     *     either be a specific account ID or '~all', which refers to all the
-     *     accounts that user has access to.
-     * @param {integer=} params.max-results The maximum number of goals to
-     *     include in this response.
-     * @param {string} params.profileId View (Profile) ID to retrieve goals for.
-     *     Can either be a specific view (profile) ID or '~all', which refers to
-     *     all the views (profiles) that user has access to.
-     * @param {integer=} params.start-index An index of the first goal to
-     *     retrieve. Use this parameter as a pagination mechanism along with the
-     *     max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve goals
-     *     for. Can either be a specific web property ID or '~all', which refers
-     *     to all the web properties that user has access to.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     * @param {integer=} params.max-results The maximum number of goals to include in this response.
+     * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+     * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -490,20 +462,11 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID for the views (profiles) to
-     *     retrieve. Can either be a specific account ID or '~all', which refers
-     *     to all the accounts to which the user has access.
-     * @param {integer=} params.max-results The maximum number of views
-     *     (profiles) to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to
-     *     retrieve. Use this parameter as a pagination mechanism along with the
-     *     max-results parameter.
-     * @param {string} params.webPropertyId Web property ID for the views
-     *     (profiles) to retrieve. Can either be a specific web property ID or
-     *     '~all', which refers to all the web properties to which the user has
-     *     access.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account ID for the views (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+     * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
+     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -611,13 +574,9 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.max-results The maximum number of advanced
-     *     segments to include in this response.
-     * @param {integer=} params.start-index An index of the first advanced
-     *     segment to retrieve. Use this parameter as a pagination mechanism
-     *     along with the max-results parameter.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.max-results The maximum number of advanced segments to include in this response.
+     * @param {integer=} params.start-index An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -711,16 +670,10 @@ export namespace analytics_v2_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account ID to retrieve web properties
-     *     for. Can either be a specific account ID or '~all', which refers to
-     *     all the accounts that user has access to.
-     * @param {integer=} params.max-results The maximum number of web properties
-     *     to include in this response.
-     * @param {integer=} params.start-index An index of the first entity to
-     *     retrieve. Use this parameter as a pagination mechanism along with the
-     *     max-results parameter.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     * @param {integer=} params.max-results The maximum number of web properties to include in this response.
+     * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

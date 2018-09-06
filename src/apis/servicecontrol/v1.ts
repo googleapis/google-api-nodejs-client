@@ -177,6 +177,15 @@ export namespace servicecontrol_v1 {
      */
     resourceName?: string;
     /**
+     * The resource&#39;s original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s). In
+     * general, this field should contain all changed fields, except those that
+     * are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields. When the JSON object represented here has a proto
+     * equivalent, the proto name will be indicated in the `@type` property.
+     */
+    resourceOriginalState?: any;
+    /**
      * The operation response. This may not include all response elements, such
      * as those that are too large, privacy-sensitive, or duplicated elsewhere
      * in the log record. It should never include user-generated data, such as
@@ -1526,12 +1535,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in
-     *     the service configuration. For example, `"pubsub.googleapis.com"`.
-     *     See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {().AllocateQuotaRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1610,13 +1616,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its
-     *     service configuration. For example, `"pubsub.googleapis.com"`.  See
-     *     [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().CheckRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1685,12 +1687,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in
-     *     the service configuration. For example, `"pubsub.googleapis.com"`.
-     *     See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {().EndReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1767,12 +1766,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in
-     *     the service configuration. For example, `"pubsub.googleapis.com"`.
-     *     See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {().ReleaseQuotaRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1851,13 +1847,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The service name as specified in its
-     *     service configuration. For example, `"pubsub.googleapis.com"`.  See
-     *     [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
-     *     for the definition of a service name.
+     * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      * @param {().ReportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1942,12 +1934,9 @@ export namespace servicecontrol_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in
-     *     the service configuration. For example, `"pubsub.googleapis.com"`.
-     *     See google.api.Service for the definition of a service name.
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {().StartReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

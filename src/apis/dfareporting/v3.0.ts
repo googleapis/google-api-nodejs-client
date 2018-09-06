@@ -1094,8 +1094,8 @@ export namespace dfareporting_v3_0 {
      * For example, for Chrome 5.0.375.86 beta, this field should be set to 0.
      * An asterisk (*) may be used to target any version number, and a question
      * mark (?) may be used to target cases where the version number cannot be
-     * identified. For example, Chrome *.* targets any version of
-     * Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but
+     * identified. For example, Chrome *.* targets any version of Chrome:
+     * 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but
      * not 4.0. Firefox ?.? targets cases where the ad server knows the browser
      * is Firefox but can&#39;t tell which version it is.
      */
@@ -7545,11 +7545,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.summaryAccountId Account ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7644,10 +7642,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7712,10 +7708,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7835,10 +7829,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7902,10 +7894,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8021,10 +8011,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8086,25 +8074,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active accounts. Don't set
-     *     this field to select both active and non-active accounts.
+     * @param {boolean=} params.active Select only active accounts. Don't set this field to select both active and non-active accounts.
      * @param {string=} params.ids Select only accounts with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "account*2015" will
-     *     return objects with names like "account June 2015", "account April
-     *     2015", or simply "account 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "account" will match objects with
-     *     name "my account", "account 2015", or simply "account".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8171,11 +8149,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8239,11 +8215,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8418,10 +8392,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8485,11 +8457,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AccountUserProfile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8561,26 +8531,14 @@ export namespace dfareporting_v3_0 {
      * @param {boolean=} params.active Select only active user profiles.
      * @param {string=} params.ids Select only user profiles with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by
-     *     name, ID or email. Wildcards (*) are allowed. For example, "user
-     *     profile*2015" will return objects with names like "user profile June
-     *     2015", "user profile April 2015", or simply "user profile 2015". Most
-     *     of the searches also add wildcards implicitly at the start and the
-     *     end of the search string. For example, a search string of "user
-     *     profile" will match objects with name "my user profile", "user
-     *     profile 2015", or simply "user profile".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only user profiles with the
-     *     specified subaccount ID.
-     * @param {string=} params.userRoleId Select only user profiles with the
-     *     specified user role ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
+     * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8659,11 +8617,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AccountUserProfile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8731,11 +8687,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AccountUserProfile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8938,10 +8892,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9002,11 +8954,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Ad} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9071,58 +9021,30 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active ads.
-     * @param {string=} params.advertiserId Select only ads with this advertiser
-     *     ID.
+     * @param {string=} params.advertiserId Select only ads with this advertiser ID.
      * @param {boolean=} params.archived Select only archived ads.
-     * @param {string=} params.audienceSegmentIds Select only ads with these
-     *     audience segment IDs.
-     * @param {string=} params.campaignIds Select only ads with these campaign
-     *     IDs.
-     * @param {string=} params.compatibility Select default ads with the
-     *     specified compatibility. Applicable when type is
-     *     AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to
-     *     rendering either on desktop or on mobile devices for regular or
-     *     interstitial ads, respectively. APP and APP_INTERSTITIAL are for
-     *     rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an
-     *     in-stream video ads developed with the VAST standard.
-     * @param {string=} params.creativeIds Select only ads with these creative
-     *     IDs assigned.
-     * @param {string=} params.creativeOptimizationConfigurationIds Select only
-     *     ads with these creative optimization configuration IDs.
-     * @param {boolean=} params.dynamicClickTracker Select only dynamic click
-     *     trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true,
-     *     select dynamic click trackers. If false, select static click
-     *     trackers. Leave unset to select both.
+     * @param {string=} params.audienceSegmentIds Select only ads with these audience segment IDs.
+     * @param {string=} params.campaignIds Select only ads with these campaign IDs.
+     * @param {string=} params.compatibility Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
+     * @param {string=} params.creativeIds Select only ads with these creative IDs assigned.
+     * @param {string=} params.creativeOptimizationConfigurationIds Select only ads with these creative optimization configuration IDs.
+     * @param {boolean=} params.dynamicClickTracker Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
      * @param {string=} params.ids Select only ads with these IDs.
-     * @param {string=} params.landingPageIds Select only ads with these landing
-     *     page IDs.
+     * @param {string=} params.landingPageIds Select only ads with these landing page IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.overriddenEventTagId Select only ads with this
-     *     event tag override ID.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string=} params.placementIds Select only ads with these placement
-     *     IDs assigned.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.remarketingListIds Select only ads whose list
-     *     targeting expression use these remarketing list IDs.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "ad*2015" will return
-     *     objects with names like "ad June 2015", "ad April 2015", or simply
-     *     "ad 2015". Most of the searches also add wildcards implicitly at the
-     *     start and the end of the search string. For example, a search string
-     *     of "ad" will match objects with name "my ad", "ad 2015", or simply
-     *     "ad".
+     * @param {string=} params.overriddenEventTagId Select only ads with this event tag override ID.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string=} params.placementIds Select only ads with these placement IDs assigned.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.remarketingListIds Select only ads whose list targeting expression use these remarketing list IDs.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
      * @param {string=} params.sizeIds Select only ads with these size IDs.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {boolean=} params.sslCompliant Select only ads that are
-     *     SSL-compliant.
+     * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
      * @param {boolean=} params.sslRequired Select only ads that require SSL.
      * @param {string=} params.type Select only ads with these types.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9187,11 +9109,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Ad} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9254,11 +9174,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Ad} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9519,10 +9437,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9589,10 +9505,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9656,11 +9570,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AdvertiserGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9731,22 +9643,12 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only advertiser groups with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will
-     *     return objects with names like "advertiser group June 2015",
-     *     "advertiser group April 2015", or simply "advertiser group 2015".
-     *     Most of the searches also add wildcards implicitly at the start and
-     *     the end of the search string. For example, a search string of
-     *     "advertisergroup" will match objects with name "my advertisergroup",
-     *     "advertisergroup 2015", or simply "advertisergroup".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9823,11 +9725,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AdvertiserGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9895,11 +9795,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AdvertiserGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10105,10 +10003,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10172,11 +10068,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10244,31 +10138,17 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only landing pages that
-     *     belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived landing pages.
-     *     Don't set this field to select both archived and non-archived landing
-     *     pages.
+     * @param {string=} params.advertiserIds Select only landing pages that belong to these advertisers.
+     * @param {boolean=} params.archived Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
      * @param {string=} params.ids Select only landing pages with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for landing pages
-     *     by name or ID. Wildcards (*) are allowed. For example,
-     *     "landingpage*2017" will return landing pages with names like
-     *     "landingpage July 2017", "landingpage March 2017", or simply
-     *     "landingpage 2017". Most of the searches also add wildcards
-     *     implicitly at the start and the end of the search string. For
-     *     example, a search string of "landingpage" will match campaigns with
-     *     name "my landingpage", "landingpage 2015", or simply "landingpage".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only landing pages that
-     *     belong to this subaccount.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.subaccountId Select only landing pages that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10349,11 +10229,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10421,11 +10299,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().LandingPage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10629,10 +10505,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10695,11 +10569,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Advertiser} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10767,36 +10639,20 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserGroupIds Select only advertisers with
-     *     these advertiser group IDs.
-     * @param {string=} params.floodlightConfigurationIds Select only
-     *     advertisers with these floodlight configuration IDs.
+     * @param {string=} params.advertiserGroupIds Select only advertisers with these advertiser group IDs.
+     * @param {string=} params.floodlightConfigurationIds Select only advertisers with these floodlight configuration IDs.
      * @param {string=} params.ids Select only advertisers with these IDs.
-     * @param {boolean=} params.includeAdvertisersWithoutGroupsOnly Select only
-     *     advertisers which do not belong to any advertiser group.
+     * @param {boolean=} params.includeAdvertisersWithoutGroupsOnly Select only advertisers which do not belong to any advertiser group.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {boolean=} params.onlyParent Select only advertisers which use
-     *     another advertiser's floodlight configuration.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will
-     *     return objects with names like "advertiser June 2015", "advertiser
-     *     April 2015", or simply "advertiser 2015". Most of the searches also
-     *     add wildcards implicitly at the start and the end of the search
-     *     string. For example, a search string of "advertiser" will match
-     *     objects with name "my advertiser", "advertiser 2015", or simply
-     *     "advertiser".
+     * @param {boolean=} params.onlyParent Select only advertisers which use another advertiser's floodlight configuration.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.status Select only advertisers with the specified
-     *     status.
-     * @param {string=} params.subaccountId Select only advertisers with these
-     *     subaccount IDs.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.status Select only advertisers with the specified status.
+     * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10864,11 +10720,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Advertiser} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10934,11 +10788,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Advertiser} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11152,10 +11004,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11249,11 +11099,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Campaign ID in this association.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CampaignCreativeAssociation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11330,13 +11178,10 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Campaign ID in this association.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11474,10 +11319,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11539,11 +11382,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11608,36 +11449,21 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserGroupIds Select only campaigns whose
-     *     advertisers belong to these advertiser groups.
-     * @param {string=} params.advertiserIds Select only campaigns that belong
-     *     to these advertisers.
-     * @param {boolean=} params.archived Select only archived campaigns. Don't
-     *     set this field to select both archived and non-archived campaigns.
-     * @param {boolean=} params.atLeastOneOptimizationActivity Select only
-     *     campaigns that have at least one optimization activity.
+     * @param {string=} params.advertiserGroupIds Select only campaigns whose advertisers belong to these advertiser groups.
+     * @param {string=} params.advertiserIds Select only campaigns that belong to these advertisers.
+     * @param {boolean=} params.archived Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
+     * @param {boolean=} params.atLeastOneOptimizationActivity Select only campaigns that have at least one optimization activity.
      * @param {string=} params.excludedIds Exclude campaigns with these IDs.
      * @param {string=} params.ids Select only campaigns with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.overriddenEventTagId Select only campaigns that
-     *     have overridden this event tag ID.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for campaigns by
-     *     name or ID. Wildcards (*) are allowed. For example, "campaign*2015"
-     *     will return campaigns with names like "campaign June 2015", "campaign
-     *     April 2015", or simply "campaign 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "campaign" will match campaigns with
-     *     name "my campaign", "campaign 2015", or simply "campaign".
+     * @param {string=} params.overriddenEventTagId Select only campaigns that have overridden this event tag ID.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only campaigns that belong to
-     *     this subaccount.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11704,11 +11530,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11772,11 +11596,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11993,10 +11815,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Change log ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12059,38 +11879,18 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.action Select only change logs with the specified
-     *     action.
+     * @param {string=} params.action Select only change logs with the specified action.
      * @param {string=} params.ids Select only change logs with these IDs.
-     * @param {string=} params.maxChangeTime Select only change logs whose
-     *     change time is before the specified maxChangeTime.The time should be
-     *     formatted as an RFC3339 date/time string. For example, for 10:54 PM
-     *     on July 18th, 2015, in the America/New York time zone, the format is
-     *     "2015-07-18T22:54:00-04:00". In other words, the year, month, day,
-     *     the letter T, the hour (24-hour clock system), minute, second, and
-     *     then the time zone offset.
+     * @param {string=} params.maxChangeTime Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.minChangeTime Select only change logs whose
-     *     change time is before the specified minChangeTime.The time should be
-     *     formatted as an RFC3339 date/time string. For example, for 10:54 PM
-     *     on July 18th, 2015, in the America/New York time zone, the format is
-     *     "2015-07-18T22:54:00-04:00". In other words, the year, month, day,
-     *     the letter T, the hour (24-hour clock system), minute, second, and
-     *     then the time zone offset.
-     * @param {string=} params.objectIds Select only change logs with these
-     *     object IDs.
-     * @param {string=} params.objectType Select only change logs with the
-     *     specified object type.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Select only change logs whose object
-     *     ID, user name, old or new values match the search string.
-     * @param {string=} params.userProfileIds Select only change logs with these
-     *     user profile IDs.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.minChangeTime Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     * @param {string=} params.objectIds Select only change logs with these object IDs.
+     * @param {string=} params.objectType Select only change logs with the specified object type.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Select only change logs whose object ID, user name, old or new values match the search string.
+     * @param {string=} params.userProfileIds Select only change logs with these user profile IDs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12247,17 +12047,12 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.countryDartIds Select only cities from these
-     *     countries.
+     * @param {string=} params.countryDartIds Select only cities from these countries.
      * @param {string=} params.dartIds Select only cities with these DART IDs.
-     * @param {string=} params.namePrefix Select only cities with names starting
-     *     with this prefix.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.regionDartIds Select only cities from these
-     *     regions.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.namePrefix Select only cities with names starting with this prefix.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.regionDartIds Select only cities from these regions.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12364,10 +12159,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Connection type ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12431,10 +12224,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12548,10 +12339,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12618,10 +12407,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12685,11 +12472,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().ContentCategory} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12758,25 +12543,14 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only content categories with these
-     *     IDs.
+     * @param {string=} params.ids Select only content categories with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "contentcategory*2015"
-     *     will return objects with names like "contentcategory June 2015",
-     *     "contentcategory April 2015", or simply "contentcategory 2015". Most
-     *     of the searches also add wildcards implicitly at the start and the
-     *     end of the search string. For example, a search string of
-     *     "contentcategory" will match objects with name "my contentcategory",
-     *     "contentcategory 2015", or simply "contentcategory".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12853,11 +12627,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().ContentCategory} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12925,11 +12697,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().ContentCategory} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13134,12 +12904,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {().ConversionsBatchInsertRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().ConversionsBatchInsertRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13215,12 +12982,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {().ConversionsBatchUpdateRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().ConversionsBatchUpdateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13343,10 +13107,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.dartId Country DART ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13408,10 +13170,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13517,16 +13277,13 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Advertiser ID of this creative. This
-     *     is a required field.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.advertiserId Advertiser ID of this creative. This is a required field.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13649,10 +13406,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13719,10 +13474,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13786,11 +13539,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeField} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13859,27 +13610,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only creative fields that
-     *     belong to these advertisers.
+     * @param {string=} params.advertiserIds Select only creative fields that belong to these advertisers.
      * @param {string=} params.ids Select only creative fields with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for creative fields
-     *     by name or ID. Wildcards (*) are allowed. For example,
-     *     "creativefield*2015" will return creative fields with names like
-     *     "creativefield June 2015", "creativefield April 2015", or simply
-     *     "creativefield 2015". Most of the searches also add wild-cards
-     *     implicitly at the start and the end of the search string. For
-     *     example, a search string of "creativefield" will match creative
-     *     fields with the name "my creativefield", "creativefield 2015", or
-     *     simply "creativefield".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13953,11 +13692,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeField} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14025,11 +13762,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeField} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14238,13 +13973,10 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14310,13 +14042,10 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14380,13 +14109,10 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeFieldValue} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14455,21 +14181,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
-     * @param {string=} params.ids Select only creative field values with these
-     *     IDs.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+     * @param {string=} params.ids Select only creative field values with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for creative field
-     *     values by their values. Wildcards (e.g. *) are not allowed.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14547,14 +14267,11 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeFieldValue} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14622,13 +14339,10 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this
-     *     creative field value.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeFieldValue} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14853,10 +14567,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14920,11 +14632,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14993,29 +14703,16 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only creative groups that
-     *     belong to these advertisers.
-     * @param {integer=} params.groupNumber Select only creative groups that
-     *     belong to this subgroup.
+     * @param {string=} params.advertiserIds Select only creative groups that belong to these advertisers.
+     * @param {integer=} params.groupNumber Select only creative groups that belong to this subgroup.
      * @param {string=} params.ids Select only creative groups with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for creative groups
-     *     by name or ID. Wildcards (*) are allowed. For example,
-     *     "creativegroup*2015" will return creative groups with names like
-     *     "creativegroup June 2015", "creativegroup April 2015", or simply
-     *     "creativegroup 2015". Most of the searches also add wild-cards
-     *     implicitly at the start and the end of the search string. For
-     *     example, a search string of "creativegroup" will match creative
-     *     groups with the name "my creativegroup", "creativegroup 2015", or
-     *     simply "creativegroup".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15089,11 +14786,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15161,11 +14856,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15364,10 +15057,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15429,11 +15120,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Creative} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15498,43 +15187,24 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active creatives. Leave blank
-     *     to select active and inactive creatives.
-     * @param {string=} params.advertiserId Select only creatives with this
-     *     advertiser ID.
-     * @param {boolean=} params.archived Select only archived creatives. Leave
-     *     blank to select archived and unarchived creatives.
-     * @param {string=} params.campaignId Select only creatives with this
-     *     campaign ID.
-     * @param {string=} params.companionCreativeIds Select only in-stream video
-     *     creatives with these companion IDs.
-     * @param {string=} params.creativeFieldIds Select only creatives with these
-     *     creative field IDs.
+     * @param {boolean=} params.active Select only active creatives. Leave blank to select active and inactive creatives.
+     * @param {string=} params.advertiserId Select only creatives with this advertiser ID.
+     * @param {boolean=} params.archived Select only archived creatives. Leave blank to select archived and unarchived creatives.
+     * @param {string=} params.campaignId Select only creatives with this campaign ID.
+     * @param {string=} params.companionCreativeIds Select only in-stream video creatives with these companion IDs.
+     * @param {string=} params.creativeFieldIds Select only creatives with these creative field IDs.
      * @param {string=} params.ids Select only creatives with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.renderingIds Select only creatives with these
-     *     rendering IDs.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "creative*2015" will
-     *     return objects with names like "creative June 2015", "creative April
-     *     2015", or simply "creative 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "creative" will match objects with
-     *     name "my creative", "creative 2015", or simply "creative".
-     * @param {string=} params.sizeIds Select only creatives with these size
-     *     IDs.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.renderingIds Select only creatives with these rendering IDs.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
+     * @param {string=} params.sizeIds Select only creatives with these size IDs.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.studioCreativeId Select only creatives
-     *     corresponding to this Studio creative ID.
-     * @param {string=} params.types Select only creatives with these creative
-     *     types.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
+     * @param {string=} params.types Select only creatives with these creative types.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15601,11 +15271,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Creative} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15669,11 +15337,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Creative} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15902,12 +15568,10 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous result page.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA user profile ID.
      * @param {().DimensionValueRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16014,10 +15678,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site contact ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16083,28 +15745,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.directorySiteIds Select only directory site
-     *     contacts with these directory site IDs. This is a required field.
-     * @param {string=} params.ids Select only directory site contacts with
-     *     these IDs.
+     * @param {string=} params.directorySiteIds Select only directory site contacts with these directory site IDs. This is a required field.
+     * @param {string=} params.ids Select only directory site contacts with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by
-     *     name, ID or email. Wildcards (*) are allowed. For example, "directory
-     *     site contact*2015" will return objects with names like "directory
-     *     site contact June 2015", "directory site contact April 2015", or
-     *     simply "directory site contact 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "directory site contact" will match
-     *     objects with name "my directory site contact", "directory site
-     *     contact 2015", or simply "directory site contact".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16260,10 +15909,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16327,11 +15974,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().DirectorySite} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16400,41 +16045,21 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsInStreamVideoPlacements This search
-     *     filter is no longer supported and will have no effect on the results
-     *     returned.
-     * @param {boolean=} params.acceptsInterstitialPlacements This search filter
-     *     is no longer supported and will have no effect on the results
-     *     returned.
-     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only
-     *     directory sites that accept publisher paid placements. This field can
-     *     be left blank.
-     * @param {boolean=} params.active Select only active directory sites. Leave
-     *     blank to retrieve both active and inactive directory sites.
-     * @param {string=} params.countryId Select only directory sites with this
-     *     country ID.
-     * @param {string=} params.dfpNetworkCode Select only directory sites with
-     *     this DFP network code.
+     * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
+     * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
+     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only directory sites that accept publisher paid placements. This field can be left blank.
+     * @param {boolean=} params.active Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
+     * @param {string=} params.countryId Select only directory sites with this country ID.
+     * @param {string=} params.dfpNetworkCode Select only directory sites with this DFP network code.
      * @param {string=} params.ids Select only directory sites with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string=} params.parentId Select only directory sites with this
-     *     parent ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by
-     *     name, ID or URL. Wildcards (*) are allowed. For example, "directory
-     *     site*2015" will return objects with names like "directory site June
-     *     2015", "directory site April 2015", or simply "directory site 2015".
-     *     Most of the searches also add wildcards implicitly at the start and
-     *     the end of the search string. For example, a search string of
-     *     "directory site" will match objects with name "my directory site",
-     *     "directory site 2015" or simply, "directory site".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string=} params.parentId Select only directory sites with this parent ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16624,17 +16249,11 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of this dynamic targeting key. This is a
-     *     required field. Must be less than 256 characters long and cannot
-     *     contain commas. All characters are converted to lowercase.
-     * @param {string} params.objectId ID of the object of this dynamic
-     *     targeting key. This is a required field.
-     * @param {string} params.objectType Type of the object of this dynamic
-     *     targeting key. This is a required field.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     * @param {string} params.objectId ID of the object of this dynamic targeting key. This is a required field.
+     * @param {string} params.objectType Type of the object of this dynamic targeting key. This is a required field.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16704,11 +16323,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().DynamicTargetingKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16776,18 +16393,12 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only dynamic targeting keys
-     *     whose object has this advertiser ID.
-     * @param {string=} params.names Select only dynamic targeting keys exactly
-     *     matching these names.
-     * @param {string=} params.objectId Select only dynamic targeting keys with
-     *     this object ID.
-     * @param {string=} params.objectType Select only dynamic targeting keys
-     *     with this object type.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.advertiserId Select only dynamic targeting keys whose object has this advertiser ID.
+     * @param {string=} params.names Select only dynamic targeting keys exactly matching these names.
+     * @param {string=} params.objectId Select only dynamic targeting keys with this object ID.
+     * @param {string=} params.objectType Select only dynamic targeting keys with this object type.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16950,10 +16561,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17018,10 +16627,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17083,11 +16690,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().EventTag} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17151,45 +16756,18 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.adId Select only event tags that belong to this
-     *     ad.
-     * @param {string=} params.advertiserId Select only event tags that belong
-     *     to this advertiser.
-     * @param {string=} params.campaignId Select only event tags that belong to
-     *     this campaign.
-     * @param {boolean=} params.definitionsOnly Examine only the specified
-     *     campaign or advertiser's event tags for matching selector criteria.
-     *     When set to false, the parent advertiser and parent campaign of the
-     *     specified ad or campaign is examined as well. In addition, when set
-     *     to false, the status field is examined as well, along with the
-     *     enabledByDefault field. This parameter can not be set to true when
-     *     adId is specified as ads do not define their own even tags.
-     * @param {boolean=} params.enabled Select only enabled event tags. What is
-     *     considered enabled or disabled depends on the definitionsOnly
-     *     parameter. When definitionsOnly is set to true, only the specified
-     *     advertiser or campaign's event tags' enabledByDefault field is
-     *     examined. When definitionsOnly is set to false, the specified ad or
-     *     specified campaign's parent advertiser's or parent campaign's event
-     *     tags' enabledByDefault and status fields are examined as well.
-     * @param {string=} params.eventTagTypes Select only event tags with the
-     *     specified event tag types. Event tag types can be used to specify
-     *     whether to use a third-party pixel, a third-party JavaScript URL, or
-     *     a third-party click-through URL for either impression or click
-     *     tracking.
+     * @param {string=} params.adId Select only event tags that belong to this ad.
+     * @param {string=} params.advertiserId Select only event tags that belong to this advertiser.
+     * @param {string=} params.campaignId Select only event tags that belong to this campaign.
+     * @param {boolean=} params.definitionsOnly Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
+     * @param {boolean=} params.enabled Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
+     * @param {string=} params.eventTagTypes Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
      * @param {string=} params.ids Select only event tags with these IDs.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will
-     *     return objects with names like "eventtag June 2015", "eventtag April
-     *     2015", or simply "eventtag 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "eventtag" will match objects with
-     *     name "my eventtag", "eventtag 2015", or simply "eventtag".
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17257,11 +16835,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().EventTag} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17325,11 +16901,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().EventTag} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17563,8 +17137,7 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the report file.
      * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17626,15 +17199,12 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous result page.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA profile ID.
-     * @param {string=} params.scope The scope that defines which results are
-     *     returned.
+     * @param {string=} params.scope The scope that defines which results are returned.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17759,10 +17329,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17828,12 +17396,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.floodlightActivityId Floodlight activity ID for
-     *     which we want to generate a tag.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17910,10 +17475,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -17977,11 +17540,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivity} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18050,47 +17611,21 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only floodlight activities
-     *     for the specified advertiser ID. Must specify either ids,
-     *     advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.floodlightActivityGroupIds Select only floodlight
-     *     activities with the specified floodlight activity group IDs.
-     * @param {string=} params.floodlightActivityGroupName Select only
-     *     floodlight activities with the specified floodlight activity group
-     *     name.
-     * @param {string=} params.floodlightActivityGroupTagString Select only
-     *     floodlight activities with the specified floodlight activity group
-     *     tag string.
-     * @param {string=} params.floodlightActivityGroupType Select only
-     *     floodlight activities with the specified floodlight activity group
-     *     type.
-     * @param {string=} params.floodlightConfigurationId Select only floodlight
-     *     activities for the specified floodlight configuration ID. Must
-     *     specify either ids, advertiserId, or floodlightConfigurationId for a
-     *     non-empty result.
-     * @param {string=} params.ids Select only floodlight activities with the
-     *     specified IDs. Must specify either ids, advertiserId, or
-     *     floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.advertiserId Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.floodlightActivityGroupIds Select only floodlight activities with the specified floodlight activity group IDs.
+     * @param {string=} params.floodlightActivityGroupName Select only floodlight activities with the specified floodlight activity group name.
+     * @param {string=} params.floodlightActivityGroupTagString Select only floodlight activities with the specified floodlight activity group tag string.
+     * @param {string=} params.floodlightActivityGroupType Select only floodlight activities with the specified floodlight activity group type.
+     * @param {string=} params.floodlightConfigurationId Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.ids Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example,
-     *     "floodlightactivity*2015" will return objects with names like
-     *     "floodlightactivity June 2015", "floodlightactivity April 2015", or
-     *     simply "floodlightactivity 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "floodlightactivity" will match
-     *     objects with name "my floodlightactivity activity",
-     *     "floodlightactivity 2015", or simply "floodlightactivity".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.tagString Select only floodlight activities with
-     *     the specified tag string.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18171,11 +17706,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivity} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18243,11 +17776,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivity} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18507,10 +18038,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18575,11 +18104,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivityGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18650,36 +18177,17 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only floodlight activity
-     *     groups with the specified advertiser ID. Must specify either
-     *     advertiserId or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.floodlightConfigurationId Select only floodlight
-     *     activity groups with the specified floodlight configuration ID. Must
-     *     specify either advertiserId, or floodlightConfigurationId for a
-     *     non-empty result.
-     * @param {string=} params.ids Select only floodlight activity groups with
-     *     the specified IDs. Must specify either advertiserId or
-     *     floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.advertiserId Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.floodlightConfigurationId Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
+     * @param {string=} params.ids Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example,
-     *     "floodlightactivitygroup*2015" will return objects with names like
-     *     "floodlightactivitygroup June 2015", "floodlightactivitygroup April
-     *     2015", or simply "floodlightactivitygroup 2015". Most of the searches
-     *     also add wildcards implicitly at the start and the end of the search
-     *     string. For example, a search string of "floodlightactivitygroup"
-     *     will match objects with name "my floodlightactivitygroup activity",
-     *     "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.type Select only floodlight activity groups with
-     *     the specified floodlight activity group type.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18760,11 +18268,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivityGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -18833,11 +18339,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivityGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19050,10 +18554,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19118,12 +18620,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.ids Set of IDs of floodlight configurations to
-     *     retrieve. Required field; otherwise an empty list will be returned.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19204,11 +18703,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19277,11 +18774,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19433,11 +18928,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Inventory item ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19503,23 +18996,17 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only inventory items with these IDs.
-     * @param {boolean=} params.inPlan Select only inventory items that are in
-     *     plan.
+     * @param {boolean=} params.inPlan Select only inventory items that are in plan.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderId Select only inventory items that belong
-     *     to specified orders.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.orderId Select only inventory items that belong to specified orders.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
-     * @param {string=} params.siteId Select only inventory items that are
-     *     associated with these sites.
+     * @param {string=} params.siteId Select only inventory items that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.type Select only inventory items with this type.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19675,10 +19162,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19769,10 +19254,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19863,10 +19346,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Mobile carrier ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -19930,10 +19411,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20046,10 +19525,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.dartId Operating system DART ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20113,10 +19590,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20232,10 +19707,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Operating system version ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20300,10 +19773,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20423,11 +19894,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Order document ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20492,32 +19961,18 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.approved Select only order documents that have
-     *     been approved by at least one user.
+     * @param {boolean=} params.approved Select only order documents that have been approved by at least one user.
      * @param {string=} params.ids Select only order documents with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderId Select only order documents for specified
-     *     orders.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.orderId Select only order documents for specified orders.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
-     * @param {string=} params.searchString Allows searching for order documents
-     *     by name or ID. Wildcards (*) are allowed. For example,
-     *     "orderdocument*2015" will return order documents with names like
-     *     "orderdocument June 2015", "orderdocument April 2015", or simply
-     *     "orderdocument 2015". Most of the searches also add wildcards
-     *     implicitly at the start and the end of the search string. For
-     *     example, a search string of "orderdocument" will match order
-     *     documents with name "my orderdocument", "orderdocument 2015", or
-     *     simply "orderdocument".
-     * @param {string=} params.siteId Select only order documents that are
-     *     associated with these sites.
+     * @param {string=} params.searchString Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
+     * @param {string=} params.siteId Select only order documents that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20680,11 +20135,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Order ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for orders.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20749,24 +20202,14 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only orders with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for orders.
-     * @param {string=} params.searchString Allows searching for orders by name
-     *     or ID. Wildcards (*) are allowed. For example, "order*2015" will
-     *     return orders with names like "order June 2015", "order April 2015",
-     *     or simply "order 2015". Most of the searches also add wildcards
-     *     implicitly at the start and the end of the search string. For
-     *     example, a search string of "order" will match orders with name "my
-     *     order", "order 2015", or simply "order".
-     * @param {string=} params.siteId Select only orders that are associated
-     *     with these site IDs.
+     * @param {string=} params.searchString Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
+     * @param {string=} params.siteId Select only orders that are associated with these site IDs.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20914,10 +20357,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -20981,11 +20422,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21054,59 +20493,27 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only placement groups that
-     *     belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived placements. Don't
-     *     set this field to select both archived and non-archived placements.
-     * @param {string=} params.campaignIds Select only placement groups that
-     *     belong to these campaigns.
-     * @param {string=} params.contentCategoryIds Select only placement groups
-     *     that are associated with these content categories.
-     * @param {string=} params.directorySiteIds Select only placement groups
-     *     that are associated with these directory sites.
+     * @param {string=} params.advertiserIds Select only placement groups that belong to these advertisers.
+     * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
+     * @param {string=} params.campaignIds Select only placement groups that belong to these campaigns.
+     * @param {string=} params.contentCategoryIds Select only placement groups that are associated with these content categories.
+     * @param {string=} params.directorySiteIds Select only placement groups that are associated with these directory sites.
      * @param {string=} params.ids Select only placement groups with these IDs.
-     * @param {string=} params.maxEndDate Select only placements or placement
-     *     groups whose end date is on or before the specified maxEndDate. The
-     *     date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.maxStartDate Select only placements or placement
-     *     groups whose start date is on or before the specified maxStartDate.
-     *     The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minEndDate Select only placements or placement
-     *     groups whose end date is on or after the specified minEndDate. The
-     *     date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minStartDate Select only placements or placement
-     *     groups whose start date is on or after the specified minStartDate.
-     *     The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string=} params.placementGroupType Select only placement groups
-     *     belonging with this group type. A package is a simple group of
-     *     placements that acts as a single pricing point for a group of tags. A
-     *     roadblock is a group of placements that not only acts as a single
-     *     pricing point but also assumes that all the tags in it will be served
-     *     at the same time. A roadblock requires one of its assigned placements
-     *     to be marked as primary for reporting.
-     * @param {string=} params.placementStrategyIds Select only placement groups
-     *     that are associated with these placement strategies.
-     * @param {string=} params.pricingTypes Select only placement groups with
-     *     these pricing types.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for placement
-     *     groups by name or ID. Wildcards (*) are allowed. For example,
-     *     "placement*2015" will return placement groups with names like
-     *     "placement group June 2015", "placement group May 2015", or simply
-     *     "placements 2015". Most of the searches also add wildcards implicitly
-     *     at the start and the end of the search string. For example, a search
-     *     string of "placementgroup" will match placement groups with name "my
-     *     placementgroup", "placementgroup 2015", or simply "placementgroup".
-     * @param {string=} params.siteIds Select only placement groups that are
-     *     associated with these sites.
+     * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string=} params.placementGroupType Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
+     * @param {string=} params.placementStrategyIds Select only placement groups that are associated with these placement strategies.
+     * @param {string=} params.pricingTypes Select only placement groups with these pricing types.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+     * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21181,11 +20588,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21253,11 +20658,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21514,16 +20917,11 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.campaignId Generate placements belonging to this
-     *     campaign. This is a required field.
+     * @param {string=} params.campaignId Generate placements belonging to this campaign. This is a required field.
      * @param {string=} params.placementIds Generate tags for these placements.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.tagFormats Tag formats to generate for these
-     *     placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for
-     *     1x1 placements.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.tagFormats Tag formats to generate for these placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21600,10 +20998,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21666,11 +21062,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Placement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21737,65 +21131,30 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only placements that belong
-     *     to these advertisers.
-     * @param {boolean=} params.archived Select only archived placements. Don't
-     *     set this field to select both archived and non-archived placements.
-     * @param {string=} params.campaignIds Select only placements that belong to
-     *     these campaigns.
-     * @param {string=} params.compatibilities Select only placements that are
-     *     associated with these compatibilities. DISPLAY and
-     *     DISPLAY_INTERSTITIAL refer to rendering either on desktop or on
-     *     mobile devices for regular or interstitial ads respectively. APP and
-     *     APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO
-     *     refers to rendering in in-stream video ads developed with the VAST
-     *     standard.
-     * @param {string=} params.contentCategoryIds Select only placements that
-     *     are associated with these content categories.
-     * @param {string=} params.directorySiteIds Select only placements that are
-     *     associated with these directory sites.
-     * @param {string=} params.groupIds Select only placements that belong to
-     *     these placement groups.
+     * @param {string=} params.advertiserIds Select only placements that belong to these advertisers.
+     * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
+     * @param {string=} params.campaignIds Select only placements that belong to these campaigns.
+     * @param {string=} params.compatibilities Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     * @param {string=} params.contentCategoryIds Select only placements that are associated with these content categories.
+     * @param {string=} params.directorySiteIds Select only placements that are associated with these directory sites.
+     * @param {string=} params.groupIds Select only placements that belong to these placement groups.
      * @param {string=} params.ids Select only placements with these IDs.
-     * @param {string=} params.maxEndDate Select only placements or placement
-     *     groups whose end date is on or before the specified maxEndDate. The
-     *     date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.maxStartDate Select only placements or placement
-     *     groups whose start date is on or before the specified maxStartDate.
-     *     The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minEndDate Select only placements or placement
-     *     groups whose end date is on or after the specified minEndDate. The
-     *     date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minStartDate Select only placements or placement
-     *     groups whose start date is on or after the specified minStartDate.
-     *     The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string=} params.paymentSource Select only placements with this
-     *     payment source.
-     * @param {string=} params.placementStrategyIds Select only placements that
-     *     are associated with these placement strategies.
-     * @param {string=} params.pricingTypes Select only placements with these
-     *     pricing types.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for placements by
-     *     name or ID. Wildcards (*) are allowed. For example, "placement*2015"
-     *     will return placements with names like "placement June 2015",
-     *     "placement May 2015", or simply "placements 2015". Most of the
-     *     searches also add wildcards implicitly at the start and the end of
-     *     the search string. For example, a search string of "placement" will
-     *     match placements with name "my placement", "placement 2015", or
-     *     simply "placement".
-     * @param {string=} params.siteIds Select only placements that are
-     *     associated with these sites.
-     * @param {string=} params.sizeIds Select only placements that are
-     *     associated with these sizes.
+     * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string=} params.paymentSource Select only placements with this payment source.
+     * @param {string=} params.placementStrategyIds Select only placements that are associated with these placement strategies.
+     * @param {string=} params.pricingTypes Select only placements with these pricing types.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+     * @param {string=} params.siteIds Select only placements that are associated with these sites.
+     * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21863,11 +21222,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Placement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -21932,11 +21289,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Placement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22225,10 +21580,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22295,10 +21648,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22362,11 +21713,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementStrategy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22435,26 +21784,14 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only placement strategies with these
-     *     IDs.
+     * @param {string=} params.ids Select only placement strategies with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example,
-     *     "placementstrategy*2015" will return objects with names like
-     *     "placementstrategy June 2015", "placementstrategy April 2015", or
-     *     simply "placementstrategy 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "placementstrategy" will match
-     *     objects with name "my placementstrategy", "placementstrategy 2015",
-     *     or simply "placementstrategy".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22533,11 +21870,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementStrategy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22605,11 +21940,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementStrategy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22816,10 +22149,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Platform type ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22883,10 +22214,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -22996,10 +22325,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.code Postal code ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23062,10 +22389,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23172,10 +22497,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Project ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23237,25 +22560,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only projects with these
-     *     advertiser IDs.
+     * @param {string=} params.advertiserIds Select only projects with these advertiser IDs.
      * @param {string=} params.ids Select only projects with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for projects by
-     *     name or ID. Wildcards (*) are allowed. For example, "project*2015"
-     *     will return projects with names like "project June 2015", "project
-     *     April 2015", or simply "project 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "project" will match projects with
-     *     name "my project", "project 2015", or simply "project".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23394,10 +22707,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23488,10 +22799,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23555,11 +22864,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23628,29 +22935,16 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active or only inactive
-     *     remarketing lists.
-     * @param {string} params.advertiserId Select only remarketing lists owned
-     *     by this advertiser.
-     * @param {string=} params.floodlightActivityId Select only remarketing
-     *     lists that have this floodlight activity ID.
+     * @param {boolean=} params.active Select only active or only inactive remarketing lists.
+     * @param {string} params.advertiserId Select only remarketing lists owned by this advertiser.
+     * @param {string=} params.floodlightActivityId Select only remarketing lists that have this floodlight activity ID.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.name Allows searching for objects by name or ID.
-     *     Wildcards (*) are allowed. For example, "remarketing list*2015" will
-     *     return objects with names like "remarketing list June 2015",
-     *     "remarketing list April 2015", or simply "remarketing list 2015".
-     *     Most of the searches also add wildcards implicitly at the start and
-     *     the end of the search string. For example, a search string of
-     *     "remarketing list" will match objects with name "my remarketing
-     *     list", "remarketing list 2015", or simply "remarketing list".
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23727,11 +23021,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -23799,11 +23091,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24001,11 +23291,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24071,12 +23359,10 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
      * @param {().RemarketingListShare} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24145,11 +23431,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingListShare} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24289,8 +23573,7 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24356,8 +23639,7 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24421,8 +23703,7 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {().Report} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24487,15 +23768,12 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous result page.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {string=} params.scope The scope that defines which results are
-     *     returned.
+     * @param {string=} params.scope The scope that defines which results are returned.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24563,8 +23841,7 @@ export namespace dfareporting_v3_0 {
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {().Report} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24631,10 +23908,8 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {boolean=} params.synchronous If set and true, tries to run the
-     *     report synchronously.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24699,8 +23974,7 @@ export namespace dfareporting_v3_0 {
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {().Report} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -24918,8 +24192,7 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {().Report} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25020,8 +24293,7 @@ export namespace dfareporting_v3_0 {
      * @param {string} params.fileId The ID of the report file.
      * @param {string} params.profileId The DFA profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25085,14 +24357,12 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous result page.
+     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA profile ID.
      * @param {string} params.reportId The ID of the parent report.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25224,10 +24494,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25288,11 +24556,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Site} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25357,41 +24623,23 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsInStreamVideoPlacements This search
-     *     filter is no longer supported and will have no effect on the results
-     *     returned.
-     * @param {boolean=} params.acceptsInterstitialPlacements This search filter
-     *     is no longer supported and will have no effect on the results
-     *     returned.
-     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only sites
-     *     that accept publisher paid placements.
+     * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
+     * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
+     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only sites that accept publisher paid placements.
      * @param {boolean=} params.adWordsSite Select only AdWords sites.
      * @param {boolean=} params.approved Select only approved sites.
-     * @param {string=} params.campaignIds Select only sites with these campaign
-     *     IDs.
-     * @param {string=} params.directorySiteIds Select only sites with these
-     *     directory site IDs.
+     * @param {string=} params.campaignIds Select only sites with these campaign IDs.
+     * @param {string=} params.directorySiteIds Select only sites with these directory site IDs.
      * @param {string=} params.ids Select only sites with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by
-     *     name, ID or keyName. Wildcards (*) are allowed. For example,
-     *     "site*2015" will return objects with names like "site June 2015",
-     *     "site April 2015", or simply "site 2015". Most of the searches also
-     *     add wildcards implicitly at the start and the end of the search
-     *     string. For example, a search string of "site" will match objects
-     *     with name "my site", "site 2015", or simply "site".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only sites with this
-     *     subaccount ID.
-     * @param {boolean=} params.unmappedSite Select only sites that have not
-     *     been mapped to a directory site.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.subaccountId Select only sites with this subaccount ID.
+     * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25457,11 +24705,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Site} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25525,11 +24771,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Site} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25753,10 +24997,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Size ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25817,11 +25059,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Size} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -25891,11 +25131,9 @@ export namespace dfareporting_v3_0 {
      * @param {integer=} params.height Select only sizes with this height.
      * @param {boolean=} params.iabStandard Select only IAB standard sizes.
      * @param {string=} params.ids Select only sizes with these IDs.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {integer=} params.width Select only sizes with this width.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26033,10 +25271,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26099,11 +25335,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Subaccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26173,22 +25407,12 @@ export namespace dfareporting_v3_0 {
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only subaccounts with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will
-     *     return objects with names like "subaccount June 2015", "subaccount
-     *     April 2015", or simply "subaccount 2015". Most of the searches also
-     *     add wildcards implicitly at the start and the end of the search
-     *     string. For example, a search string of "subaccount" will match
-     *     objects with name "my subaccount", "subaccount 2015", or simply
-     *     "subaccount".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26256,11 +25480,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Subaccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26326,11 +25548,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Subaccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26520,10 +25740,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26591,27 +25809,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active or only inactive
-     *     targetable remarketing lists.
-     * @param {string} params.advertiserId Select only targetable remarketing
-     *     lists targetable by these advertisers.
+     * @param {boolean=} params.active Select only active or only inactive targetable remarketing lists.
+     * @param {string} params.advertiserId Select only targetable remarketing lists targetable by these advertisers.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.name Allows searching for objects by name or ID.
-     *     Wildcards (*) are allowed. For example, "remarketing list*2015" will
-     *     return objects with names like "remarketing list June 2015",
-     *     "remarketing list April 2015", or simply "remarketing list 2015".
-     *     Most of the searches also add wildcards implicitly at the start and
-     *     the end of the search string. For example, a search string of
-     *     "remarketing list" will match objects with name "my remarketing
-     *     list", "remarketing list 2015", or simply "remarketing list".
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26762,10 +25968,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Targeting template ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26829,11 +26033,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().TargetingTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26902,26 +26104,15 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only targeting templates with
-     *     this advertiser ID.
-     * @param {string=} params.ids Select only targeting templates with these
-     *     IDs.
+     * @param {string=} params.advertiserId Select only targeting templates with this advertiser ID.
+     * @param {string=} params.ids Select only targeting templates with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "template*2015" will
-     *     return objects with names like "template June 2015", "template April
-     *     2015", or simply "template 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "template" will match objects with
-     *     name "my template", "template 2015", or simply "template".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -26998,11 +26189,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Targeting template ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().TargetingTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27070,11 +26259,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().TargetingTemplate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27269,8 +26456,7 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The user profile ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27331,8 +26517,7 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27429,10 +26614,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission group ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27497,10 +26680,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27620,10 +26801,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27687,12 +26866,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only user role permissions with these
-     *     IDs.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.ids Select only user role permissions with these IDs.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27814,10 +26990,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27882,10 +27056,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -27947,11 +27119,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().UserRole} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -28016,28 +27186,16 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.accountUserRoleOnly Select only account level
-     *     user roles not associated with any specific subaccount.
-     * @param {string=} params.ids Select only user roles with the specified
-     *     IDs.
+     * @param {boolean=} params.accountUserRoleOnly Select only account level user roles not associated with any specific subaccount.
+     * @param {string=} params.ids Select only user roles with the specified IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the
-     *     previous result page.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {string=} params.searchString Allows searching for objects by name
-     *     or ID. Wildcards (*) are allowed. For example, "userrole*2015" will
-     *     return objects with names like "userrole June 2015", "userrole April
-     *     2015", or simply "userrole 2015". Most of the searches also add
-     *     wildcards implicitly at the start and the end of the search string.
-     *     For example, a search string of "userrole" will match objects with
-     *     name "my userrole", "userrole 2015", or simply "userrole".
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only user roles that belong
-     *     to this subaccount.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -28105,11 +27263,9 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().UserRole} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -28173,11 +27329,9 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
+     * @param {string} params.profileId User profile ID associated with this request.
      * @param {().UserRole} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -28388,10 +27542,8 @@ export namespace dfareporting_v3_0 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id Video format ID.
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -28454,10 +27606,8 @@ export namespace dfareporting_v3_0 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -593,14 +593,10 @@ export namespace safebrowsing_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientId A client ID that (hopefully) uniquely
-     *     identifies the client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client
-     *     implementation.
-     * @param {string} params.encodedRequest A serialized FindFullHashesRequest
-     *     proto.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientId A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
+     * @param {string=} params.clientVersion The version of the client implementation.
+     * @param {string} params.encodedRequest A serialized FindFullHashesRequest proto.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -696,14 +692,10 @@ export namespace safebrowsing_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientId A client ID that uniquely identifies the
-     *     client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client
-     *     implementation.
-     * @param {string} params.encodedRequest A serialized
-     *     FetchThreatListUpdatesRequest proto.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientId A client ID that uniquely identifies the client implementation of the Safe Browsing API.
+     * @param {string=} params.clientVersion The version of the client implementation.
+     * @param {string} params.encodedRequest A serialized FetchThreatListUpdatesRequest proto.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -806,8 +798,7 @@ export namespace safebrowsing_v4 {
      *
      * @param {object} params Parameters for request
      * @param {().FindFullHashesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -900,8 +891,7 @@ export namespace safebrowsing_v4 {
      *
      * @param {object} params Parameters for request
      * @param {().ThreatHit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -990,8 +980,7 @@ export namespace safebrowsing_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1076,10 +1065,8 @@ export namespace safebrowsing_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FetchThreatListUpdatesRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().FetchThreatListUpdatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1180,8 +1167,7 @@ export namespace safebrowsing_v4 {
      *
      * @param {object} params Parameters for request
      * @param {().FindThreatMatchesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

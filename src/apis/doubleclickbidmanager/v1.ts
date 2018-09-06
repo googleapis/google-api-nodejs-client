@@ -104,28 +104,28 @@ export namespace doubleclickbidmanager_v1 {
     lineItems?: string;
   }
   /**
-   * Request to fetch stored insertion orders, line items, TrueView ad groups
-   * and ads.
+   * Request to fetch stored campaigns, insertion orders, line items, TrueView
+   * ad groups and ads.
    */
   export interface Schema$DownloadRequest {
     /**
-     * File types that will be returned.
+     * File types that will be returned.  Acceptable values are:   -
+     * &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  -
+     * &quot;INSERTION_ORDER&quot;  - &quot;LINE_ITEM&quot;
      */
     fileTypes?: string[];
     /**
      * The IDs of the specified filter type. This is used to filter entities to
-     * fetch. At least one ID must be specified. Only one ID is allowed for the
-     * ADVERTISER_ID filter type. For INSERTION_ORDER_ID or LINE_ITEM_ID filter
-     * types, all IDs must be from the same Advertiser.
+     * fetch. At least one ID must be specified.
      */
     filterIds?: string[];
     /**
-     * Filter type used to filter line items to fetch.
+     * Filter type used to filter entities to fetch.
      */
     filterType?: string;
     /**
      * SDF Version (column names, types, order) in which the entities will be
-     * returned. Default to 3.
+     * returned. Default to 3.1.
      */
     version?: string;
   }
@@ -544,8 +544,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().DownloadLineItemsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -618,8 +617,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().UploadLineItemsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -727,8 +725,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Query} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -794,8 +791,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to delete.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -860,8 +856,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -925,8 +920,7 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -995,8 +989,7 @@ export namespace doubleclickbidmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to run.
      * @param {().RunQueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1129,10 +1122,8 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.queryId Query ID with which the reports are
-     *     associated.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.queryId Query ID with which the reports are associated.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1226,8 +1217,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().DownloadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

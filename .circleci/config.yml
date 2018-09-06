@@ -64,7 +64,7 @@ jobs:
           name: Install and link the module
           command: |-
             mkdir -p /home/node/.npm-global
-            ./.circleci/npm-install-retry.js
+            npm install
           environment:
             NPM_CONFIG_PREFIX: /home/node/.npm-global
       - run: npm test
@@ -92,7 +92,7 @@ jobs:
           command: |
             cd samples/
             npm link ../
-            ./../.circleci/npm-install-retry.js
+            npm install
           environment:
             NPM_CONFIG_PREFIX: /home/node/.npm-global
       - run:
@@ -149,24 +149,21 @@ jobs:
           name: Decrypt credentials.
           command: |
             if ! [[ -z "${SYSTEM_TESTS_ENCRYPTION_KEY}" ]]; then
-              for encrypted_key in .circleci/*.json.enc; do
-                openssl aes-256-cbc -d -in $encrypted_key \
-                  -out $(echo $encrypted_key | sed 's/\.enc//') \
-                  -k "${SYSTEM_TESTS_ENCRYPTION_KEY}"
-              done
+              openssl aes-256-cbc -d -in .circleci/key.json.enc \
+                -out .circleci/key.json \
+                -k "${SYSTEM_TESTS_ENCRYPTION_KEY}"
             fi
       - run: *npm_install_and_link
       - run:
           name: Run system tests.
           command: npm run system-test
           environment:
-            GCLOUD_PROJECT: long-door-651
             GOOGLE_APPLICATION_CREDENTIALS: .circleci/key.json
       - run:
           name: Remove unencrypted key.
           command: |
             if ! [[ -z "${SYSTEM_TESTS_ENCRYPTION_KEY}" ]]; then
-              rm .circleci/*.json
+              rm .circleci/key.json
             fi
           when: always
   publish_npm:
@@ -175,6 +172,6 @@ jobs:
         user: node
     steps:
       - checkout
-      - run: ./.circleci/npm-install-retry.js
+      - run: npm install
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run: npm publish --access=public
