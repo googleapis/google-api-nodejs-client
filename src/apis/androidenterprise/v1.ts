@@ -1289,18 +1289,17 @@ export namespace androidenterprise_v1 {
      * The track available to the device is based on the following order of
      * preference: alpha, beta, production. For example, if an app has a prod
      * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks
-     * is {&quot;beta&quot;, &quot;production&quot;} then the beta version of
-     * the app is made available to the device. If there are no app versions in
-     * the specified track adding the &quot;alpha&quot; and &quot;beta&quot;
-     * values to the list of tracks will have no effect. Note that the
-     * enterprise requires access to alpha and/or beta tracks before users can
-     * be granted visibility to apps in those tracks.  The allowed sets are: {}
-     * (considered equivalent
-     * to {&quot;production&quot;}) {&quot;production&quot;} {&quot;beta&quot;,
-     * &quot;production&quot;} {&quot;alpha&quot;, &quot;beta&quot;,
-     * &quot;production&quot;} The order of elements is not relevant. Any other
-     * set of tracks will be rejected with an error.
+     * granted visibility to both the alpha and beta tracks, if tracks is
+     * {&quot;beta&quot;, &quot;production&quot;} then the beta version of the
+     * app is made available to the device. If there are no app versions in the
+     * specified track adding the &quot;alpha&quot; and &quot;beta&quot; values
+     * to the list of tracks will have no effect. Note that the enterprise
+     * requires access to alpha and/or beta tracks before users can be granted
+     * visibility to apps in those tracks.  The allowed sets are: {} (considered
+     * equivalent to {&quot;production&quot;}) {&quot;production&quot;}
+     * {&quot;beta&quot;, &quot;production&quot;} {&quot;alpha&quot;,
+     * &quot;beta&quot;, &quot;production&quot;} The order of elements is not
+     * relevant. Any other set of tracks will be rejected with an error.
      */
     tracks?: string[];
   }
@@ -1426,18 +1425,18 @@ export namespace androidenterprise_v1 {
      * The track available to the user is based on the following order of
      * preference: alpha, beta, production. For example, if an app has a prod
      * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks
-     * is {&quot;beta&quot;, &quot;production&quot;} the user will be able to
+     * granted visibility to both the alpha and beta tracks, if tracks is
+     * {&quot;beta&quot;, &quot;production&quot;} the user will be able to
      * install the app and they will get the beta version of the app. If there
      * are no app versions in the specified track adding the &quot;alpha&quot;
      * and &quot;beta&quot; values to the list of tracks will have no effect.
      * Note that the enterprise requires access to alpha and/or beta tracks
      * before users can be granted visibility to apps in those tracks.  The
-     * allowed sets are: {} (considered equivalent
-     * to {&quot;production&quot;}) {&quot;production&quot;} {&quot;beta&quot;,
-     * &quot;production&quot;} {&quot;alpha&quot;, &quot;beta&quot;,
-     * &quot;production&quot;} The order of elements is not relevant. Any other
-     * set of tracks will be rejected with an error.
+     * allowed sets are: {} (considered equivalent to {&quot;production&quot;})
+     * {&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;}
+     * {&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order
+     * of elements is not relevant. Any other set of tracks will be rejected
+     * with an error.
      */
     tracks?: string[];
   }
@@ -1782,8 +1781,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1852,8 +1850,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1922,8 +1919,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1991,14 +1987,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.updateMask Mask that identifies which fields to
-     *     update. If not set, all modifiable fields will be modified.  When set
-     *     in a query parameter, this field should be specified as
-     *     updateMask=<field1>,<field2>,...
+     * @param {string=} params.updateMask Mask that identifies which fields to update. If not set, all modifiable fields will be modified.  When set in a query parameter, this field should be specified as updateMask=<field1>,<field2>,...
      * @param {string} params.userId The ID of the user.
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2071,8 +2063,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {().DeviceState} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2141,14 +2132,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.updateMask Mask that identifies which fields to
-     *     update. If not set, all modifiable fields will be modified.  When set
-     *     in a query parameter, this field should be specified as
-     *     updateMask=<field1>,<field2>,...
+     * @param {string=} params.updateMask Mask that identifies which fields to update. If not set, all modifiable fields will be modified.  When set in a query parameter, this field should be specified as updateMask=<field1>,<field2>,...
      * @param {string} params.userId The ID of the user.
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2366,10 +2353,8 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.notificationSetId The notification set ID as
-     *     returned by Enterprises.PullNotificationSet. This must be provided.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.notificationSetId The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2438,12 +2423,9 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.completionToken The Completion token initially
-     *     returned by GenerateSignupUrl.
-     * @param {string=} params.enterpriseToken The Enterprise token appended to
-     *     the Callback URL.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.completionToken The Completion token initially returned by GenerateSignupUrl.
+     * @param {string=} params.enterpriseToken The Enterprise token appended to the Callback URL.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2515,8 +2497,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().AdministratorWebTokenSpec} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2586,11 +2567,9 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.token The token provided by the enterprise to
-     *     register the EMM.
+     * @param {string} params.token The token provided by the enterprise to register the EMM.
      * @param {().Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2656,16 +2635,8 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.callbackUrl The callback URL to which the Admin
-     *     will be redirected after successfully creating an enterprise. Before
-     *     redirecting there the system will add a single query parameter to
-     *     this URL named "enterpriseToken" which will contain an opaque token
-     *     to be used for the CompleteSignup request. Beware that this means
-     *     that the URL will be parsed, the parameter added and then a new URL
-     *     formatted, i.e. there may be some minor formatting changes and, more
-     *     importantly, the URL must be well-formed so that it can be parsed.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.callbackUrl The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2732,8 +2703,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2796,8 +2766,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2881,10 +2850,8 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.keyType The type of credential to return with the
-     *     service account. Required.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.keyType The type of credential to return with the service account. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2956,8 +2923,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3029,10 +2995,8 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.domain The exact primary domain name of the
-     *     enterprise to look up.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.domain The exact primary domain name of the enterprise to look up.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3110,16 +3074,8 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.requestMode The request mode for pulling
-     *     notifications. Specifying waitForNotifications will cause the request
-     *     to block and wait until one or more notifications are present, or
-     *     return an empty notification list if no notifications are present
-     *     after some time. Speciying returnImmediately will cause the request
-     *     to immediately return the pending notifications, or an empty list if
-     *     no notifications are present. If omitted, defaults to
-     *     waitForNotifications.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.requestMode The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3189,8 +3145,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3271,8 +3226,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().EnterpriseAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3341,8 +3295,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().AndroidDevicePolicyConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3424,8 +3377,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().StoreLayout} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3494,8 +3446,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3797,11 +3748,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product
-     *     ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3868,11 +3817,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product
-     *     ID), e.g. "app:com.google.android.gm".
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3937,8 +3884,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4008,17 +3954,11 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product
-     *     ID), e.g. "app:com.google.android.gm".
-     * @param {boolean=} params.install Set to true to also install the product
-     *     on all the user's devices where possible. Failure to install on one
-     *     or more devices will not prevent this operation from returning
-     *     successfully, as long as the entitlement was successfully assigned to
-     *     the user.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param {string} params.userId The ID of the user.
      * @param {().Entitlement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4086,17 +4026,11 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product
-     *     ID), e.g. "app:com.google.android.gm".
-     * @param {boolean=} params.install Set to true to also install the product
-     *     on all the user's devices where possible. Failure to install on one
-     *     or more devices will not prevent this operation from returning
-     *     successfully, as long as the entitlement was successfully assigned to
-     *     the user.
+     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param {string} params.userId The ID of the user.
      * @param {().Entitlement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4298,10 +4232,8 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.groupLicenseId The ID of the product the group
-     *     license is for, e.g. "app:com.google.android.gm".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4367,8 +4299,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4481,10 +4412,8 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.groupLicenseId The ID of the product the group
-     *     license is for, e.g. "app:com.google.android.gm".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4593,11 +4522,9 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the
-     *     install, e.g. "app:com.google.android.gm".
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4663,11 +4590,9 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the
-     *     install, e.g. "app:com.google.android.gm".
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4733,8 +4658,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4805,12 +4729,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the
-     *     install, e.g. "app:com.google.android.gm".
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().Install} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4879,12 +4801,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the
-     *     install, e.g. "app:com.google.android.gm".
+     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().Install} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5091,12 +5011,9 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5171,12 +5088,9 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5251,8 +5165,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5331,13 +5244,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5415,13 +5325,10 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5638,12 +5545,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5712,12 +5616,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5786,8 +5687,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5869,13 +5769,10 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5951,13 +5848,10 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the
-     *     managed configuration (a product ID), e.g.
-     *     "app:com.google.android.gm".
+     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {().ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6148,10 +6042,8 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.productId The ID of the product for which the
-     *     managed configurations settings applies to.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.productId The ID of the product for which the managed configurations settings applies to.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6258,11 +6150,9 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.language The BCP47 tag for the user's preferred
-     *     language (e.g. "en-US", "de")
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
      * @param {string} params.permissionId The ID of the permission.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6360,8 +6250,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
      * @param {().ProductsApproveRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6433,12 +6322,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.languageCode The BCP 47 language code used for
-     *     permission names and descriptions in the returned iframe, for
-     *     instance "en-US".
+     * @param {string=} params.languageCode The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
      * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6519,12 +6405,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred
-     *     language (e.g. "en-US", "de").
-     * @param {string} params.productId The ID of the product, e.g.
-     *     "app:com.google.android.gm".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+     * @param {string} params.productId The ID of the product, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6592,11 +6475,9 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred
-     *     language (e.g. "en-US", "de").
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6668,8 +6549,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6739,27 +6619,13 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.approved Specifies whether to search among all
-     *     products (false) or among only products that have been approved
-     *     (true). Only "true" is supported, and should be specified.
+     * @param {boolean=} params.approved Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred
-     *     language (e.g. "en-US", "de"). Results are returned in the language
-     *     best matching the preferred language.
-     * @param {integer=} params.maxResults Specifies the maximum number of
-     *     products that can be returned per request. If not specified, uses a
-     *     default value of 100, which is also the maximum retrievable within a
-     *     single response.
-     * @param {string=} params.query The search query as typed in the Google
-     *     Play store search box. If omitted, all approved apps will be returned
-     *     (using the pagination parameters), including apps that are not
-     *     available in the store (e.g. unpublished apps).
-     * @param {string=} params.token A pagination token is contained in a
-     *     request''s response when there are more products. The token can be
-     *     used in a subsequent request to obtain more products, and so forth.
-     *     This parameter cannot be used in the initial request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
+     * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
+     * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
+     * @param {string=} params.token A pagination token is contained in a request''s response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6828,8 +6694,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7066,8 +6931,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.keyId The ID of the key.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7139,8 +7003,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().ServiceAccountKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7213,8 +7076,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7348,8 +7210,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.clusterId The ID of the cluster.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7418,8 +7279,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.clusterId The ID of the cluster.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7486,8 +7346,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {().StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7557,8 +7416,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7639,8 +7497,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {().StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7712,8 +7569,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {().StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7918,8 +7774,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7987,8 +7842,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8054,8 +7908,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8124,8 +7977,7 @@ export namespace androidenterprise_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8204,8 +8056,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {().StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8276,8 +8127,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {().StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8458,8 +8308,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8528,8 +8377,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8602,8 +8450,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8673,8 +8520,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8738,8 +8584,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8814,8 +8659,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {().User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8882,11 +8726,9 @@ export namespace androidenterprise_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.email The exact primary email address of the user
-     *     to look up.
+     * @param {string} params.email The exact primary email address of the user to look up.
      * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8958,8 +8800,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {().User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9028,8 +8869,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9098,8 +8938,7 @@ export namespace androidenterprise_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9171,8 +9010,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {().ProductSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9248,8 +9086,7 @@ export namespace androidenterprise_v1 {
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {().User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

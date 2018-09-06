@@ -369,8 +369,7 @@ export namespace blogger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.blogId The ID of the blog to get.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -458,8 +457,7 @@ export namespace blogger_v2 {
      * @param {string} params.blogId ID of the blog to containing the comment.
      * @param {string} params.commentId The ID of the comment to get.
      * @param {string} params.postId ID of the post to fetch posts from.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -522,16 +520,12 @@ export namespace blogger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch comments from.
-     * @param {boolean=} params.fetchBodies Whether the body content of the
-     *     comments is included.
-     * @param {integer=} params.maxResults Maximum number of comments to include
-     *     in the result.
+     * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
+     * @param {integer=} params.maxResults Maximum number of comments to include in the result.
      * @param {string=} params.pageToken Continuation token if request is paged.
      * @param {string} params.postId ID of the post to fetch posts from.
-     * @param {string=} params.startDate Earliest date of comment to fetch, a
-     *     date-time with RFC 3339 formatting.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -662,8 +656,7 @@ export namespace blogger_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog containing the page.
      * @param {string} params.pageId The ID of the page to get.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -725,8 +718,7 @@ export namespace blogger_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch pages from.
      * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -835,8 +827,7 @@ export namespace blogger_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch the post from.
      * @param {string} params.postId The ID of the post
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -897,15 +888,11 @@ export namespace blogger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch posts from.
-     * @param {boolean=} params.fetchBodies Whether the body content of posts is
-     *     included.
+     * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
      * @param {integer=} params.maxResults Maximum number of posts to fetch.
-     * @param {string=} params.pageToken Continuation token if the request is
-     *     paged.
-     * @param {string=} params.startDate Earliest post date to fetch, a
-     *     date-time with RFC 3339 formatting.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token if the request is paged.
+     * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1027,8 +1014,7 @@ export namespace blogger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The ID of the user to get.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1112,11 +1098,8 @@ export namespace blogger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId ID of the user whose blogs are to be
-     *     fetched. Either the word 'self' (sans quote marks) or the user's
-     *     profile identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

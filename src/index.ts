@@ -78,6 +78,7 @@ export {cloudresourcemanager_v2beta1} from './apis/cloudresourcemanager/v2beta1'
 export {cloudshell_v1} from './apis/cloudshell/v1';
 export {cloudshell_v1alpha1} from './apis/cloudshell/v1alpha1';
 export {cloudtasks_v2beta2} from './apis/cloudtasks/v2beta2';
+export {cloudtasks_v2beta3} from './apis/cloudtasks/v2beta3';
 export {cloudtrace_v1} from './apis/cloudtrace/v1';
 export {cloudtrace_v2} from './apis/cloudtrace/v2';
 export {composer_v1} from './apis/composer/v1';

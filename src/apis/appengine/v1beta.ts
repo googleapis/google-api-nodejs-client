@@ -258,10 +258,12 @@ export namespace appengine_v1beta {
    */
   export interface Schema$AutomaticScaling {
     /**
-     * Amount of time that the Autoscaler
-     * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
-     * changes to the number of virtual machines. Only applicable in the App
-     * Engine flexible environment.
+     * The time period that the Autoscaler
+     * (https://cloud.google.com/compute/docs/autoscaler/) should wait before it
+     * starts collecting information from a new instance. This prevents the
+     * autoscaler from collecting information when the instance is initializing,
+     * during which the collected usage would not be reliable. Only applicable
+     * in the App Engine flexible environment.
      */
     coolDownPeriod?: string;
     /**
@@ -506,8 +508,7 @@ export namespace appengine_v1beta {
   export interface Schema$DebugInstanceRequest {
     /**
      * Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa
-     * [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE]
-     * google-ssh
+     * [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh
      * {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}For
      * more information, see Adding and Removing SSH Keys
      * (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
@@ -1070,8 +1071,8 @@ export namespace appengine_v1beta {
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For
-     * example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example
+     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: any;
     /**
@@ -1986,6 +1987,10 @@ export namespace appengine_v1beta {
      */
     vm?: boolean;
     /**
+     * Enables VPC connectivity for standard apps.
+     */
+    vpcAccessConnector?: Schema$VpcAccessConnector;
+    /**
      * The Google Compute Engine zones that are supported by this version in the
      * App Engine flexible environment.
      */
@@ -2008,6 +2013,16 @@ export namespace appengine_v1beta {
      * Underlying volume type, e.g. &#39;tmpfs&#39;.
      */
     volumeType?: string;
+  }
+  /**
+   * VPC access connector specification.
+   */
+  export interface Schema$VpcAccessConnector {
+    /**
+     * Full Serverless VPC Access Connector name e.g.
+     * /projects/my-project/locations/us-central1/connectors/c1.
+     */
+    name?: string;
   }
   /**
    * The zip file information for a zip deployment.
@@ -2069,8 +2084,7 @@ export namespace appengine_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {().Application} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2133,10 +2147,8 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Application
-     *     resource to get. Example: apps/myapp.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2200,13 +2212,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Application
-     *     resource to update. Example: apps/myapp.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated.
+     * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {().Application} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2274,11 +2283,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the application to
-     *     repair. Example: apps/myapp
+     * @param {string} params.appsId Part of `name`. Name of the application to repair. Example: apps/myapp
      * @param {().RepairApplicationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2416,11 +2423,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {().AuthorizedCertificate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2487,12 +2492,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     delete. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See
-     *     documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2559,14 +2561,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See
-     *     documentation of `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the
-     *     GET response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.view Controls the set of fields returned in the GET response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2631,15 +2629,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {string=} params.view Controls the set of fields returned in the
-     *     LIST response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {string=} params.view Controls the set of fields returned in the LIST response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2720,16 +2714,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     update. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See
-     *     documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated. Updates are only supported on the
-     *     certificate_raw_data and display_name fields.
+     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
      * @param {().AuthorizedCertificate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2915,13 +2904,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3031,14 +3017,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
-     * @param {string=} params.overrideStrategy Whether the domain creation
-     *     should override any existing mappings for this domain. By default,
-     *     overrides are rejected.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
      * @param {().DomainMapping} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3106,12 +3088,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     delete. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3178,12 +3157,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3246,13 +3222,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3327,15 +3300,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     update. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated.
+     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {().DomainMapping} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3534,12 +3503,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall
-     *     collection to set. Example: apps/myapp/firewall/ingressRules.
-     * @param {().BatchUpdateIngressRulesRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
+     * @param {().BatchUpdateIngressRulesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3616,12 +3582,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Firewall collection in which to create a new rule. Example:
-     *     apps/myapp/firewall/ingressRules.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
      * @param {().FirewallRule} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3687,12 +3650,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall
-     *     resource to delete. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
+     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3759,12 +3719,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall
-     *     resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
+     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3828,16 +3785,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the Firewall
-     *     collection to retrieve. Example: apps/myapp/firewall/ingressRules.
-     * @param {string=} params.matchingAddress A valid IP Address. If set, only
-     *     rules matching this address will be returned. The first returned rule
-     *     will be the rule that fires on requests from this IP.
+     * @param {string} params.appsId Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
+     * @param {string=} params.matchingAddress A valid IP Address. If set, only rules matching this address will be returned. The first returned rule will be the rule that fires on requests from this IP.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3904,15 +3856,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall
-     *     resource to update. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation
-     *     of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated.
+     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
+     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {().FirewallRule} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4112,12 +4060,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Resource name for the
-     *     location.
-     * @param {string} params.locationsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Resource name for the location.
+     * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4178,13 +4123,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The resource that owns the
-     *     locations collection, if applicable.
+     * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
      * @param {string=} params.filter The standard list filter.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4305,12 +4248,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation
-     *     resource.
-     * @param {string} params.operationsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. The name of the operation resource.
+     * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4380,13 +4320,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation's
-     *     parent resource.
+     * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
      * @param {string=} params.filter The standard list filter.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4507,12 +4445,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4578,12 +4513,9 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4644,13 +4576,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Application resource. Example: apps/myapp.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4716,29 +4645,12 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     update. Example: apps/myapp/services/default.
-     * @param {boolean=} params.migrateTraffic Set to true to gradually shift
-     *     traffic to one or more versions that you specify. By default, traffic
-     *     is shifted immediately. For gradual traffic migration, the target
-     *     versions must be located within instances that are configured for
-     *     both warmup requests
-     *     (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#inboundservicetype)
-     *     and automatic scaling
-     *     (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#automaticscaling).
-     *     You must specify the shardBy
-     *     (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services#shardby)
-     *     field in the Service resource. Gradual traffic migration is not
-     *     supported in the App Engine flexible environment. For examples, see
-     *     Migrating and Splitting Traffic
-     *     (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated.
+     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#inboundservicetype) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#automaticscaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services#shardby) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {().Service} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4912,14 +4824,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     resource to create this version under. Example:
-     *     apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `parent`. See documentation of
-     *     `appsId`.
+     * @param {string} params.appsId Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
+     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
      * @param {().Version} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4986,14 +4894,10 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/services/default/versions/v1.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5063,16 +4967,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example: apps/myapp/services/default/versions/v1.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the
-     *     Get response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.view Controls the set of fields returned in the Get response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5135,17 +5034,12 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Service resource. Example: apps/myapp/services/default.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {string} params.servicesId Part of `parent`. See documentation of
-     *     `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the
-     *     List response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
+     * @param {string=} params.view Controls the set of fields returned in the List response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5242,17 +5136,12 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to
-     *     update. Example: apps/myapp/services/default/versions/1.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of
-     *     fields to be updated.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
+     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
      * @param {().Version} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5460,18 +5349,12 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example:
-     *     apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
      * @param {().DebugInstanceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5540,17 +5423,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example:
-     *     apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5619,17 +5496,11 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource
-     *     requested. Example:
-     *     apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5694,17 +5565,12 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent
-     *     Version resource. Example: apps/myapp/services/default/versions/v1.
+     * @param {string} params.appsId Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
      * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the
-     *     next page of results.
-     * @param {string} params.servicesId Part of `parent`. See documentation of
-     *     `appsId`.
-     * @param {string} params.versionsId Part of `parent`. See documentation of
-     *     `appsId`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
+     * @param {string} params.versionsId Part of `parent`. See documentation of `appsId`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

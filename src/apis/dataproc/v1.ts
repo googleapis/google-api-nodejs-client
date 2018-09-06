@@ -86,6 +86,38 @@ export namespace dataproc_v1 {
     acceleratorTypeUri?: string;
   }
   /**
+   * Associates members with a role.
+   */
+  export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
+     * Specifies the identities requesting access for a Cloud Platform resource.
+     * members can have the following values: allUsers: A special identifier
+     * that represents anyone who is  on the internet; with or without a Google
+     * account. allAuthenticatedUsers: A special identifier that represents
+     * anyone  who is authenticated with a Google account or a service account.
+     * user:{emailid}: An email address that represents a specific Google
+     * account. For example, alice@gmail.com . serviceAccount:{emailid}: An
+     * email address that represents a service  account. For example,
+     * my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email
+     * address that represents a Google group.  For example, admins@example.com.
+     * domain:{domain}: A Google Apps domain name that represents all the  users
+     * of that domain. For example, google.com or example.com.
+     */
+    members?: string[];
+    /**
+     * Role that is assigned to members. For example, roles/viewer,
+     * roles/editor, or roles/owner.
+     */
+    role?: string;
+  }
+  /**
    * A request to cancel a job.
    */
   export interface Schema$CancelJobRequest {}
@@ -151,6 +183,10 @@ export namespace dataproc_v1 {
      * manage this project-level, per-location bucket for you.
      */
     configBucket?: string;
+    /**
+     * Optional. Encryption settings for the cluster.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
     /**
      * Required. The shared Compute Engine config settings for all instances in
      * a cluster.
@@ -345,6 +381,45 @@ export namespace dataproc_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Encryption settings for the cluster.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. The Cloud KMS key name to use for PD disk encryption for all
+     * instances in the cluster.
+     */
+    gcePdKmsKeyName?: string;
+  }
+  /**
+   * Represents an expression text. Example: title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.The application context of the containing message determines which
+     * well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * Common config settings for resources of Compute Engine cluster instances,
    * applicable to all instances in the cluster.
    */
@@ -422,6 +497,10 @@ export namespace dataproc_v1 {
      */
     zoneUri?: string;
   }
+  /**
+   * Request message for GetIamPolicy method.
+   */
+  export interface Schema$GetIamPolicyRequest {}
   /**
    * A Cloud Dataproc job for running Apache Hadoop MapReduce
    * (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html)
@@ -878,6 +957,49 @@ export namespace dataproc_v1 {
     scriptVariables?: any;
   }
   /**
+   * Defines an Identity and Access Management (IAM) policy. It is used to
+   * specify access control policies for Cloud Platform resources.A Policy
+   * consists of a list of bindings. A binding binds a list of members to a
+   * role, where the members can be user accounts, Google groups, Google
+   * domains, and service accounts. A role is a named list of permissions
+   * defined by IAM.JSON Example {   &quot;bindings&quot;: [     {
+   * &quot;role&quot;: &quot;roles/owner&quot;,       &quot;members&quot;: [
+   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
+   * &quot;domain:google.com&quot;,
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;       ]
+   * },     {       &quot;role&quot;: &quot;roles/viewer&quot;,
+   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } YAML
+   * Example bindings: - members:   - user:mike@example.com   -
+   * group:admins@example.com   - domain:google.com   -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com   role: roles/owner
+   * - members:   - user:sean@example.com   role: roles/viewer For a description
+   * of IAM and its features, see the IAM developer&#39;s guide
+   * (https://cloud.google.com/iam/docs).
+   */
+  export interface Schema$Policy {
+    /**
+     * Associates a list of members to a role. bindings with no members will
+     * result in an error.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * etag is used for optimistic concurrency control as a way to help prevent
+     * simultaneous updates of a policy from overwriting each other. It is
+     * strongly suggested that systems make use of the etag in the
+     * read-modify-write cycle to perform policy updates in order to avoid race
+     * conditions: An etag is returned in the response to getIamPolicy, and
+     * systems are expected to put that etag in the request to setIamPolicy to
+     * ensure that their change will be applied to the same version of the
+     * policy.If no etag is provided in the call to setIamPolicy, then the
+     * existing policy is overwritten blindly.
+     */
+    etag?: string;
+    /**
+     * Deprecated.
+     */
+    version?: number;
+  }
+  /**
    * A Cloud Dataproc job for running Apache PySpark
    * (https://spark.apache.org/docs/0.9.0/python-programming-guide.html)
    * applications on YARN.
@@ -940,6 +1062,18 @@ export namespace dataproc_v1 {
      * ]   } }
      */
     queries?: string[];
+  }
+  /**
+   * Request message for SetIamPolicy method.
+   */
+  export interface Schema$SetIamPolicyRequest {
+    /**
+     * REQUIRED: The complete policy to be applied to the resource. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is a valid
+     * policy but certain Cloud Platform services (such as Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
   }
   /**
    * Specifies the selection and config of software inside the cluster.
@@ -1117,6 +1251,28 @@ export namespace dataproc_v1 {
     requestId?: string;
   }
   /**
+   * Request message for TestIamPermissions method.
+   */
+  export interface Schema$TestIamPermissionsRequest {
+    /**
+     * The set of permissions to check for the resource. Permissions with
+     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
+     * For more information see IAM Overview
+     * (https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+  }
+  /**
+   * Response message for TestIamPermissions method.
+   */
+  export interface Schema$TestIamPermissionsResponse {
+    /**
+     * A subset of TestPermissionsRequest.permissions that the caller is
+     * allowed.
+     */
+    permissions?: string[];
+  }
+  /**
    * The workflow graph.
    */
   export interface Schema$WorkflowGraph {
@@ -1219,10 +1375,12 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects {
     root: Dataproc;
+    locations: Resource$Projects$Locations;
     regions: Resource$Projects$Regions;
     constructor(root: Dataproc) {
       this.root = root;
       this.getRoot.bind(this);
+      this.locations = new Resource$Projects$Locations(root);
       this.regions = new Resource$Projects$Regions(root);
     }
 
@@ -1232,17 +1390,332 @@ export namespace dataproc_v1 {
   }
 
 
+  export class Resource$Projects$Locations {
+    root: Dataproc;
+    workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
+    constructor(root: Dataproc) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.workflowTemplates =
+          new Resource$Projects$Locations$Workflowtemplates(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Locations$Workflowtemplates {
+    root: Dataproc;
+    constructor(root: Dataproc) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias dataproc.projects.locations.workflowTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias dataproc.projects.locations.workflowTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.Note: This operation is designed to be
+     * used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias dataproc.projects.locations.workflowTemplates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+
+
   export class Resource$Projects$Regions {
     root: Dataproc;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
+    workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
     constructor(root: Dataproc) {
       this.root = root;
       this.getRoot.bind(this);
       this.clusters = new Resource$Projects$Regions$Clusters(root);
       this.jobs = new Resource$Projects$Regions$Jobs(root);
       this.operations = new Resource$Projects$Regions$Operations(root);
+      this.workflowTemplates =
+          new Resource$Projects$Regions$Workflowtemplates(root);
     }
 
     getRoot() {
@@ -1329,21 +1802,11 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify
-     *     the request. If the server receives two CreateClusterRequest requests
-     *     with the same id, then the second request will be ignored and the
-     *     first google.longrunning.Operation created and stored in the backend
-     *     is returned.It is recommended to always set this value to a UUID
-     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
-     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     *     and hyphens (-). The maximum length is 40 characters.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().Cluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1469,23 +1932,11 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid
-     *     means the RPC should fail (with error NOT_FOUND) if cluster with
-     *     specified UUID does not exist.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify
-     *     the request. If the server receives two DeleteClusterRequest requests
-     *     with the same id, then the second request will be ignored and the
-     *     first google.longrunning.Operation created and stored in the backend
-     *     is returned.It is recommended to always set this value to a UUID
-     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
-     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     *     and hyphens (-). The maximum length is 40 characters.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1617,13 +2068,10 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {().DiagnoseClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1722,8 +2170,8 @@ export namespace dataproc_v1 {
      *     auth: authClient,
      *   };
      *
-     *   dataproc.projects.regions.clusters.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   dataproc.projects.regions.clusters.get(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1750,12 +2198,9 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1807,6 +2252,75 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Cluster>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.clusters.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias dataproc.projects.regions.clusters.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -1888,27 +2402,12 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. A filter constraining the
-     *     clusters to list. Filters are case-sensitive and have the following
-     *     syntax:field = value AND field = value ...where field is one of
-     *     status.state, clusterName, or labels.[KEY], and [KEY] is a label key.
-     *     value can be * to match all values. status.state can be one of the
-     *     following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or
-     *     UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states.
-     *     INACTIVE contains the DELETING and ERROR states. clusterName is the
-     *     name of the cluster provided at creation time. Only the logical AND
-     *     operator is supported; space-separated items are treated as having an
-     *     implicit AND operator.Example filter:status.state = ACTIVE AND
-     *     clusterName = mycluster AND labels.env = staging AND labels.starred =
-     *     *
+     * @param {string=} params.filter Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
      * @param {integer=} params.pageSize Optional. The standard List page size.
      * @param {string=} params.pageToken Optional. The standard List page token.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2041,49 +2540,13 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for
-     *     graceful YARN decomissioning. Graceful decommissioning allows
-     *     removing nodes from the cluster without interrupting jobs in
-     *     progress. Timeout specifies how long to wait for jobs in progress to
-     *     finish before forcefully removing nodes (and potentially interrupting
-     *     jobs). Default timeout is 0 (for forceful decommission), and the
-     *     maximum allowed timeout is 1 day.Only supported on Dataproc image
-     *     versions 1.2 and higher.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {string=} params.requestId Optional. A unique id used to identify
-     *     the request. If the server receives two UpdateClusterRequest requests
-     *     with the same id, then the second request will be ignored and the
-     *     first google.longrunning.Operation created and stored in the backend
-     *     is returned.It is recommended to always set this value to a UUID
-     *     (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id
-     *     must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     *     and hyphens (-). The maximum length is 40 characters.
-     * @param {string=} params.updateMask Required. Specifies the path, relative
-     *     to Cluster, of the field to update. For example, to change the number
-     *     of workers in a cluster to 5, the update_mask parameter would be
-     *     specified as config.worker_config.num_instances, and the PATCH
-     *     request body would specify the new value, as follows: {   "config":{
-     *     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to
-     *     change the number of preemptible workers in a cluster to 5, the
-     *     update_mask parameter would be
-     *     config.secondary_worker_config.num_instances, and the PATCH request
-     *     body would be set as follows: {   "config":{
-     *     "secondaryWorkerConfig":{       "numInstances":"5"     }   } }
-     *     <strong>Note:</strong> Currently, only the following fields can be
-     *     updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>
-     *     <td><strong>Purpose</strong></td>  </tr>  <tr>
-     *     <td><strong><em>labels</em></strong></td>  <td>Update labels</td>
-     *     </tr>  <tr>
-     *     <td><strong><em>config.worker_config.num_instances</em></strong></td>
-     *     <td>Resize primary worker group</td>  </tr>  <tr>
-     *     <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
-     *     <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
+     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
      * @param {().Cluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2140,6 +2603,156 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.clusters.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias dataproc.projects.regions.clusters.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.clusters.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.Note: This operation is designed to be
+     * used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias dataproc.projects.regions.clusters.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
@@ -2257,6 +2870,23 @@ export namespace dataproc_v1 {
      */
     region?: string;
   }
+  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
   export interface Params$Resource$Projects$Regions$Clusters$List {
     /**
      * Auth client or API Key for the request
@@ -2363,6 +2993,40 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Cluster;
   }
+  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
 
 
   export class Resource$Projects$Regions$Jobs {
@@ -2421,8 +3085,8 @@ export namespace dataproc_v1 {
      *     auth: authClient,
      *   };
      *
-     *   dataproc.projects.regions.jobs.cancel(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   dataproc.projects.regions.jobs.cancel(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2449,13 +3113,10 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {().CancelJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2581,12 +3242,9 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2713,12 +3371,9 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2769,6 +3424,74 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Job>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Job>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.jobs.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias dataproc.projects.regions.jobs.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -2850,29 +3573,14 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterName Optional. If set, the returned jobs
-     *     list includes only jobs that were submitted to the named cluster.
-     * @param {string=} params.filter Optional. A filter constraining the jobs
-     *     to list. Filters are case-sensitive and have the following
-     *     syntax:field = value AND field = value ...where field is status.state
-     *     or labels.[KEY], and [KEY] is a label key. value can be * to match
-     *     all values. status.state can be either ACTIVE or NON_ACTIVE. Only the
-     *     logical AND operator is supported; space-separated items are treated
-     *     as having an implicit AND operator.Example filter:status.state =
-     *     ACTIVE AND labels.env = staging AND labels.starred = *
-     * @param {string=} params.jobStateMatcher Optional. Specifies enumerated
-     *     categories of jobs to list. (default = match ALL jobs).If filter is
-     *     provided, jobStateMatcher will be ignored.
-     * @param {integer=} params.pageSize Optional. The number of results to
-     *     return in each response.
-     * @param {string=} params.pageToken Optional. The page token, returned by a
-     *     previous call, to request the next page of results.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterName Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
+     * @param {string=} params.filter Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+     * @param {string=} params.jobStateMatcher Optional. Specifies enumerated categories of jobs to list. (default = match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
+     * @param {integer=} params.pageSize Optional. The number of results to return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3005,19 +3713,11 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
-     * @param {string=} params.updateMask Required. Specifies the path, relative
-     *     to <code>Job</code>, of the field to update. For example, to update
-     *     the labels of a Job the <code>update_mask</code> parameter would be
-     *     specified as <code>labels</code>, and the PATCH request body would
-     *     specify the new value. <strong>Note:</strong> Currently,
-     *     <code>labels</code> is the only field that can be updated.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
      * @param {().Job} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3077,6 +3777,74 @@ export namespace dataproc_v1 {
 
 
     /**
+     * dataproc.projects.regions.jobs.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias dataproc.projects.regions.jobs.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * dataproc.projects.regions.jobs.submit
      * @desc Submits a job to a cluster.
      * @example
@@ -3115,8 +3883,8 @@ export namespace dataproc_v1 {
      *     auth: authClient,
      *   };
      *
-     *   dataproc.projects.regions.jobs.submit(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   dataproc.projects.regions.jobs.submit(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3142,13 +3910,10 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Google Cloud
-     *     Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in
-     *     which to handle the request.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {().SubmitJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3203,6 +3968,86 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Job>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Job>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.jobs.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.Note: This operation is designed to be
+     * used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias dataproc.projects.regions.jobs.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Jobs$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
@@ -3271,6 +4116,23 @@ export namespace dataproc_v1 {
      * Required. The Cloud Dataproc region in which to handle the request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$List {
     /**
@@ -3352,6 +4214,23 @@ export namespace dataproc_v1 {
      */
     requestBody?: Schema$Job;
   }
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
   export interface Params$Resource$Projects$Regions$Jobs$Submit {
     /**
      * Auth client or API Key for the request
@@ -3372,6 +4251,23 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SubmitJobRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
 
@@ -3454,10 +4350,8 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be
-     *     cancelled.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3577,10 +4471,8 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be
-     *     deleted.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3700,8 +4592,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3751,6 +4642,75 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.operations.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias dataproc.projects.regions.operations.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -3842,8 +4802,7 @@ export namespace dataproc_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3900,6 +4859,156 @@ export namespace dataproc_v1 {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
     }
+
+
+    /**
+     * dataproc.projects.regions.operations.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias dataproc.projects.regions.operations.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.operations.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.Note: This operation is designed to be
+     * used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias dataproc.projects.regions.operations.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Operations$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Regions$Operations$Cancel {
@@ -3935,6 +5044,23 @@ export namespace dataproc_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
   export interface Params$Resource$Projects$Regions$Operations$List {
     /**
      * Auth client or API Key for the request
@@ -3957,5 +5083,330 @@ export namespace dataproc_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+
+  export class Resource$Projects$Regions$Workflowtemplates {
+    root: Dataproc;
+    constructor(root: Dataproc) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias dataproc.projects.regions.workflowTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias dataproc.projects.regions.workflowTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.Note: This operation is designed to be
+     * used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias dataproc.projects.regions.workflowTemplates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }

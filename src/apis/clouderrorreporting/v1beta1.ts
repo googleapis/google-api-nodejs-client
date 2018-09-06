@@ -452,13 +452,8 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName [Required] The resource name of the
-     *     Google Cloud Platform project. Written as `projects/` plus the
-     *     [Google Cloud Platform project
-     *     ID](https://support.google.com/cloud/answer/6158840). Example:
-     *     `projects/my-project-123`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -554,30 +549,15 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.groupId [Required] The group for which events
-     *     shall be returned.
-     * @param {integer=} params.pageSize [Optional] The maximum number of
-     *     results to return per response.
-     * @param {string=} params.pageToken [Optional] A `next_page_token` provided
-     *     by a previous response.
-     * @param {string} params.projectName [Required] The resource name of the
-     *     Google Cloud Platform project. Written as `projects/` plus the
-     *     [Google Cloud Platform project
-     *     ID](https://support.google.com/cloud/answer/6158840). Example:
-     *     `projects/my-project-123`.
-     * @param {string=} params.serviceFilter.resourceType [Optional] The exact
-     *     value to match against
-     *     [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * @param {string=} params.serviceFilter.service [Optional] The exact value
-     *     to match against
-     *     [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * @param {string=} params.serviceFilter.version [Optional] The exact value
-     *     to match against
-     *     [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * @param {string=} params.timeRange.period Restricts the query to the
-     *     specified time range.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.groupId [Required] The group for which events shall be returned.
+     * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response.
+     * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response.
+     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -649,14 +629,9 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName [Required] The resource name of the
-     *     Google Cloud Platform project. Written as `projects/` plus the
-     *     [Google Cloud Platform project
-     *     ID](https://support.google.com/cloud/answer/6158840). Example:
-     *     `projects/my-project-123`.
+     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
      * @param {().ReportedErrorEvent} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -803,16 +778,8 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupName [Required] The group resource name.
-     *     Written as
-     *     <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     *     Call <a
-     *     href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     *     <code>groupStats.list</code></a> to return a list of groups belonging
-     *     to this project.  Example:
-     *     <code>projects/my-project-123/groups/my-group</code>
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.groupName [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -876,11 +843,9 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The group resource name. Example:
-     *     <code>projects/my-project-123/groups/my-groupid</code>
+     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
      * @param {().ErrorGroup} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -994,41 +959,19 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.alignment [Optional] The alignment of the timed
-     *     counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
-     * @param {string=} params.alignmentTime [Optional] Time where the timed
-     *     counts shall be aligned if rounded alignment is chosen. Default is
-     *     00:00 UTC.
-     * @param {string=} params.groupId [Optional] List all
-     *     <code>ErrorGroupStats</code> with these IDs.
-     * @param {string=} params.order [Optional] The sort order in which the
-     *     results are returned. Default is `COUNT_DESC`.
-     * @param {integer=} params.pageSize [Optional] The maximum number of
-     *     results to return per response. Default is 20.
-     * @param {string=} params.pageToken [Optional] A `next_page_token` provided
-     *     by a previous response. To view additional results, pass this token
-     *     along with the identical query parameters as the first request.
-     * @param {string} params.projectName [Required] The resource name of the
-     *     Google Cloud Platform project. Written as <code>projects/</code> plus
-     *     the <a href="https://support.google.com/cloud/answer/6158840">Google
-     *     Cloud Platform project ID</a>.  Example:
-     *     <code>projects/my-project-123</code>.
-     * @param {string=} params.serviceFilter.resourceType [Optional] The exact
-     *     value to match against
-     *     [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * @param {string=} params.serviceFilter.service [Optional] The exact value
-     *     to match against
-     *     [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * @param {string=} params.serviceFilter.version [Optional] The exact value
-     *     to match against
-     *     [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * @param {string=} params.timedCountDuration [Optional] The preferred
-     *     duration for a single returned `TimedCount`. If not set, no timed
-     *     counts are returned.
-     * @param {string=} params.timeRange.period Restricts the query to the
-     *     specified time range.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.alignment [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+     * @param {string=} params.alignmentTime [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+     * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
+     * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response. Default is 20.
+     * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
+     * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * @param {string=} params.timedCountDuration [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+     * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -691,8 +691,7 @@ export namespace servicebroker_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the instance to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -790,17 +789,10 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Specifies the number of results to
-     *     return per page. If there are fewer elements than the specified
-     *     number, returns all elements. Optional. If unset or 0, all the
-     *     results will be returned.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     `pageToken` to a `nextPageToken` returned by a previous list request
-     *     to get the next page of results.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements. Optional. If unset or 0, all the results will be returned.
+     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -926,17 +918,10 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Specifies the number of results to
-     *     return per page. If there are fewer elements than the specified
-     *     number, returns all elements. Optional. If unset or 0, all the
-     *     results will be returned.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     `pageToken` to a `nextPageToken` returned by a previous list request
-     *     to get the next page of results.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements. Optional. If unset or 0, all the results will be returned.
+     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1076,17 +1061,10 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Specifies the number of results to
-     *     return per page. If there are fewer elements than the specified
-     *     number, returns all elements. Optional. If unset or 0, all the
-     *     results will be returned.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     `pageToken` to a `nextPageToken` returned by a previous list request
-     *     to get the next page of results.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements. Optional. If unset or 0, all the results will be returned.
+     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1218,22 +1196,11 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsIncomplete Value indicating that API
-     *     client supports asynchronous operations. If Broker cannot execute the
-     *     request synchronously HTTP 422 code will be returned to HTTP clients
-     *     along with FAILED_PRECONDITION error. If true and broker will execute
-     *     request asynchronously 202 HTTP code will be returned. This broker
-     *     always requires this to be true as all mutator operations are
-     *     asynchronous.
-     * @param {string} params.instance_id The id of the service instance. Must
-     *     be unique within GCP project. Maximum length is 64, GUID recommended.
-     *     Required.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
-     * @param {().GoogleCloudServicebrokerV1alpha1__ServiceInstance}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.acceptsIncomplete Value indicating that API client supports asynchronous operations. If Broker cannot execute the request synchronously HTTP 422 code will be returned to HTTP clients along with FAILED_PRECONDITION error. If true and broker will execute request asynchronously 202 HTTP code will be returned. This broker always requires this to be true as all mutator operations are asynchronous.
+     * @param {string} params.instance_id The id of the service instance. Must be unique within GCP project. Maximum length is 64, GUID recommended. Required.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {().GoogleCloudServicebrokerV1alpha1__ServiceInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1321,15 +1288,12 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsIncomplete See
-     *     CreateServiceInstanceRequest for details.
+     * @param {boolean=} params.acceptsIncomplete See CreateServiceInstanceRequest for details.
      * @param {string} params.instanceId The instance id to deprovision.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      * @param {string=} params.planId The plan id of the service instance.
      * @param {string=} params.serviceId The service id of the service instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1418,8 +1382,7 @@ export namespace servicebroker_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the instance to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1497,17 +1460,12 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instanceId The instance id for which to return the
-     *     last operation status.
-     * @param {string=} params.operation If `operation` was returned during
-     *     mutation operation, this field must be populated with the provided
-     *     value.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {string} params.instanceId The instance id for which to return the last operation status.
+     * @param {string=} params.operation If `operation` was returned during mutation operation, this field must be populated with the provided value.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      * @param {string=} params.planId Plan id.
      * @param {string=} params.serviceId Service id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1592,17 +1550,11 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsIncomplete See
-     *     CreateServiceInstanceRequest for details.
-     * @param {string} params.instance_id The id of the service instance. Must
-     *     be unique within GCP project. Maximum length is 64, GUID recommended.
-     *     Required.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
-     * @param {().GoogleCloudServicebrokerV1alpha1__ServiceInstance}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.acceptsIncomplete See CreateServiceInstanceRequest for details.
+     * @param {string} params.instance_id The id of the service instance. Must be unique within GCP project. Maximum length is 64, GUID recommended. Required.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {().GoogleCloudServicebrokerV1alpha1__ServiceInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1824,17 +1776,12 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsIncomplete See
-     *     CreateServiceInstanceRequest for details.
-     * @param {string} params.binding_id The id of the binding. Must be unique
-     *     within GCP project. Maximum length is 64, GUID recommended. Required.
+     * @param {boolean=} params.acceptsIncomplete See CreateServiceInstanceRequest for details.
+     * @param {string} params.binding_id The id of the binding. Must be unique within GCP project. Maximum length is 64, GUID recommended. Required.
      * @param {string} params.instanceId The service instance to which to bind.
-     * @param {string} params.parent The GCP container. Must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
-     * @param {().GoogleCloudServicebrokerV1alpha1__Binding} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The GCP container. Must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {().GoogleCloudServicebrokerV1alpha1__Binding} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1927,18 +1874,13 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsIncomplete See
-     *     CreateServiceInstanceRequest for details.
+     * @param {boolean=} params.acceptsIncomplete See CreateServiceInstanceRequest for details.
      * @param {string} params.bindingId The id of the binding to delete.
-     * @param {string} params.instanceId The service instance id that deleted
-     *     binding is bound to.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {string} params.instanceId The service instance id that deleted binding is bound to.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      * @param {string=} params.planId The plan id of the service instance.
-     * @param {string=} params.serviceId Additional query parameter hints. The
-     *     service id of the service instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.serviceId Additional query parameter hints. The service id of the service instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2030,14 +1972,11 @@ export namespace servicebroker_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bindingId The binding id.
-     * @param {string} params.instanceId Instance id to which the binding is
-     *     bound.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {string} params.instanceId Instance id to which the binding is bound.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      * @param {string=} params.planId Plan id.
      * @param {string=} params.serviceId Service id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2122,19 +2061,13 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bindingId The binding id for which to return the
-     *     last operation
-     * @param {string} params.instanceId The instance id that the binding is
-     *     bound to.
-     * @param {string=} params.operation If `operation` was returned during
-     *     mutation operation, this field must be populated with the provided
-     *     value.
-     * @param {string} params.parent Parent must match
-     *     `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
+     * @param {string} params.bindingId The binding id for which to return the last operation
+     * @param {string} params.instanceId The instance id that the binding is bound to.
+     * @param {string=} params.operation If `operation` was returned during mutation operation, this field must be populated with the provided value.
+     * @param {string} params.parent Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      * @param {string=} params.planId Plan id.
      * @param {string=} params.serviceId Service id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2354,11 +2287,8 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2427,13 +2357,9 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
-     * @param {().GoogleIamV1__SetIamPolicyRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().GoogleIamV1__SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2505,13 +2431,9 @@ export namespace servicebroker_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
-     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

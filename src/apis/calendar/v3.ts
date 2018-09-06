@@ -576,10 +576,10 @@ export namespace calendar_v3 {
     password?: string;
     /**
      * The PIN to access the conference. The maximum length is 128 characters.
-     * When creating new conference data, populate only the subset
-     * of {meetingCode, accessCode, passcode, password, pin} fields that match
-     * the terminology that the conference provider uses. Only the populated
-     * fields should be displayed. Optional.
+     * When creating new conference data, populate only the subset of
+     * {meetingCode, accessCode, passcode, password, pin} fields that match the
+     * terminology that the conference provider uses. Only the populated fields
+     * should be displayed. Optional.
      */
     pin?: string;
     /**
@@ -1192,13 +1192,9 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1261,13 +1257,9 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1328,15 +1320,10 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the calendar sharing change. Optional. The default is True.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Optional. The default is True.
      * @param {().AclRule} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1399,31 +1386,12 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in
-     *     the result. Deleted ACLs are represented by role equal to "none".
-     *     Deleted ACLs will always be included if syncToken is provided.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. All entries deleted since the
-     *     previous list request will always be in the result set and it is not
-     *     allowed to set showDeleted to False. If the syncToken expires, the
-     *     server will respond with a 410 GONE response code and the client
-     *     should clear its storage and perform a full synchronization without
-     *     any syncToken. Learn more about incremental synchronization.
-     *     Optional. The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1487,17 +1455,11 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the calendar sharing change. Note that there are no
-     *     notifications on access removal. Optional. The default is True.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
      * @param {().AclRule} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1561,17 +1523,11 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the calendar sharing change. Note that there are no
-     *     notifications on access removal. Optional. The default is True.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
      * @param {().AclRule} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1635,32 +1591,13 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in
-     *     the result. Deleted ACLs are represented by role equal to "none".
-     *     Deleted ACLs will always be included if syncToken is provided.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. All entries deleted since the
-     *     previous list request will always be in the result set and it is not
-     *     allowed to set showDeleted to False. If the syncToken expires, the
-     *     server will respond with a 410 GONE response code and the client
-     *     should clear its storage and perform a full synchronization without
-     *     any syncToken. Learn more about incremental synchronization.
-     *     Optional. The default is to return all entries.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1937,12 +1874,8 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2006,12 +1939,8 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2072,14 +2001,9 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.colorRgbFormat Whether to use the
-     *     foregroundColor and backgroundColor fields to write the calendar
-     *     colors (RGB). If this feature is used, the index-based colorId field
-     *     will be set to the best matching option automatically. Optional. The
-     *     default is False.
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {().CalendarListEntry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2145,34 +2069,13 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.minAccessRole The minimum access role for the
-     *     user in the returned entries. Optional. The default is no
-     *     restriction.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted calendar
-     *     list entries in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Whether to show hidden entries.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. If only read-only fields such
-     *     as calendar properties or ACLs have changed, the entry won't be
-     *     returned. All entries deleted and hidden since the previous list
-     *     request will always be in the result set and it is not allowed to set
-     *     showDeleted neither showHidden to False. To ensure client state
-     *     consistency minAccessRole query parameter cannot be specified
-     *     together with nextSyncToken. If the syncToken expires, the server
-     *     will respond with a 410 GONE response code and the client should
-     *     clear its storage and perform a full synchronization without any
-     *     syncToken. Learn more about incremental synchronization. Optional.
-     *     The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2238,18 +2141,10 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {boolean=} params.colorRgbFormat Whether to use the
-     *     foregroundColor and backgroundColor fields to write the calendar
-     *     colors (RGB). If this feature is used, the index-based colorId field
-     *     will be set to the best matching option automatically. Optional. The
-     *     default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {().CalendarListEntry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2314,18 +2209,10 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {boolean=} params.colorRgbFormat Whether to use the
-     *     foregroundColor and backgroundColor fields to write the calendar
-     *     colors (RGB). If this feature is used, the index-based colorId field
-     *     will be set to the best matching option automatically. Optional. The
-     *     default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {().CalendarListEntry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2391,35 +2278,14 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.minAccessRole The minimum access role for the
-     *     user in the returned entries. Optional. The default is no
-     *     restriction.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted calendar
-     *     list entries in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Whether to show hidden entries.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. If only read-only fields such
-     *     as calendar properties or ACLs have changed, the entry won't be
-     *     returned. All entries deleted and hidden since the previous list
-     *     request will always be in the result set and it is not allowed to set
-     *     showDeleted neither showHidden to False. To ensure client state
-     *     consistency minAccessRole query parameter cannot be specified
-     *     together with nextSyncToken. If the syncToken expires, the server
-     *     will respond with a 410 GONE response code and the client should
-     *     clear its storage and perform a full synchronization without any
-     *     syncToken. Learn more about incremental synchronization. Optional.
-     *     The default is to return all entries.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2692,12 +2558,8 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2760,12 +2622,8 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2827,12 +2685,8 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2893,8 +2747,7 @@ export namespace calendar_v3 {
      *
      * @param {object} params Parameters for request
      * @param {().Calendar} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2958,13 +2811,9 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {().Calendar} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3027,13 +2876,9 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {().Calendar} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3198,8 +3043,7 @@ export namespace calendar_v3 {
      *
      * @param {object} params Parameters for request
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3287,8 +3131,7 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3368,15 +3211,10 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the deletion of the event. Optional. The default is False.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3439,25 +3277,12 @@ export namespace calendar_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {string=} params.timeZone Time zone used in the response.
-     *     Optional. The default is the time zone of the calendar.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3519,20 +3344,11 @@ export namespace calendar_v3 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {string} params.calendarId Calendar identifier. To retrieve calendar
- *     IDs call the calendarList.list method. If you want to access the primary
- *     calendar of the currently logged in user, use the "primary" keyword.
- * @param {integer=} params.conferenceDataVersion Version number of conference
- *     data supported by the API client. Version 0 assumes no conference data
- *     support and ignores conference data in the event's body. Version 1
- *     enables support for copying of ConferenceData as well as for creating new
- *     conferences using the createRequest field of conferenceData. The default
- *     is 0.
- * @param {boolean=} params.supportsAttachments Whether API client performing
- *     operation supports event attachments. Optional. The default is False.
+ * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+ * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+ * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
  * @param {().Event} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`,
- *     `method`, and `encoding`.
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -3635,43 +3451,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Recurring event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on
-     *     one result page. By default the value is 250 events. The page size
-     *     can never be larger than 2500 events. Optional.
-     * @param {string=} params.originalStart The original start time of the
-     *     instance in the result. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted events
-     *     (with status equals "cancelled") in the result. Cancelled instances
-     *     of recurring events will still be included if singleEvents is False.
-     *     Optional. The default is False.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's
-     *     start time to filter by. Optional. The default is not to filter by
-     *     start time. Must be an RFC3339 timestamp with mandatory time zone
-     *     offset.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's
-     *     end time to filter by. Optional. The default is not to filter by end
-     *     time. Must be an RFC3339 timestamp with mandatory time zone offset.
-     * @param {string=} params.timeZone Time zone used in the response.
-     *     Optional. The default is the time zone of the calendar.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.originalStart The original start time of the instance in the result. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3737,91 +3528,25 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {string=} params.iCalUID Specifies event ID in the iCalendar
-     *     format to be included in the response. Optional.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on
-     *     one result page. The number of events in the resulting page may be
-     *     less than this value, or none at all, even if there are more events
-     *     matching the query. Incomplete pages can be detected by a non-empty
-     *     nextPageToken field in the response. By default the value is 250
-     *     events. The page size can never be larger than 2500 events. Optional.
-     * @param {string=} params.orderBy The order of the events returned in the
-     *     result. Optional. The default is an unspecified, stable order.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {string=} params.privateExtendedProperty Extended properties
-     *     constraint specified as propertyName=value. Matches only private
-     *     properties. This parameter might be repeated multiple times to return
-     *     events that match all given constraints.
-     * @param {string=} params.q Free text search terms to find events that
-     *     match these terms in any field, except for extended properties.
-     *     Optional.
-     * @param {string=} params.sharedExtendedProperty Extended properties
-     *     constraint specified as propertyName=value. Matches only shared
-     *     properties. This parameter might be repeated multiple times to return
-     *     events that match all given constraints.
-     * @param {boolean=} params.showDeleted Whether to include deleted events
-     *     (with status equals "cancelled") in the result. Cancelled instances
-     *     of recurring events (but not the underlying recurring event) will
-     *     still be included if showDeleted and singleEvents are both False. If
-     *     showDeleted and singleEvents are both True, only single instances of
-     *     deleted events (but not the underlying recurring events) are
-     *     returned. Optional. The default is False.
-     * @param {boolean=} params.showHiddenInvitations Whether to include hidden
-     *     invitations in the result. Optional. The default is False.
-     * @param {boolean=} params.singleEvents Whether to expand recurring events
-     *     into instances and only return single one-off events and instances of
-     *     recurring events, but not the underlying recurring events themselves.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. All events deleted since the
-     *     previous list request will always be in the result set and it is not
-     *     allowed to set showDeleted to False. There are several query
-     *     parameters that cannot be specified together with nextSyncToken to
-     *     ensure consistency of the client state.  These are:  - iCalUID  -
-     *     orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  -
-     *     timeMin  - timeMax  - updatedMin If the syncToken expires, the server
-     *     will respond with a 410 GONE response code and the client should
-     *     clear its storage and perform a full synchronization without any
-     *     syncToken. Learn more about incremental synchronization. Optional.
-     *     The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's
-     *     start time to filter by. Optional. The default is not to filter by
-     *     start time. Must be an RFC3339 timestamp with mandatory time zone
-     *     offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z.
-     *     Milliseconds may be provided but will be ignored. If timeMin is set,
-     *     timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's
-     *     end time to filter by. Optional. The default is not to filter by end
-     *     time. Must be an RFC3339 timestamp with mandatory time zone offset,
-     *     e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds
-     *     may be provided but will be ignored. If timeMax is set, timeMin must
-     *     be smaller than timeMax.
-     * @param {string=} params.timeZone Time zone used in the response.
-     *     Optional. The default is the time zone of the calendar.
-     * @param {string=} params.updatedMin Lower bound for an event's last
-     *     modification time (as a RFC3339 timestamp) to filter by. When
-     *     specified, entries deleted since this time will always be included
-     *     regardless of showDeleted. Optional. The default is not to filter by
-     *     last modification time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3885,16 +3610,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier of the source
-     *     calendar where the event currently is on.
-     * @param {string} params.destination Calendar identifier of the target
-     *     calendar where the event is to be moved to.
+     * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
+     * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the change of the event's organizer. Optional. The default is
-     *     False.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3958,36 +3678,15 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of
-     *     conference data supported by the API client. Version 0 assumes no
-     *     conference data support and ignores conference data in the event's
-     *     body. Version 1 enables support for copying of ConferenceData as well
-     *     as for creating new conferences using the createRequest field of
-     *     conferenceData. The default is 0.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the event update (e.g. attendee's responses, title changes,
-     *     etc.). Optional. The default is False.
-     * @param {boolean=} params.supportsAttachments Whether API client
-     *     performing operation supports event attachments. Optional. The
-     *     default is False.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4051,15 +3750,10 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the creation of the event. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
      * @param {string} params.text The text describing the event to be created.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4123,36 +3817,15 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of
-     *     conference data supported by the API client. Version 0 assumes no
-     *     conference data support and ignores conference data in the event's
-     *     body. Version 1 enables support for copying of ConferenceData as well
-     *     as for creating new conferences using the createRequest field of
-     *     conferenceData. The default is 0.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications
-     *     about the event update (e.g. attendee's responses, title changes,
-     *     etc.). Optional. The default is False.
-     * @param {boolean=} params.supportsAttachments Whether API client
-     *     performing operation supports event attachments. Optional. The
-     *     default is False.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4216,92 +3889,26 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a
-     *     value in the email field for the organizer, creator and attendees,
-     *     even if no real email is available (i.e. a generated, non-working
-     *     value will be provided). The use of this option is discouraged and
-     *     should only be used by clients which cannot handle the absence of an
-     *     email address value in the mentioned places. Optional. The default is
-     *     False.
-     * @param {string} params.calendarId Calendar identifier. To retrieve
-     *     calendar IDs call the calendarList.list method. If you want to access
-     *     the primary calendar of the currently logged in user, use the
-     *     "primary" keyword.
-     * @param {string=} params.iCalUID Specifies event ID in the iCalendar
-     *     format to be included in the response. Optional.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to
-     *     include in the response. If there are more than the specified number
-     *     of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on
-     *     one result page. The number of events in the resulting page may be
-     *     less than this value, or none at all, even if there are more events
-     *     matching the query. Incomplete pages can be detected by a non-empty
-     *     nextPageToken field in the response. By default the value is 250
-     *     events. The page size can never be larger than 2500 events. Optional.
-     * @param {string=} params.orderBy The order of the events returned in the
-     *     result. Optional. The default is an unspecified, stable order.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {string=} params.privateExtendedProperty Extended properties
-     *     constraint specified as propertyName=value. Matches only private
-     *     properties. This parameter might be repeated multiple times to return
-     *     events that match all given constraints.
-     * @param {string=} params.q Free text search terms to find events that
-     *     match these terms in any field, except for extended properties.
-     *     Optional.
-     * @param {string=} params.sharedExtendedProperty Extended properties
-     *     constraint specified as propertyName=value. Matches only shared
-     *     properties. This parameter might be repeated multiple times to return
-     *     events that match all given constraints.
-     * @param {boolean=} params.showDeleted Whether to include deleted events
-     *     (with status equals "cancelled") in the result. Cancelled instances
-     *     of recurring events (but not the underlying recurring event) will
-     *     still be included if showDeleted and singleEvents are both False. If
-     *     showDeleted and singleEvents are both True, only single instances of
-     *     deleted events (but not the underlying recurring events) are
-     *     returned. Optional. The default is False.
-     * @param {boolean=} params.showHiddenInvitations Whether to include hidden
-     *     invitations in the result. Optional. The default is False.
-     * @param {boolean=} params.singleEvents Whether to expand recurring events
-     *     into instances and only return single one-off events and instances of
-     *     recurring events, but not the underlying recurring events themselves.
-     *     Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. All events deleted since the
-     *     previous list request will always be in the result set and it is not
-     *     allowed to set showDeleted to False. There are several query
-     *     parameters that cannot be specified together with nextSyncToken to
-     *     ensure consistency of the client state.  These are:  - iCalUID  -
-     *     orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  -
-     *     timeMin  - timeMax  - updatedMin If the syncToken expires, the server
-     *     will respond with a 410 GONE response code and the client should
-     *     clear its storage and perform a full synchronization without any
-     *     syncToken. Learn more about incremental synchronization. Optional.
-     *     The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's
-     *     start time to filter by. Optional. The default is not to filter by
-     *     start time. Must be an RFC3339 timestamp with mandatory time zone
-     *     offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z.
-     *     Milliseconds may be provided but will be ignored. If timeMin is set,
-     *     timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's
-     *     end time to filter by. Optional. The default is not to filter by end
-     *     time. Must be an RFC3339 timestamp with mandatory time zone offset,
-     *     e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds
-     *     may be provided but will be ignored. If timeMax is set, timeMin must
-     *     be smaller than timeMax.
-     * @param {string=} params.timeZone Time zone used in the response.
-     *     Optional. The default is the time zone of the calendar.
-     * @param {string=} params.updatedMin Lower bound for an event's last
-     *     modification time (as a RFC3339 timestamp) to filter by. When
-     *     specified, entries deleted since this time will always be included
-     *     regardless of showDeleted. Optional. The default is not to filter by
-     *     last modification time.
+     * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5008,8 +4615,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      *
      * @param {object} params Parameters for request
      * @param {().FreeBusyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5100,8 +4706,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      *
      * @param {object} params Parameters for request
      * @param {string} params.setting The id of the user setting.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5161,21 +4766,10 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. If the syncToken expires, the
-     *     server will respond with a 410 GONE response code and the client
-     *     should clear its storage and perform a full synchronization without
-     *     any syncToken. Learn more about incremental synchronization.
-     *     Optional. The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5238,22 +4832,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on
-     *     one result page. By default the value is 100 entries. The page size
-     *     can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to
-     *     return. Optional.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken
-     *     field returned on the last page of results from the previous list
-     *     request. It makes the result of this list request contain only
-     *     entries that have changed since then. If the syncToken expires, the
-     *     server will respond with a 410 GONE response code and the client
-     *     should clear its storage and perform a full synchronization without
-     *     any syncToken. Learn more about incremental synchronization.
-     *     Optional. The default is to return all entries.
+     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {().Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
