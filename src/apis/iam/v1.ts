@@ -888,7 +888,8 @@ export namespace iam_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().LintPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -955,8 +956,10 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryAuditableServicesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().QueryAuditableServicesRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1083,9 +1086,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the parent resource in one of the following formats: `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     * @param {string} params.parent The resource name of the parent resource in
+     *     one of the following formats: `organizations/{ORGANIZATION_ID}`
+     *     `projects/{PROJECT_ID}`
      * @param {().CreateRoleRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1155,9 +1161,14 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.etag Used to perform a consistent read-modify-write.
-     * @param {string} params.name The resource name of the role in one of the following formats: `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.etag Used to perform a consistent
+     *     read-modify-write.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats:
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1221,8 +1232,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats: `roles/{ROLE_NAME}`
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1282,12 +1297,19 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
-     * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
-     * @param {string} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
-     * @param {boolean=} params.showDeleted Include Roles that have been deleted.
+     * @param {integer=} params.pageSize Optional limit on the number of roles
+     *     to include in the response.
+     * @param {string=} params.pageToken Optional pagination token returned in
+     *     an earlier ListRolesResponse.
+     * @param {string} params.parent The resource name of the parent resource in
+     *     one of the following formats: `` (empty string) -- this refers to
+     *     curated roles. `organizations/{ORGANIZATION_ID}`
+     *     `projects/{PROJECT_ID}`
+     * @param {boolean=} params.showDeleted Include Roles that have been
+     *     deleted.
      * @param {string=} params.view Optional view for the returned Role objects.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1353,10 +1375,15 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {string=} params.updateMask A mask describing which fields in the Role have changed.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats: `roles/{ROLE_NAME}`
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {string=} params.updateMask A mask describing which fields in the
+     *     Role have changed.
      * @param {().Role} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1420,9 +1447,13 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats:
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      * @param {().UndeleteRoleRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1619,8 +1650,10 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryTestablePermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().QueryTestablePermissionsRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1741,9 +1774,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the parent resource in one of the following formats: `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
+     * @param {string} params.parent The resource name of the parent resource in
+     *     one of the following formats: `organizations/{ORGANIZATION_ID}`
+     *     `projects/{PROJECT_ID}`
      * @param {().CreateRoleRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1813,9 +1849,14 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.etag Used to perform a consistent read-modify-write.
-     * @param {string} params.name The resource name of the role in one of the following formats: `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.etag Used to perform a consistent
+     *     read-modify-write.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats:
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1879,8 +1920,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats: `roles/{ROLE_NAME}`
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1940,12 +1985,19 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
-     * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
-     * @param {string} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
-     * @param {boolean=} params.showDeleted Include Roles that have been deleted.
+     * @param {integer=} params.pageSize Optional limit on the number of roles
+     *     to include in the response.
+     * @param {string=} params.pageToken Optional pagination token returned in
+     *     an earlier ListRolesResponse.
+     * @param {string} params.parent The resource name of the parent resource in
+     *     one of the following formats: `` (empty string) -- this refers to
+     *     curated roles. `organizations/{ORGANIZATION_ID}`
+     *     `projects/{PROJECT_ID}`
+     * @param {boolean=} params.showDeleted Include Roles that have been
+     *     deleted.
      * @param {string=} params.view Optional view for the returned Role objects.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2010,10 +2062,15 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {string=} params.updateMask A mask describing which fields in the Role have changed.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats: `roles/{ROLE_NAME}`
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {string=} params.updateMask A mask describing which fields in the
+     *     Role have changed.
      * @param {().Role} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2077,9 +2134,13 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats:
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      * @param {().UndeleteRoleRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2276,9 +2337,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
+     * @param {string} params.name Required. The resource name of the project
+     *     associated with the service accounts, such as
+     *     `projects/my-project-123`.
      * @param {().CreateServiceAccountRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2344,8 +2408,14 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     *     wildcard for the `PROJECT_ID` will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2409,8 +2479,14 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     *     wildcard for the `PROJECT_ID` will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2471,8 +2547,11 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being requested. See the operation documentation for the
+     *     appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2538,10 +2617,17 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
-     * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.
-     * @param {string=} params.pageToken Optional pagination token returned in an earlier ListServiceAccountsResponse.next_page_token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The resource name of the project
+     *     associated with the service accounts, such as
+     *     `projects/my-project-123`.
+     * @param {integer=} params.pageSize Optional limit on the number of service
+     *     accounts to include in the response. Further accounts can
+     *     subsequently be obtained by including the
+     *     ListServiceAccountsResponse.next_page_token in a subsequent request.
+     * @param {string=} params.pageToken Optional pagination token returned in
+     *     an earlier ListServiceAccountsResponse.next_page_token.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2613,9 +2699,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy is being specified. See the operation documentation for the
+     *     appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2681,9 +2770,15 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     *     wildcard for the `PROJECT_ID` will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
      * @param {().SignBlobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2752,9 +2847,15 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     *     wildcard for the `PROJECT_ID` will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
      * @param {().SignJwtRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2821,9 +2922,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the
+     *     policy detail is being requested. See the operation documentation for
+     *     the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2899,9 +3003,17 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using
+     *     `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     the `account` and the `ACCOUNT` value can be the `email` address or
+     *     the `unique_id` of the service account.  In responses the resource
+     *     name will always be in the format
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      * @param {().ServiceAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3156,9 +3268,16 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().CreateServiceAccountKeyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     *     wildcard for the `PROJECT_ID` will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {().CreateServiceAccountKeyRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3223,8 +3342,14 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the service account key
+     *     in the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using
+     *     `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     the account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3288,9 +3413,16 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {string=} params.publicKeyType The output format of the public key requested. X509_PEM is the default output format.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the service account key
+     *     in the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using
+     *     `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     the account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {string=} params.publicKeyType The output format of the public key
+     *     requested. X509_PEM is the default output format.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3351,9 +3483,17 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.keyTypes Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.keyTypes Filters the types of keys the user wants
+     *     to include in the list response. Duplicate key types are not allowed.
+     *     If no key type is provided, all keys are returned.
+     * @param {string} params.name The resource name of the service account in
+     *     the following format:
+     *     `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a
+     *     wildcard for the `PROJECT_ID`, will infer the project from the
+     *     account. The `ACCOUNT` value can be the `email` address or the
+     *     `unique_id` of the service account.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3516,8 +3656,12 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the role in one of the following formats: `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the role in one of the
+     *     following formats: `roles/{ROLE_NAME}`
+     *     `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
+     *     `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3576,12 +3720,19 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
-     * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
-     * @param {string=} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
-     * @param {boolean=} params.showDeleted Include Roles that have been deleted.
+     * @param {integer=} params.pageSize Optional limit on the number of roles
+     *     to include in the response.
+     * @param {string=} params.pageToken Optional pagination token returned in
+     *     an earlier ListRolesResponse.
+     * @param {string=} params.parent The resource name of the parent resource
+     *     in one of the following formats: `` (empty string) -- this refers to
+     *     curated roles. `organizations/{ORGANIZATION_ID}`
+     *     `projects/{PROJECT_ID}`
+     * @param {boolean=} params.showDeleted Include Roles that have been
+     *     deleted.
      * @param {string=} params.view Optional view for the returned Role objects.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3647,7 +3798,8 @@ export namespace iam_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().QueryGrantableRolesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

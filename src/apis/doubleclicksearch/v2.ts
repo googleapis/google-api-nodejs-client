@@ -596,12 +596,17 @@ export namespace doubleclicksearch_v2 {
      * @param {string} params.agencyId Numeric ID of the agency.
      * @param {string=} params.campaignId Numeric ID of the campaign.
      * @param {string=} params.criterionId Numeric ID of the criterion.
-     * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.endDate Last date (inclusive) on which to
+     *     retrieve conversions. Format is yyyymmdd.
      * @param {string} params.engineAccountId Numeric ID of the engine account.
-     * @param {integer} params.rowCount The number of conversions to return per call.
-     * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer} params.rowCount The number of conversions to return per
+     *     call.
+     * @param {integer} params.startDate First date (inclusive) on which to
+     *     retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.startRow The 0-based starting index for
+     *     retrieving conversions results.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -668,7 +673,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ConversionList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -736,13 +742,18 @@ export namespace doubleclicksearch_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Numeric ID of the advertiser.
      * @param {string} params.agencyId Numeric ID of the agency.
-     * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.endDate Last date (inclusive) on which to
+     *     retrieve conversions. Format is yyyymmdd.
      * @param {string} params.engineAccountId Numeric ID of the engine account.
-     * @param {integer} params.rowCount The number of conversions to return per call.
-     * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
+     * @param {integer} params.rowCount The number of conversions to return per
+     *     call.
+     * @param {integer} params.startDate First date (inclusive) on which to
+     *     retrieve conversions. Format is yyyymmdd.
+     * @param {integer} params.startRow The 0-based starting index for
+     *     retrieving conversions results.
      * @param {().ConversionList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -810,7 +821,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ConversionList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -877,7 +889,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().UpdateAvailabilityRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1097,7 +1110,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ReportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1162,7 +1176,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.reportId ID of the report request being polled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1222,9 +1237,11 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.reportFragment The index of the report fragment to download.
+     * @param {integer} params.reportFragment The index of the report fragment
+     *     to download.
      * @param {string} params.reportId ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1289,7 +1306,8 @@ export namespace doubleclicksearch_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ReportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1418,7 +1436,8 @@ export namespace doubleclicksearch_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId DS ID of the advertiser.
      * @param {string} params.agencyId DS ID of the agency.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

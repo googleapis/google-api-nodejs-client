@@ -159,9 +159,11 @@ export namespace appstate_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentDataVersion The version of the data to be cleared. Version strings are returned by the server.
+     * @param {string=} params.currentDataVersion The version of the data to be
+     *     cleared. Version strings are returned by the server.
      * @param {integer} params.stateKey The key for the data to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -230,7 +232,8 @@ export namespace appstate_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.stateKey The key for the data to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -294,7 +297,8 @@ export namespace appstate_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.stateKey The key for the data to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -355,8 +359,10 @@ export namespace appstate_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeData Whether to include the full data in addition to the version number
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeData Whether to include the full data in
+     *     addition to the version number
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -422,10 +428,15 @@ export namespace appstate_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentStateVersion The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
+     * @param {string=} params.currentStateVersion The version of the app state
+     *     your application is attempting to update. If this does not match the
+     *     current version, this method will return a conflict error. If there
+     *     is no data stored on the server for this key, the update will succeed
+     *     irrespective of the value of this parameter.
      * @param {integer} params.stateKey The key for the data to be retrieved.
      * @param {().UpdateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

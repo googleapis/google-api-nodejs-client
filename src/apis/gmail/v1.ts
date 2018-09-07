@@ -958,8 +958,10 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1023,8 +1025,10 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1087,9 +1091,11 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().WatchRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1207,12 +1213,14 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1281,8 +1289,10 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the draft to delete.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1348,8 +1358,10 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.format The format to return the draft in.
      * @param {string} params.id The ID of the draft to retrieve.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1409,12 +1421,18 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include drafts from SPAM and TRASH in the results.
+     * @param {boolean=} params.includeSpamTrash Include drafts from SPAM and
+     *     TRASH in the results.
      * @param {integer=} params.maxResults Maximum number of drafts to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Page token to retrieve a specific page
+     *     of results in the list.
+     * @param {string=} params.q Only return draft messages matching the
+     *     specified query. Supports the same query format as the Gmail search
+     *     box. For example, "from:someuser@example.com rfc822msgid: is:unread".
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1480,12 +1498,14 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1552,12 +1572,14 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the draft to update.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1805,13 +1827,30 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.historyTypes History types to be returned by the function
-     * @param {string=} params.labelId Only return messages with a label matching the ID.
-     * @param {integer=} params.maxResults The maximum number of history records to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.startHistoryId Required. Returns history records after the specified startHistoryId. The supplied startHistoryId should be obtained from the historyId of a message, thread, or previous list response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date startHistoryId typically returns an HTTP 404 error code. A historyId is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no nextPageToken in the response, there are no updates to retrieve and you can store the returned historyId for a future request.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.historyTypes History types to be returned by the
+     *     function
+     * @param {string=} params.labelId Only return messages with a label
+     *     matching the ID.
+     * @param {integer=} params.maxResults The maximum number of history records
+     *     to return.
+     * @param {string=} params.pageToken Page token to retrieve a specific page
+     *     of results in the list.
+     * @param {string=} params.startHistoryId Required. Returns history records
+     *     after the specified startHistoryId. The supplied startHistoryId
+     *     should be obtained from the historyId of a message, thread, or
+     *     previous list response. History IDs increase chronologically but are
+     *     not contiguous with random gaps in between valid IDs. Supplying an
+     *     invalid or out of date startHistoryId typically returns an HTTP 404
+     *     error code. A historyId is typically valid for at least a week, but
+     *     in some rare circumstances may be valid for only a few hours. If you
+     *     receive an HTTP 404 error response, your application should perform a
+     *     full sync. If you receive no nextPageToken in the response, there are
+     *     no updates to retrieve and you can store the returned historyId for a
+     *     future request.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1932,9 +1971,11 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().Label} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2001,8 +2042,10 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to delete.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2067,8 +2110,10 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to retrieve.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2128,8 +2173,10 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2195,9 +2242,11 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().Label} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2262,9 +2311,11 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().Label} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2449,9 +2500,11 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().BatchDeleteMessagesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2515,9 +2568,11 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().BatchModifyMessagesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2583,8 +2638,10 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to delete.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2650,9 +2707,12 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.format The format to return the message in.
      * @param {string} params.id The ID of the message to retrieve.
-     * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.metadataHeaders When given and format is
+     *     METADATA, only include headers specified.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2715,16 +2775,24 @@ export namespace gmail_v1 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
- * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
- * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
- * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
- * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+ * @param {boolean=} params.deleted Mark the email as permanently deleted (not
+ *     TRASH) and only visible in Google Vault to a Vault administrator. Only
+ *     used for G Suite accounts.
+ * @param {string=} params.internalDateSource Source for Gmail's internal date
+ *     of the message.
+ * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier
+ *     decision and never mark this email as SPAM in the mailbox.
+ * @param {boolean=} params.processForCalendar Process calendar invites in the
+ *     email and add any extracted meetings to the Google Calendar for this
+ *     user.
+ * @param {string} params.userId The user's email address. The special value me
+ *     can be used to indicate the authenticated user.
  * @param  {object} params.resource Media resource metadata
  * @param {object} params.media Media object
  * @param {string} params.media.mimeType Media mime-type
  * @param {string|object} params.media.body Media body contents
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {object} [options] Optionally override request options, such as `url`,
+ *     `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -2831,13 +2899,22 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include messages from SPAM and TRASH in the results.
-     * @param {string=} params.labelIds Only return messages with labels that match all of the specified label IDs.
+     * @param {boolean=} params.includeSpamTrash Include messages from SPAM and
+     *     TRASH in the results.
+     * @param {string=} params.labelIds Only return messages with labels that
+     *     match all of the specified label IDs.
      * @param {integer=} params.maxResults Maximum number of messages to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Page token to retrieve a specific page
+     *     of results in the list.
+     * @param {string=} params.q Only return messages matching the specified
+     *     query. Supports the same query format as the Gmail search box. For
+     *     example, "from:someuser@example.com
+     *     rfc822msgid:<somemsgid@example.com> is:unread". Parameter cannot be
+     *     used when accessing the api using the gmail.metadata scope.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2904,9 +2981,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to modify.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().ModifyMessageRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2972,12 +3051,14 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3044,8 +3125,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to Trash.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3111,8 +3194,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3479,9 +3564,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the attachment.
-     * @param {string} params.messageId The ID of the message containing the attachment.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.messageId The ID of the message containing the
+     *     attachment.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3589,8 +3677,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3658,8 +3748,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3725,8 +3817,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3792,8 +3886,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3862,9 +3958,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().AutoForwarding} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3932,9 +4030,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().ImapSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4000,9 +4100,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().PopSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4068,9 +4170,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().VacationSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4276,9 +4380,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().Delegate} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4347,9 +4453,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.delegateEmail The email address of the user to be removed as a delegate.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.delegateEmail The email address of the user to be
+     *     removed as a delegate.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4418,9 +4527,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.delegateEmail The email address of the user whose delegate relationship is to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.delegateEmail The email address of the user whose
+     *     delegate relationship is to be retrieved.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4485,8 +4597,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4629,9 +4743,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().Filter} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4697,8 +4813,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the filter to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4763,8 +4881,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the filter to be fetched.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4825,8 +4945,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4972,9 +5094,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().ForwardingAddress} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5046,9 +5170,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.forwardingEmail The forwarding address to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.forwardingEmail The forwarding address to be
+     *     deleted.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5116,9 +5243,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.forwardingEmail The forwarding address to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.forwardingEmail The forwarding address to be
+     *     retrieved.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5183,8 +5313,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5346,9 +5478,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().SendAs} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5416,8 +5550,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5484,8 +5620,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5549,8 +5687,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5621,9 +5761,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be updated.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().SendAs} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5693,9 +5835,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be updated.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @param {().SendAs} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5765,8 +5909,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be verified.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId User's email address. The special value
+     *     "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5966,9 +6112,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sendAsEmail The email address that appears in the
+     *     "From:" header for mail sent using this alias.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6036,9 +6185,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sendAsEmail The email address that appears in the
+     *     "From:" header for mail sent using this alias.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6103,10 +6255,13 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.sendAsEmail The email address that appears in the
+     *     "From:" header for mail sent using this alias.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().SmimeInfo} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6175,9 +6330,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sendAsEmail The email address that appears in the
+     *     "From:" header for mail sent using this alias.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6247,9 +6405,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.sendAsEmail The email address that appears in the
+     *     "From:" header for mail sent using this alias.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6436,8 +6597,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id ID of the Thread to delete.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6503,9 +6666,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {string=} params.format The format to return the messages in.
      * @param {string} params.id The ID of the thread to retrieve.
-     * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.metadataHeaders When given and format is
+     *     METADATA, only include headers specified.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6566,13 +6732,22 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include threads from SPAM and TRASH in the results.
-     * @param {string=} params.labelIds Only return threads with labels that match all of the specified label IDs.
+     * @param {boolean=} params.includeSpamTrash Include threads from SPAM and
+     *     TRASH in the results.
+     * @param {string=} params.labelIds Only return threads with labels that
+     *     match all of the specified label IDs.
      * @param {integer=} params.maxResults Maximum number of threads to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Page token to retrieve a specific page
+     *     of results in the list.
+     * @param {string=} params.q Only return threads matching the specified
+     *     query. Supports the same query format as the Gmail search box. For
+     *     example, "from:someuser@example.com rfc822msgid: is:unread".
+     *     Parameter cannot be used when accessing the api using the
+     *     gmail.metadata scope.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6639,9 +6814,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to modify.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
      * @param {().ModifyThreadRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6707,8 +6884,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to Trash.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6774,8 +6953,10 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.userId The user's email address. The special value
+     *     me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

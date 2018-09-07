@@ -1002,8 +1002,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1071,8 +1073,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1139,8 +1143,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1203,9 +1209,11 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().AppEdit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1271,8 +1279,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1432,11 +1442,16 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the APK-specific localized listing to read or modify. For example,
+     *     to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1503,10 +1518,13 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1573,11 +1591,16 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the APK-specific localized listing to read or modify. For example,
+     *     to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1641,10 +1664,13 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1714,12 +1740,17 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the APK-specific localized listing to read or modify. For example,
+     *     to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().ApkListing} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1788,12 +1819,17 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+     * @param {integer} params.apkVersionCode The APK version code whose
+     *     APK-specific listings should be read or modified.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the APK-specific localized listing to read or modify. For example,
+     *     to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().ApkListing} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2039,9 +2075,12 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {().ApksAddExternallyHostedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {().ApksAddExternallyHostedRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2118,8 +2157,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2185,11 +2226,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2342,8 +2385,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2416,11 +2461,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2554,14 +2601,18 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose deobfuscation file is being uploaded.
+     * @param {integer} params.apkVersionCode The version code of the APK whose
+     *     deobfuscation file is being uploaded.
      * @param {string} params.deobfuscationFileType
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier of the Android app
+     *     for which the deobfuscatiuon files are being uploaded; for example,
+     *     "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2704,8 +2755,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2771,9 +2824,11 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().AppDetails} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2842,9 +2897,11 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().AppDetails} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2984,11 +3041,14 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+     * @param {integer} params.apkVersionCode The version code of the APK whose
+     *     Expansion File configuration is being read or modified.
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3056,12 +3116,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+     * @param {integer} params.apkVersionCode The version code of the APK whose
+     *     Expansion File configuration is being read or modified.
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().ExpansionFile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3132,12 +3195,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+     * @param {integer} params.apkVersionCode The version code of the APK whose
+     *     Expansion File configuration is being read or modified.
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().ExpansionFile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3207,14 +3273,17 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+     * @param {integer} params.apkVersionCode The version code of the APK whose
+     *     Expansion File configuration is being read or modified.
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3436,11 +3505,16 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
+     * @param {string} params.imageId Unique identifier an image within the set
+     *     of images attached to this edit.
      * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing whose images are to read or modified. For
+     *     example, to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3510,9 +3584,13 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing whose images are to read or modified. For
+     *     example, to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3584,9 +3662,13 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing whose images are to read or modified. For
+     *     example, to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3656,12 +3738,16 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing whose images are to read or modified. For
+     *     example, to select Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3874,9 +3960,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing to read or modify. For example, to select
+     *     Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3943,8 +4033,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4011,9 +4103,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing to read or modify. For example, to select
+     *     Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4077,8 +4173,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4148,10 +4246,14 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing to read or modify. For example, to select
+     *     Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().Listing} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4219,10 +4321,14 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.language The language code (a BCP-47 language tag)
+     *     of the localized listing to read or modify. For example, to select
+     *     Austrian German, pass "de-AT".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {().Listing} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4429,9 +4535,12 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {string} params.track The track to read or modify. Acceptable
+     *     values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4494,10 +4603,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {string} params.track The track to read or modify. Acceptable
+     *     values are: "alpha", "beta", "production", "rollout" or "internal".
      * @param {().Testers} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4564,10 +4676,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {string} params.track The track to read or modify. Acceptable
+     *     values are: "alpha", "beta", "production", "rollout" or "internal".
      * @param {().Testers} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4723,9 +4838,11 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {string} params.track The track to read or modify.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4788,8 +4905,10 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4860,10 +4979,12 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {string} params.track The track to read or modify.
      * @param {().Track} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4932,10 +5053,12 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     that is being updated; for example, "com.spiffygame".
      * @param {string} params.track The track to read or modify.
      * @param {().Track} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5103,9 +5226,11 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5173,7 +5298,8 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.packageName
      * @param {string} params.sku Unique identifier for the in-app product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5237,10 +5363,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for
+     *     all regions targeted by the parent app that don't have a price
+     *     specified for this in-app product will be auto converted to the
+     *     target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app;
+     *     for example, "com.spiffygame".
      * @param {().InAppProduct} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5310,10 +5441,12 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults
-     * @param {string} params.packageName Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     with in-app products; for example, "com.spiffygame".
      * @param {integer=} params.startIndex
      * @param {string=} params.token
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5384,11 +5517,16 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for
+     *     all regions targeted by the parent app that don't have a price
+     *     specified for this in-app product will be auto converted to the
+     *     target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {().InAppProduct} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5456,11 +5594,16 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {boolean=} params.autoConvertMissingPrices If true the prices for
+     *     all regions targeted by the parent app that don't have a price
+     *     specified for this in-app product will be auto converted to the
+     *     target currency based on the default price. Defaults to false.
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {().InAppProduct} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5673,10 +5816,18 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.orderId The order ID provided to the user when the subscription or in-app order was purchased.
-     * @param {string} params.packageName The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
-     * @param {boolean=} params.revoke Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.orderId The order ID provided to the user when the
+     *     subscription or in-app order was purchased.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription or in-app item was purchased (for
+     *     example, 'com.some.thing').
+     * @param {boolean=} params.revoke Whether to revoke the purchased item. If
+     *     set to true, access to the subscription or in-app item will be
+     *     terminated immediately. If the item is a recurring subscription, all
+     *     future payments will also be terminated. Consumed in-app items need
+     *     to be handled by developer's app. (optional)
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5797,10 +5948,14 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
-     * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     the inapp product was sold in (for example, 'com.some.thing').
+     * @param {string} params.productId The inapp product SKU (for example,
+     *     'com.some.thing.inapp1').
+     * @param {string} params.token The token provided to the user's device when
+     *     the inapp product was purchased.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5900,10 +6055,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription was purchased (for example,
+     *     'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for
+     *     example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when
+     *     the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5970,11 +6130,17 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {().SubscriptionPurchasesDeferRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription was purchased (for example,
+     *     'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for
+     *     example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when
+     *     the subscription was purchased.
+     * @param {().SubscriptionPurchasesDeferRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6054,10 +6220,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription was purchased (for example,
+     *     'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for
+     *     example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when
+     *     the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6123,10 +6294,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription was purchased (for example,
+     *     'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for
+     *     example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when
+     *     the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6194,10 +6370,15 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.packageName The package name of the application
+     *     for which this subscription was purchased (for example,
+     *     'com.some.thing').
+     * @param {string} params.subscriptionId The purchased subscription ID (for
+     *     example, 'monthly001').
+     * @param {string} params.token The token provided to the user's device when
+     *     the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6387,13 +6568,28 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * @param {string=} params.endTime The time, in milliseconds since the
+     *     Epoch, of the newest voided in-app product purchase that you want to
+     *     see in the response. The value of this parameter cannot be greater
+     *     than the current time and is ignored if a pagination token is set.
+     *     Default value is current time. Note: This filter is applied on the
+     *     time at which the record is seen as voided by our systems and not the
+     *     actual voided time returned in the response.
      * @param {integer=} params.maxResults
-     * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
+     * @param {string} params.packageName The package name of the application
+     *     for which voided purchases need to be returned (for example,
+     *     'com.some.thing').
      * @param {integer=} params.startIndex
-     * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * @param {string=} params.startTime The time, in milliseconds since the
+     *     Epoch, of the oldest voided in-app product purchase that you want to
+     *     see in the response. The value of this parameter cannot be older than
+     *     30 days and is ignored if a pagination token is set. Default value is
+     *     current time minus 30 days. Note: This filter is applied on the time
+     *     at which the record is seen as voided by our systems and not the
+     *     actual voided time returned in the response.
      * @param {string=} params.token
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6524,10 +6720,12 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId
      * @param {string=} params.translationLanguage
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6591,11 +6789,13 @@ export namespace androidpublisher_v2 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     for which we want reviews; for example, "com.spiffygame".
      * @param {integer=} params.startIndex
      * @param {string=} params.token
      * @param {string=} params.translationLanguage
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6660,10 +6860,12 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app
+     *     for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId
      * @param {().ReviewsReplyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -2397,8 +2397,10 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchCreateAnnotationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().BatchCreateAnnotationsRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2535,7 +2537,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Annotation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2651,8 +2654,10 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID of the annotation to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.annotationId The ID of the annotation to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2771,8 +2776,10 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID of the annotation to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.annotationId The ID of the annotation to be
+     *     retrieved.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2908,7 +2915,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchAnnotationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3037,10 +3045,14 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID of the annotation to be updated.
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. Mutable fields are name, variant, transcript, and info. If unspecified, all mutable fields will be updated.
+     * @param {string} params.annotationId The ID of the annotation to be
+     *     updated.
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. Mutable fields are name, variant, transcript, and
+     *     info. If unspecified, all mutable fields will be updated.
      * @param {().Annotation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3259,7 +3271,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().AnnotationSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3377,8 +3390,10 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationSetId The ID of the annotation set to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.annotationSetId The ID of the annotation set to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3498,8 +3513,10 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationSetId The ID of the annotation set to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.annotationSetId The ID of the annotation set to be
+     *     retrieved.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3635,7 +3652,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchAnnotationSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3770,10 +3788,14 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationSetId The ID of the annotation set to be updated.
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. Mutable fields are name, source_uri, and info. If unspecified, all mutable fields will be updated.
+     * @param {string} params.annotationSetId The ID of the annotation set to be
+     *     updated.
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. Mutable fields are name, source_uri, and info. If
+     *     unspecified, all mutable fields will be updated.
      * @param {().AnnotationSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3976,7 +3998,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().CallSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4089,7 +4112,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4206,7 +4230,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4326,9 +4351,13 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set to be updated.
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. At this time, the only mutable field is name. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. At this time, the only mutable field is name. The
+     *     only acceptable value is "name". If unspecified, all mutable fields
+     *     will be updated.
      * @param {().CallSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4460,7 +4489,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchCallSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4662,7 +4692,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4778,7 +4809,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4895,7 +4927,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5017,9 +5050,11 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which policy is being specified. Format is `datasets/<dataset ID>`.
+     * @param {string} params.resource_ REQUIRED: The resource for which policy
+     *     is being specified. Format is `datasets/<dataset ID>`.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5147,10 +5182,17 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string=} params.projectId Required. The Google Cloud project ID to list datasets for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of results to return
+     *     in a single page. If unspecified, defaults to 50. The maximum value
+     *     is 1024.
+     * @param {string=} params.pageToken The continuation token, which is used
+     *     to page through large result sets. To get the next page of results,
+     *     set this parameter to the value of `nextPageToken` from the previous
+     *     response.
+     * @param {string=} params.projectId Required. The Google Cloud project ID
+     *     to list datasets for.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5274,9 +5316,13 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be updated.
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. At this time, the only mutable field is name. The only acceptable value is "name". If unspecified, all mutable fields will be updated.
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. At this time, the only mutable field is name. The
+     *     only acceptable value is "name". If unspecified, all mutable fields
+     *     will be updated.
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5401,9 +5447,11 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which policy is being specified. Format is `datasets/<dataset ID>`.
+     * @param {string} params.resource_ REQUIRED: The resource for which policy
+     *     is being specified. Format is `datasets/<dataset ID>`.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5529,9 +5577,11 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which policy is being specified. Format is `datasets/<dataset ID>`.
+     * @param {string} params.resource_ REQUIRED: The resource for which policy
+     *     is being specified. Format is `datasets/<dataset ID>`.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5665,7 +5715,8 @@ export namespace genomics_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be undeleted.
      * @param {().UndeleteDatasetRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5947,9 +5998,11 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {string} params.name The name of the operation resource to be
+     *     cancelled.
      * @param {().CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6069,7 +6122,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6196,11 +6250,33 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * @param {string=} params.filter A string for filtering Operations. In
+     *     v2alpha1, the following filter fields are supported&#58;  *
+     *     createTime&#58; The time this job was created * events&#58; The set
+     *     of event (names) that have occurred while running   the pipeline. The
+     *     &#58; operator can be used to determine if a   particular event has
+     *     occurred. * error&#58; If the pipeline is running, this value is
+     *     NULL.  Once the   pipeline finishes, the value is the standard Google
+     *     error code. * labels.key or labels."key with space" where key is a
+     *     label key. * done&#58; If the pipeline is running, this value is
+     *     false. Once the   pipeline finishes, the value is true.  In v1 and
+     *     v1alpha2, the following filter fields are supported&#58;  *
+     *     projectId&#58; Required. Corresponds to OperationMetadata.projectId.
+     *     * createTime&#58; The time this job was created, in seconds from the
+     *     [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or
+     *     `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`,
+     *     `FAILURE`, or `CANCELED`. Only   one status may be specified. *
+     *     labels.key where key is a label key.  Examples&#58;  * `projectId =
+     *     my-project AND createTime >= 1432140000` * `projectId = my-project
+     *     AND createTime >= 1432140000 AND createTime <= 1432150000 AND status
+     *     = RUNNING` * `projectId = my-project AND labels.color = *` *
+     *     `projectId = my-project AND labels.color = red`
      * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {integer=} params.pageSize The maximum number of results to
+     *     return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6402,8 +6478,11 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.readGroupSetId The ID of the read group set to be deleted. The caller must have WRITE permissions to the dataset associated with this read group set.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.readGroupSetId The ID of the read group set to be
+     *     deleted. The caller must have WRITE permissions to the dataset
+     *     associated with this read group set.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6531,9 +6610,12 @@ export namespace genomics_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.readGroupSetId Required. The ID of the read group set to export. The caller must have READ access to this read group set.
+     * @param {string} params.readGroupSetId Required. The ID of the read group
+     *     set to export. The caller must have READ access to this read group
+     *     set.
      * @param {().ExportReadGroupSetRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6654,7 +6736,8 @@ export namespace genomics_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.readGroupSetId The ID of the read group set.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6777,7 +6860,8 @@ export namespace genomics_v1 {
  *
  * @param {object} params Parameters for request
  * @param {().ImportReadGroupSetsRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {object} [options] Optionally override request options, such as `url`,
+ *     `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -7005,7 +7089,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {().SearchReadGroupSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7251,14 +7336,32 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.end The end position of the range on the reference, 0-based exclusive. If specified, `referenceName` must also be specified. If unset or 0, defaults to the length of the reference.
-     * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.readGroupSetId Required. The ID of the read group set over which coverage is requested.
-     * @param {string=} params.referenceName The name of the reference to query, within the reference set associated with this query. Optional.
-     * @param {string=} params.start The start position of the range on the reference, 0-based inclusive. If specified, `referenceName` must also be specified. Defaults to 0.
-     * @param {string=} params.targetBucketWidth The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as `bucketWidth` in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed `bucketWidth` is currently 2048 base pairs; this is subject to change.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.end The end position of the range on the
+     *     reference, 0-based exclusive. If specified, `referenceName` must also
+     *     be specified. If unset or 0, defaults to the length of the reference.
+     * @param {integer=} params.pageSize The maximum number of results to return
+     *     in a single page. If unspecified, defaults to 1024. The maximum value
+     *     is 2048.
+     * @param {string=} params.pageToken The continuation token, which is used
+     *     to page through large result sets. To get the next page of results,
+     *     set this parameter to the value of `nextPageToken` from the previous
+     *     response.
+     * @param {string} params.readGroupSetId Required. The ID of the read group
+     *     set over which coverage is requested.
+     * @param {string=} params.referenceName The name of the reference to query,
+     *     within the reference set associated with this query. Optional.
+     * @param {string=} params.start The start position of the range on the
+     *     reference, 0-based inclusive. If specified, `referenceName` must also
+     *     be specified. Defaults to 0.
+     * @param {string=} params.targetBucketWidth The desired width of each
+     *     reported coverage bucket in base pairs. This will be rounded down to
+     *     the nearest precomputed bucket width; the value of which is returned
+     *     as `bucketWidth` in the response. Defaults to infinity (each bucket
+     *     spans an entire reference sequence) or the length of the target
+     *     range, if specified. The smallest precomputed `bucketWidth` is
+     *     currently 2048 base pairs; this is subject to change.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7475,7 +7578,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {().SearchReadsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7621,7 +7725,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {string} params.referenceId The ID of the reference.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7752,7 +7857,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {().SearchReferencesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7921,12 +8027,20 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.end The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
-     * @param {integer=} params.pageSize The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+     * @param {string=} params.end The end position (0-based, exclusive) of this
+     *     query. Defaults to the length of this reference.
+     * @param {integer=} params.pageSize The maximum number of bases to return
+     *     in a single page. If unspecified, defaults to 200Kbp (kilo base
+     *     pairs). The maximum value is 10Mbp (mega base pairs).
+     * @param {string=} params.pageToken The continuation token, which is used
+     *     to page through large result sets. To get the next page of results,
+     *     set this parameter to the value of `nextPageToken` from the previous
+     *     response.
      * @param {string} params.referenceId The ID of the reference.
-     * @param {string=} params.start The start position (0-based) of this query. Defaults to 0.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string=} params.start The start position (0-based) of this query.
+     *     Defaults to 0.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8095,7 +8209,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {string} params.referenceSetId The ID of the reference set.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8228,7 +8343,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {().SearchReferenceSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8391,7 +8507,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {().Variant} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8504,7 +8621,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantId The ID of the variant to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8621,7 +8739,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantId The ID of the variant.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8743,7 +8862,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
  *
  * @param {object} params Parameters for request
  * @param {().ImportVariantsRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {object} [options] Optionally override request options, such as `url`,
+ *     `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -8949,10 +9069,14 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. At this time, mutable fields are names and info. Acceptable values are "names" and "info". If unspecified, all mutable fields will be updated.
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. At this time, mutable fields are names and info.
+     *     Acceptable values are "names" and "info". If unspecified, all mutable
+     *     fields will be updated.
      * @param {string} params.variantId The ID of the variant to be updated.
      * @param {().Variant} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9084,7 +9208,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {().SearchVariantsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9312,7 +9437,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {().VariantSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9429,8 +9555,10 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.variantSetId The ID of the variant set to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.variantSetId The ID of the variant set to be
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9555,9 +9683,12 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.variantSetId Required. The ID of the variant set that contains variant data which should be exported. The caller must have READ access to this variant set.
+     * @param {string} params.variantSetId Required. The ID of the variant set
+     *     that contains variant data which should be exported. The caller must
+     *     have READ access to this variant set.
      * @param {().ExportVariantSetRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9678,7 +9809,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId Required. The ID of the variant set.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9799,10 +9931,15 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields:  * metadata. * name. * description.  Leaving `updateMask` unset is equivalent to specifying all mutable fields.
-     * @param {string} params.variantSetId The ID of the variant to be updated (must already exist).
+     * @param {string=} params.updateMask An optional mask specifying which
+     *     fields to update. Supported fields:  * metadata. * name. *
+     *     description.  Leaving `updateMask` unset is equivalent to specifying
+     *     all mutable fields.
+     * @param {string} params.variantSetId The ID of the variant to be updated
+     *     (must already exist).
      * @param {().VariantSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9938,7 +10075,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      *
      * @param {object} params Parameters for request
      * @param {().SearchVariantSetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

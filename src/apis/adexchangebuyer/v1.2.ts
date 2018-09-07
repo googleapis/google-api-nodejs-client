@@ -279,7 +279,8 @@ export namespace adexchangebuyer_v1_2 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -339,7 +340,8 @@ export namespace adexchangebuyer_v1_2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -405,7 +407,8 @@ export namespace adexchangebuyer_v1_2 {
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
      * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -470,7 +473,8 @@ export namespace adexchangebuyer_v1_2 {
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
      * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -597,9 +601,12 @@ export namespace adexchangebuyer_v1_2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer} params.accountId The id for the account that will serve
+     *     this creative.
+     * @param {string} params.buyerCreativeId The buyer-specific id for this
+     *     creative.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -662,7 +669,8 @@ export namespace adexchangebuyer_v1_2 {
      *
      * @param {object} params Parameters for request
      * @param {().Creative} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -726,10 +734,15 @@ export namespace adexchangebuyer_v1_2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param {string=} params.statusFilter When specified, only creatives having the given status are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of entries returned on
+     *     one result page. If not set, the default is 100. Optional.
+     * @param {string=} params.pageToken A continuation token, used to page
+     *     through ad clients. To retrieve the next page, set this parameter to
+     *     the value of "nextPageToken" from the previous response. Optional.
+     * @param {string=} params.statusFilter When specified, only creatives
+     *     having the given status are returned.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

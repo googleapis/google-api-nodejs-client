@@ -614,9 +614,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.columnId Name or identifier for the column being deleted.
-     * @param {string} params.tableId Table from which the column is being deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.columnId Name or identifier for the column being
+     *     deleted.
+     * @param {string} params.tableId Table from which the column is being
+     *     deleted.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -679,9 +682,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.columnId Name or identifier for the column that is being requested.
+     * @param {string} params.columnId Name or identifier for the column that is
+     *     being requested.
      * @param {string} params.tableId Table to which the column belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -742,9 +747,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table for which a new column is being added.
+     * @param {string} params.tableId Table for which a new column is being
+     *     added.
      * @param {().Column} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -807,10 +814,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of columns to return. Optional. Default is 5.
-     * @param {string=} params.pageToken Continuation token specifying which result page to return. Optional.
+     * @param {integer=} params.maxResults Maximum number of columns to return.
+     *     Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which
+     *     result page to return. Optional.
      * @param {string} params.tableId Table whose columns are being listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -875,10 +885,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.columnId Name or identifier for the column that is being updated.
-     * @param {string} params.tableId Table for which the column is being updated.
+     * @param {string} params.columnId Name or identifier for the column that is
+     *     being updated.
+     * @param {string} params.tableId Table for which the column is being
+     *     updated.
      * @param {().Column} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -942,10 +955,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.columnId Name or identifier for the column that is being updated.
-     * @param {string} params.tableId Table for which the column is being updated.
+     * @param {string} params.columnId Name or identifier for the column that is
+     *     being updated.
+     * @param {string} params.tableId Table for which the column is being
+     *     updated.
      * @param {().Column} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1129,10 +1145,15 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.hdrs Should column names be included (in the first row)?. Default is true.
-     * @param {string} params.sql An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
-     * @param {boolean=} params.typed Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.hdrs Should column names be included (in the
+     *     first row)?. Default is true.
+     * @param {string} params.sql An SQL
+     *     SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
+     * @param {boolean=} params.typed Should typed values be returned in the
+     *     (JSON) response -- numbers for numeric values and parsed geometries
+     *     for KML values? Default is true.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1193,10 +1214,14 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.hdrs Should column names be included (in the first row)?. Default is true.
+     * @param {boolean=} params.hdrs Should column names be included (in the
+     *     first row)?. Default is true.
      * @param {string} params.sql An SQL SELECT/SHOW/DESCRIBE statement.
-     * @param {boolean=} params.typed Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {boolean=} params.typed Should typed values be returned in the
+     *     (JSON) response -- numbers for numeric values and parsed geometries
+     *     for KML values? Default is true.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1314,9 +1339,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.styleId Identifier (within a table) for the style being deleted
-     * @param {string} params.tableId Table from which the style is being deleted
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer} params.styleId Identifier (within a table) for the style
+     *     being deleted
+     * @param {string} params.tableId Table from which the style is being
+     *     deleted
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1379,9 +1407,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.styleId Identifier (integer) for a specific style in a table
+     * @param {integer} params.styleId Identifier (integer) for a specific style
+     *     in a table
      * @param {string} params.tableId Table to which the requested style belongs
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1445,7 +1475,8 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new style is being added
      * @param {().StyleSetting} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1509,10 +1540,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of styles to return. Optional. Default is 5.
-     * @param {string=} params.pageToken Continuation token specifying which result page to return. Optional.
+     * @param {integer=} params.maxResults Maximum number of styles to return.
+     *     Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which
+     *     result page to return. Optional.
      * @param {string} params.tableId Table whose styles are being listed
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1576,10 +1610,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.styleId Identifier (within a table) for the style being updated.
+     * @param {integer} params.styleId Identifier (within a table) for the style
+     *     being updated.
      * @param {string} params.tableId Table whose style is being updated.
      * @param {().StyleSetting} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1644,10 +1680,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.styleId Identifier (within a table) for the style being updated.
+     * @param {integer} params.styleId Identifier (within a table) for the style
+     *     being updated.
      * @param {string} params.tableId Table whose style is being updated.
      * @param {().StyleSetting} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1831,9 +1869,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.copyPresentation Whether to also copy tabs, styles, and templates. Default is false.
+     * @param {boolean=} params.copyPresentation Whether to also copy tabs,
+     *     styles, and templates. Default is false.
      * @param {string} params.tableId ID of the table that is being copied.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1897,7 +1937,8 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId ID of the table that is being deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1959,8 +2000,10 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Identifier(ID) for the table being requested.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.tableId Identifier(ID) for the table being
+     *     requested.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2020,16 +2063,30 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.delimiter The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
-     * @param {string=} params.encoding The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
-     * @param {integer=} params.endLine The index of the last line from which to start importing, exclusive. Thus, the number of imported lines is endLine - startLine. If this parameter is not provided, the file will be imported until the last line of the file. If endLine is negative, then the imported content will exclude the last endLine lines. That is, if endline is negative, no line will be imported whose index is greater than N + endLine where N is the number of lines in the file, and the number of imported lines will be N + endLine - startLine.
-     * @param {boolean=} params.isStrict Whether the CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
-     * @param {integer=} params.startLine The index of the first line from which to start importing, inclusive. Default is 0.
-     * @param {string} params.tableId The table into which new rows are being imported.
+     * @param {string=} params.delimiter The delimiter used to separate cell
+     *     values. This can only consist of a single character. Default is ','.
+     * @param {string=} params.encoding The encoding of the content. Default is
+     *     UTF-8. Use 'auto-detect' if you are unsure of the encoding.
+     * @param {integer=} params.endLine The index of the last line from which to
+     *     start importing, exclusive. Thus, the number of imported lines is
+     *     endLine - startLine. If this parameter is not provided, the file will
+     *     be imported until the last line of the file. If endLine is negative,
+     *     then the imported content will exclude the last endLine lines. That
+     *     is, if endline is negative, no line will be imported whose index is
+     *     greater than N + endLine where N is the number of lines in the file,
+     *     and the number of imported lines will be N + endLine - startLine.
+     * @param {boolean=} params.isStrict Whether the CSV must have the same
+     *     number of values for each row. If false, rows with fewer values will
+     *     be padded with empty values. Default is true.
+     * @param {integer=} params.startLine The index of the first line from which
+     *     to start importing, inclusive. Default is 0.
+     * @param {string} params.tableId The table into which new rows are being
+     *     imported.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2095,13 +2152,16 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.delimiter The delimiter used to separate cell values. This can only consist of a single character. Default is ','.
-     * @param {string=} params.encoding The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
+     * @param {string=} params.delimiter The delimiter used to separate cell
+     *     values. This can only consist of a single character. Default is ','.
+     * @param {string=} params.encoding The encoding of the content. Default is
+     *     UTF-8. Use 'auto-detect' if you are unsure of the encoding.
      * @param {string} params.name The name to be assigned to the new table.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2169,7 +2229,8 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2232,9 +2293,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of styles to return. Optional. Default is 5.
-     * @param {string=} params.pageToken Continuation token specifying which result page to return. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of styles to return.
+     *     Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which
+     *     result page to return. Optional.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2300,10 +2364,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param {boolean=} params.replaceViewDefinition Should the view definition
+     *     also be updated? The specified view definition replaces the existing
+     *     one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2367,10 +2434,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
+     * @param {boolean=} params.replaceViewDefinition Should the view definition
+     *     also be updated? The specified view definition replaces the existing
+     *     one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2651,9 +2721,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table from which the task is being deleted.
+     * @param {string} params.tableId Table from which the task is being
+     *     deleted.
      * @param {string} params.taskId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2718,7 +2790,8 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the task belongs.
      * @param {string} params.taskId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2779,11 +2852,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of columns to return. Optional. Default is 5.
+     * @param {integer=} params.maxResults Maximum number of columns to return.
+     *     Optional. Default is 5.
      * @param {string=} params.pageToken
      * @param {integer=} params.startIndex
      * @param {string} params.tableId Table whose tasks are being listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2913,9 +2988,12 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table from which the template is being deleted
-     * @param {integer} params.templateId Identifier for the template which is being deleted
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.tableId Table from which the template is being
+     *     deleted
+     * @param {integer} params.templateId Identifier for the template which is
+     *     being deleted
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2979,8 +3057,10 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the template belongs
-     * @param {integer} params.templateId Identifier for the template that is being requested
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer} params.templateId Identifier for the template that is
+     *     being requested
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3041,9 +3121,11 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table for which a new template is being created
+     * @param {string} params.tableId Table for which a new template is being
+     *     created
      * @param {().Template} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3106,10 +3188,14 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of templates to return. Optional. Default is 5.
-     * @param {string=} params.pageToken Continuation token specifying which results page to return. Optional.
-     * @param {string} params.tableId Identifier for the table whose templates are being requested
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults Maximum number of templates to
+     *     return. Optional. Default is 5.
+     * @param {string=} params.pageToken Continuation token specifying which
+     *     results page to return. Optional.
+     * @param {string} params.tableId Identifier for the table whose templates
+     *     are being requested
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3173,10 +3259,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table to which the updated template belongs
-     * @param {integer} params.templateId Identifier for the template that is being updated
+     * @param {string} params.tableId Table to which the updated template
+     *     belongs
+     * @param {integer} params.templateId Identifier for the template that is
+     *     being updated
      * @param {().Template} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3240,10 +3329,13 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.tableId Table to which the updated template belongs
-     * @param {integer} params.templateId Identifier for the template that is being updated
+     * @param {string} params.tableId Table to which the updated template
+     *     belongs
+     * @param {integer} params.templateId Identifier for the template that is
+     *     being updated
      * @param {().Template} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

@@ -697,8 +697,10 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateManagedShortLinkRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().CreateManagedShortLinkRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -804,8 +806,10 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateShortDynamicLinkRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().CreateShortDynamicLinkRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -906,8 +910,10 @@ export namespace firebasedynamiclinks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.durationDays The span of time requested in days.
-     * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {string} params.dynamicLink Dynamic Link URL. e.g.
+     *     https://abcd.app.goo.gl/wxyz
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -973,8 +979,10 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetIosPostInstallAttributionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().GetIosPostInstallAttributionRequest} params.resource Request
+     *     body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1053,8 +1061,10 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetIosReopenAttributionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {().GetIosReopenAttributionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
